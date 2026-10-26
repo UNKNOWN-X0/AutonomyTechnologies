@@ -1,17 +1,17 @@
-# Graph Report - AutonomyTechnologies  (2026-10-24)
+# Graph Report - AutonomyTechnologies  (2026-10-26)
 
 ## Corpus Check
-- 20 files · ~256,265 words
+- 9 files · ~190,142 words
 - Verdict: corpus is large enough that graph structure adds value.
-- Unclassified: 7 file(s) not represented in the graph (top: .css 5, (none) 2)
+- Unclassified: 8 file(s) not represented in the graph (top: .css 5, (none) 3)
 
 ## Summary
-- 259 nodes · 532 edges · 16 communities (10 shown, 6 thin omitted)
+- 257 nodes · 531 edges · 15 communities (10 shown, 5 thin omitted)
 - Extraction: 94% EXTRACTED · 6% INFERRED · 0% AMBIGUOUS · INFERRED: 32 edges (avg confidence: 0.85)
 - Token cost: 0 input · 0 output
 
 ## Graph Freshness
-- Built from commit: `e4b3d1e4`
+- Built from commit: `5a8a9e43`
 - Run `git rev-parse HEAD` and compare to check if the graph is stale.
 - Run `graphify update .` after code changes (no API cost).
 
@@ -29,7 +29,6 @@
 - Q: How are the static study pages hosted, and what GitHub Pages and Jekyll workflow conditions control publishing?
 - Q: Does the graph cover the learner journey from the course home through the electrostatics and mathematics guides and labs, including local progress state and external assets?
 - Project instructions
-- CLAUDE.md
 
 ## God Nodes (most connected - your core abstractions)
 1. `Electrostatic fields lab` - 38 edges
@@ -54,7 +53,7 @@
 ## Import Cycles
 - None detected.
 
-## Communities (16 total, 6 thin omitted)
+## Communities (15 total, 5 thin omitted)
 
 ### Community 0 - "Mathematics Lab Code"
 Cohesion: 0.13
@@ -98,8 +97,8 @@ Nodes (4): Answer, Outcome, Q: Does the graph cover the learner journey from the
 
 ## Knowledge Gaps
 - **36 isolated node(s):** `Absolute value`, `Complex arithmetic, conjugates, and modulus`, `Complex exponential, logarithm, sine, and cosine`, `Complex polar form and operations`, `Cross product in three dimensions` (+31 more)
-  These have ≤1 connection - possible missing edges or undocumented components. (Counts symbols only; 72 node(s) total have ≤1 connection when file, concept and rationale nodes are included.)
-- **6 thin communities (<3 nodes) omitted from report** — run `graphify query` to explore isolated nodes.
+  These have ≤1 connection - possible missing edges or undocumented components. (Counts symbols only; 70 node(s) total have ≤1 connection when file, concept and rationale nodes are included.)
+- **5 thin communities (<3 nodes) omitted from report** — run `graphify query` to explore isolated nodes.
 
 ## Work-memory lessons
 
