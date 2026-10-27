@@ -5,76 +5,28 @@
     "ast_hash": "29fe146da84567bcc68665ce404ff135",
     "semantic_hash": "29fe146da84567bcc68665ce404ff135"
   },
-  "js/ee1-electrostatics-guide.js": {
-    "mtime": 1792758084.5625243,
-    "seen": 1792799239.242367,
-    "ast_hash": "bb3854f4b7a9aa7046e1e322d40edc7f",
-    "semantic_hash": "bb3854f4b7a9aa7046e1e322d40edc7f"
-  },
-  "js/ee1-electrostatics-lab.js": {
-    "mtime": 1792758084.5697968,
-    "seen": 1792799239.242369,
-    "ast_hash": "0e811741aa2fe9e3ec375d0c5cd91b67",
-    "semantic_hash": "0e811741aa2fe9e3ec375d0c5cd91b67"
-  },
-  "js/math1-guide.js": {
-    "mtime": 1792758084.5789204,
-    "seen": 1792799239.2423701,
-    "ast_hash": "72b8a2c207e6f8c90823dcf1fb23b620",
-    "semantic_hash": "72b8a2c207e6f8c90823dcf1fb23b620"
-  },
-  "js/math1-lab.js": {
-    "mtime": 1792758084.5850062,
-    "seen": 1792799239.242371,
-    "ast_hash": "d1ed684ddb971b84570692a9996d2ea3",
-    "semantic_hash": "d1ed684ddb971b84570692a9996d2ea3"
-  },
   "README.md": {
-    "mtime": 1792758296.0699494,
-    "seen": 1792799239.242372,
-    "ast_hash": "b3e01ada85a01d6e0cf71de211a08d84",
-    "semantic_hash": "b3e01ada85a01d6e0cf71de211a08d84"
-  },
-  "ee1-electrostatics-guide.html": {
-    "mtime": 1792758084.565505,
-    "seen": 1792799239.242372,
-    "ast_hash": "037816e7d85a6b445d896d03f8c5d118",
-    "semantic_hash": "037816e7d85a6b445d896d03f8c5d118"
-  },
-  "ee1-electrostatics-lab.html": {
-    "mtime": 1792758084.5705705,
-    "seen": 1792799239.2423732,
-    "ast_hash": "451a82447d340c1ef19ee5d2ce662fa0",
-    "semantic_hash": "451a82447d340c1ef19ee5d2ce662fa0"
+    "mtime": 1793102756.633389,
+    "seen": 1793102765.119663,
+    "ast_hash": "d5f231d73ba63a6ea96342fb4034c692",
+    "semantic_hash": ""
   },
   "index.html": {
-    "mtime": 1792758084.5722694,
-    "seen": 1792799239.242374,
-    "ast_hash": "e3547bbd49803d97a7e0117c80cc15a8",
-    "semantic_hash": "e3547bbd49803d97a7e0117c80cc15a8"
-  },
-  "math1-guide.html": {
-    "mtime": 1792758084.581877,
-    "seen": 1792799239.242375,
-    "ast_hash": "1039b229bf228eb1be2ecc9ac52efe8a",
-    "semantic_hash": "1039b229bf228eb1be2ecc9ac52efe8a"
-  },
-  "math1-lab.html": {
-    "mtime": 1792758084.5854888,
-    "seen": 1792799239.2423759,
-    "ast_hash": "f83676e7beab0af2925e90231e6b5cff",
-    "semantic_hash": "f83676e7beab0af2925e90231e6b5cff"
+    "mtime": 1793102756.6357892,
+    "seen": 1793102765.1196659,
+    "ast_hash": "9cee02864733b839237d983e02fafa07",
+    "semantic_hash": ""
   },
   "assets/preview.png": {
-    "mtime": 1792755728.5472937,
-    "seen": 1792799239.2423759,
-    "ast_hash": "ca4014e7f51a95fc55f149f16540cb24",
-    "semantic_hash": "ca4014e7f51a95fc55f149f16540cb24"
+    "mtime": 1793102342.5132365,
+    "seen": 1793102619.1998138,
+    "ast_hash": "3dd76e2a90c1335fcc79cffdaa53131c",
+    "semantic_hash": ""
   },
   "AGENTS.md": {
-    "mtime": 1792868331.1536787,
-    "seen": 1792872407.875159,
-    "ast_hash": "1fd840c3868657581070dd0b1de8365e",
+    "mtime": 1793023758.0567362,
+    "seen": 1793101527.6964989,
+    "ast_hash": "7af4a07753df0476e10cf438ef59251d",
     "semantic_hash": ""
   },
   "graphify-out/memory/query_20261024_200642_26a2d038_how_are_the_static_study_pages_hosted__and_what_gi.md": {
@@ -87,6 +39,42 @@
     "mtime": 1792872402.853017,
     "seen": 1792872407.8751638,
     "ast_hash": "30673a2a151c98db9c0ff8ec86159c40",
+    "semantic_hash": ""
+  },
+  ".impeccable/design.json": {
+    "mtime": 1793102756.64713,
+    "seen": 1793102765.119654,
+    "ast_hash": "3cc2d17aa5b6b3d353d4e2f59133aa25",
+    "semantic_hash": ""
+  },
+  "js/index.js": {
+    "mtime": 1793102162.689217,
+    "seen": 1793102619.1997771,
+    "ast_hash": "f7d3f10b905e007a20b1b763bbfa5ac3",
+    "semantic_hash": ""
+  },
+  ".impeccable/surfaces/index-html.md": {
+    "mtime": 1793102756.6500306,
+    "seen": 1793102765.119659,
+    "ast_hash": "0e1279c6dcecf21a179185f38840f307",
+    "semantic_hash": ""
+  },
+  "DESIGN.md": {
+    "mtime": 1793102756.6386445,
+    "seen": 1793102765.119661,
+    "ast_hash": "5cc7e16ec7b7348b3e4846528d8011a0",
+    "semantic_hash": ""
+  },
+  "PRODUCT.md": {
+    "mtime": 1793102275.2353497,
+    "seen": 1793102619.199789,
+    "ast_hash": "8ec2c66728ef4bcb4ce3805862d388b1",
+    "semantic_hash": ""
+  },
+  "js/guide.js": {
+    "mtime": 1793102108.6242228,
+    "seen": 1793102619.199776,
+    "ast_hash": "b42c5f10df4132df87f66259ce611215",
     "semantic_hash": ""
   }
 }

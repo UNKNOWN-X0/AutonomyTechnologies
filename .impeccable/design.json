@@ -1,0 +1,776 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-10-27T12:02:52+00:00",
+  "title": "Design System: Wegweiser",
+  "extensions": {
+    "colorMeta": {
+      "fau-blue": {
+        "role": "primary",
+        "displayName": "FAU Enamel Blue",
+        "canonical": "#04316a",
+        "tonalRamp": [
+          "oklch(15% 0.016 257)",
+          "oklch(26% 0.045 257)",
+          "oklch(38% 0.077 257)",
+          "oklch(49% 0.108 257)",
+          "oklch(61% 0.108 257)",
+          "oklch(72% 0.077 257)",
+          "oklch(84% 0.045 257)",
+          "oklch(95% 0.016 257)"
+        ]
+      },
+      "fau-deep": {
+        "role": "primary",
+        "displayName": "Night Enamel",
+        "canonical": "#021d40",
+        "tonalRamp": [
+          "oklch(15% 0.011 256)",
+          "oklch(26% 0.031 256)",
+          "oklch(38% 0.052 256)",
+          "oklch(49% 0.073 256)",
+          "oklch(61% 0.073 256)",
+          "oklch(72% 0.052 256)",
+          "oklch(84% 0.031 256)",
+          "oklch(95% 0.011 256)"
+        ]
+      },
+      "fau-tint": {
+        "role": "primary",
+        "displayName": "Sign Tint",
+        "canonical": "#dce5f1",
+        "tonalRamp": [
+          "oklch(15% 0.003 256)",
+          "oklch(26% 0.008 256)",
+          "oklch(38% 0.013 256)",
+          "oklch(49% 0.019 256)",
+          "oklch(61% 0.019 256)",
+          "oklch(72% 0.013 256)",
+          "oklch(84% 0.008 256)",
+          "oklch(95% 0.003 256)"
+        ]
+      },
+      "on-fau": {
+        "role": "primary",
+        "displayName": "White On Blue",
+        "canonical": "#ffffff",
+        "tonalRamp": [
+          "oklch(15% 0.000 90)",
+          "oklch(26% 0.000 90)",
+          "oklch(38% 0.000 90)",
+          "oklch(49% 0.000 90)",
+          "oklch(61% 0.000 90)",
+          "oklch(72% 0.000 90)",
+          "oklch(84% 0.000 90)",
+          "oklch(95% 0.000 90)"
+        ]
+      },
+      "on-fau-soft": {
+        "role": "primary",
+        "displayName": "Mist On Blue",
+        "canonical": "#c9d6ea",
+        "tonalRamp": [
+          "oklch(15% 0.005 259)",
+          "oklch(26% 0.013 259)",
+          "oklch(38% 0.022 259)",
+          "oklch(49% 0.031 259)",
+          "oklch(61% 0.031 259)",
+          "oklch(72% 0.022 259)",
+          "oklch(84% 0.013 259)",
+          "oklch(95% 0.005 259)"
+        ]
+      },
+      "paper": {
+        "role": "neutral",
+        "displayName": "Paper",
+        "canonical": "#ffffff",
+        "tonalRamp": [
+          "oklch(15% 0.000 90)",
+          "oklch(26% 0.000 90)",
+          "oklch(38% 0.000 90)",
+          "oklch(49% 0.000 90)",
+          "oklch(61% 0.000 90)",
+          "oklch(72% 0.000 90)",
+          "oklch(84% 0.000 90)",
+          "oklch(95% 0.000 90)"
+        ]
+      },
+      "paper-2": {
+        "role": "neutral",
+        "displayName": "Cool Paper",
+        "canonical": "#eef2f7",
+        "tonalRamp": [
+          "oklch(15% 0.001 254)",
+          "oklch(26% 0.003 254)",
+          "oklch(38% 0.006 254)",
+          "oklch(49% 0.008 254)",
+          "oklch(61% 0.008 254)",
+          "oklch(72% 0.006 254)",
+          "oklch(84% 0.003 254)",
+          "oklch(95% 0.001 254)"
+        ]
+      },
+      "ink": {
+        "role": "neutral",
+        "displayName": "Signal Ink",
+        "canonical": "#0b1b33",
+        "tonalRamp": [
+          "oklch(15% 0.008 258)",
+          "oklch(26% 0.021 258)",
+          "oklch(38% 0.036 258)",
+          "oklch(49% 0.051 258)",
+          "oklch(61% 0.051 258)",
+          "oklch(72% 0.036 258)",
+          "oklch(84% 0.021 258)",
+          "oklch(95% 0.008 258)"
+        ]
+      },
+      "muted": {
+        "role": "neutral",
+        "displayName": "Slate Muted",
+        "canonical": "#45556d",
+        "tonalRamp": [
+          "oklch(15% 0.007 258)",
+          "oklch(26% 0.018 258)",
+          "oklch(38% 0.031 258)",
+          "oklch(49% 0.044 258)",
+          "oklch(61% 0.044 258)",
+          "oklch(72% 0.031 258)",
+          "oklch(84% 0.018 258)",
+          "oklch(95% 0.007 258)"
+        ]
+      },
+      "line": {
+        "role": "neutral",
+        "displayName": "Hairline",
+        "canonical": "#d3dbe6",
+        "tonalRamp": [
+          "oklch(15% 0.003 256)",
+          "oklch(26% 0.007 256)",
+          "oklch(38% 0.012 256)",
+          "oklch(49% 0.017 256)",
+          "oklch(61% 0.017 256)",
+          "oklch(72% 0.012 256)",
+          "oklch(84% 0.007 256)",
+          "oklch(95% 0.003 256)"
+        ]
+      },
+      "apdr-1": {
+        "role": "secondary",
+        "displayName": "APDR Violet I",
+        "canonical": "oklch(0.80 0.11 290)",
+        "tonalRamp": [
+          "oklch(15% 0.059 290)",
+          "oklch(26% 0.076 290)",
+          "oklch(38% 0.094 290)",
+          "oklch(49% 0.111 290)",
+          "oklch(61% 0.111 290)",
+          "oklch(72% 0.094 290)",
+          "oklch(84% 0.076 290)",
+          "oklch(95% 0.059 290)"
+        ]
+      },
+      "apdr-2": {
+        "role": "secondary",
+        "displayName": "APDR Violet II",
+        "canonical": "oklch(0.72 0.12 290)",
+        "tonalRamp": [
+          "oklch(15% 0.059 290)",
+          "oklch(26% 0.076 290)",
+          "oklch(38% 0.094 290)",
+          "oklch(49% 0.111 290)",
+          "oklch(61% 0.111 290)",
+          "oklch(72% 0.094 290)",
+          "oklch(84% 0.076 290)",
+          "oklch(95% 0.059 290)"
+        ]
+      },
+      "apdr-3": {
+        "role": "secondary",
+        "displayName": "APDR Violet III",
+        "canonical": "oklch(0.64 0.12 290)",
+        "tonalRamp": [
+          "oklch(15% 0.059 290)",
+          "oklch(26% 0.076 290)",
+          "oklch(38% 0.094 290)",
+          "oklch(49% 0.111 290)",
+          "oklch(61% 0.111 290)",
+          "oklch(72% 0.094 290)",
+          "oklch(84% 0.076 290)",
+          "oklch(95% 0.059 290)"
+        ]
+      },
+      "mei-1": {
+        "role": "secondary",
+        "displayName": "MEI Green I",
+        "canonical": "oklch(0.88 0.12 130)",
+        "tonalRamp": [
+          "oklch(15% 0.059 130)",
+          "oklch(26% 0.076 130)",
+          "oklch(38% 0.094 130)",
+          "oklch(49% 0.111 130)",
+          "oklch(61% 0.111 130)",
+          "oklch(72% 0.094 130)",
+          "oklch(84% 0.076 130)",
+          "oklch(95% 0.059 130)"
+        ]
+      },
+      "mei-2": {
+        "role": "secondary",
+        "displayName": "MEI Green II",
+        "canonical": "oklch(0.80 0.12 130)",
+        "tonalRamp": [
+          "oklch(15% 0.059 130)",
+          "oklch(26% 0.076 130)",
+          "oklch(38% 0.094 130)",
+          "oklch(49% 0.111 130)",
+          "oklch(61% 0.111 130)",
+          "oklch(72% 0.094 130)",
+          "oklch(84% 0.076 130)",
+          "oklch(95% 0.059 130)"
+        ]
+      },
+      "mei-3": {
+        "role": "secondary",
+        "displayName": "MEI Green III",
+        "canonical": "oklch(0.72 0.12 130)",
+        "tonalRamp": [
+          "oklch(15% 0.059 130)",
+          "oklch(26% 0.076 130)",
+          "oklch(38% 0.094 130)",
+          "oklch(49% 0.111 130)",
+          "oklch(61% 0.111 130)",
+          "oklch(72% 0.094 130)",
+          "oklch(84% 0.076 130)",
+          "oklch(95% 0.059 130)"
+        ]
+      },
+      "eei-1": {
+        "role": "secondary",
+        "displayName": "EEI Amber I",
+        "canonical": "oklch(0.80 0.12 80)",
+        "tonalRamp": [
+          "oklch(15% 0.059 80)",
+          "oklch(26% 0.076 80)",
+          "oklch(38% 0.094 80)",
+          "oklch(49% 0.111 80)",
+          "oklch(61% 0.111 80)",
+          "oklch(72% 0.094 80)",
+          "oklch(84% 0.076 80)",
+          "oklch(95% 0.059 80)"
+        ]
+      },
+      "eei-2": {
+        "role": "secondary",
+        "displayName": "EEI Amber II",
+        "canonical": "oklch(0.72 0.12 80)",
+        "tonalRamp": [
+          "oklch(15% 0.059 80)",
+          "oklch(26% 0.076 80)",
+          "oklch(38% 0.094 80)",
+          "oklch(49% 0.111 80)",
+          "oklch(61% 0.111 80)",
+          "oklch(72% 0.094 80)",
+          "oklch(84% 0.076 80)",
+          "oklch(95% 0.059 80)"
+        ]
+      },
+      "eei-3": {
+        "role": "secondary",
+        "displayName": "EEI Amber III",
+        "canonical": "oklch(0.64 0.12 80)",
+        "tonalRamp": [
+          "oklch(15% 0.059 80)",
+          "oklch(26% 0.076 80)",
+          "oklch(38% 0.094 80)",
+          "oklch(49% 0.111 80)",
+          "oklch(61% 0.111 80)",
+          "oklch(72% 0.094 80)",
+          "oklch(84% 0.076 80)",
+          "oklch(95% 0.059 80)"
+        ]
+      },
+      "matlab-1": {
+        "role": "secondary",
+        "displayName": "MATLAB Cyan I",
+        "canonical": "oklch(0.88 0.10 199)",
+        "tonalRamp": [
+          "oklch(15% 0.049 200)",
+          "oklch(26% 0.063 200)",
+          "oklch(38% 0.078 200)",
+          "oklch(49% 0.092 200)",
+          "oklch(61% 0.092 200)",
+          "oklch(72% 0.078 200)",
+          "oklch(84% 0.063 200)",
+          "oklch(95% 0.049 200)"
+        ]
+      },
+      "matlab-2": {
+        "role": "secondary",
+        "displayName": "MATLAB Cyan II",
+        "canonical": "oklch(0.80 0.10 200)",
+        "tonalRamp": [
+          "oklch(15% 0.049 200)",
+          "oklch(26% 0.063 200)",
+          "oklch(38% 0.078 200)",
+          "oklch(49% 0.092 200)",
+          "oklch(61% 0.092 200)",
+          "oklch(72% 0.078 200)",
+          "oklch(84% 0.063 200)",
+          "oklch(95% 0.049 200)"
+        ]
+      },
+      "matlab-3": {
+        "role": "secondary",
+        "displayName": "MATLAB Cyan III",
+        "canonical": "oklch(0.72 0.10 200)",
+        "tonalRamp": [
+          "oklch(15% 0.049 200)",
+          "oklch(26% 0.063 200)",
+          "oklch(38% 0.078 200)",
+          "oklch(49% 0.092 200)",
+          "oklch(61% 0.092 200)",
+          "oklch(72% 0.078 200)",
+          "oklch(84% 0.063 200)",
+          "oklch(95% 0.049 200)"
+        ]
+      },
+      "dark-fau-deep": {
+        "role": "secondary",
+        "displayName": "Dark Fau Deep",
+        "canonical": "#021530",
+        "tonalRamp": [
+          "oklch(15% 0.009 256)",
+          "oklch(26% 0.025 256)",
+          "oklch(38% 0.042 256)",
+          "oklch(49% 0.059 256)",
+          "oklch(61% 0.059 256)",
+          "oklch(72% 0.042 256)",
+          "oklch(84% 0.025 256)",
+          "oklch(95% 0.009 256)"
+        ],
+        "mode": "dark"
+      },
+      "dark-fau-tint": {
+        "role": "primary",
+        "displayName": "Dark Fau Tint",
+        "canonical": "#15305a",
+        "tonalRamp": [
+          "oklch(15% 0.012 259)",
+          "oklch(26% 0.034 259)",
+          "oklch(38% 0.057 259)",
+          "oklch(49% 0.081 259)",
+          "oklch(61% 0.081 259)",
+          "oklch(72% 0.057 259)",
+          "oklch(84% 0.034 259)",
+          "oklch(95% 0.012 259)"
+        ],
+        "mode": "dark"
+      },
+      "dark-fau-mark": {
+        "role": "tertiary",
+        "displayName": "Dark Fau Mark",
+        "canonical": "#3a68ad",
+        "tonalRamp": [
+          "oklch(15% 0.018 258)",
+          "oklch(26% 0.050 258)",
+          "oklch(38% 0.084 258)",
+          "oklch(49% 0.119 258)",
+          "oklch(61% 0.119 258)",
+          "oklch(72% 0.084 258)",
+          "oklch(84% 0.050 258)",
+          "oklch(95% 0.018 258)"
+        ],
+        "mode": "dark"
+      },
+      "dark-band-overdue": {
+        "role": "primary",
+        "displayName": "Dark Band Overdue",
+        "canonical": "#2b5797",
+        "tonalRamp": [
+          "oklch(15% 0.017 258)",
+          "oklch(26% 0.047 258)",
+          "oklch(38% 0.080 258)",
+          "oklch(49% 0.113 258)",
+          "oklch(61% 0.113 258)",
+          "oklch(72% 0.080 258)",
+          "oklch(84% 0.047 258)",
+          "oklch(95% 0.017 258)"
+        ],
+        "mode": "dark"
+      },
+      "dark-paper": {
+        "role": "neutral",
+        "displayName": "Dark Paper",
+        "canonical": "#0c1a30",
+        "tonalRamp": [
+          "oklch(15% 0.007 259)",
+          "oklch(26% 0.020 259)",
+          "oklch(38% 0.033 259)",
+          "oklch(49% 0.047 259)",
+          "oklch(61% 0.047 259)",
+          "oklch(72% 0.033 259)",
+          "oklch(84% 0.020 259)",
+          "oklch(95% 0.007 259)"
+        ],
+        "mode": "dark"
+      },
+      "dark-paper-2": {
+        "role": "neutral",
+        "displayName": "Dark Paper 2",
+        "canonical": "#07111f",
+        "tonalRamp": [
+          "oklch(15% 0.005 256)",
+          "oklch(26% 0.014 256)",
+          "oklch(38% 0.023 256)",
+          "oklch(49% 0.032 256)",
+          "oklch(61% 0.032 256)",
+          "oklch(72% 0.023 256)",
+          "oklch(84% 0.014 256)",
+          "oklch(95% 0.005 256)"
+        ],
+        "mode": "dark"
+      },
+      "dark-ink": {
+        "role": "neutral",
+        "displayName": "Dark Ink",
+        "canonical": "#e6ecf5",
+        "tonalRamp": [
+          "oklch(15% 0.002 258)",
+          "oklch(26% 0.006 258)",
+          "oklch(38% 0.010 258)",
+          "oklch(49% 0.014 258)",
+          "oklch(61% 0.014 258)",
+          "oklch(72% 0.010 258)",
+          "oklch(84% 0.006 258)",
+          "oklch(95% 0.002 258)"
+        ],
+        "mode": "dark"
+      },
+      "dark-muted": {
+        "role": "neutral",
+        "displayName": "Dark Muted",
+        "canonical": "#a6b4c9",
+        "tonalRamp": [
+          "oklch(15% 0.005 258)",
+          "oklch(26% 0.014 258)",
+          "oklch(38% 0.024 258)",
+          "oklch(49% 0.033 258)",
+          "oklch(61% 0.033 258)",
+          "oklch(72% 0.024 258)",
+          "oklch(84% 0.014 258)",
+          "oklch(95% 0.005 258)"
+        ],
+        "mode": "dark"
+      },
+      "dark-line": {
+        "role": "neutral",
+        "displayName": "Dark Line",
+        "canonical": "#233653",
+        "tonalRamp": [
+          "oklch(15% 0.009 259)",
+          "oklch(26% 0.024 259)",
+          "oklch(38% 0.040 259)",
+          "oklch(49% 0.056 259)",
+          "oklch(61% 0.056 259)",
+          "oklch(72% 0.040 259)",
+          "oklch(84% 0.024 259)",
+          "oklch(95% 0.009 259)"
+        ],
+        "mode": "dark"
+      },
+      "dark-action": {
+        "role": "primary",
+        "displayName": "Dark Action",
+        "canonical": "#a9c4ec",
+        "tonalRamp": [
+          "oklch(15% 0.010 258)",
+          "oklch(26% 0.026 258)",
+          "oklch(38% 0.045 258)",
+          "oklch(49% 0.063 258)",
+          "oklch(61% 0.063 258)",
+          "oklch(72% 0.045 258)",
+          "oklch(84% 0.026 258)",
+          "oklch(95% 0.010 258)"
+        ],
+        "mode": "dark"
+      }
+    },
+    "typographyMeta": {
+      "display": {
+        "displayName": "Display",
+        "purpose": "Hub masthead 'Wegweiser' only."
+      },
+      "headline": {
+        "displayName": "Headline",
+        "purpose": "Chapter title in guide sign headers."
+      },
+      "title": {
+        "displayName": "Title",
+        "purpose": "Guide section openers; hub board heading at 1.6rem, loop and semester headings at 1.35rem."
+      },
+      "subtitle": {
+        "displayName": "Subtitle",
+        "purpose": "Guide h3; subject names and review-row chapter names at 1.25rem; hub chapter names at 1.1rem."
+      },
+      "body": {
+        "displayName": "Body",
+        "purpose": "Reading text; line-height 1.65 in guides, 1.55 on the hub; 68ch measure in guides."
+      },
+      "label": {
+        "displayName": "Label",
+        "purpose": "Buttons, home links, answer-key summary, sign course line."
+      },
+      "chip": {
+        "displayName": "Chip",
+        "purpose": "Course-part chips on hub subject rows."
+      },
+      "code-sign": {
+        "displayName": "Code Sign",
+        "purpose": "Short subject codes inside code squares; 1.1rem in hub subject rows, 1.15rem in sign headers."
+      },
+      "numeral": {
+        "displayName": "Numeral",
+        "purpose": "Review-row gap values; tabular figures. Semester and loop numbers use 800 at 1.2 to 1.3rem."
+      }
+    },
+    "shadows": [],
+    "motion": [
+      {
+        "name": "ease",
+        "value": "cubic-bezier(0.16, 1, 0.3, 1)",
+        "purpose": "System ease-out for every state transition."
+      },
+      {
+        "name": "state-change",
+        "value": "150ms",
+        "purpose": "Button fills, checklist box fill, contents highlight, review row band change. Disabled under prefers-reduced-motion."
+      }
+    ],
+    "breakpoints": [
+      {
+        "name": "sign-compact",
+        "value": "560px",
+        "purpose": "Guide sign header padding shrinks and the code square drops to 48px."
+      },
+      {
+        "name": "hub-stack",
+        "value": "760px",
+        "purpose": "Semester list wraps under the title; review rows, subject rows and chapters stack; loop becomes one column."
+      },
+      {
+        "name": "guide-rail",
+        "value": "900px",
+        "purpose": "Guide contents rail collapses to a top bar."
+      },
+      {
+        "name": "hub-compact",
+        "value": "1080px",
+        "purpose": "Tick counts drop under chapter names; loop becomes two columns."
+      }
+    ],
+    "focus": {
+      "value": "outline: 3px solid var(--act); outline-offset: 2px",
+      "purpose": "Global :focus-visible ring in the action colour."
+    },
+    "legacyTokens": {
+      "names": [
+        "--bg",
+        "--surface",
+        "--hl",
+        "--accent",
+        "--link",
+        "--course"
+      ],
+      "purpose": "Kept in system.css because css/guide.css reads them. --course is set by the subject classes (s-<code>-<step>)."
+    },
+    "borders": "2px for interactive and status outlines (buttons, home links, answer key, checklist boxes, part chips), 1px hairline for structure, 2px ink under hub section headings and over guide openers, 8px ink over the review board",
+    "subjectClasses": {
+      "pattern": "s-<code>-<step>",
+      "codes": [
+        "apdr",
+        "mei",
+        "eei",
+        "matlab"
+      ],
+      "steps": {
+        "1": "course I",
+        "2": "course II",
+        "3": "course III"
+      },
+      "purpose": "Sets --course on a guide <body>, a hub subject row, a review row or a code square. Lightness L 0.84 / 0.76 / 0.68, offset +/-0.04 per subject; ink labels >= 4.9:1; >= 0.08 OKLab separation between subjects under deutan, protan and tritan simulation. Same values in dark mode."
+    }
+  },
+  "components": [
+    {
+      "name": "Primary Button",
+      "kind": "button",
+      "refersTo": "button-primary",
+      "description": "Square action-colour plate for the single most useful next step (Guide, Log today's review).",
+      "html": "<button class=\"ds-btn ds-btn-primary\" type=\"button\">Guide</button>",
+      "css": ":host { --fau:#04316a; --fau-deep:#021d40; --fau-tint:#dce5f1; --fau-mark:#04316a; --band-overdue:#04316a; --on-fau:#ffffff; --on-fau-soft:#c9d6ea; --paper:#ffffff; --paper-2:#eef2f7; --ink:#0b1b33; --muted:#45556d; --line:#d3dbe6; --act:#04316a; --act-ink:#ffffff; --apdr-1:#bcb2ff; --apdr-2:#a497ea; --apdr-3:#8c7ed0; --mei-1:#bde892; --mei-2:#a4cd79; --mei-3:#8cb460; --eei-1:#e6b55d; --eei-2:#cc9c42; --eei-3:#b28324; --matlab-1:#80ecf1; --matlab-2:#64d1d7; --matlab-3:#48b7bd; --course:var(--paper-2); --code-ink:#0b1b33; --f-display:'Hanken Grotesk', system-ui, -apple-system, 'Segoe UI', sans-serif; --ease:cubic-bezier(0.16, 1, 0.3, 1); font-family:var(--f-display); color:var(--ink); } .ds-btn { display:inline-flex; align-items:center; justify-content:center; gap:8px; min-height:44px; padding:0 18px; font:700 0.95rem/1 var(--f-display); text-decoration:none; color:var(--act); background:transparent; border:2px solid var(--act); border-radius:0; cursor:pointer; transition:background-color 150ms var(--ease), color 150ms var(--ease); } .ds-btn:hover { background:var(--fau-tint); } .ds-btn:focus-visible { outline:3px solid var(--act); outline-offset:2px; } .ds-btn:disabled { opacity:0.45; cursor:not-allowed; } .ds-btn-primary { background:var(--act); color:var(--act-ink); } .ds-btn-primary:hover { background:var(--fau-deep); color:var(--on-fau); }"
+    },
+    {
+      "name": "Outline Button",
+      "kind": "button",
+      "refersTo": "button-secondary",
+      "description": "Transparent plate with a 2px action-colour border; secondary actions such as Lab.",
+      "html": "<button class=\"ds-btn\" type=\"button\">Lab</button>",
+      "css": ":host { --fau:#04316a; --fau-deep:#021d40; --fau-tint:#dce5f1; --fau-mark:#04316a; --band-overdue:#04316a; --on-fau:#ffffff; --on-fau-soft:#c9d6ea; --paper:#ffffff; --paper-2:#eef2f7; --ink:#0b1b33; --muted:#45556d; --line:#d3dbe6; --act:#04316a; --act-ink:#ffffff; --apdr-1:#bcb2ff; --apdr-2:#a497ea; --apdr-3:#8c7ed0; --mei-1:#bde892; --mei-2:#a4cd79; --mei-3:#8cb460; --eei-1:#e6b55d; --eei-2:#cc9c42; --eei-3:#b28324; --matlab-1:#80ecf1; --matlab-2:#64d1d7; --matlab-3:#48b7bd; --course:var(--paper-2); --code-ink:#0b1b33; --f-display:'Hanken Grotesk', system-ui, -apple-system, 'Segoe UI', sans-serif; --ease:cubic-bezier(0.16, 1, 0.3, 1); font-family:var(--f-display); color:var(--ink); } .ds-btn { display:inline-flex; align-items:center; justify-content:center; gap:8px; min-height:44px; padding:0 18px; font:700 0.95rem/1 var(--f-display); text-decoration:none; color:var(--act); background:transparent; border:2px solid var(--act); border-radius:0; cursor:pointer; transition:background-color 150ms var(--ease), color 150ms var(--ease); } .ds-btn:hover { background:var(--fau-tint); } .ds-btn:focus-visible { outline:3px solid var(--act); outline-offset:2px; } .ds-btn:disabled { opacity:0.45; cursor:not-allowed; } .ds-btn-primary { background:var(--act); color:var(--act-ink); } .ds-btn-primary:hover { background:var(--fau-deep); color:var(--on-fau); }"
+    },
+    {
+      "name": "Course Code Square",
+      "kind": "chip",
+      "refersTo": "code-sign-apdr",
+      "description": "Solid square in the subject colour family (--course, set by s-<code>-<step>) naming a subject with a short code in ink. Steps I to III shown for MEI.",
+      "html": "<span class=\"ds-code s-apdr-1\">APDR</span> <span class=\"ds-code s-mei-1\">MEI</span> <span class=\"ds-code s-eei-1\">EEI</span> <span class=\"ds-code s-matlab-1\">MATLAB</span> <span class=\"ds-code s-mei-1\">MEI</span> <span class=\"ds-code s-mei-2\">MEII</span> <span class=\"ds-code s-mei-3\">MEIII</span>",
+      "css": ":host { --fau:#04316a; --fau-deep:#021d40; --fau-tint:#dce5f1; --fau-mark:#04316a; --band-overdue:#04316a; --on-fau:#ffffff; --on-fau-soft:#c9d6ea; --paper:#ffffff; --paper-2:#eef2f7; --ink:#0b1b33; --muted:#45556d; --line:#d3dbe6; --act:#04316a; --act-ink:#ffffff; --apdr-1:#bcb2ff; --apdr-2:#a497ea; --apdr-3:#8c7ed0; --mei-1:#bde892; --mei-2:#a4cd79; --mei-3:#8cb460; --eei-1:#e6b55d; --eei-2:#cc9c42; --eei-3:#b28324; --matlab-1:#80ecf1; --matlab-2:#64d1d7; --matlab-3:#48b7bd; --course:var(--paper-2); --code-ink:#0b1b33; --f-display:'Hanken Grotesk', system-ui, -apple-system, 'Segoe UI', sans-serif; --ease:cubic-bezier(0.16, 1, 0.3, 1); font-family:var(--f-display); color:var(--ink); } .s-apdr-1 { --course:var(--apdr-1); } .s-apdr-2 { --course:var(--apdr-2); } .s-apdr-3 { --course:var(--apdr-3); } .s-mei-1 { --course:var(--mei-1); } .s-mei-2 { --course:var(--mei-2); } .s-mei-3 { --course:var(--mei-3); } .s-eei-1 { --course:var(--eei-1); } .s-eei-2 { --course:var(--eei-2); } .s-eei-3 { --course:var(--eei-3); } .s-matlab-1 { --course:var(--matlab-1); } .s-matlab-2 { --course:var(--matlab-2); } .s-matlab-3 { --course:var(--matlab-3); } .ds-code { display:inline-grid; place-items:center; min-width:2.75em; height:2.75em; padding:0 0.45em; font:800 0.95rem/1 var(--f-display); letter-spacing:0.01em; color:var(--code-ink); background:var(--course); white-space:nowrap; }"
+    },
+    {
+      "name": "Sign Field Header",
+      "kind": "custom",
+      "refersTo": "sign-field",
+      "description": "FAU-blue header of a guide: code square, chapter title, course line, review meta line.",
+      "html": "<header class=\"ds-sign s-eei-1\"><span class=\"ds-code\">EEI</span><h1>Electrostatic Fields</h1><p class=\"ds-course\">Electrical Engineering I · Lecture</p><p class=\"ds-meta\">9 of 14 exam skills ticked · last reviewed 15 days ago · 2 reviews</p></header>",
+      "css": ":host { --fau:#04316a; --fau-deep:#021d40; --fau-tint:#dce5f1; --fau-mark:#04316a; --band-overdue:#04316a; --on-fau:#ffffff; --on-fau-soft:#c9d6ea; --paper:#ffffff; --paper-2:#eef2f7; --ink:#0b1b33; --muted:#45556d; --line:#d3dbe6; --act:#04316a; --act-ink:#ffffff; --apdr-1:#bcb2ff; --apdr-2:#a497ea; --apdr-3:#8c7ed0; --mei-1:#bde892; --mei-2:#a4cd79; --mei-3:#8cb460; --eei-1:#e6b55d; --eei-2:#cc9c42; --eei-3:#b28324; --matlab-1:#80ecf1; --matlab-2:#64d1d7; --matlab-3:#48b7bd; --course:var(--paper-2); --code-ink:#0b1b33; --f-display:'Hanken Grotesk', system-ui, -apple-system, 'Segoe UI', sans-serif; --ease:cubic-bezier(0.16, 1, 0.3, 1); font-family:var(--f-display); color:var(--ink); } .s-apdr-1 { --course:var(--apdr-1); } .s-apdr-2 { --course:var(--apdr-2); } .s-apdr-3 { --course:var(--apdr-3); } .s-mei-1 { --course:var(--mei-1); } .s-mei-2 { --course:var(--mei-2); } .s-mei-3 { --course:var(--mei-3); } .s-eei-1 { --course:var(--eei-1); } .s-eei-2 { --course:var(--eei-2); } .s-eei-3 { --course:var(--eei-3); } .s-matlab-1 { --course:var(--matlab-1); } .s-matlab-2 { --course:var(--matlab-2); } .s-matlab-3 { --course:var(--matlab-3); } .ds-code { display:inline-grid; place-items:center; min-width:2.75em; height:2.75em; padding:0 0.45em; font:800 0.95rem/1 var(--f-display); letter-spacing:0.01em; color:var(--code-ink); background:var(--course); white-space:nowrap; } .ds-sign { background:var(--fau); color:var(--on-fau); padding:28px 32px 30px; display:grid; grid-template-columns:auto 1fr; column-gap:18px; row-gap:10px; align-items:start; } .ds-sign .ds-code { grid-row:1 / span 2; width:64px; height:64px; font-size:1.15rem; } .ds-sign h1 { grid-column:2; grid-row:1; margin:0; color:var(--on-fau); font:800 clamp(1.9rem, 1.2rem + 2.6vw, 3rem)/1.05 var(--f-display); letter-spacing:-0.025em; } .ds-sign .ds-course { grid-column:2; grid-row:2; margin:0; font:700 0.95rem/1.3 var(--f-display); color:var(--on-fau-soft); } .ds-sign .ds-meta { grid-column:2; grid-row:3; margin:6px 0 0; font:500 0.95rem/1.4 var(--f-display); color:var(--on-fau-soft); }"
+    },
+    {
+      "name": "Semester Jump List",
+      "kind": "nav",
+      "refersTo": "semester-jump",
+      "description": "Masthead links, one per semester: a blue number square plus a paper label tile; Sign Tint on hover.",
+      "html": "<div class=\"ds-field\"><nav class=\"ds-semesters\" aria-label=\"Semesters\"><a href=\"#\"><b>1</b><span>Semester 1</span></a><a href=\"#\"><b>2</b><span>Semester 2</span></a></nav></div>",
+      "css": ":host { --fau:#04316a; --fau-deep:#021d40; --fau-tint:#dce5f1; --fau-mark:#04316a; --band-overdue:#04316a; --on-fau:#ffffff; --on-fau-soft:#c9d6ea; --paper:#ffffff; --paper-2:#eef2f7; --ink:#0b1b33; --muted:#45556d; --line:#d3dbe6; --act:#04316a; --act-ink:#ffffff; --apdr-1:#bcb2ff; --apdr-2:#a497ea; --apdr-3:#8c7ed0; --mei-1:#bde892; --mei-2:#a4cd79; --mei-3:#8cb460; --eei-1:#e6b55d; --eei-2:#cc9c42; --eei-3:#b28324; --matlab-1:#80ecf1; --matlab-2:#64d1d7; --matlab-3:#48b7bd; --course:var(--paper-2); --code-ink:#0b1b33; --f-display:'Hanken Grotesk', system-ui, -apple-system, 'Segoe UI', sans-serif; --ease:cubic-bezier(0.16, 1, 0.3, 1); font-family:var(--f-display); color:var(--ink); } .ds-field { background:var(--fau); padding:24px; } .ds-semesters { display:grid; gap:10px; max-width:260px; } .ds-semesters a { display:flex; align-items:center; gap:14px; min-height:52px; padding-right:20px; background:var(--paper); color:var(--ink); font:700 1rem/1.2 var(--f-display); text-decoration:none; transition:background-color 150ms var(--ease); } .ds-semesters a:hover { background:var(--fau-tint); } .ds-semesters a:focus-visible { outline:3px solid var(--act); outline-offset:2px; } .ds-semesters b { display:grid; place-items:center; align-self:stretch; width:52px; background:var(--fau-mark); color:var(--on-fau); font:800 1.2rem/1 var(--f-display); outline:2px solid var(--paper); outline-offset:-2px; }"
+    },
+    {
+      "name": "Semester Section and Subject Row",
+      "kind": "custom",
+      "refersTo": "part-chip",
+      "description": "Ruled semester heading with a number square, then subject rows: colour-family code square, name and module, course-part chips (dashed = no material yet, solid = has material).",
+      "html": "<section class=\"ds-semester\"><h2><span class=\"ds-sem-no\">1</span>Semester 1</h2><ul class=\"ds-subjects\"><li class=\"ds-subject s-mei-1\"><span class=\"ds-code\">MEI</span><div><h3>Mathematics for Engineers I</h3><p class=\"ds-module\">Module 62765</p></div><ul class=\"ds-parts\"><li class=\"has\">Lecture</li><li>Exercise</li></ul></li><li class=\"ds-subject s-eei-1\"><span class=\"ds-code\">EEI</span><div><h3>Electrical Engineering I</h3><p class=\"ds-module\">Module 92315 · no material yet</p></div><ul class=\"ds-parts\"><li>Lecture</li><li>Exercise</li><li>Tutorial</li></ul></li></ul></section>",
+      "css": ":host { --fau:#04316a; --fau-deep:#021d40; --fau-tint:#dce5f1; --fau-mark:#04316a; --band-overdue:#04316a; --on-fau:#ffffff; --on-fau-soft:#c9d6ea; --paper:#ffffff; --paper-2:#eef2f7; --ink:#0b1b33; --muted:#45556d; --line:#d3dbe6; --act:#04316a; --act-ink:#ffffff; --apdr-1:#bcb2ff; --apdr-2:#a497ea; --apdr-3:#8c7ed0; --mei-1:#bde892; --mei-2:#a4cd79; --mei-3:#8cb460; --eei-1:#e6b55d; --eei-2:#cc9c42; --eei-3:#b28324; --matlab-1:#80ecf1; --matlab-2:#64d1d7; --matlab-3:#48b7bd; --course:var(--paper-2); --code-ink:#0b1b33; --f-display:'Hanken Grotesk', system-ui, -apple-system, 'Segoe UI', sans-serif; --ease:cubic-bezier(0.16, 1, 0.3, 1); font-family:var(--f-display); color:var(--ink); } .s-apdr-1 { --course:var(--apdr-1); } .s-apdr-2 { --course:var(--apdr-2); } .s-apdr-3 { --course:var(--apdr-3); } .s-mei-1 { --course:var(--mei-1); } .s-mei-2 { --course:var(--mei-2); } .s-mei-3 { --course:var(--mei-3); } .s-eei-1 { --course:var(--eei-1); } .s-eei-2 { --course:var(--eei-2); } .s-eei-3 { --course:var(--eei-3); } .s-matlab-1 { --course:var(--matlab-1); } .s-matlab-2 { --course:var(--matlab-2); } .s-matlab-3 { --course:var(--matlab-3); } .ds-code { display:inline-grid; place-items:center; min-width:2.75em; height:2.75em; padding:0 0.45em; font:800 0.95rem/1 var(--f-display); letter-spacing:0.01em; color:var(--code-ink); background:var(--course); white-space:nowrap; } .ds-semester h2 { display:flex; align-items:center; gap:14px; margin:0; font:800 1.35rem/1.2 var(--f-display); letter-spacing:-0.015em; padding-bottom:14px; border-bottom:2px solid var(--ink); } .ds-sem-no { display:grid; place-items:center; width:2.5rem; height:2.5rem; background:var(--fau-mark); color:var(--on-fau); font:800 1.2rem/1 var(--f-display); } .ds-subjects, .ds-parts { list-style:none; margin:0; padding:0; } .ds-subject { display:grid; grid-template-columns:7rem minmax(0,1fr) auto; align-items:center; gap:16px 28px; padding:22px 0; border-bottom:1px solid var(--line); } .ds-subject > .ds-code { width:100%; height:4.25rem; font-size:1.1rem; } .ds-subject h3 { margin:0; font:700 1.25rem/1.25 var(--f-display); letter-spacing:-0.01em; } .ds-module { margin:4px 0 0; color:var(--muted); font-size:0.95rem; font-variant-numeric:tabular-nums; } .ds-parts { display:flex; flex-wrap:wrap; justify-content:flex-end; gap:8px; } .ds-parts li { display:inline-flex; align-items:center; gap:8px; min-height:36px; padding:0 12px; border:2px dashed var(--line); color:var(--muted); font:600 0.9rem/1 var(--f-display); } .ds-parts li::before { content:''; width:10px; height:10px; background:var(--course); } .ds-parts li.has { border-style:solid; border-color:var(--ink); color:var(--ink); }"
+    },
+    {
+      "name": "Review Board Rows",
+      "kind": "custom",
+      "refersTo": "review-row-overdue",
+      "description": "Review today rows on the tonal urgency band: overdue (deep blue), due (tint), fresh (paper).",
+      "html": "<ol class=\"ds-rows\"><li class=\"ds-row ds-overdue\"><p class=\"ds-gap\"><b>3 d</b><span>overdue · reviewed 10 days ago</span></p><span class=\"ds-code s-eei-1\">EEI</span><h3>Electrostatic Fields</h3><span class=\"ds-ticks\" aria-hidden=\"true\"><i class=\"on\"></i><i class=\"on\"></i><i class=\"on\"></i><i class=\"on\"></i><i class=\"on\"></i><i class=\"on\"></i><i class=\"on\"></i><i class=\"on\"></i><i class=\"on\"></i><i></i><i></i><i></i><i></i><i></i></span><div class=\"ds-go\"><button class=\"ds-btn ds-btn-primary\">Guide</button><button class=\"ds-btn\">Lab</button></div></li><li class=\"ds-row ds-due\"><p class=\"ds-gap\"><b>due</b><span>reviewed yesterday</span></p><span class=\"ds-code s-mei-1\">MEI</span><h3>Logic, numbers, vector spaces, matrices</h3><span class=\"ds-ticks\" aria-hidden=\"true\"><i class=\"on\"></i><i class=\"on\"></i><i class=\"on\"></i><i class=\"on\"></i><i class=\"on\"></i><i class=\"on\"></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></span><div class=\"ds-go\"><button class=\"ds-btn ds-btn-primary\">Guide</button><button class=\"ds-btn\">Lab</button></div></li></ol>",
+      "css": ":host { --fau:#04316a; --fau-deep:#021d40; --fau-tint:#dce5f1; --fau-mark:#04316a; --band-overdue:#04316a; --on-fau:#ffffff; --on-fau-soft:#c9d6ea; --paper:#ffffff; --paper-2:#eef2f7; --ink:#0b1b33; --muted:#45556d; --line:#d3dbe6; --act:#04316a; --act-ink:#ffffff; --apdr-1:#bcb2ff; --apdr-2:#a497ea; --apdr-3:#8c7ed0; --mei-1:#bde892; --mei-2:#a4cd79; --mei-3:#8cb460; --eei-1:#e6b55d; --eei-2:#cc9c42; --eei-3:#b28324; --matlab-1:#80ecf1; --matlab-2:#64d1d7; --matlab-3:#48b7bd; --course:var(--paper-2); --code-ink:#0b1b33; --f-display:'Hanken Grotesk', system-ui, -apple-system, 'Segoe UI', sans-serif; --ease:cubic-bezier(0.16, 1, 0.3, 1); font-family:var(--f-display); color:var(--ink); } .s-apdr-1 { --course:var(--apdr-1); } .s-apdr-2 { --course:var(--apdr-2); } .s-apdr-3 { --course:var(--apdr-3); } .s-mei-1 { --course:var(--mei-1); } .s-mei-2 { --course:var(--mei-2); } .s-mei-3 { --course:var(--mei-3); } .s-eei-1 { --course:var(--eei-1); } .s-eei-2 { --course:var(--eei-2); } .s-eei-3 { --course:var(--eei-3); } .s-matlab-1 { --course:var(--matlab-1); } .s-matlab-2 { --course:var(--matlab-2); } .s-matlab-3 { --course:var(--matlab-3); } .ds-btn { display:inline-flex; align-items:center; justify-content:center; gap:8px; min-height:44px; padding:0 18px; font:700 0.95rem/1 var(--f-display); text-decoration:none; color:var(--act); background:transparent; border:2px solid var(--act); border-radius:0; cursor:pointer; transition:background-color 150ms var(--ease), color 150ms var(--ease); } .ds-btn:hover { background:var(--fau-tint); } .ds-btn:focus-visible { outline:3px solid var(--act); outline-offset:2px; } .ds-btn:disabled { opacity:0.45; cursor:not-allowed; } .ds-btn-primary { background:var(--act); color:var(--act-ink); } .ds-btn-primary:hover { background:var(--fau-deep); color:var(--on-fau); } .ds-code { display:inline-grid; place-items:center; min-width:2.75em; height:2.75em; padding:0 0.45em; font:800 0.95rem/1 var(--f-display); letter-spacing:0.01em; color:var(--code-ink); background:var(--course); white-space:nowrap; } .ds-ticks { display:flex; gap:3px; align-items:center; } .ds-ticks i { width:7px; height:22px; border:2px dashed currentColor; opacity:0.55; } .ds-ticks i.on { border-style:solid; background:currentColor; opacity:1; } .ds-rows { list-style:none; margin:0; padding:0; background:var(--paper); border-top:8px solid var(--ink); outline:1px solid var(--line); } .ds-row { display:grid; grid-template-columns:7.5rem 5.5rem minmax(0,1fr) auto 13rem; align-items:center; gap:24px; padding:16px 28px; border-top:1px solid var(--line); transition:background-color 150ms var(--ease); } .ds-row h3 { margin:0; font:700 1.25rem/1.25 var(--f-display); } .ds-row .ds-code { width:100%; height:3.25rem; } .ds-gap { margin:0; } .ds-gap b { display:block; font:800 1.85rem/1 var(--f-display); font-variant-numeric:tabular-nums; letter-spacing:-0.02em; } .ds-gap span { display:block; margin-top:4px; font:500 0.85rem/1.2 var(--f-display); color:var(--muted); } .ds-go { display:flex; gap:10px; } .ds-go .ds-btn { flex:1; } .ds-overdue { background:var(--band-overdue); color:var(--on-fau); } .ds-overdue .ds-gap span { color:var(--on-fau-soft); } .ds-overdue .ds-btn { color:var(--on-fau); border-color:var(--on-fau); } .ds-overdue .ds-btn:hover { background:var(--fau-deep); } .ds-overdue .ds-btn-primary { background:var(--on-fau); color:var(--fau); } .ds-due { background:var(--fau-tint); }"
+    },
+    {
+      "name": "Tick Bar",
+      "kind": "custom",
+      "refersTo": "tick-bar",
+      "description": "One bar per exam skill: dashed outline is not yet, solid is ticked.",
+      "html": "<span class=\"ds-ticks\" aria-hidden=\"true\"><i class=\"on\"></i><i class=\"on\"></i><i class=\"on\"></i><i class=\"on\"></i><i class=\"on\"></i><i class=\"on\"></i><i class=\"on\"></i><i class=\"on\"></i><i class=\"on\"></i><i></i><i></i><i></i><i></i><i></i></span>",
+      "css": ":host { --fau:#04316a; --fau-deep:#021d40; --fau-tint:#dce5f1; --fau-mark:#04316a; --band-overdue:#04316a; --on-fau:#ffffff; --on-fau-soft:#c9d6ea; --paper:#ffffff; --paper-2:#eef2f7; --ink:#0b1b33; --muted:#45556d; --line:#d3dbe6; --act:#04316a; --act-ink:#ffffff; --apdr-1:#bcb2ff; --apdr-2:#a497ea; --apdr-3:#8c7ed0; --mei-1:#bde892; --mei-2:#a4cd79; --mei-3:#8cb460; --eei-1:#e6b55d; --eei-2:#cc9c42; --eei-3:#b28324; --matlab-1:#80ecf1; --matlab-2:#64d1d7; --matlab-3:#48b7bd; --course:var(--paper-2); --code-ink:#0b1b33; --f-display:'Hanken Grotesk', system-ui, -apple-system, 'Segoe UI', sans-serif; --ease:cubic-bezier(0.16, 1, 0.3, 1); font-family:var(--f-display); color:var(--ink); } .ds-ticks { display:flex; gap:3px; align-items:center; } .ds-ticks i { width:7px; height:22px; border:2px dashed currentColor; opacity:0.55; } .ds-ticks i.on { border-style:solid; background:currentColor; opacity:1; }"
+    },
+    {
+      "name": "Exam Checklist Item",
+      "kind": "input",
+      "refersTo": "checklist",
+      "description": "Line-form checkbox: dashed muted square when not yet, solid blue with a white check when done.",
+      "html": "<ul class=\"ds-check\"><li><label><input type=\"checkbox\" checked> Compute the field of a point charge with Coulomb's law</label></li><li><label><input type=\"checkbox\"> Apply Gauss's law to a cylinder</label></li></ul>",
+      "css": ":host { --fau:#04316a; --fau-deep:#021d40; --fau-tint:#dce5f1; --fau-mark:#04316a; --band-overdue:#04316a; --on-fau:#ffffff; --on-fau-soft:#c9d6ea; --paper:#ffffff; --paper-2:#eef2f7; --ink:#0b1b33; --muted:#45556d; --line:#d3dbe6; --act:#04316a; --act-ink:#ffffff; --apdr-1:#bcb2ff; --apdr-2:#a497ea; --apdr-3:#8c7ed0; --mei-1:#bde892; --mei-2:#a4cd79; --mei-3:#8cb460; --eei-1:#e6b55d; --eei-2:#cc9c42; --eei-3:#b28324; --matlab-1:#80ecf1; --matlab-2:#64d1d7; --matlab-3:#48b7bd; --course:var(--paper-2); --code-ink:#0b1b33; --f-display:'Hanken Grotesk', system-ui, -apple-system, 'Segoe UI', sans-serif; --ease:cubic-bezier(0.16, 1, 0.3, 1); font-family:var(--f-display); color:var(--ink); } .ds-check { list-style:none; margin:0; padding:0; } .ds-check li { border-bottom:1px solid var(--line); } .ds-check label { display:block; position:relative; padding:12px 0 12px 38px; cursor:pointer; } .ds-check input { appearance:none; position:absolute; left:0; top:14px; width:22px; height:22px; margin:0; border:2px dashed var(--muted); border-radius:0; background:transparent; cursor:pointer; transition:background-color 150ms var(--ease), border-color 150ms var(--ease); } .ds-check input:focus-visible { outline:3px solid var(--act); outline-offset:2px; } .ds-check input:checked { border-style:solid; border-color:var(--fau); background:var(--fau) url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath d='M3 8.5l3.2 3L13 4.5' fill='none' stroke='%23fff' stroke-width='2.4'/%3E%3C/svg%3E\") center / 14px no-repeat; } .ds-check label:has(input:checked) { color:var(--muted); }"
+    },
+    {
+      "name": "Guide Contents Rail",
+      "kind": "nav",
+      "refersTo": "contents-link-current",
+      "description": "Home plates in the action colour, then a ruled section list; the current section fills FAU blue.",
+      "html": "<nav class=\"ds-toc\"><a class=\"ds-home\" href=\"#\">All Wegweiser pages</a><ol><li><a href=\"#\" aria-current=\"location\">How to use this guide</a></li><li><a href=\"#\">1.1–1.3 Charge, Coulomb’s law, field strength</a></li><li><a href=\"#\">Practice problems</a></li></ol></nav>",
+      "css": ":host { --fau:#04316a; --fau-deep:#021d40; --fau-tint:#dce5f1; --fau-mark:#04316a; --band-overdue:#04316a; --on-fau:#ffffff; --on-fau-soft:#c9d6ea; --paper:#ffffff; --paper-2:#eef2f7; --ink:#0b1b33; --muted:#45556d; --line:#d3dbe6; --act:#04316a; --act-ink:#ffffff; --apdr-1:#bcb2ff; --apdr-2:#a497ea; --apdr-3:#8c7ed0; --mei-1:#bde892; --mei-2:#a4cd79; --mei-3:#8cb460; --eei-1:#e6b55d; --eei-2:#cc9c42; --eei-3:#b28324; --matlab-1:#80ecf1; --matlab-2:#64d1d7; --matlab-3:#48b7bd; --course:var(--paper-2); --code-ink:#0b1b33; --f-display:'Hanken Grotesk', system-ui, -apple-system, 'Segoe UI', sans-serif; --ease:cubic-bezier(0.16, 1, 0.3, 1); font-family:var(--f-display); color:var(--ink); } .ds-toc { width:250px; font:500 0.95rem/1.35 var(--f-display); } .ds-home { display:flex; align-items:center; min-height:40px; padding:0 12px; border:2px solid var(--act); color:var(--act); font-weight:700; text-decoration:none; } .ds-home:hover { background:var(--fau-tint); } .ds-home:focus-visible, .ds-toc li a:focus-visible { outline:3px solid var(--act); outline-offset:2px; } .ds-toc ol { list-style:none; margin:22px 0 0; padding:0; border-top:2px solid var(--ink); } .ds-toc li { border-bottom:1px solid var(--line); } .ds-toc li a { display:block; padding:9px 10px; color:var(--muted); text-decoration:none; transition:background-color 150ms var(--ease), color 150ms var(--ease); } .ds-toc li a:hover { color:var(--ink); background:var(--paper-2); } .ds-toc li a[aria-current] { background:var(--fau); color:var(--on-fau); font-weight:700; }"
+    },
+    {
+      "name": "Section Opener and Formula Panel",
+      "kind": "card",
+      "refersTo": "formula-panel",
+      "description": "Guide h2 with a 2px ink rule and 14px blue square, followed by a cool-paper formula panel.",
+      "html": "<section class=\"ds-sec\"><h2>Potential and voltage</h2><div class=\"ds-eq\">U<sub>AB</sub> = φ<sub>A</sub> − φ<sub>B</sub></div></section>",
+      "css": ":host { --fau:#04316a; --fau-deep:#021d40; --fau-tint:#dce5f1; --fau-mark:#04316a; --band-overdue:#04316a; --on-fau:#ffffff; --on-fau-soft:#c9d6ea; --paper:#ffffff; --paper-2:#eef2f7; --ink:#0b1b33; --muted:#45556d; --line:#d3dbe6; --act:#04316a; --act-ink:#ffffff; --apdr-1:#bcb2ff; --apdr-2:#a497ea; --apdr-3:#8c7ed0; --mei-1:#bde892; --mei-2:#a4cd79; --mei-3:#8cb460; --eei-1:#e6b55d; --eei-2:#cc9c42; --eei-3:#b28324; --matlab-1:#80ecf1; --matlab-2:#64d1d7; --matlab-3:#48b7bd; --course:var(--paper-2); --code-ink:#0b1b33; --f-display:'Hanken Grotesk', system-ui, -apple-system, 'Segoe UI', sans-serif; --ease:cubic-bezier(0.16, 1, 0.3, 1); font-family:var(--f-display); color:var(--ink); } .ds-sec h2 { display:flex; gap:14px; align-items:baseline; font:800 1.65rem/1.2 var(--f-display); letter-spacing:-0.02em; margin:0 0 16px; padding-top:18px; border-top:2px solid var(--ink); } .ds-sec h2::before { content:''; flex:none; width:14px; height:14px; background:var(--fau-mark); transform:translateY(-1px); } .ds-eq { padding:16px 20px; background:var(--paper-2); overflow-x:auto; }"
+    }
+  ],
+  "narrative": {
+    "northStar": "The Semester Sign System",
+    "overview": "Wegweiser reads like an Ulm-school wayfinding system (the Aicher-era airport and Olympic signage) applied to a whole engineering degree, semester by semester. FAU blue enamel fields own the top of every page and every section opener; white and pale blue-grey paper carries the content underneath. Subjects are named by solid code squares in their own colour family, the same way a terminal names its gates, and semesters are numbered blue squares, the way it numbers its halls. The reader should always know where they are and what is due next.\n\nThe system is flat, square and typographic. There are no rounded corners, no shadows and no decorative motion. One grotesque family at heavy weights does all the signing. State is never carried by a new hue: urgency is a tonal band of the same blue (deep for overdue, tint for due, paper for fresh), and progress is carried by line form (dashed for not yet, solid for done or present). Density is calm and generous on the hub, and denser in the guides, where the formulas and problems carry the page. The system is built to grow: a new semester is one more section and one more jump tile, a follow-on course is the next step of its subject's colour family.\n\nThe world rejects the card-grid docs template and the hero-plus-cards hub. The hub is a sign field with a review board pinned across its lower edge, followed by ruled semester sections of subject rows; the guide is a single reading column with a contents rail.",
+    "keyCharacteristics": [
+      "FAU blue (#04316A) sign fields for the hub masthead, guide headers and table headers.",
+      "Solid subject code squares in one OKLCH hue per subject (APDR violet, MEI green, EEI amber, MATLAB cyan), stepped lighter to darker for courses I, II and III, holding short codes in Hanken Grotesk 800.",
+      "Numbered blue squares for semesters and the study loop.",
+      "Square corners everywhere, flat surfaces, hairline and 2px ink rules instead of shadows.",
+      "Urgency as a tonal blue band; checklist, tick-bar and course-part state as dashed versus solid line form.",
+      "The action colour is reserved for things you can click."
+    ],
+    "rules": [
+      {
+        "name": "The Clickable Blue Rule",
+        "body": "The action colour (`--act`) is spent only on things you can click: buttons, the guide's home links, the answer-key toggle and focus rings. Signs, bands and markers use the field blue tokens (`--fau`, `--fau-mark`, `--band-overdue`), which share a hex with the action colour in light mode and separate from it in dark mode.",
+        "section": "colors"
+      },
+      {
+        "name": "The Subject Fill Rule",
+        "body": "Subject colours are fills only: code squares, part-chip markers and sign-header squares, always with dark ink text on them. Never set a subject colour as text, border or line colour.",
+        "section": "colors"
+      },
+      {
+        "name": "The One Hue Per Subject Rule",
+        "body": "A subject keeps its hue for the whole degree; a follow-on course takes the next lightness step of that hue, never a new hue. A new subject gets its own hue, picked to keep the 4.9:1 ink contrast and the 0.08 colour-blind separation from every existing family.",
+        "section": "colors"
+      },
+      {
+        "name": "The One Hue Urgency Rule",
+        "body": "Urgency is a tonal band of the same blue: deep field blue for overdue, tint for due, paper for fresh or new. Never introduce red, amber or green for schedule state; amber and green belong to subjects.",
+        "section": "colors"
+      },
+      {
+        "name": "The No Kicker Rule",
+        "body": "Nothing sits above a heading as a small label. Context lines (course, module number, part, notes reference) go under the heading they belong to, at Label, 600 or regular weight in a muted or Mist colour, sentence case and normal tracking. The guide sign header puts the h1 first, then the course line, then the meta line.",
+        "section": "typography"
+      },
+      {
+        "name": "The Weight Signs Rule",
+        "body": "Weight, not size, separates sign from text: 800 names, 700 acts, 600 marks status, 500 annotates, 400 reads.",
+        "section": "typography"
+      },
+      {
+        "name": "The Rule Not Shadow Rule",
+        "body": "When something needs to stand forward, give it a heavier ink rule or a blue field, never a shadow.",
+        "section": "elevation"
+      },
+      {
+        "name": "The Square Corner Rule",
+        "body": "Radius is always 0.",
+        "section": "shapes"
+      },
+      {
+        "name": "The Line Form Rule",
+        "body": "Progress and presence are shown by dashed versus solid, never by a change of hue alone.",
+        "section": "shapes"
+      }
+    ],
+    "dos": [
+      "**Do** use FAU blue (#04316A) as the main colour, in full-width sign fields for mastheads and headers.",
+      "**Do** name a subject with its solid code square in its colour family (`s-<code>-<step>`), ink text, 800 weight.",
+      "**Do** give a follow-on course (II, III) the next lightness step of its subject's hue.",
+      "**Do** check any new subject hue for at least 4.9:1 ink-label contrast on all three steps and at least 0.08 OKLab separation from every other subject under deutan, protan and tritan simulation.",
+      "**Do** keep every corner square (0px radius).",
+      "**Do** show not-yet as a dashed outline and done or present as a solid line or fill.",
+      "**Do** spend the action colour only on clickable things: buttons, home links, the answer-key toggle and focus rings.",
+      "**Do** put the guide's subject class and `data-key` on its `<body>`.",
+      "**Do** keep motion to 150ms state changes with the system ease-out, and turn it off under prefers-reduced-motion.",
+      "**Do** keep the legacy token names (--bg, --surface, --hl, --accent, --link, --course) in system.css, because css/guide.css reads them.",
+      "**Do** strip fills to ink text and rules in print."
+    ],
+    "donts": [
+      "**Don't** put a kicker or eyebrow label above a heading; context lines go under the heading.",
+      "**Don't** add rounded corners or shadows.",
+      "**Don't** signal state with a new hue: no red, amber or green for overdue, due or done.",
+      "**Don't** use a subject colour as text, border or line colour; it is a fill behind dark ink.",
+      "**Don't** give a follow-on course a new hue.",
+      "**Don't** colour a non-clickable element with the action colour token.",
+      "**Don't** add decorative motion.",
+      "**Don't** use the FAU logo; the site mark is its own square sign.",
+      "**Don't** build a card grid or a hero-plus-cards hub."
+    ]
+  }
+}

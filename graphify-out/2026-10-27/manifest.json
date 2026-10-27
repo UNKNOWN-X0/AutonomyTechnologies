@@ -1,0 +1,248 @@
+{
+  ".github/workflows/jekyll-docker.yml": {
+    "mtime": 1792756186.3917487,
+    "seen": 1792799239.242362,
+    "ast_hash": "29fe146da84567bcc68665ce404ff135",
+    "semantic_hash": "29fe146da84567bcc68665ce404ff135"
+  },
+  "README.md": {
+    "mtime": 1793102298.808707,
+    "seen": 1793102619.19979,
+    "ast_hash": "0b2b4e0e3bc9977576e009dfaf0813e0",
+    "semantic_hash": ""
+  },
+  "index.html": {
+    "mtime": 1793102618.074698,
+    "seen": 1793102619.1997929,
+    "ast_hash": "a7bb6222c92a6214d5f62a5296d6cb25",
+    "semantic_hash": ""
+  },
+  "assets/preview.png": {
+    "mtime": 1793102342.5132365,
+    "seen": 1793102619.1998138,
+    "ast_hash": "3dd76e2a90c1335fcc79cffdaa53131c",
+    "semantic_hash": ""
+  },
+  "AGENTS.md": {
+    "mtime": 1793023758.0567362,
+    "seen": 1793101527.6964989,
+    "ast_hash": "7af4a07753df0476e10cf438ef59251d",
+    "semantic_hash": ""
+  },
+  "graphify-out/memory/query_20261024_200642_26a2d038_how_are_the_static_study_pages_hosted__and_what_gi.md": {
+    "mtime": 1792872402.979175,
+    "seen": 1792872407.8751638,
+    "ast_hash": "3821b43feccaf3e17b3636338fa9e829",
+    "semantic_hash": ""
+  },
+  "graphify-out/memory/query_20261024_200642_8a7177bd_does_the_graph_cover_the_learner_journey_from_the.md": {
+    "mtime": 1792872402.853017,
+    "seen": 1792872407.8751638,
+    "ast_hash": "30673a2a151c98db9c0ff8ec86159c40",
+    "semantic_hash": ""
+  },
+  ".impeccable/design.json": {
+    "mtime": 1793102572.3824794,
+    "seen": 1793102619.1997728,
+    "ast_hash": "567535cff4c34723b2438024170ef535",
+    "semantic_hash": ""
+  },
+  "js/index.js": {
+    "mtime": 1793102162.689217,
+    "seen": 1793102619.1997771,
+    "ast_hash": "f7d3f10b905e007a20b1b763bbfa5ac3",
+    "semantic_hash": ""
+  },
+  ".impeccable/mocks/decision/assigned.html": {
+    "mtime": 1793100185.0415838,
+    "seen": 1793101527.696492,
+    "ast_hash": "afe2bbadaecf01e8e7f03ff4794de1b7",
+    "semantic_hash": ""
+  },
+  ".impeccable/mocks/decision/canon.html": {
+    "mtime": 1793100187.5988312,
+    "seen": 1793101527.6964931,
+    "ast_hash": "4b54505ea97d5c59352fe9c6b7cd9176",
+    "semantic_hash": ""
+  },
+  ".impeccable/mocks/decision/challenger-transit.html": {
+    "mtime": 1793100186.7643578,
+    "seen": 1793101527.696494,
+    "ast_hash": "89644800685f49b28d48d2bc51191d72",
+    "semantic_hash": ""
+  },
+  ".impeccable/mocks/decision/model-pick.html": {
+    "mtime": 1793100185.934688,
+    "seen": 1793101527.696495,
+    "ast_hash": "cd1dc2da7fc6e74562851c45b37616dc",
+    "semantic_hash": ""
+  },
+  ".impeccable/mocks/decision/r1-assigned.html": {
+    "mtime": 1793100414.2311125,
+    "seen": 1793101527.696496,
+    "ast_hash": "68cfc96235a5721ad4ec78aae2f661ab",
+    "semantic_hash": ""
+  },
+  ".impeccable/mocks/decision/r1-canon.html": {
+    "mtime": 1793100416.2124608,
+    "seen": 1793101527.696497,
+    "ast_hash": "7ca585e4003bd79c3d8a9ae720aeb6a8",
+    "semantic_hash": ""
+  },
+  ".impeccable/mocks/decision/r1-pick.html": {
+    "mtime": 1793100415.0793698,
+    "seen": 1793101527.696497,
+    "ast_hash": "607b57c38c273a697c4fb60f3fb117c5",
+    "semantic_hash": ""
+  },
+  ".impeccable/surfaces/index-html.md": {
+    "mtime": 1793102314.8805351,
+    "seen": 1793102619.199786,
+    "ast_hash": "b2244ae3281c247cc29a0cc613ee07be",
+    "semantic_hash": ""
+  },
+  "DESIGN.md": {
+    "mtime": 1793102466.1544733,
+    "seen": 1793102619.199788,
+    "ast_hash": "b5be84593308c6b0553747cf1468f288",
+    "semantic_hash": ""
+  },
+  "PRODUCT.md": {
+    "mtime": 1793102275.2353497,
+    "seen": 1793102619.199789,
+    "ast_hash": "8ec2c66728ef4bcb4ce3805862d388b1",
+    "semantic_hash": ""
+  },
+  ".impeccable/review/desktop.png": {
+    "mtime": 1793101491.8766623,
+    "seen": 1793101527.696508,
+    "ast_hash": "7e244d2f3bc14c3cf03693f27ef6db75",
+    "semantic_hash": ""
+  },
+  ".impeccable/review/guide-checklist.png": {
+    "mtime": 1793101499.9525688,
+    "seen": 1793101527.696509,
+    "ast_hash": "f1f8efb8f59b0833b3a0ffc4d714da95",
+    "semantic_hash": ""
+  },
+  ".impeccable/review/guide-ee.png": {
+    "mtime": 1793101497.3119395,
+    "seen": 1793101527.6965098,
+    "ast_hash": "2e53c3176593517c05b77b4d871193ad",
+    "semantic_hash": ""
+  },
+  ".impeccable/review/guide-ma-dark.png": {
+    "mtime": 1793101498.6022904,
+    "seen": 1793101527.696511,
+    "ast_hash": "39b145afc891a52b82ef71584b6e7bd6",
+    "semantic_hash": ""
+  },
+  ".impeccable/review/guide-mobile.png": {
+    "mtime": 1793101507.901069,
+    "seen": 1793101527.696512,
+    "ast_hash": "52780d271f0862aa2f746ea81909211d",
+    "semantic_hash": ""
+  },
+  ".impeccable/review/guide-reviewed.png": {
+    "mtime": 1793101505.5585456,
+    "seen": 1793101527.696512,
+    "ast_hash": "645f9483d16266dab437a891bce3a881",
+    "semantic_hash": ""
+  },
+  ".impeccable/review/hub-after-review.png": {
+    "mtime": 1793101506.223142,
+    "seen": 1793101527.696513,
+    "ast_hash": "6997c191db03f9b8bacd325712264236",
+    "semantic_hash": ""
+  },
+  ".impeccable/review/hub-dark.png": {
+    "mtime": 1793101495.9622905,
+    "seen": 1793101527.6965141,
+    "ast_hash": "348a507080d6b0e504ce154924393f75",
+    "semantic_hash": ""
+  },
+  ".impeccable/review/hub-empty.png": {
+    "mtime": 1793101494.6188118,
+    "seen": 1793101527.696515,
+    "ast_hash": "530dfe5f130619a29e40bd1994b855ca",
+    "semantic_hash": ""
+  },
+  ".impeccable/review/hub-fresh-dark.png": {
+    "mtime": 1793101502.2413597,
+    "seen": 1793101527.696515,
+    "ast_hash": "a571417ed1313902915c39ce7c93e4aa",
+    "semantic_hash": ""
+  },
+  ".impeccable/review/hub-fresh.png": {
+    "mtime": 1793101501.094785,
+    "seen": 1793101527.696516,
+    "ast_hash": "dfda462ad84ccc872e03a058874c1511",
+    "semantic_hash": ""
+  },
+  ".impeccable/review/lab-ee-bench.png": {
+    "mtime": 1793101512.4337683,
+    "seen": 1793101527.6965172,
+    "ast_hash": "5c7f9328449559571125c0f52f1db0db",
+    "semantic_hash": ""
+  },
+  ".impeccable/review/lab-ee.png": {
+    "mtime": 1793101509.5529563,
+    "seen": 1793101527.696518,
+    "ast_hash": "f4f2d36f4a16cce14734145444ec315f",
+    "semantic_hash": ""
+  },
+  ".impeccable/review/lab-ma-dark.png": {
+    "mtime": 1793101511.065228,
+    "seen": 1793101527.696519,
+    "ast_hash": "2d2e353c11c5519a648e8d94dcd36bdc",
+    "semantic_hash": ""
+  },
+  ".impeccable/review/lab-mobile.png": {
+    "mtime": 1793101513.9180772,
+    "seen": 1793101527.696519,
+    "ast_hash": "0dc6b0b453eab4b711c8df08aa53c2e2",
+    "semantic_hash": ""
+  },
+  ".impeccable/review/mobile.png": {
+    "mtime": 1793101493.15927,
+    "seen": 1793101527.6965199,
+    "ast_hash": "5e56b2a228c5621ae89d735de8ec7dda",
+    "semantic_hash": ""
+  },
+  "js/guide.js": {
+    "mtime": 1793102108.6242228,
+    "seen": 1793102619.199776,
+    "ast_hash": "b42c5f10df4132df87f66259ce611215",
+    "semantic_hash": ""
+  },
+  ".impeccable/review/v2-dark.png": {
+    "mtime": 1793102231.981655,
+    "seen": 1793102619.19981,
+    "ast_hash": "efff809af6ce4ef1a5c9d18427e65ae8",
+    "semantic_hash": ""
+  },
+  ".impeccable/review/v2-desktop.png": {
+    "mtime": 1793102229.7825077,
+    "seen": 1793102619.199811,
+    "ast_hash": "3dd76e2a90c1335fcc79cffdaa53131c",
+    "semantic_hash": ""
+  },
+  ".impeccable/review/v2-injected-mobile.png": {
+    "mtime": 1793102234.1940455,
+    "seen": 1793102619.1998122,
+    "ast_hash": "b251bc8769a67195a30ac843ee28188f",
+    "semantic_hash": ""
+  },
+  ".impeccable/review/v2-injected.png": {
+    "mtime": 1793102233.1102703,
+    "seen": 1793102619.1998122,
+    "ast_hash": "fa400e328855a1aa3e014cd701617bf5",
+    "semantic_hash": ""
+  },
+  ".impeccable/review/v2-mobile.png": {
+    "mtime": 1793102230.8391798,
+    "seen": 1793102619.1998131,
+    "ast_hash": "bc771a5904b5fe37cf47678101ce3401",
+    "semantic_hash": ""
+  }
+}

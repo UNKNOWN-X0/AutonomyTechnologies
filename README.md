@@ -1,62 +1,77 @@
-# Study Pages
+# Wegweiser
 
-Study guides and interactive labs for first-semester engineering at FAU Erlangen-Nürnberg (WS 2026/27): Electrical Engineering I and Mathematics for Engineers I.
+Study guides and interactive labs for the Autonomy Technologies programme at FAU Erlangen-Nürnberg, built up semester by semester for the whole degree.
 
 **[Open the site →](https://unknown-x0.github.io/AutonomyTechnologies/)**
 
-![Study Pages hub](assets/preview.png)
+![Wegweiser hub](assets/preview.png)
 
 > Personal study material written from the lecture notes. Not an official FAU publication; check anything exam-relevant against your course materials.
 
 ## What's inside
 
-| Course                      | Page                                                                                                                 | What it does                                                                                                                                                                                                                    |
-| --------------------------- | -------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Electrical Engineering I    | [Electrostatic Fields: study guide](https://unknown-x0.github.io/AutonomyTechnologies/ee1-electrostatics-guide.html) | Chapter 1 condensed (charge to capacitors and stored energy): key formulas, worked methods, 20 practice problems, exam checklist                                                                                                |
-| Electrical Engineering I    | [Electrostatic Fields Lab](https://unknown-x0.github.io/AutonomyTechnologies/ee1-electrostatics-lab.html)            | Drag charges and sliders to see Coulomb forces, field lines, potential maps, Gauss surfaces, interfaces and capacitor networks respond live                                                                                     |
-| Mathematics for Engineers I | [Mathematics for Engineers I: study guide](https://unknown-x0.github.io/AutonomyTechnologies/math1-guide.html)       | Logic, real and complex numbers, vector spaces, matrices, eigenvalues, least squares; 20 practice problems, exam checklist                                                                                                      |
-| Mathematics for Engineers I | [Mathematics for Engineers I Lab](https://unknown-x0.github.io/AutonomyTechnologies/math1-lab.html)                  | Ten hands-on workbenches: truth tables and Venn diagrams, absolute-value inequalities, induction, injective/surjective maps, complex numbers and roots, vectors, Gauss elimination step by step, eigenvectors and least squares |
+The home page has one section per semester. Each subject shows its module number, its course parts and, once they exist, its chapters with a study guide and a lab.
+
+| Semester | Code | Subject | Module | Course parts | Material |
+| --- | --- | --- | --- | --- | --- |
+| 1 | APDR | Algorithms, programming, and data representation | 92313 | Lecture, blackboard exercise, computer exercise | none yet |
+| 1 | MEI | Mathematics for Engineers I | 62765 | Lecture, exercise | none yet |
+| 1 | EEI | Electrical Engineering I | 92315 | Lecture, exercise, tutorial | none yet |
+| 1 | MATLAB | Introduction to MATLAB | 92317 | Course (not started yet) | none yet |
+
+The first Electrical Engineering and Mathematics pages were removed on 2026-10-27; new guides and labs will be designed with the ultimate-study skill. The old versions remain in the git history.
 
 ## How to study with it
 
 1. Read one section of a guide, then cover its formulas and write them out from memory.
 2. Do the matching practice problems, then open **Show answer key** to check.
 3. Try the same idea in the matching lab: change one input and predict the result before you look.
-4. Tick the exam checklist as each skill sticks. Ticks are saved in your browser.
+4. Tick the exam checklist as each skill sticks, or press **Log today's review** under the checklist. Ticks and review days are saved in your browser.
+5. Start each session on the home page: **Review today** lists every chapter you have started, most overdue first. The gap before a chapter is due again grows with each review: 1 day, then 1 week, then 1 month.
 
 Every page works on phone and desktop and follows your system's light or dark mode. The study guides also print cleanly (the side menu is hidden in print).
 
 ## Repository layout
 
 ```
-index.html                      Hub page linking to every study page
-ee1-electrostatics-guide.html   EEI Chapter 1 study guide
-ee1-electrostatics-lab.html     EEI interactive lab
-math1-guide.html                Mathematics for Engineers I study guide
-math1-lab.html                  Mathematics for Engineers I interactive lab
-assets/preview.png              Screenshot used in this README
+index.html          Home page: review schedule, semesters, subjects
+css/system.css      Shared sign system: colours, subject colour families, type, code squares, buttons
+css/index.css       Home page layout
+css/guide.css       Study guide shell: contents rail, sign header, formulas, answer key, checklist
+js/index.js         Builds the Review today board from saved progress
+js/guide.js         Study guide behaviour: saved ticks, review log, contents highlight
+assets/preview.png  Screenshot used in this README
 ```
 
-Each page loads its local CSS and JavaScript files, with no build step needed. Fonts and the KaTeX stylesheet load from a CDN.
-
-## How the pages are made
-
-- **Study guides** are written in LaTeX (`Electrostatics-Study-Guide.tex`, `MathEng-I-Study-Guide.tex`, kept in the claude.ai project _Focus - Classes_), converted to HTML with pandoc, and every formula is pre-rendered with KaTeX. That makes the pages large (about 0.9 MB each) but the math shows instantly, without JavaScript.
-- **The labs** are single pages with their interactive code in `js/` and styles in `css/`. Their sources are kept in the same project and converted to the site design (FAU colours, Roboto, site bar) without changing the code.
-- When a source changes, update the matching HTML, CSS, and JavaScript together.
+No build step. Fonts and the KaTeX stylesheet load from a CDN.
 
 ## Design
 
-- **Colours:** the FAU Erlangen-Nürnberg brand palette. FAU blue `#04316A` for headings and accents; faculty colours mark the courses: Technische Fakultät `#8C9FB1` for Electrical Engineering I, Naturwissenschaftliche Fakultät `#7BB725` for Mathematics for Engineers I. Faculty colours appear as stripes and swatches, with their darker shades (`#2F586E`, `#266141`) for text, so contrast stays readable.
-- **Font:** Roboto and Roboto Mono, FAU's web typeface (Apache 2.0, via Google Fonts).
-- **Site mark:** an original icon (field lines between a + and a − charge). The FAU logo is not used; it is a protected university trademark.
+The pages follow one sign system, modelled on German systematic signage: solid colour fields, square code signs, a strict grid. The rules live in `css/system.css`, which every page loads first. `DESIGN.md` documents the full system.
 
-## Adding a page
+- **Main colour:** FAU blue `#04316A` for page headers, section markers, buttons and the most overdue review row. Only things you can click use the action colour.
+- **Subject colours:** each subject owns one hue, and its follow-on courses use the next step of that hue, lighter to darker (I, II, III). The labels on top are always dark ink.
 
-1. Upload the `.html` file to the repo root (**Add file → Upload files**). Use a name without spaces, e.g. `ee1-chapter2-guide.html`.
-2. In `index.html`, copy an existing `<a class="card …">` block and change the link, tag, name and description. Class `tf` gives the Electrical Engineering colour, `nat` the Mathematics colour. For a new course, add a new `<h2>` section.
-3. Add a row to the **What's inside** table above.
-4. Commit. GitHub Pages updates the site within a minute or two.
+  | Subject | I | II | III |
+  | --- | --- | --- | --- |
+  | APDR (violet) | `#BCB2FF` | `#A497EA` | `#8C7ED0` |
+  | MEI (green) | `#BDE892` | `#A4CD79` | `#8CB460` |
+  | EEI (amber) | `#E6B55D` | `#CC9C42` | `#B28324` |
+  | MATLAB (cyan) | `#80ECF1` | `#64D1D7` | `#48B7BD` |
+
+  They were built in OKLCH: the label contrast is at least 4.9:1 on every step, and the four subjects stay apart under simulated red-green and blue-yellow colour blindness. Use a subject with the class `s-<code>-<step>`, e.g. `s-mei-2` for Mathematics for Engineers II.
+- **State is shown by line form:** dashed outline means not yet (an unticked skill, a course part with no material), solid means done or available.
+- **Font:** Hanken Grotesk (SIL Open Font License, via Google Fonts).
+- **Site mark:** an original icon (field lines between two charges). The FAU logo is not used; it is a protected university trademark.
+- **Light and dark** follow your system setting. Pages print without the colour fields.
+
+## Adding pages
+
+- **A new semester:** in `index.html`, copy the `<section class="semester">` block, change its id (`sem-2`) and heading, and add a matching link in the header's semester list.
+- **A new subject:** copy an `<li class="subject">` block. Give it the subject's class (`s-apdr-1`, `s-mei-2`, …); a brand-new subject also needs its colour family added to `css/system.css`.
+- **A course part that has material:** add the class `has` to its `<li>`, so it turns from dashed to solid.
+- **A study guide:** load `css/system.css`, then `css/guide.css`, then `js/guide.js`; give the `<body>` the subject class and a storage key, e.g. `<body class="s-mei-1" data-key="mei1-ch1">`. Then add a `<li class="chapter">` to the subject's chapter list (the template is in a comment in `index.html`), with `data-key` matching the guide and `data-total` set to the number of checklist items, so the review board can read its progress.
+- Commit. GitHub Pages updates the site within a minute or two.
 
 ## Hosting
 
@@ -70,9 +85,9 @@ Setup (once): **Settings → Pages → Build and deployment → Source: Deploy f
 
 ## Module map
 
-- Root `.html` files: page structure, study content, and rendered mathematics.
-- `css/<page-name>.css`: each page's presentation.
-- `js/<page-name>.js`: each guide's controls or lab's simulations.
+- `index.html` and future root `.html` pages: structure and study content.
+- `css/system.css`: shared tokens and components; `css/<page>.css`: page layout.
+- `js/`: the review board and guide behaviour.
 - `assets/`: images.
 
-The labs keep their original private function scope and initialization order. The large guide HTML files mainly contain pre-rendered mathematics, so they remain content files. No build step was introduced. Upload the HTML **and** its `css/` and `js/` directories together; individual HTML files are no longer self-contained.
+Upload the HTML **and** its `css/` and `js/` directories together; the HTML files are not self-contained.
