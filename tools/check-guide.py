@@ -1,4 +1,4 @@
-"""Check a study guide against GUIDE-STANDARD.md.
+"""Check a study guide (docs/GUIDE-STANDARD.md) and its lab, if any (docs/LAB-STANDARD.md).
 
 Usage: python3 -I tools/check-guide.py eei/ch1-electrostatic-fields.html [more guides...]
 Prints every problem found and exits 1 if any errors remain. Warnings do not fail the check.
@@ -270,7 +270,7 @@ def check(path):
 
 
 def check_lab(path, key, rep):
-    """Labs (GUIDE-STANDARD.md, Labs): same key as the guide, the shared engine, one section per experiment."""
+    """Labs (docs/LAB-STANDARD.md): same key as the guide, the shared engine, one section per experiment."""
     html = open(path, encoding="utf-8").read()
     t = Tree()
     t.feed(html)

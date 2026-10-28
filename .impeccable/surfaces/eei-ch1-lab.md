@@ -2,7 +2,7 @@
 version: 1
 slug: "eei-ch1-lab"
 primary_target: "eei/ch1-electrostatic-fields-lab.html"
-related_targets: ["css/lab.css", "js/lab.js", "js/eei-ch1-lab.js", "eei/ch1-electrostatic-fields.html", "index.html"]
+related_targets: ["css/lab.css", "js/lab.js", "js/eei/ch1-lab.js", "eei/ch1-electrostatic-fields.html", "index.html"]
 ---
 
 # EEI Chapter 1 lab: Electrostatic Fields
@@ -33,6 +33,6 @@ Out of scope: charge densities, dipole torque, multilayer and variable capacitor
 
 **Interaction and layout:** phone: challenge card, then stage, then controls; desktop: stage and controls side by side under the card. Pointer and touch drag; charges also move with arrow keys. Tabular readouts with units. Motion per DESIGN.md (purposeful; reduced motion swaps the reveal instantly and keeps the ghost marker). The 2D field view is labelled as a slice through the 3D field (1/r² law).
 
-**Constraints:** vanilla HTML, CSS, JS, no dependencies, offline, GitHub Pages. Canvas for fields and heatmaps, SVG for markers and plots; precompute grids, redraw on change, smooth on phones. Files: `css/lab.css` and `js/lab.js` (shared challenge, confidence and summary engine), `js/eei-ch1-lab.js` (this lab), a physics test. Integration: hub Lab button, guide "Try it in the lab" links, BrowserTests smoke entry, a lab section in GUIDE-STANDARD.md with checker support.
+**Constraints:** vanilla HTML, CSS, JS, no dependencies, offline, GitHub Pages. Canvas for fields and heatmaps, SVG for markers and plots; precompute grids, redraw on change, smooth on phones. Files: `css/lab.css` and `js/lab.js` (shared challenge, confidence and summary engine), `js/eei/ch1-lab.js` (this lab), a physics test. Integration: hub Lab button, guide "Try it in the lab" links, BrowserTests smoke entry, a lab standard (docs/LAB-STANDARD.md) with checker support.
 
 **Build order:** challenge engine + Field playground, then Capacitor bench, Networks, Interface, Gauss cylinder.

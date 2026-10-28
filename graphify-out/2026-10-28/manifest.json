@@ -72,27 +72,27 @@
     "semantic_hash": ""
   },
   "js/guide.js": {
-    "mtime": 1793175166.4589398,
-    "seen": 1793175241.2729468,
-    "ast_hash": "4c9e13f0b646f84806853a4a5ee1daaa",
+    "mtime": 1793190492.625136,
+    "seen": 1793190506.443012,
+    "ast_hash": "d3cf270ddfaf90ac08dbd24ff1d56867",
     "semantic_hash": ""
   },
   "tools/guide-to-tex.py": {
-    "mtime": 1793174809.0833519,
-    "seen": 1793174971.193395,
-    "ast_hash": "f665c7e5addeeec97aaad0401fef95bf",
+    "mtime": 1793190428.2359023,
+    "seen": 1793190506.443018,
+    "ast_hash": "588bd979427ee14bc779dc74478633fc",
     "semantic_hash": ""
   },
   "eei/ch1-electrostatic-fields.html": {
-    "mtime": 1793176059.0409045,
-    "seen": 1793176293.571315,
-    "ast_hash": "99d7d18cceba9acc7c982bac9229e10a",
+    "mtime": 1793190456.4666355,
+    "seen": 1793190506.443027,
+    "ast_hash": "c5ae6ef9c6b512257f0a068f134edaf2",
     "semantic_hash": ""
   },
   "eei/ch1-electrostatic-fields.pdf": {
-    "mtime": 1793176305.4361281,
-    "seen": 1793177091.6737752,
-    "ast_hash": "63ccc877f1c1c75e553af08259473830",
+    "mtime": 1793190463.0566258,
+    "seen": 1793190506.443031,
+    "ast_hash": "2168d534b2fe5f10e2aadd8755179bae",
     "semantic_hash": ""
   },
   "tools/check-guide.py": {
@@ -102,9 +102,9 @@
     "semantic_hash": ""
   },
   "GUIDE-STANDARD.md": {
-    "mtime": 1793177881.3224502,
-    "seen": 1793177888.342823,
-    "ast_hash": "142e165cbce3f212042422736d8d553f",
+    "mtime": 1793190492.6256428,
+    "seen": 1793190506.4430232,
+    "ast_hash": "a7c6705df6a982320caa7b4b9996cc9e",
     "semantic_hash": ""
   },
   "js/tooltip.js": {
@@ -147,6 +147,12 @@
     "mtime": 1793188623.7759104,
     "seen": 1793189464.792192,
     "ast_hash": "209b47b2ed3be91a1af73c753a67957e",
+    "semantic_hash": ""
+  },
+  "js/concept-map.js": {
+    "mtime": 1793190412.1035573,
+    "seen": 1793190506.443008,
+    "ast_hash": "d91cffec91fdd5e6f731aebcf7c003e9",
     "semantic_hash": ""
   }
 }

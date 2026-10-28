@@ -34,20 +34,32 @@ Every page works on phone and desktop and follows your system's light or dark mo
 ## Repository layout
 
 ```
-index.html          Home page: review schedule, semesters, subjects
-eei/                One folder per subject (lower-case subject code)
-  ch1-electrostatic-fields.html  Chapter 1 study guide
-  ch1-electrostatic-fields.pdf   Print-ready version, generated from the HTML
-  ch1-electrostatic-fields.tex   LaTeX source of the PDF, generated from the HTML
-css/system.css      Shared sign system: colours, subject colour families, type, code squares, buttons
-css/index.css       Home page layout
-css/guide.css       Study guide styles: contents rail, sign header, formula cards, worked examples, recall checks, answers, checklist, print
-js/index.js         Builds the Review today board from saved progress
-js/guide.js         Study guide behaviour: saved ticks, review log, contents highlight
-tools/guide-to-tex.py   Converts a guide page into its LaTeX file
-tools/check-guide.py    Checks a guide against GUIDE-STANDARD.md
-GUIDE-STANDARD.md       What a finished study guide contains and how it is checked
-assets/preview.png  Screenshot used in this README
+index.html              Home page: review schedule, semesters, subjects
+eei/                    One folder per subject (lower-case subject code)
+  ch1-electrostatic-fields.html      Chapter 1 study guide (the single source)
+  ch1-electrostatic-fields.pdf/.tex  Print version, generated from the guide
+  ch1-electrostatic-fields-lab.html  Chapter 1 lab: predict-then-reveal experiments
+css/
+  system.css            Shared sign system: tokens, subject colours, code squares, buttons, tooltip
+  index.css             Home page layout
+  guide.css             Guide and lab shell: contents rail, header, boxes, answers, checklist, concept map
+  lab.css               Lab: challenge card, stage, controls, analogy cards
+js/
+  index.js              Review today board
+  guide.js              Guide: saved ticks, review log, contents highlight, section links
+  concept-map.js        Guide: the clickable "How the chapter fits together" map
+  lab.js                Lab engine: challenges, confidence, verdict, results, progress
+  tooltip.js            Hover and focus tooltips from data-tip
+  eei/ch1-physics.js    Chapter 1 formulas (no DOM; also loaded by the tests)
+  eei/ch1-lab.js        Chapter 1 experiments
+tests/                  Physics tests: node --test
+tools/
+  guide-to-tex.py       Converts a guide page into its LaTeX file
+  check-guide.py        Checks a guide and its lab against the standards
+docs/
+  GUIDE-STANDARD.md     What a finished study guide contains and how it is checked
+  LAB-STANDARD.md       What a finished lab contains and how it is checked
+assets/preview.png      Screenshot used in this README
 ```
 
 No build step for the site. Fonts load from Google Fonts; formulas are plain HTML.
@@ -88,7 +100,8 @@ The pages follow one sign system, modelled on German systematic signage: solid c
 - **A new semester:** in `index.html`, copy the `<section class="semester">` block, change its id (`sem-2`) and heading, and add a matching link in the header's semester list.
 - **A new subject:** copy an `<li class="subject">` block. Give it the subject's class (`s-apdr-1`, `s-mei-2`, …); a brand-new subject also needs its colour family added to `css/system.css`.
 - **A course part that has material:** add the class `has` to its `<li>`, so it turns from dashed to solid.
-- **A study guide:** follow [GUIDE-STANDARD.md](GUIDE-STANDARD.md) and copy the structure of `eei/ch1-electrostatic-fields.html`. Put it in the subject's folder as `<code>/ch<N>-<topic>.html` (e.g. `mei/ch1-sequences.html`). Load `../css/system.css`, then `../css/guide.css`, then `../js/guide.js`, and link home with `../index.html`; give the `<body>` the subject class and a storage key, e.g. `<body class="s-mei-1" data-key="mei1-ch1">`. Then add a `<li class="chapter">` to the subject's chapter list (the template is in a comment in `index.html`), with `data-key` matching the guide and `data-total` set to the number of checklist items, so the review board can read its progress. Run `python3 -I tools/check-guide.py <guide>.html` before committing.
+- **A study guide:** follow [docs/GUIDE-STANDARD.md](docs/GUIDE-STANDARD.md) and copy the structure of `eei/ch1-electrostatic-fields.html`. Put it in the subject's folder as `<code>/ch<N>-<topic>.html` (e.g. `mei/ch1-sequences.html`). Load `../css/system.css`, then `../css/guide.css`, then `../js/guide.js`, and link home with `../index.html`; give the `<body>` the subject class and a storage key, e.g. `<body class="s-mei-1" data-key="mei1-ch1">`. Then add a `<li class="chapter">` to the subject's chapter list (the template is in a comment in `index.html`), with `data-key` matching the guide and `data-total` set to the number of checklist items, so the review board can read its progress. Run `python3 -I tools/check-guide.py <guide>.html` before committing.
+- **A lab:** follow [docs/LAB-STANDARD.md](docs/LAB-STANDARD.md) and copy `eei/ch1-electrostatic-fields-lab.html`. The chapter's formulas go in `js/<code>/ch<N>-physics.js` with tests in `tests/`, its experiments in `js/<code>/ch<N>-lab.js`. On the hub, add a Lab button and set `data-lab` (experiments) and `data-total` (checklist + experiments).
 - Commit. GitHub Pages updates the site within a minute or two.
 
 ## Hosting
@@ -103,10 +116,10 @@ Setup (once): **Settings → Pages → Build and deployment → Source: Deploy f
 
 ## Module map
 
-- `index.html`: the hub. `<subject>/`: each subject's chapter guides with their PDF and LaTeX.
-- `css/system.css`: shared tokens and components; `css/index.css` and `css/guide.css`: page layouts shared by every page of that kind.
-- `tools/`: offline helpers, not loaded by the site.
-- `js/`: the review board and guide behaviour.
+- `index.html`: the hub. `<subject>/`: each subject's chapter guides (with their PDF and LaTeX) and labs.
+- `js/` and `css/`: shared by every page of a kind; chapter-specific scripts live in `js/<subject>/`.
+- `docs/`: the guide and lab standards. `DESIGN.md` and `PRODUCT.md` stay at the root, where the design tooling reads them.
+- `tools/` and `tests/`: offline helpers and checks, not loaded by the site.
 - `assets/`: images.
 
 Upload the HTML **and** its `css/` and `js/` directories together; the HTML files are not self-contained.

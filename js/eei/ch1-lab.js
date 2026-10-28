@@ -1,4 +1,4 @@
-/* EEI Chapter 1 lab experiments. Needs js/eei-ch1-physics.js (EEI1) and js/lab.js (Lab). */
+/* EEI Chapter 1 lab experiments. Needs js/eei/ch1-physics.js (EEI1) and js/lab.js (Lab). */
 (function () {
   var P = window.EEI1,
     nC = 1e-9,

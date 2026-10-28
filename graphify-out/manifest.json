@@ -6,9 +6,9 @@
     "semantic_hash": "29fe146da84567bcc68665ce404ff135"
   },
   "README.md": {
-    "mtime": 1793152789.8375638,
-    "seen": 1793152822.901131,
-    "ast_hash": "5c0a4aad0bcd1b30d9e820d4042cbcb9",
+    "mtime": 1793191441.781656,
+    "seen": 1793191451.757947,
+    "ast_hash": "56b410beb5c12f4954d54e9ef7ee30a2",
     "semantic_hash": ""
   },
   "index.html": {
@@ -24,9 +24,9 @@
     "semantic_hash": ""
   },
   "AGENTS.md": {
-    "mtime": 1793150426.870852,
-    "seen": 1793150448.621957,
-    "ast_hash": "89a00e5b9091f0992e9026e050ae6883",
+    "mtime": 1793191115.1334019,
+    "seen": 1793191451.757944,
+    "ast_hash": "9489d063130304563346512088d50585",
     "semantic_hash": ""
   },
   "graphify-out/memory/query_20261024_200642_26a2d038_how_are_the_static_study_pages_hosted__and_what_gi.md": {
@@ -66,9 +66,9 @@
     "semantic_hash": ""
   },
   "PRODUCT.md": {
-    "mtime": 1793150426.8704267,
-    "seen": 1793150448.62196,
-    "ast_hash": "8fb4a9a123d990d6c3d8036a8220ec5f",
+    "mtime": 1793191115.1292186,
+    "seen": 1793191451.757946,
+    "ast_hash": "853c96216556859573bf8f5e71dc10e8",
     "semantic_hash": ""
   },
   "js/guide.js": {
@@ -96,33 +96,15 @@
     "semantic_hash": ""
   },
   "tools/check-guide.py": {
-    "mtime": 1793175166.4610777,
-    "seen": 1793175241.272955,
-    "ast_hash": "caabbc4d58370f727bc79f31f21835b4",
-    "semantic_hash": ""
-  },
-  "GUIDE-STANDARD.md": {
-    "mtime": 1793190492.6256428,
-    "seen": 1793190506.4430232,
-    "ast_hash": "a7c6705df6a982320caa7b4b9996cc9e",
+    "mtime": 1793191115.149754,
+    "seen": 1793191451.757941,
+    "ast_hash": "cdd00ac72deb64c20f281fba91db4e42",
     "semantic_hash": ""
   },
   "js/tooltip.js": {
     "mtime": 1793152991.6697388,
     "seen": 1793153191.723496,
     "ast_hash": "4876b6247907d5a99f770d04522fefd5",
-    "semantic_hash": ""
-  },
-  "js/eei-ch1-lab.js": {
-    "mtime": 1793188764.8632326,
-    "seen": 1793189464.792175,
-    "ast_hash": "f09dc4dcc27a33d7a337bedd1029e234",
-    "semantic_hash": ""
-  },
-  "js/eei-ch1-physics.js": {
-    "mtime": 1793188551.0391788,
-    "seen": 1793189464.7921762,
-    "ast_hash": "891bc5f21bc167d5b9e63ce49df70d1b",
     "semantic_hash": ""
   },
   "js/lab.js": {
@@ -132,27 +114,51 @@
     "semantic_hash": ""
   },
   "tests/eei-ch1-physics.test.js": {
-    "mtime": 1793188551.044285,
-    "seen": 1793189464.792181,
-    "ast_hash": "8e98da15525fa19edf93933e4f3284c5",
+    "mtime": 1793191441.7849343,
+    "seen": 1793191451.75794,
+    "ast_hash": "879104870098a879769f2c3427a6e64f",
     "semantic_hash": ""
   },
   ".impeccable/surfaces/eei-ch1-lab.md": {
-    "mtime": 1793176213.8826532,
-    "seen": 1793176293.571306,
-    "ast_hash": "3ba243353f41912d440604bd8ba0afbd",
+    "mtime": 1793191449.199111,
+    "seen": 1793191451.7579432,
+    "ast_hash": "ab9c61e97d2533d0e9ba2b9b455c53c9",
     "semantic_hash": ""
   },
   "eei/ch1-electrostatic-fields-lab.html": {
-    "mtime": 1793188623.7759104,
-    "seen": 1793189464.792192,
-    "ast_hash": "209b47b2ed3be91a1af73c753a67957e",
+    "mtime": 1793191115.1820822,
+    "seen": 1793191451.75795,
+    "ast_hash": "2a40c98fb417d0f7465f5494278fd3d7",
     "semantic_hash": ""
   },
   "js/concept-map.js": {
     "mtime": 1793190412.1035573,
     "seen": 1793190506.443008,
     "ast_hash": "d91cffec91fdd5e6f731aebcf7c003e9",
+    "semantic_hash": ""
+  },
+  "js/eei/ch1-lab.js": {
+    "mtime": 1793191115.1547208,
+    "seen": 1793191451.7579331,
+    "ast_hash": "661096c12054e99f548357a1e4464688",
+    "semantic_hash": ""
+  },
+  "js/eei/ch1-physics.js": {
+    "mtime": 1793188551.0391788,
+    "seen": 1793191451.757934,
+    "ast_hash": "891bc5f21bc167d5b9e63ce49df70d1b",
+    "semantic_hash": ""
+  },
+  "docs/GUIDE-STANDARD.md": {
+    "mtime": 1793191441.7906518,
+    "seen": 1793191451.757948,
+    "ast_hash": "bd7efc48b6e458235b653aa20d11aafb",
+    "semantic_hash": ""
+  },
+  "docs/LAB-STANDARD.md": {
+    "mtime": 1793191441.787633,
+    "seen": 1793191451.7579489,
+    "ast_hash": "624960bded4bc97c5834a155843889ca",
     "semantic_hash": ""
   }
 }

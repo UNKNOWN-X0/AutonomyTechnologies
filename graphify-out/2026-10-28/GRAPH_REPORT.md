@@ -1,22 +1,22 @@
 # Graph Report - AutonomyTechnologies  (2026-10-28)
 
 ## Corpus Check
-- 20 files · ~61,115 words
+- 21 files · ~62,718 words
 - Verdict: corpus is large enough that graph structure adds value.
 - Unclassified: 7 file(s) not represented in the graph (top: .css 4, (none) 2, .tex 1)
 
 ## Summary
-- 308 nodes · 503 edges · 19 communities (15 shown, 4 thin omitted)
+- 311 nodes · 507 edges · 19 communities (14 shown, 5 thin omitted)
 - Extraction: 91% EXTRACTED · 9% INFERRED · 0% AMBIGUOUS · INFERRED: 47 edges (avg confidence: 0.85)
 - Token cost: 0 input · 0 output
 
 ## Graph Freshness
-- Built from commit: `4f6dba7c`
+- Built from commit: `6c83d73c`
 - Run `git rev-parse HEAD` and compare to check if the graph is stale.
 - Run `graphify update .` after code changes (no API cost).
 
 ## Community Hubs (Navigation)
-- capacitorBench
+- below
 - .block
 - guide.js
 - Components
@@ -49,29 +49,25 @@
 10. `Conv` - 12 edges
 
 ## Surprising Connections (you probably didn't know these)
+- `answers_of()` --calls--> `find()`  [INFERRED]
+  tools/check-guide.py → tools/guide-to-tex.py
+- `check()` --calls--> `find()`  [INFERRED]
+  tools/check-guide.py → tools/guide-to-tex.py
 - `check()` --calls--> `Node`  [INFERRED]
   tools/check-guide.py → tools/guide-to-tex.py
 - `check()` --calls--> `Tree`  [INFERRED]
   tools/check-guide.py → tools/guide-to-tex.py
-- `check_lab()` --calls--> `Tree`  [INFERRED]
-  tools/check-guide.py → tools/guide-to-tex.py
-- `answers_of()` --calls--> `find()`  [INFERRED]
-  tools/check-guide.py → tools/guide-to-tex.py
-- `check()` --calls--> `find()`  [INFERRED]
+- `check_lab()` --calls--> `find()`  [INFERRED]
   tools/check-guide.py → tools/guide-to-tex.py
 
 ## Import Cycles
 - None detected.
 
-## Communities (19 total, 4 thin omitted)
-
-### Community 0 - "capacitorBench"
-Cohesion: 0.18
-Nodes (19): capacitorBench(), charged(), circuit(), grow(), nice(), paint(), signs(), tick() (+11 more)
+## Communities (19 total, 5 thin omitted)
 
 ### Community 1 - ".block"
 Cohesion: 0.10
-Nodes (11): Conv, est(), inline(), main(), math(), math_text(), math_wrap(), Node (+3 more)
+Nodes (12): Conv, est(), find(), inline(), main(), math(), math_text(), math_wrap() (+4 more)
 
 ### Community 2 - "guide.js"
 Cohesion: 0.70
@@ -82,8 +78,8 @@ Cohesion: 0.05
 Nodes (39): Answer key, Buttons, Chapter switcher and tick groups, Colors, Components, Course code square, Course-part chips, Dark mode (+31 more)
 
 ### Community 4 - "check"
-Cohesion: 0.19
-Nodes (9): all_nodes(), answers_of(), check(), check_lab(), direct(), items(), main(), Report (+1 more)
+Cohesion: 0.20
+Nodes (8): all_nodes(), answers_of(), check(), check_lab(), direct(), items(), main(), Report
 
 ### Community 5 - "GitHub Pages Workflow"
 Cohesion: 0.14
@@ -98,8 +94,8 @@ Cohesion: 0.07
 Nodes (24): Project data, Project instructions, Acceptance, Content rules, Files, Labs, Markup, Page structure (+16 more)
 
 ### Community 10 - "paint"
-Cohesion: 0.09
-Nodes (38): draw(), guessOn(), resize(), draw(), endDrag(), line(), resize(), run() (+30 more)
+Cohesion: 0.07
+Nodes (50): capacitorBench(), charged(), circuit(), draw(), grow(), guessOn(), nice(), paint() (+42 more)
 
 ### Community 11 - "lab.js"
 Cohesion: 0.35
@@ -118,8 +114,8 @@ Cohesion: 0.11
 Nodes (6): bench(), contributions(), field(), lineWork(), plate(), src2
 
 ### Community 15 - "fieldPlayground"
-Cohesion: 0.20
-Nodes (19): fieldPlayground(), arrowHead(), clamp(), cm(), equipotentials(), fieldLines(), focusAfter(), grab() (+11 more)
+Cohesion: 0.14
+Nodes (26): fieldPlayground(), arrowHead(), clamp(), cm(), draw(), equipotentials(), fieldLines(), focusAfter() (+18 more)
 
 ### Community 17 - "index.js"
 Cohesion: 0.22
@@ -128,7 +124,7 @@ Nodes (3): ago(), ticksHTML(), when()
 ## Knowledge Gaps
 - **4 isolated node(s):** `Active-recall study workflow`, `Jekyll site CI`, `LaTeX, Pandoc, and KaTeX publishing pipeline`, `Study Pages preview showing Electrical Engineering 1 and Mathematics for Engineers I course cards`
   These have ≤1 connection - possible missing edges or undocumented components. (Counts symbols only; 126 node(s) total have ≤1 connection when file, concept and rationale nodes are included.)
-- **4 thin communities (<3 nodes) omitted from report** — run `graphify query` to explore isolated nodes.
+- **5 thin communities (<3 nodes) omitted from report** — run `graphify query` to explore isolated nodes.
 
 ## Work-memory lessons
 
@@ -145,9 +141,9 @@ _Questions this graph is uniquely positioned to answer:_
 - **What connects `Active-recall study workflow`, `Jekyll site CI`, `LaTeX, Pandoc, and KaTeX publishing pipeline` to the rest of the system?**
   _4 weakly-connected nodes found - possible documentation gaps or missing edges._
 - **Should `.block` be split into smaller, more focused modules?**
-  _Cohesion score 0.1036036036036036 - nodes in this community are weakly interconnected._
+  _Cohesion score 0.10241820768136557 - nodes in this community are weakly interconnected._
 - **Why does `fieldPlayground()` connect `fieldPlayground` to `paint`?**
-  _High betweenness centrality (0.023) - this node is a cross-community bridge._
+  _High betweenness centrality (0.022) - this node is a cross-community bridge._
 - **Are the 2 inferred relationships involving `capacitorBench()` (e.g. with `eei-ch1-lab.js` and `resize()`) actually correct?**
   _`capacitorBench()` has 2 INFERRED edges - model-reasoned connections that need verification._
 - **Should `Components` be split into smaller, more focused modules?**

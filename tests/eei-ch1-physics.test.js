@@ -1,7 +1,7 @@
-// Checks the lab's physics against answers worked in the Chapter 1 guide. Run: node --test tests/
+// Checks the lab's physics against answers worked in the Chapter 1 guide. Run: node --test
 const test = require("node:test");
 const assert = require("node:assert");
-const P = require("../js/eei-ch1-physics.js");
+const P = require("../js/eei/ch1-physics.js");
 
 const close = (actual, expected, rel = 0.005) =>
   assert.ok(Math.abs(actual - expected) <= Math.abs(expected) * rel, `${actual} is not within ${rel * 100}% of ${expected}`);

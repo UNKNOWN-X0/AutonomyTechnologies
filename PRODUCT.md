@@ -14,7 +14,7 @@ web
 
 ## Product Purpose
 
-Personal study material written from the lecture notes. Each chapter has a retrieval-first **study guide** built to [GUIDE-STANDARD.md](GUIDE-STANDARD.md): recall checks in every section, worked examples, derivations to rebuild, an interleaved practice set with section-referenced answers, exam-style problems and a self-check, plus a generated PDF. Interactive labs may follow later. Success means the material is understood and recalled in the exam, not just read.
+Personal study material written from the lecture notes. Each chapter has a retrieval-first **study guide** built to [docs/GUIDE-STANDARD.md](docs/GUIDE-STANDARD.md): recall checks in every section, worked examples, derivations to rebuild, an interleaved practice set with section-referenced answers, exam-style problems and a self-check, plus a generated PDF. A chapter may also have a predict-then-reveal lab built to [docs/LAB-STANDARD.md](docs/LAB-STANDARD.md). Success means the material is understood and recalled in the exam, not just read.
 
 ## Operating Context
 
