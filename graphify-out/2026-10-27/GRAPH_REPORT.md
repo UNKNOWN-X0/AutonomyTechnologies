@@ -1,17 +1,17 @@
 # Graph Report - AutonomyTechnologies  (2026-10-27)
 
 ## Corpus Check
-- 11 files · ~14,689 words
+- 13 files · ~25,826 words
 - Verdict: corpus is large enough that graph structure adds value.
-- Unclassified: 5 file(s) not represented in the graph (top: .css 3, (none) 2)
+- Unclassified: 12 file(s) not represented in the graph (top: .css 4, (none) 2, .aux 1)
 
 ## Summary
-- 104 nodes · 102 edges · 13 communities (9 shown, 4 thin omitted)
+- 105 nodes · 102 edges · 14 communities (9 shown, 5 thin omitted)
 - Extraction: 98% EXTRACTED · 2% INFERRED · 0% AMBIGUOUS · INFERRED: 2 edges (avg confidence: 0.85)
 - Token cost: 0 input · 0 output
 
 ## Graph Freshness
-- Built from commit: `c9672ff7`
+- Built from commit: `b7912d5b`
 - Run `git rev-parse HEAD` and compare to check if the graph is stale.
 - Run `graphify update .` after code changes (no API cost).
 
@@ -33,7 +33,7 @@
 ## God Nodes (most connected - your core abstractions)
 1. `Components` - 16 edges
 2. `Product` - 10 edges
-3. `Design System: Study Pages` - 9 edges
+3. `Design System: Wegweiser` - 9 edges
 4. `Colors` - 6 edges
 5. `Study Pages project guide` - 6 edges
 6. `steps` - 4 edges
@@ -53,11 +53,11 @@
 ## Import Cycles
 - None detected.
 
-## Communities (13 total, 4 thin omitted)
+## Communities (14 total, 5 thin omitted)
 
 ### Community 0 - "Design System: Study Pages"
 Cohesion: 0.14
-Nodes (13): Design System: Study Pages, Do:, Do's and Don'ts, Don't:, Elevation & Depth, Hierarchy, Layout, Named Rules (+5 more)
+Nodes (13): Design System: Wegweiser, Do:, Do's and Don'ts, Don't:, Elevation & Depth, Hierarchy, Layout, Named Rules (+5 more)
 
 ### Community 1 - "Colors"
 Cohesion: 0.33
@@ -93,8 +93,8 @@ Nodes (10): Accessibility & Inclusion, Brand Commitments, Capabilities and Const
 
 ## Knowledge Gaps
 - **4 isolated node(s):** `Active-recall study workflow`, `Jekyll site CI`, `LaTeX, Pandoc, and KaTeX publishing pipeline`, `Study Pages preview showing Electrical Engineering 1 and Mathematics for Engineers I course cards`
-  These have ≤1 connection - possible missing edges or undocumented components. (Counts symbols only; 67 node(s) total have ≤1 connection when file, concept and rationale nodes are included.)
-- **4 thin communities (<3 nodes) omitted from report** — run `graphify query` to explore isolated nodes.
+  These have ≤1 connection - possible missing edges or undocumented components. (Counts symbols only; 68 node(s) total have ≤1 connection when file, concept and rationale nodes are included.)
+- **5 thin communities (<3 nodes) omitted from report** — run `graphify query` to explore isolated nodes.
 
 ## Work-memory lessons
 
@@ -104,14 +104,14 @@ Nodes (10): Accessibility & Inclusion, Brand Commitments, Capabilities and Const
 ## Suggested Questions
 _Questions this graph is uniquely positioned to answer:_
 
-- **Why does `Design System: Study Pages` connect `Design System: Study Pages` to `Colors`, `Components`?**
-  _High betweenness centrality (0.086) - this node is a cross-community bridge._
+- **Why does `Design System: Wegweiser` connect `Design System: Study Pages` to `Colors`, `Components`?**
+  _High betweenness centrality (0.084) - this node is a cross-community bridge._
 - **What connects `Active-recall study workflow`, `Jekyll site CI`, `LaTeX, Pandoc, and KaTeX publishing pipeline` to the rest of the system?**
   _4 weakly-connected nodes found - possible documentation gaps or missing edges._
 - **Should `Design System: Study Pages` be split into smaller, more focused modules?**
   _Cohesion score 0.14285714285714285 - nodes in this community are weakly interconnected._
 - **Why does `Components` connect `Components` to `Design System: Study Pages`?**
-  _High betweenness centrality (0.077) - this node is a cross-community bridge._
+  _High betweenness centrality (0.076) - this node is a cross-community bridge._
 - **Should `GitHub Pages Workflow` be split into smaller, more focused modules?**
   _Cohesion score 0.14285714285714285 - nodes in this community are weakly interconnected._
 - **Why does `Colors` connect `Colors` to `Design System: Study Pages`?**

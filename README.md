@@ -16,10 +16,10 @@ The home page has one section per semester. Each subject shows its module number
 | --- | --- | --- | --- | --- | --- |
 | 1 | APDR | Algorithms, programming, and data representation | 92313 | Lecture, blackboard exercise, computer exercise | none yet |
 | 1 | MEI | Mathematics for Engineers I | 62765 | Lecture, exercise | none yet |
-| 1 | EEI | Electrical Engineering I | 92315 | Lecture, exercise, tutorial | none yet |
+| 1 | EEI | Electrical Engineering I | 92315 | Lecture, exercise, tutorial | Chapter 1: Electrostatic Fields guide, PDF and LaTeX source |
 | 1 | MATLAB | Introduction to MATLAB | 92317 | Course (not started yet) | none yet |
 
-The first Electrical Engineering and Mathematics pages were removed on 2026-10-27; new guides and labs will be designed with the ultimate-study skill. The old versions remain in the git history.
+The earlier Electrical Engineering and Mathematics pages were removed on 2026-10-27. The current EEI Chapter 1 guide is a new summary based on the supplied WS 2026/27 lecture notes; the earlier guide and lab remain in git history.
 
 ## How to study with it
 
@@ -35,15 +35,33 @@ Every page works on phone and desktop and follows your system's light or dark mo
 
 ```
 index.html          Home page: review schedule, semesters, subjects
+eei/                One folder per subject (lower-case subject code)
+  ch1-electrostatic-fields.html  Chapter 1 study guide
+  ch1-electrostatic-fields.pdf   Print-ready version, generated from the HTML
+  ch1-electrostatic-fields.tex   LaTeX source of the PDF, generated from the HTML
 css/system.css      Shared sign system: colours, subject colour families, type, code squares, buttons
 css/index.css       Home page layout
-css/guide.css       Study guide shell: contents rail, sign header, formulas, answer key, checklist
+css/guide.css       Study guide styles: contents rail, sign header, formula cards, worked examples, recall checks, answers, checklist, print
 js/index.js         Builds the Review today board from saved progress
 js/guide.js         Study guide behaviour: saved ticks, review log, contents highlight
+tools/guide-to-tex.py   Converts a guide page into its LaTeX file
+tools/check-guide.py    Checks a guide against GUIDE-STANDARD.md
+GUIDE-STANDARD.md       What a finished study guide contains and how it is checked
 assets/preview.png  Screenshot used in this README
 ```
 
-No build step. Fonts and the KaTeX stylesheet load from a CDN.
+No build step for the site. Fonts load from Google Fonts; formulas are plain HTML.
+
+### Regenerating a guide's PDF
+
+The HTML guide is the single source. After editing it, regenerate the LaTeX and PDF (needs TeX Live with the New Computer Modern fonts):
+
+```sh
+python3 -I tools/guide-to-tex.py eei/ch1-electrostatic-fields.html eei/ch1-electrostatic-fields.tex
+cd eei && latexmk -xelatex ch1-electrostatic-fields.tex && latexmk -c ch1-electrostatic-fields.tex
+```
+
+In the PDF, every answer block moves to an Answers section at the end, so the questions can be tried first.
 
 ## Design
 
@@ -70,7 +88,7 @@ The pages follow one sign system, modelled on German systematic signage: solid c
 - **A new semester:** in `index.html`, copy the `<section class="semester">` block, change its id (`sem-2`) and heading, and add a matching link in the header's semester list.
 - **A new subject:** copy an `<li class="subject">` block. Give it the subject's class (`s-apdr-1`, `s-mei-2`, …); a brand-new subject also needs its colour family added to `css/system.css`.
 - **A course part that has material:** add the class `has` to its `<li>`, so it turns from dashed to solid.
-- **A study guide:** load `css/system.css`, then `css/guide.css`, then `js/guide.js`; give the `<body>` the subject class and a storage key, e.g. `<body class="s-mei-1" data-key="mei1-ch1">`. Then add a `<li class="chapter">` to the subject's chapter list (the template is in a comment in `index.html`), with `data-key` matching the guide and `data-total` set to the number of checklist items, so the review board can read its progress.
+- **A study guide:** follow [GUIDE-STANDARD.md](GUIDE-STANDARD.md) and copy the structure of `eei/ch1-electrostatic-fields.html`. Put it in the subject's folder as `<code>/ch<N>-<topic>.html` (e.g. `mei/ch1-sequences.html`). Load `../css/system.css`, then `../css/guide.css`, then `../js/guide.js`, and link home with `../index.html`; give the `<body>` the subject class and a storage key, e.g. `<body class="s-mei-1" data-key="mei1-ch1">`. Then add a `<li class="chapter">` to the subject's chapter list (the template is in a comment in `index.html`), with `data-key` matching the guide and `data-total` set to the number of checklist items, so the review board can read its progress. Run `python3 -I tools/check-guide.py <guide>.html` before committing.
 - Commit. GitHub Pages updates the site within a minute or two.
 
 ## Hosting
@@ -85,8 +103,9 @@ Setup (once): **Settings → Pages → Build and deployment → Source: Deploy f
 
 ## Module map
 
-- `index.html` and future root `.html` pages: structure and study content.
-- `css/system.css`: shared tokens and components; `css/<page>.css`: page layout.
+- `index.html`: the hub. `<subject>/`: each subject's chapter guides with their PDF and LaTeX.
+- `css/system.css`: shared tokens and components; `css/index.css` and `css/guide.css`: page layouts shared by every page of that kind.
+- `tools/`: offline helpers, not loaded by the site.
 - `js/`: the review board and guide behaviour.
 - `assets/`: images.
 

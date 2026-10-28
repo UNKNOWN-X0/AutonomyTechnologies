@@ -358,7 +358,8 @@ Four numbered blue squares (3rem, 800 numerals) each followed by one sentence of
 A 2px ink rule above, 18px top padding, then a 14px solid blue square before the heading in Title type.
 
 ### Formula panels and tables
-- **Formula panel:** Cool Paper fill, 16px by 20px padding, horizontal scroll for wide KaTeX, no border.
+- **Formula panel:** Cool Paper fill, 16px by 20px padding, horizontal scroll for wide formulas, no border.
+- **Formula typography:** equations use a math-capable serif fallback (`Cambria Math`, `STIX Two Math`, `Times New Roman`, serif), centered on wide screens and allowed to wrap at spaces on narrow screens; key ratios use stacked fractions.
 - **Table:** full width, collapsed, 1px hairline under each row, 9px by 12px cells, tabular figures. The header row is an FAU-blue band with white 700 labels at 0.85rem.
 
 ### Answer key

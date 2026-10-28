@@ -6,15 +6,15 @@
     "semantic_hash": "29fe146da84567bcc68665ce404ff135"
   },
   "README.md": {
-    "mtime": 1793102756.633389,
-    "seen": 1793102765.119663,
-    "ast_hash": "d5f231d73ba63a6ea96342fb4034c692",
+    "mtime": 1793150426.869728,
+    "seen": 1793150448.62196,
+    "ast_hash": "b58268590e7ab68d7fcd5203da4114c4",
     "semantic_hash": ""
   },
   "index.html": {
-    "mtime": 1793102756.6357892,
-    "seen": 1793102765.1196659,
-    "ast_hash": "9cee02864733b839237d983e02fafa07",
+    "mtime": 1793150264.6569219,
+    "seen": 1793150448.621964,
+    "ast_hash": "31463d9c07b11398d68121b5a9679d31",
     "semantic_hash": ""
   },
   "assets/preview.png": {
@@ -24,9 +24,9 @@
     "semantic_hash": ""
   },
   "AGENTS.md": {
-    "mtime": 1793023758.0567362,
-    "seen": 1793101527.6964989,
-    "ast_hash": "7af4a07753df0476e10cf438ef59251d",
+    "mtime": 1793150426.870852,
+    "seen": 1793150448.621957,
+    "ast_hash": "89a00e5b9091f0992e9026e050ae6883",
     "semantic_hash": ""
   },
   "graphify-out/memory/query_20261024_200642_26a2d038_how_are_the_static_study_pages_hosted__and_what_gi.md": {
@@ -48,9 +48,9 @@
     "semantic_hash": ""
   },
   "js/index.js": {
-    "mtime": 1793102162.689217,
-    "seen": 1793102619.1997771,
-    "ast_hash": "f7d3f10b905e007a20b1b763bbfa5ac3",
+    "mtime": 1793105358.82918,
+    "seen": 1793105489.677448,
+    "ast_hash": "8bb3a56943fa1b587789080576d0a85f",
     "semantic_hash": ""
   },
   ".impeccable/surfaces/index-html.md": {
@@ -60,21 +60,51 @@
     "semantic_hash": ""
   },
   "DESIGN.md": {
-    "mtime": 1793102756.6386445,
-    "seen": 1793102765.119661,
-    "ast_hash": "5cc7e16ec7b7348b3e4846528d8011a0",
+    "mtime": 1793106675.5740213,
+    "seen": 1793106687.477482,
+    "ast_hash": "45bb9012c3d4bfaa59e62ad5a5a6b5db",
     "semantic_hash": ""
   },
   "PRODUCT.md": {
-    "mtime": 1793102275.2353497,
-    "seen": 1793102619.199789,
-    "ast_hash": "8ec2c66728ef4bcb4ce3805862d388b1",
+    "mtime": 1793150426.8704267,
+    "seen": 1793150448.62196,
+    "ast_hash": "8fb4a9a123d990d6c3d8036a8220ec5f",
     "semantic_hash": ""
   },
   "js/guide.js": {
-    "mtime": 1793102108.6242228,
-    "seen": 1793102619.199776,
-    "ast_hash": "b42c5f10df4132df87f66259ce611215",
+    "mtime": 1793105294.6647615,
+    "seen": 1793105489.6774468,
+    "ast_hash": "b7ae7709854e630aefc3a2a701a76aea",
+    "semantic_hash": ""
+  },
+  "tools/guide-to-tex.py": {
+    "mtime": 1793148944.2400682,
+    "seen": 1793150448.6219552,
+    "ast_hash": "dad7bd6aab091d9a68572083ffd80544",
+    "semantic_hash": ""
+  },
+  "eei/ch1-electrostatic-fields.html": {
+    "mtime": 1793150338.9848208,
+    "seen": 1793150448.6219609,
+    "ast_hash": "cf22ae0b5c3867d9c7319d6171e298a3",
+    "semantic_hash": ""
+  },
+  "eei/ch1-electrostatic-fields.pdf": {
+    "mtime": 1793150350.3410063,
+    "seen": 1793150448.6219652,
+    "ast_hash": "2d1030f6331537a5c2f71cb4c5b3feae",
+    "semantic_hash": ""
+  },
+  "tools/check-guide.py": {
+    "mtime": 1793150338.9850974,
+    "seen": 1793150448.621953,
+    "ast_hash": "451f4f693fcce2b387a8edc0741f3aa5",
+    "semantic_hash": ""
+  },
+  "GUIDE-STANDARD.md": {
+    "mtime": 1793150411.811378,
+    "seen": 1793150448.621959,
+    "ast_hash": "50f9a8c67dc2c0ebfebb038cf7d96836",
     "semantic_hash": ""
   }
 }

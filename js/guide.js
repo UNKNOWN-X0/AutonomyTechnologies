@@ -62,14 +62,14 @@
     var days = log.days.slice().sort(),
       last = days[days.length - 1],
       text;
-    if (!last) text = done + " of " + boxes.length + " exam skills ticked · not reviewed yet";
+    if (!last) text = done + " of " + boxes.length + " chapter skills ticked · not reviewed yet";
     else {
       var p = last.split("-"),
         then = new Date(+p[0], +p[1] - 1, +p[2]),
         now = new Date(),
         since = Math.round((new Date(now.getFullYear(), now.getMonth(), now.getDate()) - then) / 86400000);
       text =
-        done + " of " + boxes.length + " exam skills ticked · last reviewed " +
+        done + " of " + boxes.length + " chapter skills ticked · last reviewed " +
         (since === 0 ? "today" : since === 1 ? "yesterday" : since + " days ago") +
         " · " + days.length + (days.length === 1 ? " review" : " reviews");
     }

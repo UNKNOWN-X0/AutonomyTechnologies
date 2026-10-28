@@ -56,7 +56,7 @@
         </div>
         <ol class="rows" id="rows"></ol>
         <p class="board-empty" id="board-empty">
-          Your schedule starts when you study. Open a study guide, tick the exam skills you can do without notes,
+          Your schedule starts when you study. Open a study guide, tick the chapter skills you can do without notes,
           and the chapter shows up here when it is due again.
         </p>
       </section>
@@ -110,14 +110,21 @@
             <span class="code">EEI</span>
             <div class="about">
               <h3>Electrical Engineering I</h3>
-              <p class="module">Module 92315 · no material yet</p>
+              <p class="module">Module 92315 · Chapter 1 available</p>
             </div>
             <ul class="parts" aria-label="Course parts">
-              <li>Lecture</li>
+              <li class="has">Lecture</li>
               <li>Exercise</li>
               <li>Tutorial</li>
             </ul>
-            <ol class="chapters"></ol>
+            <ol class="chapters">
+              <li class="chapter" data-key="eei1-ch1" data-total="16" data-course="s-eei-1" data-code="EEI">
+                <span class="no">1</span>
+                <div class="what"><h4 class="title">Electrostatic Fields</h4><p>Charge, fields, potential, Gauss’s law, materials, and capacitors.</p></div>
+                <span class="ticks" aria-hidden="true"></span>
+                <div class="go"><a class="btn primary" href="eei/ch1-electrostatic-fields.html">Study guide</a></div>
+              </li>
+            </ol>
           </li>
           <li class="subject s-matlab-1">
             <span class="code">MATLAB</span>

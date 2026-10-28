@@ -56,7 +56,7 @@
       item.weight = 1;
     }
     li.querySelector(".ticks").innerHTML = ticksHTML(item.done, total);
-    li.setAttribute("aria-label", li.querySelector(".title").textContent + ": " + item.done + " of " + total + " exam skills ticked");
+    li.setAttribute("aria-label", li.querySelector(".title").textContent + ": " + item.done + " of " + total + " chapter skills ticked");
     return item;
   });
 

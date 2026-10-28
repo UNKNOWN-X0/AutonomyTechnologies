@@ -3,3 +3,12 @@ graphify-out/cost.json
 graphify-out/.graphify_*
 !graphify-out/.graphify_labels.json
 .DS_Store
+# LaTeX build leftovers next to generated guide PDFs
+*.aux
+*.log
+*.fls
+*.fdb_latexmk
+*.xdv
+*.toc
+*.out
+__pycache__/

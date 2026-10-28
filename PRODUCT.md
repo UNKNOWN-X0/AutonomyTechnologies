@@ -14,20 +14,20 @@ web
 
 ## Product Purpose
 
-Personal study material written from the lecture notes. Each chapter has a condensed **study guide** (key formulas, worked methods, about 20 practice problems with an answer key, and an exam checklist) and an **interactive lab** where the student changes inputs and sees the maths or physics respond. Success means the material is understood and recalled in the exam, not just read.
+Personal study material written from the lecture notes. Each chapter has a retrieval-first **study guide** built to [GUIDE-STANDARD.md](GUIDE-STANDARD.md): recall checks in every section, worked examples, derivations to rebuild, an interleaved practice set with section-referenced answers, exam-style problems and a self-check, plus a generated PDF. Interactive labs may follow later. Success means the material is understood and recalled in the exam, not just read.
 
 ## Operating Context
 
 - Used in four settings: long revision sessions on a laptop (often a guide and lab side by side with notes), quick checks on a phone on the go, reading and annotating on a tablet, and printed guides for annotation and exam prep.
 - Intended study loop (README): read a section → write the formulas from memory → do the practice problems → check the answer key → predict a result in the lab before looking → tick the exam checklist.
-- Content comes from the owner's LaTeX sources (kept in the claude.ai project *Focus - Classes*), converted with pandoc, with the maths pre-rendered by KaTeX.
+- Content is written from the official lecture notes into the guide's HTML, which is the single source; `tools/guide-to-tex.py` generates the LaTeX and PDF from it.
 
 ## Capabilities and Constraints
 
 - Structure: **semester → subject → course parts → chapters**. Semester 1 subjects: 92313 Algorithms, programming, and data representation (APDR: lecture, blackboard exercise, computer exercise); 62765 Mathematics for Engineers I (MEI: lecture, exercise); 92315 Electrical Engineering I (EEI: lecture, exercise, tutorial); 92317 Introduction to MATLAB (course, not started yet). Later semesters add sections, and some subjects continue as II and III.
 - Static HTML, CSS and JS with no build step, published by GitHub Pages (Jekyll, `main` branch, root folder). The repository must stay public.
-- Pages: hub `index.html`, plus study guides and labs per subject once they exist. Their format will be redesigned with the ultimate-study skill; the current guide shell is `css/guide.css` and `js/guide.js`.
-- Guides with maths pre-render it with KaTeX, so it shows without JavaScript.
+- Pages: hub `index.html`, plus one folder per subject holding its chapter guides (`eei/ch1-electrostatic-fields.html`). Guides share `css/guide.css` and `js/guide.js`.
+- Maths is plain HTML (variables, sub- and superscripts, fraction spans), so it shows without JavaScript and in print.
 - Exam-checklist ticks are saved in the browser.
 - Must work on phone and desktop, follow the system's light or dark mode, and print cleanly (side menu hidden in print).
 - The site is long-term: new semesters, subjects and chapters are added throughout the degree (see README "Adding pages").
@@ -41,7 +41,7 @@ Personal study material written from the lecture notes. Each chapter has a conde
 
 ## Evidence on Hand
 
-- Real content: none yet. The first EE and Maths guides and labs were deleted on 2026-10-27; new material will be designed later with the ultimate-study skill. Reusable shells remain: `css/guide.css` and `js/guide.js`. `assets/preview.png` is a screenshot of the hub.
+- Real content: EEI Chapter 1, Electrostatic Fields (`eei/`), the reference guide for the standard. The first EE and Maths guides and labs were deleted on 2026-10-27. `assets/preview.png` is a screenshot of the hub.
 - No testimonials, usage statistics or endorsements exist. Do not invent any.
 
 ## Product Principles
