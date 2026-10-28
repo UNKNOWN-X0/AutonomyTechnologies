@@ -98,7 +98,7 @@ Every section ends with a short recall check. Answer it with the guide closed be
 \item \textbf{Day 0 (two 45-minute blocks):} do the six prompts above, then work through 1.1–1.14. After each section, close the page and answer its recall check. Mark every miss.
 \item \textbf{Day 1:} rebuild the derivations in Derive it cold on blank paper, every step. Compare, then redo only the ones that broke.
 \item \textbf{Day 3:} mixed practice 1–18 without notes. Mark misses, read the section named in each answer, take a break, then redo only the marked problems. Stop when a round adds no new marks.
-\item \textbf{Day 6 or 7:} mixed practice 19–38, then answer the Explain it questions aloud in full sentences.
+\item \textbf{Day 6 or 7:} mixed practice 19–38, then answer the Explain it questions aloud in full sentences. Cover the chapter map and say what each idea rests on.
 \item \textbf{About two weeks later and before the exam:} do the two exam-style problems against the clock, mixed with problems from later chapters. Tick a self-check line only when you have done it cold on a later day.
 \end{enumerate}
 
@@ -106,18 +106,162 @@ Every section ends with a short recall check. Answer it with the guide closed be
 \end{keepsection}
 
 \begin{keepsection}
-\Needspace{13\baselineskip}
-\section{The chapter in one route}
+\Needspace{32\baselineskip}
+\section{How the chapter fits together}
 
-\Needspace{10\baselineskip}
-\begin{enumerate}
-\item \textbf{Sources (1.1, 1.6):} point charges and charge densities λ, σ, ϱ.
-\item \textbf{Force and field (1.2–1.5, 1.7):} Coulomb’s law, \textit{E} = \textit{F}/\textit{Q}, superposition, field lines.
-\item \textbf{Work and energy per charge (1.8, 1.9):} potential φ and voltage \textit{U}.
-\item \textbf{Counting the source (1.10):} flux density \textit{D}, flux Ψ, Gauss’s law.
-\item \textbf{Boundaries and matter (1.11, 1.12):} interface conditions, conductors, dielectrics.
-\item \textbf{Storage (1.13, 1.14):} capacitance and field energy.
-\end{enumerate}
+\Needspace{32\baselineskip}
+Every idea in the chapter rests on others. Choose one to see what it is built on and why; the three on the left are measured, everything else follows. To practise, cover the map and say what each idea rests on.
+
+\Needspace{13\baselineskip}
+\textbf{Measured} \ensuremath{\cdot} what the chapter starts from
+
+\Needspace{11\baselineskip}
+\begin{itemize}
+\item 
+\Needspace{4\baselineskip}
+\textbf{Charge} \hfill{\small\color{FAUblue}§1.1}
+
+\Needspace{5\baselineskip}
+two kinds, whole multiples of \textit{e}, conserved
+
+\emph{Rests on:} nothing; it is observed. Like charges repel, unlike attract, so there are two kinds. Rubbing moves charge; it never creates it.
+
+\item 
+\Needspace{4\baselineskip}
+\textbf{Coulomb’s law} \hfill{\small\color{FAUblue}§1.2}
+
+\Needspace{5\baselineskip}
+\textit{F} \ensuremath{\propto} \textit{Q}\textsubscript{1}\textit{Q}\textsubscript{2}/\textit{r}\textsuperscript{2}, along the line between them
+
+\emph{Rests on:} nothing; it is measured. Two features carry the rest of the chapter: the force is central and depends only on r, and the power is exactly 2.
+
+\item 
+\Needspace{4\baselineskip}
+\textbf{Superposition} \hfill{\small\color{FAUblue}§1.4}
+
+\Needspace{5\baselineskip}
+forces (and fields) add as vectors
+
+\emph{Rests on:} nothing; it is measured. The force of several charges on a probe is the vector sum of the single forces, in a homogeneous medium.
+
+\end{itemize}
+
+\Needspace{22\baselineskip}
+\textbf{Defined} \ensuremath{\cdot} quantities built on them
+
+\Needspace{20\baselineskip}
+\begin{itemize}
+\item 
+\Needspace{4\baselineskip}
+\textbf{Field strength} \hfill{\small\color{FAUblue}§1.3}
+
+\Needspace{6\baselineskip}
+\textit{E} = \textit{F}/\textit{Q}, in V/m
+
+\emph{Rests on:} Coulomb’s law, Superposition. Well defined only because Coulomb’s law makes F proportional to the probe charge, so F/Q does not depend on the probe. Superposition gives the field of any arrangement.
+
+\item 
+\Needspace{4\baselineskip}
+\textbf{Potential} \hfill{\small\color{FAUblue}§1.8}
+
+\Needspace{5\baselineskip}
+φ\textsubscript{e}(P) = \ensuremath{-}\ensuremath{\int} \textit{E} \ensuremath{\cdot} d\textit{s} from the reference
+
+\emph{Rests on:} Field strength, Path independence. A number per point exists only if the work does not depend on the path, so this definition needs path independence first.
+
+\item 
+\Needspace{4\baselineskip}
+\textbf{Voltage} \hfill{\small\color{FAUblue}§1.9}
+
+\Needspace{5\baselineskip}
+\textit{U}\textsubscript{12} = φ\textsubscript{1} \ensuremath{-} φ\textsubscript{2}
+
+\emph{Rests on:} Potential. A difference of potentials: the reference point cancels, so a voltage does not depend on where zero is.
+
+\item 
+\Needspace{4\baselineskip}
+\textbf{Flux density} \hfill{\small\color{FAUblue}§1.10}
+
+\Needspace{5\baselineskip}
+\textit{D} = ε\textit{E}, in C/m²
+
+\emph{Rests on:} Field strength. A second field quantity that counts the source charge directly and takes the effect of matter into ε.
+
+\item 
+\Needspace{4\baselineskip}
+\textbf{Capacitance} \hfill{\small\color{FAUblue}§1.13}
+
+\Needspace{5\baselineskip}
+\textit{C} = \textit{Q}/\textit{U}, in F
+
+\emph{Rests on:} Voltage, Gauss’s law. Useful only because Q and U are proportional for a fixed geometry, which follows from Gauss’s law and the linearity of everything above.
+
+\end{itemize}
+
+\Needspace{27\baselineskip}
+\textbf{Derived} \ensuremath{\cdot} results that follow
+
+\Needspace{25\baselineskip}
+\begin{itemize}
+\item 
+\Needspace{4\baselineskip}
+\textbf{Path independence} \hfill{\small\color{FAUblue}§1.8}
+
+\Needspace{6\baselineskip}
+\ensuremath{\oint} \textit{E} \ensuremath{\cdot} d\textit{s} = 0
+
+\emph{Rests on:} Coulomb’s law, Superposition, Field strength. A central force that depends only on r does no net work around a closed loop. Superposition extends this to any arrangement of charges.
+
+\item 
+\Needspace{4\baselineskip}
+\textbf{Gauss’s law} \hfill{\small\color{FAUblue}§1.10}
+
+\Needspace{5\baselineskip}
+\ensuremath{\oiint} \textit{D} \ensuremath{\cdot} d\textit{A} = \textit{Q}\textsubscript{enclosed}
+
+\emph{Rests on:} Coulomb’s law, Superposition, Flux density. Needs the exact 1/r²: field times sphere area is then the same on every sphere. Superposition extends it to any charge distribution.
+
+\item 
+\Needspace{4\baselineskip}
+\textbf{Interface conditions} \hfill{\small\color{FAUblue}§1.11}
+
+\Needspace{5\baselineskip}
+normal \textit{D} jumps by σ\textsubscript{A}, tangential \textit{E} continuous
+
+\emph{Rests on:} Path independence, Gauss’s law. The normal part comes from Gauss’s law on a flat pillbox, the tangential part from the closed-loop integral on a thin rectangle.
+
+\item 
+\Needspace{4\baselineskip}
+\textbf{Conductors} \hfill{\small\color{FAUblue}§1.12}
+
+\Needspace{5\baselineskip}
+\textit{E} = 0 inside, one potential, \textit{E} normal to the surface
+
+\emph{Rests on:} Charge, Field strength. Free charges move whenever E \ensuremath{\neq} 0. In electrostatics nothing moves, so the field inside must be zero.
+
+\item 
+\Needspace{4\baselineskip}
+\textbf{Capacitor formulas} \hfill{\small\color{FAUblue}§1.13}
+
+\Needspace{5\baselineskip}
+ε\textit{A}/\textit{d}, 4πε\textsubscript{0}\textit{ab}/(\textit{b} \ensuremath{-} \textit{a}), 2πε/ln(\textit{b}/\textit{a}) per length
+
+\emph{Rests on:} Gauss’s law, Voltage, Capacitance. The recipe: put \ensuremath{\pm}Q on the electrodes, D from Gauss, E = D/ε, integrate to U, divide.
+
+\item 
+\Needspace{4\baselineskip}
+\textbf{Stored energy} \hfill{\small\color{FAUblue}§1.14}
+
+\Needspace{5\baselineskip}
+\textit{W}\textsubscript{e} = \ensuremath{\tfrac12}\textit{C U}\textsuperscript{2} = \ensuremath{\tfrac12}\textit{Q U}
+
+\emph{Rests on:} Voltage, Capacitance. Charging moves each dq through the voltage present, u = q/C; integrating gives Q²/(2C).
+
+\end{itemize}
+
+\begin{keepsection}
+\Needspace{18\baselineskip}
+\subsection{Which tool for which question}
 
 \Needspace{10\baselineskip}
 \begin{center}\small\begin{tabularx}{\linewidth}{>{\raggedright\arraybackslash}X>{\raggedright\arraybackslash}X}\toprule
@@ -129,6 +273,7 @@ work to move a charge, or a potential & \textit{W}\textsubscript{e} = \textit{Q}
 the field on the far side of a boundary & normal \textit{D} and tangential \textit{E} conditions \\
 charge per volt, or stored energy & \textit{C} = \textit{Q}/\textit{U}, \textit{W}\textsubscript{e} = \ensuremath{\tfrac12}\textit{C U}\textsuperscript{2} \\
 \bottomrule\end{tabularx}\end{center}
+\end{keepsection}
 \end{keepsection}
 
 \begin{keepsection}

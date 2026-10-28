@@ -142,7 +142,9 @@
   });
 
   // Section references in answers ("§1.12, 1.14") become links to those sections.
+  // (not inside the concept map: its nodes are buttons, and its detail panel carries the link)
   document.querySelectorAll(".sec-ref").forEach(function (ref) {
+    if (ref.closest(".cmap")) return;
     ref.innerHTML = ref.textContent.replace(/\d+\.\d+/g, function (n) {
       var id = "sec-" + n.replace(".", "");
       if (!titles[id]) return n;

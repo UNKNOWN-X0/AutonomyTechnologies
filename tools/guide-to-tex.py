@@ -245,7 +245,7 @@ class Conv:
         if isinstance(k, str):
             return tex_text(k) if k.strip() else ""
         t, c = k.tag, k.cls
-        if t in ("header", "script", "nav") or "downloads" in c:
+        if t in ("header", "script", "nav") or "downloads" in c or "hidden" in k.attrs:
             return ""
         if t == "section":
             lead = "\n\\clearpage\n" if k.attrs.get("id") == "practice" else ""

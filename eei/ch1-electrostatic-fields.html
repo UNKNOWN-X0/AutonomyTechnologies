@@ -143,22 +143,104 @@
             <li><strong>Day 0 (two 45-minute blocks):</strong> do the six prompts above, then work through 1.1–1.14. After each section, close the page and answer its recall check. Mark every miss.</li>
             <li><strong>Day 1:</strong> rebuild the derivations in <a href="#derivations">Derive it cold</a> on blank paper, every step. Compare, then redo only the ones that broke.</li>
             <li><strong>Day 3:</strong> mixed practice 1–18 without notes. Mark misses, read the section named in each answer, take a break, then redo only the marked problems. Stop when a round adds no new marks.</li>
-            <li><strong>Day 6 or 7:</strong> mixed practice 19–38, then answer the <a href="#explain">Explain it</a> questions aloud in full sentences.</li>
+            <li><strong>Day 6 or 7:</strong> mixed practice 19–38, then answer the <a href="#explain">Explain it</a> questions aloud in full sentences. Cover the <a href="#route">chapter map</a> and say what each idea rests on.</li>
             <li><strong>About two weeks later and before the exam:</strong> do the two <a href="#exam">exam-style problems</a> against the clock, mixed with problems from later chapters. Tick a self-check line only when you have done it cold on a later day.</li>
           </ol>
           <p class="method"><strong>When stuck:</strong> after about ten minutes, reveal only the next step of the answer, not the whole working. Later, redo the full problem from a blank page. Looking at a solution and thinking “I could have done that” is not the same as doing it.</p>
         </section>
 
         <section id="route" aria-labelledby="route-title">
-          <h2 id="route-title">The chapter in one route</h2>
-          <ol class="route">
-            <li><strong>Sources (1.1, 1.6):</strong> point charges and charge densities λ, σ, ϱ.</li>
-            <li><strong>Force and field (1.2–1.5, 1.7):</strong> Coulomb’s law, <var>E</var> = <var>F</var>/<var>Q</var>, superposition, field lines.</li>
-            <li><strong>Work and energy per charge (1.8, 1.9):</strong> potential φ and voltage <var>U</var>.</li>
-            <li><strong>Counting the source (1.10):</strong> flux density <var>D</var>, flux Ψ, Gauss’s law.</li>
-            <li><strong>Boundaries and matter (1.11, 1.12):</strong> interface conditions, conductors, dielectrics.</li>
-            <li><strong>Storage (1.13, 1.14):</strong> capacitance and field energy.</li>
-          </ol>
+          <h2 id="route-title">How the chapter fits together</h2>
+          <p>Every idea in the chapter rests on others. Choose one to see what it is built on and why; the three on the left are measured, everything else follows. To practise, cover the map and say what each idea rests on.</p>
+          <div class="cmap" data-cmap>
+            <div class="cm-col">
+              <p class="cm-head"><strong>Measured</strong> · what the chapter starts from</p>
+              <ul>
+                <li class="cm-node" data-id="charge" data-deps="" data-sec="1.1">
+                  <p class="cm-title"><strong>Charge</strong> <span class="sec-ref">§1.1</span></p>
+                  <p class="cm-formula">two kinds, whole multiples of <var>e</var>, conserved</p>
+                  <p class="cm-why"><em>Rests on:</em> nothing; it is observed. Like charges repel, unlike attract, so there are two kinds. Rubbing moves charge; it never creates it.</p>
+                </li>
+                <li class="cm-node" data-id="coulomb" data-deps="" data-sec="1.2">
+                  <p class="cm-title"><strong>Coulomb’s law</strong> <span class="sec-ref">§1.2</span></p>
+                  <p class="cm-formula"><var>F</var> ∝ <var>Q</var><sub>1</sub><var>Q</var><sub>2</sub>/<var>r</var><sup>2</sup>, along the line between them</p>
+                  <p class="cm-why"><em>Rests on:</em> nothing; it is measured. Two features carry the rest of the chapter: the force is central and depends only on r, and the power is exactly 2.</p>
+                </li>
+                <li class="cm-node" data-id="superposition" data-deps="" data-sec="1.4">
+                  <p class="cm-title"><strong>Superposition</strong> <span class="sec-ref">§1.4</span></p>
+                  <p class="cm-formula">forces (and fields) add as vectors</p>
+                  <p class="cm-why"><em>Rests on:</em> nothing; it is measured. The force of several charges on a probe is the vector sum of the single forces, in a homogeneous medium.</p>
+                </li>
+              </ul>
+            </div>
+            <div class="cm-col">
+              <p class="cm-head"><strong>Defined</strong> · quantities built on them</p>
+              <ul>
+                <li class="cm-node" data-id="field" data-deps="coulomb superposition" data-sec="1.3">
+                  <p class="cm-title"><strong>Field strength</strong> <span class="sec-ref">§1.3</span></p>
+                  <p class="cm-formula"><var>E</var> = <var>F</var>/<var>Q</var>, in V/m</p>
+                  <p class="cm-why"><em>Rests on:</em> Coulomb’s law, Superposition. Well defined only because Coulomb’s law makes F proportional to the probe charge, so F/Q does not depend on the probe. Superposition gives the field of any arrangement.</p>
+                </li>
+                <li class="cm-node" data-id="potential" data-deps="field pathind" data-sec="1.8">
+                  <p class="cm-title"><strong>Potential</strong> <span class="sec-ref">§1.8</span></p>
+                  <p class="cm-formula">φ<sub>e</sub>(P) = −∫ <var>E</var> · d<var>s</var> from the reference</p>
+                  <p class="cm-why"><em>Rests on:</em> Field strength, Path independence. A number per point exists only if the work does not depend on the path, so this definition needs path independence first.</p>
+                </li>
+                <li class="cm-node" data-id="voltage" data-deps="potential" data-sec="1.9">
+                  <p class="cm-title"><strong>Voltage</strong> <span class="sec-ref">§1.9</span></p>
+                  <p class="cm-formula"><var>U</var><sub>12</sub> = φ<sub>1</sub> − φ<sub>2</sub></p>
+                  <p class="cm-why"><em>Rests on:</em> Potential. A difference of potentials: the reference point cancels, so a voltage does not depend on where zero is.</p>
+                </li>
+                <li class="cm-node" data-id="flux" data-deps="field" data-sec="1.10">
+                  <p class="cm-title"><strong>Flux density</strong> <span class="sec-ref">§1.10</span></p>
+                  <p class="cm-formula"><var>D</var> = ε<var>E</var>, in C/m²</p>
+                  <p class="cm-why"><em>Rests on:</em> Field strength. A second field quantity that counts the source charge directly and takes the effect of matter into ε.</p>
+                </li>
+                <li class="cm-node" data-id="capacitance" data-deps="voltage gauss" data-sec="1.13">
+                  <p class="cm-title"><strong>Capacitance</strong> <span class="sec-ref">§1.13</span></p>
+                  <p class="cm-formula"><var>C</var> = <var>Q</var>/<var>U</var>, in F</p>
+                  <p class="cm-why"><em>Rests on:</em> Voltage, Gauss’s law. Useful only because Q and U are proportional for a fixed geometry, which follows from Gauss’s law and the linearity of everything above.</p>
+                </li>
+              </ul>
+            </div>
+            <div class="cm-col">
+              <p class="cm-head"><strong>Derived</strong> · results that follow</p>
+              <ul>
+                <li class="cm-node" data-id="pathind" data-deps="coulomb superposition field" data-sec="1.8">
+                  <p class="cm-title"><strong>Path independence</strong> <span class="sec-ref">§1.8</span></p>
+                  <p class="cm-formula">∮ <var>E</var> · d<var>s</var> = 0</p>
+                  <p class="cm-why"><em>Rests on:</em> Coulomb’s law, Superposition, Field strength. A central force that depends only on r does no net work around a closed loop. Superposition extends this to any arrangement of charges.</p>
+                </li>
+                <li class="cm-node" data-id="gauss" data-deps="coulomb superposition flux" data-sec="1.10">
+                  <p class="cm-title"><strong>Gauss’s law</strong> <span class="sec-ref">§1.10</span></p>
+                  <p class="cm-formula">∯ <var>D</var> · d<var>A</var> = <var>Q</var><sub>enclosed</sub></p>
+                  <p class="cm-why"><em>Rests on:</em> Coulomb’s law, Superposition, Flux density. Needs the exact 1/r²: field times sphere area is then the same on every sphere. Superposition extends it to any charge distribution.</p>
+                </li>
+                <li class="cm-node" data-id="interface" data-deps="pathind gauss" data-sec="1.11">
+                  <p class="cm-title"><strong>Interface conditions</strong> <span class="sec-ref">§1.11</span></p>
+                  <p class="cm-formula">normal <var>D</var> jumps by σ<sub>A</sub>, tangential <var>E</var> continuous</p>
+                  <p class="cm-why"><em>Rests on:</em> Path independence, Gauss’s law. The normal part comes from Gauss’s law on a flat pillbox, the tangential part from the closed-loop integral on a thin rectangle.</p>
+                </li>
+                <li class="cm-node" data-id="conductor" data-deps="charge field" data-sec="1.12">
+                  <p class="cm-title"><strong>Conductors</strong> <span class="sec-ref">§1.12</span></p>
+                  <p class="cm-formula"><var>E</var> = 0 inside, one potential, <var>E</var> normal to the surface</p>
+                  <p class="cm-why"><em>Rests on:</em> Charge, Field strength. Free charges move whenever E ≠ 0. In electrostatics nothing moves, so the field inside must be zero.</p>
+                </li>
+                <li class="cm-node" data-id="capformulas" data-deps="gauss voltage capacitance" data-sec="1.13">
+                  <p class="cm-title"><strong>Capacitor formulas</strong> <span class="sec-ref">§1.13</span></p>
+                  <p class="cm-formula">ε<var>A</var>/<var>d</var>, 4πε<sub>0</sub><var>ab</var>/(<var>b</var> − <var>a</var>), 2πε/ln(<var>b</var>/<var>a</var>) per length</p>
+                  <p class="cm-why"><em>Rests on:</em> Gauss’s law, Voltage, Capacitance. The recipe: put ±Q on the electrodes, D from Gauss, E = D/ε, integrate to U, divide.</p>
+                </li>
+                <li class="cm-node" data-id="energy" data-deps="voltage capacitance" data-sec="1.14">
+                  <p class="cm-title"><strong>Stored energy</strong> <span class="sec-ref">§1.14</span></p>
+                  <p class="cm-formula"><var>W</var><sub>e</sub> = ½<var>C U</var><sup>2</sup> = ½<var>Q U</var></p>
+                  <p class="cm-why"><em>Rests on:</em> Voltage, Capacitance. Charging moves each dq through the voltage present, u = q/C; integrating gives Q²/(2C).</p>
+                </li>
+              </ul>
+            </div>
+          </div>
+          <p class="cm-detail" aria-live="polite" hidden></p>
+          <h3>Which tool for which question</h3>
           <div class="tw">
             <table>
               <thead><tr><th>If the question asks for…</th><th>reach for…</th></tr></thead>
@@ -906,6 +988,7 @@
       </main>
     </div>
     <script src="../js/guide.js"></script>
+    <script src="../js/concept-map.js"></script>
     <script src="../js/tooltip.js"></script>
   </body>
 </html>

@@ -759,3 +759,128 @@ main > section:first-of-type > h2 {
 .cold-start > h2 {
   margin-top: 0;
 }
+
+/* Concept map: three columns (measured, defined, derived). Without JavaScript each node lists what it rests on. */
+.cmap {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 16px;
+  margin: 16px 0 12px;
+}
+.cm-head {
+  margin: 0 0 8px;
+  padding-bottom: 6px;
+  border-bottom: 2px solid var(--ink);
+  color: var(--muted);
+  font: 600 0.82rem/1.3 var(--f-display);
+}
+.cm-head strong {
+  color: var(--ink);
+  font-weight: 800;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+.cmap ul {
+  display: grid;
+  gap: 8px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.cm-node {
+  padding: 10px 12px;
+  border: 2px dashed var(--line);
+  background: var(--paper);
+}
+.cm-title,
+.cm-formula,
+.cm-why {
+  margin: 0;
+}
+.cm-title {
+  font: 700 0.95rem/1.3 var(--f-display);
+}
+.cm-title .sec-ref {
+  font-weight: 600;
+}
+.cm-formula {
+  margin-top: 2px;
+  color: var(--muted);
+  font-size: 0.88rem;
+  line-height: 1.4;
+}
+.cm-why {
+  margin-top: 6px;
+  font-size: 0.88rem;
+}
+/* live map */
+.cmap.live .cm-node {
+  padding: 0;
+}
+.cmap.live .cm-why {
+  display: none;
+}
+.cm-btn {
+  display: block;
+  width: 100%;
+  min-height: 44px;
+  padding: 10px 12px;
+  border: 0;
+  background: none;
+  color: inherit;
+  font: inherit;
+  text-align: left;
+  cursor: pointer;
+}
+.cmap.live .cm-node {
+  transition:
+    border-color 150ms var(--ease),
+    background-color 150ms var(--ease),
+    opacity 150ms var(--ease);
+}
+.cmap.live .cm-node:hover {
+  border-color: var(--act);
+}
+.cmap.live .cm-node.base {
+  border-style: solid;
+  border-color: var(--fau-mark);
+}
+.cmap.live .cm-node.direct {
+  background: var(--fau-tint);
+}
+.cmap.live .cm-node.on {
+  border-style: solid;
+  border-color: var(--fau);
+  background: var(--fau);
+  color: var(--on-fau);
+}
+.cmap.live .cm-node.on .cm-formula,
+.cmap.live .cm-node.on .sec-ref {
+  color: var(--on-fau-soft);
+}
+.cmap.live .cm-node.dim {
+  opacity: 0.55;
+}
+.cm-detail {
+  max-width: var(--measure);
+  margin: 0 0 18px;
+  padding: 14px 20px;
+  border-top: 3px solid var(--fau-mark);
+  background: var(--paper-2);
+}
+@media (max-width: 760px) {
+  .cmap {
+    grid-template-columns: 1fr;
+  }
+}
+@media print {
+  .cmap {
+    grid-template-columns: 1fr;
+  }
+  .cmap.live .cm-why {
+    display: block;
+  }
+  .cm-detail {
+    display: none;
+  }
+}

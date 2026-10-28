@@ -41,7 +41,7 @@ The page contains these blocks in this order. Ids are fixed because the contents
 | 2 | Standfirst and downloads | — | One or two sentences on what the chapter builds; links to the PDF and the LaTeX source. |
 | 3 | Start from memory | `cold-start` | At least 4 prompts the student answers before reading, with short answers hidden in a `details.answers`. |
 | 4 | How to use this guide | `plan` | The dated study plan (day 0, 1, 3, about 7, about 14 and before the exam), each step naming the parts of this guide to use; plus the "when stuck" rule. |
-| 5 | The chapter in one route | `route` | The chapter as a short chain of ideas with section numbers, then a table matching question types to the tool that answers them. |
+| 5 | How the chapter fits together | `route` | A concept map (`div.cmap[data-cmap]`, loaded with `../js/concept-map.js`): the chapter's ideas in three columns (measured, defined, derived), each `li.cm-node` with `data-id`, `data-deps` (the ids it rests on), `data-sec`, a title with its section, a formula, and a `.cm-why` line "Rests on: …" plus the reason. Then a table matching question types to the tool that answers them. Without JavaScript and in the PDF every node shows its "Rests on" line. |
 | 6 | Topic sections | `sec-<N><M>` | One per numbered section of the notes (`sec-11` for 1.1, `sec-110` for 1.10), in the notes' order. See [Topic sections](#topic-sections). |
 | 7 | Formula map and units | `formula-map` | Every core relation with its SI unit, then a "Check every answer" box covering units, signs and limiting cases. |
 | 8 | Derive it cold | `derivations` | The chapter's derivations as a list, each ending with a `sec-ref` to where it is worked. |
