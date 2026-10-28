@@ -37,6 +37,27 @@
     return q * (phiEnd - phiStart);
   }
 
+  // Each charge's own field at (x, y); the vectors sum to field().
+  function contributions(charges, x, y) {
+    return charges.map(function (c) {
+      return field([c], x, y);
+    });
+  }
+
+  // Externally supplied work W_e = −q ∫ E · ds along path(t), t from 0 to 1 (midpoint rule, n steps).
+  function lineWork(charges, q, path, n) {
+    n = n || 2000;
+    var w = 0,
+      a = path(0);
+    for (var i = 1; i <= n; i++) {
+      var b = path(i / n),
+        e = field(charges, (a[0] + b[0]) / 2, (a[1] + b[1]) / 2);
+      w -= q * (e[0] * (b[0] - a[0]) + e[1] * (b[1] - a[1]));
+      a = b;
+    }
+    return w;
+  }
+
   // Zero-field point between two like charges q1 and q2 a distance d apart, measured from q1.
   function nullPoint(q1, q2, d) {
     return d / (1 + Math.sqrt(q2 / q1));
@@ -145,7 +166,7 @@
     return (v < 0 ? "−" : "") + s + " " + p[1] + unit;
   }
 
-  var api = { EPS0: EPS0, K: K, field: field, potential: potential, work: work, nullPoint: nullPoint, plate: plate, bench: bench, network: network, interface: interface_, cylinder: cylinder, fmt: fmt };
+  var api = { EPS0: EPS0, K: K, field: field, potential: potential, work: work, contributions: contributions, lineWork: lineWork, nullPoint: nullPoint, plate: plate, bench: bench, network: network, interface: interface_, cylinder: cylinder, fmt: fmt };
   if (typeof module === "object" && module.exports) module.exports = api;
   else root.EEI1 = api;
 })(this);

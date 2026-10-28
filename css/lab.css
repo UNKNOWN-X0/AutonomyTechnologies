@@ -597,3 +597,44 @@
     min-height: 448px;
   }
 }
+
+/* Analogy card: collapsed under the experiment intro; a picture, what it maps to, and where it holds and breaks. */
+.analogy {
+  max-width: var(--measure, 42rem);
+  margin: 4px 0 6px;
+  padding: 0 20px;
+  border-top: 3px solid var(--course);
+  background: var(--paper-2);
+}
+.analogy summary {
+  display: flex;
+  align-items: center;
+  min-height: 44px;
+  cursor: pointer;
+  font: 700 0.95rem/1.3 var(--f-display);
+  color: var(--act);
+}
+.analogy[open] {
+  padding-bottom: 8px;
+}
+.analogy[open] summary {
+  border-bottom: 1px solid var(--line);
+  margin-bottom: 10px;
+}
+.analogy p {
+  margin: 0 0 10px;
+  font-size: 0.95rem;
+}
+.analogy .tw {
+  margin: 0 0 12px;
+}
+.analogy .tw table {
+  min-width: 0;
+  width: 100%;
+}
+@media print {
+  .analogy {
+    display: none;
+  }
+}
+

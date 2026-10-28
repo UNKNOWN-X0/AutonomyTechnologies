@@ -29,7 +29,7 @@
       st = {
         charges: [],
         probe: null, // { x, y, q }
-        show: { lines: true, vectors: false, equi: true },
+        show: { lines: true, vectors: false, equi: true, parts: false },
         trail: [],
         ghost: null, // world x of the student's prediction
         marker: null, // world x of the true answer
@@ -111,8 +111,76 @@
         });
         ctx.stroke();
       }
+      if (st.paths) {
+        st.paths.forEach(function (pth, k) {
+          ctx.strokeStyle = k ? css("--fau-mark") : css("--act");
+          ctx.lineWidth = 2.5;
+          ctx.setLineDash(k ? [6, 4] : []);
+          ctx.beginPath();
+          pth.pts.forEach(function (pt, i) {
+            var p = toPx(pt[0], pt[1]);
+            if (i) ctx.lineTo(p[0], p[1]);
+            else ctx.moveTo(p[0], p[1]);
+          });
+          ctx.stroke();
+          ctx.setLineDash([]);
+        });
+        ctx.font = "700 13px " + css("--f-display");
+        ctx.textAlign = "left";
+        ctx.textBaseline = "top";
+        st.paths.forEach(function (pth, k) {
+          ctx.fillStyle = k ? css("--fau-mark") : css("--act");
+          ctx.fillText((k ? "Detour" : "Straight") + ": " + P.fmt(pth.w, "J"), 16, 16 + k * 19);
+        });
+      }
+      if (st.show.parts && st.probe && st.charges.length) partsAtProbe();
       handles();
       readouts();
+    }
+
+    // Each charge's field at the probe, chained tip to tail, and the resultant (one log scale for all).
+    function partsAtProbe() {
+      var pp = toPx(st.probe.x, st.probe.y),
+        parts = P.contributions(st.charges, st.probe.x, st.probe.y),
+        tot = P.field(st.charges, st.probe.x, st.probe.y),
+        big = Math.max.apply(
+          null,
+          parts.map(function (v) {
+            return Math.hypot(v[0], v[1]);
+          }).concat([Math.hypot(tot[0], tot[1])])
+        ),
+        unit = 70 / big; // the longest arrow is 70 px; all share this linear scale
+      function vec(x0, y0, v, color, width, dash) {
+        var x1 = x0 + v[0] * unit,
+          y1 = y0 - v[1] * unit,
+          t = Math.atan2(y1 - y0, x1 - x0);
+        if (Math.hypot(x1 - x0, y1 - y0) < 4) return [x1, y1];
+        ctx.strokeStyle = color;
+        ctx.fillStyle = color;
+        ctx.lineWidth = width;
+        ctx.setLineDash(dash || []);
+        ctx.beginPath();
+        ctx.moveTo(x0, y0);
+        ctx.lineTo(x1, y1);
+        ctx.stroke();
+        ctx.setLineDash([]);
+        arrowHead(x1, y1, t, 7);
+        return [x1, y1];
+      }
+      // the chain of contributions runs 12 px beside the resultant, so collinear parts stay visible
+      var tm = Math.hypot(tot[0], tot[1]) || 1,
+        off = [(-tot[1] / tm) * -12, (-tot[0] / tm) * -12],
+        tip = [pp[0] + off[0], pp[1] + off[1]];
+      parts.forEach(function (v, k) {
+        var from = tip;
+        tip = vec(tip[0], tip[1], v, css("--muted"), 2, [5, 3]);
+        ctx.fillStyle = css("--muted");
+        ctx.font = "700 11px " + css("--f-display");
+        ctx.textAlign = "center";
+        ctx.textBaseline = "middle";
+        ctx.fillText("E" + (k + 1), (from[0] + tip[0]) / 2 + off[0] * 1.1, (from[1] + tip[1]) / 2 + off[1] * 1.1);
+      });
+      vec(pp[0], pp[1], tot, css("--fau-mark"), 3.2);
     }
 
     // Equipotential lines by marching squares over a coarse potential grid.
@@ -389,6 +457,8 @@
     });
 
     function startWork() {
+      st.paths = null;
+      st.pathWork = null;
       st.workFrom = P.potential(st.charges, st.probe.x, st.probe.y);
       st.trail = [[st.probe.x, st.probe.y]];
     }
@@ -408,7 +478,7 @@
       out.angle.textContent = m > 0 ? Math.round((Math.atan2(e[1], e[0]) * 180) / Math.PI) + "°" : "—";
       out.phi.textContent = P.fmt(phi, "V");
       out.F.textContent = P.fmt(m * Math.abs(pr.q), "N");
-      out.W.textContent = st.workFrom == null ? "—" : P.fmt(P.work(pr.q, st.workFrom, phi), "J");
+      out.W.textContent = st.pathWork != null ? P.fmt(st.pathWork, "J") : st.workFrom == null ? "—" : P.fmt(P.work(pr.q, st.workFrom, phi), "J");
     }
 
     // Sandbox controls
@@ -521,6 +591,8 @@
         draw();
       },
       setup: function (c) {
+        st.paths = null;
+        st.pathWork = null;
         c.stage();
         st.ghost = st.marker = null;
         st.trail = [];
@@ -588,7 +660,7 @@
               { x: 0.07, y: 0, q: -1 * nC },
             ];
             st.probe = { x: 0, y: 0.09, q: 1 * nC };
-            st.show = { lines: true, vectors: false, equi: false };
+            st.show = { lines: true, vectors: false, equi: false, parts: true };
           },
           preview: function (choice) {
             st.ghost = choice === "plus" ? -0.035 : choice === "minus" ? 0.035 : 0;
@@ -605,32 +677,61 @@
           why: "Halfway, the + charge pushes a positive probe away (to the right) and the − charge pulls it in (also to the right). The two fields point the same way, so they add: E = 2·kQ/r<sup>2</sup> ≈ 3.67 kV/m toward the − charge. Fields cancel only between charges of the same sign.",
         },
         {
-          id: "equipotential",
-          short: "work along an equipotential",
+          id: "two-paths",
+          short: "work along two routes between the same points",
           ref: "1.8",
-          prompt: "You carry a +1 nC probe half a circle around a +2 nC charge, always 10 cm away. How much work do you supply?",
+          prompt: "You carry a +1 nC probe from 20 cm above a +2 nC charge to 10 cm to its right: once along the straight line, once straight down to 10 cm and then around the dashed circle. Which route costs more work?",
           options: [
-            ["pos", "Positive: you push against the repulsion"],
-            ["zero", "Zero"],
-            ["neg", "Negative: the field does the work"],
+            ["straight", "The straight route"],
+            ["detour", "The longer detour"],
+            ["same", "Both the same"],
           ],
-          answer: "zero",
+          answer: "same",
           stage: function () {
             st.charges = [{ x: 0, y: 0, q: 2 * nC }];
-            st.probe = { x: 0.1, y: 0, q: 1 * nC };
-            st.show = { lines: true, vectors: false, equi: true };
+            st.probe = { x: 0, y: 0.2, q: 1 * nC };
+            st.show = { lines: true, vectors: false, equi: true, parts: false };
           },
           reveal: function () {
-            startWork();
-            return Lab.tween(2000, function (t) {
-              var a = Math.PI * t;
-              st.probe.x = 0.1 * Math.cos(a);
-              st.probe.y = 0.1 * Math.sin(a);
-              st.trail.push([st.probe.x, st.probe.y]);
-              paint();
+            // Each route is integrated step by step (−q E·ds), so the readout climbs as the probe moves.
+            var routes = [
+              function (t) {
+                return [0.1 * t, 0.2 - 0.2 * t];
+              },
+              function (t) {
+                return t < 0.5 ? [0, 0.2 - 0.2 * t] : [0.1 * Math.sin((t - 0.5) * Math.PI), 0.1 * Math.cos((t - 0.5) * Math.PI)];
+              },
+            ];
+            st.paths = [];
+            function run(k) {
+              var route = routes[k],
+                done = { pts: [route(0)], w: 0 };
+              st.paths.push(done);
+              st.trail = [];
+              return Lab.tween(1700, function (t) {
+                var a = done.pts[done.pts.length - 1],
+                  b = route(t),
+                  e = P.field(st.charges, (a[0] + b[0]) / 2, (a[1] + b[1]) / 2);
+                done.w -= st.probe.q * (e[0] * (b[0] - a[0]) + e[1] * (b[1] - a[1]));
+                done.pts.push(b);
+                st.probe.x = b[0];
+                st.probe.y = b[1];
+                st.pathWork = done.w;
+                paint();
+              }).then(function () {
+                // exact value at the end, so reduced motion (one step) shows the same number
+                done.w = P.lineWork(st.charges, st.probe.q, route);
+                st.pathWork = done.w;
+                paint();
+              });
+            }
+            return run(0).then(function () {
+              st.probe.x = 0;
+              st.probe.y = 0.2;
+              return run(1);
             });
           },
-          why: "The path never leaves one equipotential (the dashed circle), so φ stays the same and W<sub>e</sub> = Q(φ<sub>end</sub> − φ<sub>start</sub>) = 0, however long the path. The force is always perpendicular to the motion.",
+          why: "Both routes cost W<sub>e</sub> = Q(φ<sub>end</sub> − φ<sub>start</sub>) = (1 nC)(179.8 V − 89.9 V) ≈ +89.9 nJ. On the detour the radial leg costs all of it and the arc along the equipotential costs nothing. The field is conservative, so only the end points count.",
         },
         {
           id: "sign",
@@ -980,13 +1081,27 @@
       }
     }
 
+    // "Compare from here": every readout also shows its factor against the stored state.
+    function ratio(now_, then) {
+      if (!then) return "";
+      var r = now_ / then;
+      if (!isFinite(r)) return "";
+      var known = [[1, "unchanged"], [2, "×2"], [3, "×3"], [4, "×4"], [0.5, "×½"], [1 / 3, "×⅓"], [0.25, "×¼"]];
+      for (var k = 0; k < known.length; k++) if (Math.abs(r / known[k][0] - 1) < 0.005) return known[k][1];
+      return "×" + (r >= 10 ? r.toFixed(0) : r.toPrecision(3));
+    }
+    function show(key, v, unit) {
+      var r = st.compare ? ratio(v, st.compare[key]) : "";
+      out[key].textContent = P.fmt(v, unit) + (r ? "  (" + r + ")" : "");
+    }
     function readouts(s) {
-      out.C.textContent = P.fmt(s.C, "F");
-      out.Q.textContent = P.fmt(s.Q, "C");
-      out.U.textContent = P.fmt(s.U, "V");
-      out.Eair.textContent = P.fmt(s.Eair, "V/m");
-      out.Eslab.textContent = st.p.slab === "none" ? "—" : P.fmt(s.Eslab, "V/m");
-      out.W.textContent = P.fmt(s.W, "J");
+      show("C", s.C, "F");
+      show("Q", s.Q, "C");
+      show("U", s.U, "V");
+      show("Eair", s.Eair, "V/m");
+      if (st.p.slab === "none") out.Eslab.textContent = "—";
+      else show("Eslab", s.Eslab, "V/m");
+      show("W", s.W, "J");
     }
 
     // Controls: sliders in cm², mm and V; the model works in SI units.
@@ -1031,7 +1146,8 @@
         if (st.mode === "isolated") st.Q = s.Q;
         else st.U = Math.max(10, Math.min(200, Math.round(s.U / 10) * 10));
       }
-      st.before = st.guess = st.mark = null;
+      st.guess = st.mark = null;
+      if (!st.compare) st.before = null;
       syncControls();
       grow();
       draw();
@@ -1043,7 +1159,14 @@
         if (s[k] > st.scale[k]) st.scale[k] = nice(s[k] * 1.4);
       });
     }
+    form.querySelector("[data-act=mark]").addEventListener("click", function () {
+      var s = now();
+      st.compare = { C: s.C, Q: s.Q, U: s.U, Eair: s.Eair, Eslab: s.Eslab, W: s.W };
+      st.before = { U: s.U, Q: s.Q, W: s.W };
+      draw();
+    });
     form.querySelector("[data-act=reset]").addEventListener("click", function () {
+      st.compare = null;
       st.p = { A: 0.01, d: 4 * mm, slab: "none", t: 2 * mm, er: 4 };
       st.mode = "connected";
       st.U = 100;
@@ -1093,12 +1216,13 @@
       },
       setup: function (c) {
         st.guess = null;
+        st.compare = null;
         c.stage();
         syncControls();
         draw();
       },
       sandbox: function () {
-        st.guess = st.mark = st.before = null;
+        st.guess = st.mark = st.before = st.compare = null;
         syncControls();
         draw();
       },

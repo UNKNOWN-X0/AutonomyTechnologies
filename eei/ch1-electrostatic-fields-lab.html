@@ -90,6 +90,13 @@
         <section id="exp-field" class="experiment" data-experiment="field" aria-labelledby="exp-field-title">
           <h2 id="exp-field-title">1.2–1.9 Point charges: field, potential and work</h2>
           <p>Point charges, the field they make and the work it takes to move a probe charge through it. The picture is a flat slice through the real three-dimensional field, so it follows the 1/<var>r</var><sup>2</sup> law of the notes.</p>
+          <details class="analogy">
+            <summary>Analogy: a hiking map</summary>
+            <p>Potential is altitude. Equipotential lines are the contour lines on the map. The field points straight downhill, and it is strongest where contour lines bunch together (a steep slope). Voltage is the height difference between two places.</p>
+            <div class="tw"><table><thead><tr><th>Picture</th><th>Electrostatics</th></tr></thead><tbody><tr><td>altitude above sea level</td><td>potential φ</td></tr><tr><td>sea level</td><td>reference point (earth or ∞)</td></tr><tr><td>contour lines</td><td>equipotential lines</td></tr><tr><td>steepest downhill direction</td><td>field <var>E</var></td></tr><tr><td>height gain between huts</td><td>voltage <var>U</var></td></tr></tbody></table></div>
+            <p><strong>Holds:</strong> the height gained from hut A to hut B is the same by the short steep path or the long gentle one. Walking a loop back to the start gains nothing. Moving the “sea level” changes every altitude but no height difference.</p>
+            <p><strong>Breaks:</strong> everything rolls downhill on a real hill. A negative charge “rolls uphill” in φ, because the force on it is −|<var>Q</var>|<var>E</var>.</p>
+          </details>
           <div class="bench">
             <div class="stage">
               <canvas aria-hidden="true"></canvas>
@@ -104,6 +111,7 @@
                 <label class="switch"><input type="checkbox" data-show="lines" /> Field lines</label>
                 <label class="switch"><input type="checkbox" data-show="equi" /> Equipotentials</label>
                 <label class="switch"><input type="checkbox" data-show="vectors" /> Field vectors</label>
+                <label class="switch"><input type="checkbox" data-show="parts" /> Contributions at the probe</label>
               </fieldset>
               <fieldset>
                 <legend>Charges</legend>
@@ -143,6 +151,13 @@
         <section id="exp-gauss" class="experiment" data-experiment="gauss" aria-labelledby="exp-gauss-title">
           <h2 id="exp-gauss-title">1.10 Gauss’s law: a charged cylinder</h2>
           <p>The worked example from 1.10: an infinitely long, uniformly charged cylinder, seen end-on. Move the coaxial Gaussian surface and watch how much charge it encloses and what that does to <var>D</var>.</p>
+          <details class="analogy">
+            <summary>Analogy: a light bulb in the dark</summary>
+            <p>A bulb sends out a fixed amount of light. Wrap it in an imaginary closed surface: all the light passes through it, whatever its size or shape. For a long tube light the same holds for a coaxial sleeve: the light through it depends only on the length of tube inside.</p>
+            <div class="tw"><table><thead><tr><th>Picture</th><th>Electrostatics</th></tr></thead><tbody><tr><td>power of the bulb</td><td>charge <var>Q</var> inside</td></tr><tr><td>light arriving per m²</td><td>flux density <var>D</var></td></tr><tr><td>total light through the surface</td><td>flux Ψ = <var>Q</var></td></tr><tr><td>a second bulb inside adds its light</td><td>superposition</td></tr></tbody></table></div>
+            <p><strong>Holds:</strong> total through any closed surface = what is inside, independent of the surface’s size or shape. A bulb outside adds nothing in total: its light goes in one side and out the other. Same for a charge outside a Gaussian surface.</p>
+            <p><strong>Breaks:</strong> light really travels and carries energy away. In electrostatics nothing flows; “flux” is only a count of field lines, a historical name. And light has no “negative bulb”, while a negative charge is exactly where field lines end.</p>
+          </details>
           <div class="bench">
             <div class="stage">
               <canvas role="img" aria-label="Cross-section of a charged cylinder with a Gaussian surface, and a plot of D and E against the radius"></canvas>
@@ -173,6 +188,13 @@
         <section id="exp-interface" class="experiment" data-experiment="interface" aria-labelledby="exp-interface-title">
           <h2 id="exp-interface-title">1.11 Interface conditions: field refraction</h2>
           <p>A uniform field crossing the flat boundary between two media. The bars compare both sides: which part keeps its value, which one jumps, and how that bends the field lines.</p>
+          <details class="analogy">
+            <summary>Analogy: light bending into water</summary>
+            <p>A light ray entering water bends at the surface; the notes make the same comparison. Field lines bend at a jump in ε, and the amount follows from which component must stay continuous.</p>
+            <div class="tw"><table><thead><tr><th>Picture</th><th>Electrostatics</th></tr></thead><tbody><tr><td>ray</td><td>field line</td></tr><tr><td>refractive index</td><td>permittivity ε</td></tr><tr><td>angle to the normal</td><td>α<sub>1</sub>, α<sub>2</sub></td></tr></tbody></table></div>
+            <p><strong>Holds:</strong> a direction change at a boundary, set by a material property on each side, and no bending at normal incidence (α<sub>1</sub> = 0).</p>
+            <p><strong>Breaks:</strong> light obeys Snell’s law with sines and the refractive index; the field obeys a tangent law with ε. And at a water surface part of the light is reflected; the field has no reflected part.</p>
+          </details>
           <div class="bench">
             <div class="stage">
               <canvas role="img" aria-label="Field lines refracting at the boundary between two media, with bars for the normal and tangential components on each side"></canvas>
@@ -205,6 +227,13 @@
         <section id="exp-capacitor" class="experiment" data-experiment="capacitor" aria-labelledby="exp-capacitor-title">
           <h2 id="exp-capacitor-title">1.12–1.14 Plate capacitor: gap, dielectric and energy</h2>
           <p>An ideal plate capacitor, drawn to scale. Field-line density shows <var>E</var>, the tint shows the energy density, and the signs on the plates grow with the charge. Watch what stays fixed: with the battery connected it is <var>U</var>, with it disconnected it is <var>Q</var>.</p>
+          <details class="analogy">
+            <summary>Analogy: a water tank filled from below</summary>
+            <p>Pump water into a tank through a pipe at the bottom. The water level rises with the volume inside; a wider tank rises less for the same volume. Each new litre must be pushed against the pressure of the water already there.</p>
+            <div class="tw"><table><thead><tr><th>Picture</th><th>Electrostatics</th></tr></thead><tbody><tr><td>volume of water</td><td>charge <var>Q</var></td></tr><tr><td>water level (pressure)</td><td>voltage <var>U</var></td></tr><tr><td>tank’s floor area</td><td>capacitance <var>C</var></td></tr><tr><td>volume = area × level</td><td><var>Q</var> = <var>C U</var></td></tr><tr><td>energy ½ρg<var>A</var><var>h</var>²</td><td>energy ½<var>C U</var><sup>2</sup></td></tr></tbody></table></div>
+            <p><strong>Holds:</strong> <var>Q</var> = <var>C U</var>, the ½ in the energy (the first water was lifted less), and tanks side by side at the same level add their areas (parallel).</p>
+            <p><strong>Breaks:</strong> a capacitor holds +<var>Q</var> and −<var>Q</var>, so its total charge is zero; a tank really holds water. Series capacitors have no clean tank picture. The notes also use a spring (<var>C</var> ↔ 1/spring constant, <var>U</var> ↔ force), which carries the energy formula equally well.</p>
+          </details>
           <div class="bench">
             <div class="stage">
               <canvas role="img" aria-label="Plate capacitor with field lines, and gauges for voltage, charge and stored energy"></canvas>
@@ -244,7 +273,7 @@
                   <div><dt><var>E</var> in the slab</dt><dd data-out="Eslab">—</dd></div>
                   <div><dt>Stored energy <var>W</var></dt><dd data-out="W">—</dd></div>
                 </dl>
-                <div class="row-btns"><button class="btn small" type="button" data-act="reset">Back to 100 V, 4 mm</button></div>
+                <div class="row-btns"><button class="btn small" type="button" data-act="mark" data-tip="Store this state; the readouts then show ×2, ×½ … against it">Compare from here</button><button class="btn small" type="button" data-act="reset">Back to 100 V, 4 mm</button></div>
               </fieldset>
             </form>
             </div>

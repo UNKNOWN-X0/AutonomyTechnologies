@@ -178,3 +178,33 @@ test("lab challenge: midway between +1 nC and −1 nC 14 cm apart, E = 3.67 kV/m
   close(ex, 3669);
   assert.ok(Math.abs(ey) < 1e-6);
 });
+
+const src2 = [{ x: 0, y: 0, q: 2e-9 }];
+const straight = (t) => [0.1 * t, 0.2 - 0.2 * t];
+// detour: straight down from 20 cm to 10 cm, then a quarter circle at 10 cm to (0.1, 0)
+const detour = (t) => (t < 0.5 ? [0, 0.2 - 0.2 * t] : [0.1 * Math.sin((t - 0.5) * Math.PI), 0.1 * Math.cos((t - 0.5) * Math.PI)]);
+
+test("lab challenge two-paths: straight and detour both cost 89.9 nJ, equal to q(φB − φA)", () => {
+  const ws = P.lineWork(src2, 1e-9, straight), wd = P.lineWork(src2, 1e-9, detour);
+  close(ws, 8.988e-8, 0.001);
+  close(wd, 8.988e-8, 0.001);
+  close(ws, P.work(1e-9, P.potential(src2, 0, 0.2), P.potential(src2, 0.1, 0)), 0.001);
+});
+
+test("line work: the arc along an equipotential is zero and a closed loop is zero", () => {
+  const arc = (t) => [0.1 * Math.sin(t * Math.PI / 2), 0.1 * Math.cos(t * Math.PI / 2)];
+  assert.ok(Math.abs(P.lineWork(src2, 1e-9, arc)) < 1e-12);
+  const loop = (t) => (t < 0.5 ? straight(2 * t) : detour(2 - 2 * t));
+  assert.ok(Math.abs(P.lineWork(src2, 1e-9, loop)) < 1e-11);
+});
+
+test("contributions: sum to the field; dipole midpoint parts 1.83 kV/m each, sum 3.67 kV/m", () => {
+  const cs = [{ x: -0.07, y: 0, q: 1e-9 }, { x: 0.07, y: 0, q: -1e-9 }];
+  const parts = P.contributions(cs, 0, 0);
+  close(parts[0][0], 1834.3);
+  close(parts[1][0], 1834.3);
+  const [ex] = P.field(cs, 0, 0);
+  close(parts[0][0] + parts[1][0], ex);
+  const ex14 = P.contributions([{ x: 0, y: 0.03, q: 2e-9 }, { x: 0, y: -0.03, q: 2e-9 }], 0.04, 0).reduce((s, v) => s + v[0], 0);
+  close(ex14, 1.15e4, 0.01);
+});
