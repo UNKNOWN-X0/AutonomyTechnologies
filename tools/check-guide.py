@@ -72,7 +72,7 @@ def check(path):
     for need in ('<html lang="en">', 'name="viewport"', 'name="description"', "<title>"):
         if need not in html:
             rep.err("head is missing %s" % need)
-    for asset in ("../css/system.css", "../css/guide.css", "../js/guide.js"):
+    for asset in ("../css/system.css", "../css/guide.css", "../js/guide.js", "../js/tooltip.js"):
         if asset not in html:
             rep.err("page does not load %s" % asset)
     if re.search(r'<script[^>]+src="https?://', html) or "katex" in html.lower():

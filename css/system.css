@@ -1,4 +1,4 @@
-/* Wegweiser sign system. Loaded before each page's own CSS.
+/* From Fundamentals to AI Apocalypse sign system. Loaded before each page's own CSS.
    Subject colour families: one OKLCH hue per subject, steps I-III walk down
    in lightness (L 0.84 / 0.76 / 0.68, +/-0.04 per subject so pairs stay apart
    under deutan, protan and tritan simulation). Dark ink labels pass 4.9:1 or
@@ -124,6 +124,9 @@ a {
   text-underline-offset: 0.18em;
   text-decoration-thickness: 1px;
 }
+a {
+  transition: text-decoration-thickness 150ms var(--ease), color 150ms var(--ease);
+}
 a:hover {
   text-decoration-thickness: 2px;
 }
@@ -147,10 +150,53 @@ a:hover {
   flex: none;
 }
 
-/* Site mark: square sign, white plate */
+/* Site mark: square sign */
 .mark {
   flex: none;
   display: block;
+}
+
+/* Site mark: the Singularity. Orbits precess, the charge travels its orbit, the core pulses. */
+.mark .mk-orbit,
+.mark .mk-glow {
+  transform-origin: 20px 20px;
+}
+.mark .mk-orbit-a {
+  animation: mk-spin 24s linear infinite;
+}
+.mark .mk-orbit-b {
+  animation: mk-spin 36s linear infinite reverse;
+}
+.mark .mk-glow {
+  animation: mk-pulse 3.2s ease-in-out infinite;
+}
+/* Without motion-path support the charge rests on the orbit's left end. */
+.mark .mk-charge {
+  transform: translate(6px, 20px);
+}
+@supports (offset-path: path("M0 0")) {
+  .mark .mk-charge {
+    transform: none;
+    offset-path: path("M6 20 A14 6.2 0 1 1 34 20 A14 6.2 0 1 1 6 20");
+    offset-rotate: 0deg;
+    animation: mk-travel 6s linear infinite;
+  }
+}
+@keyframes mk-spin {
+  to { transform: rotate(360deg); }
+}
+@keyframes mk-pulse {
+  0%, 100% { transform: scale(0.85); opacity: 0.8; }
+  50% { transform: scale(1.12); opacity: 1; }
+}
+@keyframes mk-travel {
+  from { offset-distance: 0%; }
+  to { offset-distance: 100%; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .mark * {
+    animation: none !important;
+  }
 }
 
 /* Sign-field header shared by guides and labs */
@@ -238,6 +284,17 @@ a:hover {
   background: var(--fau-deep);
   color: var(--on-fau);
 }
+@media (prefers-reduced-motion: no-preference) {
+  .btn {
+    transition:
+      background-color 150ms var(--ease),
+      color 150ms var(--ease),
+      transform 100ms var(--ease);
+  }
+  .btn:active:not(:disabled) {
+    transform: translateY(1px);
+  }
+}
 .btn:disabled {
   opacity: 0.45;
   cursor: not-allowed;
@@ -261,11 +318,86 @@ a:hover {
   opacity: 1;
 }
 
+/* Tick bars fill bottom-up, one bar after another, when progress is drawn. */
+@media (prefers-reduced-motion: no-preference) {
+  .ticks i.on {
+    animation: tick-fill 420ms var(--ease) both;
+    animation-delay: calc(var(--i, 0) * 28ms);
+  }
+}
+@keyframes tick-fill {
+  from {
+    clip-path: inset(100% 0 0 0);
+  }
+  to {
+    clip-path: inset(0 0 0 0);
+  }
+}
+
+/* Tooltip: a small sign above (or below) the thing it explains. Filled by js/tooltip.js from data-tip. */
+.tip {
+  position: fixed;
+  z-index: 50;
+  max-width: 30ch;
+  padding: 7px 11px 8px;
+  background: var(--fau);
+  color: var(--on-fau);
+  font: 600 0.82rem/1.35 var(--f-display);
+  letter-spacing: 0.005em;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 120ms var(--ease);
+}
+.tip::after {
+  content: "";
+  position: absolute;
+  left: calc(var(--arrow, 50%) - 5px);
+  width: 10px;
+  height: 10px;
+  background: inherit;
+  transform: rotate(45deg);
+}
+.tip[data-side="above"]::after {
+  bottom: -5px;
+}
+.tip[data-side="below"]::after {
+  top: -5px;
+}
+.tip.on {
+  opacity: 1;
+}
+@media (prefers-reduced-motion: no-preference) {
+  .tip {
+    transition:
+      opacity 120ms var(--ease),
+      transform 180ms var(--ease);
+  }
+  .tip[data-side="above"] {
+    transform: translateY(4px);
+  }
+  .tip[data-side="below"] {
+    transform: translateY(-4px);
+  }
+  .tip.on {
+    transform: none;
+  }
+}
+[data-tip] {
+  cursor: help;
+}
+a[data-tip],
+button[data-tip] {
+  cursor: pointer;
+}
+@media print {
+  .tip {
+    display: none;
+  }
+}
+
+/* Reduced motion: no movement and no smooth scrolling; colour and state changes stay. */
 @media (prefers-reduced-motion: reduce) {
-  *,
-  *::before,
-  *::after {
-    transition: none !important;
+  html {
     scroll-behavior: auto !important;
   }
 }

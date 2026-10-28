@@ -1,6 +1,6 @@
 # Study guide standard
 
-What "done" means for a Wegweiser study guide: one chapter of one subject, written from the lecture notes, as a web page with a generated PDF. It complements [DESIGN.md](DESIGN.md), which covers the visual system, and [PRODUCT.md](PRODUCT.md), which covers who the site is for.
+What "done" means for a study guide on this site: one chapter of one subject, written from the lecture notes, as a web page with a generated PDF. It complements [DESIGN.md](DESIGN.md), which covers the visual system, and [PRODUCT.md](PRODUCT.md), which covers who the site is for.
 
 **Reference guide:** [EEI Chapter 1, Electrostatic Fields](eei/ch1-electrostatic-fields.html). Copy its structure and markup, not its physics.
 
@@ -26,7 +26,7 @@ Each rule below serves one of these study principles, taken from the ultimate-st
 | Location | `<subject>/ch<N>-<topic>.html`, with `<subject>` the lower-case subject code (`eei`, `mei`, `apdr`, `matlab`) and `<topic>` a short kebab-case slug. The `.pdf` and `.tex` sit beside it with the same stem. |
 | Storage key | `<body data-key="<subject><course number>-ch<N>">`, for example `eei1-ch1`. Never change it once published, because saved ticks and review days live under it. |
 | Subject class | `<body class="s-<subject>-<course number>">`, matching the hub entry. |
-| Shared assets | Load `../css/system.css`, `../css/guide.css` and `../js/guide.js`. Put chapter-specific styling into `css/guide.css` only if every guide can use it; there are no per-chapter stylesheets. |
+| Shared assets | Load `../css/system.css`, `../css/guide.css`, `../js/guide.js` and `../js/tooltip.js`. Add a hover tooltip to any element with a `data-tip` attribute; keep it short and supplementary, never the only place information lives. Put chapter-specific styling into `css/guide.css` only if every guide can use it; there are no per-chapter stylesheets. |
 | Hub entry | One `<li class="chapter">` in the subject's list in `index.html`, with `data-key` equal to the guide's key, `data-total` equal to its number of checklist items, and a link to the page. |
 | Generated files | The `.tex` and `.pdf` are generated from the HTML by `tools/guide-to-tex.py` and LaTeX. Never edit them by hand. |
 | Browser test | Add the guide to `staticPages` in the workspace's `BrowserTests/tests/smoke.spec.js`. |

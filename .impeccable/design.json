@@ -1,7 +1,7 @@
 {
   "schemaVersion": 2,
   "generatedAt": "2026-10-27T12:02:52+00:00",
-  "title": "Design System: Wegweiser",
+  "title": "Design System: From Fundamentals to AI Apocalypse",
   "extensions": {
     "colorMeta": {
       "fau-blue": {
@@ -498,7 +498,7 @@
     "typographyMeta": {
       "display": {
         "displayName": "Display",
-        "purpose": "Hub masthead 'Wegweiser' only."
+        "purpose": "Hub masthead 'From Fundamentals to AI Apocalypse' only."
       },
       "headline": {
         "displayName": "Headline",
@@ -678,7 +678,7 @@
       "kind": "nav",
       "refersTo": "contents-link-current",
       "description": "Home plates in the action colour, then a ruled section list; the current section fills FAU blue.",
-      "html": "<nav class=\"ds-toc\"><a class=\"ds-home\" href=\"#\">All Wegweiser pages</a><ol><li><a href=\"#\" aria-current=\"location\">How to use this guide</a></li><li><a href=\"#\">1.1–1.3 Charge, Coulomb’s law, field strength</a></li><li><a href=\"#\">Practice problems</a></li></ol></nav>",
+      "html": "<nav class=\"ds-toc\"><a class=\"ds-home\" href=\"#\">All From Fundamentals to AI Apocalypse pages</a><ol><li><a href=\"#\" aria-current=\"location\">How to use this guide</a></li><li><a href=\"#\">1.1–1.3 Charge, Coulomb’s law, field strength</a></li><li><a href=\"#\">Practice problems</a></li></ol></nav>",
       "css": ":host { --fau:#04316a; --fau-deep:#021d40; --fau-tint:#dce5f1; --fau-mark:#04316a; --band-overdue:#04316a; --on-fau:#ffffff; --on-fau-soft:#c9d6ea; --paper:#ffffff; --paper-2:#eef2f7; --ink:#0b1b33; --muted:#45556d; --line:#d3dbe6; --act:#04316a; --act-ink:#ffffff; --apdr-1:#bcb2ff; --apdr-2:#a497ea; --apdr-3:#8c7ed0; --mei-1:#bde892; --mei-2:#a4cd79; --mei-3:#8cb460; --eei-1:#e6b55d; --eei-2:#cc9c42; --eei-3:#b28324; --matlab-1:#80ecf1; --matlab-2:#64d1d7; --matlab-3:#48b7bd; --course:var(--paper-2); --code-ink:#0b1b33; --f-display:'Hanken Grotesk', system-ui, -apple-system, 'Segoe UI', sans-serif; --ease:cubic-bezier(0.16, 1, 0.3, 1); font-family:var(--f-display); color:var(--ink); } .ds-toc { width:250px; font:500 0.95rem/1.35 var(--f-display); } .ds-home { display:flex; align-items:center; min-height:40px; padding:0 12px; border:2px solid var(--act); color:var(--act); font-weight:700; text-decoration:none; } .ds-home:hover { background:var(--fau-tint); } .ds-home:focus-visible, .ds-toc li a:focus-visible { outline:3px solid var(--act); outline-offset:2px; } .ds-toc ol { list-style:none; margin:22px 0 0; padding:0; border-top:2px solid var(--ink); } .ds-toc li { border-bottom:1px solid var(--line); } .ds-toc li a { display:block; padding:9px 10px; color:var(--muted); text-decoration:none; transition:background-color 150ms var(--ease), color 150ms var(--ease); } .ds-toc li a:hover { color:var(--ink); background:var(--paper-2); } .ds-toc li a[aria-current] { background:var(--fau); color:var(--on-fau); font-weight:700; }"
     },
     {
@@ -692,7 +692,7 @@
   ],
   "narrative": {
     "northStar": "The Semester Sign System",
-    "overview": "Wegweiser reads like an Ulm-school wayfinding system (the Aicher-era airport and Olympic signage) applied to a whole engineering degree, semester by semester. FAU blue enamel fields own the top of every page and every section opener; white and pale blue-grey paper carries the content underneath. Subjects are named by solid code squares in their own colour family, the same way a terminal names its gates, and semesters are numbered blue squares, the way it numbers its halls. The reader should always know where they are and what is due next.\n\nThe system is flat, square and typographic. There are no rounded corners, no shadows and no decorative motion. One grotesque family at heavy weights does all the signing. State is never carried by a new hue: urgency is a tonal band of the same blue (deep for overdue, tint for due, paper for fresh), and progress is carried by line form (dashed for not yet, solid for done or present). Density is calm and generous on the hub, and denser in the guides, where the formulas and problems carry the page. The system is built to grow: a new semester is one more section and one more jump tile, a follow-on course is the next step of its subject's colour family.\n\nThe world rejects the card-grid docs template and the hero-plus-cards hub. The hub is a sign field with a review board pinned across its lower edge, followed by ruled semester sections of subject rows; the guide is a single reading column with a contents rail.",
+    "overview": "From Fundamentals to AI Apocalypse reads like an Ulm-school wayfinding system (the Aicher-era airport and Olympic signage) applied to a whole engineering degree, semester by semester. FAU blue enamel fields own the top of every page and every section opener; white and pale blue-grey paper carries the content underneath. Subjects are named by solid code squares in their own colour family, the same way a terminal names its gates, and semesters are numbered blue squares, the way it numbers its halls. The reader should always know where they are and what is due next.\n\nThe system is flat, square and typographic. There are no rounded corners, no shadows and no decorative motion. One grotesque family at heavy weights does all the signing. State is never carried by a new hue: urgency is a tonal band of the same blue (deep for overdue, tint for due, paper for fresh), and progress is carried by line form (dashed for not yet, solid for done or present). Density is calm and generous on the hub, and denser in the guides, where the formulas and problems carry the page. The system is built to grow: a new semester is one more section and one more jump tile, a follow-on course is the next step of its subject's colour family.\n\nThe world rejects the card-grid docs template and the hero-plus-cards hub. The hub is a sign field with a review board pinned across its lower edge, followed by ruled semester sections of subject rows; the guide is a single reading column with a contents rail.",
     "keyCharacteristics": [
       "FAU blue (#04316A) sign fields for the hub masthead, guide headers and table headers.",
       "Solid subject code squares in one OKLCH hue per subject (APDR violet, MEI green, EEI amber, MATLAB cyan), stepped lighter to darker for courses I, II and III, holding short codes in Hanken Grotesk 800.",

@@ -597,3 +597,87 @@ details.answers {
     break-inside: avoid;
   }
 }
+
+/* Motion: answers unfold, jump targets announce themselves, ticks acknowledge, progress lights up. */
+details.answers[open] > :not(summary) {
+  animation: answers-fade 200ms var(--ease) both;
+}
+@keyframes answers-fade {
+  from {
+    opacity: 0;
+  }
+}
+@media (prefers-reduced-motion: no-preference) {
+  details.answers[open] > :not(summary) {
+    animation: answers-unfold 320ms var(--ease) both;
+  }
+  section:target > h2::before,
+  section:target > h3::before,
+  .flash::before {
+    animation: sign-flash 900ms var(--ease) 1;
+  }
+  li.check input:checked {
+    animation: tick-pop 260ms var(--ease);
+  }
+}
+@keyframes answers-unfold {
+  from {
+    opacity: 0;
+    clip-path: inset(0 0 100% 0);
+    transform: translateY(-6px);
+  }
+  to {
+    opacity: 1;
+    clip-path: inset(0 0 0 0);
+    transform: none;
+  }
+}
+@keyframes sign-flash {
+  0% {
+    transform: translateY(-1px) scale(1);
+  }
+  25% {
+    transform: translateY(-1px) scale(1.9);
+    background: var(--course);
+  }
+  100% {
+    transform: translateY(-1px) scale(1);
+  }
+}
+@keyframes tick-pop {
+  0% {
+    transform: scale(0.8);
+  }
+  60% {
+    transform: scale(1.12);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+/* The header's progress line lights up briefly after a tick. */
+#review-meta.lit,
+.review p.lit {
+  animation: meta-lit 900ms var(--ease);
+}
+@keyframes meta-lit {
+  0% {
+    background: var(--course);
+    color: var(--ink);
+  }
+}
+#review-meta,
+.review p {
+  padding: 2px 6px;
+  margin-left: -6px;
+}
+
+/* Section references in answers become jump links to the section. */
+.sec-ref a {
+  color: inherit;
+  text-decoration-color: currentColor;
+  text-decoration-style: dotted;
+}
+.sec-ref a:hover {
+  text-decoration-style: solid;
+}

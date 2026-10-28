@@ -33,6 +33,12 @@
         localStorage.setItem(KEY, JSON.stringify(saved));
       } catch (e) {}
       logToday();
+      [meta, status].forEach(function (el) {
+        if (!el) return;
+        el.classList.remove("lit");
+        void el.offsetWidth; // restart the animation on repeated ticks
+        el.classList.add("lit");
+      });
     });
   });
 
@@ -82,7 +88,13 @@
 
   // Contents: mark the last section whose heading has passed the top third.
   var links = Array.prototype.slice.call(document.querySelectorAll("nav.toc ol a"));
-  var heads = Array.prototype.slice.call(document.querySelectorAll("main h2[id]"));
+  var heads = links
+    .map(function (a) {
+      return document.getElementById(decodeURIComponent(a.hash.slice(1)));
+    })
+    .filter(function (el, i, all) {
+      return el && all.indexOf(el) === i;
+    });
   var current = null,
     queued = false;
   function spy() {
@@ -112,4 +124,29 @@
     );
     spy();
   }
+
+  // Tooltips (shown by js/tooltip.js). Full section titles behind the short contents entries.
+  var titles = {};
+  document.querySelectorAll("main section[id]").forEach(function (sec) {
+    var h = sec.querySelector("h2");
+    if (h) titles[sec.id] = h.textContent.trim();
+  });
+  links.forEach(function (a) {
+    var full = titles[decodeURIComponent(a.hash.slice(1))];
+    if (full && full !== a.textContent.trim()) a.dataset.tip = full;
+  });
+
+  // Section references in answers ("§1.12, 1.14") become links to those sections.
+  document.querySelectorAll(".sec-ref").forEach(function (ref) {
+    ref.innerHTML = ref.textContent.replace(/\d+\.\d+/g, function (n) {
+      var id = "sec-" + n.replace(".", "");
+      if (!titles[id]) return n;
+      return '<a href="#' + id + '" data-tip="Revisit ' + titles[id].replace(/"/g, "&quot;") + '">' + n + "</a>";
+    });
+  });
+
+  // Subject code: name the course.
+  var code = document.querySelector(".sign .code"),
+    course = document.querySelector(".sign .course");
+  if (code && course) code.dataset.tip = course.textContent.trim();
 })();

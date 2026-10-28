@@ -20,7 +20,8 @@
   }
   function ticksHTML(done, total) {
     var html = "";
-    for (var i = 0; i < total; i++) html += '<i class="' + (i < done ? "on" : "") + '"></i>';
+    // --i staggers the fill animation of ticked bars (css/system.css).
+    for (var i = 0; i < total; i++) html += i < done ? '<i class="on" style="--i:' + i + '"></i>' : "<i></i>";
     return html;
   }
 
@@ -56,6 +57,7 @@
       item.weight = 1;
     }
     li.querySelector(".ticks").innerHTML = ticksHTML(item.done, total);
+    li.querySelector(".ticks").dataset.tip = item.done + " of " + total + " chapter skills ticked";
     li.setAttribute("aria-label", li.querySelector(".title").textContent + ": " + item.done + " of " + total + " chapter skills ticked");
     return item;
   });
@@ -71,6 +73,7 @@
   });
   if (!started) {
     rows.hidden = true;
+    tips();
     return;
   }
   document.getElementById("board-empty").hidden = true;
@@ -95,11 +98,36 @@
         '<p class="gap"><b>' + w.big + "</b><span>" + w.small + "</span></p>" +
         '<span class="code ' + c.course + '">' + c.code + "</span>" +
         '<h3 class="ch">' + c.title + "</h3>" +
-        '<p class="count"><span class="ticks" aria-hidden="true">' + ticksHTML(c.done, c.total) + "</span>" +
+        '<p class="count"><span class="ticks" aria-hidden="true" data-tip="' + c.done + " of " + c.total + ' chapter skills ticked">' + ticksHTML(c.done, c.total) + "</span>" +
         "<span>" + c.done + " / " + c.total + " skills</span></p>" +
         '<div class="go">' + c.links + "</div>" +
         "</li>"
       );
     })
     .join("");
+
+  tips();
+
+  // Tooltips (shown by js/tooltip.js). Runs whether or not any chapter has been started.
+  function tips() {
+    var names = {};
+    document.querySelectorAll("li.subject").forEach(function (sub) {
+      var code = sub.querySelector(".code"),
+        name = sub.querySelector("h3"),
+        module = sub.querySelector(".module");
+      if (!code || !name) return;
+      names[code.textContent.trim()] = name.textContent.trim();
+      code.dataset.tip = name.textContent.trim() + (module ? " · " + module.textContent.split("·")[0].trim() : "");
+      sub.querySelectorAll(".parts li").forEach(function (part) {
+        part.dataset.tip = part.classList.contains("has") ? "Material available" : "No material yet";
+      });
+    });
+    document.querySelectorAll("#rows .code").forEach(function (code) {
+      var name = names[code.textContent.trim()];
+      if (name) code.dataset.tip = name;
+    });
+    document.querySelectorAll(".semesters a").forEach(function (a) {
+      a.dataset.tip = "Jump to " + a.textContent.replace(/\s+/g, " ").trim().replace(/^\d+\s*/, "");
+    });
+  }
 })();

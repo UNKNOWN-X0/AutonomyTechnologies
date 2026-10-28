@@ -1,5 +1,5 @@
 ---
-name: Wegweiser
+name: From Fundamentals to AI Apocalypse
 description: A systematic wayfinding sign system for a whole engineering degree at FAU, semester by semester, with FAU-blue sign fields, subject colour-family code squares and line-form state.
 colors:
   fau-blue: "#04316a"
@@ -201,15 +201,15 @@ components:
     padding: "9px 10px"
 ---
 
-# Design System: Wegweiser
+# Design System: From Fundamentals to AI Apocalypse
 
 ## Overview
 
 **Creative North Star: "The Semester Sign System"**
 
-Wegweiser reads like an Ulm-school wayfinding system (the Aicher-era airport and Olympic signage) applied to a whole engineering degree, semester by semester. FAU blue enamel fields own the top of every page and every section opener; white and pale blue-grey paper carries the content underneath. Subjects are named by solid code squares in their own colour family, the same way a terminal names its gates, and semesters are numbered blue squares, the way it numbers its halls. The reader should always know where they are and what is due next.
+From Fundamentals to AI Apocalypse reads like an Ulm-school wayfinding system (the Aicher-era airport and Olympic signage) applied to a whole engineering degree, semester by semester. FAU blue enamel fields own the top of every page and every section opener; white and pale blue-grey paper carries the content underneath. Subjects are named by solid code squares in their own colour family, the same way a terminal names its gates, and semesters are numbered blue squares, the way it numbers its halls. The reader should always know where they are and what is due next.
 
-The system is flat, square and typographic. There are no rounded corners, no shadows and no decorative motion. One grotesque family at heavy weights does all the signing. State is never carried by a new hue: urgency is a tonal band of the same blue (deep for overdue, tint for due, paper for fresh), and progress is carried by line form (dashed for not yet, solid for done or present). Density is calm and generous on the hub, and denser in the guides, where the formulas and problems carry the page. The system is built to grow: a new semester is one more section and one more jump tile, a follow-on course is the next step of its subject's colour family.
+The system is flat, square and typographic. There are no rounded corners and no shadows, and motion only ever explains a state change, a jump or progress. One grotesque family at heavy weights does all the signing. State is never carried by a new hue: urgency is a tonal band of the same blue (deep for overdue, tint for due, paper for fresh), and progress is carried by line form (dashed for not yet, solid for done or present). Density is calm and generous on the hub, and denser in the guides, where the formulas and problems carry the page. The system is built to grow: a new semester is one more section and one more jump tile, a follow-on course is the next step of its subject's colour family.
 
 The world rejects the card-grid docs template and the hero-plus-cards hub. The hub is a sign field with a review board pinned across its lower edge, followed by ruled semester sections of subject rows; the guide is a single reading column with a contents rail.
 
@@ -267,7 +267,7 @@ Dark mode follows `prefers-color-scheme` and can be forced with `data-theme`. Th
 **Character:** a single geometric-leaning grotesque used like sign lettering: heavy 800 for anything that names a place, 700 for things you act on, 600 for status chips, 500 for annotation, 400 for reading. Large sizes tighten their tracking; small labels stay at normal tracking and sentence case.
 
 ### Hierarchy
-- **Display** (800, clamp up to 4.75rem, line-height 0.95): the hub masthead "Wegweiser" only.
+- **Display** (800, clamp up to 4.75rem, line-height 0.95): the hub masthead "From Fundamentals to AI Apocalypse" only.
 - **Headline** (800, clamp(1.9rem … 3rem), line-height 1.05): the chapter title inside guide sign headers. Balanced wrapping.
 - **Title** (800, 1.65rem, line-height 1.2): guide section openers (h2). The hub uses the same weight at 1.6rem for "Review today" and 1.35rem for the loop and semester headings.
 - **Subtitle** (700, 1.2rem, line-height 1.25 to 1.3): h3 in guides; subject names on the hub and chapter names on review rows at 1.25rem; hub chapter names at 1.1rem.
@@ -349,7 +349,8 @@ A row of 7px by 22px bars, one per exam-checklist skill, gapped by 3px and drawn
 Four numbered blue squares (3rem, 800 numerals) each followed by one sentence of method, under a ruled heading.
 
 ### Navigation (guide contents rail)
-- **Brand:** 38px square mark plus "Wegweiser" at 800.
+- **Site mark (the Singularity):** a square deep-blue tile (FAU blue to FAU deep) with two tilted orbits, one in a cyan-to-green gradient and one in pale blue, around a glowing white-green core; a white charge travels the outer orbit. The orbits precess (24s and 36s), the charge circles every 6s, the core pulses every 3.2s, and all motion stops under `prefers-reduced-motion`. The same tile is used on the hub masthead and in the guide rail; the favicon is a still frame. Markup and gradients are inline in each page; the motion lives in `css/system.css`.
+- **Brand:** 38px square mark plus "From Fundamentals to AI Apocalypse" at 800.
 - **Home links:** full-width 40px outline plates in the action colour, Sign Tint on hover.
 - **Section list:** opens with a 2px ink rule, each item divided by a hairline, muted 500 text, ink on a paper fill on hover. The current section fills with FAU blue and white 700 text.
 - **Mobile:** below 900px the rail becomes a wrapping top bar and the section list is hidden.
@@ -361,6 +362,15 @@ A 2px ink rule above, 18px top padding, then a 14px solid blue square before the
 - **Formula panel:** Cool Paper fill, 16px by 20px padding, horizontal scroll for wide formulas, no border.
 - **Formula typography:** equations use a math-capable serif fallback (`Cambria Math`, `STIX Two Math`, `Times New Roman`, serif), centered on wide screens and allowed to wrap at spaces on narrow screens; key ratios use stacked fractions.
 - **Table:** full width, collapsed, 1px hairline under each row, 9px by 12px cells, tabular figures. The header row is an FAU-blue band with white 700 labels at 0.85rem.
+
+### Motion
+- **Signature moment:** progress draws itself. Ticked bars on the hub fill bottom-up, one after another (420ms each, 28ms stagger, capped by the 16 bars). Ticking a skill in a guide pops the box (260ms) and lights the "skills ticked" line with the subject colour (900ms fade).
+- **Continuity:** opening an answer key unfolds its content with a clip and short drop (320ms; a plain fade under reduced motion). In-page jumps scroll smoothly and the target section's blue square flashes once in the subject colour (900ms). The contents rail tracks the section being read.
+- **Feedback:** links thicken their underline and buttons change fill in 150ms; buttons press down 1px.
+- **Site mark:** see Navigation.
+
+### Tooltip
+A small FAU-blue sign with white Hanken Grotesk 600 at 0.82rem, square corners, a 10px rotated-square pointer and no shadow. It sits above its target (below when there is no room), appears after 350ms of hover or at once on keyboard focus, and closes on leave, blur, scroll or Escape. Driven by `js/tooltip.js` from `data-tip` attributes; guides generate them for contents entries (full section titles), section references (now jump links) and the subject code, the hub for subject codes, course-part chips, tick bars and the semester jump list.
 
 ### Answer key
 A `details` frame with a 2px action-colour border and a 48px action-colour summary line. Opening it draws a hairline under the summary. In print it is always open and frameless.
@@ -379,7 +389,8 @@ Each item is a full-width label row divided by hairlines. The box is a 22px squa
 - **Do** show not-yet as a dashed outline and done or present as a solid line or fill.
 - **Do** spend the action colour only on clickable things: buttons, home links, the answer-key toggle and focus rings.
 - **Do** put the guide's subject class and `data-key` on its `<body>`.
-- **Do** keep motion to 150ms state changes with the system ease-out, and turn it off under prefers-reduced-motion.
+- **Do** use motion only to acknowledge an action, explain a state change or show where a jump landed, with the system ease-out (`cubic-bezier(0.16, 1, 0.3, 1)`): 100–150ms feedback, 200–320ms reveals, one authored moment (the tick-bar fill). Under `prefers-reduced-motion` remove movement but keep colour and opacity changes.
+- **Do** add hover tooltips with `data-tip` for short, supplementary facts (full titles, what a state means, where a link goes); never put information only in a tooltip.
 - **Do** keep the legacy token names (--bg, --surface, --hl, --accent, --link, --course) in system.css, because css/guide.css reads them.
 - **Do** strip fills to ink text and rules in print.
 
@@ -390,6 +401,6 @@ Each item is a full-width label row divided by hairlines. The box is a 22px squa
 - **Don't** use a subject colour as text, border or line colour; it is a fill behind dark ink.
 - **Don't** give a follow-on course a new hue.
 - **Don't** colour a non-clickable element with the action colour token.
-- **Don't** add decorative motion.
+- **Don't** add decorative motion: no scroll-reveals, page-load choreography on reading content, parallax or hover lifts.
 - **Don't** use the FAU logo; the site mark is its own square sign.
 - **Don't** build a card grid or a hero-plus-cards hub.

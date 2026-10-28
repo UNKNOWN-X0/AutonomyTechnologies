@@ -1,4 +1,4 @@
-"""Convert a Wegweiser study guide (its <main>) into a standalone LaTeX file.
+"""Convert a study guide (its <main>) into a standalone LaTeX file.
 
 Usage: python3 -I tools/guide-to-tex.py eei/ch1-electrostatic-fields.html eei/ch1-electrostatic-fields.tex
 Then build the PDF with: latexmk -xelatex <file>.tex (needs TeX Live with the New Computer Modern fonts).
@@ -352,7 +352,7 @@ PREAMBLE = r"""\documentclass[11pt]{article}
 \setcounter{secnumdepth}{0}
 \setcounter{tocdepth}{1}
 \pagestyle{fancy}\fancyhf{}
-\fancyhead[L]{\small\sffamily\color{FAUblue} Wegweiser · @CODE@ · @CHAPTER@}
+\fancyhead[L]{\small\sffamily\color{FAUblue} From Fundamentals to AI Apocalypse · @CODE@ · @CHAPTER@}
 \fancyhead[R]{\small\sffamily @TITLE@}
 \fancyfoot[C]{\small\thepage}
 \titleformat{\section}{\Large\bfseries\sffamily\color{FAUblue}}{}{0pt}{}
@@ -385,7 +385,7 @@ PREAMBLE = r"""\documentclass[11pt]{article}
 \makeatother
 \newtcolorbox{notebox}{colback=Paperblue,colframe=Paperblue,boxrule=0pt,arc=0pt,left=8pt,right=8pt,top=4pt,bottom=4pt,before skip=6pt,after skip=6pt}
 \title{\sffamily\bfseries\color{FAUblue}@TITLE@}
-\author{@COURSE@\\[2pt]\small Wegweiser personal study guide}
+\author{@COURSE@\\[2pt]\small From Fundamentals to AI Apocalypse · personal study guide}
 \date{}
 \begin{document}
 \maketitle

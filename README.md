@@ -1,10 +1,10 @@
-# Wegweiser
+# From Fundamentals to AI Apocalypse
 
 Study guides and interactive labs for the Autonomy Technologies programme at FAU Erlangen-Nürnberg, built up semester by semester for the whole degree.
 
 **[Open the site →](https://unknown-x0.github.io/AutonomyTechnologies/)**
 
-![Wegweiser hub](assets/preview.png)
+![From Fundamentals to AI Apocalypse hub](assets/preview.png)
 
 > Personal study material written from the lecture notes. Not an official FAU publication; check anything exam-relevant against your course materials.
 
@@ -80,7 +80,7 @@ The pages follow one sign system, modelled on German systematic signage: solid c
   They were built in OKLCH: the label contrast is at least 4.9:1 on every step, and the four subjects stay apart under simulated red-green and blue-yellow colour blindness. Use a subject with the class `s-<code>-<step>`, e.g. `s-mei-2` for Mathematics for Engineers II.
 - **State is shown by line form:** dashed outline means not yet (an unticked skill, a course part with no material), solid means done or available.
 - **Font:** Hanken Grotesk (SIL Open Font License, via Google Fonts).
-- **Site mark:** an original icon (field lines between two charges). The FAU logo is not used; it is a protected university trademark.
+- **Site mark:** an original animated icon, the Singularity: two orbits precess around a glowing core while a charge travels the outer orbit, from fundamentals to AI. Motion stops for visitors who prefer reduced motion, and the favicon is a still version. The FAU logo is not used; it is a protected university trademark.
 - **Light and dark** follow your system setting. Pages print without the colour fields.
 
 ## Adding pages

@@ -1,0 +1,143 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#04316A" />
+    <meta name="description" content="Predict-then-reveal experiments for EEI Chapter 1, Electrostatic Fields: drag charges, watch fields and potential, and check how well your predictions hold." />
+    <title>Electrostatic Fields Lab · EEI Chapter 1 · From Fundamentals to AI Apocalypse</title>
+    <link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%2040%2040'%3E%3Cdefs%3E%3ClinearGradient%20id='b'%20x1='0'%20y1='0'%20x2='1'%20y2='1'%3E%3Cstop%20offset='0'%20stop-color='%2304316A'/%3E%3Cstop%20offset='1'%20stop-color='%23021D40'/%3E%3C/linearGradient%3E%3ClinearGradient%20id='r'%20x1='0'%20y1='1'%20x2='1'%20y2='0'%3E%3Cstop%20offset='0'%20stop-color='%2380ECF1'/%3E%3Cstop%20offset='1'%20stop-color='%239BE34A'/%3E%3C/linearGradient%3E%3CradialGradient%20id='c'%3E%3Cstop%20offset='0'%20stop-color='%23F4FFE6'/%3E%3Cstop%20offset='.45'%20stop-color='%239BE34A'/%3E%3Cstop%20offset='1'%20stop-color='%239BE34A'%20stop-opacity='0'/%3E%3C/radialGradient%3E%3C/defs%3E%3Crect%20width='40'%20height='40'%20fill='url%28%23b%29'/%3E%3Cellipse%20cx='20'%20cy='20'%20rx='14'%20ry='6.2'%20fill='none'%20stroke='url%28%23r%29'%20stroke-width='2'%20transform='rotate%28-28%2020%2020%29'/%3E%3Cellipse%20cx='20'%20cy='20'%20rx='14'%20ry='6.2'%20fill='none'%20stroke='%23C9D6EA'%20stroke-width='1.4'%20stroke-opacity='.55'%20transform='rotate%2832%2020%2020%29'/%3E%3Ccircle%20cx='20'%20cy='20'%20r='8'%20fill='url%28%23c%29'/%3E%3Ccircle%20cx='20'%20cy='20'%20r='3.2'%20fill='%23F4FFE6'/%3E%3Ccircle%20cx='8.4'%20cy='26.2'%20r='2.2'%20fill='%23fff'/%3E%3C/svg%3E" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="../css/system.css" />
+    <link rel="stylesheet" href="../css/guide.css" />
+    <link rel="stylesheet" href="../css/lab.css" />
+  </head>
+    <body class="s-eei-1 lab" data-key="eei1-ch1" data-guide="ch1-electrostatic-fields.html">
+    <div class="wrap">
+      <nav class="toc" aria-label="Lab contents">
+        <a class="brand" href="../index.html" aria-label="From Fundamentals to AI Apocalypse home">
+          <svg class="mark" viewBox="0 0 40 40" width="38" height="38" aria-hidden="true">
+          <defs>
+            <linearGradient id="mk-bg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#04316A" /><stop offset="1" stop-color="#021D40" /></linearGradient>
+            <linearGradient id="mk-ring" x1="0" y1="1" x2="1" y2="0"><stop offset="0" stop-color="#80ECF1" /><stop offset="1" stop-color="#9BE34A" /></linearGradient>
+            <radialGradient id="mk-core"><stop offset="0" stop-color="#F4FFE6" /><stop offset=".45" stop-color="#9BE34A" /><stop offset="1" stop-color="#9BE34A" stop-opacity="0" /></radialGradient>
+          </defs>
+          <rect width="40" height="40" fill="url(#mk-bg)" />
+          <g class="mk-orbit mk-orbit-a"><g transform="rotate(-28 20 20)">
+            <ellipse cx="20" cy="20" rx="14" ry="6.2" fill="none" stroke="url(#mk-ring)" stroke-width="1.6" />
+            <circle class="mk-charge" r="1.9" fill="#fff" />
+          </g></g>
+          <g class="mk-orbit mk-orbit-b"><ellipse cx="20" cy="20" rx="14" ry="6.2" fill="none" stroke="#C9D6EA" stroke-width="1.1" stroke-opacity=".55" transform="rotate(32 20 20)" /></g>
+          <circle class="mk-glow" cx="20" cy="20" r="8" fill="url(#mk-core)" />
+          <circle cx="20" cy="20" r="3" fill="#F4FFE6" />
+        </svg>
+          <span>From Fundamentals to AI Apocalypse</span>
+        </a>
+        <a class="home" href="../index.html">All semesters</a>
+        <a class="home" href="ch1-electrostatic-fields.html">Chapter 1 guide</a>
+        <details class="mobile-toc">
+          <summary>Jump to an experiment</summary>
+          <ol>
+            <li><a href="#how">How the lab works</a></li>
+            <li><a href="#exp-field">Field playground</a></li>
+            <li><a href="#results">Your results</a></li>
+          </ol>
+        </details>
+        <ol>
+          <li><a href="#how">How the lab works</a></li>
+          <li><a href="#exp-field">Field playground</a></li>
+          <li><a href="#results">Your results</a></li>
+        </ol>
+      </nav>
+
+      <main>
+        <header class="sign">
+          <span class="code" aria-label="Electrical Engineering I">EEI</span>
+          <h1>Electrostatic Fields Lab</h1>
+          <p class="course">Electrical Engineering I · Module 92315 · Chapter 1</p>
+          <p class="meta" id="lab-meta"></p>
+        </header>
+
+        <p class="standfirst">Predict first, then watch. Every experiment starts with challenges: choose what you expect and how sure you are, and the simulation shows what really happens. When the challenges are done, the sandbox opens.</p>
+
+        <noscript><p class="method">The experiments need JavaScript. The <a href="ch1-electrostatic-fields.html">Chapter 1 guide</a> covers the same ideas without it.</p></noscript>
+
+        <section id="how" aria-labelledby="how-title">
+          <h2 id="how-title">How the lab works</h2>
+          <ol class="route">
+            <li><strong>Predict.</strong> Pick an answer before anything moves. A wrong guess still helps you learn, as long as you commit to it.</li>
+            <li><strong>Rate how sure you are.</strong> Being sure and wrong is the most useful thing to find out; those answers are listed under <a href="#results">Your results</a>.</li>
+            <li><strong>Watch the reveal.</strong> The simulation plays the true result, keeps your guess on screen, and links the matching section of the <a href="ch1-electrostatic-fields.html">guide</a>.</li>
+            <li><strong>Explore.</strong> Finishing an experiment opens its sandbox and ticks a lab skill on the hub.</li>
+          </ol>
+        </section>
+
+        <section id="exp-field" class="experiment" data-experiment="field" aria-labelledby="exp-field-title">
+          <h2 id="exp-field-title">Field playground</h2>
+          <p>Point charges, the field they make and the work it takes to move a probe charge through it. The picture is a flat slice through the real three-dimensional field, so it follows the 1/<var>r</var><sup>2</sup> law of the notes.</p>
+          <div class="bench">
+            <div class="stage">
+              <canvas aria-hidden="true"></canvas>
+              <svg class="handles" role="group" aria-label="Charges and probe"></svg>
+              <p class="stage-note">Grid: 5 cm · dashed: equipotentials · lines: field lines</p>
+            </div>
+            <div class="side">
+            <div class="challenge" aria-live="polite"></div>
+            <form class="controls" onsubmit="return false">
+              <fieldset>
+                <legend>Show</legend>
+                <label class="switch"><input type="checkbox" data-show="lines" /> Field lines</label>
+                <label class="switch"><input type="checkbox" data-show="equi" /> Equipotentials</label>
+                <label class="switch"><input type="checkbox" data-show="vectors" /> Field vectors</label>
+              </fieldset>
+              <fieldset>
+                <legend>Charges</legend>
+                <ul class="charge-list"></ul>
+                <div class="row-btns">
+                  <button class="btn small" type="button" data-act="add">Add a charge</button>
+                </div>
+                <p class="ctl-label">Start from</p>
+                <div class="row-btns">
+                  <button class="btn small" type="button" data-layout="single">One charge</button>
+                  <button class="btn small" type="button" data-layout="dipole">+ and −</button>
+                  <button class="btn small" type="button" data-layout="like">Two +</button>
+                  <button class="btn small" type="button" data-layout="unequal">+1 and +2 nC</button>
+                </div>
+              </fieldset>
+              <fieldset>
+                <legend>Probe</legend>
+                <label class="field-row">Probe charge
+                  <select data-probe>
+                    <option value="1">+1 nC</option>
+                    <option value="-1">−1 nC</option>
+                  </select>
+                </label>
+                <dl class="readouts">
+                  <div><dt>|<var>E</var>| at the probe</dt><dd data-out="E">—</dd></div>
+                  <div><dt>Direction of <var>E</var></dt><dd data-out="angle">—</dd></div>
+                  <div><dt>Potential φ</dt><dd data-out="phi">—</dd></div>
+                  <div><dt>Force on the probe</dt><dd data-out="F">—</dd></div>
+                  <div><dt>Work you supplied, last move</dt><dd data-out="W">—</dd></div>
+                </dl>
+              </fieldset>
+            </form>
+            </div>
+          </div>
+        </section>
+
+        <section id="results" aria-labelledby="results-title">
+          <h2 id="results-title">Your results</h2>
+          <div id="lab-results"></div>
+        </section>
+
+        <p class="source-note">Personal study lab based on the supplied Electrical Engineering I Chapter 1 notes (WS 2026/27). Simulations use the notes' formulas and constants; check anything exam-relevant against the official course materials. Not an official FAU publication.</p>
+      </main>
+    </div>
+    <script src="../js/eei-ch1-physics.js"></script>
+    <script src="../js/lab.js"></script>
+    <script src="../js/eei-ch1-lab.js"></script>
+    <script src="../js/tooltip.js"></script>
+  </body>
+</html>

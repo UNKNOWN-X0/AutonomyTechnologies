@@ -5,7 +5,7 @@ primary_target: "index.html"
 related_targets: ["css/guide.css"]
 ---
 
-# Wegweiser: hub and guide shell
+# From Fundamentals to AI Apocalypse: hub and guide shell
 
 **Scope:** `index.html` (hub, Read mode) and the reusable guide shell `css/guide.css` + `js/guide.js` (Read mode). The first EE and Maths guides and labs were deleted on 2026-10-27; new guides and labs will be designed later with the ultimate-study skill and inherit this world.
 
@@ -21,7 +21,7 @@ OWN-WORLD: FAU blue #04316A enamel sign fields own the masthead and openers. Whi
 
 STORY: Open the hub → see the most overdue chapter on the deepest blue row → open its guide → recall, check, tick → the row moves down the band.
 
-FIRST VIEWPORT: A full-width FAU-blue field (mark, "Wegweiser" at about 76px, one-line purpose, course code signs on the right). The Review today board overlaps the field's bottom edge, with rows of gap, course code, chapter, 14 tick bars and Guide/Lab, and the primary action is the Guide button in the top row. The four-step loop sits as numbered blue sign squares below.
+FIRST VIEWPORT: A full-width FAU-blue field (mark, "From Fundamentals to AI Apocalypse" at about 76px, one-line purpose, course code signs on the right). The Review today board overlaps the field's bottom edge, with rows of gap, course code, chapter, 14 tick bars and Guide/Lab, and the primary action is the Guide button in the top row. The four-step loop sits as numbered blue sign squares below.
 
 FORM: Ulm school systematic signage (Aicher-era airport and Olympic sign systems), candidate 6 of 7 on the re-rolled grounded list. seed:88b4c59ebceb2ca1
 
@@ -29,6 +29,6 @@ FINISH: unreviewed and undocumented is unfinished; this build ends with the fini
 
 **Signature interaction:** ticking a checklist item in a guide redraws its tick bar from a gapped outline to solid, and the guide's sign-field header shows "last reviewed today". On the hub, rows re-sort by urgency band.
 
-**Motion grammar:** none decorative. Only state changes (a tick filling, a row's band changing) use a short 150 ms ease-out. Motion is disabled under prefers-reduced-motion.
+**Motion grammar:** purposeful only (changed 2026-10-28 at the owner's request). One authored moment, progress drawing itself (hub tick bars fill in sequence; a guide tick pops and lights the progress line); continuity for answer keys unfolding and in-page jumps flashing their target; 100–150 ms feedback on links and buttons; the animated site mark. No scroll-reveals or page-load choreography on reading content. Reduced motion removes movement and keeps colour and opacity changes. Hover tooltips (`data-tip`, `js/tooltip.js`) carry short supplementary facts.
 
 **Unresolved:** dark-mode mapping of the blue fields (inverting to deep navy ground with lighter blue fields) is decided at build time.

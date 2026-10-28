@@ -5,8 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="theme-color" content="#04316A" />
     <meta name="description" content="A retrieval-first study guide to electrostatic fields, based on the supplied EEI Chapter 1 lecture notes." />
-    <title>Electrostatic Fields · EEI Chapter 1 · Wegweiser</title>
-    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 40 40'%3E%3Crect width='40' height='40' fill='%2304316A'/%3E%3Cg fill='none' stroke='%23C9D6EA' stroke-width='2' stroke-linecap='round'%3E%3Cpath d='M13 20 H27'/%3E%3Cpath d='M13.5 16.5 C18 10 22 10 26.5 16.5'/%3E%3Cpath d='M13.5 23.5 C18 30 22 30 26.5 23.5'/%3E%3C/g%3E%3Ccircle cx='11' cy='20' r='4.2' fill='%23fff'/%3E%3Ccircle cx='29' cy='20' r='4.2' fill='%237BB725'/%3E%3C/svg%3E" />
+    <title>Electrostatic Fields · EEI Chapter 1 · From Fundamentals to AI Apocalypse</title>
+    <link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%2040%2040'%3E%3Cdefs%3E%3ClinearGradient%20id='b'%20x1='0'%20y1='0'%20x2='1'%20y2='1'%3E%3Cstop%20offset='0'%20stop-color='%2304316A'/%3E%3Cstop%20offset='1'%20stop-color='%23021D40'/%3E%3C/linearGradient%3E%3ClinearGradient%20id='r'%20x1='0'%20y1='1'%20x2='1'%20y2='0'%3E%3Cstop%20offset='0'%20stop-color='%2380ECF1'/%3E%3Cstop%20offset='1'%20stop-color='%239BE34A'/%3E%3C/linearGradient%3E%3CradialGradient%20id='c'%3E%3Cstop%20offset='0'%20stop-color='%23F4FFE6'/%3E%3Cstop%20offset='.45'%20stop-color='%239BE34A'/%3E%3Cstop%20offset='1'%20stop-color='%239BE34A'%20stop-opacity='0'/%3E%3C/radialGradient%3E%3C/defs%3E%3Crect%20width='40'%20height='40'%20fill='url%28%23b%29'/%3E%3Cellipse%20cx='20'%20cy='20'%20rx='14'%20ry='6.2'%20fill='none'%20stroke='url%28%23r%29'%20stroke-width='2'%20transform='rotate%28-28%2020%2020%29'/%3E%3Cellipse%20cx='20'%20cy='20'%20rx='14'%20ry='6.2'%20fill='none'%20stroke='%23C9D6EA'%20stroke-width='1.4'%20stroke-opacity='.55'%20transform='rotate%2832%2020%2020%29'/%3E%3Ccircle%20cx='20'%20cy='20'%20r='8'%20fill='url%28%23c%29'/%3E%3Ccircle%20cx='20'%20cy='20'%20r='3.2'%20fill='%23F4FFE6'/%3E%3Ccircle%20cx='8.4'%20cy='26.2'%20r='2.2'%20fill='%23fff'/%3E%3C/svg%3E" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
@@ -16,15 +16,23 @@
   <body class="s-eei-1" data-key="eei1-ch1">
     <div class="wrap">
       <nav class="toc" aria-label="Guide contents">
-        <a class="brand" href="../index.html" aria-label="Wegweiser home">
+        <a class="brand" href="../index.html" aria-label="From Fundamentals to AI Apocalypse home">
           <svg class="mark" viewBox="0 0 40 40" width="38" height="38" aria-hidden="true">
-            <rect width="40" height="40" fill="#04316A" />
-            <g fill="none" stroke="#C9D6EA" stroke-width="2" stroke-linecap="round">
-              <path d="M13 20 H27" /><path d="M13.5 16.5 C18 10 22 10 26.5 16.5" /><path d="M13.5 23.5 C18 30 22 30 26.5 23.5" />
-            </g>
-            <circle cx="11" cy="20" r="4.2" fill="#fff" /><circle cx="29" cy="20" r="4.2" fill="#7BB725" />
-          </svg>
-          <span>Wegweiser</span>
+          <defs>
+            <linearGradient id="mk-bg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#04316A" /><stop offset="1" stop-color="#021D40" /></linearGradient>
+            <linearGradient id="mk-ring" x1="0" y1="1" x2="1" y2="0"><stop offset="0" stop-color="#80ECF1" /><stop offset="1" stop-color="#9BE34A" /></linearGradient>
+            <radialGradient id="mk-core"><stop offset="0" stop-color="#F4FFE6" /><stop offset=".45" stop-color="#9BE34A" /><stop offset="1" stop-color="#9BE34A" stop-opacity="0" /></radialGradient>
+          </defs>
+          <rect width="40" height="40" fill="url(#mk-bg)" />
+          <g class="mk-orbit mk-orbit-a"><g transform="rotate(-28 20 20)">
+            <ellipse cx="20" cy="20" rx="14" ry="6.2" fill="none" stroke="url(#mk-ring)" stroke-width="1.6" />
+            <circle class="mk-charge" r="1.9" fill="#fff" />
+          </g></g>
+          <g class="mk-orbit mk-orbit-b"><ellipse cx="20" cy="20" rx="14" ry="6.2" fill="none" stroke="#C9D6EA" stroke-width="1.1" stroke-opacity=".55" transform="rotate(32 20 20)" /></g>
+          <circle class="mk-glow" cx="20" cy="20" r="8" fill="url(#mk-core)" />
+          <circle cx="20" cy="20" r="3" fill="#F4FFE6" />
+        </svg>
+          <span>From Fundamentals to AI Apocalypse</span>
         </a>
         <a class="home" href="../index.html">All semesters</a>
         <details class="mobile-toc">
@@ -92,8 +100,8 @@
 
         <div class="downloads" aria-label="Download study guide files">
           <p>Take the guide offline</p>
-          <a class="download-primary" href="ch1-electrostatic-fields.pdf" download>Download clean PDF</a>
-          <a class="download-secondary" href="ch1-electrostatic-fields.tex" download>Download LaTeX source (.tex)</a>
+          <a class="download-primary" href="ch1-electrostatic-fields.pdf" download data-tip="Print-ready: answers at the back, no block split across pages">Download clean PDF</a>
+          <a class="download-secondary" href="ch1-electrostatic-fields.tex" download data-tip="Generated from this page by tools/guide-to-tex.py">Download LaTeX source (.tex)</a>
         </div>
 
         <section class="cold-start" id="cold-start" aria-labelledby="cold-start-title">
@@ -883,5 +891,6 @@
       </main>
     </div>
     <script src="../js/guide.js"></script>
+    <script src="../js/tooltip.js"></script>
   </body>
 </html>
