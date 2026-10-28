@@ -260,6 +260,8 @@ class Conv:
         if t == "h3":
             return "\n\\subsection{%s}\n" % inline(k)
         if t == "p":
+            if "lab-link" in c:
+                return ""
             if "method" in c:
                 return "\n\\begin{notebox}%s\\end{notebox}\n" % inline(k)
             if "source-note" in c:

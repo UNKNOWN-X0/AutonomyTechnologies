@@ -67,15 +67,20 @@
     });
     var days = log.days.slice().sort(),
       last = days[days.length - 1],
+      labTotal = +document.body.dataset.lab || 0,
+      labDone = Object.keys(saved).filter(function (k) {
+        return saved[k] && k.indexOf("lab-") === 0;
+      }).length,
+      skills = done + " of " + boxes.length + (labTotal ? " guide skills · " + labDone + " of " + labTotal + " lab experiments" : " chapter skills ticked"),
       text;
-    if (!last) text = done + " of " + boxes.length + " chapter skills ticked · not reviewed yet";
+    if (!last) text = skills + " · not reviewed yet";
     else {
       var p = last.split("-"),
         then = new Date(+p[0], +p[1] - 1, +p[2]),
         now = new Date(),
         since = Math.round((new Date(now.getFullYear(), now.getMonth(), now.getDate()) - then) / 86400000);
       text =
-        done + " of " + boxes.length + " chapter skills ticked · last reviewed " +
+        skills + " · last reviewed " +
         (since === 0 ? "today" : since === 1 ? "yesterday" : since + " days ago") +
         " · " + days.length + (days.length === 1 ? " review" : " reviews");
     }

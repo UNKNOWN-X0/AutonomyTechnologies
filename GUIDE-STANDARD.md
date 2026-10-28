@@ -4,7 +4,7 @@ What "done" means for a study guide on this site: one chapter of one subject, wr
 
 **Reference guide:** [EEI Chapter 1, Electrostatic Fields](eei/ch1-electrostatic-fields.html). Copy its structure and markup, not its physics.
 
-**Sections:** [Principles](#principles) · [Files](#files) · [Page structure](#page-structure) · [Topic sections](#topic-sections) · [Practice](#practice-and-testing) · [Content](#content-rules) · [Markup](#markup) · [PDF](#pdf) · [Acceptance](#acceptance) · [Updating](#updating-a-guide)
+**Sections:** [Principles](#principles) · [Files](#files) · [Page structure](#page-structure) · [Topic sections](#topic-sections) · [Practice](#practice-and-testing) · [Content](#content-rules) · [Markup](#markup) · [PDF](#pdf) · [Labs](#labs) · [Acceptance](#acceptance) · [Updating](#updating-a-guide)
 
 ## Principles
 
@@ -27,7 +27,7 @@ Each rule below serves one of these study principles, taken from the ultimate-st
 | Storage key | `<body data-key="<subject><course number>-ch<N>">`, for example `eei1-ch1`. Never change it once published, because saved ticks and review days live under it. |
 | Subject class | `<body class="s-<subject>-<course number>">`, matching the hub entry. |
 | Shared assets | Load `../css/system.css`, `../css/guide.css`, `../js/guide.js` and `../js/tooltip.js`. Add a hover tooltip to any element with a `data-tip` attribute; keep it short and supplementary, never the only place information lives. Put chapter-specific styling into `css/guide.css` only if every guide can use it; there are no per-chapter stylesheets. |
-| Hub entry | One `<li class="chapter">` in the subject's list in `index.html`, with `data-key` equal to the guide's key, `data-total` equal to its number of checklist items, and a link to the page. |
+| Hub entry | One `<li class="chapter">` in the subject's list in `index.html`, with `data-key` equal to the guide's key, `data-total` equal to its number of checklist items plus the number of lab experiments, and a link to the guide (and the lab, when there is one). |
 | Generated files | The `.tex` and `.pdf` are generated from the HTML by `tools/guide-to-tex.py` and LaTeX. Never edit them by hand. |
 | Browser test | Add the guide to `staticPages` in the workspace's `BrowserTests/tests/smoke.spec.js`. |
 
@@ -124,6 +124,21 @@ The converter guarantees:
 
 It needs TeX Live with the New Computer Modern fonts, `environ` and `tcolorbox`.
 
+## Labs
+
+A chapter may have a lab beside its guide: `<subject>/ch<N>-<topic>-lab.html`, built on the shared engine. The reference lab is [EEI Chapter 1](eei/ch1-electrostatic-fields-lab.html); its design brief is `.impeccable/surfaces/eei-ch1-lab.md`.
+
+| Part | Rule |
+|---|---|
+| Purpose | Predict, then reveal. Every experiment opens with 2–4 challenges: the student picks an answer and a confidence (sure / think so / guessing), the simulation plays the true result and keeps the guess visible, and a short "why" links to the guide section. The sandbox opens only after the challenges. |
+| Page | Same shell as the guide: `<body class="s-<subject>-<n> lab" data-key="<guide key>" data-guide="<guide file>">`. Load `../css/lab.css`, `../js/lab.js`, the chapter's physics and experiment scripts, and `../js/tooltip.js`. One `<section class="experiment" id="exp-<name>" data-experiment="<name>">` per experiment, each with `.stage`, `.challenge` and `.controls`, and a `#lab-results` section. |
+| Progress | Finishing an experiment's challenges ticks `lab-<id>` in the guide's `<key>-checks` and logs a review day, so the hub counts it. "Sure but wrong" answers are listed in the results with guide links. |
+| Physics | Formulas live in a plain module (`js/<subject>-ch<N>-physics.js`) that the browser and `node --test tests/` both load. Every challenge's numbers and at least one worked answer from the guide per experiment are tested. Use the notes' conventions and the guide's constants. |
+| Interaction | Charges, probes and other draggable objects are picked by distance on the stage element, never by the redrawn shapes, so a drag survives redraws in Safari. Everything draggable also moves with the arrow keys. Readouts carry units and SI prefixes. |
+| Motion | The reveal is the authored moment: it animates from the starting state to the result. Under reduced motion it jumps straight to the result and keeps the guess marker. |
+| Links | Each matching guide section ends, just before its recall check, with `<p class="lab-link">` pointing at its experiment. The PDF converter drops these links. |
+| Testing | Play every challenge and use the sandbox in Playwright Chromium and WebKit, at desktop and phone width, light and dark. Read values only after a frame has settled. |
+
 ## Acceptance
 
 A guide is done when all of the following hold:
@@ -132,7 +147,7 @@ A guide is done when all of the following hold:
 2. The `.tex` and `.pdf` are regenerated, and the LaTeX log shows no errors, `Missing character` lines or overfull boxes.
 3. A contact sheet of every PDF page (Ghostscript at 40 dpi) shows no split boxes, no stranded headings, and no page holding only a line or two.
 4. The page opens in Chromium at 1280 px and at 390 px wide with no console errors and no horizontal page scroll; tables scroll inside their frame. The recall, worked and answer blocks are inspected at both widths, in light and dark mode.
-5. The guide is listed in the BrowserTests smoke suite, and that suite passes.
+5. The guide (and its lab) is listed in the BrowserTests smoke suite, that suite passes, and `node --test tests/` passes.
 6. Every practice answer, worked example and exam answer has been re-derived independently, and every slip claim has been checked against the rendered notes.
 7. After code changes, `scripts/refresh-graph.sh --changed` from the workspace root has run.
 

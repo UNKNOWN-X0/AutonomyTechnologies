@@ -206,7 +206,14 @@
         return x.next() < 0;
       }).length,
       meta = document.getElementById("lab-meta");
-    if (meta) meta.textContent = finished + " of " + experiments.length + " experiments finished";
+    if (meta) {
+      var checks = read(CHECKS, {}),
+        skills = +document.body.dataset.skills || 0,
+        guideDone = Object.keys(checks).filter(function (k) {
+          return checks[k] && k.indexOf("lab-") !== 0;
+        }).length;
+      meta.textContent = (skills ? guideDone + " of " + skills + " guide skills · " : "") + finished + " of " + experiments.length + " lab experiments";
+    }
     var box = document.getElementById("lab-results");
     if (!box) return;
     box.innerHTML = "";

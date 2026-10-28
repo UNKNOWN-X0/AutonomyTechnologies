@@ -14,7 +14,7 @@
     <link rel="stylesheet" href="../css/guide.css" />
     <link rel="stylesheet" href="../css/lab.css" />
   </head>
-    <body class="s-eei-1 lab" data-key="eei1-ch1" data-guide="ch1-electrostatic-fields.html">
+    <body class="s-eei-1 lab" data-key="eei1-ch1" data-guide="ch1-electrostatic-fields.html" data-skills="16">
     <div class="wrap">
       <nav class="toc" aria-label="Lab contents">
         <a class="brand" href="../index.html" aria-label="From Fundamentals to AI Apocalypse home">
@@ -36,18 +36,31 @@
           <span>From Fundamentals to AI Apocalypse</span>
         </a>
         <a class="home" href="../index.html">All semesters</a>
-        <a class="home" href="ch1-electrostatic-fields.html">Chapter 1 guide</a>
+        <nav class="chapter-switch" aria-label="Chapter 1">
+          <a href="ch1-electrostatic-fields.html">Guide</a>
+          <a aria-current="page" href="ch1-electrostatic-fields-lab.html">Lab</a>
+        </nav>
         <details class="mobile-toc">
           <summary>Jump to an experiment</summary>
           <ol>
             <li><a href="#how">How the lab works</a></li>
+            <li class="toc-group" aria-hidden="true">Experiments</li>
             <li><a href="#exp-field">Field playground</a></li>
+            <li><a href="#exp-capacitor">Capacitor bench</a></li>
+            <li><a href="#exp-networks">Networks</a></li>
+            <li><a href="#exp-interface">Interface</a></li>
+            <li><a href="#exp-gauss">Gauss cylinder</a></li>
             <li><a href="#results">Your results</a></li>
           </ol>
         </details>
         <ol>
           <li><a href="#how">How the lab works</a></li>
-          <li><a href="#exp-field">Field playground</a></li>
+          <li class="toc-group" aria-hidden="true">Experiments</li>
+            <li><a href="#exp-field">Field playground</a></li>
+          <li><a href="#exp-capacitor">Capacitor bench</a></li>
+          <li><a href="#exp-networks">Networks</a></li>
+          <li><a href="#exp-interface">Interface</a></li>
+          <li><a href="#exp-gauss">Gauss cylinder</a></li>
           <li><a href="#results">Your results</a></li>
         </ol>
       </nav>
@@ -120,6 +133,150 @@
                   <div><dt>Potential φ</dt><dd data-out="phi">—</dd></div>
                   <div><dt>Force on the probe</dt><dd data-out="F">—</dd></div>
                   <div><dt>Work you supplied, last move</dt><dd data-out="W">—</dd></div>
+                </dl>
+              </fieldset>
+            </form>
+            </div>
+          </div>
+        </section>
+
+        <section id="exp-capacitor" class="experiment" data-experiment="capacitor" aria-labelledby="exp-capacitor-title">
+          <h2 id="exp-capacitor-title">Capacitor bench</h2>
+          <p>An ideal plate capacitor, drawn to scale. Field-line density shows <var>E</var>, the tint shows the energy density, and the signs on the plates grow with the charge. Watch what stays fixed: with the battery connected it is <var>U</var>, with it disconnected it is <var>Q</var>.</p>
+          <div class="bench">
+            <div class="stage">
+              <canvas role="img" aria-label="Plate capacitor with field lines, and gauges for voltage, charge and stored energy"></canvas>
+            </div>
+            <div class="side">
+            <div class="challenge" aria-live="polite"></div>
+            <form class="controls" onsubmit="return false">
+              <fieldset>
+                <legend>Capacitor</legend>
+                <label class="range-row"><span>Plate area</span><output data-val="A"></output><input type="range" data-p="A" min="20" max="400" step="10" /></label>
+                <label class="range-row"><span>Gap <var>d</var></span><output data-val="d"></output><input type="range" data-p="d" min="1" max="10" step="0.5" /></label>
+              </fieldset>
+              <fieldset>
+                <legend>Slab in the gap</legend>
+                <label class="field-row">Material
+                  <select data-p="slab">
+                    <option value="none">None</option>
+                    <option value="dielectric">Dielectric</option>
+                    <option value="metal">Metal</option>
+                  </select>
+                </label>
+                <label class="range-row"><span>Thickness</span><output data-val="t"></output><input type="range" data-p="t" min="0.5" max="9.5" step="0.5" /></label>
+                <label class="range-row"><span>ε<sub>r</sub></span><output data-val="er"></output><input type="range" data-p="er" min="1" max="10" step="0.5" /></label>
+              </fieldset>
+              <fieldset>
+                <legend>Source</legend>
+                <div class="seg" role="radiogroup" aria-label="Battery">
+                  <label><input type="radio" name="cap-mode" value="connected" /> Connected</label>
+                  <label><input type="radio" name="cap-mode" value="isolated" /> Disconnected</label>
+                </div>
+                <label class="range-row"><span>Battery voltage</span><output data-val="U"></output><input type="range" data-p="U" min="10" max="200" step="10" /></label>
+                <dl class="readouts">
+                  <div><dt>Capacitance <var>C</var></dt><dd data-out="C">—</dd></div>
+                  <div><dt>Charge <var>Q</var></dt><dd data-out="Q">—</dd></div>
+                  <div><dt>Voltage <var>U</var></dt><dd data-out="U">—</dd></div>
+                  <div><dt><var>E</var> in the air</dt><dd data-out="Eair">—</dd></div>
+                  <div><dt><var>E</var> in the slab</dt><dd data-out="Eslab">—</dd></div>
+                  <div><dt>Stored energy <var>W</var></dt><dd data-out="W">—</dd></div>
+                </dl>
+                <div class="row-btns"><button class="btn small" type="button" data-act="reset">Back to 100 V, 4 mm</button></div>
+              </fieldset>
+            </form>
+            </div>
+          </div>
+        </section>
+
+        <section id="exp-networks" class="experiment" data-experiment="networks" aria-labelledby="exp-networks-title">
+          <h2 id="exp-networks-title">Networks</h2>
+          <p>Two or three capacitors on one source. The bars show each capacitor's voltage and charge: in series look for what they share, in parallel for what they split.</p>
+          <div class="bench">
+            <div class="stage">
+              <canvas role="img" aria-label="Capacitor circuit with voltage and charge bars for each capacitor"></canvas>
+            </div>
+            <div class="side">
+            <div class="challenge" aria-live="polite"></div>
+            <form class="controls" onsubmit="return false">
+              <fieldset>
+                <legend>Connection</legend>
+                <div class="seg" role="radiogroup" aria-label="Connection">
+                  <label><input type="radio" name="net-how" value="series" /> Series</label>
+                  <label><input type="radio" name="net-how" value="parallel" /> Parallel</label>
+                </div>
+                <ul class="charge-list cap-list"></ul>
+                <div class="row-btns"><button class="btn small" type="button" data-act="count">Add a third capacitor</button></div>
+              </fieldset>
+              <fieldset>
+                <legend>Source</legend>
+                <label class="range-row"><span>Voltage <var>U</var></span><output data-val="U"></output><input type="range" data-p="U" min="1" max="24" step="1" /></label>
+                <dl class="readouts">
+                  <div><dt>Total capacitance</dt><dd data-out="C">—</dd></div>
+                  <div><dt>Charge from the source</dt><dd data-out="Q">—</dd></div>
+                  <div><dt>Total stored energy</dt><dd data-out="W">—</dd></div>
+                </dl>
+              </fieldset>
+            </form>
+            </div>
+          </div>
+        </section>
+
+        <section id="exp-interface" class="experiment" data-experiment="interface" aria-labelledby="exp-interface-title">
+          <h2 id="exp-interface-title">Interface</h2>
+          <p>A uniform field crossing the flat boundary between two media. The bars compare both sides: which part keeps its value, which one jumps, and how that bends the field lines.</p>
+          <div class="bench">
+            <div class="stage">
+              <canvas role="img" aria-label="Field lines refracting at the boundary between two media, with bars for the normal and tangential components on each side"></canvas>
+            </div>
+            <div class="side">
+            <div class="challenge" aria-live="polite"></div>
+            <form class="controls" onsubmit="return false">
+              <fieldset>
+                <legend>Incoming field</legend>
+                <label class="range-row"><span>Strength |<var>E</var><sub>1</sub>|</span><output data-val="E1"></output><input type="range" data-p="E1" min="20" max="500" step="10" /></label>
+                <label class="range-row"><span>Angle to the normal α<sub>1</sub></span><output data-val="a1"></output><input type="range" data-p="a1" min="0" max="85" step="1" /></label>
+              </fieldset>
+              <fieldset>
+                <legend>Media and boundary</legend>
+                <label class="range-row"><span>ε<sub>r</sub> of medium 1</span><output data-val="er1"></output><input type="range" data-p="er1" min="1" max="10" step="0.5" /></label>
+                <label class="range-row"><span>ε<sub>r</sub> of medium 2</span><output data-val="er2"></output><input type="range" data-p="er2" min="1" max="10" step="0.5" /></label>
+                <label class="range-row"><span>Surface charge σ<sub>A</sub></span><output data-val="sigma"></output><input type="range" data-p="sigma" min="-2" max="2" step="0.05" /></label>
+                <dl class="readouts">
+                  <div><dt>|<var>E</var><sub>2</sub>|</dt><dd data-out="E2">—</dd></div>
+                  <div><dt>Angle α<sub>2</sub></dt><dd data-out="a2">—</dd></div>
+                  <div><dt>Normal <var>E</var><sub>2</sub></dt><dd data-out="En2">—</dd></div>
+                  <div><dt>Normal <var>D</var>, side 1 → 2</dt><dd data-out="Dn">—</dd></div>
+                </dl>
+              </fieldset>
+            </form>
+            </div>
+          </div>
+        </section>
+
+        <section id="exp-gauss" class="experiment" data-experiment="gauss" aria-labelledby="exp-gauss-title">
+          <h2 id="exp-gauss-title">Gauss cylinder</h2>
+          <p>The worked example from 1.10: an infinitely long, uniformly charged cylinder, seen end-on. Move the coaxial Gaussian surface and watch how much charge it encloses and what that does to <var>D</var>.</p>
+          <div class="bench">
+            <div class="stage">
+              <canvas role="img" aria-label="Cross-section of a charged cylinder with a Gaussian surface, and a plot of D and E against the radius"></canvas>
+            </div>
+            <div class="side">
+            <div class="challenge" aria-live="polite"></div>
+            <form class="controls" onsubmit="return false">
+              <fieldset>
+                <legend>Cylinder</legend>
+                <label class="range-row"><span>Charge density ϱ<sub>V</sub></span><output data-val="rv"></output><input type="range" data-p="rv" min="1" max="10" step="1" /></label>
+                <label class="range-row"><span>Radius <var>a</var></span><output data-val="a"></output><input type="range" data-p="a" min="5" max="20" step="1" /></label>
+                <label class="range-row"><span>ε<sub>r</sub> everywhere</span><output data-val="er"></output><input type="range" data-p="er" min="1" max="10" step="0.5" /></label>
+              </fieldset>
+              <fieldset>
+                <legend>Gaussian surface</legend>
+                <label class="range-row"><span>Radius ρ</span><output data-val="rho"></output><input type="range" data-p="rho" min="0" max="30" step="0.5" /></label>
+                <dl class="readouts">
+                  <div><dt>Enclosed charge per metre</dt><dd data-out="q">—</dd></div>
+                  <div><dt><var>D</var> on the surface</dt><dd data-out="D">—</dd></div>
+                  <div><dt><var>E</var> on the surface</dt><dd data-out="E">—</dd></div>
                 </dl>
               </fieldset>
             </form>

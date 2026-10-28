@@ -40,7 +40,7 @@ footer {
   height: auto;
 }
 .field h1 {
-  font: 800 clamp(2.6rem, 1.6rem + 4.2vw, 4.75rem)/0.95 var(--f-display);
+  font: 800 clamp(1.9rem, 1rem + 4.8vw, 4.75rem)/0.95 var(--f-display);
   letter-spacing: -0.03em;
 }
 .field .title p {
@@ -120,7 +120,7 @@ main {
 }
 .row {
   display: grid;
-  grid-template-columns: 7.5rem 5.5rem minmax(0, 1fr) auto 13rem;
+  grid-template-columns: 7.5rem 5.5rem minmax(0, 1fr) auto auto;
   align-items: center;
   gap: 24px;
   padding: 16px 28px;
@@ -171,7 +171,9 @@ main {
   gap: 10px;
 }
 .go .btn {
-  flex: 1;
+  flex: 1 0 auto;
+  min-width: 6.5rem;
+  white-space: nowrap;
 }
 .row.overdue .btn {
   color: var(--on-fau);
@@ -299,7 +301,7 @@ main {
 }
 .chapter {
   display: grid;
-  grid-template-columns: 3.25rem minmax(0, 1fr) auto 13rem;
+  grid-template-columns: 3.25rem minmax(0, 1fr) auto auto;
   align-items: center;
   gap: 24px;
   padding: 16px 0;
@@ -329,7 +331,7 @@ footer p {
 
 @media (max-width: 1080px) {
   .row {
-    grid-template-columns: 6rem 5.5rem minmax(0, 1fr) 11rem;
+    grid-template-columns: 6rem 5.5rem minmax(0, 1fr) auto;
   }
   .row .count {
     grid-column: 3;
@@ -340,7 +342,7 @@ footer p {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
   .chapter {
-    grid-template-columns: 3.25rem minmax(0, 1fr) 11rem;
+    grid-template-columns: 3.25rem minmax(0, 1fr) auto;
   }
   .chapter .ticks {
     grid-column: 2;

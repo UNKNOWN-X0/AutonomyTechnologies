@@ -5,14 +5,12 @@
 #results {
   max-width: none;
 }
-.experiment > p {
-  max-width: 68ch;
-}
+
 
 /* Challenge card: a sign panel above the bench */
 .challenge {
   margin: 0 0 16px;
-  padding: 18px 20px 20px;
+  padding: 14px 20px 20px;
   background: var(--paper-2);
   border-top: 3px solid var(--course);
 }
@@ -149,8 +147,19 @@
 .side .challenge {
   margin: 0;
 }
+/* The capacitor stage carries three gauges under the plates: give it more height on narrow screens. */
+.experiment[data-experiment="capacitor"] .bench > .stage,
+.experiment[data-experiment="networks"] .bench > .stage,
+.experiment[data-experiment="interface"] .bench > .stage,
+.experiment[data-experiment="gauss"] .bench > .stage {
+  aspect-ratio: 1 / 1;
+}
 @container (min-width: 640px) {
-  .bench > .stage {
+  .bench > .stage,
+  .experiment[data-experiment="capacitor"] .bench > .stage,
+  .experiment[data-experiment="networks"] .bench > .stage,
+  .experiment[data-experiment="interface"] .bench > .stage,
+  .experiment[data-experiment="gauss"] .bench > .stage {
     aspect-ratio: 16 / 9;
     max-height: calc(100vh - 260px);
     min-height: 300px;
@@ -165,7 +174,11 @@
     grid-template-columns: minmax(0, 1fr) 340px;
     gap: 24px;
   }
-  .bench > .stage {
+  .bench > .stage,
+  .experiment[data-experiment="capacitor"] .bench > .stage,
+  .experiment[data-experiment="networks"] .bench > .stage,
+  .experiment[data-experiment="interface"] .bench > .stage,
+  .experiment[data-experiment="gauss"] .bench > .stage {
     top: 16px;
     aspect-ratio: 4 / 3;
     max-height: calc(100vh - 120px);
@@ -332,6 +345,54 @@
   height: 18px;
   accent-color: var(--fau);
 }
+.range-row {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  align-items: center;
+  gap: 2px 12px;
+  margin: 2px 0 10px;
+  font-size: 0.95rem;
+}
+.range-row output {
+  font: 700 0.9rem/1.3 var(--f-display);
+  font-variant-numeric: tabular-nums;
+}
+.range-row input[type="range"] {
+  grid-column: 1 / -1;
+  width: 100%;
+  min-height: 28px;
+  accent-color: var(--fau);
+}
+.seg {
+  display: flex;
+  margin: 0 0 12px;
+  border: 2px solid var(--fau);
+}
+.seg label {
+  position: relative;
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 40px;
+  font: 700 0.9rem/1.2 var(--f-display);
+  color: var(--fau);
+  cursor: pointer;
+  transition: background-color 150ms var(--ease), color 150ms var(--ease);
+}
+.seg input {
+  position: absolute;
+  opacity: 0;
+  pointer-events: none;
+}
+.seg label:has(input:checked) {
+  background: var(--fau);
+  color: var(--on-fau);
+}
+.seg label:has(input:focus-visible) {
+  outline: 3px solid var(--act);
+  outline-offset: -3px;
+}
 .charge-list {
   margin: 0 0 8px;
   padding: 0;
@@ -391,7 +452,6 @@
   margin: 12px 0 18px;
   padding: 0;
   list-style: none;
-  max-width: 60ch;
 }
 .res-list li {
   display: flex;

@@ -62,6 +62,41 @@ nav.toc a.home {
 nav.toc a.home:hover {
   background: var(--fau-tint);
 }
+/* Guide | Lab switcher: the current page is the solid half */
+.chapter-switch {
+  display: flex;
+  margin: 0 0 6px;
+  border: 2px solid var(--act);
+}
+.chapter-switch a {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 40px;
+  color: var(--act);
+  font: 700 0.95rem/1.2 var(--f-display);
+  text-decoration: none;
+  transition: background-color 150ms var(--ease), color 150ms var(--ease);
+}
+.chapter-switch a:hover {
+  background: var(--fau-tint);
+}
+.chapter-switch a[aria-current] {
+  background: var(--act);
+  color: var(--act-ink);
+}
+nav.toc li.toc-group {
+  border-bottom: 0;
+  padding: 16px 10px 4px;
+  color: var(--ink);
+  font: 800 0.75rem/1.2 var(--f-display);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+nav.toc li.toc-group:first-child {
+  padding-top: 10px;
+}
 nav.toc ol {
   list-style: none;
   margin: 22px 0 0;
@@ -289,8 +324,12 @@ li.check label:has(input:checked) {
   a.brand {
     margin: 0 auto 0 0;
   }
-  nav.toc a.home {
+  nav.toc a.home,
+  .chapter-switch {
     margin: 0;
+  }
+  .chapter-switch {
+    flex: 1 1 10rem;
   }
   nav.toc ol {
     display: none;
@@ -366,29 +405,12 @@ li.check label:has(input:checked) {
   color: var(--muted);
   font: 700 0.9rem/1.35 var(--f-display);
 }
-.downloads a {
-  display: inline-flex;
+.downloads .btn {
   flex: 1 1 13rem;
-  min-height: 44px;
-  align-items: center;
-  justify-content: center;
-  padding: 8px 14px;
-  font: 700 0.95rem/1.3 var(--f-display);
-  text-align: center;
-  text-decoration-thickness: 1px;
-  text-underline-offset: 3px;
-}
-.download-primary {
-  background: var(--act);
-  color: var(--act-ink);
-}
-.download-secondary {
-  border: 2px solid var(--act);
-  color: var(--act);
 }
 .cold-start,
 main > section {
-  max-width: 72ch;
+  max-width: none;
 }
 .cold-start {
   margin-top: 34px;
@@ -450,26 +472,25 @@ main > section {
 }
 .method,
 .source-note {
-  padding: 12px 16px;
+  padding: 14px 20px;
   background: var(--paper-2);
-  max-width: 68ch;
 }
 .method-list {
   padding-left: 1.5rem;
 }
+/* Callout boxes share one form with the lab's challenge card: a 3px rule on top, 16px by 20px padding.
+   Worked examples and challenges carry the subject colour on cool paper; recall checks are open, with an action-blue rule. */
 .worked,
 .recall {
-  max-width: 68ch;
   margin: 18px 0;
-  padding: 12px 18px 6px;
-  border-left: 4px solid var(--eei-2);
+  padding: 14px 20px 8px;
+  border-top: 3px solid var(--course);
   background: var(--paper-2);
 }
 .recall {
-  border-left-color: var(--act);
-  background: none;
-  border-top: 1px solid var(--line);
+  border-top-color: var(--act);
   border-bottom: 1px solid var(--line);
+  background: none;
 }
 .worked-title,
 .recall-title {
@@ -540,7 +561,7 @@ details.answers {
   .eq {
     padding: 14px 16px;
   }
-  .downloads a {
+  .downloads .btn {
     flex-basis: 100%;
   }
 }
@@ -680,4 +701,61 @@ details.answers[open] > :not(summary) {
 }
 .sec-ref a:hover {
   text-decoration-style: solid;
+}
+
+/* Link from a guide section to its lab experiment */
+.lab-link {
+  max-width: 68ch;
+  padding: 10px 14px;
+  border: 2px dashed var(--course);
+  font-size: 0.95rem;
+}
+.lab-link a {
+  font-weight: 700;
+}
+@media print {
+  .lab-link {
+    display: none;
+  }
+}
+
+/* Width standard for guides and labs: two widths only.
+   The section frame and wide media (tables, the lab bench) use the full column;
+   everything that is read uses one measure, set in rem so it does not drift with font size. */
+main {
+  --measure: 42rem;
+}
+main > p,
+main > ul,
+main > ol,
+main > .downloads,
+main > .source-note,
+main > .standfirst,
+main section > p,
+main section > ul,
+main section > ol,
+main section > h3,
+main section > details,
+main section > .worked,
+main section > .recall,
+main section > .review,
+main section > .lab-link,
+main section > #lab-results,
+main .cold-start > :not(h2),
+main .method {
+  max-width: var(--measure);
+}
+main section > .eq {
+  max-width: var(--measure);
+}
+main section > .tw,
+main section > .bench {
+  max-width: none;
+}
+/* The first section after the intro sits as close as the guide's first block. */
+main > section:first-of-type > h2 {
+  margin-top: 34px;
+}
+.cold-start > h2 {
+  margin-top: 0;
 }

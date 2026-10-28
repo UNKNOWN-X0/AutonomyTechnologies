@@ -13,7 +13,7 @@
     <link rel="stylesheet" href="../css/system.css" />
     <link rel="stylesheet" href="../css/guide.css" />
   </head>
-  <body class="s-eei-1" data-key="eei1-ch1">
+  <body class="s-eei-1" data-key="eei1-ch1" data-lab="5">
     <div class="wrap">
       <nav class="toc" aria-label="Guide contents">
         <a class="brand" href="../index.html" aria-label="From Fundamentals to AI Apocalypse home">
@@ -35,10 +35,15 @@
           <span>From Fundamentals to AI Apocalypse</span>
         </a>
         <a class="home" href="../index.html">All semesters</a>
+        <nav class="chapter-switch" aria-label="Chapter 1">
+          <a aria-current="page" href="ch1-electrostatic-fields.html">Guide</a>
+          <a href="ch1-electrostatic-fields-lab.html">Lab</a>
+        </nav>
         <details class="mobile-toc">
           <summary>Jump to a section</summary>
           <ol>
             <li><a href="#plan">Study plan</a></li>
+            <li class="toc-group" aria-hidden="true">Sections</li>
             <li><a href="#sec-11">1.1 Charge</a></li>
             <li><a href="#sec-12">1.2 Coulomb’s law</a></li>
             <li><a href="#sec-13">1.3 Field strength</a></li>
@@ -53,6 +58,7 @@
             <li><a href="#sec-112">1.12 Matter</a></li>
             <li><a href="#sec-113">1.13 Capacitance</a></li>
             <li><a href="#sec-114">1.14 Field energy</a></li>
+            <li class="toc-group" aria-hidden="true">Practise</li>
             <li><a href="#formula-map">Formula map</a></li>
             <li><a href="#derivations">Derive it cold</a></li>
             <li><a href="#explain">Explain it</a></li>
@@ -64,7 +70,8 @@
         </details>
         <ol>
           <li><a href="#plan">Study plan</a></li>
-          <li><a href="#sec-11">1.1 Charge</a></li>
+          <li class="toc-group" aria-hidden="true">Sections</li>
+            <li><a href="#sec-11">1.1 Charge</a></li>
           <li><a href="#sec-12">1.2 Coulomb’s law</a></li>
           <li><a href="#sec-13">1.3 Field strength</a></li>
           <li><a href="#sec-14">1.4 Superposition</a></li>
@@ -78,7 +85,8 @@
           <li><a href="#sec-112">1.12 Matter</a></li>
           <li><a href="#sec-113">1.13 Capacitance</a></li>
           <li><a href="#sec-114">1.14 Field energy</a></li>
-          <li><a href="#formula-map">Formula map</a></li>
+          <li class="toc-group" aria-hidden="true">Practise</li>
+            <li><a href="#formula-map">Formula map</a></li>
           <li><a href="#derivations">Derive it cold</a></li>
           <li><a href="#explain">Explain it</a></li>
           <li><a href="#practice">Mixed practice</a></li>
@@ -100,8 +108,8 @@
 
         <div class="downloads" aria-label="Download study guide files">
           <p>Take the guide offline</p>
-          <a class="download-primary" href="ch1-electrostatic-fields.pdf" download data-tip="Print-ready: answers at the back, no block split across pages">Download clean PDF</a>
-          <a class="download-secondary" href="ch1-electrostatic-fields.tex" download data-tip="Generated from this page by tools/guide-to-tex.py">Download LaTeX source (.tex)</a>
+          <a class="btn primary" href="ch1-electrostatic-fields.pdf" download data-tip="Print-ready: answers at the back, no block split across pages">Download clean PDF</a>
+          <a class="btn" href="ch1-electrostatic-fields.tex" download data-tip="Generated from this page by tools/guide-to-tex.py">Download LaTeX source (.tex)</a>
         </div>
 
         <section class="cold-start" id="cold-start" aria-labelledby="cold-start-title">
@@ -261,6 +269,7 @@
             </ol>
           </div>
           <p class="method"><strong>Trap:</strong> adding magnitudes. Two 7.19 kV/m fields gave 11.5 kV/m here, not 14.4 kV/m, because they point in different directions.</p>
+          <p class="lab-link"><a href="ch1-electrostatic-fields-lab.html#exp-field">Try it in the lab: Field playground</a> · predict where the fields of +Q and +2Q cancel before you watch it.</p>
           <div class="recall">
             <p class="recall-title">Recall check</p>
             <ol>
@@ -379,6 +388,7 @@
               <li>Positive, as the table predicts for pushing like charges together.</li>
             </ol>
           </div>
+          <p class="lab-link"><a href="ch1-electrostatic-fields-lab.html#exp-field">Try it in the lab: Field playground</a> · predict the work along an equipotential, and its sign before you watch it.</p>
           <div class="recall">
             <p class="recall-title">Recall check</p>
             <ol>
@@ -445,6 +455,7 @@
             <p class="worked-title">Worked example: the same charge in a dielectric</p>
             <p>A 1 nC point charge sits in oil with ε<sub>r</sub> = 2.5. At <var>r</var> = 0.10 m, <var>D</var> = 10<sup>−9</sup>/(4π × 0.01) ≈ 7.96 × 10<sup>−9</sup> C/m², exactly as in vacuum, because Gauss’s law only sees the charge. But <var>E</var> = <var>D</var>/(2.5 ε<sub>0</sub>) ≈ 360 V/m instead of 899 V/m.</p>
           </div>
+          <p class="lab-link"><a href="ch1-electrostatic-fields-lab.html#exp-gauss">Try it in the lab: Gauss cylinder</a> · predict how D(ρ) rises, peaks and falls before you watch it.</p>
           <div class="recall">
             <p class="recall-title">Recall check</p>
             <ol>
@@ -495,6 +506,7 @@
             <li>Superpose: outside the plates the two contributions cancel; between them they add to <var>D</var> = σ<sub>A</sub>, directed from + to −.</li>
           </ol>
           <div class="eq"><strong>Ideal plate capacitor (fringing neglected)</strong><span class="formula"><var>D</var> = σ<sub>A</sub>, &nbsp; <var>E</var> = <span class="frac"><span>σ<sub>A</sub></span><span>ε</span></span>, &nbsp; <var>U</var> = <var>E d</var></span><span class="eq-note">Real plates have curved fringing fields at their edges. This course always neglects them.</span></div>
+          <p class="lab-link"><a href="ch1-electrostatic-fields-lab.html#exp-interface">Try it in the lab: Interface</a> · predict which way a field line bends at a boundary before you watch it.</p>
           <div class="recall">
             <p class="recall-title">Recall check</p>
             <ol>
@@ -545,6 +557,7 @@
               <li>A metal slab of the same thickness would give 0.5 <var>U</var><sub>a</sub>: lower still, as the hook predicts.</li>
             </ol>
           </div>
+          <p class="lab-link"><a href="ch1-electrostatic-fields-lab.html#exp-capacitor">Try it in the lab: Capacitor bench</a> · predict empty, dielectric and metal-filled gaps before you watch it.</p>
           <div class="recall">
             <p class="recall-title">Recall check</p>
             <ol>
@@ -605,6 +618,7 @@
             <li><strong>Variable (rotary) capacitor:</strong> the overlap of rotor and stator is a ring sector of angle α, area α(<var>r</var><sub>a</sub><sup>2</sup> − <var>r</var><sub>i</sub><sup>2</sup>)/2, so <var>C</var> = (2<var>n</var> − 1) ε<sub>0</sub>α(<var>r</var><sub>a</sub><sup>2</sup> − <var>r</var><sub>i</sub><sup>2</sup>)/(2<var>d</var>). Turning the rotor changes α and hence <var>C</var>.</li>
             <li><strong>Stray capacitance:</strong> any two conductors form a capacitor. A three-phase overhead line has partial capacitances between every pair of wires and from each wire to earth.</li>
           </ul>
+          <p class="lab-link"><a href="ch1-electrostatic-fields-lab.html#exp-networks">Try it in the lab: Networks</a> · predict series and parallel capacitors on one source before you watch it.</p>
           <div class="recall">
             <p class="recall-title">Recall check</p>
             <ol>
@@ -635,6 +649,7 @@
               <li>Field route: <var>E</var> = <var>U</var>/<var>d</var> = 10<sup>5</sup> V/m; <var>w</var><sub>e</sub> = ½ × 3ε<sub>0</sub> × 10<sup>10</sup> ≈ 0.133 J/m³; volume 5 × 10<sup>−6</sup> m³; <var>W</var><sub>e</sub> ≈ 0.66 μJ.</li>
             </ol>
           </div>
+          <p class="lab-link"><a href="ch1-electrostatic-fields-lab.html#exp-capacitor">Try it in the lab: Capacitor bench</a> · predict where the stored energy goes before you watch it.</p>
           <div class="recall">
             <p class="recall-title">Recall check</p>
             <ol>

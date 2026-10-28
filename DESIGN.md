@@ -37,7 +37,7 @@ colors:
 typography:
   display:
     fontFamily: "Hanken Grotesk, system-ui, -apple-system, Segoe UI, sans-serif"
-    fontSize: "clamp(2.6rem, 1.6rem + 4.2vw, 4.75rem)"
+    fontSize: "clamp(1.9rem, 1rem + 4.8vw, 4.75rem)"
     fontWeight: 800
     lineHeight: 0.95
     letterSpacing: "-0.03em"
@@ -368,6 +368,16 @@ A 2px ink rule above, 18px top padding, then a 14px solid blue square before the
 - **Continuity:** opening an answer key unfolds its content with a clip and short drop (320ms; a plain fade under reduced motion). In-page jumps scroll smoothly and the target section's blue square flashes once in the subject colour (900ms). The contents rail tracks the section being read.
 - **Feedback:** links thicken their underline and buttons change fill in 150ms; buttons press down 1px.
 - **Site mark:** see Navigation.
+
+### Widths and boxes in guides and labs
+- **Two widths only.** Everything read (paragraphs, lists, formula cards, notes, worked examples, recall checks, answer keys, lab links, the source note) sits on one measure, `--measure: 42rem`. The section frame (the 2px rule over each heading), tables and the lab bench use the full column.
+- **One box form.** Every panel pads its text 14px by 20px, so text in all boxes starts on the same line. Worked examples and lab challenges carry a 3px subject-colour rule on cool paper; recall checks are open with a 3px action-blue rule; notes and formula cards are plain cool-paper fields. No side stripes.
+- The first section after the intro starts 34px below it on every page.
+
+### Chapter switcher and tick groups
+- **Guide | Lab switcher:** in the contents rail of every guide and lab, under "All semesters": a 2px action-blue frame split in two, the current page solid. Same height (40px) and type as the home link, so the rail reads as one set of signs. Contents lists group with small uppercase labels (Sections, Practise, Experiments).
+- **Tick groups:** a chapter's tick bar shows its guide skills first and its lab experiments after a 7px gap, with a tooltip naming both counts. Guide and lab headers show the same line: "x of 16 guide skills · y of 5 lab experiments".
+- **One button family:** every action is a `.btn` (outlined) or `.btn.primary` (solid), including downloads; `.btn.small` only inside lab controls.
 
 ### Tooltip
 A small FAU-blue sign with white Hanken Grotesk 600 at 0.82rem, square corners, a 10px rotated-square pointer and no shadow. It sits above its target (below when there is no room), appears after 350ms of hover or at once on keyboard focus, and closes on leave, blur, scroll or Escape. Driven by `js/tooltip.js` from `data-tip` attributes; guides generate them for contents entries (full section titles), section references (now jump links) and the subject code, the hub for subject codes, course-part chips, tick bars and the semester jump list.

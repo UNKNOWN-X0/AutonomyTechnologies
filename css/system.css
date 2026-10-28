@@ -312,6 +312,10 @@ a:hover {
   border: 2px dashed currentColor;
   opacity: 0.55;
 }
+/* A gap separates the guide's skills from the lab's experiments. */
+.ticks i.lab-start {
+  margin-left: 7px;
+}
 .ticks i.on {
   border-style: solid;
   background: currentColor;

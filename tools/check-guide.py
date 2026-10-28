@@ -222,13 +222,21 @@ def check(path):
             for n in group.split(", "):
                 if int(n) > len(probs):
                     rep.err("checklist item points to practice problem %s, which does not exist" % n)
+    lab_path = stem + "-lab.html"
+    lab_count = check_lab(lab_path, key, rep) if os.path.exists(lab_path) else 0
     hub = open(os.path.join(ROOT, "index.html"), encoding="utf-8").read()
     entry = re.search(r'<li class="chapter" data-key="%s" data-total="(\d+)"[^>]*>(.*?)</li>' % re.escape(key), hub, re.S)
     if not entry:
         rep.err("index.html has no chapter entry with data-key=%s" % key)
     else:
-        if int(entry.group(1)) != len(boxes):
-            rep.err("index.html data-total is %s but the checklist has %d items" % (entry.group(1), len(boxes)))
+        want = len(boxes) + lab_count
+        if int(entry.group(1)) != want:
+            rep.err("index.html data-total is %s but the checklist has %d items and the lab %d experiments (%d)" % (entry.group(1), len(boxes), lab_count, want))
+        dl = re.search(r'data-key="%s"[^>]*data-lab="(\d+)"' % re.escape(key), hub)
+        if lab_count and (not dl or int(dl.group(1)) != lab_count):
+            rep.err("index.html chapter entry needs data-lab=\"%d\" (lab experiments)" % lab_count)
+        if lab_count and 'href="%s"' % os.path.relpath(lab_path, ROOT) not in entry.group(2):
+            rep.err("index.html chapter entry does not link to the lab")
         if 'href="%s"' % rel not in entry.group(2):
             rep.err("index.html chapter entry does not link to %s" % rel)
 
@@ -259,6 +267,39 @@ def check(path):
     if not sections.get("slips"):
         rep.warn("no #slips section; add one only if you found verified slips in the notes")
     return rep
+
+
+def check_lab(path, key, rep):
+    """Labs (GUIDE-STANDARD.md, Labs): same key as the guide, the shared engine, one section per experiment."""
+    html = open(path, encoding="utf-8").read()
+    t = Tree()
+    t.feed(html)
+    body = find(t.root, lambda n: n.tag == "body")
+    name = os.path.relpath(path, ROOT)
+    if not body or body.attrs.get("data-key") != key:
+        rep.err("%s must share the guide's data-key %s" % (name, key))
+    if body and body.attrs.get("data-guide") != os.path.basename(path).replace("-lab.html", ".html"):
+        rep.err("%s needs data-guide pointing at its guide" % name)
+    for asset in ("../css/lab.css", "../js/lab.js", "../js/tooltip.js"):
+        if asset not in html:
+            rep.err("%s does not load %s" % (name, asset))
+    exps = all_nodes(t.root, lambda n: n.tag == "section" and "experiment" in n.cls)
+    if not exps:
+        rep.err("%s has no experiment sections" % name)
+    for x in exps:
+        sid = x.attrs.get("id", "")
+        if not sid.startswith("exp-") or not x.attrs.get("data-experiment"):
+            rep.err("%s: experiment needs id exp-<name> and data-experiment" % name)
+        for part in ("challenge", "stage", "controls"):
+            if not find(x, lambda n, p=part: p in n.cls):
+                rep.err("%s: #%s has no .%s" % (name, sid, part))
+    if not find(t.root, lambda n: n.attrs.get("id") == "lab-results"):
+        rep.err("%s has no #lab-results" % name)
+    guide = open(path.replace("-lab.html", ".html"), encoding="utf-8").read()
+    for x in exps:
+        if "#%s" % x.attrs.get("id") not in guide:
+            rep.warn("no guide section links to the lab's #%s" % x.attrs.get("id"))
+    return len(exps)
 
 
 def main(paths):

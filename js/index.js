@@ -18,20 +18,37 @@
     var p = s.split("-");
     return Date.UTC(+p[0], +p[1] - 1, +p[2]);
   }
-  function ticksHTML(done, total) {
-    var html = "";
-    // --i staggers the fill animation of ticked bars (css/system.css).
-    for (var i = 0; i < total; i++) html += i < done ? '<i class="on" style="--i:' + i + '"></i>' : "<i></i>";
+  // Guide skills first, then lab experiments after a small gap. --i staggers the fill animation.
+  function ticksHTML(c) {
+    var html = "",
+      n = 0,
+      guide = c.total - c.lab;
+    function bars(done, count, first) {
+      for (var i = 0; i < count; i++) {
+        var cls = (i < done ? "on" : "") + (first && i === 0 ? " lab-start" : "");
+        html += "<i" + (cls.trim() ? ' class="' + cls.trim() + '"' : "") + (i < done ? ' style="--i:' + n++ + '"' : "") + "></i>";
+      }
+    }
+    bars(c.guideDone, guide, false);
+    if (c.lab) bars(c.labDone, c.lab, true);
     return html;
+  }
+  function tickTip(c) {
+    return c.lab ? c.guideDone + " of " + (c.total - c.lab) + " guide skills · " + c.labDone + " of " + c.lab + " lab experiments" : c.done + " of " + c.total + " chapter skills ticked";
   }
 
   var chapters = Array.prototype.map.call(document.querySelectorAll("li.chapter"), function (li) {
     var key = li.dataset.key;
     var total = +li.dataset.total || 0;
     var checks = read(key + "-checks", {});
-    var done = Object.keys(checks).filter(function (k) {
-      return checks[k];
+    var lab = +li.dataset.lab || 0;
+    var labDone = Object.keys(checks).filter(function (k) {
+      return checks[k] && k.indexOf("lab-") === 0;
     }).length;
+    var guideDone = Object.keys(checks).filter(function (k) {
+      return checks[k] && k.indexOf("lab-") !== 0;
+    }).length;
+    var done = guideDone + labDone;
     var log = read(key + "-log", { days: [] });
     var days = (log.days || []).slice().sort();
     var item = {
@@ -42,6 +59,9 @@
       links: li.querySelector(".go").innerHTML,
       done: Math.min(done, total),
       total: total,
+      lab: lab,
+      labDone: Math.min(labDone, lab),
+      guideDone: Math.min(guideDone, total - lab),
       state: "new",
       since: null,
       gap: GAPS[0],
@@ -56,8 +76,8 @@
       item.state = "due";
       item.weight = 1;
     }
-    li.querySelector(".ticks").innerHTML = ticksHTML(item.done, total);
-    li.querySelector(".ticks").dataset.tip = item.done + " of " + total + " chapter skills ticked";
+    li.querySelector(".ticks").innerHTML = ticksHTML(item);
+    li.querySelector(".ticks").dataset.tip = tickTip(item);
     li.setAttribute("aria-label", li.querySelector(".title").textContent + ": " + item.done + " of " + total + " chapter skills ticked");
     return item;
   });
@@ -98,7 +118,7 @@
         '<p class="gap"><b>' + w.big + "</b><span>" + w.small + "</span></p>" +
         '<span class="code ' + c.course + '">' + c.code + "</span>" +
         '<h3 class="ch">' + c.title + "</h3>" +
-        '<p class="count"><span class="ticks" aria-hidden="true" data-tip="' + c.done + " of " + c.total + ' chapter skills ticked">' + ticksHTML(c.done, c.total) + "</span>" +
+        '<p class="count"><span class="ticks" aria-hidden="true" data-tip="' + tickTip(c) + '">' + ticksHTML(c) + "</span>" +
         "<span>" + c.done + " / " + c.total + " skills</span></p>" +
         '<div class="go">' + c.links + "</div>" +
         "</li>"
