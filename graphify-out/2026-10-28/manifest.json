@@ -60,9 +60,9 @@
     "semantic_hash": ""
   },
   "DESIGN.md": {
-    "mtime": 1793175222.2439425,
-    "seen": 1793175241.272962,
-    "ast_hash": "1cd8e24a084ff1ad5e157bb2f300b470",
+    "mtime": 1793175810.3393726,
+    "seen": 1793176293.57131,
+    "ast_hash": "19418f094d3a39c4f1dcac83e05254d4",
     "semantic_hash": ""
   },
   "PRODUCT.md": {
@@ -84,15 +84,15 @@
     "semantic_hash": ""
   },
   "eei/ch1-electrostatic-fields.html": {
-    "mtime": 1793175148.8976433,
-    "seen": 1793175241.27297,
-    "ast_hash": "0dea109829880af5b4d7b5736bd8b262",
+    "mtime": 1793176059.0409045,
+    "seen": 1793176293.571315,
+    "ast_hash": "99d7d18cceba9acc7c982bac9229e10a",
     "semantic_hash": ""
   },
   "eei/ch1-electrostatic-fields.pdf": {
-    "mtime": 1793175175.0646534,
-    "seen": 1793175241.2729752,
-    "ast_hash": "2d0e3bacf4793db28032ef1127a0c41a",
+    "mtime": 1793176305.4361281,
+    "seen": 1793177091.6737752,
+    "ast_hash": "63ccc877f1c1c75e553af08259473830",
     "semantic_hash": ""
   },
   "tools/check-guide.py": {
@@ -102,9 +102,9 @@
     "semantic_hash": ""
   },
   "GUIDE-STANDARD.md": {
-    "mtime": 1793174865.1045864,
-    "seen": 1793174971.193402,
-    "ast_hash": "5d229685f99a60575393123c03a1dccb",
+    "mtime": 1793177881.3224502,
+    "seen": 1793177888.342823,
+    "ast_hash": "142e165cbce3f212042422736d8d553f",
     "semantic_hash": ""
   },
   "js/tooltip.js": {
@@ -114,9 +114,9 @@
     "semantic_hash": ""
   },
   "js/eei-ch1-lab.js": {
-    "mtime": 1793174692.223723,
-    "seen": 1793174751.16751,
-    "ast_hash": "347788d9cc08de7ce01f08e13b27fcfc",
+    "mtime": 1793176824.0830116,
+    "seen": 1793177091.6737542,
+    "ast_hash": "2d8e6a549a301f0c21dde1c34dce6fdd",
     "semantic_hash": ""
   },
   "js/eei-ch1-physics.js": {
@@ -126,27 +126,27 @@
     "semantic_hash": ""
   },
   "js/lab.js": {
-    "mtime": 1793175166.459426,
-    "seen": 1793175241.27295,
-    "ast_hash": "a900633ece5e7add78e89730ad7b571d",
+    "mtime": 1793177603.562781,
+    "seen": 1793177888.342813,
+    "ast_hash": "dcd1d06928ab3c9b589e0f827ceb4191",
     "semantic_hash": ""
   },
   "tests/eei-ch1-physics.test.js": {
-    "mtime": 1793174557.5124707,
-    "seen": 1793174751.16752,
-    "ast_hash": "8813c1c2d5b8a1ce3a6eb6acdbd38120",
+    "mtime": 1793176451.2102482,
+    "seen": 1793177091.6737611,
+    "ast_hash": "fee8523f49755c5edccef5543a409aab",
     "semantic_hash": ""
   },
   ".impeccable/surfaces/eei-ch1-lab.md": {
-    "mtime": 1793153731.0148466,
-    "seen": 1793154184.7031722,
-    "ast_hash": "080825ddff4c755727f0bc56e0b9d89a",
+    "mtime": 1793176213.8826532,
+    "seen": 1793176293.571306,
+    "ast_hash": "3ba243353f41912d440604bd8ba0afbd",
     "semantic_hash": ""
   },
   "eei/ch1-electrostatic-fields-lab.html": {
-    "mtime": 1793175148.8988311,
-    "seen": 1793175241.272969,
-    "ast_hash": "63a1528e49df225e5d36a2e0b0a0c599",
+    "mtime": 1793176069.5083995,
+    "seen": 1793176293.5713139,
+    "ast_hash": "67dbbaadd2c5f1de7d275adfd7feb27e",
     "semantic_hash": ""
   }
 }

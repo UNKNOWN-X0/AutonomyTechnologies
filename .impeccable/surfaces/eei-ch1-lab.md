@@ -15,15 +15,15 @@ Confirmed with the owner on 2026-10-28 (shape: scope, interaction, format, hub i
 
 **Direction:** the site's existing sign system, unchanged: FAU-blue sign header, square corners, subject colour accents, a contents rail listing the five experiments. Signature moment: the reveal animates from the starting state to the true result and leaves the student's prediction as a ghost marker.
 
-**Scope (one page):**
+**Scope (one page, in chapter order; each experiment is titled with its section numbers and topic):**
 
 | Experiment | Sections | Controls | Shows |
 |---|---|---|---|
-| Field playground | 1.2–1.4, 1.7–1.9 | up to 4 charges (sign, size), drag; probe | E vectors, field lines, equipotentials, probe force, potential, work along a dragged path |
-| Gauss cylinder | 1.10 | radius a, ϱ_V, Gaussian ρ, ε_r | enclosed charge, live D(ρ) plot with marker, E = D/ε |
-| Interface | 1.11 | incoming E and angle, ε1, ε2, surface charge σ | component split, refracted line, values both sides |
-| Capacitor bench | 1.11.4, 1.12–1.14 | area, gap, slab (none / dielectric / metal) and thickness, isolated vs connected | field-line density, E in gap and slab, U, Q, C, W, energy density |
-| Networks | 1.13.3 | 2–3 capacitors in series or parallel, source U | Q and U per capacitor as bars, total C |
+| 1.2–1.9 Point charges: field, potential and work | 1.2–1.4, 1.7–1.9 | up to 4 charges (sign, size), drag; probe | E vectors, field lines, equipotentials, probe force, potential, work along a dragged path |
+| 1.10 Gauss’s law: a charged cylinder | 1.10 | radius a, ϱ_V, Gaussian ρ, ε_r | enclosed charge, live D(ρ) plot with marker, E = D/ε |
+| 1.11 Interface conditions: field refraction | 1.11 | incoming E and angle, ε1, ε2, surface charge σ | component split, refracted line, values both sides |
+| 1.12–1.14 Plate capacitor: gap, dielectric and energy | 1.11.4, 1.12–1.14 | area, gap, slab (none / dielectric / metal) and thickness, isolated vs connected | field-line density, E in gap and slab, U, Q, C, W, energy density |
+| 1.13 Capacitor networks: series and parallel | 1.13.3 | 2–3 capacitors in series or parallel, source U | Q and U per capacitor as bars, total C |
 
 Out of scope: charge densities, dipole torque, multilayer and variable capacitors (guide only).
 

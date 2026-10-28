@@ -1,17 +1,17 @@
 # Graph Report - AutonomyTechnologies  (2026-10-28)
 
 ## Corpus Check
-- 20 files · ~57,752 words
+- 20 files · ~59,328 words
 - Verdict: corpus is large enough that graph structure adds value.
 - Unclassified: 7 file(s) not represented in the graph (top: .css 4, (none) 2, .tex 1)
 
 ## Summary
-- 295 nodes · 474 edges · 19 communities (14 shown, 5 thin omitted)
-- Extraction: 91% EXTRACTED · 9% INFERRED · 0% AMBIGUOUS · INFERRED: 42 edges (avg confidence: 0.85)
+- 298 nodes · 484 edges · 19 communities (14 shown, 5 thin omitted)
+- Extraction: 91% EXTRACTED · 9% INFERRED · 0% AMBIGUOUS · INFERRED: 43 edges (avg confidence: 0.85)
 - Token cost: 0 input · 0 output
 
 ## Graph Freshness
-- Built from commit: `710b43c7`
+- Built from commit: `83f0bbac`
 - Run `git rev-parse HEAD` and compare to check if the graph is stale.
 - Run `graphify update .` after code changes (no API cost).
 
@@ -38,14 +38,14 @@
 
 ## God Nodes (most connected - your core abstractions)
 1. `fieldPlayground()` - 26 edges
-2. `paint()` - 20 edges
-3. `capacitorBench()` - 19 edges
-4. `Components` - 19 edges
+2. `capacitorBench()` - 20 edges
+3. `paint()` - 20 edges
+4. `Components` - 20 edges
 5. `networks()` - 18 edges
-6. `interfaceBench()` - 17 edges
-7. `draw()` - 17 edges
+6. `draw()` - 18 edges
+7. `interfaceBench()` - 17 edges
 8. `check()` - 15 edges
-9. `css()` - 12 edges
+9. `css()` - 13 edges
 10. `Conv` - 12 edges
 
 ## Surprising Connections (you probably didn't know these)
@@ -78,11 +78,11 @@ Cohesion: 0.70
 Nodes (3): logToday(), render(), stamp()
 
 ### Community 3 - "Components"
-Cohesion: 0.11
-Nodes (19): Answer key, Buttons, Chapter switcher and tick groups, Components, Course code square, Course-part chips, Exam checklist, Formula panels and tables (+11 more)
+Cohesion: 0.10
+Nodes (20): Answer key, Buttons, Chapter switcher and tick groups, Components, Course code square, Course-part chips, Exam checklist, Formula panels and tables (+12 more)
 
 ### Community 4 - "check"
-Cohesion: 0.21
+Cohesion: 0.19
 Nodes (9): all_nodes(), answers_of(), check(), check_lab(), direct(), items(), main(), Report (+1 more)
 
 ### Community 5 - "GitHub Pages Workflow"
@@ -99,7 +99,7 @@ Nodes (24): Project data, Project instructions, Acceptance, Content rules, Files
 
 ### Community 10 - "paint"
 Cohesion: 0.07
-Nodes (52): capacitorBench(), charged(), draw(), grow(), guessOn(), nice(), paint(), signs() (+44 more)
+Nodes (54): capacitorBench(), charged(), circuit(), draw(), grow(), guessOn(), nice(), paint() (+46 more)
 
 ### Community 11 - "lab.js"
 Cohesion: 0.35
@@ -123,7 +123,7 @@ Nodes (3): ago(), ticksHTML(), when()
 
 ## Knowledge Gaps
 - **4 isolated node(s):** `Active-recall study workflow`, `Jekyll site CI`, `LaTeX, Pandoc, and KaTeX publishing pipeline`, `Study Pages preview showing Electrical Engineering 1 and Mathematics for Engineers I course cards`
-  These have ≤1 connection - possible missing edges or undocumented components. (Counts symbols only; 123 node(s) total have ≤1 connection when file, concept and rationale nodes are included.)
+  These have ≤1 connection - possible missing edges or undocumented components. (Counts symbols only; 124 node(s) total have ≤1 connection when file, concept and rationale nodes are included.)
 - **5 thin communities (<3 nodes) omitted from report** — run `graphify query` to explore isolated nodes.
 
 ## Work-memory lessons
@@ -143,8 +143,8 @@ _Questions this graph is uniquely positioned to answer:_
 - **Should `Design System: From Fundamentals to AI Apocalypse` be split into smaller, more focused modules?**
   _Cohesion score 0.10526315789473684 - nodes in this community are weakly interconnected._
 - **Why does `Components` connect `Components` to `Design System: From Fundamentals to AI Apocalypse`?**
-  _High betweenness centrality (0.029) - this node is a cross-community bridge._
-- **Are the 5 inferred relationships involving `paint()` (e.g. with `draw()` and `draw()`) actually correct?**
-  _`paint()` has 5 INFERRED edges - model-reasoned connections that need verification._
+  _High betweenness centrality (0.030) - this node is a cross-community bridge._
+- **Are the 2 inferred relationships involving `capacitorBench()` (e.g. with `eei-ch1-lab.js` and `resize()`) actually correct?**
+  _`capacitorBench()` has 2 INFERRED edges - model-reasoned connections that need verification._
 - **Should `.block` be split into smaller, more focused modules?**
-  _Cohesion score 0.09957325746799431 - nodes in this community are weakly interconnected._
+  _Cohesion score 0.1036036036036036 - nodes in this community are weakly interconnected._

@@ -121,33 +121,36 @@
 }
 
 /* Bench: stage beside the controls on wide screens, stacked on phones */
-/* The stage stays in view while you read the challenge and controls beside or below it.
-   The layout follows the room the experiment actually has, not the window. */
+/* Bench layout: nothing is pinned, so nothing can cover the buttons.
+   Narrow: challenge, stage, controls in reading order. Wider: the challenge sits beside the stage, so the question,
+   its buttons and the reveal are visible together; the sandbox controls run underneath in columns.
+   The layout follows the room the experiment has (container query), not the window. */
 .experiment {
   container-type: inline-size;
 }
 .bench {
   display: grid;
   grid-template-columns: minmax(0, 1fr);
-  gap: 20px;
+  grid-template-areas: "challenge" "stage" "controls";
+  gap: 18px;
   align-items: start;
   margin-top: 18px;
 }
+.side {
+  display: contents;
+}
 .bench > .stage {
-  position: sticky;
-  top: 0;
-  z-index: 2;
+  grid-area: stage;
   aspect-ratio: 3 / 2;
 }
-.side {
-  display: grid;
-  gap: 16px;
-  align-items: start;
-}
-.side .challenge {
+.bench .challenge {
+  grid-area: challenge;
   margin: 0;
 }
-/* The capacitor stage carries three gauges under the plates: give it more height on narrow screens. */
+.bench .controls {
+  grid-area: controls;
+}
+/* Experiments that draw gauges or a plot under the picture need a squarer stage. */
 .experiment[data-experiment="capacitor"] .bench > .stage,
 .experiment[data-experiment="networks"] .bench > .stage,
 .experiment[data-experiment="interface"] .bench > .stage,
@@ -155,39 +158,22 @@
   aspect-ratio: 1 / 1;
 }
 @container (min-width: 640px) {
-  .bench > .stage,
-  .experiment[data-experiment="capacitor"] .bench > .stage,
-  .experiment[data-experiment="networks"] .bench > .stage,
-  .experiment[data-experiment="interface"] .bench > .stage,
-  .experiment[data-experiment="gauss"] .bench > .stage {
-    aspect-ratio: 16 / 9;
-    max-height: calc(100vh - 260px);
-    min-height: 300px;
-  }
-  .side {
-    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
-    gap: 24px;
-  }
-}
-@container (min-width: 1000px) {
   .bench {
-    grid-template-columns: minmax(0, 1fr) 340px;
-    gap: 24px;
+    grid-template-columns: minmax(250px, 300px) minmax(0, 1fr);
+    grid-template-areas: "challenge stage" "controls controls";
+    gap: 20px 24px;
   }
-  .bench > .stage,
-  .experiment[data-experiment="capacitor"] .bench > .stage,
-  .experiment[data-experiment="networks"] .bench > .stage,
-  .experiment[data-experiment="interface"] .bench > .stage,
-  .experiment[data-experiment="gauss"] .bench > .stage {
-    top: 16px;
+  .bench > .stage {
     aspect-ratio: 4 / 3;
-    max-height: calc(100vh - 120px);
+    max-height: calc(100vh - 140px);
   }
-  .side {
-    grid-template-columns: minmax(0, 1fr);
-    gap: 16px;
+  .bench .controls {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 0 24px;
   }
 }
+
 .stage {
   position: relative;
   border: 2px solid var(--ink);
@@ -231,11 +217,11 @@
 }
 
 .handles .charge circle {
-  stroke: var(--fau);
+  stroke: var(--fau-mark);
   stroke-width: 2.5;
 }
 .handles .charge.pos circle {
-  fill: var(--fau);
+  fill: var(--fau-mark);
 }
 .handles .charge.neg circle {
   fill: var(--paper);
@@ -247,7 +233,7 @@
   pointer-events: none;
 }
 .handles .charge.neg text {
-  fill: var(--fau);
+  fill: var(--fau-mark);
 }
 .handles .charge text.qlabel {
   font-size: 12px;
@@ -493,5 +479,121 @@
   .bench,
   .challenge {
     display: none;
+  }
+}
+
+/* Compact challenge card: confidence switch and Reveal share a row; the verdict replaces the question block. */
+.ch-options {
+  flex-direction: column;
+  flex-wrap: nowrap;
+  gap: 6px;
+}
+.ch-opt {
+  width: 100%;
+  min-height: 40px;
+  padding: 7px 12px;
+}
+.ch-act {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: stretch;
+  gap: 8px;
+}
+.ch-conf.seg {
+  flex: 1 1 12rem;
+  margin: 0;
+}
+.ch-seg {
+  flex: 1;
+  min-height: 40px;
+  padding: 0 6px;
+  border: 0;
+  background: none;
+  color: var(--fau);
+  font: 700 0.85rem/1.2 var(--f-display);
+  cursor: pointer;
+  transition: background-color 150ms var(--ease), color 150ms var(--ease);
+}
+.ch-seg + .ch-seg {
+  border-left: 2px solid var(--fau);
+}
+.ch-seg:hover:not(:disabled) {
+  background: var(--fau-tint);
+}
+.ch-seg[aria-checked="true"] {
+  background: var(--fau);
+  color: var(--on-fau);
+}
+.ch-seg:disabled {
+  cursor: default;
+}
+.ch-act .ch-go {
+  margin: 0;
+  flex: 0 0 auto;
+}
+.ch-label {
+  margin-top: 12px;
+}
+.ch-verdict {
+  margin-top: 4px;
+}
+.ch-said {
+  margin: 0 0 8px;
+  font-size: 0.92rem;
+  color: var(--muted);
+}
+.ch-said b {
+  color: var(--ink);
+}
+.ch-why {
+  font-size: 0.95rem;
+  line-height: 1.55;
+}
+/* During the challenges the sandbox controls are locked, so they are not shown at all. */
+.experiment.in-challenge .bench .controls {
+  display: none;
+}
+
+/* Question and verdict stacked in one cell: the card is as tall as the longer of the two, before and after. */
+.ch-swap {
+  display: grid;
+}
+.ch-swap > * {
+  grid-area: 1 / 1;
+  min-width: 0;
+}
+.ch-answer,
+.ch-swap.revealed .ch-ask {
+  visibility: hidden;
+}
+.ch-swap.revealed .ch-answer {
+  visibility: visible;
+}
+@media (prefers-reduced-motion: no-preference) {
+  .ch-swap.revealed .ch-verdict {
+    animation: verdict-in 320ms var(--ease) both;
+  }
+}
+.ch-verdict {
+  animation: none;
+}
+
+/* Desktop: card and stage share one row height. The stage keeps its old size as a minimum and grows to the card. */
+@container (min-width: 640px) {
+  .bench .challenge,
+  .bench > .stage {
+    align-self: stretch;
+  }
+  .bench > .stage,
+  .experiment[data-experiment] .bench > .stage {
+    aspect-ratio: auto;
+    min-height: 336px;
+    max-height: none;
+  }
+  .experiment[data-experiment="capacitor"] .bench > .stage,
+  .experiment[data-experiment="networks"] .bench > .stage,
+  .experiment[data-experiment="interface"] .bench > .stage,
+  .experiment[data-experiment="gauss"] .bench > .stage {
+    min-height: 448px;
   }
 }

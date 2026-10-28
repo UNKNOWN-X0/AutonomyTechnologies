@@ -96,6 +96,7 @@
       choice = null,
       conf = null;
     def.lock(true);
+    card.closest(".experiment") && card.closest(".experiment").classList.add("in-challenge");
     def.setup(c);
 
     var head = h("p", "ch-count", "Challenge " + (i + 1) + " of " + def.challenges.length);
@@ -119,23 +120,53 @@
       opts.appendChild(b);
     });
     var confLabel = h("p", "ch-label", "How sure are you?");
-    var confs = h("div", "ch-conf");
+    var act = h("div", "ch-act");
+    var confs = h("div", "ch-conf seg");
     confs.setAttribute("role", "radiogroup");
     confs.setAttribute("aria-label", "How sure are you?");
     CONF.forEach(function (o) {
-      var b = h("button", "ch-opt small", o[1]);
+      var b = h("button", "ch-seg", o[1]);
       b.type = "button";
       b.setAttribute("role", "radio");
       b.setAttribute("aria-checked", "false");
       b.addEventListener("click", function () {
         conf = o[0];
-        confs.querySelectorAll(".ch-opt").forEach(function (x) {
+        confs.querySelectorAll(".ch-seg").forEach(function (x) {
           x.setAttribute("aria-checked", String(x === b));
         });
         ready();
       });
       confs.appendChild(b);
     });
+    // Question block and verdict share one grid cell, so the card keeps one height from question to answer.
+    var swap = h("div", "ch-swap"),
+      ask = h("div", "ch-ask"),
+      answer = h("div", "ch-answer");
+    answer.setAttribute("aria-hidden", "true");
+    // The hidden verdict is laid out with the longest wording it can take, so revealing never grows the card.
+    var longest = c.options.reduce(function (a, o) {
+      return o[1].length > a.length ? o[1] : a;
+    }, "");
+    var verdict = h("div", "ch-verdict wrong"),
+      mark = h("p", "ch-mark", "Not quite"),
+      said = h("p", "ch-said", "You said: " + longest + " (guessing). Answer: " + longest),
+      why = h("p", "ch-why");
+    why.innerHTML = c.why;
+    why.appendChild(document.createTextNode(" "));
+    why.appendChild(guideLink(c.ref));
+    var last = i === def.challenges.length - 1,
+      nxt = h("button", "btn " + (last ? "primary" : ""), last ? "Open the sandbox" : "Next challenge");
+    nxt.type = "button";
+    nxt.tabIndex = -1;
+    nxt.addEventListener("click", function () {
+      if (last) complete(def.id);
+      self.show(self.next());
+      if (last) refresh();
+    });
+    [mark, said, why, nxt].forEach(function (n) {
+      verdict.appendChild(n);
+    });
+    answer.appendChild(verdict);
     var go = h("button", "btn primary ch-go", "Reveal");
     go.type = "button";
     go.disabled = true;
@@ -144,35 +175,48 @@
     }
     go.addEventListener("click", function () {
       go.disabled = true;
-      card.querySelectorAll(".ch-opt").forEach(function (x) {
+      card.querySelectorAll(".ch-opt, .ch-seg").forEach(function (x) {
         x.disabled = true;
       });
+      // Bring the stage into view before it moves (on narrow screens it sits below the card).
+      var stg = card.closest(".experiment") && card.closest(".experiment").querySelector(".stage");
+      if (stg) stg.scrollIntoView({ block: "nearest", behavior: reduce ? "auto" : "smooth" });
       var correct = choice === c.answer;
       self.saved[c.id] = { choice: choice, conf: conf, correct: correct };
       write(STORE, results);
       Promise.resolve(c.reveal(choice)).then(function () {
-        var verdict = h("div", "ch-verdict " + (correct ? "right" : "wrong"));
-        verdict.appendChild(h("p", "ch-mark", correct ? "Correct" : "Not quite"));
-        var why = h("p", "ch-why");
-        why.innerHTML = c.why;
-        why.appendChild(document.createTextNode(" "));
-        why.appendChild(guideLink(c.ref));
-        verdict.appendChild(why);
-        var last = i === def.challenges.length - 1,
-          nxt = h("button", "btn " + (last ? "primary" : ""), last ? "Open the sandbox" : "Next challenge");
-        nxt.type = "button";
-        nxt.addEventListener("click", function () {
-          if (last) complete(def.id);
-          self.show(self.next());
-          if (last) refresh();
-        });
-        verdict.appendChild(nxt);
-        card.appendChild(verdict);
+        var label = function (key) {
+            for (var k = 0; k < c.options.length; k++) if (c.options[k][0] === key) return c.options[k][1];
+          },
+          confText = { sure: "sure", think: "think so", guess: "guessing" }[conf];
+        // keep the card exactly as tall as it was while the question showed
+        swap.style.minHeight = swap.getBoundingClientRect().height + "px";
+        verdict.className = "ch-verdict " + (correct ? "right" : "wrong");
+        mark.textContent = correct ? "Correct" : "Not quite";
+        said.textContent = "";
+        said.appendChild(document.createTextNode("You said: "));
+        said.appendChild(h("b", null, label(choice)));
+        said.appendChild(document.createTextNode(" (" + confText + ")"));
+        if (!correct) {
+          said.appendChild(document.createTextNode(". Answer: "));
+          said.appendChild(h("b", null, label(c.answer)));
+        }
+        swap.classList.add("revealed");
+        ask.setAttribute("aria-hidden", "true");
+        answer.removeAttribute("aria-hidden");
+        nxt.tabIndex = 0;
         nxt.focus({ preventScroll: true });
       });
     });
 
-    [head, prompt, opts, confLabel, confs, go].forEach(function (n) {
+    act.appendChild(confs);
+    act.appendChild(go);
+    [opts, confLabel, act].forEach(function (n) {
+      ask.appendChild(n);
+    });
+    swap.appendChild(ask);
+    swap.appendChild(answer);
+    [head, prompt, swap].forEach(function (n) {
       card.appendChild(n);
     });
   };
@@ -197,6 +241,7 @@
     });
     this.card.appendChild(again);
     def.lock(false);
+    this.card.closest(".experiment") && this.card.closest(".experiment").classList.remove("in-challenge");
     def.sandbox();
   };
 

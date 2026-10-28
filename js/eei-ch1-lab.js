@@ -96,7 +96,7 @@
       }
       ctx.stroke();
       if (!st.charges.length) return handles();
-      if (st.show.equi) equipotentials(css("--eei-3") || css("--fau"));
+      if (st.show.equi) equipotentials(css("--eei-3") || css("--fau-mark"));
       if (st.show.lines) fieldLines(muted);
       if (st.show.vectors) vectors(ink);
       if (st.trail.length > 1) {
@@ -502,7 +502,7 @@
     var GUESS = { left: -0.075, mid: 0, right: 0.075 };
     Lab.experiment({
       id: "field",
-      title: "Field playground",
+      title: "1.2–1.9 Point charges",
       card: root.querySelector(".challenge"),
       lock: function (on) {
         st.locked = on;
@@ -570,6 +570,39 @@
             });
           },
           why: "The fields cancel where kQ/x² = k(2Q)/(0.30 m − x)², so x = 0.30 m/(1 + √2) ≈ 12.4 cm from the smaller charge. To match the stronger charge, you have to stand closer to the weaker one. Watch the force arrow shrink to nothing at the cross.",
+        },
+        {
+          id: "dipole",
+          short: "the field midway between + and −",
+          ref: "1.4",
+          prompt: "A +1 nC and a −1 nC charge sit 14 cm apart. Which way does the field point exactly halfway between them?",
+          options: [
+            ["plus", "Toward the + charge"],
+            ["minus", "Toward the − charge"],
+            ["zero", "Nowhere: it is zero there"],
+          ],
+          answer: "minus",
+          stage: function () {
+            st.charges = [
+              { x: -0.07, y: 0, q: 1 * nC },
+              { x: 0.07, y: 0, q: -1 * nC },
+            ];
+            st.probe = { x: 0, y: 0.09, q: 1 * nC };
+            st.show = { lines: true, vectors: false, equi: false };
+          },
+          preview: function (choice) {
+            st.ghost = choice === "plus" ? -0.035 : choice === "minus" ? 0.035 : 0;
+            draw();
+          },
+          reveal: function () {
+            st.ghost = null;
+            return Lab.tween(1400, function (t) {
+              st.probe.y = 0.09 * (1 - t);
+              st.trail.push([st.probe.x, st.probe.y]);
+              paint();
+            });
+          },
+          why: "Halfway, the + charge pushes a positive probe away (to the right) and the − charge pulls it in (also to the right). The two fields point the same way, so they add: E = 2·kQ/r<sup>2</sup> ≈ 3.67 kV/m toward the − charge. Fields cancel only between charges of the same sign.",
         },
         {
           id: "equipotential",
@@ -696,10 +729,10 @@
         s = now(),
         ink = css("--ink"),
         muted = css("--muted"),
-        fau = css("--fau"),
+        fau = css("--fau-mark"),
         course = css("--course"),
         paper = css("--paper"),
-        topH = Math.round(h * (w < 480 ? 0.5 : 0.62)),
+        topH = Math.round(h * (w < 480 ? 0.44 : 0.62)),
         small = w < 480;
       ctx.clearRect(0, 0, w, h);
       ctx.fillStyle = paper;
@@ -711,7 +744,7 @@
         cx = w / 2,
         lx = cx - gap / 2,
         rx = cx + gap / 2,
-        plateH = Math.max(40, (topH - 64) * Math.sqrt(st.p.A / 0.04)),
+        plateH = Math.max(40, (topH - 100) * Math.sqrt(st.p.A / 0.04)),
         y0 = 30 + (topH - 30 - plateH) / 2,
         y1 = y0 + plateH,
         hasSlab = st.p.slab !== "none" && st.p.t > 0,
@@ -807,7 +840,8 @@
       ctx.textBaseline = "top";
       ctx.fillStyle = muted;
       ctx.font = "600 12px " + css("--f-display");
-      ctx.fillText("d = " + (st.p.d / mm).toFixed(1) + " mm", cx, y1 + 8);
+      ctx.fillText("d = " + (st.p.d / mm).toFixed(1) + " mm", cx, y1 + 6);
+      circuit(lx, rx, y1, cx, s.Q, ink, muted);
       if (hasSlab) {
         ctx.fillStyle = ink;
         ctx.fillText(st.p.slab === "metal" ? "metal" : "εr = " + st.p.er.toFixed(1), cx, y0 - 22);
@@ -872,6 +906,78 @@
         }
       });
       readouts(s);
+    }
+
+    // The source under the plates. Connected: battery and closed wires, with charge carriers that run
+    // whenever Q changes (into the plates while charging, back to the battery when Q drops). Disconnected: an open wire.
+    var flow = { phase: 0, lastQ: null, until: 0 };
+    function circuit(lx, rx, y1, cx, Q, ink, muted) {
+      var yw = y1 + 28,
+        xl = lx - 4,
+        xr = rx + 4;
+      ctx.strokeStyle = ink;
+      ctx.lineWidth = 1.6;
+      ctx.beginPath();
+      ctx.moveTo(xl, y1 + 4);
+      ctx.lineTo(xl, yw);
+      ctx.lineTo(cx - (st.mode === "connected" ? 6 : 22), yw);
+      ctx.moveTo(cx + (st.mode === "connected" ? 6 : 22), yw);
+      ctx.lineTo(xr, yw);
+      ctx.lineTo(xr, y1 + 4);
+      ctx.stroke();
+      if (st.mode === "connected") {
+        // long plate +, short plate −: + feeds the left plate
+        ctx.lineWidth = 3;
+        ctx.beginPath();
+        ctx.moveTo(cx - 6, yw - 10);
+        ctx.lineTo(cx - 6, yw + 10);
+        ctx.moveTo(cx + 6, yw - 5);
+        ctx.lineTo(cx + 6, yw + 5);
+        ctx.stroke();
+      } else {
+        [cx - 22, cx + 22].forEach(function (x) {
+          ctx.beginPath();
+          ctx.arc(x, yw, 3, 0, 2 * Math.PI);
+          ctx.fillStyle = css("--paper");
+          ctx.fill();
+          ctx.stroke();
+        });
+      }
+      // moving charge
+      var nowT = performance.now();
+      if (flow.lastQ != null && Q !== flow.lastQ && st.mode === "connected") {
+        flow.phase -= ((Q - flow.lastQ) / charged()) * 160;
+        flow.until = nowT + 450;
+        setTimeout(draw, 470);
+      }
+      flow.lastQ = Q;
+      if (st.mode !== "connected" || nowT > flow.until) return;
+      var legs = [
+          [xl, y1 + 4, xl, yw],
+          [xl, yw, cx - 6, yw],
+          [cx + 6, yw, xr, yw],
+          [xr, yw, xr, y1 + 4],
+        ],
+        total = 0;
+      legs.forEach(function (l) {
+        l.len = Math.hypot(l[2] - l[0], l[3] - l[1]);
+        total += l.len;
+      });
+      ctx.fillStyle = css("--eei-3");
+      for (var d = ((flow.phase % 18) + 18) % 18; d < total; d += 18) {
+        var acc = 0;
+        for (var k = 0; k < legs.length; k++) {
+          var l = legs[k];
+          if (d <= acc + l.len) {
+            var f = (d - acc) / l.len;
+            ctx.beginPath();
+            ctx.arc(l[0] + f * (l[2] - l[0]), l[1] + f * (l[3] - l[1]), 2.6, 0, 2 * Math.PI);
+            ctx.fill();
+            break;
+          }
+          acc += l.len;
+        }
+      }
     }
 
     function readouts(s) {
@@ -975,7 +1081,7 @@
     }
     Lab.experiment({
       id: "capacitor",
-      title: "Capacitor bench",
+      title: "1.12–1.14 Plate capacitor",
       card: root.querySelector(".challenge"),
       lock: function (on) {
         st.locked = on;
@@ -1167,6 +1273,25 @@
         ctx.lineTo(x + L / 2, y + g);
       }
       ctx.stroke();
+      // charge on the plates: one sign per share of the largest charge in the circuit
+      var part = now().parts[i],
+        ns = Math.max(0, Math.min(6, Math.round((part.Q / (st.scale.Q / 1.25)) * 5)));
+      if (ns) {
+        ctx.font = "800 12px " + css("--f-display");
+        ctx.textAlign = "center";
+        ctx.textBaseline = "middle";
+        for (var si = 0; si < ns; si++) {
+          var f = (si + 0.5) / ns - 0.5;
+          ctx.fillStyle = css("--fau-mark");
+          if (horizontalWire) {
+            ctx.fillText("+", x - g - 7, y + f * L);
+            ctx.fillText("−", x + g + 7, y + f * L);
+          } else {
+            ctx.fillText("+", x + f * L, y - g - 7);
+            ctx.fillText("−", x + f * L, y + g + 7);
+          }
+        }
+      }
       var picked = st.pick === i,
         txt = "C" + (i + 1) + " · " + Math.round(st.Cs[i] / uF) + " μF";
       if (horizontalWire) label(txt, x, y - L / 2 - 12, { color: picked ? css("--act") : ink });
@@ -1179,13 +1304,13 @@
         h = size.h,
         ink = css("--ink"),
         muted = css("--muted"),
-        fau = css("--fau"),
+        fau = css("--fau-mark"),
         n = st.Cs.length,
         res = now(),
         topH = Math.round(h * 0.48),
         x0 = Math.max(w < 480 ? 78 : 40, w * 0.12),
         x1 = w - Math.max(40, w * 0.12),
-        yT = 34,
+        yT = 44,
         yB = topH - 14;
       ctx.clearRect(0, 0, w, h);
       ctx.fillStyle = css("--paper");
@@ -1385,7 +1510,7 @@
     ];
     Lab.experiment({
       id: "networks",
-      title: "Networks",
+      title: "1.13 Capacitor networks",
       card: root.querySelector(".challenge"),
       lock: function (on) {
         st.locked = on;
@@ -1567,10 +1692,10 @@
         r = now(),
         ink = css("--ink"),
         muted = css("--muted"),
-        fau = css("--fau"),
+        fau = css("--fau-mark"),
         course = css("--course"),
         small = w < 480,
-        topH = Math.round(h * (small ? 0.56 : 0.62)),
+        topH = Math.round(h * (small ? 0.5 : 0.62)),
         bx = w / 2,
         cy = topH / 2 + 6;
       ctx.clearRect(0, 0, w, h);
@@ -1643,6 +1768,23 @@
           ly = Math.max(36, yc - 158 * Math.sin(g) - 8);
         text("your guess", lx, ly, { size: 11, weight: 600, color: muted, align: lx > w - 80 ? "right" : "left" });
       }
+      // the field split into its normal and tangential parts, on both sides of the crossing
+      var kk = 90 / st.scale.E,
+        nCol = css("--fau-mark"),
+        tCol = css("--eei-3");
+      function comp(x0, y0, x1, y1, color, lab, lx, ly) {
+        if (Math.hypot(x1 - x0, y1 - y0) < 6) return;
+        ctx.setLineDash([4, 3]);
+        arrowTo(x0, y0, x1, y1, color, 2.2);
+        ctx.setLineDash([]);
+        text(lab, lx, ly, { size: 11, color: color });
+      }
+      var t1x = bx - r.En1 * kk,
+        t1y = yc + r.Et * kk;
+      comp(t1x, t1y, bx, t1y, nCol, "En1", (t1x + bx) / 2, t1y + 12);
+      comp(bx, t1y, bx, yc, tCol, "Et", bx - 16, (t1y + yc) / 2);
+      comp(bx, yc, bx + r.En2 * kk, yc, nCol, "En2", bx + Math.max(r.En2 * kk, 18) + 16, yc + 13);
+      comp(bx + r.En2 * kk, yc, bx + r.En2 * kk, yc - r.Et * kk, tCol, "Et", bx + r.En2 * kk + 16, yc - (r.Et * kk) / 2);
       // the normal and both angles at the main line
       ctx.setLineDash([3, 3]);
       ctx.strokeStyle = ink;
@@ -1755,7 +1897,7 @@
     ];
     Lab.experiment({
       id: "interface",
-      title: "Interface",
+      title: "1.11 Interface conditions",
       card: root.querySelector(".challenge"),
       lock: function (on) {
         st.locked = on;
@@ -1948,6 +2090,24 @@
       ctx.arc(cx, cy, Math.min(rA, rG), 0, 2 * Math.PI);
       ctx.fill();
       ctx.globalAlpha = 1;
+      // the charge as evenly spread dots: solid if the Gaussian surface encloses it
+      for (var di = 0; di < 90; di++) {
+        var dr = Math.sqrt((di + 0.5) / 90),
+          dt = di * 2.39996,
+          inside = dr * st.a <= st.rho;
+        ctx.beginPath();
+        ctx.arc(cx + dr * rA * 0.94 * Math.cos(dt), cy + dr * rA * 0.94 * Math.sin(dt), Math.max(1.6, rA / 34), 0, 2 * Math.PI);
+        if (inside) {
+          ctx.fillStyle = ink;
+          ctx.fill();
+        } else {
+          ctx.strokeStyle = ink;
+          ctx.lineWidth = 1;
+          ctx.globalAlpha = 0.45;
+          ctx.stroke();
+          ctx.globalAlpha = 1;
+        }
+      }
       ctx.strokeStyle = ink;
       ctx.lineWidth = 2;
       ctx.beginPath();
@@ -2043,10 +2203,11 @@
         ctx.lineWidth = 2;
         ctx.setLineDash([4, 3]);
         ctx.beginPath();
-        ctx.arc(X(st.ghost.r), Y(st.ghost.f), 8, 0, 2 * Math.PI);
+        var gy = Math.max(py + 30, Y(st.ghost.f));
+        ctx.arc(X(st.ghost.r), gy, 8, 0, 2 * Math.PI);
         ctx.stroke();
         ctx.setLineDash([]);
-        text("your guess", X(st.ghost.r), Y(st.ghost.f) - 16, { size: 11, weight: 600, color: muted });
+        text("your guess", Math.min(X(st.ghost.r), px + pw - 30), gy - 16, { size: 11, weight: 600, color: muted });
       }
       ctx.fillStyle = fau;
       ctx.beginPath();
@@ -2103,7 +2264,7 @@
     }
     Lab.experiment({
       id: "gauss",
-      title: "Gauss cylinder",
+      title: "1.10 Gauss’s law",
       card: root.querySelector(".challenge"),
       lock: function (on) {
         st.locked = on;
@@ -2216,9 +2377,10 @@
     });
   }
 
+  // Experiments register in chapter order, which is also the order of the results list.
   document.querySelectorAll("[data-experiment=field]").forEach(fieldPlayground);
+  document.querySelectorAll("[data-experiment=gauss]").forEach(gaussCylinder);
+  document.querySelectorAll("[data-experiment=interface]").forEach(interfaceBench);
   document.querySelectorAll("[data-experiment=capacitor]").forEach(capacitorBench);
   document.querySelectorAll("[data-experiment=networks]").forEach(networks);
-  document.querySelectorAll("[data-experiment=interface]").forEach(interfaceBench);
-  document.querySelectorAll("[data-experiment=gauss]").forEach(gaussCylinder);
 })();

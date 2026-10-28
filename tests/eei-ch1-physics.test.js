@@ -172,3 +172,9 @@ test("cylinder: lab challenges, D halves from a to 2a, a/2 encloses a quarter, �
   close(P.cylinder(rv, a, 0.2, 4).D, P.cylinder(rv, a, 0.2, 1).D);
   close(P.cylinder(rv, a, 0.2, 4).E, P.cylinder(rv, a, 0.2, 1).E / 4);
 });
+
+test("lab challenge: midway between +1 nC and −1 nC 14 cm apart, E = 3.67 kV/m toward the − charge", () => {
+  const [ex, ey] = P.field([{ x: -0.07, y: 0, q: 1e-9 }, { x: 0.07, y: 0, q: -1e-9 }], 0, 0);
+  close(ex, 3669);
+  assert.ok(Math.abs(ey) < 1e-6);
+});
