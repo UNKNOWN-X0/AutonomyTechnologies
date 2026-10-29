@@ -6,15 +6,15 @@
     "semantic_hash": "29fe146da84567bcc68665ce404ff135"
   },
   "README.md": {
-    "mtime": 1793191441.781656,
-    "seen": 1793191451.757947,
-    "ast_hash": "56b410beb5c12f4954d54e9ef7ee30a2",
+    "mtime": 1793283998.7767234,
+    "seen": 1793284275.516403,
+    "ast_hash": "b6e917755746f8dd7e98645fc6fc761a",
     "semantic_hash": ""
   },
   "index.html": {
-    "mtime": 1793175119.3223133,
-    "seen": 1793175241.272974,
-    "ast_hash": "9239986172683bf1f51a3acfb91faca1",
+    "mtime": 1793284058.496308,
+    "seen": 1793284275.516413,
+    "ast_hash": "efe3395a2848b62971f2f7f3dae48205",
     "semantic_hash": ""
   },
   "assets/preview.png": {
@@ -48,9 +48,9 @@
     "semantic_hash": ""
   },
   "js/index.js": {
-    "mtime": 1793175119.3229768,
-    "seen": 1793175241.272949,
-    "ast_hash": "63b9c4bb1d2483a0263781176f12ee9e",
+    "mtime": 1793224389.7146316,
+    "seen": 1793224403.006291,
+    "ast_hash": "03f0aba0d5ffb82485d04425c6421dad",
     "semantic_hash": ""
   },
   ".impeccable/surfaces/index-html.md": {
@@ -78,9 +78,9 @@
     "semantic_hash": ""
   },
   "tools/guide-to-tex.py": {
-    "mtime": 1793190428.2359023,
-    "seen": 1793190506.443018,
-    "ast_hash": "588bd979427ee14bc779dc74478633fc",
+    "mtime": 1793221372.7388325,
+    "seen": 1793221425.8449202,
+    "ast_hash": "ba148fd9c419d9d1bbe4bd9fda3af840",
     "semantic_hash": ""
   },
   "eei/ch1-electrostatic-fields.html": {
@@ -159,6 +159,108 @@
     "mtime": 1793191441.787633,
     "seen": 1793191451.7579489,
     "ast_hash": "624960bded4bc97c5834a155843889ca",
+    "semantic_hash": ""
+  },
+  "mei/ch1-statements-logic-sets.html": {
+    "mtime": 1793225287.6645372,
+    "seen": 1793225308.712308,
+    "ast_hash": "2ed5dd2086dffabe9f5a2f99fba8706a",
+    "semantic_hash": ""
+  },
+  "mei/ch1-statements-logic-sets.pdf": {
+    "mtime": 1793224593.9035912,
+    "seen": 1793225308.7123132,
+    "ast_hash": "1d5f25a04365f81d02b8a23d755c689a",
+    "semantic_hash": ""
+  },
+  ".agents/skills/autonomy-course-site/SKILL.md": {
+    "mtime": 1793223350.5347214,
+    "seen": 1793223928.391819,
+    "ast_hash": "2c7a8ebbdfad5262f012ef9d0dbeb3b7",
+    "semantic_hash": ""
+  },
+  "apdr/ch2-computers.html": {
+    "mtime": 1793283825.9719255,
+    "seen": 1793284275.516406,
+    "ast_hash": "a5e72eabcb653c1feb9535ce37476bab",
+    "semantic_hash": ""
+  },
+  "apdr/ch2-computers.pdf": {
+    "mtime": 1793284069.1420753,
+    "seen": 1793284275.516416,
+    "ast_hash": "ade478a822a0aef4e132cf571928ceef",
+    "semantic_hash": ""
+  },
+  "js/mei/ch1-lab.js": {
+    "mtime": 1793226384.2193384,
+    "seen": 1793226724.131073,
+    "ast_hash": "59cde6c305cc2ef357610cb902ccf3b7",
+    "semantic_hash": ""
+  },
+  "js/mei/ch1-physics.js": {
+    "mtime": 1793224556.9891343,
+    "seen": 1793225308.712272,
+    "ast_hash": "09f0443c7e96a59f732b1279f9b325a8",
+    "semantic_hash": ""
+  },
+  "tests/mei-ch1-physics.test.js": {
+    "mtime": 1793224563.1940267,
+    "seen": 1793225308.712277,
+    "ast_hash": "6ff7766c769b459468ec8593c6a2a9f7",
+    "semantic_hash": ""
+  },
+  "mei/ch1-statements-logic-sets-lab.html": {
+    "mtime": 1793226163.7817807,
+    "seen": 1793226724.131099,
+    "ast_hash": "c77351597f4b93b45165d1c92ce7298a",
+    "semantic_hash": ""
+  },
+  "apdr/ch1-2-boolean-algebra.html": {
+    "mtime": 1793281631.8472555,
+    "seen": 1793282317.4704509,
+    "ast_hash": "8927845f23d5fd07eaa82515e68bd1c6",
+    "semantic_hash": ""
+  },
+  "apdr/ch3-data-representation.html": {
+    "mtime": 1793282243.917325,
+    "seen": 1793282317.470454,
+    "ast_hash": "5acee646ed83351c0685544216f2166f",
+    "semantic_hash": ""
+  },
+  "apdr/ch1-2-boolean-algebra.pdf": {
+    "mtime": 1793281636.359658,
+    "seen": 1793282317.470464,
+    "ast_hash": "103f41528f2824f3a11ac87a2cb74567",
+    "semantic_hash": ""
+  },
+  "apdr/ch3-data-representation.pdf": {
+    "mtime": 1793282247.857827,
+    "seen": 1793282317.470465,
+    "ast_hash": "936bed8ef4df40af119bb020747cbcec",
+    "semantic_hash": ""
+  },
+  "js/apdr/ch2-lab.js": {
+    "mtime": 1793284323.9141119,
+    "seen": 1793284483.2720299,
+    "ast_hash": "a9bdf2b4b284e8e58cce710825e7c77b",
+    "semantic_hash": ""
+  },
+  "js/apdr/ch2-physics.js": {
+    "mtime": 1793283809.7280483,
+    "seen": 1793284275.516381,
+    "ast_hash": "89f9e1ca69e524a00f398cc23e815aba",
+    "semantic_hash": ""
+  },
+  "tests/apdr-ch2-physics.test.js": {
+    "mtime": 1793283809.7485633,
+    "seen": 1793284275.516392,
+    "ast_hash": "abef81d139c9b15926de699be9c825c2",
+    "semantic_hash": ""
+  },
+  "apdr/ch2-computers-lab.html": {
+    "mtime": 1793283866.601682,
+    "seen": 1793284275.516405,
+    "ast_hash": "638eb8db406ef1967a82eb470d214fa1",
     "semantic_hash": ""
   }
 }

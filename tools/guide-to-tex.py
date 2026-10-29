@@ -69,7 +69,12 @@ TEXT_MATH = {"∫": r"\int", "∮": r"\oint", "∯": r"\oiint", "∬": r"\iint",
              "≈": r"\approx", "∝": r"\propto", "≪": r"\ll", "≤": r"\leq", "≥": r"\geq",
              "→": r"\to", "≠": r"\neq", "±": r"\pm", "∓": r"\mp", "·": r"\cdot",
              "×": r"\times", "−": "-", "√": r"\surd", "∞": r"\infty", "Σ": r"\Sigma",
-             "½": r"\tfrac12", "<": "<", ">": ">"}
+             "½": r"\tfrac12", "¬": r"\neg", "∧": r"\land", "∨": r"\lor",
+             "⇒": r"\Rightarrow", "⇔": r"\Leftrightarrow", "∀": r"\forall", "∃": r"\exists",
+             "∈": r"\in", "∉": r"\notin", "⊂": r"\subset", "⊆": r"\subseteq", "⊊": r"\subsetneq",
+             "∪": r"\cup", "∩": r"\cap", "∅": r"\emptyset", "ℕ": r"\mathbb{N}",
+             "ℤ": r"\mathbb{Z}", "ℚ": r"\mathbb{Q}", "ℝ": r"\mathbb{R}", "ℂ": r"\mathbb{C}",
+             "𝒫": r"\mathcal{P}", "ᶜ": r"^{c}", "<": "<", ">": ">"}
 
 
 def tex_text(s):
@@ -118,6 +123,10 @@ def inline(node):
 MATH_MAP = {"−": "-", "·": r"\cdot ", "×": r"\times ", "≈": r"\approx ", "½": r"\tfrac{1}{2}",
             "Σ": r"\sum", "→": r"\to ", "∝": r"\propto ", "≪": r"\ll ", "√": r"\sqrt",
             "∞": r"\infty ", "≥": r"\geq ", "≤": r"\leq ", "±": r"\pm ", "∓": r"\mp ",
+            "¬": r"\neg ", "∧": r"\land ", "∨": r"\lor ", "⇒": r"\Rightarrow ", "⇔": r"\Leftrightarrow ",
+            "∀": r"\forall ", "∃": r"\exists ", "∈": r"\in ", "∉": r"\notin ", "⊂": r"\subset ", "⊊": r"\subsetneq ",
+            "∪": r"\cup ", "∩": r"\cap ", "∅": r"\emptyset ", "ℕ": r"\mathbb{N}", "ℤ": r"\mathbb{Z}",
+            "ℚ": r"\mathbb{Q}", "ℝ": r"\mathbb{R}", "ℂ": r"\mathbb{C}", "𝒫": r"\mathcal{P}", "ᶜ": r"^{c}",
             "{": r"\{", "}": r"\}", "%": r"\%", "&": r"\&", "#": r"\#"}
 
 
@@ -283,9 +292,10 @@ class Conv:
             return "\n\\nopagebreak[4]{\\small\\itshape Answers: see “%s” under Answers at the end.}\n" % tex_text(label)
         if t == "div" and "eq" in c:
             title = find(k, lambda n: n.tag == "strong" and n.parent is k)
-            form = find(k, lambda n: "formula" in n.cls)
+            forms = [n for n in k.kids if isinstance(n, Node) and "formula" in n.cls]
             note = find(k, lambda n: "eq-note" in n.cls)
-            s = "\n\\begin{equationcard}{%s}\n\\[ %s \\]\n" % (inline(title) if title else "", math(form))
+            formula_lines = r" \\ ".join(math(form) for form in forms)
+            s = "\n\\begin{equationcard}{%s}\n\\[ \\begin{gathered} %s \\end{gathered} \\]\n" % (inline(title) if title else "", formula_lines)
             if note:
                 s += "{\\small %s}\n" % inline(note)
             return s + "\\end{equationcard}\n"

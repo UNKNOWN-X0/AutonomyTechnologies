@@ -1,0 +1,765 @@
+\documentclass[11pt]{article}
+\usepackage[margin=18mm,headheight=22pt]{geometry}
+\usepackage{amsmath}
+\usepackage{fontspec}
+\usepackage{unicode-math}
+\setmainfont{NewCM10}[Extension=.otf,UprightFont=*-Book,BoldFont=*-Bold,ItalicFont=*-BookItalic,BoldItalicFont=*-BoldItalic]
+\setsansfont{NewCMSans10}[Extension=.otf,UprightFont=*-Book,BoldFont=*-Bold,ItalicFont=*-BookOblique,BoldItalicFont=*-BoldOblique]
+\setmathfont{NewCMMath-Book.otf}
+\usepackage{xcolor}
+\definecolor{FAUblue}{HTML}{04316A}
+\definecolor{Paperblue}{HTML}{EEF2F7}
+\definecolor{EEIgold}{HTML}{CC9C42}
+\usepackage{etoolbox,enumitem,booktabs,tabularx,array,needspace,microtype}
+\usepackage[most]{tcolorbox}
+\usepackage{titlesec,fancyhdr}
+\usepackage[hidelinks]{hyperref}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{5pt}
+\setlist{itemsep=2pt,topsep=3pt,leftmargin=1.6em,beginpenalty=10000,endpenalty=10000}
+\raggedbottom
+\clubpenalty=10000 \widowpenalty=10000 \displaywidowpenalty=10000 \interlinepenalty=10000
+\setcounter{secnumdepth}{0}
+\setcounter{tocdepth}{1}
+\pagestyle{fancy}\fancyhf{}
+\fancyhead[L]{\small\sffamily\color{FAUblue} From Fundamentals to AI Apocalypse · APDR · Chapter 3}
+\fancyhead[R]{\small\sffamily Number and Data Representation}
+\fancyfoot[C]{\small\thepage}
+\titleformat{\section}{\Large\bfseries\sffamily\color{FAUblue}}{}{0pt}{}
+\titleformat{\subsection}{\large\bfseries\sffamily\color{FAUblue}}{}{0pt}{}
+\titlespacing*{\section}{0pt}{16pt}{6pt}
+\preto\section{\Needspace{8\baselineskip}}
+\preto\subsection{\Needspace{6\baselineskip}}
+\newtcolorbox{equationcard}[1]{colback=Paperblue,colframe=Paperblue,boxrule=0pt,arc=0pt,left=10pt,right=10pt,top=6pt,bottom=6pt,title={#1},fonttitle=\small\bfseries\sffamily,coltitle=FAUblue,before skip=8pt,after skip=8pt}
+\newtcolorbox{workedbox}[1]{colback=white,colframe=EEIgold,boxrule=0pt,leftrule=3pt,arc=0pt,left=10pt,top=4pt,bottom=4pt,title={#1},fonttitle=\small\bfseries\sffamily,coltitle=FAUblue,attach title to upper={\par},before skip=8pt,after skip=8pt}
+\newtcolorbox{recallbox}[1]{colback=white,colframe=FAUblue,boxrule=0pt,leftrule=3pt,arc=0pt,left=10pt,top=4pt,bottom=4pt,title={#1},fonttitle=\small\bfseries\sffamily,coltitle=FAUblue,attach title to upper={\par},before skip=8pt,after skip=8pt}
+\usepackage{environ}
+\newsavebox\measurebox
+% Typeset the section once invisibly to measure it; start a new page if it will not fit in what is left.
+\makeatletter
+\newif\ifkeep@measuring
+\NewEnviron{keepsection}{%
+  \ifkeep@measuring \BODY \else
+    \edef\keep@sec{\the\value{section}}\edef\keep@sub{\the\value{subsection}}%
+    \setbox\measurebox\vbox{\hsize\linewidth\keep@measuringtrue\def\Needspace##1{}\BODY}%
+    \setcounter{section}{\keep@sec}\setcounter{subsection}{\keep@sub}%
+    \dimen2=\ht\measurebox \advance\dimen2\dp\measurebox
+    \dimen@=\textheight
+    \ifdim\pagegoal<\maxdimen
+      \dimen@=\pagegoal \advance\dimen@-\pagetotal
+      \ifdim\dimen2>\dimen@ \clearpage \dimen@=\textheight \fi
+    \fi
+    % if it fits, nothing inside may force an early break
+    \ifdim\dimen2>\dimen@ \BODY \else \begingroup\def\Needspace##1{}\BODY\endgroup \fi
+  \fi}
+\makeatother
+\newtcolorbox{notebox}{colback=Paperblue,colframe=Paperblue,boxrule=0pt,arc=0pt,left=8pt,right=8pt,top=4pt,bottom=4pt,before skip=6pt,after skip=6pt}
+\title{\sffamily\bfseries\color{FAUblue}Number and Data Representation}
+\author{Algorithms, Programming, and Data Representation \ensuremath{\cdot} Module 92313 \ensuremath{\cdot} Chapter 3\\[2pt]\small From Fundamentals to AI Apocalypse · personal study guide}
+\date{}
+\begin{document}
+\maketitle
+\begingroup\footnotesize\setlength{\parskip}{0pt}\tableofcontents\endgroup
+\clearpage
+
+\Needspace{9\baselineskip}
+{\large This chapter shows how bit patterns encode numbers and characters, then uses those representations to perform arithmetic. The meaning of a bit pattern depends on the encoding and the number of bits.}
+
+
+\begin{keepsection}
+\Needspace{14\baselineskip}
+\section{Start from memory}
+
+\Needspace{11\baselineskip}
+Answer before reading. Mark each response sure, unsure, or guessed; uncertainty shows what to revisit.
+
+\Needspace{8\baselineskip}
+\begin{enumerate}
+\item What does the position of a digit mean in a base-b number?
+\item What is the signed range of an n-bit two’s-complement value?
+\item How do you negate a two’s-complement bit pattern?
+\item How many binary digits correspond to one hexadecimal digit?
+\item What does a discarded carry-out tell you about overflow?
+\end{enumerate}
+
+\nopagebreak[4]{\small\itshape Answers: see “Start from memory” under Answers at the end.}
+\end{keepsection}
+
+\begin{keepsection}
+\Needspace{17\baselineskip}
+\section{How to use this guide}
+
+\Needspace{14\baselineskip}
+Study one section, hide it, and reconstruct the rules and examples from memory. Then solve mixed questions before checking the worked answers.
+
+\Needspace{11\baselineskip}
+\begin{enumerate}
+\item \textbf{Day 0:} Try the cold start and study §3.1. Convert values both ways without a calculator.
+\item \textbf{Day 1:} Rebuild the integer-encoding table in §3.2; solve practice 1–8.
+\item \textbf{Day 3:} Recall the character encodings in §3.3 and work through unsigned arithmetic in §3.4.
+\item \textbf{About day 7:} Re-derive two’s-complement addition and subtraction in §3.5; solve practice 9–16.
+\item \textbf{About day 14:} Complete both exam-style problems without notes and check the source typo.
+\item \textbf{Before the exam:} Tick only skills you can demonstrate cold; revisit sections named in missed answers.
+\end{enumerate}
+
+\begin{notebox}\textbf{When stuck:} write the bit width and encoding first. Show each conversion or arithmetic step, then check the answer against the allowed range.\end{notebox}
+\end{keepsection}
+
+\begin{keepsection}
+\Needspace{17\baselineskip}
+\section{How the chapter fits together}
+
+\Needspace{14\baselineskip}
+First learn how positional notation creates values. Then learn the encoding rules that assign values to bit patterns; finally apply arithmetic rules and check the fixed-width result.
+
+\Needspace{8\baselineskip}
+\textbf{Represent} \ensuremath{\cdot} map information to bits
+
+\Needspace{6\baselineskip}
+\begin{itemize}
+\item 
+\Needspace{4\baselineskip}
+\textbf{Number bases} \hfill{\small\color{FAUblue}§3.1}
+
+\Needspace{4\baselineskip}
+digits \ensuremath{\times} powers of the base
+
+Rests on: positional notation, with the rightmost place worth one.
+
+\item 
+\Needspace{4\baselineskip}
+\textbf{Integer encodings} \hfill{\small\color{FAUblue}§3.2}
+
+\Needspace{4\baselineskip}
+one bit pattern, several interpretations
+
+Rests on: a fixed width and an explicit signed or unsigned encoding.
+
+\end{itemize}
+
+\Needspace{8\baselineskip}
+\textbf{Encode} \ensuremath{\cdot} store other data
+
+\Needspace{6\baselineskip}
+\begin{itemize}
+\item 
+\Needspace{4\baselineskip}
+\textbf{Character codes} \hfill{\small\color{FAUblue}§3.3}
+
+\Needspace{4\baselineskip}
+character \ensuremath{\to} code point \ensuremath{\to} encoded bits
+
+Rests on: agreed mappings between symbols and numeric codes.
+
+\item 
+\Needspace{4\baselineskip}
+\textbf{Unsigned arithmetic} \hfill{\small\color{FAUblue}§3.4}
+
+\Needspace{4\baselineskip}
+carry \ensuremath{\cdot} borrow \ensuremath{\cdot} partial products
+
+Rests on: positional values and column-wise binary operations.
+
+\end{itemize}
+
+\Needspace{5\baselineskip}
+\textbf{Compute} \ensuremath{\cdot} preserve meaning
+
+\Needspace{3\baselineskip}
+\begin{itemize}
+\item 
+\Needspace{4\baselineskip}
+\textbf{Signed arithmetic} \hfill{\small\color{FAUblue}§3.5}
+
+\Needspace{4\baselineskip}
+fixed width \ensuremath{\to} decode \ensuremath{\to} check overflow
+
+Rests on: two’s-complement interpretation and its representable range.
+
+\end{itemize}
+
+\Needspace{11\baselineskip}
+\Needspace{10\baselineskip}
+\begin{center}\small\begin{tabularx}{\linewidth}{>{\raggedright\arraybackslash}X>{\raggedright\arraybackslash}X}\toprule
+\textbf{Question} & \textbf{Useful method} \\ \midrule
+What value does this bit pattern mean? & State width and encoding, then decode. \\
+How do I convert a base-b number? & Expand by powers or use repeated division. \\
+Did signed arithmetic overflow? & Check the exact result against the fixed-width range. \\
+\bottomrule\end{tabularx}\end{center}
+\end{keepsection}
+
+\begin{keepsection}
+\Needspace{6\baselineskip}
+\section{3.1 Number systems and positional notation}
+
+A numeral is a compact way to write a sum of place values. Binary, octal, decimal, and hexadecimal use the same positional rule with different bases.
+
+\begin{keepsection}
+\Needspace{12\baselineskip}
+\subsection{Expand and convert}
+
+\Needspace{9\baselineskip}
+In base b, each digit d\textsubscript{i} contributes d\textsubscript{i}b\textsuperscript{i}, where the rightmost digit has i=0. Binary digits are 0 or 1. Decimal-to-binary repeated division records remainders; read them from last to first.
+
+\begin{equationcard}{Positional value}
+\[ \begin{gathered} (\mathrm{d}_{\mathrm{k}}…\mathrm{d}_{1}\mathrm{d}_{0})_{\mathrm{b}}\, =\, \sum\, \mathrm{d}_{\mathrm{i}}\mathrm{b}^{\mathrm{i}} \\ (1100010)_{2}\, =\, 1\cdot 2^{6}\, +\, 1\cdot 2^{5}\, +\, 1\cdot 2^{1}\, =\, 98 \end{gathered} \]
+{\small The worked binary number is 98 in decimal. Subscripts identify the base.}
+\end{equationcard}
+
+\begin{workedbox}{Worked conversion \ensuremath{\cdot} decimal to binary}
+Convert 45 to binary by repeated division.
+
+\Needspace{7\baselineskip}
+\begin{enumerate}
+\item 45 ÷ 2 gives quotient 22, remainder 1.
+\item 22 ÷ 2 gives quotient 11, remainder 0; then 11 gives 5 remainder 1.
+\item Continue: 5 gives 2 remainder 1; 2 gives 1 remainder 0; 1 gives 0 remainder 1.
+\item Read remainders upward: 101101\textsubscript{2}. Check: 32+8+4+1=45. \hfill{\small\color{FAUblue}§3.1}
+\end{enumerate}
+\end{workedbox}
+\end{keepsection}
+
+\begin{keepsection}
+\Needspace{14\baselineskip}
+\subsection{Octal and hexadecimal}
+
+\Needspace{11\baselineskip}
+Because 8=2\textsuperscript{3}, each octal digit corresponds to three binary digits. Because 16=2\textsuperscript{4}, each hexadecimal digit corresponds to four bits. Group binary digits from the right and pad the leftmost group with zeroes if needed. In hexadecimal, A–F mean 10–15.
+
+\begin{equationcard}{Compact binary groups}
+\[ \begin{gathered} 10101_{2}\, =\, 010\, 101\, =\, 25_{8} \\ 10010100_{2}\, =\, 1001\, 0100\, =\, 94_{16} \\ 1\, \text{byte}\, =\, 8\, \text{bits}\, =\, 2\, \text{hexadecimal}\, \text{digits} \end{gathered} \]
+{\small The lecture uses 16-bit words and 32-bit long words as examples; the sizes named by these terms can depend on a computer architecture.}
+\end{equationcard}
+
+\Needspace{11\baselineskip}
+\begin{notebox}\textbf{Trap:} do not read a binary string as an ordinary decimal integer. Attach its base, expand it, and only then compare values.\end{notebox}
+
+\begin{recallbox}{Recall check \ensuremath{\cdot} answer without looking}
+\Needspace{5\baselineskip}
+\begin{enumerate}
+\item What power of the base multiplies the rightmost digit?
+\item Why can binary be grouped in threes to convert to octal?
+\item What is A in hexadecimal worth in decimal?
+\end{enumerate}
+
+\nopagebreak[4]{\small\itshape Answers: see “3.1 Number systems and positional notation” under Answers at the end.}
+\end{recallbox}
+\end{keepsection}
+\end{keepsection}
+
+\begin{keepsection}
+\Needspace{6\baselineskip}
+\section{3.2 Integer representations}
+
+A computer stores a fixed number of bits, not a plus or minus sign unless the encoding defines one. The same pattern can mean different values under different encodings.
+
+\begin{keepsection}
+\Needspace{14\baselineskip}
+\subsection{Unsigned and signed ranges}
+
+\Needspace{11\baselineskip}
+An unsigned n-bit pattern represents 0 through 2\textsuperscript{n}\ensuremath{-}1. Signed encodings trade positive range for negative values. The source compares sign-and-magnitude, one’s complement, two’s complement, excess (biased) notation, and binary-coded decimal (BCD).
+
+\begin{equationcard}{Ranges for n bits}
+\[ \begin{gathered} \text{Unsigned}:\, 0\, …\, 2^{\mathrm{n}}-1 \\ \text{Sign}\, \text{and}\, \text{magnitude}:\, -(2^{\mathrm{n}-1}-1)\, …\, +(2^{\mathrm{n}-1}-1) \\ \text{One}’\mathrm{s}\, \text{complement}:\, -(2^{\mathrm{n}-1}-1)\, …\, +(2^{\mathrm{n}-1}-1) \\ \text{Two}’\mathrm{s}\, \text{complement}:\, -2^{\mathrm{n}-1}\, …\, 2^{\mathrm{n}-1}-1 \end{gathered} \]
+{\small Sign-and-magnitude and one’s complement have two zero encodings. Two’s complement has one zero and one extra negative value.}
+\end{equationcard}
+
+\begin{workedbox}{Worked comparison \ensuremath{\cdot} decode 1111 in four encodings}
+\Needspace{7\baselineskip}
+\begin{enumerate}
+\item Unsigned: 15.
+\item Sign-and-magnitude: sign bit 1 and magnitude 111, so \ensuremath{-}7.
+\item One’s complement: invert to 0000, so \ensuremath{-}0, which equals zero but has a distinct pattern.
+\item Two’s complement: the unsigned value 15 represents 15\ensuremath{-}16=\ensuremath{-}1. \hfill{\small\color{FAUblue}§3.2}
+\end{enumerate}
+\end{workedbox}
+\end{keepsection}
+
+\begin{keepsection}
+\Needspace{15\baselineskip}
+\subsection{Two’s complement and bias}
+
+\Needspace{12\baselineskip}
+To form \ensuremath{-}x in n-bit two’s complement, invert all n bits of x and add 1; discard a carry beyond the width. Equivalently, interpret a pattern with top bit 1 by subtracting 2\textsuperscript{n} from its unsigned value. In excess-B notation, actual value = stored unsigned value \ensuremath{-} B. The lecture’s three-bit excess-4 example therefore maps 000 to \ensuremath{-}4 and 111 to 3.
+
+\begin{equationcard}{Decode rules}
+\[ \begin{gathered} \text{Two}’\mathrm{s}-\text{complement}\, \text{value}\, =\, \text{unsigned}(\text{pattern})\, -\, 2^{\mathrm{n}}\, \text{when}\, \text{the}\, \text{top}\, \text{bit}\, \text{is}\, 1 \\ \text{Negate}\, \mathrm{x}:\, \text{invert}\, \mathrm{n}\, \text{bits},\, \text{then}\, \text{add}\, 1 \\ \text{Excess}-\mathrm{B}\, \text{value}\, =\, \text{stored}\, \text{value}\, -\, \mathrm{B} \end{gathered} \]
+{\small Keep the width fixed throughout. The same bit pattern has no signed meaning until an encoding is specified.}
+\end{equationcard}
+\end{keepsection}
+
+\begin{keepsection}
+\Needspace{10\baselineskip}
+\subsection{BCD stores decimal digits separately}
+
+\Needspace{7\baselineskip}
+In four-bit BCD, each decimal digit has its own four-bit code. For example, decimal 59 is 0101 1001 in BCD, while the ordinary binary value 59 is 00111011. BCD uses more bits but keeps each decimal digit directly readable.
+
+\Needspace{11\baselineskip}
+\begin{notebox}\textbf{Trap:} do not convert all BCD bits as one binary number. Decode each four-bit group as a decimal digit.\end{notebox}
+
+\begin{recallbox}{Recall check \ensuremath{\cdot} answer without looking}
+\Needspace{5\baselineskip}
+\begin{enumerate}
+\item What is the four-bit two’s-complement range?
+\item Why is the two’s-complement range asymmetric?
+\item What is the BCD encoding of decimal 42?
+\end{enumerate}
+
+\nopagebreak[4]{\small\itshape Answers: see “3.2 Integer representations” under Answers at the end.}
+\end{recallbox}
+\end{keepsection}
+\end{keepsection}
+
+\begin{keepsection}
+\Needspace{6\baselineskip}
+\section{3.3 Character data}
+
+Numbers are not the only data stored as bits. A character encoding assigns numeric codes to letters, digits, punctuation, and control characters.
+
+\begin{keepsection}
+\Needspace{14\baselineskip}
+\subsection{ASCII and Unicode}
+
+\Needspace{11\baselineskip}
+ASCII uses seven bits, giving 128 code values. The lecture describes eight-bit extensions that use the additional 128 patterns, but those upper values depend on the particular extension. Unicode assigns code points to characters across many writing systems; its first 128 code points match ASCII. A code point and its byte encoding are related but are not the same concept.
+
+\begin{equationcard}{Character-code facts}
+\[ \begin{gathered} 7-\text{bit}\, \text{ASCII}:\, 2^{7}\, =\, 128\, \text{code}\, \text{values} \\ \text{ASCII}\, \text{code}\, \text{points}:\, 0\, …\, 127 \end{gathered} \]
+{\small The first 128 Unicode code points correspond to ASCII. Byte encodings represent code points as bytes by their own rules.}
+\end{equationcard}
+
+\begin{workedbox}{Worked encoding \ensuremath{\cdot} read a short ASCII string}
+The lecture’s example encodes “Fred” in hexadecimal as 46 72 65 64.
+
+\Needspace{5\baselineskip}
+\begin{enumerate}
+\item Split the bytes: 46, 72, 65, 64.
+\item Read each as a hexadecimal ASCII code: 46 is F, 72 is r, 65 is e, and 64 is d.
+\item The four codes decode to “Fred”. \hfill{\small\color{FAUblue}§3.3}
+\end{enumerate}
+\end{workedbox}
+
+\Needspace{10\baselineskip}
+\begin{notebox}\textbf{Trap:} an encoding is a mapping, not a property of the bit pattern by itself. Identify the character set and any byte encoding before decoding text.\end{notebox}
+
+\begin{recallbox}{Recall check \ensuremath{\cdot} answer without looking}
+\Needspace{4\baselineskip}
+\begin{enumerate}
+\item How many code values are available in seven-bit ASCII?
+\item What is the relation between ASCII and the first 128 Unicode code points?
+\end{enumerate}
+
+\nopagebreak[4]{\small\itshape Answers: see “3.3 Character data” under Answers at the end.}
+\end{recallbox}
+\end{keepsection}
+\end{keepsection}
+
+\begin{keepsection}
+\Needspace{6\baselineskip}
+\section{3.4 Unsigned binary arithmetic}
+
+Binary arithmetic follows the same place-value logic as decimal arithmetic. Carries and borrows move between columns, while the fixed bit width limits which values can be stored.
+
+\begin{keepsection}
+\Needspace{13\baselineskip}
+\subsection{Add and subtract}
+
+\Needspace{10\baselineskip}
+Add each column and carry 1 when a column totals 2. For subtraction, borrow from a higher column when the current minuend bit is too small; a borrowed binary 1 is worth 2 in the current column. Subtraction can also be checked by adding the difference to the subtrahend.
+
+\begin{workedbox}{Worked addition \ensuremath{\cdot} include the carry}
+Add 111011\textsubscript{2} and 101010\textsubscript{2}.
+
+\Needspace{5\baselineskip}
+\begin{enumerate}
+\item From right to left: 1+0=1.
+\item 1+1=10, so write 0 and carry 1. Continue each column with its carry.
+\item The result is 1100101\textsubscript{2}. Check: 59+42=101, and 1100101\textsubscript{2}=101. \hfill{\small\color{FAUblue}§3.4}
+\end{enumerate}
+\end{workedbox}
+\end{keepsection}
+
+\begin{keepsection}
+\Needspace{13\baselineskip}
+\subsection{Multiply and divide}
+
+\Needspace{10\baselineskip}
+Binary multiplication uses partial products, like decimal long multiplication, but each multiplier bit is only 0 or 1. Binary division uses quotient and remainder. For divisor d\ensuremath{\neq}0, dividend = quotient\ensuremath{\times}divisor + remainder, where 0\ensuremath{\leq}remainder\ensuremath{<}divisor.
+
+\begin{equationcard}{Division check}
+\[ \begin{gathered} \text{dividend}\, =\, \text{quotient}\, \times \, \text{divisor}\, +\, \text{remainder} \\ 0\, \leq \, \text{remainder}\, <\, \text{divisor} \end{gathered} \]
+{\small Substitute the quotient, divisor, and remainder to check a division result.}
+\end{equationcard}
+
+\Needspace{10\baselineskip}
+\begin{notebox}\textbf{Memory hook:} in binary addition, 1+1 writes 0 and carries 1. In subtraction, a borrow makes the current column worth 2 before subtracting.\end{notebox}
+
+\begin{recallbox}{Recall check \ensuremath{\cdot} answer without looking}
+\Needspace{4\baselineskip}
+\begin{enumerate}
+\item What bit do you write for 1+1, and what do you carry?
+\item What inequality must the remainder satisfy?
+\end{enumerate}
+
+\nopagebreak[4]{\small\itshape Answers: see “3.4 Unsigned binary arithmetic” under Answers at the end.}
+\end{recallbox}
+\end{keepsection}
+\end{keepsection}
+
+\begin{keepsection}
+\Needspace{7\baselineskip}
+\section{3.5 Two’s-complement arithmetic and overflow}
+
+Two’s complement lets the same adder perform signed addition and subtraction. Correct bit operations still need a range check: a fixed-width result can wrap to a pattern with a different signed value.
+
+\begin{keepsection}
+\Needspace{16\baselineskip}
+\subsection{Addition, subtraction, and overflow}
+
+\Needspace{13\baselineskip}
+Add the bit patterns and discard any carry beyond the most significant bit. For subtraction, negate the subtrahend and add it to the minuend. Signed overflow occurs when the exact mathematical result lies outside the representation’s range. For addition, it occurs when two operands with the same sign produce a result with the opposite sign; operands of unlike signs cannot overflow.
+
+\begin{equationcard}{n-bit two’s-complement checks}
+\[ \begin{gathered} \text{Range}:\, -2^{\mathrm{n}-1}\, …\, 2^{\mathrm{n}-1}-1 \\ \mathrm{A}\, -\, \mathrm{B}\, =\, \mathrm{A}\, +\, (\text{two}’\mathrm{s}-\text{complement}\, \text{negation}\, \text{of}\, \mathrm{B}) \\ \text{Same}-\text{sign}\, \text{addition}\, \text{with}\, \text{opposite}-\text{sign}\, \text{result}\, \Rightarrow \, \text{overflow} \end{gathered} \]
+{\small Discarding carry-out is part of fixed-width addition. Carry-out alone does not signal signed overflow.}
+\end{equationcard}
+
+\begin{workedbox}{Worked example \ensuremath{\cdot} detect overflow}
+Use four-bit two’s complement to calculate \ensuremath{-}7+(\ensuremath{-}6).
+
+\Needspace{6\baselineskip}
+\begin{enumerate}
+\item Encode \ensuremath{-}7 as 1001 and \ensuremath{-}6 as 1010.
+\item Add: 1001+1010=1 0011. Discard the carry-out, leaving 0011.
+\item The stored result 0011 is +3, but the exact sum is \ensuremath{-}13, outside the four-bit range \ensuremath{-}8…+7. Both inputs were negative and the result is positive, so overflow occurred. \hfill{\small\color{FAUblue}§3.5}
+\end{enumerate}
+\end{workedbox}
+\end{keepsection}
+
+\begin{keepsection}
+\Needspace{13\baselineskip}
+\subsection{Multiplication and division}
+
+\Needspace{10\baselineskip}
+The lecture notes that ordinary unsigned multiplication cannot simply be applied to signed two’s-complement patterns and read at the original width. A full product may require up to twice as many bits as the operands; retain a sufficient width and interpret the result consistently. For a simple signed multiplication, multiply magnitudes and make the result negative exactly when the operand signs differ, then check the available width. The supplied slides introduce this idea but do not give a complete signed division algorithm.
+
+\Needspace{12\baselineskip}
+\begin{notebox}\textbf{Sign check:} do not treat discarded carry as overflow. Decode the fixed-width result and compare it with the exact mathematical result and allowed range.\end{notebox}
+
+\begin{recallbox}{Recall check \ensuremath{\cdot} answer without looking}
+\Needspace{5\baselineskip}
+\begin{enumerate}
+\item How is A\ensuremath{-}B implemented in two’s-complement arithmetic?
+\item Can two’s-complement addition overflow when the operands have unlike signs?
+\item Why can a signed product need more bits than either input?
+\end{enumerate}
+
+\nopagebreak[4]{\small\itshape Answers: see “3.5 Two’s-complement arithmetic and overflow” under Answers at the end.}
+\end{recallbox}
+\end{keepsection}
+\end{keepsection}
+
+\begin{keepsection}
+\Needspace{18\baselineskip}
+\section{Formula map}
+
+\Needspace{10\baselineskip}
+\begin{center}\small\begin{tabularx}{\linewidth}{>{\raggedright\arraybackslash}X>{\raggedright\arraybackslash}X>{\raggedright\arraybackslash}X}\toprule
+\textbf{Idea} & \textbf{Relation} & \textbf{Use} \\ \midrule
+Positional value & \ensuremath{\Sigma}d\textsubscript{i}b\textsuperscript{i} & Convert a base-b numeral to a value. \\
+Unsigned n-bit range & 0 … 2\textsuperscript{n}\ensuremath{-}1 & Check if a non-negative integer fits. \\
+Two’s-complement range & \ensuremath{-}2\textsuperscript{n\ensuremath{-}1} … 2\textsuperscript{n\ensuremath{-}1}\ensuremath{-}1 & Check signed fixed-width values. \\
+Two’s-complement negation & Invert n bits, then add 1 & Negate within the selected width. \\
+Excess-B & actual = stored \ensuremath{-} B & Decode a biased pattern. \\
+Division & dividend = quotient\ensuremath{\times}divisor + remainder & Verify quotient and remainder. \\
+Signed overflow & exact result outside representable range & Determine whether the encoded answer is valid. \\
+\bottomrule\end{tabularx}\end{center}
+
+\begin{equationcard}{Check every answer}
+\[ \begin{gathered} \text{State}\, \text{the}\, \text{base},\, \text{encoding},\, \text{and}\, \text{bit}\, \text{width} \\ \text{Verify}\, \text{place}\, \text{values}\, \text{or}\, \text{arithmetic}\, \text{in}\, \text{decimal} \\ \text{Compare}\, \text{signed}\, \text{results}\, \text{with}\, \text{the}\, \text{allowed}\, \text{range} \end{gathered} \]
+{\small Units are not used in these number-representation problems; check the encoding and range instead.}
+\end{equationcard}
+\end{keepsection}
+
+\begin{keepsection}
+\Needspace{17\baselineskip}
+\section{Derive it cold}
+
+\Needspace{14\baselineskip}
+Cover the explanations and rebuild each result on blank paper.
+
+\Needspace{12\baselineskip}
+\begin{enumerate}
+\item \textbf{Base conversion:} expand a binary numeral into powers of 2. \hfill{\small\color{FAUblue}§3.1}
+\item \textbf{Binary to octal/hex:} derive why groups of 3/4 bits match one digit. \hfill{\small\color{FAUblue}§3.1}
+\item \textbf{Two’s-complement negation:} show why invert-and-add-one gives 2\textsuperscript{n}\ensuremath{-}x. \hfill{\small\color{FAUblue}§3.2}
+\item \textbf{Signed range:} determine the lowest and highest n-bit two’s-complement values. \hfill{\small\color{FAUblue}§3.2}
+\item \textbf{Unsigned division:} verify a quotient by reconstructing the dividend. \hfill{\small\color{FAUblue}§3.4}
+\item \textbf{Addition overflow:} explain why same-sign inputs can produce an invalid opposite-sign result. \hfill{\small\color{FAUblue}§3.5}
+\item \textbf{Subtraction:} replace A\ensuremath{-}B with A+(\ensuremath{-}B) and show the bit width at every step. \hfill{\small\color{FAUblue}§3.5}
+\end{enumerate}
+\end{keepsection}
+
+\begin{keepsection}
+\Needspace{15\baselineskip}
+\section{Explain it}
+
+\Needspace{12\baselineskip}
+Answer each why or when question aloud before opening its model response.
+
+\Needspace{10\baselineskip}
+\begin{enumerate}
+\item Why does the rightmost binary digit have weight 1?
+\item Why are octal and hexadecimal convenient ways to write binary?
+\item Why do sign-and-magnitude and one’s complement have two zero patterns?
+\item Why does two’s complement have one extra negative value?
+\item When is carry-out discarded, and why is that not enough to detect signed overflow?
+\item Why can BCD be easier for decimal display but less space-efficient?
+\end{enumerate}
+
+\nopagebreak[4]{\small\itshape Answers: see “Explain it” under Answers at the end.}
+\end{keepsection}
+
+\begin{keepsection}
+\Needspace{10\baselineskip}
+\section{Source check}
+
+\Needspace{7\baselineskip}
+The rendered slide table was checked visually; this is a transcription error, not a different encoding rule.
+
+\Needspace{4\baselineskip}
+\begin{itemize}
+\item \textbf{Slide 24 \ensuremath{\cdot} missing minus sign in the Excess-8 row:} the entry for bit pattern 0111 is printed as 1. With four-bit excess-8, the decoded value is stored value 7 minus bias 8, which equals \ensuremath{-}1. The surrounding table and the lecture’s earlier example use that mapping.
+\end{itemize}
+\end{keepsection}
+
+\clearpage
+
+\begin{keepsection}
+\Needspace{10\baselineskip}
+\section{Mixed practice}
+
+\Needspace{7\baselineskip}
+Try all 20 problems before opening the worked answers. The topics are interleaved so you must select the encoding or operation each time.
+
+\begin{enumerate}
+\item Convert 37\textsubscript{10} to binary and check by place value. \hfill{\small\color{FAUblue}§3.1}
+\item Decode 1110 as a four-bit two’s-complement number. \hfill{\small\color{FAUblue}§3.2}
+\item How many bits represent one hexadecimal digit? \hfill{\small\color{FAUblue}§3.1}
+\item Encode decimal 73 in four-bit BCD. \hfill{\small\color{FAUblue}§3.2}
+\item How many values are available in seven-bit ASCII? \hfill{\small\color{FAUblue}§3.3}
+\item Add 1011\textsubscript{2} and 0110\textsubscript{2} as unsigned values. \hfill{\small\color{FAUblue}§3.4}
+\item What is the four-bit two’s-complement range? \hfill{\small\color{FAUblue}§3.2}
+\item Convert 101101\textsubscript{2} to octal. \hfill{\small\color{FAUblue}§3.1}
+\item In excess-4, what value does the three-bit pattern 110 represent? \hfill{\small\color{FAUblue}§3.2}
+\item For 29÷5, give quotient and remainder and verify the division identity. \hfill{\small\color{FAUblue}§3.4}
+\item Negate 0011 in four-bit two’s complement. \hfill{\small\color{FAUblue}§3.2}
+\item Convert 11101010\textsubscript{2} to hexadecimal. \hfill{\small\color{FAUblue}§3.1}
+\item Why does two’s-complement addition discard a carry-out? \hfill{\small\color{FAUblue}§3.5}
+\item Write decimal 59 in BCD and ordinary binary. \hfill{\small\color{FAUblue}§3.2}
+\item Compute 7\ensuremath{-}(\ensuremath{-}6) using four-bit two’s complement. State the exact result and whether it fits. \hfill{\small\color{FAUblue}§3.5}
+\item What do the first 128 Unicode code points have in common with ASCII? \hfill{\small\color{FAUblue}§3.3}
+\item Multiply 101\textsubscript{2} by 11\textsubscript{2} as unsigned values. \hfill{\small\color{FAUblue}§3.4}
+\item In four-bit two’s complement, add 0101 and 0011. Does it overflow? \hfill{\small\color{FAUblue}§3.5}
+\item What is the decoded value of pattern 0111 in four-bit excess-8? \hfill{\small\color{FAUblue}§3.2}
+\item What is one reason BCD can be useful despite its extra storage? \hfill{\small\color{FAUblue}§3.2}
+\end{enumerate}
+
+\nopagebreak[4]{\small\itshape Answers: see “Mixed practice” under Answers at the end.}
+\end{keepsection}
+
+\begin{keepsection}
+\Needspace{5\baselineskip}
+\section{Exam-style problems}
+
+Allow about 20 minutes per problem. State the bit width and encoding before each calculation.
+
+\begin{keepsection}
+\Needspace{11\baselineskip}
+\subsection{1 \ensuremath{\cdot} Compare encodings}
+
+\Needspace{8\baselineskip}
+Use four bits to represent the integer \ensuremath{-}5. Compare sign-and-magnitude, one’s complement, and two’s complement.
+
+\Needspace{5\baselineskip}
+\begin{enumerate}
+\item Write the four-bit pattern in each encoding.
+\item State the range and number of zero patterns for each representation.
+\item Explain why two’s complement is useful for arithmetic despite its asymmetric range.
+\end{enumerate}
+
+\nopagebreak[4]{\small\itshape Answers: see “Exam-style problems” under Answers at the end.}
+\end{keepsection}
+
+\begin{keepsection}
+\Needspace{10\baselineskip}
+\subsection{2 \ensuremath{\cdot} Convert, calculate, and check}
+
+\Needspace{7\baselineskip}
+Use four-bit two’s-complement inputs for \ensuremath{-}5 and +3.
+
+\Needspace{5\baselineskip}
+\begin{enumerate}
+\item Write both input patterns and add them, showing any carry-out.
+\item Decode the retained four-bit result and compare it with the exact sum.
+\item State whether overflow occurred and explain why carry-out is not the test.
+\end{enumerate}
+
+\nopagebreak[4]{\small\itshape Answers: see “Exam-style problems” under Answers at the end.}
+\end{keepsection}
+\end{keepsection}
+
+\begin{keepsection}
+\Needspace{10\baselineskip}
+\section{Self-check}
+
+\Needspace{7\baselineskip}
+Tick a skill only in a later session, at least one day after studying, when you can demonstrate it without notes.
+
+\begin{itemize}
+\item $\mdlgwhtsquare$\ Expand numbers by powers of their base. (1, 8, 12)
+\item $\mdlgwhtsquare$\ Convert binary groups to octal and hexadecimal. (3, 8, 12)
+\item $\mdlgwhtsquare$\ State signed and unsigned ranges from a bit width. (7)
+\item $\mdlgwhtsquare$\ Decode patterns using distinct signed encodings. (2, 19)
+\item $\mdlgwhtsquare$\ Negate a two’s-complement value at fixed width. (11)
+\item $\mdlgwhtsquare$\ Decode an excess-B value. (9, 19)
+\item $\mdlgwhtsquare$\ Write and read decimal digits in BCD. (4, 14, 20)
+\item $\mdlgwhtsquare$\ Explain ASCII and Unicode code-point relationships. (5, 16)
+\item $\mdlgwhtsquare$\ Add binary values and carry correctly. (6, 17)
+\item $\mdlgwhtsquare$\ Verify quotient and remainder. (10)
+\item $\mdlgwhtsquare$\ Add signed values and detect overflow. (13, 18)
+\item $\mdlgwhtsquare$\ Subtract by negating and adding. (15)
+\item $\mdlgwhtsquare$\ Identify and correct the slide 24 excess-8 typo. (19)
+\item $\mdlgwhtsquare$\ Rebuild the derivations from the formula list.
+\item $\mdlgwhtsquare$\ Complete both exam-style problems with checks.
+\end{itemize}
+\end{keepsection}
+
+
+\clearpage
+\section{Answers}
+\begin{keepsection}\subsection{Start from memory}
+
+\Needspace{10\baselineskip}
+\begin{enumerate}
+\item It is the digit’s coefficient on a power of the base, counting from power zero at the right. \hfill{\small\color{FAUblue}§3.1}
+\item \ensuremath{-}2\textsuperscript{n\ensuremath{-}1} through 2\textsuperscript{n\ensuremath{-}1}\ensuremath{-}1. \hfill{\small\color{FAUblue}§3.2}
+\item Invert all bits and add 1, keeping the chosen width. \hfill{\small\color{FAUblue}§3.2}
+\item Four bits, because 16 = 2\textsuperscript{4}. \hfill{\small\color{FAUblue}§3.1}
+\item Nothing by itself. In fixed-width two’s-complement addition, carry-out is discarded and is not the signed-overflow test. \hfill{\small\color{FAUblue}§3.5}
+\end{enumerate}
+
+\end{keepsection}
+\begin{keepsection}\subsection{3.1 Number systems and positional notation}
+
+\Needspace{5\baselineskip}
+\begin{enumerate}
+\item The zeroth power, which is 1. \hfill{\small\color{FAUblue}§3.1}
+\item Each octal digit represents 0–7, exactly the range of three bits, and 8=2\textsuperscript{3}. \hfill{\small\color{FAUblue}§3.1}
+\item 10. \hfill{\small\color{FAUblue}§3.1}
+\end{enumerate}
+
+\end{keepsection}
+\begin{keepsection}\subsection{3.2 Integer representations}
+
+\Needspace{5\baselineskip}
+\begin{enumerate}
+\item \ensuremath{-}8 through +7. \hfill{\small\color{FAUblue}§3.2}
+\item There is one zero and one additional negative pattern, 1000, representing \ensuremath{-}8. \hfill{\small\color{FAUblue}§3.2}
+\item 0100 0010, one four-bit code for 4 and one for 2. \hfill{\small\color{FAUblue}§3.2}
+\end{enumerate}
+
+\end{keepsection}
+\begin{keepsection}\subsection{3.3 Character data}
+
+\Needspace{5\baselineskip}
+\begin{enumerate}
+\item 2\textsuperscript{7}=128. \hfill{\small\color{FAUblue}§3.3}
+\item The Unicode code points 0–127 correspond to the ASCII characters; their byte representation depends on the encoding used. \hfill{\small\color{FAUblue}§3.3}
+\end{enumerate}
+
+\end{keepsection}
+\begin{keepsection}\subsection{3.4 Unsigned binary arithmetic}
+
+\Needspace{4\baselineskip}
+\begin{enumerate}
+\item Write 0 and carry 1 to the next column. \hfill{\small\color{FAUblue}§3.4}
+\item For a positive divisor, 0\ensuremath{\leq}remainder\ensuremath{<}divisor. \hfill{\small\color{FAUblue}§3.4}
+\end{enumerate}
+
+\end{keepsection}
+\begin{keepsection}\subsection{3.5 Two’s-complement arithmetic and overflow}
+
+\Needspace{7\baselineskip}
+\begin{enumerate}
+\item Negate B in the chosen width, then add it to A and discard carry-out. \hfill{\small\color{FAUblue}§3.5}
+\item No. Overflow in addition requires two operands with the same sign and a result of the opposite sign. \hfill{\small\color{FAUblue}§3.5}
+\item The product magnitude can exceed the range of either input width; a full-width product may need up to twice as many bits. \hfill{\small\color{FAUblue}§3.5}
+\end{enumerate}
+
+\end{keepsection}
+\begin{keepsection}\subsection{Explain it}
+
+\Needspace{17\baselineskip}
+\begin{enumerate}
+\item The rightmost place is position zero, and any base raised to zero is 1. Its bit contributes either zero or one to the value.
+\item Each octal digit maps to exactly three bits and each hexadecimal digit to four. Grouping bits preserves their value while shortening the written form.
+\item Both encodings use a sign bit and a separate magnitude/complement pattern for zero. That creates distinct positive-zero and negative-zero bit patterns.
+\item With n bits, one pattern is used for zero and the remaining patterns cannot be divided evenly into equal positive and negative ranges. Two’s complement assigns the extra pattern to the negative side.
+\item Fixed-width addition retains only n result bits, so carry beyond the word is discarded. Signed overflow depends on the signs of the inputs and result, not on that discarded bit.
+\item Each four-bit BCD group can be read as one decimal digit, but four bits are used per decimal digit even when ordinary binary could represent the whole number with fewer bits.
+\end{enumerate}
+
+\end{keepsection}
+\begin{keepsection}\subsection{Mixed practice}
+
+\begin{enumerate}
+\item 37=32+4+1, so 100101\textsubscript{2}. \hfill{\small\color{FAUblue}§3.1}
+\item Unsigned value 14\ensuremath{-}16=\ensuremath{-}2. \hfill{\small\color{FAUblue}§3.2}
+\item Four bits, since 16=2\textsuperscript{4}. \hfill{\small\color{FAUblue}§3.1}
+\item 7 is 0111 and 3 is 0011, so 73 is 0111 0011 in BCD. \hfill{\small\color{FAUblue}§3.2}
+\item 2\textsuperscript{7}=128 code values. \hfill{\small\color{FAUblue}§3.3}
+\item 1011+0110=10001. As an unsigned five-bit result it is 17. \hfill{\small\color{FAUblue}§3.4}
+\item \ensuremath{-}8 through +7. \hfill{\small\color{FAUblue}§3.2}
+\item Group 101 101; each group is 5, so 55\textsubscript{8}. \hfill{\small\color{FAUblue}§3.1}
+\item Pattern 110 is 6; 6\ensuremath{-}4=2. \hfill{\small\color{FAUblue}§3.2}
+\item 29=5\ensuremath{\times}5+4, so quotient 5 and remainder 4; 0\ensuremath{\leq}4\ensuremath{<}5. \hfill{\small\color{FAUblue}§3.4}
+\item Invert 0011 to 1100 and add 1: 1101, which is \ensuremath{-}3. \hfill{\small\color{FAUblue}§3.2}
+\item 1110 1010 maps to E A, so EA\textsubscript{16}. \hfill{\small\color{FAUblue}§3.1}
+\item The machine keeps only the fixed n result bits. Carry-out is outside that word and does not alone indicate signed overflow. \hfill{\small\color{FAUblue}§3.5}
+\item BCD: 0101 1001. Ordinary binary: 111011. \hfill{\small\color{FAUblue}§3.2}
+\item \ensuremath{-}6 is 1010; invert and add 1 to get +6=0110. Then 0111+0110=1101, which decodes as \ensuremath{-}3. The exact result is +13, outside \ensuremath{-}8…+7, so overflow occurs. \hfill{\small\color{FAUblue}§3.5}
+\item Unicode code points 0–127 correspond to ASCII characters. \hfill{\small\color{FAUblue}§3.3}
+\item 101 is 5 and 11 is 3; 5\ensuremath{\times}3=15=1111\textsubscript{2}. \hfill{\small\color{FAUblue}§3.4}
+\item 0101+0011=1000. The exact result is +8, outside the four-bit range \ensuremath{-}8…+7; the two positive inputs produced a negative-sign pattern, so it overflows. \hfill{\small\color{FAUblue}§3.5}
+\item 7\ensuremath{-}8=\ensuremath{-}1. \hfill{\small\color{FAUblue}§3.2}
+\item BCD keeps each decimal digit directly encoded, which can simplify decimal display or input/output. \hfill{\small\color{FAUblue}§3.2}
+\end{enumerate}
+
+\end{keepsection}
+\begin{keepsection}\subsection{Exam-style problems}
+
+\Needspace{9\baselineskip}
+\begin{enumerate}
+\item +5 is 0101. Sign-and-magnitude is 1101. One’s complement is 1010, the inversion of 0101. Two’s complement is 1011, the inversion plus 1. \hfill{\small\color{FAUblue}§3.2}
+\item For four bits, sign-and-magnitude and one’s complement both range from \ensuremath{-}7 to +7 and have two zero patterns. Two’s complement ranges from \ensuremath{-}8 to +7 and has one zero. \hfill{\small\color{FAUblue}§3.2}
+\item Negation and subtraction use the same fixed-width adder: invert the subtrahend and add one. Its one extra negative value is usually a small trade-off for simpler arithmetic hardware. \hfill{\small\color{FAUblue}§3.2} \hfill{\small\color{FAUblue}§3.5}
+\end{enumerate}
+
+\end{keepsection}
+\begin{keepsection}\subsection{Exam-style problems}
+
+\Needspace{6\baselineskip}
+\begin{enumerate}
+\item \ensuremath{-}5 is 1011 and +3 is 0011. Addition gives 1110 with no carry-out. \hfill{\small\color{FAUblue}§3.5}
+\item 1110 is 14 unsigned; subtract 16 to decode \ensuremath{-}2. The exact sum is also \ensuremath{-}2. \hfill{\small\color{FAUblue}§3.2} \hfill{\small\color{FAUblue}§3.5}
+\item No overflow: the exact result \ensuremath{-}2 lies in \ensuremath{-}8…+7. Carry-out is not the signed-overflow criterion; compare the signs or the exact result to the range. \hfill{\small\color{FAUblue}§3.5}
+\end{enumerate}
+
+\end{keepsection}
+
+\vfill{\small Personal study guide based on the supplied “03\_data\_representation.pdf” (41 slides; slide 40 is dated 22 April 2024). Written in my own words; no lecture pages or figures are reproduced. The topic headings in this guide organise the slide sequence. Not an official FAU publication; check course details against the current notes.}
+
+\end{document}

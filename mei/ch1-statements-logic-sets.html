@@ -1,0 +1,192 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#04316A" />
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 40 40'%3E%3Crect width='40' height='40' fill='%23BDE892'/%3E%3Ctext x='20' y='25' text-anchor='middle' font-family='sans-serif' font-size='12' font-weight='800' fill='%230B1B33'%3EMEI%3C/text%3E%3C/svg%3E" />
+    <meta name="description" content="A retrieval-first study guide to statements, propositional logic, and set theory, based on MEI Chapter 1 lecture notes." />
+    <title>Statements, Logic, and Sets · MEI Chapter 1</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="../css/system.css" />
+    <link rel="stylesheet" href="../css/guide.css" />
+  </head>
+  <body class="s-mei-1" data-key="mei1-ch1">
+    <div class="wrap">
+      <nav class="toc" aria-label="Guide contents">
+        <a class="brand" href="../index.html"><span>From Fundamentals to AI Apocalypse</span></a>
+        <a class="home" href="../index.html">All semesters</a>
+        <nav class="chapter-switch" aria-label="Chapter 1"><a aria-current="page" href="ch1-statements-logic-sets.html">Guide</a><a href="ch1-statements-logic-sets-lab.html">Lab</a></nav>
+        <details class="mobile-toc"><summary>Jump to a section</summary><ol>
+          <li><a href="#plan">Study plan</a></li><li><a href="#sec-11">1.1 Propositional Logic</a></li><li><a href="#sec-12">1.2 Set Theory</a></li>
+          <li><a href="#formula-map">Formula map</a></li><li><a href="#derivations">Derive it cold</a></li><li><a href="#explain">Explain it</a></li><li><a href="#practice">Mixed practice</a></li><li><a href="#exam">Exam-style problems</a></li><li><a href="#slips">Slips in the notes</a></li><li><a href="#checklist">Self-check</a></li>
+        </ol></details>
+        <ol>
+          <li><a href="#plan">Study plan</a></li><li class="toc-group" aria-hidden="true">Sections</li><li><a href="#sec-11">1.1 Propositional Logic</a></li><li><a href="#sec-12">1.2 Set Theory</a></li>
+          <li class="toc-group" aria-hidden="true">Practise</li><li><a href="#formula-map">Formula map</a></li><li><a href="#derivations">Derive it cold</a></li><li><a href="#explain">Explain it</a></li><li><a href="#practice">Mixed practice</a></li><li><a href="#exam">Exam-style problems</a></li><li><a href="#slips">Slips in the notes</a></li><li><a href="#checklist">Self-check</a></li>
+        </ol>
+      </nav>
+      <main>
+        <header class="sign"><span class="code" aria-label="Mathematics for Engineers I">MEI</span><h1>Statements, Logic, and Sets</h1><p class="course">Mathematics for Engineers I · Module 62765 · Chapter 1</p><p class="meta" id="review-meta"></p></header>
+        <p class="standfirst">Mathematical arguments use a small grammar of statements, logical connectives, and sets. This chapter builds that grammar: first decide when statements are true, then describe and combine collections of objects precisely.</p>
+        <div class="downloads" aria-label="Download study guide files"><p>Take the guide offline</p><a class="btn primary" href="ch1-statements-logic-sets.pdf" download>Download clean PDF</a><a class="btn" href="ch1-statements-logic-sets.tex" download>Download LaTeX source (.tex)</a></div>
+
+        <section class="cold-start" id="cold-start" aria-labelledby="cold-start-title"><h2 id="cold-start-title">Start from memory</h2><p>Try these before reading. If you are unsure, write a guess; the gap tells you what to look for.</p><ol>
+          <li>When is an implication A ⇒ B false?</li><li>Does mathematical “or” allow both statements to be true?</li><li>How do you negate “for every x, P(x)”?</li><li>What does A ⊂ B say about the elements of A?</li><li>How is A × B different from the set containing A and B?</li>
+        </ol><details class="answers"><summary>Check the short answers</summary><ol>
+          <li>Only when A is true and B is false. <span class="sec-ref">§1.1</span></li><li>Yes. A ∨ B is true when at least one is true, including when both are true. <span class="sec-ref">§1.1</span></li><li>There exists an x for which P(x) is false: ∃x ¬P(x). <span class="sec-ref">§1.1</span></li><li>Every element of A is also an element of B. <span class="sec-ref">§1.2</span></li><li>A × B contains ordered pairs (a,b) with a ∈ A and b ∈ B; it is not the set {A,B}. <span class="sec-ref">§1.2</span></li>
+        </ol></details></section>
+
+        <section id="plan" aria-labelledby="plan-title"><h2 id="plan-title">How to use this guide</h2><p>Read one section, hide the page, then reconstruct the rules and examples from memory. Use the answers only after you have committed to a response.</p><ol class="study-plan">
+          <li><strong>Day 0:</strong> Do the cold start, read §§1.1–1.2, and try the worked examples with the answers covered.</li><li><strong>Day 1:</strong> Rebuild the truth table and the set operations from memory; solve practice 1–8.</li><li><strong>Day 3:</strong> Solve practice 9–16 without notes, then check each answer and revisit its section reference.</li><li><strong>About day 7:</strong> Solve practice 17–24 in mixed order and explain the De Morgan rules aloud.</li><li><strong>About day 14:</strong> Reconstruct the derivations, then take one exam problem under time limits.</li><li><strong>Before the exam:</strong> Complete the self-check and both exam problems. Return to any skill you cannot demonstrate unaided.</li>
+        </ol><p class="method"><strong>When stuck:</strong> identify the definitions involved, test a small example, and write each membership or truth condition explicitly before simplifying.</p></section>
+
+        <section id="route" aria-labelledby="route-title"><h2 id="route-title">How the chapter fits together</h2><p>The chapter moves from evaluating statements to describing collections and proving relationships between them.</p><div class="cmap" data-cmap>
+          <div class="cm-col"><p class="cm-head"><strong>Measured</strong> · the starting language</p><ul>
+            <li class="cm-node" data-id="statement" data-deps="" data-sec="1.1"><p class="cm-title"><strong>Statements</strong> <span class="sec-ref">§1.1</span></p><p class="cm-formula">true = 1 · false = 0</p><p class="cm-why">Rests on: deciding whether a sentence has a definite truth value.</p></li>
+            <li class="cm-node" data-id="connectives" data-deps="statement" data-sec="1.1"><p class="cm-title"><strong>Connectives</strong> <span class="sec-ref">§1.1</span></p><p class="cm-formula">¬, ∧, ∨, ⇒, ⇔</p><p class="cm-why">Rests on: truth values for the component statements and the connective's rule.</p></li>
+          </ul></div>
+          <div class="cm-col"><p class="cm-head"><strong>Defined</strong> · objects and relations</p><ul>
+            <li class="cm-node" data-id="quantifiers" data-deps="statement" data-sec="1.1"><p class="cm-title"><strong>Quantifiers</strong> <span class="sec-ref">§1.1</span></p><p class="cm-formula">∀x P(x) · ∃x P(x)</p><p class="cm-why">Rests on: a domain of possible objects and a predicate whose truth can be checked.</p></li>
+            <li class="cm-node" data-id="sets" data-deps="statement" data-sec="1.2"><p class="cm-title"><strong>Sets and membership</strong> <span class="sec-ref">§1.2</span></p><p class="cm-formula">x ∈ A</p><p class="cm-why">Rests on: a well-defined collection and a membership test.</p></li>
+            <li class="cm-node" data-id="operations" data-deps="sets" data-sec="1.2"><p class="cm-title"><strong>Set operations</strong> <span class="sec-ref">§1.2</span></p><p class="cm-formula">∪, ∩, \, ×, Aᶜ</p><p class="cm-why">Rests on: membership in the original sets and, for a complement, a fixed universal set.</p></li>
+          </ul></div>
+          <div class="cm-col"><p class="cm-head"><strong>Derived</strong> · rules from definitions</p><ul>
+            <li class="cm-node" data-id="rules" data-deps="connectives" data-sec="1.1"><p class="cm-title"><strong>Logical equivalences</strong> <span class="sec-ref">§1.1</span></p><p class="cm-formula">truth tables prove equivalence</p><p class="cm-why">Rests on: matching truth values in every row.</p></li>
+            <li class="cm-node" data-id="setlaws" data-deps="operations" data-sec="1.2"><p class="cm-title"><strong>Set algebra</strong> <span class="sec-ref">§1.2</span></p><p class="cm-formula">compare membership conditions</p><p class="cm-why">Rests on: showing that both sides contain exactly the same elements.</p></li>
+          </ul></div>
+        </div><p class="cm-detail" aria-live="polite" hidden></p><div class="tw"><table><thead><tr><th>Question</th><th>Tool</th></tr></thead><tbody><tr><td>When is a compound statement true?</td><td>Truth table</td></tr><tr><td>Does a set equation hold?</td><td>Element-by-element membership argument</td></tr><tr><td>What is the negation of a quantified claim?</td><td>Swap ∀ and ∃, then negate the predicate</td></tr></tbody></table></div></section>
+
+        <section id="sec-11" aria-labelledby="s11-title"><h2 id="s11-title">1.1 Propositional Logic</h2><p class="why">Logic gives precise rules for combining claims. It lets you test arguments, simplify conditions, and express properties that will reappear throughout mathematics.</p>
+          <h3>A statement has a truth value</h3><p>A <strong>statement</strong> is a sentence that is either true or false; its truth value is 1 or 0, respectively. “9 &gt; 8” is a statement. “Friday the 13th is unlucky” is not a statement here because it does not have a definite mathematical truth value. A claim may still be a statement even if its truth is not currently known.</p>
+          <div class="eq"><strong>Logical connectives</strong><span class="formula">¬A</span><span class="formula">A ∧ B</span><span class="formula">A ∨ B</span><span class="formula">A ⇒ B</span><span class="formula">A ⇔ B</span><span class="eq-note">Truth tables define the meaning of each connective. The notes use 1 for true and 0 for false; ∨ is inclusive “or”.</span></div>
+          <div class="tw"><table><thead><tr><th>Form</th><th>Meaning</th><th>True when</th></tr></thead><tbody>
+            <tr><td>¬A</td><td>not A</td><td>A is false</td></tr><tr><td>A ∧ B</td><td>A and B</td><td>both A and B are true</td></tr><tr><td>A ∨ B</td><td>A or B</td><td>at least one is true; both may be true</td></tr><tr><td>A ⇒ B</td><td>A implies B</td><td>A is false or B is true</td></tr><tr><td>A ⇔ B</td><td>A iff B</td><td>A and B have the same truth value</td></tr>
+          </tbody></table></div>
+          <p>The implication A ⇒ B is false in exactly one case: A is true and B is false. This is why a false premise makes the implication true under the truth-table definition; it does not claim that the conclusion follows from a false premise in ordinary causal language.</p>
+          <div class="worked"><p class="worked-title">Worked example · build a truth table</p><p>Test whether A ⇒ B has the same truth values as ¬A ∨ B.</p><ol><li>List all input pairs: (1,1), (1,0), (0,1), (0,0).</li><li>Evaluate ¬A ∨ B: 1, 0, 1, 1.</li><li>Evaluate A ⇒ B: 1, 0, 1, 1.</li><li>The columns match in every row, so the two forms are equivalent. <span class="sec-ref">§1.1</span></li></ol></div>
+          <h3>Tautologies and logical rules</h3><p>A <strong>tautology</strong> is true for every assignment of truth values. Two forms are logically equivalent when their truth values agree in every row. A truth table is a direct proof for expressions with a small number of variables.</p>
+          <div class="eq"><strong>Rules to recognise and prove with truth tables</strong><span class="formula">¬¬A ⇔ A</span><span class="formula">A ∧ B ⇔ B ∧ A</span><span class="formula">A ∨ B ⇔ B ∨ A</span><span class="formula">A ∧ (B ∧ C) ⇔ (A ∧ B) ∧ C</span><span class="formula">A ∨ (B ∨ C) ⇔ (A ∨ B) ∨ C</span><span class="formula">A ∧ (B ∨ C) ⇔ (A ∧ B) ∨ (A ∧ C)</span><span class="formula">A ∨ (B ∧ C) ⇔ (A ∨ B) ∧ (A ∨ C)</span><span class="formula">¬(A ∧ B) ⇔ ¬A ∨ ¬B</span><span class="formula">¬(A ∨ B) ⇔ ¬A ∧ ¬B</span><span class="eq-note">These include double negation, commutativity, associativity, distributivity, and De Morgan’s laws (Theorem 1.4, notes p. 4).</span></div>
+          <p class="method"><strong>Trap:</strong> the converse B ⇒ A is not generally equivalent to A ⇒ B. “If it rains, the street is wet” does not imply “if the street is wet, it rained.”</p>
+          <h3>Predicates and quantifiers</h3><p>A <strong>propositional form</strong> P(x) depends on variables; assigning values turns it into a statement. A quantifier specifies how many values in a domain must satisfy it.</p>
+          <div class="eq"><strong>Quantifiers</strong><span class="formula">∀x P(x): P(x) holds for every x in the domain</span><span class="formula">∃x P(x): P(x) holds for at least one x</span><span class="formula">∃!x P(x): P(x) holds for exactly one x</span><span class="eq-note">The domain matters. Quantifier order matters too: ∃D ∀P R(D,P) is not the same as ∀P ∃D R(D,P).</span></div>
+          <p>Negation changes “every” to “there exists at least one counterexample”, and changes “there exists” to “none exist”.</p><div class="eq"><strong>Negating quantified statements</strong><span class="formula">¬(∀x P(x)) ⇔ ∃x ¬P(x)</span><span class="formula">¬(∃x P(x)) ⇔ ∀x ¬P(x)</span><span class="eq-note">Negate the predicate after swapping the quantifier.</span></div>
+          <div class="worked"><p class="worked-title">Worked example · negate a quantified claim</p><p>Negate: “For every real number x, x² ≥ 0.”</p><ol><li>Swap ∀ for ∃.</li><li>Negate the predicate x² ≥ 0 to x² &lt; 0.</li><li>The negation is “There exists a real number x with x² &lt; 0.” It is false, so the original claim is true. <span class="sec-ref">§1.1</span></li></ol></div>
+          <p class="method"><strong>Memory hook:</strong> to disprove a universal claim, give one counterexample. To prove an existential claim, give one witness.</p>
+          <h3>Why the grammar matters</h3><p>The notes connect propositional logic to digital circuits and satisfiability problems. A circuit implements a truth table; a SAT solver asks whether some assignment makes a propositional formula true. These are applications of the truth rules, not extra operators.</p>
+          <p class="lab-link"><a href="ch1-statements-logic-sets-lab.html#exp-logic">Try it: truth-table experiments</a> and <a href="ch1-statements-logic-sets-lab.html#exp-quantifiers">quantifier experiments</a>.</p>
+          <div class="recall"><p class="recall-title">Recall check · answer without looking</p><ol><li>Which row makes A ⇒ B false?</li><li>How can you prove two forms equivalent with a truth table?</li><li>What is the negation of ∀x P(x)?</li></ol><details class="answers"><summary>Check these answers</summary><ol><li>A=1, B=0. <span class="sec-ref">§1.1</span></li><li>Show that their output columns agree for every assignment. <span class="sec-ref">§1.1</span></li><li>∃x ¬P(x): at least one value fails the predicate. <span class="sec-ref">§1.1</span></li></ol></details></div>
+        </section>
+
+        <section id="sec-12" aria-labelledby="s12-title"><h2 id="s12-title">1.2 Set Theory</h2><p class="why">Sets let us collect objects by a precise membership rule. Logical connectives reappear here as operations on membership conditions.</p>
+          <h3>Membership, descriptions, and inclusion</h3><p>A <strong>set</strong> is a well-defined collection of distinct objects. Write x ∈ A when x is a member and x ∉ A otherwise. A set may be given by listing its elements, such as {1,2,3}, or by a property, such as {x ∈ ℝ : x &gt; 0}. Order and repetition do not change a set.</p>
+          <div class="eq"><strong>Subset and equality</strong><span class="formula">A ⊂ B ⇔ every x ∈ A also belongs to B</span><span class="formula">A = B ⇔ A ⊂ B and B ⊂ A</span><span class="formula">A ⊊ B ⇔ A ⊂ B and some element of B is not in A</span><span class="eq-note">The notes use ⊂ for subset and ⊊ for proper subset. Some authors use ⊆ for subset.</span></div>
+          <p>The empty set ∅ has no elements and is a subset of every set. Standard number sets are ℕ (positive natural numbers in these notes), ℤ (integers), ℚ (rationals), ℝ (reals), and ℂ (complex numbers).</p>
+          <h3>Intervals, power sets, and size</h3><p>Intervals describe parts of the real line. Round endpoints are excluded and square endpoints included: (a,b), [a,b), (a,b], [a,b]. Unbounded intervals include (a,∞) and (−∞,b]; the notes also use ℝ=(−∞,∞), ℝ<sup>+</sup>=(0,∞), and ℝ<sub>≥0</sub>=[0,∞). The power set 𝒫(X) contains every subset of X. For finite X, cardinality |X| counts its elements, and |𝒫(X)| = 2<sup>|X|</sup>.</p>
+          <div class="worked"><p class="worked-title">Worked example · enumerate a power set</p><p>Let X={a,b}. List 𝒫(X) and its size.</p><ol><li>Include the empty subset: ∅.</li><li>Include the two one-element subsets: {a}, {b}.</li><li>Include the whole set: {a,b}. Therefore 𝒫(X)={∅,{a},{b},{a,b}} and |𝒫(X)|=4=2². <span class="sec-ref">§1.2</span></li></ol></div>
+          <h3>Set operations</h3><p>Each operation is easiest to understand by asking when an arbitrary element x belongs to the result. Sets with empty intersection are called <strong>disjoint</strong>.</p>
+          <div class="eq"><strong>Operations and membership tests</strong><span class="formula">x ∈ A ∪ B ⇔ (x ∈ A) ∨ (x ∈ B)</span><span class="formula">x ∈ A ∩ B ⇔ (x ∈ A) ∧ (x ∈ B)</span><span class="formula">x ∈ A \ B ⇔ (x ∈ A) ∧ (x ∉ B)</span><span class="formula">A × B = {(a,b): a ∈ A and b ∈ B}</span><span class="formula">Aᶜ = X \ A, where X is the fixed non-empty universal set</span><span class="eq-note">Pairs are ordered: (a,b) is generally different from (b,a). A complement is defined relative to X.</span></div>
+          <p>Union collects elements in either set; intersection keeps elements in both; difference keeps elements in A but removes those in B. The Cartesian product contains ordered pairs, not sets of the factors.</p><div class="eq"><strong>Operations on n sets</strong><span class="formula">⋃<sub>k=1</sub><sup>n</sup>A<sub>k</sub> contains x when x belongs to at least one A<sub>k</sub></span><span class="formula">⋂<sub>k=1</sub><sup>n</sup>A<sub>k</sub> contains x when x belongs to every A<sub>k</sub></span><span class="formula">∏<sub>k=1</sub><sup>n</sup>A<sub>k</sub> = A<sub>1</sub>×⋯×A<sub>n</sub>, the ordered n-tuples (x<sub>1</sub>,…,x<sub>n</sub>) with x<sub>k</sub>∈A<sub>k</sub></span><span class="eq-note">In particular, ℝ<sup>2</sup>=ℝ×ℝ is the plane and ℝ<sup>3</sup>=ℝ×ℝ×ℝ is three-dimensional space.</span></div>
+          <div class="worked"><p class="worked-title">Worked example · combine operations</p><p>Let A={1,2,3} and B={3,4,5}. Find A∪B, A∩B, and A\B.</p><ol><li>Membership in at least one gives A∪B={1,2,3,4,5}.</li><li>Membership in both gives A∩B={3}, so the sets are not disjoint.</li><li>Members of A that are not in B give A\B={1,2}. <span class="sec-ref">§1.2</span></li></ol></div>
+          <h3>Set algebra and De Morgan’s laws</h3><p>Set identities can be proved by translating both sides into membership conditions. For example, x ∈ (A∩B)ᶜ exactly when x∉A∩B; this means it is not true that x is in both sets, or equivalently x∉A or x∉B. Thus x∈Aᶜ∪Bᶜ, proving (A∩B)ᶜ=Aᶜ∪Bᶜ.</p>
+          <div class="eq"><strong>Set-algebra rules (Theorem 1.13)</strong><span class="formula">(Aᶜ)ᶜ=A</span><span class="formula">A∩B=B∩A</span><span class="formula">A∪B=B∪A</span><span class="formula">A∩(B∩C)=(A∩B)∩C</span><span class="formula">A∪(B∪C)=(A∪B)∪C</span><span class="formula">A∩(B∪C)=(A∩B)∪(A∩C)</span><span class="formula">A∪(B∩C)=(A∪B)∩(A∪C)</span><span class="formula">(A∩B)ᶜ=Aᶜ∪Bᶜ</span><span class="formula">(A∪B)ᶜ=Aᶜ∩Bᶜ</span><span class="eq-note">Complements use the same fixed universal set X.</span></div>
+          <p class="method"><strong>Trap:</strong> A\B is not generally B\A. Check the direction by testing membership: the first set supplies candidates; the second removes them.</p>
+          <p class="lab-link"><a href="ch1-statements-logic-sets-lab.html#exp-sets">Try it: set-operation experiments</a> and <a href="ch1-statements-logic-sets-lab.html#exp-finite">finite-set experiments</a>.</p>
+          <div class="recall"><p class="recall-title">Recall check · answer without looking</p><ol><li>How do you prove A=B from the definition?</li><li>What is the difference between A∩B and A×B?</li><li>What information is needed before Aᶜ is defined?</li></ol><details class="answers"><summary>Check these answers</summary><ol><li>Show both A⊂B and B⊂A. <span class="sec-ref">§1.2</span></li><li>A∩B is a set of elements common to both; A×B is a set of ordered pairs with first and second components in the respective sets. <span class="sec-ref">§1.2</span></li><li>A universal set X containing A. <span class="sec-ref">§1.2</span></li></ol></details></div>
+        </section>
+
+        <section id="formula-map"><h2>Formula map and notation</h2><div class="tw"><table><thead><tr><th>Idea</th><th>Rule</th><th>Check</th></tr></thead><tbody>
+          <tr><td>Implication</td><td>A⇒B ⇔ ¬A∨B</td><td>False only for A=true, B=false</td></tr><tr><td>Negated quantifier</td><td>¬∀xP(x) ⇔ ∃x¬P(x)</td><td>One counterexample is enough</td></tr><tr><td>Union/intersection</td><td>∪ means or; ∩ means and</td><td>Translate to membership</td></tr><tr><td>Difference</td><td>A\B: in A and not in B</td><td>Order matters</td></tr><tr><td>Complement</td><td>Aᶜ=X\A</td><td>State X</td></tr><tr><td>Power set</td><td>|𝒫(X)|=2<sup>|X|</sup>, finite X</td><td>Includes ∅ and X</td></tr>
+        </tbody></table></div><p class="method"><strong>Check every answer:</strong> for logic, test all truth assignments; for sets, test membership element by element and state the universal set when using complements.</p></section>
+
+        <section id="derivations"><h2>Derive it cold</h2><p>Rebuild these on blank paper before opening the answers in the relevant sections.</p><ol>
+          <li>Use the truth table to derive A⇒B ⇔ ¬A∨B. <span class="sec-ref">§1.1</span></li><li>Use the truth table to derive both logical De Morgan laws. <span class="sec-ref">§1.1</span></li><li>Negate a universal and an existential statement by swapping quantifiers and negating the predicate. <span class="sec-ref">§1.1</span></li><li>Prove one set identity by writing an arbitrary x-membership condition for each side. <span class="sec-ref">§1.2</span></li><li>Derive the set De Morgan laws from the logical De Morgan laws and membership tests. <span class="sec-ref">§1.2</span></li>
+        </ol></section>
+
+        <section id="explain"><h2>Explain it</h2><p>Answer each “why” in your own words before checking the model response.</p><ol>
+          <li>Why is A⇒B true when A is false under the truth-table definition?</li><li>Why does matching truth-table columns prove equivalence?</li><li>Why can one counterexample disprove a universal statement?</li><li>Why does quantifier order change the meaning of a claim about dogs and people?</li><li>Why must the universal set be fixed to define a complement?</li><li>Why is A\B different from B\A?</li><li>Why are ordered pairs in A×B generally not the same as those in B×A?</li><li>Why can a set identity be proved by comparing membership conditions?</li>
+        </ol><details class="answers"><summary>Show model answers</summary><ol>
+          <li>The defined truth condition is “A is false or B is true.” Only a true premise paired with a false conclusion violates it. <span class="sec-ref">§1.1</span></li><li>Equivalence means same output for every possible input; the table lists every input assignment. <span class="sec-ref">§1.1</span></li><li>A universal claim says every domain element works, so one failing element is enough to make it false. <span class="sec-ref">§1.1</span></li><li>∃D∀P can use one dog for all people; ∀P∃D allows a different dog for each person. <span class="sec-ref">§1.1</span></li><li>“Outside A” means outside A but still within the chosen universe; changing the universe changes the complement. <span class="sec-ref">§1.2</span></li><li>A\B starts from A and removes elements of B; reversing the order changes both the candidates and what is removed. <span class="sec-ref">§1.2</span></li><li>The first coordinate must come from A and the second from B, so swapping the factors swaps coordinate roles. <span class="sec-ref">§1.2</span></li><li>Two sets are equal when they contain exactly the same elements, so membership of an arbitrary x captures equality. <span class="sec-ref">§1.2</span></li>
+        </ol></details></section>
+
+        <section id="practice"><h2>Mixed practice</h2><p>Try all 24 problems before opening the answer key. The sections alternate so you must identify the right tool.</p><ol class="problems">
+          <li>For A=1 and B=0, evaluate ¬A, A∧B, A∨B, A⇒B, and A⇔B.</li>
+          <li>Let A={1,2,3}, B={3,4}. Find A∪B, A∩B, A\B, and B\A.</li>
+          <li>Is “There are infinitely many twin primes” a statement even if its truth is unproven? Explain briefly.</li>
+          <li>Let X={a,b}. List 𝒫(X) and state its cardinality.</li>
+          <li>Use a truth table to verify A⇒B ⇔ ¬A∨B. Which input row makes both sides false?</li>
+          <li>Let A=[0,2] and B=(1,3). Find A∩B and A∪B.</li>
+          <li>Negate: “For every integer n, n²≥0.”</li>
+          <li>Let X={1,2,3,4} and A={1,4}. Find Aᶜ relative to X.</li>
+          <li>Build a truth table for ¬(A∨B). In which row is it true?</li>
+          <li>If |X|=3, how many elements does 𝒫(X) have?</li>
+          <li>Translate “There is exactly one real x such that x²=4” using quantifier notation.</li>
+          <li>Let A={1,2}, B={x,y,z}. List A×B.</li>
+          <li>Are A⇒B and B⇒A equivalent for all A,B? Give one truth assignment that disproves equivalence.</li>
+          <li>Let X=ℝ and A=[1,2]. Describe Aᶜ as intervals.</li>
+          <li>Let P(x) mean “x is even”, with domain ℤ. Write “some integer is not even” symbolically.</li>
+          <li>Let A={1,2,3}, B={2,3,4}, C={3,4,5}. Find A∩(B∪C).</li>
+          <li>Classify each as a statement or not: (i) 4 is prime; (ii) x+1=2; (iii) 4 is lucky.</li>
+          <li>Use De Morgan’s law to simplify (A∩B)ᶜ.</li>
+          <li>For A=0 and B=0, compare A⇒B with ¬A∨B. Then use a truth table to verify ¬(A∧B) ⇔ ¬A∨¬B.</li>
+          <li>Let A={1,2,3,4} and B={2,4}. Is B⊂A? Is B⊊A?</li>
+          <li>Negate: “There exists a real x such that x²&lt;0.”</li>
+          <li>Let X={1,2,3,4,5}, A={1,2,3}, B={3,4}. Find (A∪B)ᶜ relative to X.</li>
+          <li>Compare ∃D∀P R(D,P) with ∀P∃D R(D,P) in plain language.</li>
+          <li>For A={1,2} and B={2,3}, find A×B and B×A. State one ordered pair in only one of them.</li>
+        </ol><details class="answers"><summary>Show worked answers</summary><ol>
+          <li>With A=1 and B=0, ¬A=0, A∧B=0, A∨B=1, A⇒B=0, and A⇔B=0. The implication fails only on this true-to-false row; equivalence fails because the inputs differ. <span class="sec-ref">§1.1</span></li>
+          <li>Members in either set give A∪B={1,2,3,4}; the shared member gives A∩B={3}. Removing B from A leaves {1,2}, while removing A from B leaves {4}. <span class="sec-ref">§1.2</span></li>
+          <li>Yes. It is a declarative claim with a definite truth value, although that value is not known. <span class="sec-ref">§1.1</span></li>
+          <li>𝒫(X)={∅,{a},{b},{a,b}} and |𝒫(X)|=4=2². <span class="sec-ref">§1.2</span></li>
+          <li>For rows (A,B)=(1,1),(1,0),(0,1),(0,0), both A⇒B and ¬A∨B have outputs 1,0,1,1. They agree on every row, and both are false only for A=1,B=0. <span class="sec-ref">§1.1</span></li>
+          <li>A∩B=(1,2]; A∪B=[0,3). <span class="sec-ref">§1.2</span></li>
+          <li>There exists an integer n with n²&lt;0. This is false over ℤ. <span class="sec-ref">§1.1</span></li>
+          <li>Aᶜ=X\A={1,2,3,4}\{1,4}={2,3}; the complement is taken within X. <span class="sec-ref">§1.2</span></li>
+          <li>It is true only when A=0 and B=0, because both must be false for ¬(A∨B). <span class="sec-ref">§1.1</span></li>
+          <li>A three-element set has 2³=8 subsets: each element is either included or excluded independently. <span class="sec-ref">§1.2</span></li>
+          <li>∃!x∈ℝ such that x²=4. The solutions are 2 and −2, so the claim as written is false. <span class="sec-ref">§1.1</span></li>
+          <li>{(1,x),(1,y),(1,z),(2,x),(2,y),(2,z)}. The first coordinate comes from A. <span class="sec-ref">§1.2</span></li>
+          <li>No. With A=1,B=0, A⇒B is false but B⇒A is true. <span class="sec-ref">§1.1</span></li>
+          <li>(−∞,1)∪(2,∞). The endpoints belong to A, so they are excluded from the complement. <span class="sec-ref">§1.2</span></li>
+          <li>∃x∈ℤ such that ¬P(x), or “there is an odd integer.” <span class="sec-ref">§1.1</span></li>
+          <li>B∪C={2,3,4,5}; intersecting with A gives {2,3}. <span class="sec-ref">§1.2</span></li>
+          <li>(i) Statement, false. (ii) Not a statement until x is assigned or quantified. (iii) Not a mathematical statement because “lucky” has no defined truth condition. <span class="sec-ref">§1.1</span></li>
+          <li>(A∩B)ᶜ=Aᶜ∪Bᶜ: being outside both together means being outside at least one. <span class="sec-ref">§1.2</span></li>
+          <li>For A=B=0, both A⇒B and ¬A∨B equal 1. For rows (1,1),(1,0),(0,1),(0,0), both ¬(A∧B) and ¬A∨¬B have values 0,1,1,1, so the columns match. <span class="sec-ref">§1.1</span></li>
+          <li>Yes, every element of B is in A. Yes, since 1∈A but 1∉B, so A has an element outside B. <span class="sec-ref">§1.2</span></li>
+          <li>For every real x, x²≥0. <span class="sec-ref">§1.1</span></li>
+          <li>A∪B={1,2,3,4}; its complement in X is {5}. <span class="sec-ref">§1.2</span></li>
+          <li>The first says one D relates to every P. The second says each P has at least one related D, possibly different for each P. <span class="sec-ref">§1.1</span></li>
+          <li>A×B={(1,2),(1,3),(2,2),(2,3)}; B×A={(2,1),(2,2),(3,1),(3,2)}. For example, (1,2) is only in A×B. <span class="sec-ref">§1.2</span></li>
+        </ol></details></section>
+
+        <section id="exam"><h2>Exam-style problems</h2><p>Set a timer for about 20 minutes per problem. Write the reasoning, not just the final values.</p>
+          <h3>1 · Logic for a sensor check</h3><p>Three sensors report truth values A, B, and C. A majority vote is represented by V=(A∧B)∨(A∧C)∨(B∧C).</p><ol><li>Make a truth table for V and identify the rows where V=1.</li><li>Show that swapping any two sensor labels leaves V unchanged, using commutativity of ∧ and ∨.</li><li>Negate the claim “For every sensor configuration with at most one report equal to 1, the majority output is 0.” State the form of a counterexample.</li></ol><details><summary>Show the worked answer</summary><ol><li>V=1 when at least two reports are 1: rows 111, 110, 101, 011. It is 0 for 100, 010, 001, 000. <span class="sec-ref">§1.1</span></li><li>For example, swapping A and B changes (A∧B) to (B∧A), which is equal by commutativity; it swaps the other two terms as well. The full disjunction is unchanged, and the same argument applies to any pair. <span class="sec-ref">§1.1</span></li><li>∃ a configuration with at most one 1 but V=1. This cannot happen for the majority rule, so the original claim is true. <span class="sec-ref">§1.1</span></li></ol></details>
+          <h3>2 · Sets of admissible inputs</h3><p>Let the universal set be X={1,2,3,4,5,6,7,8}. Let A be the even elements of X, B={1,2,3,4}, and C={3,4,5,6}.</p><ol><li>List A, A∩B, and A∪B.</li><li>Find (B∪C)ᶜ and Bᶜ∩Cᶜ relative to X, and use the results to check a De Morgan identity.</li><li>Let D={red, blue}. List A×D and give its cardinality.</li></ol><details><summary>Show the worked answer</summary><ol><li>A={2,4,6,8}; A∩B={2,4}; A∪B={1,2,3,4,6,8}. <span class="sec-ref">§1.2</span></li><li>B∪C={1,2,3,4,5,6}, so (B∪C)ᶜ={7,8}. Also Bᶜ={5,6,7,8} and Cᶜ={1,2,7,8}; their intersection is {7,8}. Hence (B∪C)ᶜ=Bᶜ∩Cᶜ. <span class="sec-ref">§1.2</span></li><li>A×D={(2,red),(2,blue),(4,red),(4,blue),(6,red),(6,blue),(8,red),(8,blue)}; it has 8 ordered pairs. <span class="sec-ref">§1.2</span></li></ol></details>
+        </section>
+
+        <section id="slips"><h2>Slips in the notes</h2><p>One statement in the lecture notes needs an edge-case qualification.</p><ol><li><strong>Printed page 9:</strong> the notes say that A×B is neither contained in A nor in B. If either factor is empty, then A×B=∅, and ∅ is a subset of both factors. The definition of the Cartesian product remains correct; the remark about containment is too broad for empty factors.</li></ol></section>
+
+        <section id="checklist"><h2>Self-check</h2><p>Use day 0 to learn and practise. Tick a skill only in a later session, at least one day afterward, when you can show it without notes. Use the listed problem numbers as evidence.</p><ul>
+          <li class="check"><label><input type="checkbox" data-k="truth" />Evaluate all five logical connectives from input truth values. (1, 5, 9, 13, 19)</label></li>
+          <li class="check"><label><input type="checkbox" data-k="statement" />Distinguish a statement from an open or undefined sentence. (3, 17)</label></li>
+          <li class="check"><label><input type="checkbox" data-k="equiv" />Prove equivalence with complete truth tables. (5, 19)</label></li>
+          <li class="check"><label><input type="checkbox" data-k="quantifier" />Translate and negate quantified claims. (7, 11, 15, 21, 23)</label></li>
+          <li class="check"><label><input type="checkbox" data-k="membership" />Compute unions, intersections, and differences from membership. (2, 6, 16)</label></li>
+          <li class="check"><label><input type="checkbox" data-k="subset" />Use subset, proper subset, and equality definitions. (20)</label></li>
+          <li class="check"><label><input type="checkbox" data-k="complement" />Find complements relative to an explicit universe. (8, 14, 22)</label></li>
+          <li class="check"><label><input type="checkbox" data-k="power" />Enumerate small power sets and count subsets. (4, 10)</label></li>
+          <li class="check"><label><input type="checkbox" data-k="product" />List Cartesian products and track coordinate order. (12, 24)</label></li>
+          <li class="check"><label><input type="checkbox" data-k="laws" />Apply De Morgan’s laws to statements and sets. (18, 19)</label></li>
+          <li class="check"><label><input type="checkbox" data-k="derive" />Rebuild the listed derivations from definitions.</label></li>
+          <li class="check"><label><input type="checkbox" data-k="exam" />Solve both multi-part problems and justify each step.</label></li>
+        </ul></section>
+        <p class="source-note">Personal study guide based on Mathematics for Engineers I lecture notes, Chapter 1 “Statements, Logic, and Sets” (printed pages 1–10), by Rhoslyn Coles and Cornelia Schneider. Written in my own words; no lecture pages or figures are reproduced. Not an official FAU publication; check course details against the current notes.</p>
+      </main>
+    </div>
+    <script src="../js/concept-map.js" defer></script><script src="../js/guide.js" defer></script><script src="../js/tooltip.js" defer></script>
+  </body>
+</html>

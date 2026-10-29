@@ -14,12 +14,12 @@ The home page has one section per semester. Each subject shows its module number
 
 | Semester | Code | Subject | Module | Course parts | Material |
 | --- | --- | --- | --- | --- | --- |
-| 1 | APDR | Algorithms, programming, and data representation | 92313 | Lecture, blackboard exercise, computer exercise | none yet |
-| 1 | MEI | Mathematics for Engineers I | 62765 | Lecture, exercise | none yet |
+| 1 | APDR | Algorithms, programming, and data representation | 92313 | Lecture, blackboard exercise, computer exercise | Lecture 1 welcome; Chapter 2 guide and lab; Chapters 1+2 and 3 study guides and PDFs |
+| 1 | MEI | Mathematics for Engineers I | 62765 | Lecture, exercise | Chapter 1: Statements, Logic, and Sets study guide and PDF |
 | 1 | EEI | Electrical Engineering I | 92315 | Lecture, exercise, tutorial | Chapter 1: Electrostatic Fields guide, PDF and LaTeX source |
 | 1 | MATLAB | Introduction to MATLAB | 92317 | Course (not started yet) | none yet |
 
-The earlier Electrical Engineering and Mathematics pages were removed on 2026-10-27. The current EEI Chapter 1 guide is a new summary based on the supplied WS 2026/27 lecture notes; the earlier guide and lab remain in git history.
+The earlier Electrical Engineering and Mathematics pages were removed on 2026-10-27. The MEI Chapter 1 guide is based on the supplied lecture notes. The current EEI Chapter 1 guide is a new summary based on the supplied WS 2026/27 lecture notes; the earlier guide and lab remain in git history.
 
 ## How to study with it
 
@@ -35,10 +35,21 @@ Every page works on phone and desktop and follows your system's light or dark mo
 
 ```
 index.html              Home page: review schedule, semesters, subjects
-eei/                    One folder per subject (lower-case subject code)
+eei/                    Electrical Engineering I chapter materials
   ch1-electrostatic-fields.html      Chapter 1 study guide (the single source)
   ch1-electrostatic-fields.pdf/.tex  Print version, generated from the guide
   ch1-electrostatic-fields-lab.html  Chapter 1 lab: predict-then-reveal experiments
+mei/                    Mathematics for Engineers I chapter materials
+  ch1-statements-logic-sets.html     MEI Chapter 1 guide (the single source)
+  ch1-statements-logic-sets.pdf/.tex Print version and generated LaTeX source
+apdr/                   Algorithms, Programming, and Data Representation materials
+  ch2-computers.html             Lecture 2 study guide (the single source)
+  ch2-computers.pdf/.tex         Print version and generated LaTeX source
+  ch2-computers-lab.html         Chapter 2 predict-then-reveal lab
+  ch1-2-boolean-algebra.html Boolean algebra study guide for Chapters 1+2
+  ch1-2-boolean-algebra.pdf/.tex Print version and generated LaTeX source
+  ch3-data-representation.html Chapter 3 study guide (the single source)
+  ch3-data-representation.pdf/.tex Print version and generated LaTeX source
 css/
   system.css            Shared sign system: tokens, subject colours, code squares, buttons, tooltip
   index.css             Home page layout
@@ -52,6 +63,8 @@ js/
   tooltip.js            Hover and focus tooltips from data-tip
   eei/ch1-physics.js    Chapter 1 formulas (no DOM; also loaded by the tests)
   eei/ch1-lab.js        Chapter 1 experiments
+  apdr/ch2-physics.js   APDR Chapter 2 rules and calculations
+  apdr/ch2-lab.js       APDR Chapter 2 experiments
 tests/                  Physics tests: node --test
 tools/
   guide-to-tex.py       Converts a guide page into its LaTeX file
@@ -71,6 +84,34 @@ The HTML guide is the single source. After editing it, regenerate the LaTeX and 
 ```sh
 python3 -I tools/guide-to-tex.py eei/ch1-electrostatic-fields.html eei/ch1-electrostatic-fields.tex
 cd eei && latexmk -xelatex ch1-electrostatic-fields.tex && latexmk -c ch1-electrostatic-fields.tex
+```
+
+For the MEI Chapter 1 guide, run:
+
+```sh
+python3 -I tools/guide-to-tex.py mei/ch1-statements-logic-sets.html mei/ch1-statements-logic-sets.tex
+cd mei && latexmk -xelatex ch1-statements-logic-sets.tex && latexmk -c ch1-statements-logic-sets.tex
+```
+
+For the APDR Lecture 2 guide, run:
+
+```sh
+python3 -I tools/guide-to-tex.py apdr/ch2-computers.html apdr/ch2-computers.tex
+cd apdr && latexmk -xelatex ch2-computers.tex && latexmk -c ch2-computers.tex
+```
+
+For the APDR Chapters 1+2 Boolean algebra guide, run:
+
+```sh
+python3 -I tools/guide-to-tex.py apdr/ch1-2-boolean-algebra.html apdr/ch1-2-boolean-algebra.tex
+cd apdr && latexmk -xelatex ch1-2-boolean-algebra.tex && latexmk -c ch1-2-boolean-algebra.tex
+```
+
+For the APDR Chapter 3 number and data representation guide, run:
+
+```sh
+python3 -I tools/guide-to-tex.py apdr/ch3-data-representation.html apdr/ch3-data-representation.tex
+cd apdr && latexmk -xelatex ch3-data-representation.tex && latexmk -c ch3-data-representation.tex
 ```
 
 In the PDF, every answer block moves to an Answers section at the end, so the questions can be tried first.

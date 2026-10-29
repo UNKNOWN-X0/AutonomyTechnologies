@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#04316A" />
+    <meta name="description" content="Predict-then-reveal lab for APDR Chapter 2: algorithms, Boolean decisions, NAND gates, and circuit timing." />
+    <title>Computers, Algorithms, and Boolean Logic Lab · APDR Chapter 2</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="../css/system.css" />
+    <link rel="stylesheet" href="../css/guide.css" />
+    <link rel="stylesheet" href="../css/lab.css" />
+  </head>
+  <body class="s-apdr-1 lab" data-key="apdr1-ch2" data-guide="ch2-computers.html" data-skills="13">
+    <div class="wrap">
+      <nav class="toc" aria-label="Lab contents">
+        <a class="brand" href="../index.html"><span>From Fundamentals to AI Apocalypse</span></a>
+        <a class="home" href="../index.html">All semesters</a>
+        <nav class="chapter-switch" aria-label="Chapter 2">
+          <a href="ch2-computers.html">Guide</a><a aria-current="page" href="ch2-computers-lab.html">Lab</a>
+        </nav>
+        <details class="mobile-toc"><summary>Jump to an experiment</summary><ol>
+          <li><a href="#how">How the lab works</a></li><li class="toc-group" aria-hidden="true">Experiments</li>
+          <li><a href="#exp-algorithm">2.1 Square-root algorithm</a></li><li><a href="#exp-logic">2.4 Boolean decision</a></li><li><a href="#exp-nand">2.7 NAND gates</a></li><li><a href="#exp-timing">2.8 Circuit timing</a></li><li><a href="#results">Your results</a></li>
+        </ol></details>
+        <ol>
+          <li><a href="#how">How the lab works</a></li><li class="toc-group" aria-hidden="true">Experiments</li>
+          <li><a href="#exp-algorithm">2.1 Square-root algorithm</a></li><li><a href="#exp-logic">2.4 Boolean decision</a></li><li><a href="#exp-nand">2.7 NAND gates</a></li><li><a href="#exp-timing">2.8 Circuit timing</a></li><li><a href="#results">Your results</a></li>
+        </ol>
+      </nav>
+      <main>
+        <header class="sign"><span class="code" aria-label="Algorithms, Programming, and Data Representation">APDR</span><h1>Computers, Algorithms, and Boolean Logic Lab</h1><p class="course">Algorithms, Programming, and Data Representation · Module 92313 · Chapter 2</p><p class="meta" id="lab-meta"></p></header>
+        <p class="standfirst">Predict first, then reveal. Work through four short experiments on algorithm steps, Boolean decisions, NAND constructions, and real-circuit timing.</p>
+        <noscript><p class="method">The experiments need JavaScript. The <a href="ch2-computers.html">Chapter 2 guide</a> covers the same ideas without it.</p></noscript>
+
+        <section id="how" aria-labelledby="how-title"><h2 id="how-title">How the lab works</h2><ol class="route"><li><strong>Predict.</strong> Commit to an answer before the stage moves.</li><li><strong>Rate your confidence.</strong> A sure but wrong answer is useful; it appears under <a href="#results">Your results</a>.</li><li><strong>Watch the reveal.</strong> Follow the steps or signal change, then use the link to review the matching guide section.</li><li><strong>Explore.</strong> Finish an experiment to open its controls and tick its lab skill.</li></ol></section>
+
+        <section id="exp-algorithm" class="experiment" data-experiment="algorithm" aria-labelledby="exp-algorithm-title">
+          <h2 id="exp-algorithm-title">2.1 Square-root algorithm: follow the control flow</h2>
+          <p>For x=16, start at guess g=3. The procedure checks how close g² is to x; if it is not close enough, it replaces g with the average of g and x/g. This sandbox uses a practice tolerance of 0.01.</p>
+          <div class="bench"><div class="stage"><canvas role="img" aria-label="Algorithm flow from a guess, through a closeness test, to the next guess"></canvas><p class="stage-note">Practice tolerance: 0.01 · the marker keeps your prediction visible</p></div><div class="side"><div class="challenge" aria-live="polite"></div><form class="controls" onsubmit="return false"><fieldset><legend>Try another input</legend><label class="field-row">Target x <input type="number" min="1" max="100" step="1" value="16" data-x /></label><label class="field-row">Guess g <input type="number" min="0.1" max="50" step="0.1" value="3" data-g /></label><div class="row-btns"><button class="btn small" type="button" data-act="step">Run one step</button><button class="btn small" type="button" data-act="reset">Reset</button></div><p class="readout" aria-live="polite">New guess: <output data-out="guess">3.000</output> · residual: <output data-out="residual">—</output></p></fieldset></form></div></div>
+        </section>
+
+        <section id="exp-logic" class="experiment" data-experiment="logic" aria-labelledby="exp-logic-title">
+          <h2 id="exp-logic-title">2.4–2.6 Boolean decisions: evaluate the umbrella rule</h2>
+          <p>Let C mean “taking the car”, W mean “bad forecast”, and R mean “raining”. The rule is U=C'·(W+R): take an umbrella when you are not taking the car and either weather condition is true.</p>
+          <div class="bench"><div class="stage"><canvas role="img" aria-label="Boolean inputs flow through OR and NOT then AND to the umbrella output"></canvas><p class="stage-note">1 means true · 0 means false · the output is a stable logic value</p></div><div class="side"><div class="challenge" aria-live="polite"></div><form class="controls" onsubmit="return false"><fieldset><legend>Set the propositions</legend><label class="field-row">Car C <select data-bit="car"><option value="0">0 · not taking car</option><option value="1">1 · taking car</option></select></label><label class="field-row">Bad forecast W <select data-bit="forecast"><option value="0">0 · no</option><option value="1">1 · yes</option></select></label><label class="field-row">Rain R <select data-bit="rain"><option value="0">0 · no</option><option value="1">1 · yes</option></select></label><div class="row-btns"><button class="btn small" type="button" data-act="evaluate">Evaluate</button></div><p class="readout" aria-live="polite">Umbrella U: <output data-out="result">—</output></p></fieldset></form></div></div>
+        </section>
+
+        <section id="exp-nand" class="experiment" data-experiment="nand" aria-labelledby="exp-nand-title">
+          <h2 id="exp-nand-title">2.7 NAND gates: build NOT, AND, and OR</h2>
+          <p>NAND combines AND with inversion. Tying both inputs together makes NOT; combining NAND outputs lets you build AND and OR from the same gate type.</p>
+          <div class="bench"><div class="stage"><canvas role="img" aria-label="NAND gate network with inputs, intermediate signals, and output"></canvas><p class="stage-note">A NAND gate outputs 0 only when both inputs are 1</p></div><div class="side"><div class="challenge" aria-live="polite"></div><form class="controls" onsubmit="return false"><fieldset><legend>Choose a NAND construction</legend><label class="field-row">Function <select data-fn><option value="not">NOT A</option><option value="and">A AND B</option><option value="or">A OR B</option></select></label><label class="field-row">Input A <select data-bit="a"><option value="0">0</option><option value="1">1</option></select></label><label class="field-row">Input B <select data-bit="b"><option value="0">0</option><option value="1">1</option></select></label><div class="row-btns"><button class="btn small" type="button" data-act="build">Evaluate gates</button></div><p class="readout" aria-live="polite">Output: <output data-out="result">—</output></p></fieldset></form></div></div>
+        </section>
+
+        <section id="exp-timing" class="experiment" data-experiment="timing" aria-labelledby="exp-timing-title">
+          <h2 id="exp-timing-title">2.8 Physical circuits: compare logic and timing</h2>
+          <p>A truth table tells you the stable output for each input. A real circuit needs time to switch; the slider uses a symbolic delay τ because the slides give no measured delay value.</p>
+          <div class="bench"><div class="stage"><canvas role="img" aria-label="Input and output timing traces with a symbolic propagation delay"></canvas><p class="stage-note">Illustrative model: one gate delay is τ · not a measured circuit value</p></div><div class="side"><div class="challenge" aria-live="polite"></div><form class="controls" onsubmit="return false"><fieldset><legend>Explore a one-gate transition</legend><label class="field-row">Gate <select data-gate><option value="and">AND</option><option value="or">OR</option></select></label><label class="field-row">Fixed input A <select data-bit="a"><option value="0">0</option><option value="1">1</option></select></label><label class="field-row">Input B after t=0 <select data-bit="b"><option value="0">0</option><option value="1">1</option></select></label><label class="field-row">Sample time <select data-time><option value="0">t = 0</option><option value="0.5">t = 0.5τ</option><option value="1">t = τ</option><option value="2">t = 2τ</option></select></label><div class="row-btns"><button class="btn small" type="button" data-act="sample">Show signal</button></div><p class="readout" aria-live="polite">Output at this time: <output data-out="result">—</output></p></fieldset></form></div></div>
+        </section>
+
+        <section id="results" aria-labelledby="results-title"><h2 id="results-title">Your results</h2><div id="lab-results"></div></section>
+        <p class="source-note">Personal study lab based on the supplied APDR Chapter 2 guide and lecture slides. The timing display uses a symbolic teaching model; it is not a measurement of a physical gate. Not an official FAU publication; check course details against the current materials.</p>
+      </main>
+    </div>
+    <script src="../js/apdr/ch2-physics.js"></script><script src="../js/lab.js"></script><script src="../js/apdr/ch2-lab.js"></script><script src="../js/tooltip.js"></script>
+  </body>
+</html>

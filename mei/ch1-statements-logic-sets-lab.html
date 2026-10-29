@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#04316A" />
+    <meta name="description" content="Predict-then-reveal experiments for MEI Chapter 1: truth tables, quantifiers, set operations, and finite sets." />
+    <title>Statements, Logic, and Sets Lab · MEI Chapter 1</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="../css/system.css" />
+    <link rel="stylesheet" href="../css/guide.css" />
+    <link rel="stylesheet" href="../css/lab.css" />
+  </head>
+  <body class="s-mei-1 lab" data-key="mei1-ch1" data-guide="ch1-statements-logic-sets.html" data-skills="12">
+    <div class="wrap">
+      <nav class="toc" aria-label="Lab contents">
+        <a class="brand" href="../index.html"><span>From Fundamentals to AI Apocalypse</span></a>
+        <a class="home" href="../index.html">All semesters</a>
+        <nav class="chapter-switch" aria-label="Chapter 1"><a href="ch1-statements-logic-sets.html">Guide</a><a aria-current="page" href="ch1-statements-logic-sets-lab.html">Lab</a></nav>
+        <details class="mobile-toc"><summary>Jump to an experiment</summary><ol>
+          <li><a href="#how">How the lab works</a></li><li class="toc-group" aria-hidden="true">Experiments</li>
+          <li><a href="#exp-logic">1.1 Truth tables</a></li><li><a href="#exp-quantifiers">1.1 Quantifiers</a></li><li><a href="#exp-sets">1.2 Set operations</a></li><li><a href="#exp-finite">1.2 Finite sets</a></li><li><a href="#lab-results">Your results</a></li>
+        </ol></details>
+        <ol><li><a href="#how">How the lab works</a></li><li class="toc-group" aria-hidden="true">Experiments</li>
+          <li><a href="#exp-logic">1.1 Truth tables</a></li><li><a href="#exp-quantifiers">1.1 Quantifiers</a></li><li><a href="#exp-sets">1.2 Set operations</a></li><li><a href="#exp-finite">1.2 Finite sets</a></li><li><a href="#lab-results">Your results</a></li>
+        </ol>
+      </nav>
+      <main>
+        <header class="sign"><span class="code" aria-label="Mathematics for Engineers I">MEI</span><h1>Statements, Logic, and Sets Lab</h1><p class="course">Mathematics for Engineers I · Module 62765 · Chapter 1</p><p class="meta" id="lab-meta"></p></header>
+        <p class="standfirst">Commit to a prediction, rate your confidence, then reveal the rule in a small, concrete case. When the challenges are complete, use the controls to test new values.</p>
+        <noscript><p class="method">The experiments need JavaScript. The <a href="ch1-statements-logic-sets.html">Chapter 1 guide</a> covers the same ideas without it.</p></noscript>
+        <section id="how" aria-labelledby="how-title"><h2 id="how-title">How the lab works</h2><ol class="route">
+          <li><strong>Predict.</strong> Choose an answer before the stage changes.</li><li><strong>Rate your confidence.</strong> A sure but wrong answer marks an idea to revisit first.</li><li><strong>Reveal.</strong> Compare the result and follow its link back to the guide.</li><li><strong>Explore.</strong> Finish all four challenges to open each experiment’s controls.</li>
+        </ol></section>
+        <section id="exp-logic" class="experiment" data-experiment="logic" aria-labelledby="logic-title"><h2 id="logic-title">1.1 Truth tables: implication and equivalence</h2><p>Compare truth values row by row. Swapping the sides of an implication changes its meaning; the contrapositive is the form that stays equivalent.</p><div class="bench"><div class="stage"><svg class="handles" data-visual="logic" role="img" aria-label="Truth table comparing implication forms" viewBox="0 0 480 320"></svg><p class="stage-note">After challenges: drag the marker or focus it and use arrow keys.</p></div><div class="side"><div class="challenge" aria-live="polite"></div><form class="controls" onsubmit="return false"><fieldset><legend>Choose truth values</legend><label class="field-row">A<select data-control="a"><option value="false">False</option><option value="true">True</option></select></label><label class="field-row">B<select data-control="b"><option value="false">False</option><option value="true">True</option></select></label></fieldset></form></div></div></section>
+        <section id="exp-quantifiers" class="experiment" data-experiment="quantifiers" aria-labelledby="quant-title"><h2 id="quant-title">1.1 Quantifiers: domain and counterexample</h2><p>A quantified claim is evaluated over its stated domain. One counterexample is enough to disprove a universal claim.</p><div class="bench"><div class="stage"><svg class="handles" data-visual="quantifiers" role="img" aria-label="Finite domain with predicate results" viewBox="0 0 480 320"></svg><p class="stage-note">After challenges: drag the marker or focus it and use arrow keys.</p></div><div class="side"><div class="challenge" aria-live="polite"></div><form class="controls" onsubmit="return false"><fieldset><legend>Explore a finite domain</legend><label class="field-row">Domain size<select data-control="domain"><option>2</option><option selected>3</option><option>4</option><option>5</option><option>6</option></select></label></fieldset></form></div></div></section>
+        <section id="exp-sets" class="experiment" data-experiment="sets" aria-labelledby="sets-title"><h2 id="sets-title">1.2 Set operations: membership and De Morgan</h2><p>Set operations can be checked element by element: membership in a union is OR, while membership in an intersection is AND.</p><div class="bench"><div class="stage"><svg class="handles" data-visual="sets" role="img" aria-label="Set operations over a finite universe" viewBox="0 0 480 320"></svg><p class="stage-note">After challenges: drag the marker or focus it and use arrow keys.</p></div><div class="side"><div class="challenge" aria-live="polite"></div><form class="controls" onsubmit="return false"><fieldset><legend>Explore membership</legend><label class="field-row">Operation<select data-control="operation"><option value="union">Union</option><option value="intersection">Intersection</option><option value="difference">Difference</option><option value="complement">Complement in U</option></select></label></fieldset></form></div></div></section>
+        <section id="exp-finite" class="experiment" data-experiment="finite" aria-labelledby="finite-title"><h2 id="finite-title">1.2 Finite sets: power set and ordered pairs</h2><p>Build every subset of a small set and preserve coordinate order in Cartesian products. These structures are easy to confuse when their elements are written compactly.</p><div class="bench"><div class="stage"><svg class="handles" data-visual="finite" role="img" aria-label="Power set and Cartesian product examples" viewBox="0 0 480 320"></svg><p class="stage-note">After challenges: drag the marker or focus it and use arrow keys.</p></div><div class="side"><div class="challenge" aria-live="polite"></div><form class="controls" onsubmit="return false"><fieldset><legend>Explore a set</legend><label class="field-row">Operation<select data-control="operation"><option value="power">Power set of {a,b,c}</option><option value="product">{1,2} × {x}</option></select></label></fieldset></form></div></div></section>
+        <section id="lab-results"><h2>Your results</h2><p>Scores are saved in this browser. “Sure, but wrong” highlights confident mistakes to revisit in the guide.</p></section>
+        <p class="source-note">Personal interactive lab based on Mathematics for Engineers I lecture notes, Chapter 1 “Statements, Logic, and Sets” (printed pages 1–10), by Rhoslyn Coles and Cornelia Schneider. Not an official FAU publication; check course details against the current notes.</p>
+      </main>
+    </div>
+    <script src="../js/mei/ch1-physics.js"></script><script src="../js/lab.js"></script><script src="../js/mei/ch1-lab.js"></script><script src="../js/tooltip.js" defer></script>
+  </body>
+</html>

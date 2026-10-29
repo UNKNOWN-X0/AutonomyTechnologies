@@ -37,7 +37,7 @@
     return c.lab ? c.guideDone + " of " + (c.total - c.lab) + " guide skills · " + c.labDone + " of " + c.lab + " lab experiments" : c.done + " of " + c.total + " chapter skills ticked";
   }
 
-  var chapters = Array.prototype.map.call(document.querySelectorAll("li.chapter"), function (li) {
+  var chapters = Array.prototype.map.call(document.querySelectorAll("li.chapter[data-key]"), function (li) {
     var key = li.dataset.key;
     var total = +li.dataset.total || 0;
     var checks = read(key + "-checks", {});

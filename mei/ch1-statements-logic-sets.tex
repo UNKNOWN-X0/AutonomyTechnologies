@@ -1,0 +1,700 @@
+\documentclass[11pt]{article}
+\usepackage[margin=18mm,headheight=22pt]{geometry}
+\usepackage{amsmath}
+\usepackage{fontspec}
+\usepackage{unicode-math}
+\setmainfont{NewCM10}[Extension=.otf,UprightFont=*-Book,BoldFont=*-Bold,ItalicFont=*-BookItalic,BoldItalicFont=*-BoldItalic]
+\setsansfont{NewCMSans10}[Extension=.otf,UprightFont=*-Book,BoldFont=*-Bold,ItalicFont=*-BookOblique,BoldItalicFont=*-BoldOblique]
+\setmathfont{NewCMMath-Book.otf}
+\usepackage{xcolor}
+\definecolor{FAUblue}{HTML}{04316A}
+\definecolor{Paperblue}{HTML}{EEF2F7}
+\definecolor{EEIgold}{HTML}{CC9C42}
+\usepackage{etoolbox,enumitem,booktabs,tabularx,array,needspace,microtype}
+\usepackage[most]{tcolorbox}
+\usepackage{titlesec,fancyhdr}
+\usepackage[hidelinks]{hyperref}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{5pt}
+\setlist{itemsep=2pt,topsep=3pt,leftmargin=1.6em,beginpenalty=10000,endpenalty=10000}
+\raggedbottom
+\clubpenalty=10000 \widowpenalty=10000 \displaywidowpenalty=10000 \interlinepenalty=10000
+\setcounter{secnumdepth}{0}
+\setcounter{tocdepth}{1}
+\pagestyle{fancy}\fancyhf{}
+\fancyhead[L]{\small\sffamily\color{FAUblue} From Fundamentals to AI Apocalypse · MEI · Chapter 1}
+\fancyhead[R]{\small\sffamily Statements, Logic, and Sets}
+\fancyfoot[C]{\small\thepage}
+\titleformat{\section}{\Large\bfseries\sffamily\color{FAUblue}}{}{0pt}{}
+\titleformat{\subsection}{\large\bfseries\sffamily\color{FAUblue}}{}{0pt}{}
+\titlespacing*{\section}{0pt}{16pt}{6pt}
+\preto\section{\Needspace{8\baselineskip}}
+\preto\subsection{\Needspace{6\baselineskip}}
+\newtcolorbox{equationcard}[1]{colback=Paperblue,colframe=Paperblue,boxrule=0pt,arc=0pt,left=10pt,right=10pt,top=6pt,bottom=6pt,title={#1},fonttitle=\small\bfseries\sffamily,coltitle=FAUblue,before skip=8pt,after skip=8pt}
+\newtcolorbox{workedbox}[1]{colback=white,colframe=EEIgold,boxrule=0pt,leftrule=3pt,arc=0pt,left=10pt,top=4pt,bottom=4pt,title={#1},fonttitle=\small\bfseries\sffamily,coltitle=FAUblue,attach title to upper={\par},before skip=8pt,after skip=8pt}
+\newtcolorbox{recallbox}[1]{colback=white,colframe=FAUblue,boxrule=0pt,leftrule=3pt,arc=0pt,left=10pt,top=4pt,bottom=4pt,title={#1},fonttitle=\small\bfseries\sffamily,coltitle=FAUblue,attach title to upper={\par},before skip=8pt,after skip=8pt}
+\usepackage{environ}
+\newsavebox\measurebox
+% Typeset the section once invisibly to measure it; start a new page if it will not fit in what is left.
+\makeatletter
+\newif\ifkeep@measuring
+\NewEnviron{keepsection}{%
+  \ifkeep@measuring \BODY \else
+    \edef\keep@sec{\the\value{section}}\edef\keep@sub{\the\value{subsection}}%
+    \setbox\measurebox\vbox{\hsize\linewidth\keep@measuringtrue\def\Needspace##1{}\BODY}%
+    \setcounter{section}{\keep@sec}\setcounter{subsection}{\keep@sub}%
+    \dimen2=\ht\measurebox \advance\dimen2\dp\measurebox
+    \dimen@=\textheight
+    \ifdim\pagegoal<\maxdimen
+      \dimen@=\pagegoal \advance\dimen@-\pagetotal
+      \ifdim\dimen2>\dimen@ \clearpage \dimen@=\textheight \fi
+    \fi
+    % if it fits, nothing inside may force an early break
+    \ifdim\dimen2>\dimen@ \BODY \else \begingroup\def\Needspace##1{}\BODY\endgroup \fi
+  \fi}
+\makeatother
+\newtcolorbox{notebox}{colback=Paperblue,colframe=Paperblue,boxrule=0pt,arc=0pt,left=8pt,right=8pt,top=4pt,bottom=4pt,before skip=6pt,after skip=6pt}
+\title{\sffamily\bfseries\color{FAUblue}Statements, Logic, and Sets}
+\author{Mathematics for Engineers I \ensuremath{\cdot} Module 62765 \ensuremath{\cdot} Chapter 1\\[2pt]\small From Fundamentals to AI Apocalypse · personal study guide}
+\date{}
+\begin{document}
+\maketitle
+\begingroup\footnotesize\setlength{\parskip}{0pt}\tableofcontents\endgroup
+\clearpage
+
+\Needspace{9\baselineskip}
+{\large Mathematical arguments use a small grammar of statements, logical connectives, and sets. This chapter builds that grammar: first decide when statements are true, then describe and combine collections of objects precisely.}
+
+
+\begin{keepsection}
+\Needspace{14\baselineskip}
+\section{Start from memory}
+
+\Needspace{11\baselineskip}
+Try these before reading. If you are unsure, write a guess; the gap tells you what to look for.
+
+\Needspace{8\baselineskip}
+\begin{enumerate}
+\item When is an implication A \ensuremath{\Rightarrow} B false?
+\item Does mathematical “or” allow both statements to be true?
+\item How do you negate “for every x, P(x)”?
+\item What does A \ensuremath{\subset} B say about the elements of A?
+\item How is A \ensuremath{\times} B different from the set containing A and B?
+\end{enumerate}
+
+\nopagebreak[4]{\small\itshape Answers: see “Start from memory” under Answers at the end.}
+\end{keepsection}
+
+\begin{keepsection}
+\Needspace{19\baselineskip}
+\section{How to use this guide}
+
+\Needspace{16\baselineskip}
+Read one section, hide the page, then reconstruct the rules and examples from memory. Use the answers only after you have committed to a response.
+
+\Needspace{13\baselineskip}
+\begin{enumerate}
+\item \textbf{Day 0:} Do the cold start, read §§1.1–1.2, and try the worked examples with the answers covered.
+\item \textbf{Day 1:} Rebuild the truth table and the set operations from memory; solve practice 1–8.
+\item \textbf{Day 3:} Solve practice 9–16 without notes, then check each answer and revisit its section reference.
+\item \textbf{About day 7:} Solve practice 17–24 in mixed order and explain the De Morgan rules aloud.
+\item \textbf{About day 14:} Reconstruct the derivations, then take one exam problem under time limits.
+\item \textbf{Before the exam:} Complete the self-check and both exam problems. Return to any skill you cannot demonstrate unaided.
+\end{enumerate}
+
+\begin{notebox}\textbf{When stuck:} identify the definitions involved, test a small example, and write each membership or truth condition explicitly before simplifying.\end{notebox}
+\end{keepsection}
+
+\begin{keepsection}
+\Needspace{20\baselineskip}
+\section{How the chapter fits together}
+
+\Needspace{17\baselineskip}
+The chapter moves from evaluating statements to describing collections and proving relationships between them.
+
+\Needspace{8\baselineskip}
+\textbf{Measured} \ensuremath{\cdot} the starting language
+
+\Needspace{6\baselineskip}
+\begin{itemize}
+\item 
+\Needspace{4\baselineskip}
+\textbf{Statements} \hfill{\small\color{FAUblue}§1.1}
+
+\Needspace{4\baselineskip}
+true = 1 \ensuremath{\cdot} false = 0
+
+Rests on: deciding whether a sentence has a definite truth value.
+
+\item 
+\Needspace{4\baselineskip}
+\textbf{Connectives} \hfill{\small\color{FAUblue}§1.1}
+
+\Needspace{4\baselineskip}
+\ensuremath{\neg}, \ensuremath{\land}, \ensuremath{\lor}, \ensuremath{\Rightarrow}, \ensuremath{\Leftrightarrow}
+
+Rests on: truth values for the component statements and the connective's rule.
+
+\end{itemize}
+
+\Needspace{9\baselineskip}
+\textbf{Defined} \ensuremath{\cdot} objects and relations
+
+\Needspace{7\baselineskip}
+\begin{itemize}
+\item 
+\Needspace{4\baselineskip}
+\textbf{Quantifiers} \hfill{\small\color{FAUblue}§1.1}
+
+\Needspace{4\baselineskip}
+\ensuremath{\forall}x P(x) \ensuremath{\cdot} \ensuremath{\exists}x P(x)
+
+Rests on: a domain of possible objects and a predicate whose truth can be checked.
+
+\item 
+\Needspace{4\baselineskip}
+\textbf{Sets and membership} \hfill{\small\color{FAUblue}§1.2}
+
+\Needspace{4\baselineskip}
+x \ensuremath{\in} A
+
+Rests on: a well-defined collection and a membership test.
+
+\item 
+\Needspace{4\baselineskip}
+\textbf{Set operations} \hfill{\small\color{FAUblue}§1.2}
+
+\Needspace{4\baselineskip}
+\ensuremath{\cup}, \ensuremath{\cap}, \textbackslash{}, \ensuremath{\times}, A\ensuremath{^{c}}
+
+Rests on: membership in the original sets and, for a complement, a fixed universal set.
+
+\end{itemize}
+
+\Needspace{8\baselineskip}
+\textbf{Derived} \ensuremath{\cdot} rules from definitions
+
+\Needspace{6\baselineskip}
+\begin{itemize}
+\item 
+\Needspace{4\baselineskip}
+\textbf{Logical equivalences} \hfill{\small\color{FAUblue}§1.1}
+
+\Needspace{4\baselineskip}
+truth tables prove equivalence
+
+Rests on: matching truth values in every row.
+
+\item 
+\Needspace{4\baselineskip}
+\textbf{Set algebra} \hfill{\small\color{FAUblue}§1.2}
+
+\Needspace{4\baselineskip}
+compare membership conditions
+
+Rests on: showing that both sides contain exactly the same elements.
+
+\end{itemize}
+
+\Needspace{10\baselineskip}
+\Needspace{10\baselineskip}
+\begin{center}\small\begin{tabularx}{\linewidth}{>{\raggedright\arraybackslash}X>{\raggedright\arraybackslash}X}\toprule
+\textbf{Question} & \textbf{Tool} \\ \midrule
+When is a compound statement true? & Truth table \\
+Does a set equation hold? & Element-by-element membership argument \\
+What is the negation of a quantified claim? & Swap \ensuremath{\forall} and \ensuremath{\exists}, then negate the predicate \\
+\bottomrule\end{tabularx}\end{center}
+\end{keepsection}
+
+\begin{keepsection}
+\Needspace{6\baselineskip}
+\section{1.1 Propositional Logic}
+
+Logic gives precise rules for combining claims. It lets you test arguments, simplify conditions, and express properties that will reappear throughout mathematics.
+
+\begin{keepsection}
+\Needspace{14\baselineskip}
+\subsection{A statement has a truth value}
+
+\Needspace{11\baselineskip}
+A \textbf{statement} is a sentence that is either true or false; its truth value is 1 or 0, respectively. “9 \ensuremath{>} 8” is a statement. “Friday the 13th is unlucky” is not a statement here because it does not have a definite mathematical truth value. A claim may still be a statement even if its truth is not currently known.
+
+\begin{equationcard}{Logical connectives}
+\[ \begin{gathered} \neg \mathrm{A} \\ \mathrm{A}\, \land \, \mathrm{B} \\ \mathrm{A}\, \lor \, \mathrm{B} \\ \mathrm{A}\, \Rightarrow \, \mathrm{B} \\ \mathrm{A}\, \Leftrightarrow \, \mathrm{B} \end{gathered} \]
+{\small Truth tables define the meaning of each connective. The notes use 1 for true and 0 for false; \ensuremath{\lor} is inclusive “or”.}
+\end{equationcard}
+
+\Needspace{10\baselineskip}
+\begin{center}\small\begin{tabularx}{\linewidth}{>{\raggedright\arraybackslash}X>{\raggedright\arraybackslash}X>{\raggedright\arraybackslash}X}\toprule
+\textbf{Form} & \textbf{Meaning} & \textbf{True when} \\ \midrule
+\ensuremath{\neg}A & not A & A is false \\
+A \ensuremath{\land} B & A and B & both A and B are true \\
+A \ensuremath{\lor} B & A or B & at least one is true; both may be true \\
+A \ensuremath{\Rightarrow} B & A implies B & A is false or B is true \\
+A \ensuremath{\Leftrightarrow} B & A iff B & A and B have the same truth value \\
+\bottomrule\end{tabularx}\end{center}
+
+\Needspace{11\baselineskip}
+The implication A \ensuremath{\Rightarrow} B is false in exactly one case: A is true and B is false. This is why a false premise makes the implication true under the truth-table definition; it does not claim that the conclusion follows from a false premise in ordinary causal language.
+
+\begin{workedbox}{Worked example \ensuremath{\cdot} build a truth table}
+Test whether A \ensuremath{\Rightarrow} B has the same truth values as \ensuremath{\neg}A \ensuremath{\lor} B.
+
+\Needspace{7\baselineskip}
+\begin{enumerate}
+\item List all input pairs: (1,1), (1,0), (0,1), (0,0).
+\item Evaluate \ensuremath{\neg}A \ensuremath{\lor} B: 1, 0, 1, 1.
+\item Evaluate A \ensuremath{\Rightarrow} B: 1, 0, 1, 1.
+\item The columns match in every row, so the two forms are equivalent. \hfill{\small\color{FAUblue}§1.1}
+\end{enumerate}
+\end{workedbox}
+\end{keepsection}
+
+\begin{keepsection}
+\Needspace{15\baselineskip}
+\subsection{Tautologies and logical rules}
+
+\Needspace{12\baselineskip}
+A \textbf{tautology} is true for every assignment of truth values. Two forms are logically equivalent when their truth values agree in every row. A truth table is a direct proof for expressions with a small number of variables.
+
+\begin{equationcard}{Rules to recognise and prove with truth tables}
+\[ \begin{gathered} \neg \neg \mathrm{A}\, \Leftrightarrow \, \mathrm{A} \\ \mathrm{A}\, \land \, \mathrm{B}\, \Leftrightarrow \, \mathrm{B}\, \land \, \mathrm{A} \\ \mathrm{A}\, \lor \, \mathrm{B}\, \Leftrightarrow \, \mathrm{B}\, \lor \, \mathrm{A} \\ \mathrm{A}\, \land \, (\mathrm{B}\, \land \, \mathrm{C})\, \Leftrightarrow \, (\mathrm{A}\, \land \, \mathrm{B})\, \land \, \mathrm{C} \\ \mathrm{A}\, \lor \, (\mathrm{B}\, \lor \, \mathrm{C})\, \Leftrightarrow \, (\mathrm{A}\, \lor \, \mathrm{B})\, \lor \, \mathrm{C} \\ \mathrm{A}\, \land \, (\mathrm{B}\, \lor \, \mathrm{C})\, \Leftrightarrow \, (\mathrm{A}\, \land \, \mathrm{B})\, \lor \, (\mathrm{A}\, \land \, \mathrm{C}) \\ \mathrm{A}\, \lor \, (\mathrm{B}\, \land \, \mathrm{C})\, \Leftrightarrow \, (\mathrm{A}\, \lor \, \mathrm{B})\, \land \, (\mathrm{A}\, \lor \, \mathrm{C}) \\ \neg (\mathrm{A}\, \land \, \mathrm{B})\, \Leftrightarrow \, \neg \mathrm{A}\, \lor \, \neg \mathrm{B} \\ \neg (\mathrm{A}\, \lor \, \mathrm{B})\, \Leftrightarrow \, \neg \mathrm{A}\, \land \, \neg \mathrm{B} \end{gathered} \]
+{\small These include double negation, commutativity, associativity, distributivity, and De Morgan’s laws (Theorem 1.4, notes p. 4).}
+\end{equationcard}
+
+\begin{notebox}\textbf{Trap:} the converse B \ensuremath{\Rightarrow} A is not generally equivalent to A \ensuremath{\Rightarrow} B. “If it rains, the street is wet” does not imply “if the street is wet, it rained.”\end{notebox}
+\end{keepsection}
+
+\begin{keepsection}
+\Needspace{13\baselineskip}
+\subsection{Predicates and quantifiers}
+
+\Needspace{10\baselineskip}
+A \textbf{propositional form} P(x) depends on variables; assigning values turns it into a statement. A quantifier specifies how many values in a domain must satisfy it.
+
+\begin{equationcard}{Quantifiers}
+\[ \begin{gathered} \forall \mathrm{x}\, \mathrm{P}(\mathrm{x}):\, \mathrm{P}(\mathrm{x})\, \text{holds}\, \text{for}\, \text{every}\, \mathrm{x}\, \text{in}\, \text{the}\, \text{domain} \\ \exists \mathrm{x}\, \mathrm{P}(\mathrm{x}):\, \mathrm{P}(\mathrm{x})\, \text{holds}\, \text{for}\, \text{at}\, \text{least}\, \text{one}\, \mathrm{x} \\ \exists !\mathrm{x}\, \mathrm{P}(\mathrm{x}):\, \mathrm{P}(\mathrm{x})\, \text{holds}\, \text{for}\, \text{exactly}\, \text{one}\, \mathrm{x} \end{gathered} \]
+{\small The domain matters. Quantifier order matters too: \ensuremath{\exists}D \ensuremath{\forall}P R(D,P) is not the same as \ensuremath{\forall}P \ensuremath{\exists}D R(D,P).}
+\end{equationcard}
+
+\Needspace{9\baselineskip}
+Negation changes “every” to “there exists at least one counterexample”, and changes “there exists” to “none exist”.
+
+\begin{equationcard}{Negating quantified statements}
+\[ \begin{gathered} \neg (\forall \mathrm{x}\, \mathrm{P}(\mathrm{x}))\, \Leftrightarrow \, \exists \mathrm{x}\, \neg \mathrm{P}(\mathrm{x}) \\ \neg (\exists \mathrm{x}\, \mathrm{P}(\mathrm{x}))\, \Leftrightarrow \, \forall \mathrm{x}\, \neg \mathrm{P}(\mathrm{x}) \end{gathered} \]
+{\small Negate the predicate after swapping the quantifier.}
+\end{equationcard}
+
+\begin{workedbox}{Worked example \ensuremath{\cdot} negate a quantified claim}
+Negate: “For every real number x, x² \ensuremath{\geq} 0.”
+
+\Needspace{6\baselineskip}
+\begin{enumerate}
+\item Swap \ensuremath{\forall} for \ensuremath{\exists}.
+\item Negate the predicate x² \ensuremath{\geq} 0 to x² \ensuremath{<} 0.
+\item The negation is “There exists a real number x with x² \ensuremath{<} 0.” It is false, so the original claim is true. \hfill{\small\color{FAUblue}§1.1}
+\end{enumerate}
+\end{workedbox}
+
+\begin{notebox}\textbf{Memory hook:} to disprove a universal claim, give one counterexample. To prove an existential claim, give one witness.\end{notebox}
+\end{keepsection}
+
+\begin{keepsection}
+\Needspace{9\baselineskip}
+\subsection{Why the grammar matters}
+
+\Needspace{6\baselineskip}
+The notes connect propositional logic to digital circuits and satisfiability problems. A circuit implements a truth table; a SAT solver asks whether some assignment makes a propositional formula true. These are applications of the truth rules, not extra operators.
+
+\Needspace{9\baselineskip}
+\begin{recallbox}{Recall check \ensuremath{\cdot} answer without looking}
+\Needspace{5\baselineskip}
+\begin{enumerate}
+\item Which row makes A \ensuremath{\Rightarrow} B false?
+\item How can you prove two forms equivalent with a truth table?
+\item What is the negation of \ensuremath{\forall}x P(x)?
+\end{enumerate}
+
+\nopagebreak[4]{\small\itshape Answers: see “1.1 Propositional Logic” under Answers at the end.}
+\end{recallbox}
+\end{keepsection}
+\end{keepsection}
+
+\begin{keepsection}
+\Needspace{6\baselineskip}
+\section{1.2 Set Theory}
+
+Sets let us collect objects by a precise membership rule. Logical connectives reappear here as operations on membership conditions.
+
+\begin{keepsection}
+\Needspace{13\baselineskip}
+\subsection{Membership, descriptions, and inclusion}
+
+\Needspace{10\baselineskip}
+A \textbf{set} is a well-defined collection of distinct objects. Write x \ensuremath{\in} A when x is a member and x \ensuremath{\notin} A otherwise. A set may be given by listing its elements, such as \{1,2,3\}, or by a property, such as \{x \ensuremath{\in} \ensuremath{\mathbb{R}} : x \ensuremath{>} 0\}. Order and repetition do not change a set.
+
+\begin{equationcard}{Subset and equality}
+\[ \begin{gathered} \mathrm{A}\, \subset \, \mathrm{B}\, \Leftrightarrow \, \text{every}\, \mathrm{x}\, \in \, \mathrm{A}\, \text{also}\, \text{belongs}\, \text{to}\, \mathrm{B} \\ \mathrm{A}\, =\, \mathrm{B}\, \Leftrightarrow \, \mathrm{A}\, \subset \, \mathrm{B}\, \text{and}\, \mathrm{B}\, \subset \, \mathrm{A} \\ \mathrm{A}\, \subsetneq \, \mathrm{B}\, \Leftrightarrow \, \mathrm{A}\, \subset \, \mathrm{B}\, \text{and}\, \text{some}\, \text{element}\, \text{of}\, \mathrm{B}\, \text{is}\, \text{not}\, \text{in}\, \mathrm{A} \end{gathered} \]
+{\small The notes use \ensuremath{\subset} for subset and \ensuremath{\subsetneq} for proper subset. Some authors use \ensuremath{\subseteq} for subset.}
+\end{equationcard}
+
+The empty set \ensuremath{\emptyset} has no elements and is a subset of every set. Standard number sets are \ensuremath{\mathbb{N}} (positive natural numbers in these notes), \ensuremath{\mathbb{Z}} (integers), \ensuremath{\mathbb{Q}} (rationals), \ensuremath{\mathbb{R}} (reals), and \ensuremath{\mathbb{C}} (complex numbers).
+\end{keepsection}
+
+\begin{keepsection}
+\Needspace{15\baselineskip}
+\subsection{Intervals, power sets, and size}
+
+\Needspace{12\baselineskip}
+Intervals describe parts of the real line. Round endpoints are excluded and square endpoints included: (a,b), [a,b), (a,b], [a,b]. Unbounded intervals include (a,\ensuremath{\infty}) and (\ensuremath{-}\ensuremath{\infty},b]; the notes also use \ensuremath{\mathbb{R}}=(\ensuremath{-}\ensuremath{\infty},\ensuremath{\infty}), \ensuremath{\mathbb{R}}\textsuperscript{+}=(0,\ensuremath{\infty}), and \ensuremath{\mathbb{R}}\textsubscript{\ensuremath{\geq}0}=[0,\ensuremath{\infty}). The power set \ensuremath{\mathcal{P}}(X) contains every subset of X. For finite X, cardinality |X| counts its elements, and |\ensuremath{\mathcal{P}}(X)| = 2\textsuperscript{|X|}.
+
+\begin{workedbox}{Worked example \ensuremath{\cdot} enumerate a power set}
+Let X=\{a,b\}. List \ensuremath{\mathcal{P}}(X) and its size.
+
+\Needspace{5\baselineskip}
+\begin{enumerate}
+\item Include the empty subset: \ensuremath{\emptyset}.
+\item Include the two one-element subsets: \{a\}, \{b\}.
+\item Include the whole set: \{a,b\}. Therefore \ensuremath{\mathcal{P}}(X)=\{\ensuremath{\emptyset},\{a\},\{b\},\{a,b\}\} and |\ensuremath{\mathcal{P}}(X)|=4=2². \hfill{\small\color{FAUblue}§1.2}
+\end{enumerate}
+\end{workedbox}
+\end{keepsection}
+
+\begin{keepsection}
+\Needspace{13\baselineskip}
+\subsection{Set operations}
+
+\Needspace{10\baselineskip}
+Each operation is easiest to understand by asking when an arbitrary element x belongs to the result. Sets with empty intersection are called \textbf{disjoint}.
+
+\begin{equationcard}{Operations and membership tests}
+\[ \begin{gathered} \mathrm{x}\, \in \, \mathrm{A}\, \cup \, \mathrm{B}\, \Leftrightarrow \, (\mathrm{x}\, \in \, \mathrm{A})\, \lor \, (\mathrm{x}\, \in \, \mathrm{B}) \\ \mathrm{x}\, \in \, \mathrm{A}\, \cap \, \mathrm{B}\, \Leftrightarrow \, (\mathrm{x}\, \in \, \mathrm{A})\, \land \, (\mathrm{x}\, \in \, \mathrm{B}) \\ \mathrm{x}\, \in \, \mathrm{A}\, \\, \mathrm{B}\, \Leftrightarrow \, (\mathrm{x}\, \in \, \mathrm{A})\, \land \, (\mathrm{x}\, \notin \, \mathrm{B}) \\ \mathrm{A}\, \times \, \mathrm{B}\, =\, \{(\mathrm{a},\mathrm{b}):\, \mathrm{a}\, \in \, \mathrm{A}\, \text{and}\, \mathrm{b}\, \in \, \mathrm{B}\} \\ \mathrm{A}^{c}\, =\, \mathrm{X}\, \\, \mathrm{A},\, \text{where}\, \mathrm{X}\, \text{is}\, \text{the}\, \text{fixed}\, \text{non}-\text{empty}\, \text{universal}\, \text{set} \end{gathered} \]
+{\small Pairs are ordered: (a,b) is generally different from (b,a). A complement is defined relative to X.}
+\end{equationcard}
+
+\Needspace{11\baselineskip}
+Union collects elements in either set; intersection keeps elements in both; difference keeps elements in A but removes those in B. The Cartesian product contains ordered pairs, not sets of the factors.
+
+\begin{equationcard}{Operations on n sets}
+\[ \begin{gathered} ⋃_{\mathrm{k}=1}^{\mathrm{n}}\mathrm{A}_{\mathrm{k}}\, \text{contains}\, \mathrm{x}\, \text{when}\, \mathrm{x}\, \text{belongs}\, \text{to}\, \text{at}\, \text{least}\, \text{one}\, \mathrm{A}_{\mathrm{k}} \\ ⋂_{\mathrm{k}=1}^{\mathrm{n}}\mathrm{A}_{\mathrm{k}}\, \text{contains}\, \mathrm{x}\, \text{when}\, \mathrm{x}\, \text{belongs}\, \text{to}\, \text{every}\, \mathrm{A}_{\mathrm{k}} \\ ∏_{\mathrm{k}=1}^{\mathrm{n}}\mathrm{A}_{\mathrm{k}}\, =\, \mathrm{A}_{1}\times ⋯\times \mathrm{A}_{\mathrm{n}},\, \text{the}\, \text{ordered}\, \mathrm{n}-\text{tuples}\, (\mathrm{x}_{1},…,\mathrm{x}_{\mathrm{n}})\, \text{with}\, \mathrm{x}_{\mathrm{k}}\in \mathrm{A}_{\mathrm{k}} \end{gathered} \]
+{\small In particular, \ensuremath{\mathbb{R}}\textsuperscript{2}=\ensuremath{\mathbb{R}}\ensuremath{\times}\ensuremath{\mathbb{R}} is the plane and \ensuremath{\mathbb{R}}\textsuperscript{3}=\ensuremath{\mathbb{R}}\ensuremath{\times}\ensuremath{\mathbb{R}}\ensuremath{\times}\ensuremath{\mathbb{R}} is three-dimensional space.}
+\end{equationcard}
+
+\begin{workedbox}{Worked example \ensuremath{\cdot} combine operations}
+Let A=\{1,2,3\} and B=\{3,4,5\}. Find A\ensuremath{\cup}B, A\ensuremath{\cap}B, and A\textbackslash{}B.
+
+\Needspace{5\baselineskip}
+\begin{enumerate}
+\item Membership in at least one gives A\ensuremath{\cup}B=\{1,2,3,4,5\}.
+\item Membership in both gives A\ensuremath{\cap}B=\{3\}, so the sets are not disjoint.
+\item Members of A that are not in B give A\textbackslash{}B=\{1,2\}. \hfill{\small\color{FAUblue}§1.2}
+\end{enumerate}
+\end{workedbox}
+\end{keepsection}
+
+\begin{keepsection}
+\Needspace{13\baselineskip}
+\subsection{Set algebra and De Morgan’s laws}
+
+\Needspace{10\baselineskip}
+Set identities can be proved by translating both sides into membership conditions. For example, x \ensuremath{\in} (A\ensuremath{\cap}B)\ensuremath{^{c}} exactly when x\ensuremath{\notin}A\ensuremath{\cap}B; this means it is not true that x is in both sets, or equivalently x\ensuremath{\notin}A or x\ensuremath{\notin}B. Thus x\ensuremath{\in}A\ensuremath{^{c}}\ensuremath{\cup}B\ensuremath{^{c}}, proving (A\ensuremath{\cap}B)\ensuremath{^{c}}=A\ensuremath{^{c}}\ensuremath{\cup}B\ensuremath{^{c}}.
+
+\begin{equationcard}{Set-algebra rules (Theorem 1.13)}
+\[ \begin{gathered} (\mathrm{A}^{c})^{c}=\mathrm{A} \\ \mathrm{A}\cap \mathrm{B}=\mathrm{B}\cap \mathrm{A} \\ \mathrm{A}\cup \mathrm{B}=\mathrm{B}\cup \mathrm{A} \\ \mathrm{A}\cap (\mathrm{B}\cap \mathrm{C})=(\mathrm{A}\cap \mathrm{B})\cap \mathrm{C} \\ \mathrm{A}\cup (\mathrm{B}\cup \mathrm{C})=(\mathrm{A}\cup \mathrm{B})\cup \mathrm{C} \\ \mathrm{A}\cap (\mathrm{B}\cup \mathrm{C})=(\mathrm{A}\cap \mathrm{B})\cup (\mathrm{A}\cap \mathrm{C}) \\ \mathrm{A}\cup (\mathrm{B}\cap \mathrm{C})=(\mathrm{A}\cup \mathrm{B})\cap (\mathrm{A}\cup \mathrm{C}) \\ (\mathrm{A}\cap \mathrm{B})^{c}=\mathrm{A}^{c}\cup \mathrm{B}^{c} \\ (\mathrm{A}\cup \mathrm{B})^{c}=\mathrm{A}^{c}\cap \mathrm{B}^{c} \end{gathered} \]
+{\small Complements use the same fixed universal set X.}
+\end{equationcard}
+
+\Needspace{5\baselineskip}
+\begin{notebox}\textbf{Trap:} A\textbackslash{}B is not generally B\textbackslash{}A. Check the direction by testing membership: the first set supplies candidates; the second removes them.\end{notebox}
+
+\Needspace{10\baselineskip}
+\begin{recallbox}{Recall check \ensuremath{\cdot} answer without looking}
+\Needspace{5\baselineskip}
+\begin{enumerate}
+\item How do you prove A=B from the definition?
+\item What is the difference between A\ensuremath{\cap}B and A\ensuremath{\times}B?
+\item What information is needed before A\ensuremath{^{c}} is defined?
+\end{enumerate}
+
+\nopagebreak[4]{\small\itshape Answers: see “1.2 Set Theory” under Answers at the end.}
+\end{recallbox}
+\end{keepsection}
+\end{keepsection}
+
+\begin{keepsection}
+\Needspace{15\baselineskip}
+\section{Formula map and notation}
+
+\Needspace{10\baselineskip}
+\begin{center}\small\begin{tabularx}{\linewidth}{>{\raggedright\arraybackslash}X>{\raggedright\arraybackslash}X>{\raggedright\arraybackslash}X}\toprule
+\textbf{Idea} & \textbf{Rule} & \textbf{Check} \\ \midrule
+Implication & A\ensuremath{\Rightarrow}B \ensuremath{\Leftrightarrow} \ensuremath{\neg}A\ensuremath{\lor}B & False only for A=true, B=false \\
+Negated quantifier & \ensuremath{\neg}\ensuremath{\forall}xP(x) \ensuremath{\Leftrightarrow} \ensuremath{\exists}x\ensuremath{\neg}P(x) & One counterexample is enough \\
+Union/intersection & \ensuremath{\cup} means or; \ensuremath{\cap} means and & Translate to membership \\
+Difference & A\textbackslash{}B: in A and not in B & Order matters \\
+Complement & A\ensuremath{^{c}}=X\textbackslash{}A & State X \\
+Power set & |\ensuremath{\mathcal{P}}(X)|=2\textsuperscript{|X|}, finite X & Includes \ensuremath{\emptyset} and X \\
+\bottomrule\end{tabularx}\end{center}
+
+\begin{notebox}\textbf{Check every answer:} for logic, test all truth assignments; for sets, test membership element by element and state the universal set when using complements.\end{notebox}
+\end{keepsection}
+
+\begin{keepsection}
+\Needspace{14\baselineskip}
+\section{Derive it cold}
+
+\Needspace{11\baselineskip}
+Rebuild these on blank paper before opening the answers in the relevant sections.
+
+\Needspace{9\baselineskip}
+\begin{enumerate}
+\item Use the truth table to derive A\ensuremath{\Rightarrow}B \ensuremath{\Leftrightarrow} \ensuremath{\neg}A\ensuremath{\lor}B. \hfill{\small\color{FAUblue}§1.1}
+\item Use the truth table to derive both logical De Morgan laws. \hfill{\small\color{FAUblue}§1.1}
+\item Negate a universal and an existential statement by swapping quantifiers and negating the predicate. \hfill{\small\color{FAUblue}§1.1}
+\item Prove one set identity by writing an arbitrary x-membership condition for each side. \hfill{\small\color{FAUblue}§1.2}
+\item Derive the set De Morgan laws from the logical De Morgan laws and membership tests. \hfill{\small\color{FAUblue}§1.2}
+\end{enumerate}
+\end{keepsection}
+
+\begin{keepsection}
+\Needspace{18\baselineskip}
+\section{Explain it}
+
+\Needspace{15\baselineskip}
+Answer each “why” in your own words before checking the model response.
+
+\Needspace{13\baselineskip}
+\begin{enumerate}
+\item Why is A\ensuremath{\Rightarrow}B true when A is false under the truth-table definition?
+\item Why does matching truth-table columns prove equivalence?
+\item Why can one counterexample disprove a universal statement?
+\item Why does quantifier order change the meaning of a claim about dogs and people?
+\item Why must the universal set be fixed to define a complement?
+\item Why is A\textbackslash{}B different from B\textbackslash{}A?
+\item Why are ordered pairs in A\ensuremath{\times}B generally not the same as those in B\ensuremath{\times}A?
+\item Why can a set identity be proved by comparing membership conditions?
+\end{enumerate}
+
+\nopagebreak[4]{\small\itshape Answers: see “Explain it” under Answers at the end.}
+\end{keepsection}
+
+\clearpage
+
+\begin{keepsection}
+\Needspace{10\baselineskip}
+\section{Mixed practice}
+
+\Needspace{7\baselineskip}
+Try all 24 problems before opening the answer key. The sections alternate so you must identify the right tool.
+
+\begin{enumerate}
+\item For A=1 and B=0, evaluate \ensuremath{\neg}A, A\ensuremath{\land}B, A\ensuremath{\lor}B, A\ensuremath{\Rightarrow}B, and A\ensuremath{\Leftrightarrow}B.
+\item Let A=\{1,2,3\}, B=\{3,4\}. Find A\ensuremath{\cup}B, A\ensuremath{\cap}B, A\textbackslash{}B, and B\textbackslash{}A.
+\item Is “There are infinitely many twin primes” a statement even if its truth is unproven? Explain briefly.
+\item Let X=\{a,b\}. List \ensuremath{\mathcal{P}}(X) and state its cardinality.
+\item Use a truth table to verify A\ensuremath{\Rightarrow}B \ensuremath{\Leftrightarrow} \ensuremath{\neg}A\ensuremath{\lor}B. Which input row makes both sides false?
+\item Let A=[0,2] and B=(1,3). Find A\ensuremath{\cap}B and A\ensuremath{\cup}B.
+\item Negate: “For every integer n, n²\ensuremath{\geq}0.”
+\item Let X=\{1,2,3,4\} and A=\{1,4\}. Find A\ensuremath{^{c}} relative to X.
+\item Build a truth table for \ensuremath{\neg}(A\ensuremath{\lor}B). In which row is it true?
+\item If |X|=3, how many elements does \ensuremath{\mathcal{P}}(X) have?
+\item Translate “There is exactly one real x such that x²=4” using quantifier notation.
+\item Let A=\{1,2\}, B=\{x,y,z\}. List A\ensuremath{\times}B.
+\item Are A\ensuremath{\Rightarrow}B and B\ensuremath{\Rightarrow}A equivalent for all A,B? Give one truth assignment that disproves equivalence.
+\item Let X=\ensuremath{\mathbb{R}} and A=[1,2]. Describe A\ensuremath{^{c}} as intervals.
+\item Let P(x) mean “x is even”, with domain \ensuremath{\mathbb{Z}}. Write “some integer is not even” symbolically.
+\item Let A=\{1,2,3\}, B=\{2,3,4\}, C=\{3,4,5\}. Find A\ensuremath{\cap}(B\ensuremath{\cup}C).
+\item Classify each as a statement or not: (i) 4 is prime; (ii) x+1=2; (iii) 4 is lucky.
+\item Use De Morgan’s law to simplify (A\ensuremath{\cap}B)\ensuremath{^{c}}.
+\item For A=0 and B=0, compare A\ensuremath{\Rightarrow}B with \ensuremath{\neg}A\ensuremath{\lor}B. Then use a truth table to verify \ensuremath{\neg}(A\ensuremath{\land}B) \ensuremath{\Leftrightarrow} \ensuremath{\neg}A\ensuremath{\lor}\ensuremath{\neg}B.
+\item Let A=\{1,2,3,4\} and B=\{2,4\}. Is B\ensuremath{\subset}A? Is B\ensuremath{\subsetneq}A?
+\item Negate: “There exists a real x such that x²\ensuremath{<}0.”
+\item Let X=\{1,2,3,4,5\}, A=\{1,2,3\}, B=\{3,4\}. Find (A\ensuremath{\cup}B)\ensuremath{^{c}} relative to X.
+\item Compare \ensuremath{\exists}D\ensuremath{\forall}P R(D,P) with \ensuremath{\forall}P\ensuremath{\exists}D R(D,P) in plain language.
+\item For A=\{1,2\} and B=\{2,3\}, find A\ensuremath{\times}B and B\ensuremath{\times}A. State one ordered pair in only one of them.
+\end{enumerate}
+
+\nopagebreak[4]{\small\itshape Answers: see “Mixed practice” under Answers at the end.}
+\end{keepsection}
+
+\begin{keepsection}
+\Needspace{5\baselineskip}
+\section{Exam-style problems}
+
+Set a timer for about 20 minutes per problem. Write the reasoning, not just the final values.
+
+\begin{keepsection}
+\Needspace{12\baselineskip}
+\subsection{1 \ensuremath{\cdot} Logic for a sensor check}
+
+\Needspace{9\baselineskip}
+Three sensors report truth values A, B, and C. A majority vote is represented by V=(A\ensuremath{\land}B)\ensuremath{\lor}(A\ensuremath{\land}C)\ensuremath{\lor}(B\ensuremath{\land}C).
+
+\Needspace{6\baselineskip}
+\begin{enumerate}
+\item Make a truth table for V and identify the rows where V=1.
+\item Show that swapping any two sensor labels leaves V unchanged, using commutativity of \ensuremath{\land} and \ensuremath{\lor}.
+\item Negate the claim “For every sensor configuration with at most one report equal to 1, the majority output is 0.” State the form of a counterexample.
+\end{enumerate}
+
+\nopagebreak[4]{\small\itshape Answers: see “Exam-style problems” under Answers at the end.}
+\end{keepsection}
+
+\begin{keepsection}
+\Needspace{11\baselineskip}
+\subsection{2 \ensuremath{\cdot} Sets of admissible inputs}
+
+\Needspace{8\baselineskip}
+Let the universal set be X=\{1,2,3,4,5,6,7,8\}. Let A be the even elements of X, B=\{1,2,3,4\}, and C=\{3,4,5,6\}.
+
+\Needspace{5\baselineskip}
+\begin{enumerate}
+\item List A, A\ensuremath{\cap}B, and A\ensuremath{\cup}B.
+\item Find (B\ensuremath{\cup}C)\ensuremath{^{c}} and B\ensuremath{^{c}}\ensuremath{\cap}C\ensuremath{^{c}} relative to X, and use the results to check a De Morgan identity.
+\item Let D=\{red, blue\}. List A\ensuremath{\times}D and give its cardinality.
+\end{enumerate}
+
+\nopagebreak[4]{\small\itshape Answers: see “Exam-style problems” under Answers at the end.}
+\end{keepsection}
+\end{keepsection}
+
+\begin{keepsection}
+\Needspace{9\baselineskip}
+\section{Slips in the notes}
+
+\Needspace{6\baselineskip}
+One statement in the lecture notes needs an edge-case qualification.
+
+\Needspace{4\baselineskip}
+\begin{enumerate}
+\item \textbf{Printed page 9:} the notes say that A\ensuremath{\times}B is neither contained in A nor in B. If either factor is empty, then A\ensuremath{\times}B=\ensuremath{\emptyset}, and \ensuremath{\emptyset} is a subset of both factors. The definition of the Cartesian product remains correct; the remark about containment is too broad for empty factors.
+\end{enumerate}
+\end{keepsection}
+
+\begin{keepsection}
+\Needspace{10\baselineskip}
+\section{Self-check}
+
+\Needspace{7\baselineskip}
+Use day 0 to learn and practise. Tick a skill only in a later session, at least one day afterward, when you can show it without notes. Use the listed problem numbers as evidence.
+
+\begin{itemize}
+\item $\mdlgwhtsquare$\ Evaluate all five logical connectives from input truth values. (1, 5, 9, 13, 19)
+\item $\mdlgwhtsquare$\ Distinguish a statement from an open or undefined sentence. (3, 17)
+\item $\mdlgwhtsquare$\ Prove equivalence with complete truth tables. (5, 19)
+\item $\mdlgwhtsquare$\ Translate and negate quantified claims. (7, 11, 15, 21, 23)
+\item $\mdlgwhtsquare$\ Compute unions, intersections, and differences from membership. (2, 6, 16)
+\item $\mdlgwhtsquare$\ Use subset, proper subset, and equality definitions. (20)
+\item $\mdlgwhtsquare$\ Find complements relative to an explicit universe. (8, 14, 22)
+\item $\mdlgwhtsquare$\ Enumerate small power sets and count subsets. (4, 10)
+\item $\mdlgwhtsquare$\ List Cartesian products and track coordinate order. (12, 24)
+\item $\mdlgwhtsquare$\ Apply De Morgan’s laws to statements and sets. (18, 19)
+\item $\mdlgwhtsquare$\ Rebuild the listed derivations from definitions.
+\item $\mdlgwhtsquare$\ Solve both multi-part problems and justify each step.
+\end{itemize}
+\end{keepsection}
+
+
+\clearpage
+\section{Answers}
+\begin{keepsection}\subsection{Start from memory}
+
+\Needspace{8\baselineskip}
+\begin{enumerate}
+\item Only when A is true and B is false. \hfill{\small\color{FAUblue}§1.1}
+\item Yes. A \ensuremath{\lor} B is true when at least one is true, including when both are true. \hfill{\small\color{FAUblue}§1.1}
+\item There exists an x for which P(x) is false: \ensuremath{\exists}x \ensuremath{\neg}P(x). \hfill{\small\color{FAUblue}§1.1}
+\item Every element of A is also an element of B. \hfill{\small\color{FAUblue}§1.2}
+\item A \ensuremath{\times} B contains ordered pairs (a,b) with a \ensuremath{\in} A and b \ensuremath{\in} B; it is not the set \{A,B\}. \hfill{\small\color{FAUblue}§1.2}
+\end{enumerate}
+
+\end{keepsection}
+\begin{keepsection}\subsection{1.1 Propositional Logic}
+
+\Needspace{5\baselineskip}
+\begin{enumerate}
+\item A=1, B=0. \hfill{\small\color{FAUblue}§1.1}
+\item Show that their output columns agree for every assignment. \hfill{\small\color{FAUblue}§1.1}
+\item \ensuremath{\exists}x \ensuremath{\neg}P(x): at least one value fails the predicate. \hfill{\small\color{FAUblue}§1.1}
+\end{enumerate}
+
+\end{keepsection}
+\begin{keepsection}\subsection{1.2 Set Theory}
+
+\Needspace{6\baselineskip}
+\begin{enumerate}
+\item Show both A\ensuremath{\subset}B and B\ensuremath{\subset}A. \hfill{\small\color{FAUblue}§1.2}
+\item A\ensuremath{\cap}B is a set of elements common to both; A\ensuremath{\times}B is a set of ordered pairs with first and second components in the respective sets. \hfill{\small\color{FAUblue}§1.2}
+\item A universal set X containing A. \hfill{\small\color{FAUblue}§1.2}
+\end{enumerate}
+
+\end{keepsection}
+\begin{keepsection}\subsection{Explain it}
+
+\Needspace{20\baselineskip}
+\begin{enumerate}
+\item The defined truth condition is “A is false or B is true.” Only a true premise paired with a false conclusion violates it. \hfill{\small\color{FAUblue}§1.1}
+\item Equivalence means same output for every possible input; the table lists every input assignment. \hfill{\small\color{FAUblue}§1.1}
+\item A universal claim says every domain element works, so one failing element is enough to make it false. \hfill{\small\color{FAUblue}§1.1}
+\item \ensuremath{\exists}D\ensuremath{\forall}P can use one dog for all people; \ensuremath{\forall}P\ensuremath{\exists}D allows a different dog for each person. \hfill{\small\color{FAUblue}§1.1}
+\item “Outside A” means outside A but still within the chosen universe; changing the universe changes the complement. \hfill{\small\color{FAUblue}§1.2}
+\item A\textbackslash{}B starts from A and removes elements of B; reversing the order changes both the candidates and what is removed. \hfill{\small\color{FAUblue}§1.2}
+\item The first coordinate must come from A and the second from B, so swapping the factors swaps coordinate roles. \hfill{\small\color{FAUblue}§1.2}
+\item Two sets are equal when they contain exactly the same elements, so membership of an arbitrary x captures equality. \hfill{\small\color{FAUblue}§1.2}
+\end{enumerate}
+
+\end{keepsection}
+\begin{keepsection}\subsection{Mixed practice}
+
+\begin{enumerate}
+\item With A=1 and B=0, \ensuremath{\neg}A=0, A\ensuremath{\land}B=0, A\ensuremath{\lor}B=1, A\ensuremath{\Rightarrow}B=0, and A\ensuremath{\Leftrightarrow}B=0. The implication fails only on this true-to-false row; equivalence fails because the inputs differ. \hfill{\small\color{FAUblue}§1.1}
+\item Members in either set give A\ensuremath{\cup}B=\{1,2,3,4\}; the shared member gives A\ensuremath{\cap}B=\{3\}. Removing B from A leaves \{1,2\}, while removing A from B leaves \{4\}. \hfill{\small\color{FAUblue}§1.2}
+\item Yes. It is a declarative claim with a definite truth value, although that value is not known. \hfill{\small\color{FAUblue}§1.1}
+\item \ensuremath{\mathcal{P}}(X)=\{\ensuremath{\emptyset},\{a\},\{b\},\{a,b\}\} and |\ensuremath{\mathcal{P}}(X)|=4=2². \hfill{\small\color{FAUblue}§1.2}
+\item For rows (A,B)=(1,1),(1,0),(0,1),(0,0), both A\ensuremath{\Rightarrow}B and \ensuremath{\neg}A\ensuremath{\lor}B have outputs 1,0,1,1. They agree on every row, and both are false only for A=1,B=0. \hfill{\small\color{FAUblue}§1.1}
+\item A\ensuremath{\cap}B=(1,2]; A\ensuremath{\cup}B=[0,3). \hfill{\small\color{FAUblue}§1.2}
+\item There exists an integer n with n²\ensuremath{<}0. This is false over \ensuremath{\mathbb{Z}}. \hfill{\small\color{FAUblue}§1.1}
+\item A\ensuremath{^{c}}=X\textbackslash{}A=\{1,2,3,4\}\textbackslash{}\{1,4\}=\{2,3\}; the complement is taken within X. \hfill{\small\color{FAUblue}§1.2}
+\item It is true only when A=0 and B=0, because both must be false for \ensuremath{\neg}(A\ensuremath{\lor}B). \hfill{\small\color{FAUblue}§1.1}
+\item A three-element set has 2³=8 subsets: each element is either included or excluded independently. \hfill{\small\color{FAUblue}§1.2}
+\item \ensuremath{\exists}!x\ensuremath{\in}\ensuremath{\mathbb{R}} such that x²=4. The solutions are 2 and \ensuremath{-}2, so the claim as written is false. \hfill{\small\color{FAUblue}§1.1}
+\item \{(1,x),(1,y),(1,z),(2,x),(2,y),(2,z)\}. The first coordinate comes from A. \hfill{\small\color{FAUblue}§1.2}
+\item No. With A=1,B=0, A\ensuremath{\Rightarrow}B is false but B\ensuremath{\Rightarrow}A is true. \hfill{\small\color{FAUblue}§1.1}
+\item (\ensuremath{-}\ensuremath{\infty},1)\ensuremath{\cup}(2,\ensuremath{\infty}). The endpoints belong to A, so they are excluded from the complement. \hfill{\small\color{FAUblue}§1.2}
+\item \ensuremath{\exists}x\ensuremath{\in}\ensuremath{\mathbb{Z}} such that \ensuremath{\neg}P(x), or “there is an odd integer.” \hfill{\small\color{FAUblue}§1.1}
+\item B\ensuremath{\cup}C=\{2,3,4,5\}; intersecting with A gives \{2,3\}. \hfill{\small\color{FAUblue}§1.2}
+\item (i) Statement, false. (ii) Not a statement until x is assigned or quantified. (iii) Not a mathematical statement because “lucky” has no defined truth condition. \hfill{\small\color{FAUblue}§1.1}
+\item (A\ensuremath{\cap}B)\ensuremath{^{c}}=A\ensuremath{^{c}}\ensuremath{\cup}B\ensuremath{^{c}}: being outside both together means being outside at least one. \hfill{\small\color{FAUblue}§1.2}
+\item For A=B=0, both A\ensuremath{\Rightarrow}B and \ensuremath{\neg}A\ensuremath{\lor}B equal 1. For rows (1,1),(1,0),(0,1),(0,0), both \ensuremath{\neg}(A\ensuremath{\land}B) and \ensuremath{\neg}A\ensuremath{\lor}\ensuremath{\neg}B have values 0,1,1,1, so the columns match. \hfill{\small\color{FAUblue}§1.1}
+\item Yes, every element of B is in A. Yes, since 1\ensuremath{\in}A but 1\ensuremath{\notin}B, so A has an element outside B. \hfill{\small\color{FAUblue}§1.2}
+\item For every real x, x²\ensuremath{\geq}0. \hfill{\small\color{FAUblue}§1.1}
+\item A\ensuremath{\cup}B=\{1,2,3,4\}; its complement in X is \{5\}. \hfill{\small\color{FAUblue}§1.2}
+\item The first says one D relates to every P. The second says each P has at least one related D, possibly different for each P. \hfill{\small\color{FAUblue}§1.1}
+\item A\ensuremath{\times}B=\{(1,2),(1,3),(2,2),(2,3)\}; B\ensuremath{\times}A=\{(2,1),(2,2),(3,1),(3,2)\}. For example, (1,2) is only in A\ensuremath{\times}B. \hfill{\small\color{FAUblue}§1.2}
+\end{enumerate}
+
+\end{keepsection}
+\begin{keepsection}\subsection{Exam-style problems}
+
+\Needspace{9\baselineskip}
+\begin{enumerate}
+\item V=1 when at least two reports are 1: rows 111, 110, 101, 011. It is 0 for 100, 010, 001, 000. \hfill{\small\color{FAUblue}§1.1}
+\item For example, swapping A and B changes (A\ensuremath{\land}B) to (B\ensuremath{\land}A), which is equal by commutativity; it swaps the other two terms as well. The full disjunction is unchanged, and the same argument applies to any pair. \hfill{\small\color{FAUblue}§1.1}
+\item \ensuremath{\exists} a configuration with at most one 1 but V=1. This cannot happen for the majority rule, so the original claim is true. \hfill{\small\color{FAUblue}§1.1}
+\end{enumerate}
+
+\end{keepsection}
+\begin{keepsection}\subsection{Exam-style problems}
+
+\Needspace{7\baselineskip}
+\begin{enumerate}
+\item A=\{2,4,6,8\}; A\ensuremath{\cap}B=\{2,4\}; A\ensuremath{\cup}B=\{1,2,3,4,6,8\}. \hfill{\small\color{FAUblue}§1.2}
+\item B\ensuremath{\cup}C=\{1,2,3,4,5,6\}, so (B\ensuremath{\cup}C)\ensuremath{^{c}}=\{7,8\}. Also B\ensuremath{^{c}}=\{5,6,7,8\} and C\ensuremath{^{c}}=\{1,2,7,8\}; their intersection is \{7,8\}. Hence (B\ensuremath{\cup}C)\ensuremath{^{c}}=B\ensuremath{^{c}}\ensuremath{\cap}C\ensuremath{^{c}}. \hfill{\small\color{FAUblue}§1.2}
+\item A\ensuremath{\times}D=\{(2,red),(2,blue),(4,red),(4,blue),(6,red),(6,blue),(8,red),(8,blue)\}; it has 8 ordered pairs. \hfill{\small\color{FAUblue}§1.2}
+\end{enumerate}
+
+\end{keepsection}
+
+\vfill{\small Personal study guide based on Mathematics for Engineers I lecture notes, Chapter 1 “Statements, Logic, and Sets” (printed pages 1–10), by Rhoslyn Coles and Cornelia Schneider. Written in my own words; no lecture pages or figures are reproduced. Not an official FAU publication; check course details against the current notes.}
+
+\end{document}
