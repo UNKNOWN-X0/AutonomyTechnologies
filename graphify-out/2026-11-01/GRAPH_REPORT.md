@@ -1,12 +1,12 @@
 # Graph Report - AutonomyTechnologies  (2026-11-01)
 
 ## Corpus Check
-- 41 files · ~154,385 words
+- 41 files · ~155,339 words
 - Verdict: corpus is large enough that graph structure adds value.
 - Unclassified: 13 file(s) not represented in the graph (top: .tex 7, .css 4, (none) 2)
 
 ## Summary
-- 566 nodes · 1004 edges · 29 communities (24 shown, 5 thin omitted)
+- 566 nodes · 1005 edges · 29 communities (24 shown, 5 thin omitted)
 - Extraction: 87% EXTRACTED · 13% INFERRED · 0% AMBIGUOUS · INFERRED: 126 edges (avg confidence: 0.85)
 - Token cost: 0 input · 0 output
 

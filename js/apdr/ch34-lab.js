@@ -1,4 +1,4 @@
-/* APDR Chapters 3+4 predict-then-reveal experiments. */
+/* APDR Chapter 2a predict-then-reveal experiments. */
 (function () {
   var P = window.APDR34;
 

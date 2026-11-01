@@ -14,7 +14,7 @@ The home page has one section per semester. Each subject shows its module number
 
 | Semester | Code | Subject | Module | Course parts | Material |
 | --- | --- | --- | --- | --- | --- |
-| 1 | APDR | Algorithms, programming, and data representation | 92313 | Lecture, blackboard exercise, computer exercise | Lecture 1 welcome; Chapter 2 guide and lab; Chapters 1+2 guide and lab; Chapter 3 guide and lab; Chapter 4 guide and lab; Chapters 3+4 guide and lab; PDFs |
+| 1 | APDR | Algorithms, programming, and data representation | 92313 | Lecture, blackboard exercise, computer exercise | Lecture 1 welcome; Chapter 2 guide and lab; Chapter 1a guide and lab; Chapter 3 guide and lab; Chapter 4 guide and lab; Chapter 2a guide and lab; PDFs |
 | 1 | MEI | Mathematics for Engineers I | 62765 | Lecture, exercise | Chapter 1: Statements, Logic, and Sets study guide and PDF |
 | 1 | EEI | Electrical Engineering I | 92315 | Lecture, exercise, tutorial | Chapter 1: Electrostatic Fields guide, PDF and LaTeX source |
 | 1 | MATLAB | Introduction to MATLAB | 92317 | Course (not started yet) | none yet |
@@ -46,18 +46,18 @@ apdr/                   Algorithms, Programming, and Data Representation materia
   ch2-computers.html             Lecture 2 study guide (the single source)
   ch2-computers.pdf/.tex         Print version and generated LaTeX source
   ch2-computers-lab.html         Chapter 2 predict-then-reveal lab
-  ch1-2-boolean-algebra.html Boolean algebra study guide for Chapters 1+2
-  ch1-2-boolean-algebra.pdf/.tex Print version and generated LaTeX source
-  ch1-2-boolean-algebra-lab.html Chapters 1+2 Boolean algebra predict-then-reveal lab
+  ch1a-boolean-algebra.html Boolean algebra study guide for Chapter 1a
+  ch1a-boolean-algebra.pdf/.tex Print version and generated LaTeX source
+  ch1a-boolean-algebra-lab.html Chapter 1a Boolean algebra predict-then-reveal lab
   ch3-data-representation.html Chapter 3 study guide (the single source)
   ch3-data-representation.pdf/.tex Print version and generated LaTeX source
   ch3-data-representation-lab.html Chapter 3 predict-then-reveal lab
   ch4-floating-point-numbers.html Chapter 4 floating-point study guide
   ch4-floating-point-numbers-lab.html Chapter 4 predict-then-reveal lab
   ch4-floating-point-numbers.pdf/.tex Print version and generated LaTeX source
-  ch3-integer-and-floating-point.html Chapters 3+4 combined study guide
-  ch3-integer-and-floating-point.pdf/.tex Print version and generated LaTeX source
-  ch3-integer-and-floating-point-lab.html Chapters 3+4 predict-then-reveal lab
+  ch2a-integer-and-floating-point.html Chapter 2a combined study guide
+  ch2a-integer-and-floating-point.pdf/.tex Print version and generated LaTeX source
+  ch2a-integer-and-floating-point-lab.html Chapter 2a predict-then-reveal lab
 css/
   system.css            Shared sign system: tokens, subject colours, code squares, buttons, tooltip
   index.css             Home page layout
@@ -77,8 +77,8 @@ js/
   apdr/ch3-lab.js       APDR Chapter 3 experiments
   apdr/ch4-physics.js   APDR Chapter 4 calculations
   apdr/ch4-lab.js       APDR Chapter 4 experiments
-  apdr/ch34-physics.js  Calculations shared by the combined Chapters 3+4 lab and tests
-  apdr/ch34-lab.js      APDR Chapters 3+4 experiments
+  apdr/ch34-physics.js  Calculations shared by the combined Chapter 2a lab and tests
+  apdr/ch34-lab.js      APDR Chapter 2a experiments
 tests/                  Physics tests: node --test
 tools/
   guide-to-tex.py       Converts a guide page into its LaTeX file
@@ -114,11 +114,11 @@ python3 -I tools/guide-to-tex.py apdr/ch2-computers.html apdr/ch2-computers.tex
 cd apdr && latexmk -xelatex ch2-computers.tex && latexmk -c ch2-computers.tex
 ```
 
-For the APDR Chapters 1+2 Boolean algebra guide, run:
+For the APDR Chapter 1a Boolean algebra guide, run:
 
 ```sh
-python3 -I tools/guide-to-tex.py apdr/ch1-2-boolean-algebra.html apdr/ch1-2-boolean-algebra.tex
-cd apdr && latexmk -xelatex ch1-2-boolean-algebra.tex && latexmk -c ch1-2-boolean-algebra.tex
+python3 -I tools/guide-to-tex.py apdr/ch1a-boolean-algebra.html apdr/ch1a-boolean-algebra.tex
+cd apdr && latexmk -xelatex ch1a-boolean-algebra.tex && latexmk -c ch1a-boolean-algebra.tex
 ```
 
 For the APDR Chapter 3 number and data representation guide, run:
@@ -135,11 +135,11 @@ python3 -I tools/guide-to-tex.py apdr/ch4-floating-point-numbers.html apdr/ch4-f
 cd apdr && latexmk -xelatex ch4-floating-point-numbers.tex && latexmk -c ch4-floating-point-numbers.tex
 \`\`\`
 
-For the APDR Chapters 3+4 guide, run:
+For the APDR Chapter 2a guide, run:
 
 \`\`\`sh
-python3 -I tools/guide-to-tex.py apdr/ch3-integer-and-floating-point.html apdr/ch3-integer-and-floating-point.tex
-cd apdr && latexmk -xelatex ch3-integer-and-floating-point.tex && latexmk -c ch3-integer-and-floating-point.tex
+python3 -I tools/guide-to-tex.py apdr/ch2a-integer-and-floating-point.html apdr/ch2a-integer-and-floating-point.tex
+cd apdr && latexmk -xelatex ch2a-integer-and-floating-point.tex && latexmk -c ch2a-integer-and-floating-point.tex
 \`\`\`
 
 In the PDF, every answer block moves to an Answers section at the end, so the questions can be tried first.

@@ -21,6 +21,8 @@ Each rule below serves one of these study principles, taken from the ultimate-st
 
 ## Files
 
+Chapter numbers may include a lowercase letter suffix (for example, `1a` or `2a`); use that label consistently in filenames.
+
 | Item | Rule |
 |---|---|
 | Location | `<subject>/ch<N>-<topic>.html`, with `<subject>` the lower-case subject code (`eei`, `mei`, `apdr`, `matlab`) and `<topic>` a short kebab-case slug. The `.pdf` and `.tex` sit beside it with the same stem. |

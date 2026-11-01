@@ -63,9 +63,9 @@ def check(path):
 
     # --- files and naming
     rel = os.path.relpath(path, ROOT)
-    m = re.fullmatch(r"([a-z]+)/ch(\d+)-[a-z0-9-]+\.html", rel)
+    m = re.fullmatch(r"([a-z]+)/ch(\d+[a-z]?)-[a-z0-9-]+\.html", rel)
     if not m:
-        rep.err("file must live at <subject>/ch<N>-<topic>.html, got %s" % rel)
+        rep.err("file must live at <subject>/ch<N>-<topic>.html (N may include a letter suffix, e.g. 1a), got %s" % rel)
     stem = os.path.splitext(path)[0]
 
     # --- head and shell

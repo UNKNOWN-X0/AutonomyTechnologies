@@ -1,4 +1,4 @@
-/* Boolean-function calculations for the APDR Chapters 1+2 lab. */
+/* Boolean-function calculations for the APDR Chapter 1a lab. */
 (function (root, factory) {
   var api = factory();
   if (typeof module === "object" && module.exports) module.exports = api;

@@ -18,6 +18,8 @@ What "done" means for a chapter lab: a page of predict-then-reveal experiments b
 
 ## Files
 
+Chapter numbers may include a lowercase letter suffix (for example, `1a` or `2a`); use that label consistently in filenames.
+
 | Item | Rule |
 |---|---|
 | Page | `<subject>/ch<N>-<topic>-lab.html`, beside the guide `<subject>/ch<N>-<topic>.html`. |
