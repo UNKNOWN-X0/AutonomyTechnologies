@@ -231,9 +231,10 @@ Because 8=2\textsuperscript{3}, each octal digit corresponds to three binary dig
 {\small The lecture uses 16-bit words and 32-bit long words as examples; the sizes named by these terms can depend on a computer architecture.}
 \end{equationcard}
 
-\Needspace{11\baselineskip}
+\Needspace{5\baselineskip}
 \begin{notebox}\textbf{Trap:} do not read a binary string as an ordinary decimal integer. Attach its base, expand it, and only then compare values.\end{notebox}
 
+\Needspace{10\baselineskip}
 \begin{recallbox}{Recall check \ensuremath{\cdot} answer without looking}
 \Needspace{5\baselineskip}
 \begin{enumerate}
@@ -277,11 +278,11 @@ An unsigned n-bit pattern represents 0 through 2\textsuperscript{n}\ensuremath{-
 \end{keepsection}
 
 \begin{keepsection}
-\Needspace{15\baselineskip}
+\Needspace{17\baselineskip}
 \subsection{Two’s complement and bias}
 
-\Needspace{12\baselineskip}
-To form \ensuremath{-}x in n-bit two’s complement, invert all n bits of x and add 1; discard a carry beyond the width. Equivalently, interpret a pattern with top bit 1 by subtracting 2\textsuperscript{n} from its unsigned value. In excess-B notation, actual value = stored unsigned value \ensuremath{-} B. The lecture’s three-bit excess-4 example therefore maps 000 to \ensuremath{-}4 and 111 to 3.
+\Needspace{14\baselineskip}
+To form \ensuremath{-}x in n-bit two’s complement, invert all n bits of x and add 1; discard a carry beyond the width. The minimum value \ensuremath{-}2\textsuperscript{n\ensuremath{-}1} is the exception: its positive counterpart is outside the signed range, so fixed-width negation leaves the same pattern and overflows. Equivalently, interpret a pattern with top bit 1 by subtracting 2\textsuperscript{n} from its unsigned value. In excess-B notation, actual value = stored unsigned value \ensuremath{-} B. The lecture’s three-bit excess-4 example therefore maps 000 to \ensuremath{-}4 and 111 to 3.
 
 \begin{equationcard}{Decode rules}
 \[ \begin{gathered} \text{Two}’\mathrm{s}-\text{complement}\, \text{value}\, =\, \text{unsigned}(\text{pattern})\, -\, 2^{\mathrm{n}}\, \text{when}\, \text{the}\, \text{top}\, \text{bit}\, \text{is}\, 1 \\ \text{Negate}\, \mathrm{x}:\, \text{invert}\, \mathrm{n}\, \text{bits},\, \text{then}\, \text{add}\, 1 \\ \text{Excess}-\mathrm{B}\, \text{value}\, =\, \text{stored}\, \text{value}\, -\, \mathrm{B} \end{gathered} \]
@@ -296,9 +297,10 @@ To form \ensuremath{-}x in n-bit two’s complement, invert all n bits of x and 
 \Needspace{7\baselineskip}
 In four-bit BCD, each decimal digit has its own four-bit code. For example, decimal 59 is 0101 1001 in BCD, while the ordinary binary value 59 is 00111011. BCD uses more bits but keeps each decimal digit directly readable.
 
-\Needspace{11\baselineskip}
+\Needspace{5\baselineskip}
 \begin{notebox}\textbf{Trap:} do not convert all BCD bits as one binary number. Decode each four-bit group as a decimal digit.\end{notebox}
 
+\Needspace{10\baselineskip}
 \begin{recallbox}{Recall check \ensuremath{\cdot} answer without looking}
 \Needspace{5\baselineskip}
 \begin{enumerate}
@@ -341,9 +343,10 @@ The lecture’s example encodes “Fred” in hexadecimal as 46 72 65 64.
 \end{enumerate}
 \end{workedbox}
 
-\Needspace{10\baselineskip}
+\Needspace{5\baselineskip}
 \begin{notebox}\textbf{Trap:} an encoding is a mapping, not a property of the bit pattern by itself. Identify the character set and any byte encoding before decoding text.\end{notebox}
 
+\Needspace{9\baselineskip}
 \begin{recallbox}{Recall check \ensuremath{\cdot} answer without looking}
 \Needspace{4\baselineskip}
 \begin{enumerate}
@@ -393,9 +396,10 @@ Binary multiplication uses partial products, like decimal long multiplication, b
 {\small Substitute the quotient, divisor, and remainder to check a division result.}
 \end{equationcard}
 
-\Needspace{10\baselineskip}
+\Needspace{5\baselineskip}
 \begin{notebox}\textbf{Memory hook:} in binary addition, 1+1 writes 0 and carries 1. In subtraction, a borrow makes the current column worth 2 before subtracting.\end{notebox}
 
+\Needspace{9\baselineskip}
 \begin{recallbox}{Recall check \ensuremath{\cdot} answer without looking}
 \Needspace{4\baselineskip}
 \begin{enumerate}
@@ -445,9 +449,10 @@ Use four-bit two’s complement to calculate \ensuremath{-}7+(\ensuremath{-}6).
 \Needspace{10\baselineskip}
 The lecture notes that ordinary unsigned multiplication cannot simply be applied to signed two’s-complement patterns and read at the original width. A full product may require up to twice as many bits as the operands; retain a sufficient width and interpret the result consistently. For a simple signed multiplication, multiply magnitudes and make the result negative exactly when the operand signs differ, then check the available width. The supplied slides introduce this idea but do not give a complete signed division algorithm.
 
-\Needspace{12\baselineskip}
+\Needspace{5\baselineskip}
 \begin{notebox}\textbf{Sign check:} do not treat discarded carry as overflow. Decode the fixed-width result and compare it with the exact mathematical result and allowed range.\end{notebox}
 
+\Needspace{11\baselineskip}
 \begin{recallbox}{Recall check \ensuremath{\cdot} answer without looking}
 \Needspace{5\baselineskip}
 \begin{enumerate}
@@ -642,11 +647,11 @@ Tick a skill only in a later session, at least one day after studying, when you 
 \section{Answers}
 \begin{keepsection}\subsection{Start from memory}
 
-\Needspace{10\baselineskip}
+\Needspace{11\baselineskip}
 \begin{enumerate}
 \item It is the digit’s coefficient on a power of the base, counting from power zero at the right. \hfill{\small\color{FAUblue}§3.1}
 \item \ensuremath{-}2\textsuperscript{n\ensuremath{-}1} through 2\textsuperscript{n\ensuremath{-}1}\ensuremath{-}1. \hfill{\small\color{FAUblue}§3.2}
-\item Invert all bits and add 1, keeping the chosen width. \hfill{\small\color{FAUblue}§3.2}
+\item Invert all bits and add 1, keeping the chosen width. For the minimum value \ensuremath{-}2\textsuperscript{n\ensuremath{-}1}, the result is the same pattern because its positive value cannot fit at that width. \hfill{\small\color{FAUblue}§3.2}
 \item Four bits, because 16 = 2\textsuperscript{4}. \hfill{\small\color{FAUblue}§3.1}
 \item Nothing by itself. In fixed-width two’s-complement addition, carry-out is discarded and is not the signed-overflow test. \hfill{\small\color{FAUblue}§3.5}
 \end{enumerate}

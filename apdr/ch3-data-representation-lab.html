@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#04316A" />
+    <meta name="description" content="Predict-then-reveal lab for APDR Chapter 3: number bases, integer encodings, character data, and binary arithmetic." />
+    <title>Number and Data Representation Lab · APDR Chapter 3</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="../css/system.css" />
+    <link rel="stylesheet" href="../css/guide.css" />
+    <link rel="stylesheet" href="../css/lab.css" />
+  </head>
+  <body class="s-apdr-1 lab" data-key="apdr1-ch3" data-guide="ch3-data-representation.html" data-skills="15">
+    <div class="wrap">
+      <nav class="toc" aria-label="Lab contents">
+        <a class="brand" href="../index.html"><span>From Fundamentals to AI Apocalypse</span></a>
+        <a class="home" href="../index.html">All semesters</a>
+        <nav class="chapter-switch" aria-label="Chapter 3">
+          <a href="ch3-data-representation.html">Guide</a><a aria-current="page" href="ch3-data-representation-lab.html">Lab</a>
+        </nav>
+        <details class="mobile-toc"><summary>Jump to an experiment</summary><ol>
+          <li><a href="#how">How the lab works</a></li><li class="toc-group" aria-hidden="true">Experiments</li>
+          <li><a href="#exp-bases">3.1 Number bases</a></li><li><a href="#exp-encodings">3.2 Integer encodings</a></li><li><a href="#exp-characters">3.3 Character data</a></li><li><a href="#exp-unsigned">3.4 Unsigned arithmetic</a></li><li><a href="#exp-signed">3.5 Signed arithmetic</a></li><li><a href="#results">Your results</a></li>
+        </ol></details>
+        <ol>
+          <li><a href="#how">How the lab works</a></li><li class="toc-group" aria-hidden="true">Experiments</li>
+          <li><a href="#exp-bases">3.1 Number bases</a></li><li><a href="#exp-encodings">3.2 Integer encodings</a></li><li><a href="#exp-characters">3.3 Character data</a></li><li><a href="#exp-unsigned">3.4 Unsigned arithmetic</a></li><li><a href="#exp-signed">3.5 Signed arithmetic</a></li><li><a href="#results">Your results</a></li>
+        </ol>
+      </nav>
+      <main>
+        <header class="sign"><span class="code" aria-label="Algorithms, Programming, and Data Representation">APDR</span><h1>Number and Data Representation Lab</h1><p class="course">Algorithms, Programming, and Data Representation · Module 92313 · Chapter 3</p><p class="meta" id="lab-meta"></p></header>
+        <p class="standfirst">Predict first, then reveal. Convert numbers, decode bit patterns, read character codes, and trace binary arithmetic.</p>
+        <noscript><p class="method">The experiments need JavaScript. The <a href="ch3-data-representation.html">Chapter 3 guide</a> covers the same ideas without it.</p></noscript>
+
+        <section id="how" aria-labelledby="how-title"><h2 id="how-title">How the lab works</h2><ol class="route"><li><strong>Predict.</strong> Commit to an answer before the stage moves.</li><li><strong>Rate your confidence.</strong> A sure but wrong answer is useful; it appears under <a href="#results">Your results</a>.</li><li><strong>Watch the reveal.</strong> Follow the conversion or bit steps, then use the link to review the matching guide section.</li><li><strong>Explore.</strong> Finish an experiment to open its controls and tick its lab skill.</li></ol></section>
+
+        <section id="exp-bases" class="experiment" data-experiment="bases" aria-labelledby="exp-bases-title">
+          <h2 id="exp-bases-title">3.1 Number systems: convert and group digits</h2>
+          <p>Positional notation uses the same place-value rule in every base. Group binary digits in threes for octal and in fours for hexadecimal.</p>
+          <div class="bench"><div class="stage"><canvas role="img" aria-label="Digit groups and place values convert a number between bases"></canvas><p class="stage-note">Digits are grouped from the right · base range 2–16</p></div><div class="side"><div class="challenge" aria-live="polite"></div><form class="controls" onsubmit="return false"><fieldset><legend>Convert a numeral</legend><label class="field-row">Value <input type="text" value="45" data-value /></label><label class="field-row">From base <select data-from><option value="2">2 · binary</option><option value="8">8 · octal</option><option value="10" selected>10 · decimal</option><option value="16">16 · hexadecimal</option></select></label><label class="field-row">To base <select data-to><option value="2" selected>2 · binary</option><option value="8">8 · octal</option><option value="10">10 · decimal</option><option value="16">16 · hexadecimal</option></select></label><div class="row-btns"><button class="btn small" type="button" data-act="convert">Convert</button><button class="btn small" type="button" data-act="reset">Reset</button></div><p class="readout" aria-live="polite">Result: <output data-out="result">—</output></p></fieldset></form></div></div>
+        </section>
+
+        <section id="exp-encodings" class="experiment" data-experiment="encodings" aria-labelledby="exp-encodings-title">
+          <h2 id="exp-encodings-title">3.2 Integer representations: decode the pattern</h2>
+          <p>A bit pattern has no signed meaning until its encoding is specified. Keep the width fixed while comparing unsigned, signed, biased, and BCD forms.</p>
+          <div class="bench"><div class="stage"><canvas role="img" aria-label="A fixed-width bit pattern is decoded under the selected integer encoding"></canvas><p class="stage-note">The same bits can name different values</p></div><div class="side"><div class="challenge" aria-live="polite"></div><form class="controls" onsubmit="return false"><fieldset><legend>Choose an encoding</legend><label class="field-row">Task <select data-task><option value="decode">Decode bit pattern</option><option value="bcd">Encode decimal as BCD</option></select></label><label class="field-row">Bits or decimal value <input type="text" value="1111" data-value /></label><label class="field-row">Encoding <select data-encoding><option value="unsigned">Unsigned</option><option value="sign-magnitude">Sign and magnitude</option><option value="ones-complement">One’s complement</option><option value="twos-complement" selected>Two’s complement</option><option value="excess">Excess (biased)</option></select></label><label class="field-row">Bias B <input type="number" min="0" max="255" step="1" value="8" data-bias /></label><div class="row-btns"><button class="btn small" type="button" data-act="decode">Decode</button></div><p class="readout" aria-live="polite">Value or BCD: <output data-out="result">—</output></p></fieldset></form></div></div>
+        </section>
+
+        <section id="exp-characters" class="experiment" data-experiment="characters" aria-labelledby="exp-characters-title">
+          <h2 id="exp-characters-title">3.3 Character data: read ASCII codes</h2>
+          <p>ASCII assigns code values to characters. This sandbox decodes printable ASCII bytes; byte sequences outside ASCII need their character encoding identified first.</p>
+          <div class="bench"><div class="stage"><canvas role="img" aria-label="Hexadecimal ASCII bytes map to decimal codes and characters"></canvas><p class="stage-note">The first 128 Unicode code points correspond to ASCII</p></div><div class="side"><div class="challenge" aria-live="polite"></div><form class="controls" onsubmit="return false"><fieldset><legend>Decode ASCII bytes</legend><label class="field-row">Hex bytes <input type="text" value="46 72 65 64" data-hex /></label><div class="row-btns"><button class="btn small" type="button" data-act="decode">Decode bytes</button><button class="btn small" type="button" data-act="reset">Reset</button></div><p class="readout" aria-live="polite">Text: <output data-out="result">—</output></p></fieldset></form></div></div>
+        </section>
+
+        <section id="exp-unsigned" class="experiment" data-experiment="unsigned" aria-labelledby="exp-unsigned-title">
+          <h2 id="exp-unsigned-title">3.4 Unsigned arithmetic: trace the operation</h2>
+          <p>Carry and borrow move between binary columns. Multiplication forms partial products; division must leave a remainder smaller than its divisor.</p>
+          <div class="bench"><div class="stage"><canvas role="img" aria-label="Binary arithmetic shows the operands, operation, and result"></canvas><p class="stage-note">The arithmetic is shown as whole unsigned values</p></div><div class="side"><div class="challenge" aria-live="polite"></div><form class="controls" onsubmit="return false"><fieldset><legend>Try binary arithmetic</legend><label class="field-row">First value <input type="text" value="111011" data-left /></label><label class="field-row">Operation <select data-operation><option value="add">Add</option><option value="subtract">Subtract</option><option value="multiply">Multiply</option><option value="divide">Divide</option></select></label><label class="field-row">Second value <input type="text" value="101010" data-right /></label><div class="row-btns"><button class="btn small" type="button" data-act="calculate">Calculate</button><button class="btn small" type="button" data-act="reset">Reset</button></div><p class="readout" aria-live="polite">Result: <output data-out="result">—</output></p></fieldset></form></div></div>
+        </section>
+
+        <section id="exp-signed" class="experiment" data-experiment="signed" aria-labelledby="exp-signed-title">
+          <h2 id="exp-signed-title">3.5 Two’s complement: check the fixed-width result</h2>
+          <p>Negation and subtraction use fixed-width bit patterns. Decode the stored result and compare the exact answer with the range to detect signed overflow.</p>
+          <div class="bench"><div class="stage"><canvas role="img" aria-label="Two’s-complement operands produce a fixed-width result that is checked for overflow"></canvas><p class="stage-note">Carry-out and signed overflow are different checks</p></div><div class="side"><div class="challenge" aria-live="polite"></div><form class="controls" onsubmit="return false"><fieldset><legend>Calculate at a fixed width</legend><label class="field-row">Width <select data-width><option value="4" selected>4 bits</option><option value="8">8 bits</option></select></label><label class="field-row">First pattern <input type="text" value="0101" data-left /></label><label class="field-row">Operation <select data-operation><option value="add">Add</option><option value="subtract">Subtract</option></select></label><label class="field-row">Second pattern <input type="text" value="0011" data-right /></label><div class="row-btns"><button class="btn small" type="button" data-act="calculate">Calculate</button><button class="btn small" type="button" data-act="reset">Reset</button></div><p class="readout" aria-live="polite">Stored pattern: <output data-out="pattern">—</output> · decoded value: <output data-out="result">—</output> · overflow: <output data-out="overflow">—</output></p></fieldset></form></div></div>
+        </section>
+
+        <section id="results" aria-labelledby="results-title"><h2 id="results-title">Your results</h2><div id="lab-results"></div></section>
+        <p class="source-note">Personal study lab based on the APDR Chapter 3 study guide and supplied lecture notes. The ASCII sandbox covers printable ASCII-range bytes and does not infer a general byte encoding. Not an official FAU publication; check course details against the current materials.</p>
+      </main>
+    </div>
+    <script src="../js/apdr/ch3-physics.js"></script><script src="../js/lab.js"></script><script src="../js/apdr/ch3-lab.js"></script><script src="../js/tooltip.js"></script>
+  </body>
+</html>

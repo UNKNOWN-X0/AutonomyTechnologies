@@ -162,7 +162,8 @@
       a = !!s.a, before = !!s.before, after = !!s.after,
       oldOut = P.boolean(s.gate || "and", a, before), newOut = P.boolean(s.gate || "and", a, after),
       t = s.time == null ? 0.5 : Number(s.time), sampleX = x0 + plotW * Math.min(1, t / 2),
-      switchX = x0 + plotW * 0.12, settleX = x0 + plotW * 0.62;
+      switchX = x0, settleX = x0 + plotW * 0.5, revealed = s.revealing || s.result != null,
+      revealX = x0 + plotW * Math.min(1, (s.revealedTime || 0) / 2);
     text(ctx, s.gate === "or" ? "OR gate · symbolic delay τ" : "AND gate · symbolic delay τ", w / 2, 25, c, 15);
     text(ctx, "B input", 12, yInput, c, 11, "left");
     text(ctx, "Output", 12, yOutput, c, 11, "left");
@@ -172,11 +173,16 @@
       hiO = oldOut ? yOutput : yOutput + 34, loO = oldOut ? yOutput + 34 : yOutput,
       endO = newOut ? yOutput : yOutput + 34;
     ctx.strokeStyle = c.fau; ctx.lineWidth = 3; ctx.beginPath(); ctx.moveTo(x0, hiB); ctx.lineTo(switchX, hiB); ctx.lineTo(switchX, loB); ctx.lineTo(x1, loB); ctx.stroke();
-    ctx.strokeStyle = c.course; ctx.beginPath(); ctx.moveTo(x0, hiO); ctx.lineTo(settleX, hiO); ctx.lineTo(settleX, endO); ctx.lineTo(x1, endO); ctx.stroke();
+    if (revealed) {
+      ctx.strokeStyle = c.course; ctx.beginPath(); ctx.moveTo(x0, hiO);
+      if (revealX < settleX) ctx.lineTo(revealX, hiO);
+      else { ctx.lineTo(settleX, hiO); ctx.lineTo(settleX, endO); ctx.lineTo(revealX, endO); }
+      ctx.stroke();
+    } else text(ctx, "?", sampleX, yOutput + 17, c, 14);
     ctx.setLineDash([4, 4]); ctx.strokeStyle = c.muted; ctx.lineWidth = 1.5; ctx.beginPath(); ctx.moveTo(switchX, yInput - 8); ctx.lineTo(switchX, yOutput + 48); ctx.moveTo(settleX, yInput - 8); ctx.lineTo(settleX, yOutput + 48); ctx.stroke(); ctx.setLineDash([]);
     text(ctx, "0", switchX, yOutput + 63, c, 11);
     text(ctx, "τ", settleX, yOutput + 63, c, 11);
-    text(ctx, "time", x1, yOutput + 63, c, 11, "right");
+    text(ctx, "2τ", x1, yOutput + 63, c, 11, "right");
     ctx.strokeStyle = c.act; ctx.lineWidth = 2; ctx.beginPath(); ctx.moveTo(sampleX, yInput - 10); ctx.lineTo(sampleX, yOutput + 45); ctx.stroke();
     text(ctx, "A=" + Number(a) + " · B: " + Number(before) + " → " + Number(after), w / 2, h - 30, c, 12);
     if (s.guess) text(ctx, "Your prediction: " + s.guess, w / 2, h - 10, c, 12);
@@ -262,7 +268,7 @@
     var section=document.querySelector('[data-experiment="timing"]'),form=section.querySelector("form"),canvas=section.querySelector("canvas"),state={kind:"timing",gate:"and",before:false,after:true,time:0.5};
     function show(){queue(canvas,state);}
     form.querySelector('[data-act="sample"]').addEventListener("click",function(){state.gate=form.querySelector("[data-gate]").value;state.a=form.querySelector('[data-bit="a"]').value==="1";state.after=form.querySelector('[data-bit="b"]').value==="1";state.before=false;state.time=Number(form.querySelector("[data-time]").value);state.result=P.delayedOutput(P.boolean(state.gate,state.a,state.before),P.boolean(state.gate,state.a,state.after),state.time,1);form.querySelector('[data-out="result"]').textContent=Number(state.result);show();});
-    function challenge(id,short,prompt,answer,gate,a,before,after,time,why){return {id:id,short:short,ref:"2.8",prompt:prompt,options:[["old","Old output"],["new","New output"],["unknown","Cannot tell from the information"]],answer:answer,stage:function(){state.kind="timing";state.gate=gate;state.a=!!a;state.before=!!before;state.after=!!after;state.time=time;state.result=null;state.guess="";show();},preview:function(choice){state.guess=choice==="old"?"Old output":choice==="new"?"New output":"Need timing data";show();},reveal:function(){state.revealing=true;return Lab.tween(1300,function(t){state.progress=t;state.time=2*t;show();}).then(function(){state.revealing=false;state.result=answer==="old"?P.boolean(gate,!!a,!!before):answer==="new"?P.boolean(gate,!!a,!!after):null;state.time=time;show();});},why:why};}
+    function challenge(id,short,prompt,answer,gate,a,before,after,time,why){return {id:id,short:short,ref:"2.8",prompt:prompt,options:[["old","Old output"],["new","New output"],["unknown","Cannot tell from the information"]],answer:answer,stage:function(){state.kind="timing";state.gate=gate;state.a=!!a;state.before=!!before;state.after=!!after;state.time=time;state.revealedTime=0;state.result=null;state.guess="";show();},preview:function(choice){state.guess=choice==="old"?"Old output":choice==="new"?"New output":"Need timing data";show();},reveal:function(){state.revealing=true;return Lab.tween(1300,function(t){state.progress=t;state.revealedTime=2*t;show();}).then(function(){state.revealing=false;state.revealedTime=2;state.result=answer==="old"?P.boolean(gate,!!a,!!before):answer==="new"?P.boolean(gate,!!a,!!after):null;show();});},why:why};}
     Lab.experiment({id:"timing",title:"2.8 Logic and circuit timing",card:section.querySelector(".challenge"),lock:function(on){lock(form,section,on);},setup:function(challenge){state.kind="timing";state.guess="";state.result=null;state.progress=0;state.revealing=false;challenge.stage();},sandbox:function(){state.kind="timing";state.guess="";state.result=null;state.gate=form.querySelector("[data-gate]").value;state.a=form.querySelector('[data-bit="a"]').value==="1";state.after=form.querySelector('[data-bit="b"]').value==="1";state.before=false;state.time=Number(form.querySelector("[data-time]").value);show();},challenges:[
       challenge("delay-start","output before propagation", "An AND gate has A=1 and B changes 0→1 at t=0. At t=0.5τ, before one gate delay has passed, which output is settled?","old","and",1,0,1,0.5,"Before the symbolic delay τ has passed, the output remains at its previous stable value, 0. After τ it settles to the Boolean result 1. The page uses τ only as a teaching symbol, not a measured duration."),
       challenge("delay-end","output after propagation", "An OR gate has A=0 and B changes 0→1 at t=0. At t=τ, after one symbolic gate delay, which output has settled?","new","or",0,0,1,1,"At t=τ the output has reached the new stable value A OR B=1. The truth table gives the destination; the timing trace shows that it is not instantaneous."),

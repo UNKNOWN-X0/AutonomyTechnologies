@@ -432,9 +432,10 @@ Compare A \ensuremath{\Rightarrow} B with A' + B.
 \end{enumerate}
 \end{workedbox}
 
-\Needspace{11\baselineskip}
+\Needspace{5\baselineskip}
 \begin{notebox}\textbf{Trap:} three input variables require eight rows, not six. List all assignments before calculating an output column.\end{notebox}
 
+\Needspace{10\baselineskip}
 \begin{recallbox}{Recall check \ensuremath{\cdot} answer without looking}
 \Needspace{5\baselineskip}
 \begin{enumerate}
@@ -492,6 +493,7 @@ Rewrite (A + B)' using De Morgan's law, then evaluate it when A = 0 and B = 1.
 \end{enumerate}
 \end{workedbox}
 
+\Needspace{10\baselineskip}
 \begin{recallbox}{Recall check \ensuremath{\cdot} answer without looking}
 \Needspace{5\baselineskip}
 \begin{enumerate}
@@ -889,10 +891,10 @@ Use day 0 to learn and practise. Tick a skill only in a later session, at least 
 \end{keepsection}
 \begin{keepsection}\subsection{Exam-style problems}
 
-\Needspace{10\baselineskip}
+\Needspace{11\baselineskip}
 \begin{enumerate}
 \item Set the inputs x, g, and ε. Compute |g²\ensuremath{-}x|. If it is less than ε, output g and stop; otherwise replace g with (g+x/g)/2 and repeat the test. \hfill{\small\color{FAUblue}§2.1}
-\item First update: (3+16/3)/2\ensuremath{\approx}4.167. Second: (4.167+16/4.167)/2\ensuremath{\approx}4.003. The residual |4.003²\ensuremath{-}16| is about 0.027, so it does not yet pass ε=0.01; another update is needed. \hfill{\small\color{FAUblue}§2.1}
+\item First update: (3+16/3)/2\ensuremath{\approx}4.167. Second (using unrounded 25/6): (25/6+16/(25/6))/2\ensuremath{\approx}4.003333, shown as 4.003. Its residual from the unrounded iterate is about 0.02668; using the displayed 4.003 gives about 0.024. Both exceed ε=0.01, so another update is needed. \hfill{\small\color{FAUblue}§2.1}
 \item The finite list is a finite description; its defined arithmetic and comparison steps are executable; the tolerance defines a stopping test. To establish halting for every allowed input, one must show the update eventually makes the residual less than ε (and specify valid inputs such as x\ensuremath{>}0 and ε\ensuremath{>}0). \hfill{\small\color{FAUblue}§2.1}
 \end{enumerate}
 

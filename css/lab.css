@@ -160,6 +160,21 @@
 .experiment[data-experiment="logic"] .bench > .stage {
   aspect-ratio: 4 / 3;
 }
+.experiment[data-experiment="bases"] .bench > .stage,
+.experiment[data-experiment="encodings"] .bench > .stage,
+.experiment[data-experiment="characters"] .bench > .stage,
+.experiment[data-experiment="unsigned"] .bench > .stage,
+.experiment[data-experiment="signed"] .bench > .stage {
+  aspect-ratio: 4 / 3;
+}
+.experiment[data-experiment="identity"] .bench > .stage,
+.experiment[data-experiment="nand"] .bench > .stage,
+.experiment[data-experiment="kmap"] .bench > .stage,
+.experiment[data-experiment="shannon"] .bench > .stage,
+.experiment[data-experiment="anf"] .bench > .stage,
+.experiment[data-experiment="hazard"] .bench > .stage {
+  aspect-ratio: 4 / 3;
+}
 @container (min-width: 640px) {
   .bench {
     grid-template-columns: minmax(250px, 300px) minmax(0, 1fr);

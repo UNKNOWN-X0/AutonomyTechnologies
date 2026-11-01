@@ -180,7 +180,7 @@
       });
       // Bring the stage into view before it moves (on narrow screens it sits below the card).
       var stg = card.closest(".experiment") && card.closest(".experiment").querySelector(".stage");
-      if (stg) stg.scrollIntoView({ block: "nearest", behavior: reduce ? "auto" : "smooth" });
+      if (stg) stg.scrollIntoView({ block: "center", behavior: reduce ? "auto" : "smooth" });
       var correct = choice === c.answer;
       self.saved[c.id] = { choice: choice, conf: conf, correct: correct };
       write(STORE, results);

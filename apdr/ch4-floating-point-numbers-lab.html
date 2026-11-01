@@ -1,0 +1,185 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#04316A" />
+    <meta name="description" content="Predict-then-reveal lab for APDR Chapter 4 floating-point numbers." />
+    <title>Floating-Point Numbers Lab · APDR Chapter 4</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="../css/system.css" />
+    <link rel="stylesheet" href="../css/guide.css" />
+    <link rel="stylesheet" href="../css/lab.css" />
+  </head>
+  <body class="s-apdr-1 lab" data-key="apdr1-ch4" data-guide="ch4-floating-point-numbers.html" data-skills="16">
+    <div class="wrap">
+      <nav class="toc" aria-label="Lab contents">
+        <a class="brand" href="../index.html"><span>From Fundamentals to AI Apocalypse</span></a>
+        <a class="home" href="../index.html">All semesters</a>
+        <nav class="chapter-switch" aria-label="Chapter 4">
+          <a href="ch4-floating-point-numbers.html">Guide</a><a aria-current="page" href="ch4-floating-point-numbers-lab.html">Lab</a>
+        </nav>
+        <details class="mobile-toc"><summary>Jump to an experiment</summary><ol>
+          <li><a href="#how">How the lab works</a></li>
+          <li class="toc-group" aria-hidden="true">Experiments</li>
+          <li><a href="#exp-spacing">4.1 Range and precision</a></li>
+          <li><a href="#exp-fractions">4.2 Binary fractions</a></li>
+          <li><a href="#exp-arithmetic">4.3 Floating-point arithmetic</a></li>
+          <li><a href="#exp-ieee">4.4 IEEE 754 single precision</a></li>
+          <li><a href="#exp-special">4.5 Special values</a></li>
+          <li><a href="#results">Your results</a></li>
+        </ol></details>
+        <ol>
+          <li><a href="#how">How the lab works</a></li>
+          <li class="toc-group" aria-hidden="true">Experiments</li>
+          <li><a href="#exp-spacing">4.1 Range and precision</a></li>
+          <li><a href="#exp-fractions">4.2 Binary fractions</a></li>
+          <li><a href="#exp-arithmetic">4.3 Floating-point arithmetic</a></li>
+          <li><a href="#exp-ieee">4.4 IEEE 754 single precision</a></li>
+          <li><a href="#exp-special">4.5 Special values</a></li>
+          <li><a href="#results">Your results</a></li>
+        </ol>
+      </nav>
+      <main>
+        <header class="sign">
+          <span class="code" aria-label="Algorithms, Programming, and Data Representation">APDR</span>
+          <h1>Floating-Point Numbers Lab</h1>
+          <p class="course">Algorithms, Programming, and Data Representation · Module 92313 · Chapter 4</p>
+          <p class="meta" id="lab-meta"></p>
+        </header>
+        <p class="standfirst">Predict first, then reveal. Watch how binary places, exponent zones, rounding, and IEEE fields determine a floating-point value.</p>
+        <noscript><p class="method">The experiments need JavaScript. The <a href="ch4-floating-point-numbers.html">Chapter 4 guide</a> covers the same ideas without it.</p></noscript>
+
+        <section id="how" aria-labelledby="how-title">
+          <h2 id="how-title">How the lab works</h2>
+          <ol class="route">
+            <li><strong>Predict.</strong> Commit to an answer before the stage moves.</li>
+            <li><strong>Rate your confidence.</strong> Sure but wrong answers appear under <a href="#results">Your results</a>.</li>
+            <li><strong>Watch the reveal.</strong> Follow the place values, exponent alignment, or stored fields.</li>
+            <li><strong>Explore.</strong> Finish an experiment to open its controls and tick its lab skill.</li>
+          </ol>
+        </section>
+
+        <section id="exp-spacing" class="experiment" data-experiment="spacing" aria-labelledby="exp-spacing-title">
+          <h2 id="exp-spacing-title">4.1 Range and precision: map one exponent zone</h2>
+          <p>The exponent selects a magnitude zone.</p>
+          <p>The significand precision sets the number of representable steps inside it.</p>
+          <div class="bench">
+            <div class="stage"><canvas role="img" aria-label="A number line shows floating-point values spaced within one exponent zone"></canvas><p class="stage-note">Increase the exponent to scale the gap; increase precision to make the steps finer.</p></div>
+            <div class="side">
+              <div class="challenge" aria-live="polite"></div>
+              <form class="controls" onsubmit="return false">
+                <fieldset>
+                  <legend>Inspect the spacing</legend>
+                  <label class="field-row">Exponent e <input type="number" min="-20" max="20" step="1" value="3" data-exp /></label>
+                  <label class="field-row">Significand bits p <input type="number" min="1" max="12" step="1" value="4" data-precision /></label>
+                  <div class="row-btns"><button class="btn small" type="button" data-act="run">Show spacing</button><button class="btn small" type="button" data-act="reset">Reset</button></div>
+                  <p class="readout" aria-live="polite">Adjacent gap: <output data-out="result">—</output></p>
+                </fieldset>
+              </form>
+            </div>
+          </div>
+        </section>
+
+<section id="exp-fractions" class="experiment" data-experiment="fractions" aria-labelledby="exp-fractions-title">
+          <h2 id="exp-fractions-title">4.2 Binary fractions: add the place values</h2>
+          <p>Each bit after the point has half the weight of the previous bit.</p>
+          <p>Only positions containing 1 contribute to the decimal value.</p>
+          <div class="bench">
+            <div class="stage"><canvas role="img" aria-label="Binary fraction bits reveal their negative powers of two and sum"></canvas><p class="stage-note">Place values after the binary point are 2⁻¹, 2⁻², and so on.</p></div>
+            <div class="side">
+              <div class="challenge" aria-live="polite"></div>
+              <form class="controls" onsubmit="return false">
+                <fieldset>
+                  <legend>Convert a binary fraction</legend>
+                  <label class="field-row">Binary value <input type="text" value="0.1011" data-bits /></label>
+                  <div class="row-btns"><button class="btn small" type="button" data-act="run">Convert</button><button class="btn small" type="button" data-act="reset">Reset</button></div>
+                  <p class="readout" aria-live="polite">Decimal value: <output data-out="result">—</output></p>
+                </fieldset>
+              </form>
+            </div>
+          </div>
+        </section>
+
+<section id="exp-arithmetic" class="experiment" data-experiment="arithmetic" aria-labelledby="exp-arithmetic-title">
+          <h2 id="exp-arithmetic-title">4.3 Arithmetic: align, operate, and round</h2>
+          <p>Multiplication combines significands and adds exponents.</p>
+          <p>Addition first shifts the smaller significand to a shared exponent.</p>
+          <div class="bench">
+            <div class="stage"><canvas role="img" aria-label="Floating-point significands align or multiply before the result is rounded"></canvas><p class="stage-note">IEEE addition also restores the hidden bit before aligning binary significands.</p></div>
+            <div class="side">
+              <div class="challenge" aria-live="polite"></div>
+              <form class="controls" onsubmit="return false">
+                <fieldset>
+                  <legend>Try floating-point arithmetic</legend>
+                  <label class="field-row">Mode <select data-mode><option value="decimal" selected>Decimal scientific notation</option><option value="ieee">IEEE single addition</option></select></label>
+                  <label class="field-row">Operation <select data-operation><option value="add" selected>Add</option><option value="multiply">Multiply</option></select></label>
+                  <label class="field-row">First significand or value <input type="number" min="0" step="any" value="4.5" data-m1 /></label>
+                  <label class="field-row">First exponent <input type="number" min="-30" max="30" step="1" value="3" data-e1 /></label>
+                  <label class="field-row">Second significand or value <input type="number" min="0" step="any" value="6.7" data-m2 /></label>
+                  <label class="field-row">Second exponent <input type="number" min="-30" max="30" step="1" value="2" data-e2 /></label>
+                  <label class="field-row">Significant decimal digits <input type="number" min="1" max="12" step="1" value="3" data-digits /></label>
+                  <p class="method">IEEE mode always adds two single-precision values. Decimal exponents, operation, and digit precision apply only in decimal mode.</p>
+                  <div class="row-btns"><button class="btn small" type="button" data-act="run">Calculate</button><button class="btn small" type="button" data-act="reset">Reset</button></div>
+                  <p class="readout" aria-live="polite">Result: <output data-out="result">—</output></p>
+                </fieldset>
+              </form>
+            </div>
+          </div>
+        </section>
+
+<section id="exp-ieee" class="experiment" data-experiment="ieee" aria-labelledby="exp-ieee-title">
+          <h2 id="exp-ieee-title">4.4 IEEE 754: read the single-precision fields</h2>
+          <p>Single precision stores a sign bit, a biased exponent, and a fraction.</p>
+          <p>For normalised values, the leading 1 is implicit.</p>
+          <div class="bench">
+            <div class="stage"><canvas role="img" aria-label="Single-precision sign, exponent, and fraction fields are shown separately"></canvas><p class="stage-note">Single precision uses 1 sign bit, 8 exponent bits, and 23 fraction bits.</p></div>
+            <div class="side">
+              <div class="challenge" aria-live="polite"></div>
+              <form class="controls" onsubmit="return false">
+                <fieldset>
+                  <legend>Encode or decode one float</legend>
+                  <label class="field-row">Task <select data-task><option value="encode" selected>Encode decimal as float32</option><option value="decode">Decode 8-digit hexadecimal</option></select></label>
+                  <label class="field-row">Decimal value or hexadecimal word <input type="text" value="42.6875" data-value /></label>
+                  <div class="row-btns"><button class="btn small" type="button" data-act="run">Convert</button><button class="btn small" type="button" data-act="reset">Reset</button></div>
+                  <p class="readout" aria-live="polite">Value and fields: <output data-out="result">—</output></p>
+                </fieldset>
+              </form>
+            </div>
+          </div>
+        </section>
+
+<section id="exp-special" class="experiment" data-experiment="special" aria-labelledby="exp-special-title">
+          <h2 id="exp-special-title">4.5 Special values: classify the reserved patterns</h2>
+          <p>All-zero and all-one exponent fields have special meanings.</p>
+          <p>Check the fraction field too, because it distinguishes infinity from NaN and zero from a subnormal.</p>
+          <div class="bench">
+            <div class="stage"><canvas role="img" aria-label="Single-precision special values are classified from the sign, exponent, and fraction fields"></canvas><p class="stage-note">Zero and all-one exponent fields reserve patterns for special values.</p></div>
+            <div class="side">
+              <div class="challenge" aria-live="polite"></div>
+              <form class="controls" onsubmit="return false">
+                <fieldset>
+                  <legend>Classify single-precision fields</legend>
+                  <label class="field-row">Sign bit <select data-sign><option value="0" selected>0</option><option value="1">1</option></select></label>
+                  <label class="field-row">Exponent (8 bits) <input type="text" value="11111111" maxlength="8" data-exponent /></label>
+                  <label class="field-row">Fraction (23 bits) <input type="text" value="00000000000000000000000" maxlength="23" data-fraction /></label>
+                  <div class="row-btns"><button class="btn small" type="button" data-act="run">Classify</button><button class="btn small" type="button" data-act="reset">Reset</button></div>
+                  <p class="readout" aria-live="polite">Classification: <output data-out="result">—</output></p>
+                </fieldset>
+              </form>
+            </div>
+          </div>
+        </section>
+
+        <section id="results" aria-labelledby="results-title"><h2 id="results-title">Your results</h2><div id="lab-results"></div></section>
+        <p class="source-note">Personal study lab based on the Chapter 4 guide and the supplied “04_floating_point_numbers.pdf”. The arithmetic sandbox uses finite decimal precision for its scientific-notation mode; its IEEE mode uses browser single-precision values. Not an official FAU publication; check course details against the current notes.</p>
+      </main>
+    </div>
+    <script src="../js/apdr/ch4-physics.js"></script>
+    <script src="../js/lab.js"></script>
+    <script src="../js/apdr/ch4-lab.js"></script>
+    <script src="../js/tooltip.js"></script>
+  </body>
+</html>
