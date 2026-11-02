@@ -86,18 +86,18 @@ Try these before reading. Write a concrete answer first; a blank or uncertain an
 \end{keepsection}
 
 \begin{keepsection}
-\Needspace{18\baselineskip}
+\Needspace{20\baselineskip}
 \section{How to use this guide}
 
-\Needspace{15\baselineskip}
+\Needspace{17\baselineskip}
 Read one short topic, hide it, and reconstruct its definition, rule, or diagram from memory. Attempt the mixed problems before opening their worked answers.
 
-\Needspace{12\baselineskip}
+\Needspace{14\baselineskip}
 \begin{enumerate}
-\item \textbf{Day 0:} Do the cold start, study §§2.1–2.3, and explain the algorithm and stored-program ideas without looking.
-\item \textbf{Day 1:} Rebuild the propositional logic rules in §2.4 and solve mixed practice 1–8.
-\item \textbf{Day 3:} Work §§2.5–2.6 from memory; solve practice 9–15 and check every truth-table row.
-\item \textbf{About day 7:} Reconstruct the gate circuits in §2.7, then solve practice 16–20 in mixed order.
+\item \textbf{Day 0:} Do the cold start, study §§2.1–2.3, explain the algorithm and stored-program ideas without looking, and solve practice 1, 3, 5, 8.
+\item \textbf{Day 1:} Rebuild the propositional logic rules in §2.4 and solve practice 2, 12, 17, 22, 23.
+\item \textbf{Day 3:} Work §§2.5–2.6 from memory; solve practice 4, 6, 7, 9, 11, 14, 15, 18, 20, 24, 25 and check every truth-table row.
+\item \textbf{About day 7:} Reconstruct the gate circuits in §2.7, study §2.8, then solve practice 10, 13, 16, 19, 21.
 \item \textbf{About day 14:} Re-derive the NAND circuit and take one exam-style problem under a timer.
 \item \textbf{Before the exam:} Complete the self-check and both exam problems. Revisit each section named in a missed answer.
 \end{enumerate}
@@ -220,7 +220,7 @@ Rests on: real components that need time to change state.
 \textbf{Question} & \textbf{Tool} \\ \midrule
 Does a procedure meet the algorithm definition? & Check definition, executability, finite resources, and halting. \\
 What does a Boolean expression produce? & Evaluate it row by row in a truth table. \\
-Can a circuit use only NAND gates? & Rewrite NOT, AND, and OR using NAND and Boolean laws. \\
+Can a circuit use only NAND gates? & Rewrite NOT, AND, and OR using NAND and Boolean laws (§2.7). \\
 \bottomrule\end{tabularx}\end{center}
 \end{keepsection}
 
@@ -242,17 +242,21 @@ An algorithm turns a problem into steps that a person or machine can carry out. 
 {\small The slides call finite memory use dynamic finiteness and a finite number of steps halting. A procedure that never stops does not deliver its required result.}
 \end{equationcard}
 
+\Needspace{7\baselineskip}
+The slides give a tiny example: even “1 + 2 + 3 =” is an algorithm, because it fixes the steps, their order and when you are finished.
+
 \Needspace{12\baselineskip}
 An algorithm is more specific than “find a square root”: it says how to make and check successive guesses. The procedure in the notes starts with a guess \textit{g}; if \textit{g}\textsuperscript{2} is close enough to \textit{x}, it stops. Otherwise it replaces \textit{g} with the average of \textit{g} and \textit{x}/\textit{g}.
 
 \begin{workedbox}{Worked example \ensuremath{\cdot} follow the square-root recipe}
 For \textit{x} = 16 and initial guess \textit{g} = 3, calculate two updates.
 
-\Needspace{6\baselineskip}
+\Needspace{8\baselineskip}
 \begin{enumerate}
 \item First compare 3\textsuperscript{2} = 9 with 16, so continue. The next guess is (3 + 16/3)/2 \ensuremath{\approx} 4.167.
 \item Now 4.167\textsuperscript{2} \ensuremath{\approx} 17.36, so update again: (4.167 + 16/4.167)/2 \ensuremath{\approx} 4.003.
 \item The next estimate is about 4.000. The procedure approaches \ensuremath{\surd}16 and stops when its chosen closeness test succeeds. \hfill{\small\color{FAUblue}§2.1}
+\item Sanity check: 4\textsuperscript{2} = 16, so the guesses are heading for the true root.
 \end{enumerate}
 \end{workedbox}
 
@@ -274,25 +278,25 @@ For \textit{x} = 16 and initial guess \textit{g} = 3, calculate two updates.
 \end{keepsection}
 
 \begin{keepsection}
-\Needspace{7\baselineskip}
+\Needspace{8\baselineskip}
 \section{2.2 A stored-program computer executes instructions}
 
-A stored-program computer can carry out many different procedures because its instructions are data stored in memory. The same machine follows a different algorithm when the stored program changes.
+At bottom a computer does two things: it calculates and it remembers results, and it only knows what it is told. A stored-program computer can carry out many different procedures because its instructions are data stored in memory. The same machine follows a different algorithm when the stored program changes.
 
 \begin{keepsection}
-\Needspace{15\baselineskip}
+\Needspace{17\baselineskip}
 \subsection{Instructions, control flow, and architecture}
 
-\Needspace{12\baselineskip}
-A stored-program computer keeps a sequence of instructions in memory. A processor executes them using primitive operations such as arithmetic or logic, simple tests, and moving data. Tests can change which instruction runs next; execution stops when the program says it is done or reaches its stopping condition.
+\Needspace{14\baselineskip}
+A \textbf{fixed-program computer}, such as a calculator, does one built-in job. A \textbf{stored-program computer} stores and executes instructions, so its job can change. It keeps a sequence of instructions in memory. A processor executes them using primitive operations such as arithmetic or logic, simple tests, and moving data. Tests can change which instruction runs next; execution stops when the program says it is done or reaches its stopping condition.
 
 \begin{equationcard}{Machine-level view}
 \[ \begin{gathered} \text{program}\, \text{in}\, \text{memory}\, \to \, \text{processor}\, \text{executes}\, \text{instructions}\, \to \, \text{input}\, \text{becomes}\, \text{output} \end{gathered} \]
-{\small The slide's architecture diagram groups processor and control logic with registers, memory, input, and output. The diagram is a simplified model; it does not specify a particular modern computer.}
+{\small The slide's diagram: the CPU holds a control unit and a processor; the processor holds registers and combinational logic. Main memory, input and output sit outside the CPU, and instructions pass from memory to the control unit. It is a simplified model, not a particular modern computer.}
 \end{equationcard}
 
-\Needspace{8\baselineskip}
-The lecture lists six abstract Turing-machine primitives: move right, move left, print a symbol, scan the current symbol, erase it, and halt. Modern programming languages package low-level actions into more convenient operations. The notes emphasize that a computable procedure can be expressed in different general-purpose languages, even though syntax and tools differ.
+\Needspace{10\baselineskip}
+The lecture lists six abstract Turing-machine primitives: move right, move left, print a symbol, scan the current symbol, erase it, and do nothing (halt). Modern programming languages package low-level actions into more convenient operations, and you can use abstract methods to create new primitives. A language gives you primitives; expressions are legal combinations of them; expressions and computations have values and meanings. A computable procedure can be expressed in different general-purpose languages, even though syntax and tools differ.
 
 \Needspace{11\baselineskip}
 \begin{notebox}\textbf{Memory hook:} the algorithm is the recipe; the stored program is that recipe represented as instructions the machine can execute.\end{notebox}
@@ -312,27 +316,30 @@ The lecture lists six abstract Turing-machine primitives: move right, move left,
 
 \begin{keepsection}
 \Needspace{7\baselineskip}
-\section{2.3 Programs have syntax, static meaning, and behavior}
+\section{2.3 Programs have syntax, static meaning, and behaviour}
 
 A computer needs instructions that are legal in its language and have a defined interpretation. Separating the kinds of errors helps explain why a program can be rejected, crash, or run while still giving the wrong answer.
 
 \begin{keepsection}
-\Needspace{15\baselineskip}
+\Needspace{16\baselineskip}
 \subsection{Three checks on a program expression}
 
-\Needspace{12\baselineskip}
+\Needspace{13\baselineskip}
 \textbf{Syntax} asks whether the symbols form a legal expression. \textbf{Static semantics} asks whether a syntactically legal expression is meaningful under the language's rules, such as whether the operands have compatible types. \textbf{Semantics} is the meaning associated with an expression that passes those checks.
 
 \begin{equationcard}{Examples from the slides}
-\[ \begin{gathered} 3.2\, *\, 5\, \to \, \text{syntactically}\, \text{valid}\, \text{and}\, \text{meaningful} \\ 3\, +\, "\text{hi}"\, \to \, \text{syntactically}\, \text{valid},\, \text{but}\, \mathrm{a}\, \text{static}\, \text{semantic}\, \text{error} \end{gathered} \]
-{\small The exact type rules depend on the language. These examples illustrate the distinction, not a specification for every language.}
+\[ \begin{gathered} "\text{hi}"5\, \to \, \text{not}\, \text{syntactically}\, \text{valid} \\ 3.2\, *\, 5\, \to \, \text{syntactically}\, \text{valid}\, \text{and}\, \text{meaningful} \\ 3\, +\, "\text{hi}"\, \to \, \text{syntactically}\, \text{valid},\, \text{but}\, \mathrm{a}\, \text{static}\, \text{semantic}\, \text{error} \end{gathered} \]
+{\small English shows the same split: “cat dog boy” is not syntactically valid, and “I are hungry” is valid syntax with a static semantic error. The exact type rules depend on the language.}
 \end{equationcard}
 
-\Needspace{9\baselineskip}
-A syntactic error is often caught before execution. Static semantic errors may be caught by a compiler or interpreter. A semantic error can be harder: the program may stop, run forever, or return an answer different from the programmer's intention. A valid program statement has a defined machine meaning, but that meaning may not match what its author intended.
+\Needspace{10\baselineskip}
+A syntactic error is common and easily caught. Only some languages check for static semantic errors before running, and these errors can cause unpredictable behaviour. A semantic error can be harder: the program may stop, run forever, or return an answer different from the programmer's intention. English can be ambiguous: “Flying planes can be dangerous” has two meanings. A program statement has exactly one meaning, but it may not be the one its author intended.
 
-\Needspace{15\baselineskip}
+\Needspace{7\baselineskip}
 A program can contain definitions and commands. An interpreter evaluates them in a shell, or a compiler translates the program into processor instructions. Commands may be entered directly or saved in a file for the shell to read.
+
+\Needspace{14\baselineskip}
+\begin{notebox}\textbf{Trap:} “it runs” does not mean “it is right”. A program with no syntax or static semantic errors can still give the wrong answer.\end{notebox}
 
 \begin{recallbox}{Recall check \ensuremath{\cdot} answer without looking}
 \Needspace{5\baselineskip}
@@ -342,7 +349,7 @@ A program can contain definitions and commands. An interpreter evaluates them in
 \item What is one difference between a compiler and an interpreter in the lecture's description?
 \end{enumerate}
 
-\nopagebreak[4]{\small\itshape Answers: see “2.3 Programs have syntax, static meaning, and behavior” under Answers at the end.}
+\nopagebreak[4]{\small\itshape Answers: see “2.3 Programs have syntax, static meaning, and behaviour” under Answers at the end.}
 \end{recallbox}
 \end{keepsection}
 \end{keepsection}
@@ -400,7 +407,7 @@ Boolean values use 1 for TRUE and 0 for FALSE. Variables stand for propositions.
 
 \begin{equationcard}{Notation and precedence}
 \[ \begin{gathered} \mathrm{A}'\, =\, \text{NOT}\, \mathrm{A} \\ \mathrm{A}\, \cdot \, \mathrm{B}\, =\, \mathrm{A}\, \text{AND}\, \mathrm{B} \\ \mathrm{A}\, +\, \mathrm{B}\, =\, \mathrm{A}\, \text{OR}\, \mathrm{B} \\ \text{NOT}\, \text{first}\, \cdot \, \text{AND}\, \text{next}\, \cdot \, \text{OR}\, \text{last} \end{gathered} \]
-{\small Use parentheses to make grouping explicit. For example, C' \ensuremath{\cdot} (W + R) is different from C' \ensuremath{\cdot} W + R. In C, logical operators are \&\&, ||, !; bitwise operators are \&, |, ~.}
+{\small Use parentheses to make grouping explicit. For example, C' \ensuremath{\cdot} (W + R) is different from C' \ensuremath{\cdot} W + R. In C, logical operators are \&\&, ||, !; bitwise operators are \&, |, ~ (the slide labels these “Binary”; see Slips in the notes).}
 \end{equationcard}
 \end{keepsection}
 
@@ -420,20 +427,42 @@ A truth table lists an expression's output for every assignment of its input var
 1 & 1 & 1 & 1 & 0 \\
 \bottomrule\end{tabularx}\end{center}
 
-\begin{workedbox}{Worked example \ensuremath{\cdot} check implication}
-Compare A \ensuremath{\Rightarrow} B with A' + B.
-
-\Needspace{8\baselineskip}
-\begin{enumerate}
-\item List inputs (A,B) as (0,0), (0,1), (1,0), (1,1).
-\item Evaluate A' + B: 1, 1, 0, 1.
-\item By the truth-table definition, A \ensuremath{\Rightarrow} B is true when A is false or B is true, so its column is also 1, 1, 0, 1.
-\item Matching outputs in every row establishes that A \ensuremath{\Rightarrow} B and A' + B are equivalent. \hfill{\small\color{FAUblue}§2.5}
-\end{enumerate}
-\end{workedbox}
+\begin{workedbox}{Worked example \ensuremath{\cdot} the umbrella truth table}
+Build the table for \textit{U} = \textit{C}' \ensuremath{\cdot} (\textit{W} + \textit{R}) with partial results.
 
 \Needspace{5\baselineskip}
-\begin{notebox}\textbf{Trap:} three input variables require eight rows, not six. List all assignments before calculating an output column.\end{notebox}
+\begin{enumerate}
+\item Three variables give 2\textsuperscript{3} = 8 rows. List (R,W,C) from 000 to 111.
+\item Name the partial results: X1 = R + W and X2 = C'.
+\item Fill X1, then X2, then U = X1 \ensuremath{\cdot} X2.
+\end{enumerate}
+
+\Needspace{10\baselineskip}
+\begin{center}\small\begin{tabularx}{\linewidth}{>{\raggedright\arraybackslash}X>{\raggedright\arraybackslash}X>{\raggedright\arraybackslash}X>{\raggedright\arraybackslash}X>{\raggedright\arraybackslash}X>{\raggedright\arraybackslash}X}\toprule
+\textbf{R} & \textbf{W} & \textbf{C} & \textbf{X1 = R + W} & \textbf{X2 = C'} & \textbf{U = X1 \ensuremath{\cdot} X2} \\ \midrule
+0 & 0 & 0 & 0 & 1 & 0 \\
+0 & 0 & 1 & 0 & 0 & 0 \\
+0 & 1 & 0 & 1 & 1 & 1 \\
+0 & 1 & 1 & 1 & 0 & 0 \\
+1 & 0 & 0 & 1 & 1 & 1 \\
+1 & 0 & 1 & 1 & 0 & 0 \\
+1 & 1 & 0 & 1 & 1 & 1 \\
+1 & 1 & 1 & 1 & 0 & 0 \\
+\bottomrule\end{tabularx}\end{center}
+
+U = 1 only for (R,W,C) = 010, 100, 110. Sanity check: those are exactly the rows with no car and some bad weather. \hfill{\small\color{FAUblue}§2.5}
+\end{workedbox}
+\end{keepsection}
+
+\begin{keepsection}
+\Needspace{11\baselineskip}
+\subsection{Implication (beyond the notes)}
+
+\Needspace{8\baselineskip}
+Implication is not in these slides; the “=\ensuremath{>}” on slide 24 only means “we could write”. Take this truth table as its definition: A \ensuremath{\Rightarrow} B is false only for A = 1, B = 0, so its column for (A,B) = 00, 01, 10, 11 is 1, 1, 0, 1. Evaluating A' + B gives 1, 1, 0, 1 as well, so the two are equivalent.
+
+\Needspace{5\baselineskip}
+\begin{notebox}\textbf{Trap:} three input variables require eight rows, not six. List all assignments before calculating an output column. And + means OR here, so 1 + 1 = 1.\end{notebox}
 
 \Needspace{10\baselineskip}
 \begin{recallbox}{Recall check \ensuremath{\cdot} answer without looking}
@@ -456,12 +485,12 @@ Compare A \ensuremath{\Rightarrow} B with A' + B.
 Boolean laws let you transform an expression while preserving its output. Each identity can be checked with a truth table, and the same law can simplify the design of a circuit.
 
 \begin{keepsection}
-\Needspace{9\baselineskip}
+\Needspace{10\baselineskip}
 \subsection{Core identities}
 
 \begin{equationcard}{Negation, identity, and idempotence}
 \[ \begin{gathered} (\mathrm{A}')'\, =\, \mathrm{A} \\ \mathrm{A}\, \cdot \, \mathrm{A}'\, =\, 0 \\ \mathrm{A}\, +\, \mathrm{A}'\, =\, 1 \\ \mathrm{A}\, \cdot \, \mathrm{A}\, =\, \mathrm{A} \\ \mathrm{A}\, +\, \mathrm{A}\, =\, \mathrm{A} \\ \mathrm{A}\, \cdot \, 0\, =\, 0 \\ \mathrm{A}\, \cdot \, 1\, =\, \mathrm{A} \\ \mathrm{A}\, +\, 0\, =\, \mathrm{A} \\ \mathrm{A}\, +\, 1\, =\, 1 \end{gathered} \]
-{\small The slides use \ensuremath{\cdot} for AND and + for OR. A and B may themselves be compound Boolean expressions.}
+{\small The slides use \ensuremath{\cdot} for AND and + for OR. A and B may themselves be compound Boolean expressions. (A')' = A is listed under “Negation”, and the NAND slides call it the Involution law.}
 \end{equationcard}
 
 \begin{equationcard}{Commutative, associative, and distributive}
@@ -471,15 +500,15 @@ Boolean laws let you transform an expression while preserving its output. Each i
 \end{keepsection}
 
 \begin{keepsection}
-\Needspace{11\baselineskip}
+\Needspace{12\baselineskip}
 \subsection{De Morgan's rules}
 
-\Needspace{8\baselineskip}
+\Needspace{9\baselineskip}
 Negating a compound expression changes its operation and negates each input: NOT of an OR becomes an AND of the negations, and NOT of an AND becomes an OR of the negations.
 
 \begin{equationcard}{De Morgan's laws}
-\[ \begin{gathered} (\mathrm{A}\, +\, \mathrm{B})'\, =\, \mathrm{A}'\, \cdot \, \mathrm{B}' \\ (\mathrm{A}\, \cdot \, \mathrm{B})'\, =\, \mathrm{A}'\, +\, \mathrm{B}' \end{gathered} \]
-{\small The rules generalize to more than two inputs.}
+\[ \begin{gathered} (\mathrm{A}\, +\, \mathrm{B})'\, =\, \mathrm{A}'\, \cdot \, \mathrm{B}' \\ (\mathrm{A}\, \cdot \, \mathrm{B})'\, =\, \mathrm{A}'\, +\, \mathrm{B}' \\ (\mathrm{A}\, +\, \mathrm{B}\, +\, \mathrm{C}\, +\, …)'\, =\, \mathrm{A}'\, \cdot \, \mathrm{B}'\, \cdot \, \mathrm{C}'\, \cdot \, … \\ (\mathrm{A}\, \cdot \, \mathrm{B}\, \cdot \, \mathrm{C}\, \cdot \, …)'\, =\, \mathrm{A}'\, +\, \mathrm{B}'\, +\, \mathrm{C}'\, +\, … \end{gathered} \]
+{\small The rules hold for any number of inputs.}
 \end{equationcard}
 
 \begin{workedbox}{Worked example \ensuremath{\cdot} simplify a negated expression}
@@ -492,6 +521,9 @@ Rewrite (A + B)' using De Morgan's law, then evaluate it when A = 0 and B = 1.
 \item The original expression is false because at least one input to the OR was true. \hfill{\small\color{FAUblue}§2.6}
 \end{enumerate}
 \end{workedbox}
+
+\Needspace{4\baselineskip}
+\begin{notebox}\textbf{Trap:} De Morgan swaps the operator as well as priming each input. (A + B)' is not A' + B'.\end{notebox}
 
 \Needspace{10\baselineskip}
 \begin{recallbox}{Recall check \ensuremath{\cdot} answer without looking}
@@ -514,11 +546,23 @@ Rewrite (A + B)' using De Morgan's law, then evaluate it when A = 0 and B = 1.
 A gate is a circuit block whose output follows a Boolean rule. Algebra connects a circuit diagram to its expression and makes it possible to build several operations from a universal gate.
 
 \begin{keepsection}
-\Needspace{13\baselineskip}
+\Needspace{20\baselineskip}
 \subsection{Read and combine gates}
 
-\Needspace{10\baselineskip}
+\Needspace{17\baselineskip}
 AND, OR, and NOT gates represent the corresponding operations. A small circle at a gate output indicates inversion, producing NAND or NOR. Follow a multi-gate circuit from its inputs toward its output, giving each intermediate signal a name.
+
+\Needspace{10\baselineskip}
+\begin{center}\small\begin{tabularx}{\linewidth}{>{\raggedright\arraybackslash}X>{\raggedright\arraybackslash}X}\toprule
+\textbf{Gate} & \textbf{Shape} \\ \midrule
+ AND & Flat input side, round output side. \\
+ OR & Curved input side, pointed output side. \\
+ NOT & Triangle with a circle. The circle means NOT; the triangle only shows the direction. \\
+ NAND & AND shape with a circle on the output. \\
+ NOR & OR shape with a circle on the output. \\
+ XOR & OR shape with an extra curve at the inputs. \\
+ XNOR & XOR shape with a circle on the output. \\
+\bottomrule\end{tabularx}\end{center}
 
 \begin{equationcard}{Inverted gates and exclusive gates}
 \[ \begin{gathered} \text{NAND}(\mathrm{A},\mathrm{B})\, =\, (\mathrm{A}\, \cdot \, \mathrm{B})' \\ \text{NOR}(\mathrm{A},\mathrm{B})\, =\, (\mathrm{A}\, +\, \mathrm{B})' \\ \text{XOR}(\mathrm{A},\mathrm{B})\, =\, \mathrm{A}'\, \cdot \, \mathrm{B}\, +\, \mathrm{A}\, \cdot \, \mathrm{B}' \\ \text{XNOR}(\mathrm{A},\mathrm{B})\, =\, \mathrm{A}'\, \cdot \, \mathrm{B}'\, +\, \mathrm{A}\, \cdot \, \mathrm{B} \end{gathered} \]
@@ -531,7 +575,12 @@ AND, OR, and NOT gates represent the corresponding operations. A small circle at
 \subsection{NAND is a universal gate}
 
 \Needspace{11\baselineskip}
-The lecture calls a set of functions complete when combinations of those functions can generate any Boolean function. NAND alone is complete, so NOT, AND, and OR can each be assembled from NAND gates.
+The lecture calls a set of functions complete when combinations of those functions can generate any Boolean function. NAND alone is complete, so it is also called a universal gate. NAND and NOR are the commonly used building blocks because they are easy to construct from transistors.
+
+\begin{equationcard}{Building gates from NAND}
+\[ \begin{gathered} \text{NOT}:\, (\mathrm{A}\, \cdot \, \mathrm{A})'\, =\, \mathrm{A}'\, (\text{idempotent}\, \text{law}) \\ \text{AND}:\, ((\mathrm{A}\, \cdot \, \mathrm{B})')'\, =\, \mathrm{A}\, \cdot \, \mathrm{B}\, (\text{involution}\, \text{law}) \\ \text{OR}:\, \mathrm{A}\, +\, \mathrm{B}\, =\, (\mathrm{A}'\, \cdot \, \mathrm{B}')'\, (\text{De}\, \text{Morgan}) \\ \text{NOR}:\, \text{invert}\, \text{the}\, \text{OR}\, \text{output} \end{gathered} \]
+{\small NOT takes one NAND with tied inputs, AND takes two, and OR takes three: one to invert each input and one to combine them.}
+\end{equationcard}
 
 \begin{workedbox}{Worked example \ensuremath{\cdot} translate a two-stage NAND circuit}
 The first NAND receives B and C and produces I. A second NAND receives A and I and produces X.
@@ -543,6 +592,21 @@ The first NAND receives B and C and produces I. A second NAND receives A and I a
 \item Use (P \ensuremath{\cdot} Q)' = P' + Q': X = A' + ((B \ensuremath{\cdot} C)')'.
 \item Apply double negation: X = A' + B \ensuremath{\cdot} C. \hfill{\small\color{FAUblue}§2.7}
 \end{enumerate}
+
+\Needspace{10\baselineskip}
+\begin{center}\small\begin{tabularx}{\linewidth}{>{\raggedright\arraybackslash}X>{\raggedright\arraybackslash}X>{\raggedright\arraybackslash}X>{\raggedright\arraybackslash}X>{\raggedright\arraybackslash}X}\toprule
+\textbf{A} & \textbf{B} & \textbf{C} & \textbf{B \ensuremath{\cdot} C} & \textbf{X = A' + B \ensuremath{\cdot} C} \\ \midrule
+0 & 0 & 0 & 0 & 1 \\
+0 & 0 & 1 & 0 & 1 \\
+0 & 1 & 0 & 0 & 1 \\
+0 & 1 & 1 & 1 & 1 \\
+1 & 0 & 0 & 0 & 0 \\
+1 & 0 & 1 & 0 & 0 \\
+1 & 1 & 0 & 0 & 0 \\
+1 & 1 & 1 & 1 & 1 \\
+\bottomrule\end{tabularx}\end{center}
+
+Sanity check with the gates, row 1,1,0: I = (1 \ensuremath{\cdot} 0)' = 1, then X = (1 \ensuremath{\cdot} 1)' = 0, which matches the table.
 \end{workedbox}
 
 \Needspace{5\baselineskip}
@@ -566,14 +630,14 @@ The first NAND receives B and C and produces I. A second NAND receives A and I a
 \Needspace{6\baselineskip}
 \section{2.8 Physical circuits take time to switch}
 
-A Boolean truth table describes the stable input-output rule. Real circuits also have timing behavior because their physical components need time to change state.
+A Boolean truth table describes the stable input-output rule. Real circuits also have timing behaviour because their physical components need time to change state.
 
 \begin{keepsection}
-\Needspace{15\baselineskip}
+\Needspace{17\baselineskip}
 \subsection{From ideal logic to a real signal}
 
-\Needspace{12\baselineskip}
-The final slides contrast an ideal, instantaneous gate with real switching. They identify time delay and saturation as limits on how quickly a physical circuit can change its output. A logic diagram therefore describes function, while a timing diagram is needed to reason about when a change becomes visible.
+\Needspace{14\baselineskip}
+The final slides contrast an ideal, instantaneous gate with real switching. They identify time delay and saturation as limits on how quickly a physical circuit can change its output. Slide 48 shows the output of a NOT built from NAND following a gradual curve across a time Δt rather than jumping. Real gates are built from transistors; slide 49 shows a transistor-transistor logic (TTL) NAND gate. A logic diagram therefore describes function, while a timing diagram is needed to reason about when a change becomes visible.
 
 \begin{equationcard}{Two useful models}
 \[ \begin{gathered} \text{Boolean}\, \text{model}\, \to \, \text{which}\, \text{stable}\, \text{output}\, \text{follows}\, \text{each}\, \text{input}? \\ \text{Physical}\, \text{model}\, \to \, \text{how}\, \text{long}\, \text{does}\, \text{the}\, \text{output}\, \text{take}\, \text{to}\, \text{reach}\, \text{its}\, \text{new}\, \text{state}? \end{gathered} \]
@@ -598,18 +662,19 @@ The final slides contrast an ideal, instantaneous gate with real switching. They
 \end{keepsection}
 
 \begin{keepsection}
-\Needspace{17\baselineskip}
+\Needspace{19\baselineskip}
 \section{Formula map and symbols}
 
 \Needspace{10\baselineskip}
 \begin{center}\small\begin{tabularx}{\linewidth}{>{\raggedright\arraybackslash}X>{\raggedright\arraybackslash}X>{\raggedright\arraybackslash}X}\toprule
 \textbf{Idea} & \textbf{Rule} & \textbf{Check} \\ \midrule
 Truth-table size & \textit{n} inputs \ensuremath{\to} 2\textsuperscript{n} rows & Enumerate every assignment once. \\
-Implication & A \ensuremath{\Rightarrow} B = A' + B & False only for A=1, B=0. \\
+Implication (beyond the notes) & A \ensuremath{\Rightarrow} B = A' + B & False only for A=1, B=0. \\
 Complement of OR & (A + B)' = A' \ensuremath{\cdot} B' & Both inputs must be 0. \\
 Complement of AND & (A \ensuremath{\cdot} B)' = A' + B' & At least one input must be 0. \\
 XOR & A' \ensuremath{\cdot} B + A \ensuremath{\cdot} B' & Inputs differ. \\
 XNOR & A' \ensuremath{\cdot} B' + A \ensuremath{\cdot} B & Inputs agree. \\
+NAND constructions & A' = (A \ensuremath{\cdot} A)'; A \ensuremath{\cdot} B = ((A \ensuremath{\cdot} B)')'; A + B = (A' \ensuremath{\cdot} B')' & Name the law used. \\
 Two-stage NAND example & X = A' + B \ensuremath{\cdot} C & Label the intermediate output first. \\
 \bottomrule\end{tabularx}\end{center}
 
@@ -617,18 +682,20 @@ Two-stage NAND example & X = A' + B \ensuremath{\cdot} C & Label the intermediat
 \end{keepsection}
 
 \begin{keepsection}
-\Needspace{14\baselineskip}
+\Needspace{17\baselineskip}
 \section{Derive it cold}
 
-\Needspace{11\baselineskip}
+\Needspace{14\baselineskip}
 Rebuild each result from its definition before opening the worked examples.
 
-\Needspace{9\baselineskip}
+\Needspace{12\baselineskip}
 \begin{enumerate}
 \item Run the square-root update twice from \textit{x} = 16 and \textit{g} = 3; show each average. \hfill{\small\color{FAUblue}§2.1}
 \item Explain why the sequence, control flow, and stop rule all matter to a recipe. \hfill{\small\color{FAUblue}§2.1}
-\item Build the truth table for A \ensuremath{\Rightarrow} B and show its equivalence to A' + B. \hfill{\small\color{FAUblue}§2.5}
+\item Build the umbrella table for U = C' \ensuremath{\cdot} (W + R) with its partial results. \hfill{\small\color{FAUblue}§2.5}
+\item Take the truth-table definition of A \ensuremath{\Rightarrow} B and show its equivalence to A' + B. \hfill{\small\color{FAUblue}§2.5}
 \item Prove one De Morgan law by comparing its truth-table outputs. \hfill{\small\color{FAUblue}§2.6}
+\item Build NOT, AND, OR and NOR from NAND, naming the law for each. \hfill{\small\color{FAUblue}§2.7}
 \item Translate the two-stage NAND circuit into an expression, then simplify it to X = A' + B \ensuremath{\cdot} C. \hfill{\small\color{FAUblue}§2.7}
 \end{enumerate}
 \end{keepsection}
@@ -661,7 +728,7 @@ Answer each question aloud in your own words, then compare with the model answer
 \section{Mixed practice}
 
 \Needspace{7\baselineskip}
-Try all 20 problems before opening the worked answers. They alternate across topics so you must choose the rule, not just repeat the previous one.
+Try all 25 problems before opening the worked answers. They alternate across topics so you must choose the rule, not just repeat the previous one.
 
 \begin{enumerate}
 \item List the three ingredients of a recipe that make it an algorithm in the practical definition from the lecture.
@@ -671,19 +738,24 @@ Try all 20 problems before opening the worked answers. They alternate across top
 \item Classify “3 + 'hi'” using the lecture's distinction between syntax and static semantics.
 \item Rewrite (A \ensuremath{\cdot} B)' using a De Morgan law.
 \item For A=1 and B=0, evaluate A \ensuremath{\Rightarrow} B and A' + B. What do you observe?
-\item For x=16 and current guess g=3, calculate the next square-root guess using (g + x/g)/2. Round to three decimals.
-\item Use De Morgan's law to rewrite NOT(A OR B) using primes and \ensuremath{\cdot}.
+\item For x=9 and current guess g=2, calculate the next square-root guess using (g + x/g)/2.
+\item Rewrite (A + B + C)' using De Morgan's law.
 \item State the difference between an ideal Boolean gate model and a physical circuit model.
 \item Let A=0, B=1, C=1. Evaluate A' + B \ensuremath{\cdot} C using the stated precedence.
-\item Give one possible behavior of a semantic error even when a program is syntactically valid.
+\item Give one possible behaviour of a semantic error even when a program is syntactically valid.
 \item For A=1 and B=1, find A XOR B and A XNOR B.
 \item Simplify A \ensuremath{\cdot} A + A using Boolean laws.
 \item In C notation, which operator is logical AND: \& or \&\&?
-\item A two-stage NAND circuit has I=(B \ensuremath{\cdot} C)' and X=(A \ensuremath{\cdot} I)'. Simplify X.
+\item A two-stage NAND circuit has I=(A \ensuremath{\cdot} B)' and X=(I \ensuremath{\cdot} C)'. Simplify X.
 \item After the first square-root update, explain what the algorithm does if the stopping test still fails.
 \item Simplify (A + B)' \ensuremath{\cdot} (A + B) using a complement law.
-\item When A=1, B=0, C=1, evaluate X=A' + B \ensuremath{\cdot} C.
+\item For the circuit in problem 16, find X when A=0, B=1, C=0, working through the gates.
 \item What is the maximum number of Boolean functions of three input variables? Treat a Boolean function as one choice of output bit for each truth-table row.
+\item Write A + B using only NAND operations, then name the law that makes it work.
+\item What can a stored-program computer do that a calculator, as a fixed-program computer, cannot?
+\item Classify each as a syntax error, a static semantic error, or valid: "hi"5, 3 + "hi", 3.2 * 5.
+\item Let V=(C + R) \ensuremath{\cdot} W'. List every input (C,R,W) that gives V=1.
+\item For C=1, W=1, R=1, evaluate C' \ensuremath{\cdot} W + R and C' \ensuremath{\cdot} (W + R).
 \end{enumerate}
 
 \nopagebreak[4]{\small\itshape Answers: see “Mixed practice” under Answers at the end.}
@@ -696,17 +768,18 @@ Try all 20 problems before opening the worked answers. They alternate across top
 Set a timer for about 20 minutes per problem. Show intermediate steps and identify the rule behind each conclusion.
 
 \begin{keepsection}
-\Needspace{15\baselineskip}
+\Needspace{18\baselineskip}
 \subsection{1 \ensuremath{\cdot} From a recipe to an algorithm}
 
-\Needspace{12\baselineskip}
+\Needspace{15\baselineskip}
 For this practice variation on the lecture's square-root recipe, make the stopping test explicit. For positive x, start with a positive guess g, test whether |g²\ensuremath{-}x| is below a tolerance ε, stop if so, and otherwise set g to (g+x/g)/2 and repeat.
 
-\Needspace{8\baselineskip}
+\Needspace{11\baselineskip}
 \begin{enumerate}
 \item Write the sequence of steps in plain language, including the control flow and stop condition.
-\item For x=16, g=3, and ε=0.01, calculate two successive guesses to three decimals and decide whether the second estimate passes the stopping test.
+\item For x=25, g=4, and ε=0.01, calculate two successive guesses and decide whether the second estimate passes the stopping test. If not, does the third?
 \item Explain which algorithm properties are demonstrated by the finite instruction list, the tolerance test, and the repeated update. Name one additional condition needed to justify that every run halts.
+\item Let the proposition S mean |g²\ensuremath{-}x|\ensuremath{<}ε. Write the condition for doing another update as a Boolean expression, and state its value at the first guess of part 2.
 \end{enumerate}
 
 \nopagebreak[4]{\small\itshape Answers: see “Exam-style problems” under Answers at the end.}
@@ -717,17 +790,38 @@ For this practice variation on the lecture's square-root recipe, make the stoppi
 \subsection{2 \ensuremath{\cdot} Simplify and check a NAND circuit}
 
 \Needspace{8\baselineskip}
-A circuit has I=(B\ensuremath{\cdot}C)' and X=(A\ensuremath{\cdot}I)'. Assume Boolean inputs.
+A circuit has I=(A\ensuremath{\cdot}C)' and X=(B\ensuremath{\cdot}I)'. Assume Boolean inputs.
 
 \Needspace{6\baselineskip}
 \begin{enumerate}
 \item Use Boolean algebra to simplify X.
-\item Complete the output values for A,B,C equal to 0,1,1 and 1,1,1.
+\item Write the full truth table of X for A,B,C from 000 to 111.
 \item Explain why the circuit can be built using NAND gates alone and why its physical output may not change instantaneously.
 \end{enumerate}
 
 \nopagebreak[4]{\small\itshape Answers: see “Exam-style problems” under Answers at the end.}
 \end{keepsection}
+\end{keepsection}
+
+\begin{keepsection}
+\Needspace{30\baselineskip}
+\section{Slips in the notes}
+
+\Needspace{27\baselineskip}
+These were checked against the slides. Learn the corrected form, and expect that the slide wording may still be used in the course.
+
+\Needspace{10\baselineskip}
+\begin{center}\small\begin{tabularx}{\linewidth}{>{\raggedright\arraybackslash}X>{\raggedright\arraybackslash}X>{\raggedright\arraybackslash}X}\toprule
+\textbf{Slide} & \textbf{Issue} & \textbf{This guide} \\ \midrule
+5 & Row g = 4.17 prints g*g = 17.36, but 4.17² = 17.39; 17.36 is the unrounded (25/6)². Row g = 4.0035 prints 16.0277, but 4.0035² = 16.0280. & Rounding slip. §2.1 uses 4.167 and 17.36, which agree. \\
+9, 18 & “Interpreter or compiler executes each instruction.” A compiler translates a program; it does not execute it. Slide 18 says commands are converted into machine language, which is the accurate part. & §§2.2–2.3 say the processor executes and the compiler translates. \\
+10 & “Compute anything” and “any other programming language” are loose: the claim holds for what is computable, in general-purpose (Turing-complete) languages. & §2.2 says “computable” and “general-purpose”. \\
+31 & “Binary: AND \& OR | NOT ~” should read bitwise. ~ takes one operand, so it is not binary in the usual sense. & §2.5 says bitwise. \\
+35, 42 & Notation clash, not an error: (A')' = A is under “Negation” on slide 35 and “Involution law” on slide 42. & §2.6 gives both names. \\
+24 & Not an error, but a trap: “=\ensuremath{>}” here means “we could write”, not implication. The slides never define implication. & §2.5 marks implication as beyond the notes. \\
+49 & Uncertain: the slide titled TTL NAND gate also shows what appears to be a MOSFET cross-section (gate, source, drain), which is probably unrelated to TTL. & §2.8 mentions only the TTL NAND gate. \\
+7, 20, 40 & Typing slips with no effect on meaning: “An Algorithms”, “this this part”, “combination these functions”. & §§2.1 and 2.7 use the corrected wording. \\
+\bottomrule\end{tabularx}\end{center}
 \end{keepsection}
 
 \begin{keepsection}
@@ -739,16 +833,16 @@ Use day 0 to learn and practise. Tick a skill only in a later session, at least 
 
 \begin{itemize}
 \item $\mdlgwhtsquare$\ Explain the algorithm requirements and run the square-root update. (1, 8, 17)
-\item $\mdlgwhtsquare$\ Describe the stored-program model and instruction classes. (3)
-\item $\mdlgwhtsquare$\ Distinguish syntax, static semantics, and semantic errors. (5, 12, 15)
-\item $\mdlgwhtsquare$\ Evaluate NOT, AND, and inclusive OR. (2, 7)
-\item $\mdlgwhtsquare$\ Determine truth-table size and enumerate inputs. (4, 20)
-\item $\mdlgwhtsquare$\ Apply precedence and parentheses correctly. (11, 15)
-\item $\mdlgwhtsquare$\ Show A\ensuremath{\Rightarrow}B=A'+B with a complete truth table. (7)
-\item $\mdlgwhtsquare$\ Use complement, idempotent, and De Morgan laws. (6, 14, 18)
-\item $\mdlgwhtsquare$\ Translate and simplify a NAND circuit. (9, 16, 19)
+\item $\mdlgwhtsquare$\ Describe the stored-program model and instruction classes. (3, 22)
+\item $\mdlgwhtsquare$\ Distinguish syntax, static semantics, and semantic errors. (5, 12, 23)
+\item $\mdlgwhtsquare$\ Evaluate NOT, AND, and inclusive OR, and name their C operators. (2, 7, 15)
+\item $\mdlgwhtsquare$\ Determine truth-table size and enumerate inputs. (4, 20, 24)
+\item $\mdlgwhtsquare$\ Apply precedence and parentheses correctly. (11, 25)
+\item $\mdlgwhtsquare$\ Show A\ensuremath{\Rightarrow}B=A'+B with a complete truth table (beyond the notes). (7)
+\item $\mdlgwhtsquare$\ Use complement, idempotent, and De Morgan laws. (6, 9, 14, 18)
+\item $\mdlgwhtsquare$\ Translate, simplify and build NAND circuits. (16, 19, 21)
 \item $\mdlgwhtsquare$\ Distinguish XOR from XNOR by input agreement. (13)
-\item $\mdlgwhtsquare$\ Explain the difference between Boolean behavior and switching time. (10)
+\item $\mdlgwhtsquare$\ Explain the difference between Boolean behaviour and switching time. (10)
 \item $\mdlgwhtsquare$\ Rebuild the listed derivations from definitions.
 \item $\mdlgwhtsquare$\ Solve both multi-part problems and justify each step.
 \end{itemize}
@@ -759,12 +853,12 @@ Use day 0 to learn and practise. Tick a skill only in a later session, at least 
 \section{Answers}
 \begin{keepsection}\subsection{Start from memory}
 
-\Needspace{11\baselineskip}
+\Needspace{12\baselineskip}
 \begin{enumerate}
 \item It has well-defined executable steps, finite resource use, and halts with an output for its input. \hfill{\small\color{FAUblue}§2.1}
 \item Syntax concerns whether a symbol sequence is grammatically valid; semantics concerns the meaning of a valid expression. Static semantics checks whether a valid-looking expression is meaningful in the language. \hfill{\small\color{FAUblue}§2.3}
 \item 2\textsuperscript{3} = 8 rows, one for each assignment. \hfill{\small\color{FAUblue}§2.5}
-\item Only when A is true and B is false. \hfill{\small\color{FAUblue}§2.4}
+\item Only when A is true and B is false. Implication is not in these slides; §2.5 gives this as a definition and says so. \hfill{\small\color{FAUblue}§2.5}
 \item Every Boolean function can be built using NAND gates alone. \hfill{\small\color{FAUblue}§2.7}
 \end{enumerate}
 
@@ -789,12 +883,12 @@ Use day 0 to learn and practise. Tick a skill only in a later session, at least 
 \end{enumerate}
 
 \end{keepsection}
-\begin{keepsection}\subsection{2.3 Programs have syntax, static meaning, and behavior}
+\begin{keepsection}\subsection{2.3 Programs have syntax, static meaning, and behaviour}
 
 \Needspace{8\baselineskip}
 \begin{enumerate}
 \item A static semantic error: the expression's pieces are legal-looking but their combination is not meaningful under the language's rules. \hfill{\small\color{FAUblue}§2.3}
-\item Its behavior may differ from the programmer's intention: it can crash, fail to halt, or return an unexpected answer. \hfill{\small\color{FAUblue}§2.3}
+\item Its behaviour may differ from the programmer's intention: it can crash, fail to halt, or return an unexpected answer. \hfill{\small\color{FAUblue}§2.3}
 \item An interpreter executes/evaluates instructions in a shell; a compiler translates a program into machine instructions. The slide gives this as a broad distinction. \hfill{\small\color{FAUblue}§2.3}
 \end{enumerate}
 
@@ -851,15 +945,15 @@ Use day 0 to learn and practise. Tick a skill only in a later session, at least 
 \end{keepsection}
 \begin{keepsection}\subsection{Explain it}
 
-\Needspace{17\baselineskip}
+\Needspace{24\baselineskip}
 \begin{enumerate}
-\item Without a stopping condition, the procedure may keep repeating and never return an answer. \hfill{\small\color{FAUblue}§2.1}
-\item The stored instructions can change while the hardware remains the same; the machine follows the program it is given. \hfill{\small\color{FAUblue}§2.2}
-\item The second expression is syntactically valid but has a static semantic problem: the operands cannot be combined meaningfully under the illustrated rules. \hfill{\small\color{FAUblue}§2.3}
-\item Each variable has two possible values, so all combinations number 2 multiplied by itself n times. \hfill{\small\color{FAUblue}§2.5}
-\item NOT, AND, and OR have a precedence order; without parentheses the expression groups differently and can produce a different output. \hfill{\small\color{FAUblue}§2.5}
-\item Any Boolean function can be assembled using NAND gates alone. \hfill{\small\color{FAUblue}§2.7}
-\item A truth table describes stable input-output values, while real gates have switching delay and saturation limits. \hfill{\small\color{FAUblue}§2.8}
+\item Without a stopping condition, the procedure may keep repeating and never return an answer. Halting is part of the definition, so a recipe that may run forever is not an algorithm for that input. The stop test is what turns repetition into a result. \hfill{\small\color{FAUblue}§2.1}
+\item The stored instructions can change while the hardware remains the same; the machine follows the program it is given. A calculator cannot do this, because its job is built in. \hfill{\small\color{FAUblue}§2.2}
+\item The second expression is syntactically valid but has a static semantic problem: the operands cannot be combined meaningfully under the illustrated rules. Invalid syntax, such as "hi"5, is not a legal expression at all. The first problem concerns meaning, the second form. \hfill{\small\color{FAUblue}§2.3}
+\item Each variable has two possible values, so all combinations number 2 multiplied by itself n times. Every extra variable doubles the rows, because each old row appears once with 0 and once with 1. \hfill{\small\color{FAUblue}§2.5}
+\item NOT, AND, and OR have a precedence order; without parentheses the expression groups differently and can produce a different output. C' \ensuremath{\cdot} W + R means (C' \ensuremath{\cdot} W) + R, so R = 1 gives 1 even when C = 1. With the parentheses the same input gives 0. \hfill{\small\color{FAUblue}§2.5}
+\item Any Boolean function can be assembled using NAND gates alone. NOT, AND and OR can each be built from NAND, and those three express any truth table. That is the slides' meaning of a complete set. \hfill{\small\color{FAUblue}§2.7}
+\item A truth table describes stable input-output values, while real gates have switching delay and saturation limits. It says where the output ends up, not when it gets there. Two circuits with the same table may differ in timing. \hfill{\small\color{FAUblue}§2.8}
 \end{enumerate}
 
 \end{keepsection}
@@ -873,39 +967,45 @@ Use day 0 to learn and practise. Tick a skill only in a later session, at least 
 \item It is syntactically valid but has a static semantic error in the slide's example. \hfill{\small\color{FAUblue}§2.3}
 \item A' + B'. \hfill{\small\color{FAUblue}§2.6}
 \item Both are 0. Their matching outputs for this row are consistent with the equivalence; check all four rows to prove it. \hfill{\small\color{FAUblue}§2.5}
-\item (3 + 16/3)/2 = 25/6 \ensuremath{\approx} 4.167. \hfill{\small\color{FAUblue}§2.1}
-\item (A + B)' = A' \ensuremath{\cdot} B'. \hfill{\small\color{FAUblue}§2.6}
+\item (2 + 9/2)/2 = 6.5/2 = 3.25. It is above \ensuremath{\surd}9 = 3 and closer than 2 was. \hfill{\small\color{FAUblue}§2.1}
+\item (A + B + C)' = A' \ensuremath{\cdot} B' \ensuremath{\cdot} C'. \hfill{\small\color{FAUblue}§2.6}
 \item The Boolean model gives stable outputs for inputs; a physical circuit also takes time to switch and has limits such as saturation. \hfill{\small\color{FAUblue}§2.8}
 \item NOT first gives A'=1; AND next gives B\ensuremath{\cdot}C=1; OR last gives 1+1=1. \hfill{\small\color{FAUblue}§2.5}
 \item It may crash, run forever, or return an answer different from the programmer's intention. \hfill{\small\color{FAUblue}§2.3}
 \item XOR=0 and XNOR=1 because the inputs agree. \hfill{\small\color{FAUblue}§2.7}
 \item A\ensuremath{\cdot}A=A, so A\ensuremath{\cdot}A+A=A+A=A. \hfill{\small\color{FAUblue}§2.6}
 \item \&\& is logical AND; \& is bitwise AND. \hfill{\small\color{FAUblue}§2.5}
-\item X=(A\ensuremath{\cdot}(B\ensuremath{\cdot}C)')'=A'+B\ensuremath{\cdot}C. \hfill{\small\color{FAUblue}§2.7}
+\item X=((A\ensuremath{\cdot}B)'\ensuremath{\cdot}C)'=((A\ensuremath{\cdot}B)')'+C'=A\ensuremath{\cdot}B+C'. \hfill{\small\color{FAUblue}§2.7}
 \item Replace g by the average of g and x/g, then test the new guess again. \hfill{\small\color{FAUblue}§2.1}
 \item Let Y=A+B. Then Y'\ensuremath{\cdot}Y=0 by the complement law. \hfill{\small\color{FAUblue}§2.6}
-\item X=0+0\ensuremath{\cdot}1=0. \hfill{\small\color{FAUblue}§2.7}
+\item I=(0\ensuremath{\cdot}1)'=1, then X=(1\ensuremath{\cdot}0)'=1. The simplified form agrees: 0\ensuremath{\cdot}1+1=1. \hfill{\small\color{FAUblue}§2.7}
 \item There are 8 truth-table rows and two possible output choices per row, so 2\textsuperscript{8}=256 functions. \hfill{\small\color{FAUblue}§2.5}
+\item A + B=((A\ensuremath{\cdot}A)'\ensuremath{\cdot}(B\ensuremath{\cdot}B)')'. De Morgan gives (A'\ensuremath{\cdot}B')'=A+B, and each (X\ensuremath{\cdot}X)' is a NOT by the idempotent law. \hfill{\small\color{FAUblue}§2.7}
+\item Run different programs on the same hardware, because its instructions are stored and can change. A calculator does one built-in job. \hfill{\small\color{FAUblue}§2.2}
+\item "hi"5 is a syntax error; 3 + "hi" is a static semantic error; 3.2 * 5 is valid. \hfill{\small\color{FAUblue}§2.3}
+\item W must be 0 and C or R must be 1: (0,1,0), (1,0,0), (1,1,0). \hfill{\small\color{FAUblue}§2.5}
+\item C'=0, so C'\ensuremath{\cdot}W+R=0+1=1, but C'\ensuremath{\cdot}(W+R)=0\ensuremath{\cdot}1=0. The parentheses change the result. \hfill{\small\color{FAUblue}§2.5}
 \end{enumerate}
 
 \end{keepsection}
 \begin{keepsection}\subsection{Exam-style problems}
 
-\Needspace{11\baselineskip}
+\Needspace{13\baselineskip}
 \begin{enumerate}
 \item Set the inputs x, g, and ε. Compute |g²\ensuremath{-}x|. If it is less than ε, output g and stop; otherwise replace g with (g+x/g)/2 and repeat the test. \hfill{\small\color{FAUblue}§2.1}
-\item First update: (3+16/3)/2\ensuremath{\approx}4.167. Second (using unrounded 25/6): (25/6+16/(25/6))/2\ensuremath{\approx}4.003333, shown as 4.003. Its residual from the unrounded iterate is about 0.02668; using the displayed 4.003 gives about 0.024. Both exceed ε=0.01, so another update is needed. \hfill{\small\color{FAUblue}§2.1}
-\item The finite list is a finite description; its defined arithmetic and comparison steps are executable; the tolerance defines a stopping test. To establish halting for every allowed input, one must show the update eventually makes the residual less than ε (and specify valid inputs such as x\ensuremath{>}0 and ε\ensuremath{>}0). \hfill{\small\color{FAUblue}§2.1}
+\item First update: (4+25/4)/2=5.125. Second: (5.125+25/5.125)/2\ensuremath{\approx}5.00152. Its residual is about 0.0152, above ε=0.01, so another update is needed. The third guess is about 5.0000002, with residual about 0.000002, which passes. \hfill{\small\color{FAUblue}§2.1}
+\item The finite list is a finite description; its defined arithmetic and comparison steps are executable; the tolerance defines a stopping test; the repeated update is the control flow that repeats. To establish halting for every allowed input, one must show the update eventually makes the residual less than ε (and specify valid inputs such as x\ensuremath{>}0 and ε\ensuremath{>}0). \hfill{\small\color{FAUblue}§2.1}
+\item Update when S' is 1. At g=4, |16\ensuremath{-}25|=9, which is not below 0.01, so S=0 and S'=1. \hfill{\small\color{FAUblue}§2.4} \hfill{\small\color{FAUblue}§2.5}
 \end{enumerate}
 
 \end{keepsection}
 \begin{keepsection}\subsection{Exam-style problems}
 
-\Needspace{7\baselineskip}
+\Needspace{9\baselineskip}
 \begin{enumerate}
-\item Substitute I: X=(A\ensuremath{\cdot}(B\ensuremath{\cdot}C)')'. De Morgan gives X=A'+((B\ensuremath{\cdot}C)')'. Double negation gives X=A'+B\ensuremath{\cdot}C. \hfill{\small\color{FAUblue}§2.6} \hfill{\small\color{FAUblue}§2.7}
-\item For 0,1,1: X=1+1\ensuremath{\cdot}1=1. For 1,1,1: X=0+1\ensuremath{\cdot}1=1. \hfill{\small\color{FAUblue}§2.5}
-\item The original circuit already uses NAND gates, and NAND is functionally complete, so any Boolean function can be built from it. Physical switching has delay and saturation limits. \hfill{\small\color{FAUblue}§2.7} \hfill{\small\color{FAUblue}§2.8}
+\item Substitute I: X=(B\ensuremath{\cdot}(A\ensuremath{\cdot}C)')'. De Morgan gives X=B'+((A\ensuremath{\cdot}C)')'. Double negation gives X=B'+A\ensuremath{\cdot}C. \hfill{\small\color{FAUblue}§2.6} \hfill{\small\color{FAUblue}§2.7}
+\item X for 000 to 111 is 1, 1, 0, 0, 1, 1, 0, 1. X=1 whenever B=0, and for B=1 only when A=C=1. \hfill{\small\color{FAUblue}§2.5}
+\item The circuit as given is two NAND gates, and NAND is functionally complete, so any Boolean function can be built from it. Physical switching has delay and saturation limits, so the output needs time to change. \hfill{\small\color{FAUblue}§2.7} \hfill{\small\color{FAUblue}§2.8}
 \end{enumerate}
 
 \end{keepsection}

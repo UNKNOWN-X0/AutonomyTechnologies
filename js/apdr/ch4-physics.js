@@ -2,15 +2,15 @@
 (function (root) {
   function binaryValue(text) {
     var bits = String(text).trim();
-    if (!/^[01]+(?:\.[01]+)?$/.test(bits)) throw new RangeError("enter a binary numeral");
-    var parts = bits.split("."), whole = parseInt(parts[0], 2), fraction = 0;
+    if (!/^(?:[01]+(?:\.[01]+)?|\.[01]+)$/.test(bits)) throw new RangeError("enter a binary numeral");
+    var parts = bits.split("."), whole = parts[0] ? parseInt(parts[0], 2) : 0, fraction = 0;
     if (parts[1]) for (var i = 0; i < parts[1].length; i++) fraction += Number(parts[1][i]) * Math.pow(2, -(i + 1));
     return whole + fraction;
   }
 
   function fractionValue(text) {
     var bits = String(text).trim();
-    if (!/^(?:[01]+)?\.[01]+$/.test(bits)) throw new RangeError("enter a binary fraction such as 0.101");
+    if (!/^[01]*\.[01]+$/.test(bits)) throw new RangeError("enter a binary fraction such as 0.101");
     return binaryValue(bits);
   }
 
@@ -27,6 +27,18 @@
       rest -= bit;
     }
     return { bits: bits, exact: rest === 0, remainder: rest };
+  }
+
+  // Long division by 2 for numerator/denominator in (0, 1): stops at zero or when a remainder returns.
+  function remainderSteps(numerator, denominator) {
+    var seen = {}, steps = [], r = numerator;
+    while (r !== 0 && seen[r] == null) {
+      seen[r] = steps.length;
+      var doubled = r * 2, bit = doubled >= denominator ? 1 : 0;
+      steps.push({ remainder: r / denominator, bit: bit });
+      r = doubled - bit * denominator;
+    }
+    return { steps: steps, repeatsFrom: r === 0 ? null : seen[r], next: r / denominator };
   }
 
   function spacing(exponent, precision) {
@@ -56,7 +68,14 @@
       exact = (a * b) * Math.pow(10, x + y);
     }
     var rounded = Number(exact.toPrecision(p));
-    return { exact: exact, rounded: rounded, exactScientific: scientificParts(exact), roundedScientific: scientificParts(rounded), aligned: aligned, exponent: exponent };
+    // Trim binary noise (1.1 + 2.2 is 3.3000000000000003 in a double) from the value labelled exact.
+    return { exact: exact, rounded: rounded, exactScientific: scientificParts(Number(exact.toPrecision(15))), roundedScientific: scientificParts(rounded), aligned: aligned, exponent: exponent };
+  }
+
+  function parseDecimal(text) {
+    var s = String(text).trim();
+    if (!/^[+-]?(?:(?:\d+\.?\d*|\.\d+)(?:e[+-]?\d+)?|Infinity)$/i.test(s)) throw new RangeError("enter a decimal number");
+    return Number(s.replace(/infinity/i, "Infinity"));
   }
 
   function float32(value) {
@@ -86,7 +105,7 @@
     if ((s !== 0 && s !== 1) || !Number.isInteger(e) || e < 0 || e > 255 || !Number.isInteger(f) || f < 0 || f > 0x7fffff) {
       throw new RangeError("invalid single-precision fields");
     }
-    if (e === 0) return f === 0 ? (s ? "negative zero" : "positive zero") : "subnormal";
+    if (e === 0) return f === 0 ? (s ? "negative zero" : "positive zero") : "denormalised";
     if (e === 255) return f === 0 ? (s ? "negative infinity" : "positive infinity") : "NaN";
     return "normalised";
   }
@@ -112,7 +131,7 @@
     var n = Number(value), max = Number(limit || 24);
     if (!Number.isFinite(n) || n <= 0 || !Number.isInteger(max) || max < 1 || max > 64) throw new RangeError("use a positive finite number and a bit limit from 1 to 64");
     var exponent = Math.floor(Math.log2(n)), significand = n / Math.pow(2, exponent), fraction = fractionBits(significand - 1, max);
-    return { significand: "1." + fraction.bits, exponent: exponent, exact: fraction.exact };
+    return { significand: "1." + (fraction.bits || "0"), exponent: exponent, exact: fraction.exact };
   }
 
   function singleAdd(left, right) {
@@ -124,14 +143,19 @@
       ma = binaryValue("1." + a.fraction), mb = binaryValue("1." + b.fraction), exponent = Math.max(ea, eb),
       aligned = [ma * Math.pow(2, ea - exponent), mb * Math.pow(2, eb - exponent)],
       sum = aligned[0] + aligned[1], normalized = normalizedBinary(sum, 24), result = float32(a.value + b.value);
+    var leftLarger = ea >= eb, short = function (word) { return word.significand.replace(/0+$/, "").replace(/\.$/, ".0"); };
     return { left: a, right: b, exponentDifference: Math.abs(ea - eb), exponent: exponent, aligned: aligned, sum: sum,
-      significand: normalized.significand, result: result, exactSum: a.value + b.value };
+      larger: { value: (leftLarger ? a : b).value, significand: short(leftLarger ? a : b) },
+      smaller: { value: (leftLarger ? b : a).value, significand: short(leftLarger ? b : a) },
+      significand: normalized.significand, resultExponent: exponent + normalized.exponent, result: result, exactSum: a.value + b.value };
   }
 
   var api = {
     binaryValue: binaryValue,
     fractionValue: fractionValue,
     fractionBits: fractionBits,
+    remainderSteps: remainderSteps,
+    parseDecimal: parseDecimal,
     spacing: spacing,
     scientificParts: scientificParts,
     scientificOperation: scientificOperation,

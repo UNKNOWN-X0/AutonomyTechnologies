@@ -62,24 +62,26 @@
 \begingroup\footnotesize\setlength{\parskip}{0pt}\tableofcontents\endgroup
 \clearpage
 
-\Needspace{9\baselineskip}
-{\large These chapters build from bit patterns and fixed-width integer rules to IEEE floating point. They finish by showing how finite precision affects calculations and how stable methods reduce error.}
+\Needspace{10\baselineskip}
+{\large This chapter builds from bit patterns and fixed-width integer rules to IEEE floating point, shows how finite precision affects calculations, and ends with how C and Python treat memory. Sections 3.x and 4.x keep the numbers of the Chapter 3 and Chapter 4 notes they draw on; sections 5.x cover the memory part of “APDR lecture 2 extended”.}
 
 
 \begin{keepsection}
-\Needspace{13\baselineskip}
+\Needspace{16\baselineskip}
 \section{Start from memory}
 
-\Needspace{10\baselineskip}
+\Needspace{13\baselineskip}
 Answer before reading. Mark each response sure, unsure, or guessed.
 
-\Needspace{8\baselineskip}
+\Needspace{11\baselineskip}
 \begin{enumerate}
 \item Why must a signed bit pattern be interpreted with an encoding and width?
 \item What is the n-bit two’s-complement range?
 \item Which floating-point field controls precision, and which controls range?
 \item Why can subtracting close floating-point values produce a poor relative result?
 \item What is the main accuracy advantage of fused multiply-add?
+\item If \textit{p} is an int pointer holding 0x1000 and an int takes 4 bytes, what address is \textit{p}+3?
+\item After b = a in Python, with a a list, how many list objects exist?
 \end{enumerate}
 
 \nopagebreak[4]{\small\itshape Answers: see “Start from memory” under Answers at the end.}
@@ -94,11 +96,11 @@ Try each question cold before reading the worked explanation. Rebuild the rule, 
 
 \Needspace{11\baselineskip}
 \begin{enumerate}
-\item \textbf{Day 0:} Recall §3.1–§3.2 and work practice 1–10.
-\item \textbf{Day 1:} Rebuild character and integer arithmetic rules in §3.3–§3.5; solve practice 11–20.
-\item \textbf{Day 3:} Recall §4.1–§4.3; solve practice 21–30.
-\item \textbf{About day 7:} Rebuild IEEE decoding and numerical stability in §4.4–§4.5; solve practice 31–40.
-\item \textbf{About day 14:} Complete both exam-style problems without notes.
+\item \textbf{Day 0:} Recall §3.1–§3.5 and work the odd practice problems 1–23.
+\item \textbf{Day 1:} Rebuild §4.1–§4.3 and work the even practice problems 2–24.
+\item \textbf{Day 3:} Recall §4.4–§4.5 and work practice 25–36.
+\item \textbf{About day 7:} Rebuild §5.1–§5.2 and work practice 37–59.
+\item \textbf{About day 14:} Complete all five exam-style problems without notes.
 \item \textbf{Before the exam:} Tick only skills you can demonstrate cold and revisit missed-answer references.
 \end{enumerate}
 
@@ -106,10 +108,10 @@ Try each question cold before reading the worked explanation. Rebuild the rule, 
 \end{keepsection}
 
 \begin{keepsection}
-\Needspace{18\baselineskip}
+\Needspace{20\baselineskip}
 \section{How the chapters fit together}
 
-\Needspace{15\baselineskip}
+\Needspace{17\baselineskip}
 Integer representation explains exact bit-level meaning. Floating point extends this to a wide range of approximate real values. Numerical analysis then asks how representation and operation order affect the final answer.
 
 \Needspace{7\baselineskip}
@@ -137,10 +139,10 @@ Rests on: positional values and a fixed number of bits.
 
 \end{itemize}
 
-\Needspace{8\baselineskip}
+\Needspace{10\baselineskip}
 \textbf{Calculate} \ensuremath{\cdot} preserve exact meaning
 
-\Needspace{6\baselineskip}
+\Needspace{8\baselineskip}
 \begin{itemize}
 \item 
 \Needspace{4\baselineskip}
@@ -156,16 +158,25 @@ Rests on: the encoding's representable range.
 \textbf{Floating point} \hfill{\small\color{FAUblue}§4.1}
 
 \Needspace{4\baselineskip}
-(\ensuremath{-}1)ˢ \ensuremath{\times} significand \ensuremath{\times} 2ᵉ
+(\ensuremath{-}1)\textsuperscript{S} \ensuremath{\times} significand \ensuremath{\times} 2\textsuperscript{E}
 
 Rests on: sign, biased exponent, and finite precision.
 
+\item 
+\Needspace{4\baselineskip}
+\textbf{C pointers} \hfill{\small\color{FAUblue}§5.1}
+
+\Needspace{4\baselineskip}
+new = old + n \ensuremath{\times} sizeof(type)
+
+Rests on: addresses are integers, and memory is a line of bytes.
+
 \end{itemize}
 
-\Needspace{7\baselineskip}
+\Needspace{8\baselineskip}
 \textbf{Evaluate} \ensuremath{\cdot} bound numerical error
 
-\Needspace{5\baselineskip}
+\Needspace{6\baselineskip}
 \begin{itemize}
 \item 
 \Needspace{4\baselineskip}
@@ -185,9 +196,18 @@ reformulate before precision is lost
 
 Rests on: tracking where rounding error enters and how operations propagate it.
 
+\item 
+\Needspace{4\baselineskip}
+\textbf{Python names} \hfill{\small\color{FAUblue}§5.2}
+
+\Needspace{4\baselineskip}
+name \ensuremath{\to} object
+
+Rests on: references, the safe form of the pointer idea.
+
 \end{itemize}
 
-\Needspace{12\baselineskip}
+\Needspace{14\baselineskip}
 \Needspace{10\baselineskip}
 \begin{center}\small\begin{tabularx}{\linewidth}{>{\raggedright\arraybackslash}X>{\raggedright\arraybackslash}X}\toprule
 \textbf{Question} & \textbf{Method} \\ \midrule
@@ -195,6 +215,7 @@ What does a bit pattern represent? & State width, encoding, and format. \\
 Is a fixed-width result valid? & Compute exactly, then check its representable range. \\
 Why did a float change? & Inspect spacing, rounding, range, and operation order. \\
 Can cancellation be avoided? & Reformulate the calculation or use one-rounding operations. \\
+What does this pointer or name refer to? & Draw the memory: boxes and addresses in C, names and objects in Python. \\
 \bottomrule\end{tabularx}\end{center}
 \end{keepsection}
 
@@ -241,6 +262,17 @@ Because 8=2\textsuperscript{3}, each octal digit corresponds to three binary dig
 {\small The lecture uses 16-bit words and 32-bit long words as examples; the sizes named by these terms can depend on a computer architecture.}
 \end{equationcard}
 
+\begin{workedbox}{Worked conversion \ensuremath{\cdot} hexadecimal to binary and decimal}
+Convert 2F\textsubscript{16}.
+
+\Needspace{5\baselineskip}
+\begin{enumerate}
+\item Replace each digit by four bits: 2 is 0010 and F (15) is 1111, so 2F\textsubscript{16}=0010 1111\textsubscript{2}.
+\item Expand by base 16: 2\ensuremath{\times}16+15=47.
+\item Check by the bits: 32+8+4+2+1=47. \hfill{\small\color{FAUblue}§3.1}
+\end{enumerate}
+\end{workedbox}
+
 \Needspace{5\baselineskip}
 \begin{notebox}\textbf{Trap:} do not read a binary string as an ordinary decimal integer. Attach its base, expand it, and only then compare values.\end{notebox}
 
@@ -265,11 +297,11 @@ Because 8=2\textsuperscript{3}, each octal digit corresponds to three binary dig
 A computer stores a fixed number of bits, not a plus or minus sign unless the encoding defines one. The same pattern can mean different values under different encodings.
 
 \begin{keepsection}
-\Needspace{14\baselineskip}
+\Needspace{16\baselineskip}
 \subsection{Unsigned and signed ranges}
 
-\Needspace{11\baselineskip}
-An unsigned n-bit pattern represents 0 through 2\textsuperscript{n}\ensuremath{-}1. Signed encodings trade positive range for negative values. The source compares sign-and-magnitude, one’s complement, two’s complement, excess (biased) notation, and binary-coded decimal (BCD).
+\Needspace{13\baselineskip}
+An unsigned n-bit pattern represents 0 through 2\textsuperscript{n}\ensuremath{-}1. Signed encodings trade positive range for negative values. The source compares sign-and-magnitude, one’s complement, two’s complement, excess (biased) notation, and binary-coded decimal (BCD). The lecture judges a signed encoding by four wishes: one zero, a balanced range, simple fast addition hardware, and no gaps in the number line.
 
 \begin{equationcard}{Ranges for n bits}
 \[ \begin{gathered} \text{Unsigned}:\, 0\, …\, 2^{\mathrm{n}}-1 \\ \text{Sign}\, \text{and}\, \text{magnitude}:\, -(2^{\mathrm{n}-1}-1)\, …\, +(2^{\mathrm{n}-1}-1) \\ \text{One}’\mathrm{s}\, \text{complement}:\, -(2^{\mathrm{n}-1}-1)\, …\, +(2^{\mathrm{n}-1}-1) \\ \text{Two}’\mathrm{s}\, \text{complement}:\, -2^{\mathrm{n}-1}\, …\, 2^{\mathrm{n}-1}-1 \end{gathered} \]
@@ -288,11 +320,18 @@ An unsigned n-bit pattern represents 0 through 2\textsuperscript{n}\ensuremath{-
 \end{keepsection}
 
 \begin{keepsection}
-\Needspace{17\baselineskip}
+\Needspace{9\baselineskip}
+\subsection{Why the older encodings lost}
+
+Sign-and-magnitude has two zeros, and its adder must compare signs and then choose whether to add or subtract magnitudes. One’s complement still has two zeros, and its addition needs an end-around carry: a carry out of the top bit is added back into the lowest bit. For example, 0101 (+5) + 1110 (\ensuremath{-}1) gives 1 0011; adding the carry back gives 0100 (+4). Two’s complement has one zero and needs no such correction, at the price of a range that is not quite balanced.
+\end{keepsection}
+
+\begin{keepsection}
+\Needspace{20\baselineskip}
 \subsection{Two’s complement and bias}
 
-\Needspace{14\baselineskip}
-To form \ensuremath{-}x in n-bit two’s complement, invert all n bits of x and add 1; discard a carry beyond the width. The minimum value \ensuremath{-}2\textsuperscript{n\ensuremath{-}1} is the exception: its positive counterpart is outside the signed range, so fixed-width negation leaves the same pattern and overflows. Equivalently, interpret a pattern with top bit 1 by subtracting 2\textsuperscript{n} from its unsigned value. In excess-B notation, actual value = stored unsigned value \ensuremath{-} B. The lecture’s three-bit excess-4 example therefore maps 000 to \ensuremath{-}4 and 111 to 3.
+\Needspace{17\baselineskip}
+To form \ensuremath{-}x in n-bit two’s complement, invert all n bits of x and add 1; discard a carry beyond the width. The minimum value \ensuremath{-}2\textsuperscript{n\ensuremath{-}1} is the exception: its positive counterpart is outside the signed range, so fixed-width negation leaves the same pattern and overflows. Why inverting and adding one works: inverting x gives (2\textsuperscript{n}\ensuremath{-}1)\ensuremath{-}x, because each bit becomes 1 minus itself. Adding 1 gives 2\textsuperscript{n}\ensuremath{-}x, which is exactly the pattern for \ensuremath{-}x modulo 2\textsuperscript{n}. Equivalently, interpret a pattern with top bit 1 by subtracting 2\textsuperscript{n} from its unsigned value. In excess-B notation, actual value = stored unsigned value \ensuremath{-} B. The lecture’s three-bit excess-4 example therefore maps 000 to \ensuremath{-}4 and 111 to 3. Bias has a practical reason: the order of the true values matches the unsigned order of the stored patterns, so comparing two excess values is a plain unsigned comparison.
 
 \begin{equationcard}{Decode rules}
 \[ \begin{gathered} \text{Two}’\mathrm{s}-\text{complement}\, \text{value}\, =\, \text{unsigned}(\text{pattern})\, -\, 2^{\mathrm{n}}\, \text{when}\, \text{the}\, \text{top}\, \text{bit}\, \text{is}\, 1 \\ \text{Negate}\, \mathrm{x}:\, \text{invert}\, \mathrm{n}\, \text{bits},\, \text{then}\, \text{add}\, 1 \\ \text{Excess}-\mathrm{B}\, \text{value}\, =\, \text{stored}\, \text{value}\, -\, \mathrm{B} \end{gathered} \]
@@ -391,6 +430,18 @@ Add 111011\textsubscript{2} and 101010\textsubscript{2}.
 \item The result is 1100101\textsubscript{2}. Check: 59+42=101, and 1100101\textsubscript{2}=101. \hfill{\small\color{FAUblue}§3.4}
 \end{enumerate}
 \end{workedbox}
+
+\begin{workedbox}{Worked subtraction \ensuremath{\cdot} borrow across a zero}
+Calculate 1010\textsubscript{2}\ensuremath{-}0011\textsubscript{2}.
+
+\Needspace{9\baselineskip}
+\begin{enumerate}
+\item Rightmost column: 0\ensuremath{-}1 needs a borrow from the next column, so 2\ensuremath{-}1=1, and that column’s 1 becomes 0.
+\item Next column: 0\ensuremath{-}1 needs a borrow, but the column to its left is 0, so take from the top bit. The top bit becomes 0, the third column keeps 1, and this column gets 2: 2\ensuremath{-}1=1.
+\item Third column: 1\ensuremath{-}0=1. Top column: 0\ensuremath{-}0=0.
+\item The result is 0111\textsubscript{2}. Check: 10\ensuremath{-}3=7. \hfill{\small\color{FAUblue}§3.4}
+\end{enumerate}
+\end{workedbox}
 \end{keepsection}
 
 \begin{keepsection}
@@ -404,6 +455,30 @@ Binary multiplication uses partial products, like decimal long multiplication, b
 \[ \begin{gathered} \text{dividend}\, =\, \text{quotient}\, \times \, \text{divisor}\, +\, \text{remainder} \\ 0\, \leq \, \text{remainder}\, <\, \text{divisor} \end{gathered} \]
 {\small Substitute the quotient, divisor, and remainder to check a division result.}
 \end{equationcard}
+
+\begin{workedbox}{Worked multiplication \ensuremath{\cdot} partial products}
+Calculate 1101\textsubscript{2}\ensuremath{\times}101\textsubscript{2}.
+
+\Needspace{7\baselineskip}
+\begin{enumerate}
+\item Multiplier bit 1 (rightmost): write 1101.
+\item Multiplier bit 0: the partial product is zero.
+\item Multiplier bit 1 (two places left): write 110100.
+\item Add: 1101+110100=1000001\textsubscript{2}. Check: 13\ensuremath{\times}5=65. \hfill{\small\color{FAUblue}§3.4}
+\end{enumerate}
+\end{workedbox}
+
+\begin{workedbox}{Worked division \ensuremath{\cdot} long division}
+Calculate 10111\textsubscript{2}÷11\textsubscript{2}.
+
+\Needspace{7\baselineskip}
+\begin{enumerate}
+\item 10 is smaller than 11, so take 101: quotient bit 1, remainder 101\ensuremath{-}11=10.
+\item Bring down 1 to get 101: quotient bit 1, remainder 10.
+\item Bring down 1 to get 101: quotient bit 1, remainder 10.
+\item Quotient 111\textsubscript{2}, remainder 10\textsubscript{2}. Check: 7\ensuremath{\times}3+2=23. \hfill{\small\color{FAUblue}§3.4}
+\end{enumerate}
+\end{workedbox}
 
 \Needspace{5\baselineskip}
 \begin{notebox}\textbf{Memory hook:} in binary addition, 1+1 writes 0 and carries 1. In subtraction, a borrow makes the current column worth 2 before subtracting.\end{notebox}
@@ -452,11 +527,26 @@ Use four-bit two’s complement to calculate \ensuremath{-}7+(\ensuremath{-}6).
 \end{keepsection}
 
 \begin{keepsection}
-\Needspace{13\baselineskip}
+\Needspace{17\baselineskip}
 \subsection{Multiplication and division}
 
-\Needspace{10\baselineskip}
+\Needspace{14\baselineskip}
 The lecture notes that ordinary unsigned multiplication cannot simply be applied to signed two’s-complement patterns and read at the original width. A full product may require up to twice as many bits as the operands; retain a sufficient width and interpret the result consistently. For a simple signed multiplication, multiply magnitudes and make the result negative exactly when the operand signs differ, then check the available width. The supplied slides introduce this idea but do not give a complete signed division algorithm.
+
+\begin{workedbox}{Worked multiplication \ensuremath{\cdot} signed values}
+Calculate (\ensuremath{-}3)\ensuremath{\times}(+5) and store it in eight-bit two’s complement.
+
+\Needspace{7\baselineskip}
+\begin{enumerate}
+\item Multiply magnitudes: 3\ensuremath{\times}5=15=00001111\textsubscript{2}.
+\item The signs differ, so the result is negative.
+\item Negate in eight bits: invert to 11110000 and add 1, giving 11110001.
+\item Check: 241\ensuremath{-}256=\ensuremath{-}15, inside \ensuremath{-}128…+127. Four bits could not hold it. \hfill{\small\color{FAUblue}§3.5}
+\end{enumerate}
+\end{workedbox}
+
+\Needspace{7\baselineskip}
+Overflow also matters for safety. The lecture warns that an integer overflow in a memory-size calculation can become a security hole, such as a buffer overflow, because too little memory gets allocated.
 
 \Needspace{5\baselineskip}
 \begin{notebox}\textbf{Sign check:} do not treat discarded carry as overflow. Decode the fixed-width result and compare it with the exact mathematical result and allowed range.\end{notebox}
@@ -476,26 +566,17 @@ The lecture notes that ordinary unsigned multiplication cannot simply be applied
 \end{keepsection}
 
 \begin{keepsection}
-\Needspace{8\baselineskip}
+\Needspace{7\baselineskip}
 \section{4.1 The floating-point model}
 
-\Needspace{5\baselineskip}
-A fixed number of bits cannot represent every real number.
-
-Floating point uses a sign, a significand, and an exponent to cover very large and very small magnitudes.
+Fixed-width integers from §3.5 cannot hold fractions or very large and very small values. Floating point uses a sign, a significand, and an exponent to cover those magnitudes, at the cost of exactness.
 
 \begin{keepsection}
-\Needspace{7\baselineskip}
+\Needspace{9\baselineskip}
 \subsection{Range and precision}
 
-\Needspace{4\baselineskip}
-For base β, a normalised number has the form sign \ensuremath{\times} significand \ensuremath{\times} β\textsuperscript{exponent}.
-
-\Needspace{5\baselineskip}
-The exponent controls scale and therefore the approximate range.
-
-\Needspace{5\baselineskip}
-The number of significand bits controls precision, or how finely nearby values can be distinguished.
+\Needspace{6\baselineskip}
+For base β, a normalised number has the form sign \ensuremath{\times} significand \ensuremath{\times} β\textsuperscript{exponent}. The exponent controls scale and therefore the approximate range. The number of significand bits controls precision, or how finely nearby values can be distinguished.
 
 \Needspace{8\baselineskip}
 Floating-point values are finite in number, and their spacing changes with magnitude.
@@ -503,6 +584,11 @@ Floating-point values are finite in number, and their spacing changes with magni
 \begin{equationcard}{Scientific notation model}
 \[ \begin{gathered} \mathrm{x}\, =\, \mathrm{s}\, \times \, \mathrm{M}\, \times \, β^{\mathrm{E}} \end{gathered} \]
 {\small s is the sign, M is the significand, β is the base or radix, and E is the exponent. In binary floating point, β=2.}
+\end{equationcard}
+
+\begin{equationcard}{Local gap between neighbours}
+\[ \begin{gathered} \text{gap}\, \text{within}\, [2^{\mathrm{E}},\, 2^{\mathrm{E}+1})\, =\, 2^{\mathrm{E}-\mathrm{p}+1} \end{gathered} \]
+{\small p is the number of significand bits. (This follows directly from the notes’ model: the last of p bits has weight 2\textsuperscript{\ensuremath{-}(p\ensuremath{-}1)}, scaled by 2\textsuperscript{E}. The notes only say the gap grows.) Between 8 and 16, E=3, so p=24 gives 2\textsuperscript{\ensuremath{-}20}.}
 \end{equationcard}
 
 \begin{workedbox}{Worked example \ensuremath{\cdot} normalise a decimal value}
@@ -534,16 +620,13 @@ Write 343000 \ensuremath{\times} 10\textsuperscript{\ensuremath{-}4} in normalis
 \end{keepsection}
 
 \begin{keepsection}
-\Needspace{7\baselineskip}
+\Needspace{9\baselineskip}
 \section{4.2 Binary fractions}
 
-\Needspace{4\baselineskip}
-Binary fractional place values explain both conversion and approximation.
+\Needspace{6\baselineskip}
+The significand from §4.1 is a binary fraction, so its place values explain both conversion and approximation.
 
-\Needspace{4\baselineskip}
-The first bit after the binary point has weight 2\textsuperscript{\ensuremath{-}1}.
-
-Each following bit has half the previous weight.
+The first bit after the binary point has weight 2\textsuperscript{\ensuremath{-}1}, and each following bit has half the previous weight.
 
 \begin{keepsection}
 \Needspace{9\baselineskip}
@@ -735,11 +818,11 @@ Single & 32 bits & 1 bit & 8 bits & 23 bits & 24 bits for normal values & 127 \\
 Double & 64 bits & 1 bit & 11 bits & 52 bits & 53 bits for normal values & 1023 \\
 \bottomrule\end{tabularx}\end{center}
 
-\Needspace{5\baselineskip}
+\Needspace{6\baselineskip}
 For a normalised binary value, the leading significand bit is 1 and is omitted from the stored fraction field.
 
-\Needspace{9\baselineskip}
-The exponent field stores a biased exponent rather than a two’s-complement exponent.
+\Needspace{10\baselineskip}
+The exponent field stores a biased exponent rather than a two’s-complement exponent. Stored order then matches true order, so hardware can compare two exponents as plain unsigned integers.
 
 \begin{equationcard}{Normalised value rule}
 \[ \begin{gathered} \text{value}\, =\, (-1)^{\mathrm{S}}\, \times \, 1.\mathrm{F}\, \times \, 2^{\mathrm{E}-\text{bias}} \\ \text{Single}\, \text{bias}\, =\, 127;\, \text{double}\, \text{bias}\, =\, 1023 \end{gathered} \]
@@ -814,22 +897,27 @@ All ones & All zeroes & Positive or negative infinity \\
 All ones & Non-zero & NaN, or not-a-number \\
 \bottomrule\end{tabularx}\end{center}
 
-\Needspace{5\baselineskip}
-For a subnormal single-precision number, the leading bit is 0 and the effective exponent is \ensuremath{-}126.
+\begin{equationcard}{Subnormal value rule}
+\[ \begin{gathered} \text{value}\, =\, (-1)^{\mathrm{S}}\, \times \, 0.\mathrm{F}\, \times \, 2^{-126} \\ \text{Smallest}\, \text{normal}\, \text{single}:\, 2^{-126}\, \approx \, 1.175\times 10^{-38} \end{gathered} \]
+{\small For a subnormal single-precision number, the hidden bit is 0 and the exponent is fixed at \ensuremath{-}126. Precision falls as the value nears zero.}
+\end{equationcard}
 
-\Needspace{4\baselineskip}
-Subnormal values provide a gradual step from the smallest normalised values toward zero.
+\Needspace{8\baselineskip}
+Subnormal values fill the gap between the smallest normal value and zero, so underflow is gradual. They also keep the property x\ensuremath{-}y==0 exactly when x==y, even for very small numbers.
 
-\Needspace{4\baselineskip}
-Infinity represents overflow results and some divisions by zero.
+\Needspace{8\baselineskip}
+They can be slow: many CPUs handle them through a microcode assist or a software trap, which the lecture calls orders of magnitude slower. Flush-to-zero (FTZ) is a non-compliant mode that treats subnormals as zero. It is faster but gives up that correctness, and high-performance programs often enable it.
 
-\Needspace{5\baselineskip}
-NaN represents an operation without a real-number result, such as 0/0 or infinity\ensuremath{-}infinity.
+\Needspace{6\baselineskip}
+Infinity represents overflow results and some divisions by zero. NaN represents an operation without a real-number result, such as 0/0, \ensuremath{\surd}\ensuremath{-}1 or infinity\ensuremath{-}infinity.
+
+\Needspace{6\baselineskip}
+Before IEEE 754, such operations could trap and end the program. With these values the computation continues, and the status propagates to be checked later.
 
 Operations on infinity and NaN follow format rules, not ordinary real-number algebra in every case.
 
 \begin{keepsection}
-\Needspace{16\baselineskip}
+\Needspace{17\baselineskip}
 \subsection{Special arithmetic examples}
 
 \Needspace{10\baselineskip}
@@ -838,6 +926,7 @@ Operations on infinity and NaN follow format rules, not ordinary real-number alg
 N ÷ \ensuremath{\pm}\ensuremath{\infty} & 0 \\
 \ensuremath{\pm} non-zero ÷ 0 & \ensuremath{\pm}\ensuremath{\infty} \\
 +\ensuremath{\infty} + +\ensuremath{\infty} & +\ensuremath{\infty} \\
+\ensuremath{\infty} + 5.0 & \ensuremath{\infty} \\
 \ensuremath{\pm}\ensuremath{\infty} \ensuremath{\times} \ensuremath{\pm}\ensuremath{\infty} & \ensuremath{\pm}\ensuremath{\infty} \\
 \ensuremath{\pm}0 ÷ \ensuremath{\pm}0 & NaN \\
 +\ensuremath{\infty} \ensuremath{-} +\ensuremath{\infty} & NaN \\
@@ -846,7 +935,7 @@ N ÷ \ensuremath{\pm}\ensuremath{\infty} & 0 \\
 \bottomrule\end{tabularx}\end{center}
 
 \Needspace{10\baselineskip}
-The sign of the infinity in signed cases depends on the operand signs. Slides note that an invalid operation may return a quiet NaN or raise a signalling-NaN exception.
+The sign of the infinity in signed cases depends on the operand signs. An invalid operation normally returns a quiet NaN; a trap may be enabled instead.
 
 \begin{workedbox}{Worked classification \ensuremath{\cdot} single precision fields}
 Classify sign 0, exponent 11111111, fraction 000…000.
@@ -870,20 +959,28 @@ Cancellation occurs when subtracting close stored values. The subtraction may it
 \end{keepsection}
 
 \begin{keepsection}
-\Needspace{13\baselineskip}
+\Needspace{14\baselineskip}
 \subsection{Machine epsilon and relative error}
 
-\Needspace{10\baselineskip}
+\Needspace{11\baselineskip}
 Machine epsilon is the gap from 1 to the next larger representable value. For radix β and p significant digits, ε\textsubscript{mach}=β\textsuperscript{1\ensuremath{-}p}. Here p counts the full significand digits, including the hidden leading bit in a normalised IEEE value.
 
 \begin{equationcard}{Binary machine epsilon}
 \[ \begin{gathered} \text{Single}\, \text{precision}:\, \mathrm{p}=24,\, ε_{\text{mach}}=2^{-23}\approx 1.19\times 10^{-7} \\ \text{Double}\, \text{precision}:\, \mathrm{p}=53,\, ε_{\text{mach}}=2^{-52}\approx 2.22\times 10^{-16} \end{gathered} \]
-{\small Under round-to-nearest, the unit roundoff u is ε\textsubscript{mach}/2 for normal results.}
+{\small Under round-to-nearest, the unit roundoff u is ε\textsubscript{mach}/2 for normal results. “Unit roundoff” is not a term from the slides.}
 \end{equationcard}
 
 \begin{equationcard}{Relative rounding model}
 \[ \begin{gathered} \text{fl}(\mathrm{x})=\mathrm{x}(1+δ),\, \text{with}\, |δ|\leq \mathrm{u} \end{gathered} \]
 {\small For finite non-zero normal results, round-to-nearest, and no overflow. Relative error is measured against |x|, so the same absolute error matters more when the true answer is small.}
+\end{equationcard}
+
+\Needspace{10\baselineskip}
+The slides bound the error by ε; under round-to-nearest the tight bound is ε/2 (= u). Both statements are true; use the slide form if the exam asks for it.
+
+\begin{equationcard}{Error propagation in a difference}
+\[ \begin{gathered} \mathrm{x}′=\mathrm{x}(1+δ_{\mathrm{x}}),\, \mathrm{y}′=\mathrm{y}(1+δ_{\mathrm{y}}) \\ \text{relative}\, \text{error}\, =\, ((\mathrm{x}′-\mathrm{y}′)-(\mathrm{x}-\mathrm{y}))/(\mathrm{x}-\mathrm{y})\, =\, (\mathrm{x}δ_{\mathrm{x}}-\mathrm{y}δ_{\mathrm{y}})/(\mathrm{x}-\mathrm{y}) \end{gathered} \]
+{\small The numerator stays about the size of the input errors. As x approaches y the denominator approaches zero, so the relative error can explode.}
 \end{equationcard}
 
 \begin{workedbox}{Worked example \ensuremath{\cdot} cancellation}
@@ -906,37 +1003,49 @@ If x and y are positive finite floating-point values in the same radix and preci
 \end{keepsection}
 
 \begin{keepsection}
-\Needspace{12\baselineskip}
+\Needspace{13\baselineskip}
 \subsection{Stable quadratic roots}
 
+\Needspace{10\baselineskip}
+For ax\textsuperscript{2}+bx+c=0, require a\ensuremath{\neq}0 and D=b\textsuperscript{2}\ensuremath{-}4ac\ensuremath{\geq}0. The usual formula can subtract nearly equal quantities for one root. For D\ensuremath{>}0, choose the branch that adds magnitudes: if b\ensuremath{\geq}0, set q=\ensuremath{-}\ensuremath{\tfrac12}(b+\ensuremath{\surd}D); if b\ensuremath{<}0, set q=\ensuremath{-}\ensuremath{\tfrac12}(b\ensuremath{-}\ensuremath{\surd}D). Then the roots are q/a and c/q. This branch also handles b=0. For D=0, use the repeated root \ensuremath{-}b/(2a), since q may be zero. These steps avoid cancellation while respecting the degenerate cases.
+
+\Needspace{12\baselineskip}
+The notes write the same method as x\textsubscript{1}=(\ensuremath{-}b\ensuremath{-}sgn(b)\ensuremath{\surd}D)/(2a) and x\textsubscript{2}=c/(a x\textsubscript{1}). Since q=a\ensuremath{\cdot}x\textsubscript{1}, c/q is the slide’s c/(a x\textsubscript{1}). The second form comes from expanding a(x\ensuremath{-}x\textsubscript{1})(x\ensuremath{-}x\textsubscript{2}): matching the constant term gives x\textsubscript{1}x\textsubscript{2}=c/a, which is Vieta’s relation, so x\textsubscript{2} needs no subtraction.
+
+\begin{workedbox}{Worked example \ensuremath{\cdot} x\textsuperscript{2}+10\textsuperscript{8}x+1=0 in double precision}
 \Needspace{9\baselineskip}
-For ax²+bx+c=0, require a\ensuremath{\neq}0 and D=b²\ensuremath{-}4ac\ensuremath{\geq}0. The usual formula can subtract nearly equal quantities for one root. For D\ensuremath{>}0, choose the branch that adds magnitudes: if b\ensuremath{\geq}0, set q=\ensuremath{-}\ensuremath{\tfrac12}(b+\ensuremath{\surd}D); if b\ensuremath{<}0, set q=\ensuremath{-}\ensuremath{\tfrac12}(b\ensuremath{-}\ensuremath{\surd}D). Then the roots are q/a and c/q. This branch also handles b=0. For D=0, use the repeated root \ensuremath{-}b/(2a), since q may be zero. These steps avoid cancellation while respecting the degenerate cases.
+\begin{enumerate}
+\item Here a=1, b=10\textsuperscript{8}, c=1, so D=10\textsuperscript{16}\ensuremath{-}4 and \ensuremath{\surd}D\ensuremath{\approx}10\textsuperscript{8}.
+\item Direct formula for the small root: (\ensuremath{-}b+\ensuremath{\surd}D)/2 subtracts nearly equal values and gives about \ensuremath{-}7.45\ensuremath{\times}10\textsuperscript{\ensuremath{-}9}.
+\item Stable: b\ensuremath{\geq}0, so q=\ensuremath{-}\ensuremath{\tfrac12}(b+\ensuremath{\surd}D)\ensuremath{\approx}\ensuremath{-}10\textsuperscript{8}. The roots are q/a\ensuremath{\approx}\ensuremath{-}10\textsuperscript{8} and c/q\ensuremath{\approx}\ensuremath{-}10\textsuperscript{\ensuremath{-}8}.
+\item Check: the product of the roots is 1=c/a, and the sum is about \ensuremath{-}10\textsuperscript{8}=\ensuremath{-}b/a. The direct value was about 25\% off. \hfill{\small\color{FAUblue}§4.5}
+\end{enumerate}
+\end{workedbox}
 
-\Needspace{7\baselineskip}
 \begin{notebox}\textbf{Trap:} mathematical equivalence does not guarantee equal numerical accuracy. Look for subtraction of nearly equal values and avoid rounding intermediate results unnecessarily.\end{notebox}
-
-\begin{notebox}\textbf{Source qualification:} the lecture’s performance statements about subnormals and its description of C signed-char conversion depend on implementation or execution mode. Follow the language and platform rules for a specific system.\end{notebox}
 \end{keepsection}
 
 \begin{keepsection}
-\Needspace{13\baselineskip}
+\Needspace{14\baselineskip}
 \subsection{Fused multiply-add}
 
-\Needspace{10\baselineskip}
-A fused multiply-add evaluates a\ensuremath{\times}b+c with one final rounding. Separate multiplication and addition can round the product first, then round again after addition. FMA can therefore preserve more information; its speed benefit depends on hardware.
+\Needspace{11\baselineskip}
+A fused multiply-add evaluates a\ensuremath{\times}b+c with one final rounding. Separate multiplication and addition can round the product first, then round again after addition. FMA can therefore preserve more information; its speed benefit depends on hardware. The lecture names dot products, matrix multiplication and polynomial evaluation as algorithms that gain from it.
 
 \begin{equationcard}{Fused versus separate rounding}
 \[ \begin{gathered} \text{FMA}(\mathrm{a},\mathrm{b},\mathrm{c})=\text{round}(\mathrm{a}\times \mathrm{b}+\mathrm{c}) \\ \text{Separate}:\, \text{round}(\text{round}(\mathrm{a}\times \mathrm{b})+\mathrm{c}) \end{gathered} \]
 {\small The fused operation avoids the intermediate rounding step.}
 \end{equationcard}
 
-\Needspace{11\baselineskip}
+\Needspace{14\baselineskip}
 \begin{recallbox}{Recall check \ensuremath{\cdot} answer without looking}
-\Needspace{5\baselineskip}
+\Needspace{8\baselineskip}
 \begin{enumerate}
 \item How do you distinguish infinity from NaN?
 \item What is the main purpose of subnormal numbers?
 \item What does zero exponent and zero fraction encode?
+\item What does machine epsilon measure, and how is it related to the unit roundoff?
+\item Which quadratic root should you compute second, and how?
 \end{enumerate}
 
 \nopagebreak[4]{\small\itshape Answers: see “4.5 Zero, subnormal numbers, infinity, and NaN” under Answers at the end.}
@@ -945,7 +1054,172 @@ A fused multiply-add evaluates a\ensuremath{\times}b+c with one final rounding. 
 \end{keepsection}
 
 \begin{keepsection}
+\Needspace{7\baselineskip}
+\section{5.1 C memory and pointers}
+
+Everything so far gave meaning to bit patterns. C also lets you handle where those patterns live, because an address is itself a number you can store. That gives direct control and direct ways to fail.
+
+\begin{keepsection}
+\Needspace{13\baselineskip}
+\subsection{Addresses, \& and *}
+
+\Needspace{10\baselineskip}
+C treats memory as a contiguous line of bytes, each with a numerical address, usually written in hexadecimal. A pointer is a variable that stores an address. The operator \& gives the address of a variable, and * reads or writes the value at an address.
+
+\begin{equationcard}{Core syntax}
+\[ \begin{gathered} \text{int}\, *\mathrm{p};\, \text{declares}\, \mathrm{a}\, \text{pointer}\, \text{to}\, \text{int} \\ \text{int}\, \mathrm{x}\, =\, 10;\, \mathrm{p}\, =\, \&\mathrm{x};\, \mathrm{p}\, \text{now}\, \text{holds}\, \text{the}\, \text{address}\, \text{of}\, \mathrm{x} \\ *\mathrm{p}\, =\, 20;\, \text{writes}\, \text{through}\, \mathrm{p},\, \text{so}\, \mathrm{x}\, \text{becomes}\, 20 \end{gathered} \]
+{\small In a declaration, * builds a pointer type. In an expression, * dereferences.}
+\end{equationcard}
+\end{keepsection}
+
+\begin{keepsection}
+\Needspace{12\baselineskip}
+\subsection{Pointer arithmetic and arrays}
+
+\Needspace{9\baselineskip}
+Adding n to a pointer moves n elements, not n bytes. In most expressions an array name decays to a pointer to its first element, and subscripting is defined through that pointer.
+
+\begin{equationcard}{Scaling and subscripts}
+\[ \begin{gathered} \text{new}\, \text{address}\, =\, \text{old}\, \text{address}\, +\, \mathrm{n}\, \times \, \text{sizeof}(\text{type}) \\ \mathrm{a}[\mathrm{i}]\, \text{means}\, *(\mathrm{a}\, +\, \mathrm{i}) \end{gathered} \]
+{\small Sizes depend on the platform; the lecture assumes 4 bytes for int and 8 for double.}
+\end{equationcard}
+
+\begin{workedbox}{Worked example \ensuremath{\cdot} scaled steps}
+With int a[10]; int *p = \&a[0]; the array starts at 0x1000, and sizeof(int) is 4.
+
+\Needspace{6\baselineskip}
+\begin{enumerate}
+\item p+1 is 0x1000+1\ensuremath{\times}4=0x1004, the address of a[1].
+\item p+3 is 0x1000+3\ensuremath{\times}4=0x100C, because 12 is C in hexadecimal. This is the address of a[3].
+\item For struct Point \{ double x; double y; \} each element takes 2\ensuremath{\times}8=16 bytes, so the same +1 step moves 16 bytes. Check: the step always equals the element size. \hfill{\small\color{FAUblue}§5.1}
+\end{enumerate}
+\end{workedbox}
+
+A function that receives an array actually receives a copy of the pointer to its first element. That is why arrays appear to be passed by reference.
+\end{keepsection}
+
+\begin{keepsection}
+\Needspace{14\baselineskip}
+\subsection{Double pointers and function pointers}
+
+\Needspace{11\baselineskip}
+C passes every argument by value, so a function given a pointer gets a copy and cannot change the caller’s pointer. To let it do so, as an allocating function must, pass the address of the pointer. A pointer to a pointer adds one level of indirection: with int **p2 = \&p1; *p2 is p1 and **p2 is the int.
+
+\begin{equationcard}{Changing the caller’s pointer}
+\[ \begin{gathered} \text{void}\, \text{allocate}(\text{int}\, **\text{ptr},\, \text{int}\, \text{size})\, \{\, *\text{ptr}\, =\, \text{malloc}(\text{size}\, *\, \text{sizeof}(\text{int}));\, \} \\ \text{int}\, *\text{my}\, =\, \text{NULL};\, \text{allocate}(\&\text{my},\, 10); \end{gathered} \]
+{\small Inside the function, *ptr is the caller’s my itself.}
+\end{equationcard}
+
+\begin{equationcard}{Function pointers}
+\[ \begin{gathered} \text{int}\, (*\text{op})(\text{int},\, \text{int})\, =\, \text{add};\, \text{result}\, =\, (*\text{op})(5,\, 3); \end{gathered} \]
+{\small A pointer can hold the address of code. Passing one to another function gives a callback, as in qsort or event handlers. With add returning a+b, result is 8.}
+\end{equationcard}
+\end{keepsection}
+
+\begin{keepsection}
+\Needspace{15\baselineskip}
+\subsection{Pitfalls}
+
+\Needspace{10\baselineskip}
+\begin{center}\small\begin{tabularx}{\linewidth}{>{\raggedright\arraybackslash}X>{\raggedright\arraybackslash}X>{\raggedright\arraybackslash}X}\toprule
+\textbf{Problem} & \textbf{What goes wrong} & \textbf{Habit} \\ \midrule
+Uninitialised pointer & Holds a garbage address; writing through it is undefined behaviour. & Initialise: p = NULL or p = \&some\_variable. \\
+NULL dereference & Undefined behaviour; a crash such as a segmentation fault is typical. & Test p != NULL first. \\
+Memory leak & The only pointer to a malloc block is lost, so it can never be freed. & Pair each malloc with a free. \\
+Dangling pointer & The pointer still holds the address of freed memory, which may be reused. & free(p); p = NULL; \\
+\bottomrule\end{tabularx}\end{center}
+
+\Needspace{12\baselineskip}
+\begin{notebox}\textbf{Trap:} setting p to NULL after free only protects that one pointer. Any other copy of the address still dangles.\end{notebox}
+
+\begin{recallbox}{Recall check \ensuremath{\cdot} answer without looking}
+\Needspace{5\baselineskip}
+\begin{enumerate}
+\item If q is a double pointer value 0x2000 with 8-byte double, what is q+2?
+\item Why must an allocating function take int ** rather than int *?
+\item What is a dangling pointer?
+\end{enumerate}
+
+\nopagebreak[4]{\small\itshape Answers: see “5.1 C memory and pointers” under Answers at the end.}
+\end{recallbox}
+\end{keepsection}
+\end{keepsection}
+
+\begin{keepsection}
+\Needspace{6\baselineskip}
+\section{5.2 The Python memory model}
+
+Python keeps the reference idea from §5.1 but hides the addresses and the freeing. Knowing the model tells you when a change through one name shows up through another.
+
+\begin{keepsection}
+\Needspace{17\baselineskip}
+\subsection{Names, objects and rebinding}
+
+\Needspace{14\baselineskip}
+A C variable is a typed box that holds a value. A Python variable is a name bound to an object that lives elsewhere, and all data, including integers and functions, are objects. The built-in id() gives an object’s identifier, which in CPython is its memory address, so you can see when two names share an object. In C, x = 20 overwrites the box. In Python, x = 20 rebinds the name to another object and leaves the old object unchanged.
+
+\begin{workedbox}{Worked trace \ensuremath{\cdot} shared reference then rebinding}
+Trace a = [1, 2, 3]; b = a; b.append(4); b = [0]; print(a).
+
+\Needspace{8\baselineskip}
+\begin{enumerate}
+\item a = [1, 2, 3] makes one list object and binds a to it.
+\item b = a binds a second name to the same object, so id(a) equals id(b).
+\item b.append(4) changes that object, so a now shows [1, 2, 3, 4].
+\item b = [0] rebinds b only. print(a) gives [1, 2, 3, 4]. Check: exactly one statement changed the object a refers to. \hfill{\small\color{FAUblue}§5.2}
+\end{enumerate}
+\end{workedbox}
+\end{keepsection}
+
+\begin{keepsection}
+\Needspace{11\baselineskip}
+\subsection{Mutability and function arguments}
+
+\Needspace{8\baselineskip}
+Immutable objects (int, float, str, tuple) cannot change after creation, so operations make new objects. Mutable objects (list, dict, set) can change in place, and the change is visible through every name that refers to them.
+
+A function receives a reference to the object, which is called pass-by-object-reference. It cannot change what the caller’s name refers to, but it can change a mutable object’s contents. With data = [1, 2, 3], a function calling some\_list.append(4) leaves data as [1, 2, 3, 4].
+\end{keepsection}
+
+\begin{keepsection}
 \Needspace{21\baselineskip}
+\subsection{Automatic memory management}
+
+\Needspace{18\baselineskip}
+Reference counting is the main mechanism: each object counts the references to it, and when the count reaches zero it is freed at once. These references include list slots and other containers, not only names. A generational garbage collector runs periodically to find reference cycles, such as two objects that refer to each other, which counting alone cannot free.
+
+\Needspace{10\baselineskip}
+\begin{center}\small\begin{tabularx}{\linewidth}{>{\raggedright\arraybackslash}X>{\raggedright\arraybackslash}X>{\raggedright\arraybackslash}X}\toprule
+\textbf{Feature} & \textbf{C} & \textbf{Python} \\ \midrule
+A variable is & A typed memory location & A name bound to an object \\
+Assignment & Copies a value into the location & Binds a name to an object \\
+Memory management & Manual: malloc and free & Automatic: garbage collection \\
+Pointer arithmetic & Scaled by type size & Not applicable \\
+Main risk & Undefined behaviour & Unintended side effects through shared objects \\
+Priority & Direct control and performance & Safety and developer productivity \\
+\bottomrule\end{tabularx}\end{center}
+
+\Needspace{6\baselineskip}
+\begin{notebox}\textbf{Trap:} b = a never copies a list. To get a separate list you must ask for one, for example with list(a).\end{notebox}
+
+\Needspace{12\baselineskip}
+\begin{notebox}\textbf{Trap:} id() is unique only among objects alive at the same time, so a freed object’s identifier can come back.\end{notebox}
+
+\begin{recallbox}{Recall check \ensuremath{\cdot} answer without looking}
+\Needspace{5\baselineskip}
+\begin{enumerate}
+\item After x = 10 then x = 20, what happened to the object 10?
+\item Why can a function change a list it receives but not the caller’s integer?
+\item What can the generational collector free that reference counting cannot?
+\end{enumerate}
+
+\nopagebreak[4]{\small\itshape Answers: see “5.2 The Python memory model” under Answers at the end.}
+\end{recallbox}
+\end{keepsection}
+\end{keepsection}
+
+\begin{keepsection}
+\Needspace{27\baselineskip}
 \section{Formula map}
 
 \Needspace{10\baselineskip}
@@ -960,11 +1234,15 @@ Machine epsilon & β\textsuperscript{1\ensuremath{-}p} & Spacing from 1 to the n
 Unit roundoff & u=ε\textsubscript{mach}/2 & Bound relative rounding error for normal results under round-to-nearest. \\
 Relative error model & fl(x)=x(1+δ), |δ|\ensuremath{\leq}u & Model rounding under stated assumptions. \\
 Sterbenz condition & y/2 \ensuremath{\leq} x \ensuremath{\leq} 2y & Subtraction of such floating-point x and y is exact under the lemma's assumptions. \\
+Local gap & 2\textsuperscript{E\ensuremath{-}p+1} & Spacing within [2\textsuperscript{E}, 2\textsuperscript{E+1}). \\
+Error of a difference & (xδ\textsubscript{x}\ensuremath{-}yδ\textsubscript{y})/(x\ensuremath{-}y) & See how cancellation amplifies input error. \\
+Pointer step & new = old + n \ensuremath{\times} sizeof(type) & Find an address, in bytes. \\
+Subscript & a[i] = *(a + i) & Move between array and pointer notation. \\
 \bottomrule\end{tabularx}\end{center}
 
 \begin{equationcard}{Check every answer}
 \[ \begin{gathered} \text{State}\, \text{width}\, \text{and}\, \text{encoding}\, \text{for}\, \text{integer}\, \text{problems} \\ \text{Track}\, \text{signs},\, \text{exponent}\, \text{alignment},\, \text{and}\, \text{rounding} \\ \text{Check}\, \text{limiting}\, \text{cases}\, \text{and}\, \text{exact}\, \text{ranges} \end{gathered} \]
-{\small Integer problems have no physical units. In floating-point problems, report the numerical precision and assumptions used.}
+{\small Integer problems have no physical units. In floating-point problems, report the numerical precision and assumptions used. Pointer sizes are in bytes on a stated platform.}
 \end{equationcard}
 \end{keepsection}
 
@@ -993,6 +1271,8 @@ Cover the explanations and rebuild each result on blank paper.
 \item \textbf{One-rounding FMA:} compare fused evaluation with separately rounded multiply and add. \hfill{\small\color{FAUblue}§4.5}
 \item \textbf{Machine epsilon:} derive the gap near 1 from radix and significand precision. \hfill{\small\color{FAUblue}§4.5}
 \item \textbf{Sterbenz lemma:} check the ratio condition and distinguish exact subtraction from prior input rounding. \hfill{\small\color{FAUblue}§4.5}
+\item \textbf{Pointer scaling:} derive the address of a[i] from the base address and sizeof. \hfill{\small\color{FAUblue}§5.1}
+\item \textbf{Reference trace:} draw names and objects for a shared list, then a rebinding. \hfill{\small\color{FAUblue}§5.2}
 \end{enumerate}
 \end{keepsection}
 
@@ -1020,24 +1300,13 @@ Answer each why or when aloud before opening the model response.
 \item Why should an approximate comparison use a tolerance chosen for the problem?
 \item Why is machine epsilon a relative-precision scale rather than one fixed absolute error for every number?
 \item When can Sterbenz’s lemma say the subtraction itself is exact, and what error can still remain?
+\item Why do floating-point formats store the exponent in excess notation?
+\item Why can a C function not change the caller’s pointer when it is given that pointer?
+\item Why does appending inside a Python function affect the caller’s list, while assigning to the parameter does not?
+\item Why does Python need a cycle collector as well as reference counts?
 \end{enumerate}
 
 \nopagebreak[4]{\small\itshape Answers: see “Explain it” under Answers at the end.}
-\end{keepsection}
-
-\begin{keepsection}
-\Needspace{17\baselineskip}
-\section{Source check}
-
-\Needspace{14\baselineskip}
-These checks are inherited from the chapter guides and are tied to the printed page numbers in their source notes.
-
-\Needspace{11\baselineskip}
-\begin{itemize}
-\item \textbf{Chapter 3 slide 24:} the four-bit Excess-8 row for 0111 is printed as 1; stored value 7 minus bias 8 gives \ensuremath{-}1. \hfill{\small\color{FAUblue}§3.2}
-\item \textbf{Extended lecture slide 6:} the C example says assigning 127+1 to signed char wraps to \ensuremath{-}128. That is not guaranteed by C: integer promotion computes 128 as int, then converting an out-of-range value to signed char has an implementation-defined result or signal. Do not generalise this example as signed integer overflow being defined wraparound. See clauses 6.3.1.1 and 6.3.1.3 of the WG14 C standard draft N1570.
-\item \textbf{Extended lecture slide 22:} the second quadratic root uses Vieta’s relation x\textsubscript{1}x\textsubscript{2}=c/a, so x\textsubscript{2}=c/(a x\textsubscript{1}); keep the parentheses explicit.
-\end{itemize}
 \end{keepsection}
 
 \clearpage
@@ -1047,56 +1316,68 @@ These checks are inherited from the chapter guides and are tied to the printed p
 \section{Mixed practice}
 
 \Needspace{7\baselineskip}
-Try all 47 problems before opening the worked answers. Interleaving makes you choose the representation or method each time.
+Try all 59 problems before opening the worked answers. Interleaving makes you choose the representation or method each time.
 
 \begin{enumerate}
-\item Convert 37\textsubscript{10} to binary and check by place value. \hfill{\small\color{FAUblue}§3.1}
-\item Convert 0.1011\textsubscript{2} to decimal. \hfill{\small\color{FAUblue}§4.2}
-\item Decode 1110 as a four-bit two’s-complement number. \hfill{\small\color{FAUblue}§3.2}
-\item How many bits of significand precision does normalised IEEE single precision provide? \hfill{\small\color{FAUblue}§4.4}
-\item How many bits represent one hexadecimal digit? \hfill{\small\color{FAUblue}§3.1}
-\item Normalise 0.000101\textsubscript{2} as M\ensuremath{\times}2\textsuperscript{E} with 1\ensuremath{\leq}M\ensuremath{<}2. \hfill{\small\color{FAUblue}§4.1}
-\item Encode decimal 73 in four-bit BCD. \hfill{\small\color{FAUblue}§3.2}
-\item Convert 0.375 decimal to binary. \hfill{\small\color{FAUblue}§4.2}
-\item How many values are available in seven-bit ASCII? \hfill{\small\color{FAUblue}§3.3}
-\item In a floating-point format, which field chiefly determines range? \hfill{\small\color{FAUblue}§4.1}
-\item Add 1011\textsubscript{2} and 0110\textsubscript{2} as unsigned values. \hfill{\small\color{FAUblue}§3.4}
-\item Multiply (3\ensuremath{\times}10\textsuperscript{2})(2\ensuremath{\times}10\textsuperscript{\ensuremath{-}4}) and give a normalised result. \hfill{\small\color{FAUblue}§4.3}
-\item What is the four-bit two’s-complement range? \hfill{\small\color{FAUblue}§3.2}
-\item Align 7.2\ensuremath{\times}10\textsuperscript{5} to exponent 7. \hfill{\small\color{FAUblue}§4.3}
-\item Convert 101101\textsubscript{2} to octal. \hfill{\small\color{FAUblue}§3.1}
-\item How many stored fraction bits does double precision have? \hfill{\small\color{FAUblue}§4.4}
-\item In excess-4, what value does the three-bit pattern 110 represent? \hfill{\small\color{FAUblue}§3.2}
-\item Classify single-precision fields S=1, E=all ones, F=0. \hfill{\small\color{FAUblue}§4.5}
-\item For 29÷5, give quotient and remainder and verify the division identity. \hfill{\small\color{FAUblue}§3.4}
-\item Convert 0.01101\textsubscript{2} to decimal. \hfill{\small\color{FAUblue}§4.2}
-\item Negate 0011 in four-bit two’s complement. \hfill{\small\color{FAUblue}§3.2}
-\item Use two significant decimal digits to round 8.46\ensuremath{\times}10\textsuperscript{3} + 2.1\ensuremath{\times}10\textsuperscript{2}. \hfill{\small\color{FAUblue}§4.3}
-\item Convert 11101010\textsubscript{2} to hexadecimal. \hfill{\small\color{FAUblue}§3.1}
-\item What is the single-precision exponent bias? \hfill{\small\color{FAUblue}§4.4}
-\item Why does two’s-complement addition discard a carry-out? \hfill{\small\color{FAUblue}§3.5}
-\item Convert decimal 0.625 to binary. \hfill{\small\color{FAUblue}§4.2}
-\item Write decimal 59 in BCD and ordinary binary. \hfill{\small\color{FAUblue}§3.2}
-\item For normalised single precision with exponent field E=130, what is the unbiased exponent? \hfill{\small\color{FAUblue}§4.4}
-\item Compute 7\ensuremath{-}(\ensuremath{-}6) using four-bit two’s complement. State the exact result and whether it fits. \hfill{\small\color{FAUblue}§3.5}
-\item State one reason truncation can be less desirable than rounding. \hfill{\small\color{FAUblue}§4.3}
-\item What do the first 128 Unicode code points have in common with ASCII? \hfill{\small\color{FAUblue}§3.3}
-\item Classify single-precision fields E=0 and F non-zero. \hfill{\small\color{FAUblue}§4.5}
-\item Multiply 101\textsubscript{2} by 11\textsubscript{2} as unsigned values. \hfill{\small\color{FAUblue}§3.4}
-\item For 1.25\ensuremath{\times}2\textsuperscript{3}, give the decimal value. \hfill{\small\color{FAUblue}§4.1}
-\item In four-bit two’s complement, add 0101 and 0011. Does it overflow? \hfill{\small\color{FAUblue}§3.5}
-\item How many total bits are used in double precision? \hfill{\small\color{FAUblue}§4.4}
-\item What is the decoded value of pattern 0111 in four-bit excess-8? \hfill{\small\color{FAUblue}§3.2}
-\item Give an absolute-tolerance test for a value a to be close to b using ε. \hfill{\small\color{FAUblue}§4.3}
-\item What is one reason BCD can be useful despite its extra storage? \hfill{\small\color{FAUblue}§3.2}
-\item Convert 1.101\textsubscript{2} to decimal. \hfill{\small\color{FAUblue}§4.2}
-\item Why is 1.25\ensuremath{\times}2\textsuperscript{3} an exact binary value? \hfill{\small\color{FAUblue}§4.2}
-\item What do \ensuremath{\pm}non-zero ÷ 0 and \ensuremath{\pm}0 ÷ \ensuremath{\pm}0 produce? \hfill{\small\color{FAUblue}§4.5}
-\item What happens to the exponent when multiplying two floating-point values? \hfill{\small\color{FAUblue}§4.3}
-\item When the exponent field is all ones and the fraction is zero, what is the value when S=0? \hfill{\small\color{FAUblue}§4.5}
-\item For binary single precision with 24 significand bits, give machine epsilon and unit roundoff. \hfill{\small\color{FAUblue}§4.5}
-\item Convert 53\textsubscript{10} to binary and verify it by place value. \hfill{\small\color{FAUblue}§3.1}
-\item Check Sterbenz’s condition for x=1.5 and y=1.0, then state their exact difference. \hfill{\small\color{FAUblue}§4.5}
+\item Convert 37\textsubscript{10} to binary and check by place value.
+\item Convert 0.1101\textsubscript{2} to decimal.
+\item Decode 1110 as a four-bit two’s-complement number.
+\item How many bits of significand precision does normalised IEEE single precision provide?
+\item How many bits represent one hexadecimal digit?
+\item Normalise 0.000101\textsubscript{2} as M\ensuremath{\times}2\textsuperscript{E} with 1\ensuremath{\leq}M\ensuremath{<}2.
+\item Encode decimal 73 in four-bit BCD.
+\item Convert 0.375 decimal to binary.
+\item How many values are available in seven-bit ASCII?
+\item In a floating-point format, which field chiefly determines range?
+\item Add 1101\textsubscript{2} and 0111\textsubscript{2} as unsigned values.
+\item Multiply (3\ensuremath{\times}10\textsuperscript{2})(2\ensuremath{\times}10\textsuperscript{\ensuremath{-}4}) and give a normalised result.
+\item What is the four-bit two’s-complement range?
+\item Align 7.2\ensuremath{\times}10\textsuperscript{5} to exponent 7.
+\item Convert 101101\textsubscript{2} to octal.
+\item How many stored fraction bits does double precision have?
+\item In excess-4, what value does the three-bit pattern 110 represent?
+\item Classify single-precision fields S=1, E=all ones, F=0.
+\item For 47÷6, give quotient and remainder and verify the division identity.
+\item Convert 0.10011\textsubscript{2} to decimal.
+\item Negate 0011 in four-bit two’s complement.
+\item Use two significant decimal digits to round 8.46\ensuremath{\times}10\textsuperscript{3} + 2.1\ensuremath{\times}10\textsuperscript{2}.
+\item Convert 11101010\textsubscript{2} to hexadecimal.
+\item What is the single-precision exponent bias?
+\item Why does two’s-complement addition discard a carry-out?
+\item Convert decimal 0.625 to binary.
+\item Write decimal 59 in BCD and ordinary binary.
+\item For normalised single precision with exponent field E=130, what is the unbiased exponent?
+\item Compute 7\ensuremath{-}(\ensuremath{-}6) using four-bit two’s complement. State the exact result and whether it fits.
+\item State one reason truncation can be less desirable than rounding.
+\item What do the first 128 Unicode code points have in common with ASCII?
+\item Classify single-precision fields E=0 and F non-zero.
+\item Multiply 101\textsubscript{2} by 11\textsubscript{2} as unsigned values.
+\item For 1.25\ensuremath{\times}2\textsuperscript{3}, give the decimal value.
+\item In four-bit two’s complement, add 0110 and 0011. Does it overflow?
+\item How many total bits are used in double precision?
+\item What is the decoded value of pattern 0111 in four-bit excess-8?
+\item Give an absolute-tolerance test for a value a to be close to b using ε.
+\item What is one reason BCD can be useful despite its extra storage?
+\item Convert 1.101\textsubscript{2} to decimal.
+\item Why is 1.25\ensuremath{\times}2\textsuperscript{3} an exact binary value?
+\item What do \ensuremath{\pm}non-zero ÷ 0 and \ensuremath{\pm}0 ÷ \ensuremath{\pm}0 produce?
+\item What happens to the exponent when multiplying two floating-point values?
+\item When the exponent field is all ones and the fraction is zero, what is the value when S=0?
+\item For binary single precision with 24 significand bits, give machine epsilon and unit roundoff.
+\item Convert 86\textsubscript{10} to binary and verify it by place value.
+\item Check Sterbenz’s condition for x=3.0 and y=2.0, then state their exact difference.
+\item Does 0.2 terminate in binary? Why or why not?
+\item An int pointer p holds 0x2000 and sizeof(int) is 4. What address is p+5?
+\item In Python, after a = [1, 2]; b = a; b.append(3), what does print(a) show?
+\item Rewrite a[2] using pointer arithmetic.
+\item In Python, after x = 10; y = x; x = 20, what is y? Why?
+\item Take x=100 with δ\textsubscript{x}=+0.001 and y=99 with δ\textsubscript{y}=\ensuremath{-}0.001. Find the relative error of x\ensuremath{-}y.
+\item A C function is void clear(int *q) \{ q = NULL; \}. Does the caller’s pointer change? What signature would change it?
+\item In Python, def f(s): s = s + [1]. After t = [0]; f(t), what is t?
+\item What is wrong with int *p = malloc(sizeof(int)); free(p); *p = 1;?
+\item Two Python objects refer only to each other, and no name reaches them. Does reference counting free them? What does?
+\item Add 0110 and 1101 in four-bit one’s complement, using the end-around carry. Decode the result.
+\item A single-precision result is 2\textsuperscript{\ensuremath{-}127}. What is it with gradual underflow, and what under flush-to-zero?
 \end{enumerate}
 
 \nopagebreak[4]{\small\itshape Answers: see “Mixed practice” under Answers at the end.}
@@ -1109,8 +1390,11 @@ Try all 47 problems before opening the worked answers. Interleaving makes you ch
 Allow about 20 minutes for each problem. Attempt each part before opening its worked answer.
 
 \begin{keepsection}
-\Needspace{8\baselineskip}
-\subsection{1 \ensuremath{\cdot} Compare encodings}
+\Needspace{10\baselineskip}
+\subsection{Problem 1 \ensuremath{\cdot} Compare encodings}
+
+\Needspace{7\baselineskip}
+Encode \ensuremath{-}5 in four-bit sign-and-magnitude, one’s complement and two’s complement.
 
 \Needspace{5\baselineskip}
 \begin{enumerate}
@@ -1123,8 +1407,11 @@ Allow about 20 minutes for each problem. Attempt each part before opening its wo
 \end{keepsection}
 
 \begin{keepsection}
-\Needspace{8\baselineskip}
-\subsection{2 \ensuremath{\cdot} Convert, calculate, and check}
+\Needspace{10\baselineskip}
+\subsection{Problem 2 \ensuremath{\cdot} Convert, calculate, and check}
+
+\Needspace{7\baselineskip}
+In four-bit two’s complement, compute \ensuremath{-}5 + 3.
 
 \Needspace{5\baselineskip}
 \begin{enumerate}
@@ -1137,8 +1424,11 @@ Allow about 20 minutes for each problem. Attempt each part before opening its wo
 \end{keepsection}
 
 \begin{keepsection}
-\Needspace{8\baselineskip}
-\subsection{1 \ensuremath{\cdot} Encode and decode single precision}
+\Needspace{10\baselineskip}
+\subsection{Problem 3 \ensuremath{\cdot} Encode and decode single precision}
+
+\Needspace{7\baselineskip}
+Store 13.25 in IEEE single precision.
 
 \Needspace{5\baselineskip}
 \begin{enumerate}
@@ -1151,18 +1441,64 @@ Allow about 20 minutes for each problem. Attempt each part before opening its wo
 \end{keepsection}
 
 \begin{keepsection}
-\Needspace{9\baselineskip}
-\subsection{2 \ensuremath{\cdot} Align, add, and assess precision}
+\Needspace{14\baselineskip}
+\subsection{Problem 4 \ensuremath{\cdot} Align, add, and assess precision}
 
-\Needspace{6\baselineskip}
+\Needspace{11\baselineskip}
+Add 3.4\ensuremath{\times}10\textsuperscript{4} and 5.6\ensuremath{\times}10\textsuperscript{2} using two significant decimal digits.
+
+\Needspace{9\baselineskip}
 \begin{enumerate}
 \item Align both values to exponent 4.
 \item Add the significands and round to two significant digits.
 \item Compare the rounded result with the exact decimal sum and explain the source of the difference.
+\item Find the relative error and compare it with the unit roundoff of this two-digit decimal format.
 \end{enumerate}
 
 \nopagebreak[4]{\small\itshape Answers: see “Exam-style problems” under Answers at the end.}
 \end{keepsection}
+
+\begin{keepsection}
+\Needspace{14\baselineskip}
+\subsection{Problem 5 \ensuremath{\cdot} From addresses to names}
+
+\Needspace{11\baselineskip}
+In C, int a[4] starts at 0x2000 and sizeof(int) is 4, with int *p = a;. In Python, def f(s): s.append(1); s = [] is called as t = [0]; f(t).
+
+\Needspace{8\baselineskip}
+\begin{enumerate}
+\item Give the address p+3 in hexadecimal, and two other ways to write the element there.
+\item A C function sets its int * parameter to NULL. Does p change? Give the signature that would change it.
+\item State what print(t) shows and which line of f affects it.
+\item Compare how the C and Python functions reach the caller’s data.
+\end{enumerate}
+
+\nopagebreak[4]{\small\itshape Answers: see “Exam-style problems” under Answers at the end.}
+\end{keepsection}
+\end{keepsection}
+
+\begin{keepsection}
+\Needspace{11\baselineskip}
+\section{Slips in the notes}
+
+\Needspace{8\baselineskip}
+Each entry was checked against the rendered slide. “Slide” means a slide of “APDR lecture 2 extended” unless stated. Where the guide differs from the notes, this list says so; items marked as notation or simplification are not errors of value.
+
+\begin{itemize}
+\item \textbf{Chapter 3 slide 24:} the four-bit Excess-8 row for 0111 is printed as 1; stored value 7 minus bias 8 gives \ensuremath{-}1. \hfill{\small\color{FAUblue}§3.2}
+\item \textbf{Slide 3 against slide 5 (uneven claim):} a balanced range is listed as desirable and only the older encodings are said to fail. Two’s complement also misses it, as slide 5 itself shows. \hfill{\small\color{FAUblue}§3.2}
+\item \textbf{Slide 6:} the C example says assigning 127+1 to signed char wraps to \ensuremath{-}128. That is not guaranteed by C: integer promotion computes 128 as int, then converting an out-of-range value to signed char has an implementation-defined result or signal. Do not generalise this example as signed integer overflow being defined wraparound. See clauses 6.3.1.1 and 6.3.1.3 of the WG14 C standard draft N1570. \hfill{\small\color{FAUblue}§3.5}
+\item \textbf{Slide 17 (simplification):} the performance cost of subnormals depends on the CPU and its mode. The guide reports it as the lecture’s statement. \hfill{\small\color{FAUblue}§4.5}
+\item \textbf{Slides 18–19:} ε is called the upper bound on relative rounding error. That holds, but under round-to-nearest the tight bound is ε/2, which the guide calls u. Slide 19’s “any real number x that can be represented” means any x within range. \hfill{\small\color{FAUblue}§4.5}
+\item \textbf{Slide 21:} Sterbenz’s lemma is stated without its conditions. The guide adds positive values of the same format, and gradual underflow. \hfill{\small\color{FAUblue}§4.5}
+\item \textbf{Slide 22:} x\textsubscript{1} with sgn(b) breaks at b=0 if sgn(0)=0, because it gives x\textsubscript{1}=0 and then c/(a\ensuremath{\cdot}0). The slide also leaves a\ensuremath{\neq}0 and D\ensuremath{\geq}0 unstated. The guide’s branch treats b=0 as b\ensuremath{\geq}0 and requires both. \hfill{\small\color{FAUblue}§4.5}
+\item \textbf{Slide 26:} “int arr;” declares one int, yet the text calls it an array and labels p+1 and p+3 both “address of arr”. The brackets were probably lost; the guide reads int a[10], a[1] and a[3]. \hfill{\small\color{FAUblue}§5.1}
+\item \textbf{Slide 27:} “int int\_array;” and “struct Point pt\_array;” have probably lost their sizes in the same way. “sizeof(Point)” needs “struct Point” in C, and the sizes 4 and 16 assume a platform. \hfill{\small\color{FAUblue}§5.1}
+\item \textbf{Slide 28:} “array is equivalent to array” is a tautology. It reads as if it should be array equivalent to \&array[0]. \hfill{\small\color{FAUblue}§5.1}
+\item \textbf{Slide 32:} dereferencing NULL is said to cause a crash always. It is undefined behaviour; a crash is only typical. The fix printed as “p = some ariable” should be p = \&some\_variable. \hfill{\small\color{FAUblue}§5.1}
+\item \textbf{Slides 35 and 38:} “a =”, “data =” and the printed outputs have lost their list literals. The guide supplies [1, 2, 3], which is an assumption, chosen to fit the append(4). \hfill{\small\color{FAUblue}§5.2}
+\item \textbf{Slide 39 (simplification):} the count is described as names that refer to an object. It counts all references, including list slots. \hfill{\small\color{FAUblue}§5.2}
+\end{itemize}
 \end{keepsection}
 
 \begin{keepsection}
@@ -1173,7 +1509,7 @@ Allow about 20 minutes for each problem. Attempt each part before opening its wo
 Tick a skill only in a later session, at least one day after studying, when you can demonstrate it without notes.
 
 \begin{itemize}
-\item $\mdlgwhtsquare$\  Expand numbers by powers of their base. (1, 15, 23)
+\item $\mdlgwhtsquare$\  Expand numbers by powers of their base. (1, 23, 46)
 \item $\mdlgwhtsquare$\  Convert binary groups to octal and hexadecimal. (5, 15, 23)
 \item $\mdlgwhtsquare$\  State signed and unsigned ranges from a bit width. (13)
 \item $\mdlgwhtsquare$\  Decode patterns using distinct signed encodings. (3, 37)
@@ -1183,29 +1519,31 @@ Tick a skill only in a later session, at least one day after studying, when you 
 \item $\mdlgwhtsquare$\  Explain ASCII and Unicode code-point relationships. (9, 31)
 \item $\mdlgwhtsquare$\  Add binary values and carry correctly. (11, 33)
 \item $\mdlgwhtsquare$\  Verify quotient and remainder. (19)
-\item $\mdlgwhtsquare$\  Add signed values and detect overflow. (25, 35)
+\item $\mdlgwhtsquare$\  Add signed values and detect overflow. (25, 35, 58)
 \item $\mdlgwhtsquare$\  Subtract by negating and adding. (29)
 \item $\mdlgwhtsquare$\  Identify and correct the slide 24 excess-8 typo. (37)
 \item $\mdlgwhtsquare$\  Rebuild the derivations from the formula list.
-\item $\mdlgwhtsquare$\  Complete both exam-style problems with checks.
-\item $\mdlgwhtsquare$\  Explain how significand and exponent affect precision and range. (6, 10)
+\item $\mdlgwhtsquare$\  Complete exam problems 1 and 2 with checks.
+\item $\mdlgwhtsquare$\  Explain how significand and exponent affect precision and range. (10)
 \item $\mdlgwhtsquare$\  Normalise a floating-point value and preserve its magnitude. (6)
 \item $\mdlgwhtsquare$\  Convert binary fractions to decimal. (2, 20, 40)
 \item $\mdlgwhtsquare$\  Convert terminating decimal fractions to binary. (8, 26)
-\item $\mdlgwhtsquare$\  Explain why some decimal fractions repeat in binary. (41)
+\item $\mdlgwhtsquare$\  Explain why some decimal fractions repeat in binary. (48)
 \item $\mdlgwhtsquare$\  Multiply floating-point numbers and normalise. (12)
-\item $\mdlgwhtsquare$\  Align exponents before adding. (14, 22, 44)
-\item $\mdlgwhtsquare$\  Round results to a stated precision. (22, 30, 44)
+\item $\mdlgwhtsquare$\  Align exponents before adding. (14, 22)
+\item $\mdlgwhtsquare$\  Round results to a stated precision. (22, 30)
 \item $\mdlgwhtsquare$\  State an approximate comparison using tolerance. (38)
 \item $\mdlgwhtsquare$\  State the single-precision field sizes and bias. (4, 24)
-\item $\mdlgwhtsquare$\  Encode a decimal value in single precision. (exam 1)
-\item $\mdlgwhtsquare$\  Decode a normalised single-precision value. (14, exam 1)
-\item $\mdlgwhtsquare$\  Classify a subnormal pattern and explain its role. (32)
+\item $\mdlgwhtsquare$\  Encode a decimal value in single precision. (exam 3)
+\item $\mdlgwhtsquare$\  Decode a normalised single-precision value. (28, exam 3)
+\item $\mdlgwhtsquare$\  Classify a subnormal pattern and explain its role. (32, 59)
 \item $\mdlgwhtsquare$\  Classify special-value fields and predict basic infinity/NaN arithmetic. (18, 42, 44)
 \item $\mdlgwhtsquare$\  Rebuild the derivations from the list.
-\item $\mdlgwhtsquare$\  Complete both exam-style problems with checks.
+\item $\mdlgwhtsquare$\  Complete all of exam problems 3 and 4 with checks.
 \item $\mdlgwhtsquare$\  Calculate binary machine epsilon and unit roundoff. (45)
 \item $\mdlgwhtsquare$\  Apply Sterbenz’s condition and explain remaining input error. (47)
+\item $\mdlgwhtsquare$\  Trace pointers, scaled addresses and common C memory errors. (49, 51, 54, 56, exam 5)
+\item $\mdlgwhtsquare$\  Trace Python names, rebinding, mutability and reclamation. (50, 52, 55, 57, exam 5)
 \end{itemize}
 \end{keepsection}
 
@@ -1214,13 +1552,15 @@ Tick a skill only in a later session, at least one day after studying, when you 
 \section{Answers}
 \begin{keepsection}\subsection{Start from memory}
 
-\Needspace{8\baselineskip}
+\Needspace{11\baselineskip}
 \begin{enumerate}
 \item The same bits can represent different values under different widths and encoding rules. \hfill{\small\color{FAUblue}§3.2}
 \item \ensuremath{-}2\textsuperscript{n\ensuremath{-}1} through 2\textsuperscript{n\ensuremath{-}1}\ensuremath{-}1. \hfill{\small\color{FAUblue}§3.2}
 \item The significand field controls precision; the exponent field chiefly controls range. \hfill{\small\color{FAUblue}§4.1}
 \item Earlier rounding errors become large compared with a small difference. \hfill{\small\color{FAUblue}§4.5}
 \item It rounds the product-plus-sum once, avoiding an intermediate rounding. \hfill{\small\color{FAUblue}§4.5}
+\item 0x100C, because the step is scaled by the element size. \hfill{\small\color{FAUblue}§5.1}
+\item One. Both names refer to the same object. \hfill{\small\color{FAUblue}§5.2}
 \end{enumerate}
 
 \end{keepsection}
@@ -1315,11 +1655,33 @@ Tick a skill only in a later session, at least one day after studying, when you 
 \end{keepsection}
 \begin{keepsection}\subsection{4.5 Zero, subnormal numbers, infinity, and NaN}
 
-\Needspace{7\baselineskip}
+\Needspace{10\baselineskip}
 \begin{enumerate}
 \item Both use an all-ones exponent. A zero fraction means infinity; a non-zero fraction means NaN. \hfill{\small\color{FAUblue}§4.5}
 \item They represent values between zero and the smallest normalised magnitude, making the transition toward zero gradual. \hfill{\small\color{FAUblue}§4.5}
 \item Positive or negative zero, according to the sign bit. \hfill{\small\color{FAUblue}§4.5}
+\item The gap from 1 to the next larger value; u is half of it under round-to-nearest. \hfill{\small\color{FAUblue}§4.5}
+\item The one that would suffer cancellation. Compute it from the product: x\textsubscript{2}=c/(a x\textsubscript{1}). \hfill{\small\color{FAUblue}§4.5}
+\end{enumerate}
+
+\end{keepsection}
+\begin{keepsection}\subsection{5.1 C memory and pointers}
+
+\Needspace{6\baselineskip}
+\begin{enumerate}
+\item 0x2010, since 2\ensuremath{\times}8=16=0x10. \hfill{\small\color{FAUblue}§5.1}
+\item Arguments are copied, so changing an int * parameter changes only the copy. Through int ** the function reaches the caller’s pointer. \hfill{\small\color{FAUblue}§5.1}
+\item One that still holds the address of memory that has been freed. \hfill{\small\color{FAUblue}§5.1}
+\end{enumerate}
+
+\end{keepsection}
+\begin{keepsection}\subsection{5.2 The Python memory model}
+
+\Needspace{6\baselineskip}
+\begin{enumerate}
+\item Nothing changed in it. The name x now refers to another object. \hfill{\small\color{FAUblue}§5.2}
+\item A list is mutable, so its contents change in place. An integer is immutable, and rebinding the parameter affects only the local name. \hfill{\small\color{FAUblue}§5.2}
+\item Reference cycles, whose counts never reach zero. \hfill{\small\color{FAUblue}§5.2}
 \end{enumerate}
 
 \end{keepsection}
@@ -1342,6 +1704,10 @@ Tick a skill only in a later session, at least one day after studying, when you 
 \item Absolute or relative error that is acceptable depends on the scale and purpose of the calculation. One fixed tolerance may be too strict for large values or too loose for small ones.
 \item Spacing scales with the exponent, so a fixed absolute difference is a different fraction of values at different magnitudes. Machine epsilon measures spacing near 1; the relative rounding model expresses error as a fraction of the input magnitude.
 \item For positive floating-point x and y with y/2\ensuremath{\leq}x\ensuremath{\leq}2y, their difference is exactly representable under the format assumptions. Any rounding that already changed x or y can still affect the difference.
+\item Stored order then matches true order. Exponents can be compared as plain unsigned integers, which is simple and fast in hardware.
+\item C copies every argument, so the function holds its own copy of the address. Changing that copy leaves the caller’s pointer alone, which is why it must receive the pointer’s address instead.
+\item Both names refer to the same object, so append changes what the caller sees. Assignment only rebinds the local name to another object.
+\item Two objects that refer to each other keep each other’s count above zero even when nothing else can reach them. Counting alone would never free them, so a periodic collector finds such cycles.
 \end{enumerate}
 
 \end{keepsection}
@@ -1349,7 +1715,7 @@ Tick a skill only in a later session, at least one day after studying, when you 
 
 \begin{enumerate}
 \item 37=32+4+1, so 100101\textsubscript{2}. \hfill{\small\color{FAUblue}§3.1}
-\item 1/2+1/8+1/16=0.6875. \hfill{\small\color{FAUblue}§4.2}
+\item 1/2+1/4+1/16=0.8125. \hfill{\small\color{FAUblue}§4.2}
 \item Unsigned value 14\ensuremath{-}16=\ensuremath{-}2. \hfill{\small\color{FAUblue}§3.2}
 \item 24 bits: the 23 stored fraction bits plus the implicit leading 1. \hfill{\small\color{FAUblue}§4.4}
 \item Four bits, since 16=2\textsuperscript{4}. \hfill{\small\color{FAUblue}§3.1}
@@ -1358,16 +1724,16 @@ Tick a skill only in a later session, at least one day after studying, when you 
 \item 0.375=3/8=0.011\textsubscript{2}. \hfill{\small\color{FAUblue}§4.2}
 \item 2\textsuperscript{7}=128 code values. \hfill{\small\color{FAUblue}§3.3}
 \item The exponent field. \hfill{\small\color{FAUblue}§4.1}
-\item 1011+0110=10001. As an unsigned five-bit result it is 17. \hfill{\small\color{FAUblue}§3.4}
-\item Multiply significands: 6. Add exponents: \ensuremath{-}2. Result 6\ensuremath{\times}10\textsuperscript{\ensuremath{-}2}, normalised as 6\ensuremath{\times}10\textsuperscript{\ensuremath{-}2}. \hfill{\small\color{FAUblue}§4.3}
+\item 1101+0111=10100. As an unsigned five-bit result it is 20, which matches 13+7. \hfill{\small\color{FAUblue}§3.4}
+\item Multiply significands: 6. Add exponents: \ensuremath{-}2. Result 6\ensuremath{\times}10\textsuperscript{\ensuremath{-}2}, already normalised. \hfill{\small\color{FAUblue}§4.3}
 \item \ensuremath{-}8 through +7. \hfill{\small\color{FAUblue}§3.2}
 \item 7.2\ensuremath{\times}10\textsuperscript{5}=0.072\ensuremath{\times}10\textsuperscript{7}; shift the significand two places right as the exponent rises by two. \hfill{\small\color{FAUblue}§4.3}
 \item Group 101 101; each group is 5, so 55\textsubscript{8}. \hfill{\small\color{FAUblue}§3.1}
 \item 52 stored fraction bits. \hfill{\small\color{FAUblue}§4.4}
 \item Pattern 110 is 6; 6\ensuremath{-}4=2. \hfill{\small\color{FAUblue}§3.2}
 \item Negative infinity: all-ones exponent and zero fraction mean infinity; sign bit 1 makes it negative. \hfill{\small\color{FAUblue}§4.5}
-\item 29=5\ensuremath{\times}5+4, so quotient 5 and remainder 4; 0\ensuremath{\leq}4\ensuremath{<}5. \hfill{\small\color{FAUblue}§3.4}
-\item 1/4+1/8+1/32=0.40625. \hfill{\small\color{FAUblue}§4.2}
+\item 47=7\ensuremath{\times}6+5, so quotient 7 and remainder 5; 0\ensuremath{\leq}5\ensuremath{<}6. \hfill{\small\color{FAUblue}§3.4}
+\item 1/2+1/16+1/32=0.59375. \hfill{\small\color{FAUblue}§4.2}
 \item Invert 0011 to 1100 and add 1: 1101, which is \ensuremath{-}3. \hfill{\small\color{FAUblue}§3.2}
 \item Align 2.1\ensuremath{\times}10\textsuperscript{2}=0.21\ensuremath{\times}10\textsuperscript{3}. Sum 8.67\ensuremath{\times}10\textsuperscript{3}; to two significant digits this is 8.7\ensuremath{\times}10\textsuperscript{3}. \hfill{\small\color{FAUblue}§4.3}
 \item 1110 1010 maps to E A, so EA\textsubscript{16}. \hfill{\small\color{FAUblue}§3.1}
@@ -1382,7 +1748,7 @@ Tick a skill only in a later session, at least one day after studying, when you 
 \item A subnormal number. The exponent is zero and the fraction is non-zero. \hfill{\small\color{FAUblue}§4.5}
 \item 101 is 5 and 11 is 3; 5\ensuremath{\times}3=15=1111\textsubscript{2}. \hfill{\small\color{FAUblue}§3.4}
 \item 1.25\ensuremath{\times}8=10. \hfill{\small\color{FAUblue}§4.1}
-\item 0101+0011=1000. The exact result is +8, outside the four-bit range \ensuremath{-}8…+7; the two positive inputs produced a negative-sign pattern, so it overflows. \hfill{\small\color{FAUblue}§3.5}
+\item 0110+0011=1001, which decodes as \ensuremath{-}7. The exact result is +9, outside the four-bit range \ensuremath{-}8…+7; the two positive inputs produced a negative-sign pattern, so it overflows. \hfill{\small\color{FAUblue}§3.5}
 \item 64 bits: one sign, eleven exponent, and 52 fraction bits. \hfill{\small\color{FAUblue}§4.4}
 \item 7\ensuremath{-}8=\ensuremath{-}1. \hfill{\small\color{FAUblue}§3.2}
 \item For example, treat a as close to b when |a\ensuremath{-}b|\ensuremath{<}ε, with ε chosen for the expected scale and precision. \hfill{\small\color{FAUblue}§4.3}
@@ -1393,8 +1759,20 @@ Tick a skill only in a later session, at least one day after studying, when you 
 \item Add the exponents and multiply the significands, then normalise if needed. \hfill{\small\color{FAUblue}§4.3}
 \item Positive infinity. \hfill{\small\color{FAUblue}§4.5}
 \item For β=2 and p=24, ε\textsubscript{mach}=2\textsuperscript{\ensuremath{-}23}\ensuremath{\approx}1.19\ensuremath{\times}10\textsuperscript{\ensuremath{-}7}. Under round-to-nearest, u=ε\textsubscript{mach}/2=2\textsuperscript{\ensuremath{-}24}\ensuremath{\approx}5.96\ensuremath{\times}10\textsuperscript{\ensuremath{-}8}. \hfill{\small\color{FAUblue}§4.5}
-\item 53=32+16+4+1=110101\textsubscript{2}. \hfill{\small\color{FAUblue}§3.1}
-\item 0.5\ensuremath{\leq}1.5\ensuremath{\leq}2, so the condition holds. The difference 1.5\ensuremath{-}1.0=0.5 is exact. \hfill{\small\color{FAUblue}§4.5}
+\item 86=64+16+4+2=1010110\textsubscript{2}. \hfill{\small\color{FAUblue}§3.1}
+\item y/2=1\ensuremath{\leq}3\ensuremath{\leq}4=2y, so the condition holds. The difference 3.0\ensuremath{-}2.0=1.0 is exact. \hfill{\small\color{FAUblue}§4.5}
+\item No. 0.2=1/5, and the factor 5 means the denominator is not a power of 2. Repeated doubling gives 0.0011 0011…\textsubscript{2}, which repeats. \hfill{\small\color{FAUblue}§4.2}
+\item 0x2000+5\ensuremath{\times}4=0x2014, since 20=0x14. \hfill{\small\color{FAUblue}§5.1}
+\item [1, 2, 3], because a and b name one list. \hfill{\small\color{FAUblue}§5.2}
+\item *(a + 2). \hfill{\small\color{FAUblue}§5.1}
+\item 10. y was bound to the object 10, and x = 20 rebinds only x. \hfill{\small\color{FAUblue}§5.2}
+\item The numerator is 100\ensuremath{\times}0.001\ensuremath{-}99\ensuremath{\times}(\ensuremath{-}0.001)=0.199 and x\ensuremath{-}y=1, so the relative error is 0.199, or 19.9\%. Input errors of 0.1\% grew about 200-fold. \hfill{\small\color{FAUblue}§4.5}
+\item No, q is a copy. Use void clear(int **q) \{ *q = NULL; \} and call clear(\&p). \hfill{\small\color{FAUblue}§5.1}
+\item [0]. s + [1] builds a new list and rebinds the local name, so the caller’s list is untouched. \hfill{\small\color{FAUblue}§5.2}
+\item After free, p dangles, so writing through it is undefined behaviour. \hfill{\small\color{FAUblue}§5.1}
+\item No, their counts stay at 1. The generational garbage collector detects the cycle and frees them. \hfill{\small\color{FAUblue}§5.2}
+\item 0110+1101=1 0011. Add the carry back: 0011+1=0100, which is +4. This matches 6+(\ensuremath{-}2). \hfill{\small\color{FAUblue}§3.2}
+\item Gradual underflow keeps it as a subnormal: 0.1\textsubscript{2}\ensuremath{\times}2\textsuperscript{\ensuremath{-}126}. Flush-to-zero turns it into 0. \hfill{\small\color{FAUblue}§4.5}
 \end{enumerate}
 
 \end{keepsection}
@@ -1430,15 +1808,27 @@ Tick a skill only in a later session, at least one day after studying, when you 
 \end{keepsection}
 \begin{keepsection}\subsection{Exam-style problems}
 
-\Needspace{6\baselineskip}
+\Needspace{9\baselineskip}
 \begin{enumerate}
 \item 5.6\ensuremath{\times}10\textsuperscript{2}=0.056\ensuremath{\times}10\textsuperscript{4}. \hfill{\small\color{FAUblue}§4.3}
 \item (3.4+0.056)\ensuremath{\times}10\textsuperscript{4}=3.456\ensuremath{\times}10\textsuperscript{4}, which rounds to 3.5\ensuremath{\times}10\textsuperscript{4}. \hfill{\small\color{FAUblue}§4.3}
 \item The exact sum is 34560 and the rounded result is 35000. The smaller addend contributes digits beyond the two-digit precision, so rounding changes the stored result. \hfill{\small\color{FAUblue}§4.3}
+\item The relative error is 440/34560\ensuremath{\approx}1.27\%. With β=10 and p=2, ε=10\textsuperscript{\ensuremath{-}1} and u=0.05, so the error is within the 5\% bound. \hfill{\small\color{FAUblue}§4.5}
+\end{enumerate}
+
+\end{keepsection}
+\begin{keepsection}\subsection{Exam-style problems}
+
+\Needspace{9\baselineskip}
+\begin{enumerate}
+\item 0x2000+3\ensuremath{\times}4=0x200C. The element is a[3], or *(p + 3). \hfill{\small\color{FAUblue}§3.1} \hfill{\small\color{FAUblue}§5.1}
+\item No, the parameter is a copy. Use int ** and pass \&p. \hfill{\small\color{FAUblue}§5.1}
+\item [0, 1]. The append changes the shared list; s = [] only rebinds the local name. \hfill{\small\color{FAUblue}§5.2}
+\item C copies an address, and the function writes through it with *. Python copies a reference, and the function changes a mutable object. Neither can rebind the caller’s own variable through a plain parameter. \hfill{\small\color{FAUblue}§5.1} \hfill{\small\color{FAUblue}§5.2}
 \end{enumerate}
 
 \end{keepsection}
 
-\vfill{\small Personal study guide based on the supplied APDR Chapter 3 and Chapter 4 lecture notes and “APDR lecture 2 extended”, slides 1–23. Written in my own words; no lecture pages or figures are reproduced. Not an official FAU publication; check course details against the current notes.}
+\vfill{\small Personal study guide based on the supplied APDR Chapter 3 and Chapter 4 lecture notes and “APDR lecture 2 extended”. Written in my own words; no lecture pages or figures are reproduced. Not an official FAU publication; check course details against the current notes.}
 
 \end{document}

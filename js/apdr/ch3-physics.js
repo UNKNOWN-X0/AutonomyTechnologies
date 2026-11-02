@@ -80,15 +80,52 @@
     var aBits = String(left).replace(/\s+/g, ""), bBits = String(right).replace(/\s+/g, "");
     if (aBits.length !== bBits.length) throw new RangeError("operands must have the same fixed width");
     var width = aBits.length, a = decodeTwos(aBits), b = decodeTwos(bBits),
-      unsignedSum = parseBits(aBits) + parseBits(bBits), exact;
+      exact;
     if (operation === "add") exact = a + b;
     else if (operation === "subtract") exact = a - b;
     else throw new RangeError("operation must be add or subtract");
     var modulus = Math.pow(2, width), stored = ((exact % modulus) + modulus) % modulus,
       min = -Math.pow(2, width - 1), max = Math.pow(2, width - 1) - 1,
-      pattern = toBase(stored, 2).padStart(width, "0");
+      pattern = toBase(stored, 2).padStart(width, "0"),
+      addend = operation === "add" ? bBits : negatePattern(bBits);
     return { exact: exact, pattern: pattern, decoded: decodeTwos(pattern), overflow: exact < min || exact > max,
-      carryOut: operation === "add" && unsignedSum >= modulus, min: min, max: max };
+      carryOut: parseBits(aBits) + parseBits(addend) >= modulus, min: min, max: max };
+  }
+
+  // Fixed-width negation: invert and add 1. The minimum value comes back unchanged.
+  function negatePattern(bits) {
+    var compact = String(bits).replace(/\s+/g, ""), modulus = Math.pow(2, compact.length);
+    return toBase((modulus - parseBits(compact)) % modulus, 2).padStart(compact.length, "0");
+  }
+
+  // Column addition. carries[i] enters column i, counted from the right; sum keeps the extra top bit.
+  function columnAdd(left, right) {
+    var width = Math.max(left.length, right.length), a = left.padStart(width, "0"), b = right.padStart(width, "0"),
+      carries = [0], sum = "";
+    for (var i = 0; i < width; i++) {
+      var total = Number(a[width - 1 - i]) + Number(b[width - 1 - i]) + carries[i];
+      sum = String(total % 2) + sum; carries.push(total >> 1);
+    }
+    return { a: a, b: b, carries: carries, sum: String(carries[width]) + sum };
+  }
+
+  // Column subtraction for a minuend at least as large as the subtrahend. borrowed[i] is 1 when column i lends to the right.
+  function columnSubtract(left, right) {
+    var width = Math.max(left.length, right.length), a = left.padStart(width, "0"), b = right.padStart(width, "0"),
+      borrowed = [0], diff = "";
+    if (parseBits(a) < parseBits(b)) throw new RangeError("minuend must not be smaller than the subtrahend");
+    for (var i = 0; i < width; i++) {
+      var total = Number(a[width - 1 - i]) - Number(b[width - 1 - i]) - borrowed[i];
+      diff = String((total + 2) % 2) + diff; borrowed.push(total < 0 ? 1 : 0);
+    }
+    return { a: a, b: b, borrowed: borrowed, diff: diff };
+  }
+
+  // One shifted copy of left for each 1 bit of right, lowest first.
+  function partialProducts(left, right) {
+    return right.split("").reverse().reduce(function (rows, bit, i) {
+      return bit === "1" ? rows.concat(left + "0".repeat(i)) : rows;
+    }, []);
   }
 
   var api = {
@@ -102,6 +139,10 @@
     unsignedArithmetic: unsignedArithmetic,
     decodeTwos: decodeTwos,
     twosArithmetic: twosArithmetic,
+    negatePattern: negatePattern,
+    columnAdd: columnAdd,
+    columnSubtract: columnSubtract,
+    partialProducts: partialProducts,
   };
   if (typeof module === "object" && module.exports) module.exports = api;
   else root.APDR3 = api;

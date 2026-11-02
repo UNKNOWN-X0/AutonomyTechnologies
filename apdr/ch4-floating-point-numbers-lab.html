@@ -67,7 +67,7 @@
           <p>The exponent selects a magnitude zone.</p>
           <p>The significand precision sets the number of representable steps inside it.</p>
           <div class="bench">
-            <div class="stage"><canvas role="img" aria-label="A number line shows floating-point values spaced within one exponent zone"></canvas><p class="stage-note">Increase the exponent to scale the gap; increase precision to make the steps finer.</p></div>
+            <div class="stage"><canvas role="img" aria-label="A number line shows floating-point values spaced within one exponent zone"></canvas><p class="stage-note">Each tick is one representable value.</p></div>
             <div class="side">
               <div class="challenge" aria-live="polite"></div>
               <form class="controls" onsubmit="return false">
@@ -120,7 +120,7 @@
                   <label class="field-row">First exponent <input type="number" min="-30" max="30" step="1" value="3" data-e1 /></label>
                   <label class="field-row">Second significand or value <input type="number" min="0" step="any" value="6.7" data-m2 /></label>
                   <label class="field-row">Second exponent <input type="number" min="-30" max="30" step="1" value="2" data-e2 /></label>
-                  <label class="field-row">Significant decimal digits <input type="number" min="1" max="12" step="1" value="3" data-digits /></label>
+                  <label class="field-row">Significant decimal digits <input type="number" min="1" max="12" step="1" value="2" data-digits /></label>
                   <p class="method">IEEE mode always adds two single-precision values. Decimal exponents, operation, and digit precision apply only in decimal mode.</p>
                   <div class="row-btns"><button class="btn small" type="button" data-act="run">Calculate</button><button class="btn small" type="button" data-act="reset">Reset</button></div>
                   <p class="readout" aria-live="polite">Result: <output data-out="result">—</output></p>
@@ -135,7 +135,7 @@
           <p>Single precision stores a sign bit, a biased exponent, and a fraction.</p>
           <p>For normalised values, the leading 1 is implicit.</p>
           <div class="bench">
-            <div class="stage"><canvas role="img" aria-label="Single-precision sign, exponent, and fraction fields are shown separately"></canvas><p class="stage-note">Single precision uses 1 sign bit, 8 exponent bits, and 23 fraction bits.</p></div>
+            <div class="stage"><canvas role="img" aria-label="Single-precision sign, exponent, and fraction fields are shown separately"></canvas><p class="stage-note">Read each stored field separately.</p></div>
             <div class="side">
               <div class="challenge" aria-live="polite"></div>
               <form class="controls" onsubmit="return false">
@@ -154,7 +154,7 @@
 <section id="exp-special" class="experiment" data-experiment="special" aria-labelledby="exp-special-title">
           <h2 id="exp-special-title">4.5 Special values: classify the reserved patterns</h2>
           <p>All-zero and all-one exponent fields have special meanings.</p>
-          <p>Check the fraction field too, because it distinguishes infinity from NaN and zero from a subnormal.</p>
+          <p>Check the fraction field too, because it distinguishes infinity from NaN and zero from a denormalised number.</p>
           <div class="bench">
             <div class="stage"><canvas role="img" aria-label="Single-precision special values are classified from the sign, exponent, and fraction fields"></canvas><p class="stage-note">Zero and all-one exponent fields reserve patterns for special values.</p></div>
             <div class="side">

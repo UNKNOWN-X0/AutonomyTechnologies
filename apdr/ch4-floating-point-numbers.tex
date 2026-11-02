@@ -101,10 +101,10 @@ Attempt mixed practice before opening its worked answers.
 \Needspace{14\baselineskip}
 \begin{enumerate}
 \item \textbf{Day 0:} Try the cold start and study §4.1. Explain range and precision in your own words.
-\item \textbf{Day 1:} Rebuild the binary fraction place values in §4.2; solve practice 1–5.
-\item \textbf{Day 3:} Work through multiplication, addition, rounding, and exponent limits in §4.3; solve practice 6–12.
-\item \textbf{About day 7:} Reconstruct the single-precision fields and conversions in §4.4; solve practice 13–17.
-\item \textbf{About day 14:} Recall the special-value rules in §4.5; complete both exam-style problems without notes.
+\item \textbf{Day 1:} Rebuild the binary fraction place values in §4.2; solve practice 1, 4, 10, 13, 20, 25.
+\item \textbf{Day 3:} Work through multiplication, addition, rounding, and exponent limits in §4.3; solve practice 6, 7, 11, 15, 19, 23.
+\item \textbf{About day 7:} Reconstruct the single-precision fields and conversions in §4.4; solve practice 2, 3, 8, 12, 14, 17, 18, 21, 27, 28.
+\item \textbf{About day 14:} Recall the special-value rules in §4.5; solve practice 5, 9, 16, 22, 24, 26; complete both exam-style problems without notes.
 \item \textbf{Before the exam:} Tick only skills you can demonstrate cold; revisit the sections named in missed answers.
 \end{enumerate}
 
@@ -196,7 +196,7 @@ Rests on: a standard layout makes bit patterns portable between systems.
 \textbf{Special values} \hfill{\small\color{FAUblue}§4.5}
 
 \Needspace{4\baselineskip}
-zero \ensuremath{\cdot} subnormal \ensuremath{\cdot} infinity \ensuremath{\cdot} NaN
+zero \ensuremath{\cdot} denormalised \ensuremath{\cdot} infinity \ensuremath{\cdot} NaN
 
 Rests on: reserved exponent patterns encode values outside the normalised range.
 
@@ -224,10 +224,17 @@ Floating point uses a sign, a significand, and an exponent to cover very large a
 
 \begin{keepsection}
 \Needspace{7\baselineskip}
+\subsection{Why not just use more integer bits?}
+
+An integer of 30 decimal digits needs about 100 bits in binary, because one decimal digit carries about 3.32 bits (log\textsubscript{2}10\textsuperscript{30}\ensuremath{\approx}100). BCD needs 30\ensuremath{\times}4=120 bits, and ASCII needs 30\ensuremath{\times}8=240 bits. Scientific notation avoids this cost by storing digits and scale separately.
+\end{keepsection}
+
+\begin{keepsection}
+\Needspace{7\baselineskip}
 \subsection{Range and precision}
 
 \Needspace{4\baselineskip}
-For base β, a normalised number has the form sign \ensuremath{\times} significand \ensuremath{\times} β\textsuperscript{exponent}.
+For base R (the radix), a floating-point number has the form sign \ensuremath{\times} significand \ensuremath{\times} R\textsuperscript{exponent}.
 
 \Needspace{5\baselineskip}
 The exponent controls scale and therefore the approximate range.
@@ -239,9 +246,33 @@ The number of significand bits controls precision, or how finely nearby values c
 Floating-point values are finite in number, and their spacing changes with magnitude.
 
 \begin{equationcard}{Scientific notation model}
-\[ \begin{gathered} \mathrm{x}\, =\, \mathrm{s}\, \times \, \mathrm{M}\, \times \, β^{\mathrm{E}} \end{gathered} \]
-{\small s is the sign, M is the significand, β is the base or radix, and E is the exponent. In binary floating point, β=2.}
+\[ \begin{gathered} \mathrm{x}\, =\, \pm \mathrm{M}\, \times \, \mathrm{R}^{\mathrm{E}} \end{gathered} \]
+{\small M is the coefficient (also called the significand or mantissa), R is the base or radix, and E is the exponent. In binary floating point, R=2.}
 \end{equationcard}
+\end{keepsection}
+
+\begin{keepsection}
+\Needspace{12\baselineskip}
+\subsection{Zones of expressibility and gaps}
+
+\Needspace{9\baselineskip}
+Take a signed 3-digit coefficient and a signed 2-digit exponent. The positive expressible zone runs from +.001\ensuremath{\times}10\textsuperscript{\ensuremath{-}99} to +.999\ensuremath{\times}10\textsuperscript{+99}, and the negative zone mirrors it. Magnitudes above the top lie in the overflow zones. Non-zero magnitudes below the bottom lie in the underflow zones.
+
+\Needspace{12\baselineskip}
+The gap between neighbours varies. Next to .001\ensuremath{\times}10\textsuperscript{\ensuremath{-}99} the neighbours are 0 and .002\ensuremath{\times}10\textsuperscript{\ensuremath{-}99}, so the gap is 10\textsuperscript{\ensuremath{-}102} each way. The same digits at exponent \ensuremath{-}50 are 10\textsuperscript{\ensuremath{-}53}, and that value can also be written with a finer exponent. Its neighbours are .999\ensuremath{\times}10\textsuperscript{\ensuremath{-}53} (gap 10\textsuperscript{\ensuremath{-}56}) and .101\ensuremath{\times}10\textsuperscript{\ensuremath{-}52} (gap 10\textsuperscript{\ensuremath{-}55}).
+
+\begin{equationcard}{Gap in one binary zone}
+\[ \begin{gathered} \text{Gap}\, \text{in}\, [2^{\mathrm{e}},\, 2^{\mathrm{e}+1})\, \text{with}\, \mathrm{p}\, \text{significant}\, \text{bits}\, =\, 2^{\mathrm{e}-\mathrm{p}+1} \end{gathered} \]
+{\small (This follows directly from the notes’ significand model; the notes only say the gap varies.) The last of the p bits has weight 2\textsuperscript{\ensuremath{-}(p\ensuremath{-}1)}, and the exponent scales it by 2\textsuperscript{e}.}
+\end{equationcard}
+\end{keepsection}
+
+\begin{keepsection}
+\Needspace{16\baselineskip}
+\subsection{Normalisation}
+
+\Needspace{13\baselineskip}
+One value has many forms: 0.023\ensuremath{\times}10\textsuperscript{1}=0.230\ensuremath{\times}10\textsuperscript{0}=2.3\ensuremath{\times}10\textsuperscript{\ensuremath{-}1}. Hardware needs each number to have one unique form, so the coefficient is normalised to the range [1, R). In binary that range is [1, 2), so the digit before the point is always 1. For example, 1010.11\textsubscript{2}\ensuremath{\times}2\textsuperscript{2}=1.01011\textsubscript{2}\ensuremath{\times}2\textsuperscript{5}: the point moves three places left, so the exponent rises by three.
 
 \begin{workedbox}{Worked example \ensuremath{\cdot} normalise a decimal value}
 Write 343000 \ensuremath{\times} 10\textsuperscript{\ensuremath{-}4} in normalised decimal form with 1\ensuremath{\leq}M\ensuremath{<}10.
@@ -257,13 +288,14 @@ Write 343000 \ensuremath{\times} 10\textsuperscript{\ensuremath{-}4} in normalis
 \Needspace{5\baselineskip}
 \begin{notebox}\textbf{Trap:} moving the radix point changes the exponent in the opposite direction if the represented value is to stay the same.\end{notebox}
 
-\Needspace{11\baselineskip}
+\Needspace{12\baselineskip}
 \begin{recallbox}{Recall check \ensuremath{\cdot} answer without looking}
-\Needspace{5\baselineskip}
+\Needspace{7\baselineskip}
 \begin{enumerate}
 \item Which field chiefly determines range?
 \item Which field chiefly determines precision?
 \item Why are floating-point values not evenly spaced over the number line?
+\item What makes a normalised form useful to hardware?
 \end{enumerate}
 
 \nopagebreak[4]{\small\itshape Answers: see “4.1 The floating-point model” under Answers at the end.}
@@ -327,8 +359,8 @@ Convert 0.6875 to binary.
 \end{enumerate}
 \end{workedbox}
 
-\Needspace{4\baselineskip}
-Some fractions, such as 0.1 in decimal, repeat in binary.
+\Needspace{6\baselineskip}
+Some fractions, such as 0.1 in decimal, repeat in binary. The remainders run 0.1, 0.2, 0.4, 0.8, 0.6, 0.2, and the return to 0.2 means the bits repeat. Cutting off at 0.000110011\textsubscript{2} gives 0.099609375, close to 0.1 but not equal.
 
 \Needspace{4\baselineskip}
 A finite significand stores only an approximation of a repeating expansion.
@@ -364,7 +396,7 @@ After the exact operation, the result may need normalisation and rounding to fit
 \subsection{Multiplication}
 
 \begin{equationcard}{Multiply normalised values}
-\[ \begin{gathered} (\mathrm{M}_{1}\, \times \, β^{\mathrm{E}_{1}})(\mathrm{M}_{2}\, \times \, β^{\mathrm{E}_{2}})\, =\, (\mathrm{M}_{1}\mathrm{M}_{2})\, \times \, β^{\mathrm{E}_{1}+\mathrm{E}_{2}} \end{gathered} \]
+\[ \begin{gathered} (\mathrm{M}_{1}\, \times \, \mathrm{R}^{\mathrm{E}_{1}})(\mathrm{M}_{2}\, \times \, \mathrm{R}^{\mathrm{E}_{2}})\, =\, (\mathrm{M}_{1}\mathrm{M}_{2})\, \times \, \mathrm{R}^{\mathrm{E}_{1}+\mathrm{E}_{2}} \end{gathered} \]
 {\small Multiply the significands and add the exponents. Then normalise and round if needed.}
 \end{equationcard}
 
@@ -390,8 +422,13 @@ Before adding, express both numbers with the same exponent.
 \Needspace{5\baselineskip}
 Shift the significand of the value with the smaller exponent to the right by the exponent difference.
 
-\Needspace{10\baselineskip}
+\Needspace{8\baselineskip}
 This alignment can discard low-order digits before the addition is even performed.
+
+\begin{equationcard}{Align, then add}
+\[ \begin{gathered} \mathrm{N}_{1}+\mathrm{N}_{2}\, =\, (\mathrm{M}_{1}+\mathrm{M}_{2}\times 10^{\mathrm{E}_{2}-\mathrm{E}_{1}})\times 10^{\mathrm{E}_{1}} \end{gathered} \]
+{\small N\textsubscript{2} is the number with the smaller exponent, so E\textsubscript{2}\ensuremath{-}E\textsubscript{1} is negative and M\textsubscript{2} shifts right.}
+\end{equationcard}
 
 \begin{workedbox}{Worked addition \ensuremath{\cdot} align exponents}
 Use two significant decimal digits to add 4.5\ensuremath{\times}10\textsuperscript{3} and 6.7\ensuremath{\times}10\textsuperscript{2}.
@@ -412,8 +449,19 @@ Use two significant decimal digits to add 4.5\ensuremath{\times}10\textsuperscri
 \Needspace{4\baselineskip}
 Truncation drops extra digits and tends to bias results in one direction.
 
-\Needspace{4\baselineskip}
+\Needspace{10\baselineskip}
 Rounding chooses a nearby representable value and usually gives a better approximation.
+
+\begin{workedbox}{Worked comparison \ensuremath{\cdot} truncate or round}
+With a 2-digit coefficient, store (2.3\ensuremath{\times}10\textsuperscript{1})(2.3\ensuremath{\times}10\textsuperscript{1}).
+
+\Needspace{6\baselineskip}
+\begin{enumerate}
+\item Multiply: 2.3\ensuremath{\times}2.3=5.29, and 1+1=2, giving 5.29\ensuremath{\times}10\textsuperscript{2}, which needs three digits.
+\item Truncate: 5.2\ensuremath{\times}10\textsuperscript{2}. The error is 9, and truncation always errs low for positive values, so the error is biased.
+\item Round: 5.3\ensuremath{\times}10\textsuperscript{2}. The error is only 1, and rounding errs either way, so it is unbiased. \hfill{\small\color{FAUblue}§4.3}
+\end{enumerate}
+\end{workedbox}
 
 \Needspace{4\baselineskip}
 Exponent overflow occurs when the result is too large for the format.
@@ -425,7 +473,7 @@ Exponent underflow occurs when the result is too small for the normalised range.
 The slides describe infinity or an exception for overflow, and zero or an exception for underflow in their simplified model.
 
 \Needspace{5\baselineskip}
-IEEE formats also provide subnormal numbers near zero.
+IEEE formats also provide denormalised numbers near zero.
 
 \Needspace{10\baselineskip}
 For approximate comparisons, choose a tolerance ε that fits the scale and precision of the problem.
@@ -473,11 +521,23 @@ Single & 32 bits & 1 bit & 8 bits & 23 bits & 24 bits for normal values & 127 \\
 Double & 64 bits & 1 bit & 11 bits & 52 bits & 53 bits for normal values & 1023 \\
 \bottomrule\end{tabularx}\end{center}
 
-\Needspace{5\baselineskip}
+\Needspace{8\baselineskip}
 For a normalised binary value, the leading significand bit is 1 and is omitted from the stored fraction field.
 
-\Needspace{9\baselineskip}
-The exponent field stores a biased exponent rather than a two’s-complement exponent.
+\Needspace{8\baselineskip}
+The coefficient is called the significand in the standard. Single precision gives about 7 decimal digits of precision and normalised ranges of roughly \ensuremath{\pm}10\textsuperscript{\ensuremath{-}38} to \ensuremath{\pm}10\textsuperscript{38}. Double precision gives about 16 digits and roughly \ensuremath{\pm}10\textsuperscript{\ensuremath{-}308} to \ensuremath{\pm}10\textsuperscript{308}. The notes reserve single precision for when memory is scarce, or for debugging numerical work, because rounding errors show up sooner.
+
+\Needspace{11\baselineskip}
+The exponent field stores an excess (biased) value rather than a two’s-complement exponent. This lets non-negative floats be compared with simple integer comparisons.
+
+\Needspace{10\baselineskip}
+\begin{center}\small\begin{tabularx}{\linewidth}{>{\raggedright\arraybackslash}X>{\raggedright\arraybackslash}X}\toprule
+\textbf{Exponent} & \textbf{8-bit excess-127 pattern} \\ \midrule
+\ensuremath{-}127 & 0000 0000 \\
+0 & 0111 1111 \\
+1 & 1000 0000 \\
+128 & 1111 1111 \\
+\bottomrule\end{tabularx}\end{center}
 
 \begin{equationcard}{Normalised value rule}
 \[ \begin{gathered} \text{value}\, =\, (-1)^{\mathrm{S}}\, \times \, 1.\mathrm{F}\, \times \, 2^{\mathrm{E}-\text{bias}} \\ \text{Single}\, \text{bias}\, =\, 127;\, \text{double}\, \text{bias}\, =\, 1023 \end{gathered} \]
@@ -514,9 +574,25 @@ The exponent field stores a biased exponent rather than a two’s-complement exp
 \item Scale: 1.5\ensuremath{\times}2\textsuperscript{\ensuremath{-}2}=0.375. Apply the sign: \ensuremath{-}0.375. \hfill{\small\color{FAUblue}§4.4}
 \end{enumerate}
 \end{workedbox}
+\end{keepsection}
+
+\begin{keepsection}
+\Needspace{12\baselineskip}
+\subsection{Add in single precision}
+
+\begin{workedbox}{Worked addition \ensuremath{\cdot} 42.6875 + 0.375}
+\Needspace{10\baselineskip}
+\begin{enumerate}
+\item Read the fields: 42.6875 has exponent field 132 and 0.375 has 125. Restore the hidden bits: 1.010101011\textsubscript{2} and 1.1\textsubscript{2}.
+\item The exponents differ by 132\ensuremath{-}125=7, so shift the smaller significand 7 places right: 1.1\textsubscript{2} becomes 0.00000011\textsubscript{2}.
+\item Add: 1.010101011+0.00000011=1.010110001\textsubscript{2}, at exponent 5.
+\item Check: 1.010110001\textsubscript{2}\ensuremath{\times}2\textsuperscript{5}=101011.0001\textsubscript{2}=43.0625, which is 42.6875+0.375.
+\item The fields are 0 | 10000100 | 01011000100000000000000, or hexadecimal 422C 4000. \hfill{\small\color{FAUblue}§4.4}
+\end{enumerate}
+\end{workedbox}
 
 \Needspace{5\baselineskip}
-\begin{notebox}\textbf{Trap:} restore the hidden leading 1 when decoding a normalised value, but do not apply that rule to a subnormal value.\end{notebox}
+\begin{notebox}\textbf{Trap:} restore the hidden leading 1 when decoding a normalised value, but do not apply that rule to a denormalised value.\end{notebox}
 
 \Needspace{11\baselineskip}
 \begin{recallbox}{Recall check \ensuremath{\cdot} answer without looking}
@@ -533,36 +609,36 @@ The exponent field stores a biased exponent rather than a two’s-complement exp
 \end{keepsection}
 
 \begin{keepsection}
-\Needspace{8\baselineskip}
-\section{4.5 Zero, subnormal numbers, infinity, and NaN}
+\Needspace{9\baselineskip}
+\section{4.5 Zero, denormalised numbers, infinity, and NaN}
 
-\Needspace{5\baselineskip}
+\Needspace{6\baselineskip}
 Reserved exponent patterns extend useful behaviour beyond normalised values.
 
-\Needspace{14\baselineskip}
-In single precision, exponent field zero and exponent field all ones have special interpretations.
+\Needspace{16\baselineskip}
+IEEE formats encode five kinds of value: zero, normalised numbers, denormalised numbers, infinity and NaN. In single precision, exponent field zero and exponent field all ones have special interpretations, so normalised exponents run from \ensuremath{-}126 to 127 rather than \ensuremath{-}127 to 128.
 
 \Needspace{10\baselineskip}
-\begin{center}\small\begin{tabularx}{\linewidth}{>{\raggedright\arraybackslash}X>{\raggedright\arraybackslash}X>{\raggedright\arraybackslash}X}\toprule
-\textbf{Exponent field} & \textbf{Fraction field} & \textbf{Meaning} \\ \midrule
-All zeroes & All zeroes & Positive or negative zero \\
-All zeroes & Non-zero & Subnormal number \\
-Neither all zeroes nor all ones & Any pattern & Normalised number \\
-All ones & All zeroes & Positive or negative infinity \\
-All ones & Non-zero & NaN, or not-a-number \\
+\begin{center}\small\begin{tabularx}{\linewidth}{>{\raggedright\arraybackslash}X>{\raggedright\arraybackslash}X>{\raggedright\arraybackslash}X>{\raggedright\arraybackslash}X}\toprule
+\textbf{Exponent field} & \textbf{Fraction field} & \textbf{Meaning} & \textbf{True exponent} \\ \midrule
+All zeroes & All zeroes & Positive or negative zero & — \\
+All zeroes & Non-zero & Denormalised (subnormal) number & \ensuremath{-}126 \\
+Neither all zeroes nor all ones & Any pattern & Normalised number & \ensuremath{-}126 to 127 \\
+All ones & All zeroes & Positive or negative infinity & — \\
+All ones & Non-zero & NaN, or not-a-number & — \\
 \bottomrule\end{tabularx}\end{center}
 
 \Needspace{5\baselineskip}
-For a subnormal single-precision number, the leading bit is 0 and the effective exponent is \ensuremath{-}126.
-
-\Needspace{4\baselineskip}
-Subnormal values provide a gradual step from the smallest normalised values toward zero.
-
-\Needspace{4\baselineskip}
-Infinity represents overflow results and some divisions by zero.
+For a denormalised single-precision number, the leading bit is 0 and the effective exponent is \ensuremath{-}126.
 
 \Needspace{5\baselineskip}
-NaN represents an operation without a real-number result, such as 0/0 or infinity\ensuremath{-}infinity.
+Denormalised values provide a gradual step from the smallest normalised values toward zero.
+
+\Needspace{6\baselineskip}
+Infinity represents overflow results and divisions of non-zero values by zero. You can do basic arithmetic with it, such as \ensuremath{\infty}+5=\ensuremath{\infty}.
+
+\Needspace{6\baselineskip}
+NaN represents an operation without a real-number result, such as 0/0, infinity\ensuremath{-}infinity, 0\ensuremath{\times}\ensuremath{\infty}, or the square root of a negative number.
 
 Operations on infinity and NaN follow format rules, not ordinary real-number algebra in every case.
 
@@ -583,8 +659,8 @@ N ÷ \ensuremath{\pm}\ensuremath{\infty} & 0 \\
 \ensuremath{\pm}\ensuremath{\infty} \ensuremath{\times} 0 & NaN \\
 \bottomrule\end{tabularx}\end{center}
 
-\Needspace{10\baselineskip}
-The sign of the infinity in signed cases depends on the operand signs. Slides note that an invalid operation may return a quiet NaN or raise a signalling-NaN exception.
+\Needspace{11\baselineskip}
+The sign of the infinity in signed cases depends on the operand signs. The notes say an invalid operation yields either a NaN result (quiet NaN) or an exception (signalling NaN); this is simplified, as the slips list explains.
 
 \begin{workedbox}{Worked classification \ensuremath{\cdot} single precision fields}
 Classify sign 0, exponent 11111111, fraction 000…000.
@@ -605,28 +681,30 @@ Classify sign 0, exponent 11111111, fraction 000…000.
 \Needspace{5\baselineskip}
 \begin{enumerate}
 \item How do you distinguish infinity from NaN?
-\item What is the main purpose of subnormal numbers?
+\item What is the main purpose of denormalised numbers?
 \item What does zero exponent and zero fraction encode?
 \end{enumerate}
 
-\nopagebreak[4]{\small\itshape Answers: see “4.5 Zero, subnormal numbers, infinity, and NaN” under Answers at the end.}
+\nopagebreak[4]{\small\itshape Answers: see “4.5 Zero, denormalised numbers, infinity, and NaN” under Answers at the end.}
 \end{recallbox}
 \end{keepsection}
 \end{keepsection}
 
 \begin{keepsection}
-\Needspace{19\baselineskip}
+\Needspace{23\baselineskip}
 \section{Formula map}
 
 \Needspace{10\baselineskip}
 \begin{center}\small\begin{tabularx}{\linewidth}{>{\raggedright\arraybackslash}X>{\raggedright\arraybackslash}X>{\raggedright\arraybackslash}X}\toprule
 \textbf{Idea} & \textbf{Relation} & \textbf{Use} \\ \midrule
-Floating-point model & x = s \ensuremath{\times} M \ensuremath{\times} β\textsuperscript{E} & Separate sign, significand, and scale. \\
+Floating-point model & x = \ensuremath{\pm}M \ensuremath{\times} R\textsuperscript{E} & Separate sign, significand, and scale. \\
 Binary fraction & 0.b\textsubscript{1}b\textsubscript{2}… = \ensuremath{\Sigma} b\textsubscript{i}2\textsuperscript{\ensuremath{-}i} & Convert binary fractions to decimal. \\
-Multiplication & (M\textsubscript{1}β\textsuperscript{E\textsubscript{1}})(M\textsubscript{2}β\textsuperscript{E\textsubscript{2}}) = M\textsubscript{1}M\textsubscript{2}β\textsuperscript{E\textsubscript{1}+E\textsubscript{2}} & Multiply significands and add exponents. \\
+Multiplication & (M\textsubscript{1}R\textsuperscript{E\textsubscript{1}})(M\textsubscript{2}R\textsuperscript{E\textsubscript{2}}) = M\textsubscript{1}M\textsubscript{2}R\textsuperscript{E\textsubscript{1}+E\textsubscript{2}} & Multiply significands and add exponents. \\
+Addition & N\textsubscript{1}+N\textsubscript{2} = (M\textsubscript{1}+M\textsubscript{2}\ensuremath{\times}10\textsuperscript{E\textsubscript{2}\ensuremath{-}E\textsubscript{1}})\ensuremath{\times}10\textsuperscript{E\textsubscript{1}} & Align to the larger exponent, then add coefficients. \\
+Gap in one zone & 2\textsuperscript{e\ensuremath{-}p+1} & Spacing in [2\textsuperscript{e}, 2\textsuperscript{e+1}) with p significant bits. \\
 Single normalised value & (\ensuremath{-}1)\textsuperscript{S} \ensuremath{\times} 1.F \ensuremath{\times} 2\textsuperscript{E\ensuremath{-}127} & Decode a normalised single-precision pattern. \\
 Double normalised value & (\ensuremath{-}1)\textsuperscript{S} \ensuremath{\times} 1.F \ensuremath{\times} 2\textsuperscript{E\ensuremath{-}1023} & Decode a normalised double-precision pattern. \\
-Subnormal single value & (\ensuremath{-}1)\textsuperscript{S} \ensuremath{\times} 0.F \ensuremath{\times} 2\textsuperscript{\ensuremath{-}126} & Decode a subnormal single-precision pattern. \\
+Denormalised single value & (\ensuremath{-}1)\textsuperscript{S} \ensuremath{\times} 0.F \ensuremath{\times} 2\textsuperscript{\ensuremath{-}126} & Decode a denormalised single-precision pattern. \\
 Absolute closeness & |a\ensuremath{-}b|\ensuremath{<}ε & Compare computed values with a chosen tolerance. \\
 \bottomrule\end{tabularx}\end{center}
 
@@ -637,19 +715,20 @@ Absolute closeness & |a\ensuremath{-}b|\ensuremath{<}ε & Compare computed value
 \end{keepsection}
 
 \begin{keepsection}
-\Needspace{16\baselineskip}
+\Needspace{18\baselineskip}
 \section{Derive it cold}
 
-\Needspace{13\baselineskip}
+\Needspace{15\baselineskip}
 Cover the explanations and rebuild each result on blank paper.
 
-\Needspace{11\baselineskip}
+\Needspace{13\baselineskip}
 \begin{enumerate}
 \item \textbf{Binary fractions:} derive each bit’s place value as a negative power of 2. \hfill{\small\color{FAUblue}§4.2}
 \item \textbf{Decimal fraction conversion:} use repeated multiplication by 2 and track the fractional remainder. \hfill{\small\color{FAUblue}§4.2}
 \item \textbf{Multiplication:} use exponent laws, then normalise. \hfill{\small\color{FAUblue}§4.3}
 \item \textbf{Addition:} align exponents, combine significands, and round. \hfill{\small\color{FAUblue}§4.3}
 \item \textbf{Single-precision decoding:} recover the sign, unbiased exponent, and hidden bit. \hfill{\small\color{FAUblue}§4.4}
+\item \textbf{Single-precision addition:} restore hidden bits, shift by the exponent difference, add, and re-encode. \hfill{\small\color{FAUblue}§4.4}
 \item \textbf{Special values:} derive the classification from exponent and fraction fields. \hfill{\small\color{FAUblue}§4.5}
 \end{enumerate}
 \end{keepsection}
@@ -669,33 +748,11 @@ Answer each why or when question aloud before opening its model response.
 \item Why must exponents be aligned before adding two floating-point values?
 \item Why can rounding during addition lose a small addend?
 \item Why is the leading 1 omitted for normalised binary significands?
-\item When would a subnormal number be used?
+\item When would a denormalised number be used?
 \item Why should an approximate comparison use a tolerance chosen for the problem?
 \end{enumerate}
 
 \nopagebreak[4]{\small\itshape Answers: see “Explain it” under Answers at the end.}
-\end{keepsection}
-
-\begin{keepsection}
-\Needspace{11\baselineskip}
-\section{Source check}
-
-\Needspace{8\baselineskip}
-The rendered slide images were checked for these range statements.
-
-\Needspace{6\baselineskip}
-\begin{itemize}
-\item \textbf{Slide 40 \ensuremath{\cdot} approximate single-precision range endpoints are reversed:} it prints 10\textsuperscript{38} to 10\textsuperscript{\ensuremath{-}38} for the positive range. The increasing-magnitude order is approximately 10\textsuperscript{\ensuremath{-}38} to 10\textsuperscript{38}.
-\item \textbf{Slide 42 \ensuremath{\cdot} approximate double-precision range endpoints are reversed:} it prints 10\textsuperscript{308} to 10\textsuperscript{\ensuremath{-}308} for the positive range. The increasing-magnitude order is approximately 10\textsuperscript{\ensuremath{-}308} to 10\textsuperscript{308}.
-\end{itemize}
-
-\Needspace{4\baselineskip}
-These are rough decimal magnitudes for normalised values, not exact endpoint values.
-
-\Needspace{4\baselineskip}
-The later slides give the exact normalised exponent range for single precision.
-
-The double-precision range follows from its exponent field size and bias.
 \end{keepsection}
 
 \clearpage
@@ -705,36 +762,40 @@ The double-precision range follows from its exponent field size and bias.
 \section{Mixed practice}
 
 \Needspace{4\baselineskip}
-Try all 24 problems before opening the worked answers.
+Try all 28 problems before opening the worked answers.
 
 \Needspace{6\baselineskip}
 The topics are interleaved so you must choose the method each time.
 
 \begin{enumerate}
-\item Convert 0.1011\textsubscript{2} to decimal. \hfill{\small\color{FAUblue}§4.2}
-\item How many bits of significand precision does normalised IEEE single precision provide? \hfill{\small\color{FAUblue}§4.4}
-\item Normalise 0.000101\textsubscript{2} as M\ensuremath{\times}2\textsuperscript{E} with 1\ensuremath{\leq}M\ensuremath{<}2. \hfill{\small\color{FAUblue}§4.1}
-\item Convert 0.375 decimal to binary. \hfill{\small\color{FAUblue}§4.2}
-\item In a floating-point format, which field chiefly determines range? \hfill{\small\color{FAUblue}§4.1}
-\item Multiply (3\ensuremath{\times}10\textsuperscript{2})(2\ensuremath{\times}10\textsuperscript{\ensuremath{-}4}) and give a normalised result. \hfill{\small\color{FAUblue}§4.3}
-\item Align 7.2\ensuremath{\times}10\textsuperscript{5} to exponent 7. \hfill{\small\color{FAUblue}§4.3}
-\item How many stored fraction bits does double precision have? \hfill{\small\color{FAUblue}§4.4}
-\item Classify single-precision fields S=1, E=all ones, F=0. \hfill{\small\color{FAUblue}§4.5}
-\item Convert 0.01101\textsubscript{2} to decimal. \hfill{\small\color{FAUblue}§4.2}
-\item Use two significant decimal digits to round 8.46\ensuremath{\times}10\textsuperscript{3} + 2.1\ensuremath{\times}10\textsuperscript{2}. \hfill{\small\color{FAUblue}§4.3}
-\item What is the single-precision exponent bias? \hfill{\small\color{FAUblue}§4.4}
-\item Convert decimal 0.625 to binary. \hfill{\small\color{FAUblue}§4.2}
-\item For normalised single precision with exponent field E=130, what is the unbiased exponent? \hfill{\small\color{FAUblue}§4.4}
-\item State one reason truncation can be less desirable than rounding. \hfill{\small\color{FAUblue}§4.3}
-\item Classify single-precision fields E=0 and F non-zero. \hfill{\small\color{FAUblue}§4.5}
-\item For 1.25\ensuremath{\times}2\textsuperscript{3}, give the decimal value. \hfill{\small\color{FAUblue}§4.1}
-\item How many total bits are used in double precision? \hfill{\small\color{FAUblue}§4.4}
-\item Give an absolute-tolerance test for a value a to be close to b using ε. \hfill{\small\color{FAUblue}§4.3}
-\item Convert 1.101\textsubscript{2} to decimal. \hfill{\small\color{FAUblue}§4.2}
-\item Why is 1.25\ensuremath{\times}2\textsuperscript{3} an exact binary value? \hfill{\small\color{FAUblue}§4.2}
-\item What do \ensuremath{\pm}non-zero ÷ 0 and \ensuremath{\pm}0 ÷ \ensuremath{\pm}0 produce? \hfill{\small\color{FAUblue}§4.5}
-\item What happens to the exponent when multiplying two floating-point values? \hfill{\small\color{FAUblue}§4.3}
-\item When the exponent field is all ones and the fraction is zero, what is the value when S=0? \hfill{\small\color{FAUblue}§4.5}
+\item Convert 0.1101\textsubscript{2} to decimal.
+\item How many bits of significand precision does normalised IEEE single precision provide?
+\item Normalise 0.00111\textsubscript{2} as M\ensuremath{\times}2\textsuperscript{E} with 1\ensuremath{\leq}M\ensuremath{<}2.
+\item Convert 0.375 decimal to binary.
+\item In a floating-point format, which field chiefly determines range?
+\item Multiply (3\ensuremath{\times}10\textsuperscript{2})(5\ensuremath{\times}10\textsuperscript{\ensuremath{-}4}) and give a normalised result.
+\item Align 7.2\ensuremath{\times}10\textsuperscript{5} to exponent 7.
+\item How many stored fraction bits does double precision have?
+\item Classify single-precision fields S=1, E=all ones, F=0.
+\item Convert 0.01011\textsubscript{2} to decimal.
+\item Use two significant decimal digits to round 8.46\ensuremath{\times}10\textsuperscript{3} + 2.1\ensuremath{\times}10\textsuperscript{2}.
+\item What is the single-precision exponent bias?
+\item Convert decimal 0.4375 to binary.
+\item For normalised single precision with exponent field E=130, what is the unbiased exponent?
+\item State one reason truncation can be less desirable than rounding.
+\item Classify single-precision fields E=0 and F non-zero.
+\item For 1.25\ensuremath{\times}2\textsuperscript{3}, give the decimal value.
+\item How many total bits are used in double precision?
+\item Give an absolute-tolerance test for a value a to be close to b using ε.
+\item Convert 1.101\textsubscript{2} to decimal.
+\item Why is 1.25\ensuremath{\times}2\textsuperscript{3} an exact binary value?
+\item What do \ensuremath{\pm}non-zero ÷ 0 and \ensuremath{\pm}0 ÷ \ensuremath{\pm}0 produce?
+\item What happens to the exponent when multiplying two floating-point values?
+\item When the exponent field is all ones and the fraction is zero, what is the value when S=0?
+\item Is 0.1 finite in binary? Give the first 8 bits after the point.
+\item With fixed p, what happens to the gap from [8, 16) to [16, 32)?
+\item Encode 0.375 in single precision, in hexadecimal.
+\item Decode the single-precision word C154 0000.
 \end{enumerate}
 
 \nopagebreak[4]{\small\itshape Answers: see “Mixed practice” under Answers at the end.}
@@ -767,21 +828,44 @@ Encode 13.25 as IEEE single precision, then decode the resulting fields to verif
 \end{keepsection}
 
 \begin{keepsection}
-\Needspace{11\baselineskip}
+\Needspace{14\baselineskip}
 \subsection{2 \ensuremath{\cdot} Align, add, and assess precision}
 
-\Needspace{8\baselineskip}
+\Needspace{11\baselineskip}
 Using two significant decimal digits, calculate 3.4\ensuremath{\times}10\textsuperscript{4} + 5.6\ensuremath{\times}10\textsuperscript{2}.
 
-\Needspace{6\baselineskip}
+\Needspace{9\baselineskip}
 \begin{enumerate}
 \item Align both values to exponent 4.
 \item Add the significands and round to two significant digits.
 \item Compare the rounded result with the exact decimal sum and explain the source of the difference.
+\item Carry the same alignment into single precision: add 13.25 and 0.375, and give the fields of the sum.
 \end{enumerate}
 
 \nopagebreak[4]{\small\itshape Answers: see “Exam-style problems” under Answers at the end.}
 \end{keepsection}
+\end{keepsection}
+
+\begin{keepsection}
+\Needspace{30\baselineskip}
+\section{Slips in the notes}
+
+\Needspace{27\baselineskip}
+Each item was checked on the rendered slide. The guide uses the corrected form; numbers are PDF slide numbers.
+
+\Needspace{24\baselineskip}
+\begin{itemize}
+\item \textbf{Slide 3 \ensuremath{\cdot} light year:} printed as 9,130,000,000,000 km. The accepted value is about 9.46\ensuremath{\times}10\textsuperscript{12} km.
+\item \textbf{Slide 3 \ensuremath{\cdot} solar mass:} printed as 2 followed by nine groups of 000, which is 2\ensuremath{\times}10\textsuperscript{27} kg. The accepted value is about 2\ensuremath{\times}10\textsuperscript{30} kg.
+\item \textbf{Slide 3 \ensuremath{\cdot} electron diameter:} printed as 10\textsuperscript{\ensuremath{-}20} m. This is probably only illustrative, because an electron has no established diameter. The guide does not use it.
+\item \textbf{Slide 40 \ensuremath{\cdot} single-precision range endpoints are reversed:} it prints 10\textsuperscript{38} to 10\textsuperscript{\ensuremath{-}38} for the positive range. In increasing order the range is approximately 10\textsuperscript{\ensuremath{-}38} to 10\textsuperscript{38}, and the negative range is \ensuremath{-}10\textsuperscript{38} to \ensuremath{-}10\textsuperscript{\ensuremath{-}38} as printed.
+\item \textbf{Slide 42 \ensuremath{\cdot} double-precision range endpoints are reversed:} it prints 10\textsuperscript{308} to 10\textsuperscript{\ensuremath{-}308} for the positive range. In increasing order the range is approximately 10\textsuperscript{\ensuremath{-}308} to 10\textsuperscript{308}.
+\item \textbf{Slide 49 \ensuremath{\cdot} signalling NaN (simplified):} it presents a signalling NaN as the outcome of an operation that raises an exception. In IEEE 754 a signalling NaN is an encoding that raises the exception when it is used. Learn the slide’s wording, but know that it is a simplification.
+\item \textbf{Slides 41 and 47–48 \ensuremath{\cdot} notation clash, not an error:} slide 41 lists \ensuremath{-}127 and 128 as excess values, but those two patterns are reserved. Slide 48 reconciles this: the normalised range is \ensuremath{-}126 to 127.
+\item \textbf{Slides 40 and 42 \ensuremath{\cdot} notation clash, not an error:} F is labelled “Significand”, but it holds only the stored bits after the hidden 1. The guide calls F the fraction field.
+\end{itemize}
+
+The decimal ranges are rough magnitudes, not exact endpoint values.
 \end{keepsection}
 
 \begin{keepsection}
@@ -792,19 +876,19 @@ Using two significant decimal digits, calculate 3.4\ensuremath{\times}10\textsup
 Tick a skill only in a later session, at least one day after studying, when you can demonstrate it without notes.
 
 \begin{itemize}
-\item $\mdlgwhtsquare$\ Explain how significand and exponent affect precision and range. (3, 5)
+\item $\mdlgwhtsquare$\ Explain how significand and exponent affect precision and range. (5, 26)
 \item $\mdlgwhtsquare$\ Normalise a floating-point value and preserve its magnitude. (3)
 \item $\mdlgwhtsquare$\ Convert binary fractions to decimal. (1, 10, 20)
 \item $\mdlgwhtsquare$\ Convert terminating decimal fractions to binary. (4, 13)
-\item $\mdlgwhtsquare$\ Explain why some decimal fractions repeat in binary. (21)
+\item $\mdlgwhtsquare$\ Explain why some decimal fractions repeat in binary. (25)
 \item $\mdlgwhtsquare$\ Multiply floating-point numbers and normalise. (6)
-\item $\mdlgwhtsquare$\ Align exponents before adding. (7, 11, 24)
-\item $\mdlgwhtsquare$\ Round results to a stated precision. (11, 15, 24)
+\item $\mdlgwhtsquare$\ Align exponents before adding. (7, 11)
+\item $\mdlgwhtsquare$\ Round results to a stated precision. (11, 15)
 \item $\mdlgwhtsquare$\ State an approximate comparison using tolerance. (19)
 \item $\mdlgwhtsquare$\ State the single-precision field sizes and bias. (2, 12)
-\item $\mdlgwhtsquare$\ Encode a decimal value in single precision. (exam 1)
-\item $\mdlgwhtsquare$\ Decode a normalised single-precision value. (14, exam 1)
-\item $\mdlgwhtsquare$\ Classify a subnormal pattern and explain its role. (16)
+\item $\mdlgwhtsquare$\ Encode a decimal value in single precision. (27, exam 1)
+\item $\mdlgwhtsquare$\ Decode a normalised single-precision value. (14, 28, exam 1)
+\item $\mdlgwhtsquare$\ Classify a denormalised pattern and explain its role. (16)
 \item $\mdlgwhtsquare$\ Classify special-value fields and predict basic infinity/NaN arithmetic. (9, 22, 24)
 \item $\mdlgwhtsquare$\ Rebuild the derivations from the list.
 \item $\mdlgwhtsquare$\ Complete both exam-style problems with checks.
@@ -828,11 +912,12 @@ Tick a skill only in a later session, at least one day after studying, when you 
 \end{keepsection}
 \begin{keepsection}\subsection{4.1 The floating-point model}
 
-\Needspace{6\baselineskip}
+\Needspace{8\baselineskip}
 \begin{enumerate}
 \item The exponent field. \hfill{\small\color{FAUblue}§4.1}
 \item The significand field. \hfill{\small\color{FAUblue}§4.1}
 \item Each exponent scales the significand by a different power of the base, so the gap between representable values grows with magnitude. \hfill{\small\color{FAUblue}§4.1}
+\item Each number gets one unique representation. \hfill{\small\color{FAUblue}§4.1}
 \end{enumerate}
 
 \end{keepsection}
@@ -867,7 +952,7 @@ Tick a skill only in a later session, at least one day after studying, when you 
 \end{enumerate}
 
 \end{keepsection}
-\begin{keepsection}\subsection{4.5 Zero, subnormal numbers, infinity, and NaN}
+\begin{keepsection}\subsection{4.5 Zero, denormalised numbers, infinity, and NaN}
 
 \Needspace{7\baselineskip}
 \begin{enumerate}
@@ -887,7 +972,7 @@ Tick a skill only in a later session, at least one day after studying, when you 
 \item Only values with the same exponent have significands describing the same scale. Alignment expresses both at a shared scale before combining them.
 \item Alignment shifts the smaller significand to the right. If the exponent difference is large, its significant bits may fall beyond the available precision.
 \item Every normalised binary number begins with 1 before the point, so the format can infer that bit and use its storage for another fraction bit.
-\item A subnormal represents a non-zero value smaller than the minimum normalised magnitude, close to zero.
+\item A denormalised represents a non-zero value smaller than the minimum normalised magnitude, close to zero.
 \item Absolute or relative error that is acceptable depends on the scale and purpose of the calculation. One fixed tolerance may be too strict for large values or too loose for small ones.
 \end{enumerate}
 
@@ -895,22 +980,22 @@ Tick a skill only in a later session, at least one day after studying, when you 
 \begin{keepsection}\subsection{Mixed practice}
 
 \begin{enumerate}
-\item 1/2+1/8+1/16=0.6875. \hfill{\small\color{FAUblue}§4.2}
+\item 1/2+1/4+1/16=0.8125. \hfill{\small\color{FAUblue}§4.2}
 \item 24 bits: the 23 stored fraction bits plus the implicit leading 1. \hfill{\small\color{FAUblue}§4.4}
-\item 1.01\textsubscript{2}\ensuremath{\times}2\textsuperscript{\ensuremath{-}4}. The point moves four places right to make the significand 1.01, so the exponent is \ensuremath{-}4. \hfill{\small\color{FAUblue}§4.1}
+\item 1.11\textsubscript{2}\ensuremath{\times}2\textsuperscript{\ensuremath{-}3}. The point moves three places right to make the significand 1.11, so the exponent is \ensuremath{-}3. \hfill{\small\color{FAUblue}§4.1}
 \item 0.375=3/8=0.011\textsubscript{2}. \hfill{\small\color{FAUblue}§4.2}
 \item The exponent field. \hfill{\small\color{FAUblue}§4.1}
-\item Multiply significands: 6. Add exponents: \ensuremath{-}2. Result 6\ensuremath{\times}10\textsuperscript{\ensuremath{-}2}, normalised as 6\ensuremath{\times}10\textsuperscript{\ensuremath{-}2}. \hfill{\small\color{FAUblue}§4.3}
+\item Multiply significands: 15. Add exponents: \ensuremath{-}2. Result 15\ensuremath{\times}10\textsuperscript{\ensuremath{-}2}, normalised as 1.5\ensuremath{\times}10\textsuperscript{\ensuremath{-}1}. \hfill{\small\color{FAUblue}§4.3}
 \item 7.2\ensuremath{\times}10\textsuperscript{5}=0.072\ensuremath{\times}10\textsuperscript{7}; shift the significand two places right as the exponent rises by two. \hfill{\small\color{FAUblue}§4.3}
 \item 52 stored fraction bits. \hfill{\small\color{FAUblue}§4.4}
 \item Negative infinity: all-ones exponent and zero fraction mean infinity; sign bit 1 makes it negative. \hfill{\small\color{FAUblue}§4.5}
-\item 1/4+1/8+1/32=0.40625. \hfill{\small\color{FAUblue}§4.2}
+\item 1/4+1/16+1/32=0.34375. \hfill{\small\color{FAUblue}§4.2}
 \item Align 2.1\ensuremath{\times}10\textsuperscript{2}=0.21\ensuremath{\times}10\textsuperscript{3}. Sum 8.67\ensuremath{\times}10\textsuperscript{3}; to two significant digits this is 8.7\ensuremath{\times}10\textsuperscript{3}. \hfill{\small\color{FAUblue}§4.3}
 \item 127. \hfill{\small\color{FAUblue}§4.4}
-\item 0.625=1/2+1/8=0.101\textsubscript{2}. \hfill{\small\color{FAUblue}§4.2}
+\item 0.4375=1/4+1/8+1/16=0.0111\textsubscript{2}. \hfill{\small\color{FAUblue}§4.2}
 \item 130\ensuremath{-}127=3. \hfill{\small\color{FAUblue}§4.4}
 \item Truncation always discards in the same direction for positive values and can introduce a biased error. \hfill{\small\color{FAUblue}§4.3}
-\item A subnormal number. The exponent is zero and the fraction is non-zero. \hfill{\small\color{FAUblue}§4.5}
+\item A denormalised number. The exponent is zero and the fraction is non-zero. \hfill{\small\color{FAUblue}§4.5}
 \item 1.25\ensuremath{\times}8=10. \hfill{\small\color{FAUblue}§4.1}
 \item 64 bits: one sign, eleven exponent, and 52 fraction bits. \hfill{\small\color{FAUblue}§4.4}
 \item For example, treat a as close to b when |a\ensuremath{-}b|\ensuremath{<}ε, with ε chosen for the expected scale and precision. \hfill{\small\color{FAUblue}§4.3}
@@ -919,6 +1004,10 @@ Tick a skill only in a later session, at least one day after studying, when you 
 \item \ensuremath{\pm}\ensuremath{\infty} and NaN, respectively. The first is division of a non-zero value by zero; zero divided by zero has no real result. \hfill{\small\color{FAUblue}§4.5}
 \item Add the exponents and multiply the significands, then normalise if needed. \hfill{\small\color{FAUblue}§4.3}
 \item Positive infinity. \hfill{\small\color{FAUblue}§4.5}
+\item No. Doubling the remainders gives 0.00011001…\textsubscript{2}, and the remainder 0.2 recurs, so the bits repeat without end. \hfill{\small\color{FAUblue}§4.2}
+\item It doubles: e rises from 3 to 4 while p stays fixed, and the gap is 2\textsuperscript{e\ensuremath{-}p+1}. \hfill{\small\color{FAUblue}§4.1}
+\item 0.375=1.1\textsubscript{2}\ensuremath{\times}2\textsuperscript{\ensuremath{-}2}. E=125=01111101\textsubscript{2}, F=1000…, so the word is 3EC0 0000. \hfill{\small\color{FAUblue}§4.4}
+\item S=1, E=10000010\textsubscript{2}=130, so the exponent is 3. F=10101000…, so the value is \ensuremath{-}1.10101\textsubscript{2}\ensuremath{\times}2\textsuperscript{3}=\ensuremath{-}13.25. \hfill{\small\color{FAUblue}§4.4}
 \end{enumerate}
 
 \end{keepsection}
@@ -934,11 +1023,12 @@ Tick a skill only in a later session, at least one day after studying, when you 
 \end{keepsection}
 \begin{keepsection}\subsection{Exam-style problems}
 
-\Needspace{6\baselineskip}
+\Needspace{9\baselineskip}
 \begin{enumerate}
 \item 5.6\ensuremath{\times}10\textsuperscript{2}=0.056\ensuremath{\times}10\textsuperscript{4}. \hfill{\small\color{FAUblue}§4.3}
 \item (3.4+0.056)\ensuremath{\times}10\textsuperscript{4}=3.456\ensuremath{\times}10\textsuperscript{4}, which rounds to 3.5\ensuremath{\times}10\textsuperscript{4}. \hfill{\small\color{FAUblue}§4.3}
 \item The exact sum is 34560 and the rounded result is 35000. The smaller addend contributes digits beyond the two-digit precision, so rounding changes the stored result. \hfill{\small\color{FAUblue}§4.3}
+\item 13.25=1.10101\textsubscript{2}\ensuremath{\times}2\textsuperscript{3} and 0.375=1.1\textsubscript{2}\ensuremath{\times}2\textsuperscript{\ensuremath{-}2}. The exponents differ by 5, so 1.1\textsubscript{2} becomes 0.000011\textsubscript{2}. The sum is 1.101101\textsubscript{2}\ensuremath{\times}2\textsuperscript{3}=13.625. The fields are 0 | 10000010 | 10110100000000000000000. \hfill{\small\color{FAUblue}§4.4}
 \end{enumerate}
 
 \end{keepsection}

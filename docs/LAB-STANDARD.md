@@ -54,7 +54,8 @@ Chapter numbers may include a lowercase letter suffix (for example, `1a` or `2a`
 | Count | Exactly 4 per experiment. |
 | Fields | `id` (stable), `short` (a phrase for the results list), `ref` (guide section, e.g. "1.8"), `prompt`, `options` (2–4 `[key, label]`), `answer`, `stage()`, optional `preview(choice)`, `reveal()` returning a promise, `why` (HTML). |
 | Prompt | One concrete situation with numbers and a single question. Name what is held fixed (battery connected or disconnected, no surface charge). |
-| Options | Short, mutually exclusive, each a plausible belief. "It gets larger / stays the same / gets smaller" style is fine when the direction is the question. |
+| Options | Short, mutually exclusive, each a plausible belief. "It gets larger / stays the same / gets smaller" style is fine when the direction is the question. Vary the correct option's position across challenges by ordering the list by hand; keep each key unchanged. |
+| Setup | The experiment's `setup(c)` must call `c.stage()`; the engine does not, because each lab sets state around that call in its own order. The engine logs a console error when a challenge has no `stage()` or `setup` skips it. |
 | Preview | Show the guess on the stage before the reveal (a ghost marker, a dashed direction, a label on a gauge), so it stays visible next to the result. |
 | Why | Two or three sentences: the rule, the numbers that come out, and the misconception it corrects. The engine appends the link to the guide section. |
 | Order | Start with the most common misconception, end with one that combines ideas. |
@@ -65,6 +66,7 @@ Chapter numbers may include a lowercase letter suffix (for example, `1a` or `2a`
 - **Theme colours:** read colours from CSS tokens at draw time, using `--fau-mark` for blue (it stays readable in dark mode), `--course` for the subject colour, and `--ink`, `--muted`, `--line` and `--paper`.
 - **Dragging:** the `.stage` element listens for pointer events and picks the nearest object within reach (about 30 px). The redrawn shapes never receive the pointer, so a drag survives redraws in Safari. Every draggable object also moves with the arrow keys (Shift for bigger steps) and keeps focus while it moves.
 - **Readouts:** values carry units with SI prefixes through `fmt()`, in tabular figures. Where a comparison is the point, show factors against a stored state ("×2", "×½", "unchanged").
+- **Sandbox state:** `sandbox()` clears every challenge-only field, and Replay re-renders the first challenge from a clean state.
 - **Hover help:** tooltips (`data-tip`) only repeat or explain what is already visible.
 
 ## Layout
@@ -101,8 +103,8 @@ Chapter numbers may include a lowercase letter suffix (for example, `1a` or `2a`
 A lab is done when all of the following hold:
 
 1. `python3 -I tools/check-guide.py <guide>.html` exits 0. It checks the lab next to the guide: shared key, engine files, experiment sections with stage, challenge and controls, `#lab-results`, the hub's `data-lab` and `data-total`, and the guide links.
-2. `node --test` passes.
-3. Every challenge of every experiment is played in Playwright Chromium **and WebKit**, at 1280 px and 390 px, in light and dark mode and with reduced motion. There are no console errors, the stage is on screen at every reveal, card and stage are the same height side by side with no jump at the reveal, and no page scrolls sideways.
+2. `node --test` passes, including `tests/lab-challenges.test.js`, which checks every lab's challenge data and reports how often the answer is the first option.
+3. Every challenge of every experiment is played, then replayed once, in Playwright Chromium **and WebKit**, at 1280 px and 390 px, in light and dark mode and with reduced motion. There are no console errors, the stage is on screen at every reveal, card and stage are the same height side by side with no jump at the reveal, and no page scrolls sideways.
 4. Each sandbox is used: dragging with the mouse and by touch, arrow keys, and every control. Values are read only after a frame has settled.
 5. The BrowserTests smoke suite passes.
 6. `scripts/refresh-graph.sh --changed` from the workspace root has run.

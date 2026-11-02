@@ -156,6 +156,17 @@ a:hover {
   display: block;
 }
 
+/* The mark's navy tile drops away on dark backgrounds, so it sits on the page colour. */
+.field .mark rect,
+:root[data-theme="dark"] .mark rect {
+  fill: transparent;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) .mark rect {
+    fill: transparent;
+  }
+}
+
 /* Site mark: the Singularity. Orbits precess, the charge travels its orbit, the core pulses. */
 .mark .mk-orbit,
 .mark .mk-glow {

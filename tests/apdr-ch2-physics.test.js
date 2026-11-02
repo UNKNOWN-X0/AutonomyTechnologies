@@ -60,3 +60,48 @@ test("§2.8 switching-time example preserves the old output until its symbolic d
   assert.equal(P.delayedOutput(false, true, 1, 1), true);
   assert.throws(() => P.delayedOutput(false, true, 0, -1), RangeError);
 });
+
+test("lab challenge nand-one: a single NAND of 1 and 1 gives 0", () => {
+  assert.equal(P.nandCircuit("nand", true, true), false);
+  assert.equal(P.nandCircuit("not", false, false), true);
+  assert.equal(P.nandCircuit("and", true, false), false);
+  assert.equal(P.nandCircuit("or", false, true), true);
+  assert.throws(() => P.nandCircuit("xor", true, true), RangeError);
+});
+
+test("lab challenges test-first and stop-test: residuals", () => {
+  const g = 25 / 6;
+  assert.ok(Math.abs(Math.abs(g * g - 16) - 49 / 36) < 1e-12);
+  assert.ok(Math.abs(g * g - 16) > 0.01);
+  assert.ok(P.squareRootStep(16, P.squareRootStep(16, g).next).residual < 0.01);
+});
+
+test("lab challenge clear-day: grouping changes the result", () => {
+  assert.equal(P.umbrella(true, false, true), false);
+  assert.equal((!true && false) || true, true);
+});
+
+test("practice 8 and exam 1: square-root numbers", () => {
+  assert.equal(P.squareRootStep(9, 2).next, 3.25);
+  const a = P.squareRootStep(25, 4), b = P.squareRootStep(25, a.next), c = P.squareRootStep(25, b.next);
+  assert.equal(a.next, 5.125);
+  assert.ok(Math.abs(b.next - 5.00152) < 5e-6);
+  assert.ok(Math.abs(b.residual - 0.0152) < 5e-5);
+  assert.ok(Math.abs(c.next - 5.0000002) < 1e-7);
+  assert.ok(c.residual < 0.00001);
+});
+
+const row = (n) => [(n >> 2) & 1, (n >> 1) & 1, n & 1].map(Boolean);
+const rows = (f) => [0, 1, 2, 3, 4, 5, 6, 7].map((n) => Number(f(...row(n))));
+
+test("§2.5 and practice 24: tables list the guide's U=1 rows", () => {
+  assert.deepEqual(rows((r, w, c) => P.umbrella(c, w, r)), [0, 0, 1, 0, 1, 0, 1, 0]);
+  assert.deepEqual(rows((c, r, w) => (c || r) && !w), [0, 0, 1, 0, 1, 0, 1, 0]);
+});
+
+test("§2.7 table, practice 16, 19 and exam 2: NAND circuits", () => {
+  assert.deepEqual(rows((a, b, c) => P.nand(a, P.nand(b, c))), [1, 1, 1, 1, 0, 0, 0, 1]);
+  assert.deepEqual(rows((a, b, c) => P.nand(P.nand(a, b), c)), rows((a, b, c) => (a && b) || !c));
+  assert.equal(P.nand(P.nand(false, true), false), true);
+  assert.deepEqual(rows((a, b, c) => P.nand(b, P.nand(a, c))), [1, 1, 0, 0, 1, 1, 0, 1]);
+});

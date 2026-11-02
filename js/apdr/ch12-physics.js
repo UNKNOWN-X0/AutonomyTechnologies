@@ -31,6 +31,15 @@
     for (var step = 1; step < c.length; step <<= 1) for (var i = 0; i < c.length; i++) if (i & step) c[i] ^= c[i ^ step];
     return c;
   }
+  /* The table after each pass of the transform: the input, then one pass per variable, last variable first. */
+  function anfSteps(values) {
+    var c = toAnf(values).map(function (_, i) { return Number(!!values[i]); }), out = [c.slice()];
+    for (var step = 1; step < c.length; step <<= 1) {
+      for (var i = 0; i < c.length; i++) if (i & step) c[i] ^= c[i ^ step];
+      out.push(c.slice());
+    }
+    return out;
+  }
   function evalAnf(coefficients, bits) {
     var out = 0, n = bits.length;
     coefficients.forEach(function (coefficient, mask) {
@@ -79,7 +88,7 @@
     cover(ones, []);
     return best ? best.cubes : [];
   }
-  function obddNodeCount(n, order, fn) {
+  function obdd(n, order, fn) {
     if (!Number.isInteger(n) || n < 1 || n > 4 || order.length !== n || new Set(order).size !== n || order.some(function (x) { return x < 0 || x >= n; })) throw new RangeError("order must list every variable once");
     var unique = new Map();
     function build(level, assignment) {
@@ -89,17 +98,18 @@
       assignment[v] = 1; var hi = build(level + 1, assignment);
       if (lo === hi) return lo;
       var key = v + ":" + lo + ":" + hi;
-      if (!unique.has(key)) unique.set(key, unique.size + 2);
-      return unique.get(key);
+      if (!unique.has(key)) unique.set(key, { id: unique.size + 2, v: v, lo: lo, hi: hi });
+      return unique.get(key).id;
     }
-    build(0, Array(n).fill(0));
-    return unique.size;
+    var root = build(0, Array(n).fill(0));
+    return { root: root, nodes: Array.from(unique.values()) };
   }
+  function obddNodeCount(n, order, fn) { return obdd(n, order, fn).nodes.length; }
   function hazard(x, y, z, tau, t) {
     if (![0, 1].includes(x) || ![0, 1].includes(y) || ![0, 1].includes(z)) throw new RangeError("inputs must be bits");
     var off = Number(t >= tau * 0.25), on = Number(t >= tau * 0.75);
     var left = (x && y) || (!x && z), overlap = y && z;
     return { direct: Number(left), products: Number((x && y && !off) || (!x && z && on)), consensus: Number((x && y && !off) || (!x && z && on) || overlap), overlap: Number(!!overlap) };
   }
-  return { truthTable: truthTable, op: op, shannon: shannon, toAnf: toAnf, evalAnf: evalAnf, minimize: minimize, obddNodeCount: obddNodeCount, hazard: hazard };
+  return { truthTable: truthTable, op: op, shannon: shannon, toAnf: toAnf, anfSteps: anfSteps, evalAnf: evalAnf, minimize: minimize, obdd: obdd, obddNodeCount: obddNodeCount, hazard: hazard };
 });

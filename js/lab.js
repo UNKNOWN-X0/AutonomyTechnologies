@@ -74,6 +74,20 @@
     write(LOG, log);
   }
 
+  // Each lab's setup must call c.stage() itself, in its own order; the engine only reports when it does not.
+  function runSetup(def, c) {
+    var stage = c.stage,
+      staged = false;
+    if (typeof stage === "function")
+      c.stage = function () {
+        staged = true;
+        return stage.apply(this, arguments);
+      };
+    def.setup(c);
+    c.stage = stage;
+    if (!staged) console.error("Lab: " + def.id + "/" + c.id + (typeof stage === "function" ? ": setup did not call c.stage()" : ": challenge has no stage()"));
+  }
+
   function Experiment(def) {
     this.def = def;
     this.card = def.card;
@@ -97,7 +111,7 @@
       conf = null;
     def.lock(true);
     card.closest(".experiment") && card.closest(".experiment").classList.add("in-challenge");
-    def.setup(c);
+    runSetup(def, c);
 
     var head = h("p", "ch-count", "Challenge " + (i + 1) + " of " + def.challenges.length);
     var prompt = h("h3", "ch-prompt", c.prompt);

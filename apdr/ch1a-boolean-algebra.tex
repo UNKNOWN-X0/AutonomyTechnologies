@@ -63,7 +63,7 @@
 \clearpage
 
 \Needspace{8\baselineskip}
-{\large This guide develops Boolean logic through algebraic structures, proof tools, function minimization, and decision diagrams.}
+{\large This guide develops Boolean logic through algebraic structures, proof tools, function minimisation, and decision diagrams.}
 
 
 \begin{keepsection}
@@ -86,19 +86,19 @@ Answer before reading. Mark each response as sure, unsure, or a guess; uncertain
 \end{keepsection}
 
 \begin{keepsection}
-\Needspace{18\baselineskip}
+\Needspace{19\baselineskip}
 \section{How to use this guide}
 
-\Needspace{15\baselineskip}
+\Needspace{16\baselineskip}
 Study one short section, close it, then reconstruct its laws or argument from memory. Mix proof, algebra, and diagram questions so you practise choosing the right tool.
 
-\Needspace{12\baselineskip}
+\Needspace{13\baselineskip}
 \begin{enumerate}
 \item \textbf{Day 0:} Try the cold start, then study §§1.1–1.2 and derive duality and De Morgan’s laws.
 \item \textbf{Day 1:} Rebuild the NAND proof and normal forms in §1.3; solve mixed practice 1–8.
 \item \textbf{Day 3:} Draw K-map groupings from memory and solve practice 9–14.
-\item \textbf{About day 7:} Reconstruct Shannon expansion, cofactors, and OBDD reduction; solve practice 15–20.
-\item \textbf{About day 14:} Complete both exam-style problems without notes and explain the source checks.
+\item \textbf{About day 7:} Reconstruct Shannon expansion, cofactors, and OBDD reduction; solve practice 15–26.
+\item \textbf{About day 14:} Complete both exam-style problems without notes and compare them with the slips in the notes.
 \item \textbf{Before the exam:} Tick only skills you can show cold; return to any section referenced by a missed answer.
 \end{enumerate}
 
@@ -106,16 +106,16 @@ Study one short section, close it, then reconstruct its laws or argument from me
 \end{keepsection}
 
 \begin{keepsection}
-\Needspace{17\baselineskip}
+\Needspace{19\baselineskip}
 \section{How the ideas fit together}
 
-\Needspace{14\baselineskip}
+\Needspace{16\baselineskip}
 The same Boolean functions can be viewed as algebra, sets, rings, normal forms, maps, or decision diagrams. Each view makes a different task easier.
 
-\Needspace{8\baselineskip}
-\textbf{Define} \ensuremath{\cdot} identify the structure
+\Needspace{5\baselineskip}
+\textbf{Assumed} \ensuremath{\cdot} the axioms
 
-\Needspace{6\baselineskip}
+\Needspace{3\baselineskip}
 \begin{itemize}
 \item 
 \Needspace{4\baselineskip}
@@ -124,23 +124,14 @@ The same Boolean functions can be viewed as algebra, sets, rings, normal forms, 
 \Needspace{4\baselineskip}
 join \ensuremath{\cdot} meet \ensuremath{\cdot} complement
 
-Axioms support equivalent algebraic and lattice views.
-
-\item 
-\Needspace{4\baselineskip}
-\textbf{Identities and proofs} \hfill{\small\color{FAUblue}§1.2}
-
-\Needspace{4\baselineskip}
-duality \ensuremath{\cdot} De Morgan \ensuremath{\cdot} absorption
-
-Derived laws shorten proofs and expressions.
+\emph{Rests on:} nothing; these are the axioms. They support equivalent algebraic and lattice views.
 
 \end{itemize}
 
-\Needspace{7\baselineskip}
-\textbf{Represent} \ensuremath{\cdot} choose a form
+\Needspace{8\baselineskip}
+\textbf{Defined} \ensuremath{\cdot} choose a form
 
-\Needspace{5\baselineskip}
+\Needspace{6\baselineskip}
 \begin{itemize}
 \item 
 \Needspace{4\baselineskip}
@@ -149,7 +140,7 @@ Derived laws shorten proofs and expressions.
 \Needspace{4\baselineskip}
 NAND or NOR alone
 
-A complete set can express every Boolean function.
+\emph{Rests on:} the axioms. A complete set can express every Boolean function.
 
 \item 
 \Needspace{4\baselineskip}
@@ -158,15 +149,24 @@ A complete set can express every Boolean function.
 \Needspace{4\baselineskip}
 adjacent cells \ensuremath{\to} fewer literals
 
-Gray-code adjacency exposes variables that can be eliminated.
+\emph{Rests on:} normal forms. Gray-code adjacency exposes variables that can be eliminated.
 
 \end{itemize}
 
-\Needspace{8\baselineskip}
-\textbf{Analyse} \ensuremath{\cdot} split and verify
+\Needspace{10\baselineskip}
+\textbf{Derived} \ensuremath{\cdot} prove and split
 
-\Needspace{6\baselineskip}
+\Needspace{8\baselineskip}
 \begin{itemize}
+\item 
+\Needspace{4\baselineskip}
+\textbf{Identities and proofs} \hfill{\small\color{FAUblue}§1.2}
+
+\Needspace{4\baselineskip}
+duality \ensuremath{\cdot} De Morgan \ensuremath{\cdot} absorption
+
+\emph{Rests on:} the axioms. Derived laws shorten proofs and expressions.
+
 \item 
 \Needspace{4\baselineskip}
 \textbf{Shannon expansion} \hfill{\small\color{FAUblue}§1.5}
@@ -174,16 +174,16 @@ Gray-code adjacency exposes variables that can be eliminated.
 \Needspace{4\baselineskip}
 f = x f\textsubscript{1} + x' f\textsubscript{0}
 
-Cofactors lead to decision diagrams and dependency tests.
+\emph{Rests on:} the identities. Cofactors lead to decision diagrams and dependency tests.
 
 \item 
 \Needspace{4\baselineskip}
 \textbf{Verification and hazards} \hfill{\small\color{FAUblue}§1.6}
 
-\Needspace{4\baselineskip}
+\Needspace{5\baselineskip}
 same function \ensuremath{\cdot} safe transitions
 
-Logical equivalence and physical timing answer different questions.
+\emph{Rests on:} minimised forms and cofactors. Logical equivalence and physical timing answer different questions.
 
 \end{itemize}
 
@@ -204,19 +204,19 @@ Can a function be represented more compactly? & Try a normal form, a K-map, or a
 A Boolean algebra packages truth operations into a system of equations. The same structure can also be understood through order, sets, or arithmetic modulo two.
 
 \begin{keepsection}
-\Needspace{14\baselineskip}
+\Needspace{15\baselineskip}
 \subsection{Operations and axioms}
 
-\Needspace{11\baselineskip}
+\Needspace{12\baselineskip}
 Write the structure as (B, +, \ensuremath{\cdot}, ', 0, 1). Join (+) and meet (\ensuremath{\cdot}) are binary operations; complement (') is unary. The Huntington-style axioms used in the lecture state commutativity, associativity, distributivity, identities, and complements.
 
 \begin{equationcard}{Core axioms}
-\[ \begin{gathered} \mathrm{x}\, +\, \mathrm{y}\, =\, \mathrm{y}\, +\, \mathrm{x} \\ (\mathrm{x}\, +\, \mathrm{y})\, +\, \mathrm{z}\, =\, \mathrm{x}\, +\, (\mathrm{y}\, +\, \mathrm{z}) \\ \mathrm{x}\cdot (\mathrm{y}\, +\, \mathrm{z})\, =\, \mathrm{x}\cdot \mathrm{y}\, +\, \mathrm{x}\cdot \mathrm{z} \\ \mathrm{x}\, +\, 0\, =\, \mathrm{x} \\ \mathrm{x}\cdot 1\, =\, \mathrm{x} \\ \mathrm{x}\, +\, \mathrm{x}'\, =\, 1 \\ \mathrm{x}\cdot \mathrm{x}'\, =\, 0 \end{gathered} \]
-{\small The lecture’s axiom list also states the dual commutative and associative laws for meet. Other familiar laws can be derived.}
+\[ \begin{gathered} \mathrm{x}\, +\, \mathrm{y}\, =\, \mathrm{y}\, +\, \mathrm{x} \\ (\mathrm{x}\, +\, \mathrm{y})\, +\, \mathrm{z}\, =\, \mathrm{x}\, +\, (\mathrm{y}\, +\, \mathrm{z}) \\ \mathrm{x}\cdot (\mathrm{y}\, +\, \mathrm{z})\, =\, \mathrm{x}\cdot \mathrm{y}\, +\, \mathrm{x}\cdot \mathrm{z} \\ \mathrm{x}\, +\, \mathrm{y}\cdot \mathrm{z}\, =\, (\mathrm{x}\, +\, \mathrm{y})\cdot (\mathrm{x}\, +\, \mathrm{z}) \\ \mathrm{x}\, +\, 0\, =\, \mathrm{x} \\ \mathrm{x}\cdot 1\, =\, \mathrm{x} \\ \mathrm{x}\, +\, \mathrm{x}'\, =\, 1 \\ \mathrm{x}\cdot \mathrm{x}'\, =\, 0 \end{gathered} \]
+{\small The lecture’s axiom list also states the dual commutative and associative laws for meet. It prints only the first distributive law; the second is needed, because XOR and AND on \{0,1\} satisfy the printed list but not x+x=x.}
 \end{equationcard}
 
-\Needspace{13\baselineskip}
-\textbf{Duality} swaps + with \ensuremath{\cdot} and 0 with 1. Every equation derivable from the axioms has a derivable dual; for example, x + x = x has dual x\ensuremath{\cdot}x = x. A \textbf{distributive complemented bounded lattice} is the same structure in order language: join and meet have bottom 0 and top 1, and each element has a complement.
+\Needspace{14\baselineskip}
+\textbf{Duality} swaps + with \ensuremath{\cdot} and 0 with 1. The axiom list is self-dual, so every equation derivable from the axioms has a derivable dual. For example, x + x = (x + x)\ensuremath{\cdot}1 = (x + x)\ensuremath{\cdot}(x + x') = x + x\ensuremath{\cdot}x' = x uses the second distributive law, and its dual is x\ensuremath{\cdot}x = x. A \textbf{distributive complemented bounded lattice} is the same structure in order language: join and meet have bottom 0 and top 1, and each element has a complement.
 
 \begin{workedbox}{Worked proof \ensuremath{\cdot} complements are unique}
 Suppose y behaves like a complement of x: x+y=1 and x\ensuremath{\cdot}y=0. Show y=x'.
@@ -233,19 +233,28 @@ The proof relies on the stated complement conditions; it does not assume uniquen
 \end{keepsection}
 
 \begin{keepsection}
-\Needspace{13\baselineskip}
+\Needspace{15\baselineskip}
 \subsection{Sets, rings, and maps}
 
-\Needspace{10\baselineskip}
-The power set P(U), with union as +, intersection as \ensuremath{\cdot}, set complement as ', empty set as 0, and U as 1, is a Boolean algebra. There is also a ring view: XOR is addition, AND is multiplication, and every element is idempotent under multiplication.
+\Needspace{12\baselineskip}
+The power set P(U), with union as +, intersection as \ensuremath{\cdot}, set complement as ', empty set as 0, and U as 1, is a Boolean algebra. There is also a ring view: XOR is addition, AND is multiplication, and every element is idempotent under multiplication. The guide writes XOR as ⊕, because slide 13 reuses + for it.
 
 \begin{equationcard}{Boolean ring translation}
-\[ \begin{gathered} \mathrm{x}\, \text{XOR}\, \mathrm{y}\, =\, (\mathrm{x}\cdot \mathrm{y}')\, +\, (\mathrm{x}'\cdot \mathrm{y}) \\ \mathrm{x}\, ⊙\, \mathrm{y}\, =\, \mathrm{x}\cdot \mathrm{y} \\ \mathrm{x}\, \land \, \mathrm{y}\, =\, \text{xy} \\ \mathrm{x}\, \lor \, \mathrm{y}\, =\, \mathrm{x}\, +\, \mathrm{y}\, +\, \text{xy} \\ \neg \mathrm{x}\, =\, 1\, +\, \mathrm{x} \\ \mathrm{x}²\, =\, \mathrm{x} \\ \mathrm{x}\, +\, \mathrm{x}\, =\, 0 \end{gathered} \]
-{\small The power-set example uses symmetric difference for ring addition and intersection for multiplication.}
+\[ \begin{gathered} \mathrm{x}\, ⊕\, \mathrm{y}\, =\, (\mathrm{x}\cdot \mathrm{y}')\, +\, (\mathrm{x}'\cdot \mathrm{y}) \\ \mathrm{x}\, ⊙\, \mathrm{y}\, =\, \mathrm{x}\cdot \mathrm{y} \\ \mathrm{x}\, \land \, \mathrm{y}\, =\, \text{xy} \\ \mathrm{x}\, \lor \, \mathrm{y}\, =\, \mathrm{x}\, ⊕\, \mathrm{y}\, ⊕\, \text{xy} \\ \neg \mathrm{x}\, =\, 1\, ⊕\, \mathrm{x} \\ \mathrm{x}^{2}\, =\, \mathrm{x} \\ \mathrm{x}\, ⊕\, \mathrm{x}\, =\, 0 \end{gathered} \]
+{\small Slide 13 reuses + for ring addition; here ⊕ keeps it apart from join. The power-set example uses symmetric difference for ring addition and intersection for multiplication.}
 \end{equationcard}
 
-\Needspace{7\baselineskip}
-A homomorphism preserves the operations and constants. Its image is a subalgebra; when it is onto, the lecture’s isomorphism theorem identifies the quotient by its kernel with the target algebra.
+\Needspace{15\baselineskip}
+A homomorphism h preserves the operations and constants. Its kernel is ker h = h\textsuperscript{\ensuremath{-}1}(0), and its image is a subalgebra; when it is onto, the lecture’s isomorphism theorem identifies the quotient by its kernel with the target algebra.
+
+\Needspace{10\baselineskip}
+\begin{center}\small\begin{tabularx}{\linewidth}{>{\raggedright\arraybackslash}X>{\raggedright\arraybackslash}X}\toprule
+\textbf{Term} & \textbf{Meaning} \\ \midrule
+Order x\ensuremath{\leq}y & x\ensuremath{\cdot}y=x, or equally x+y=y; on \{0,1\}, x implies y \\
+Lattice view & Set x\ensuremath{\lor}y=x+y and x\ensuremath{\land}y=x\ensuremath{\cdot}y; the axioms give a distributive complemented bounded lattice, and any such lattice gives back +, \ensuremath{\cdot} and ' satisfying the axioms \\
+Characteristic 2 & x⊕x=0, so \ensuremath{-}x=x: every element is its own negative \\
+Finite Boolean rings & Each is isomorphic to F\textsubscript{2}\textsuperscript{n}, computed componentwise \\
+\bottomrule\end{tabularx}\end{center}
 
 \Needspace{5\baselineskip}
 \begin{notebox}\textbf{Trap:} duality is a rule for transforming a proved equation; it does not mean complement every variable or reverse every term.\end{notebox}
@@ -279,8 +288,16 @@ Consensus & x\ensuremath{\cdot}y+x'\ensuremath{\cdot}z+y\ensuremath{\cdot}z=x\en
 Shannon expansion & f=x\ensuremath{\cdot}f\textsubscript{x=1}+x'\ensuremath{\cdot}f\textsubscript{x=0} \\
 \bottomrule\end{tabularx}\end{center}
 
-\Needspace{12\baselineskip}
-De Morgan’s law follows because x'\ensuremath{\cdot}y' is the complement of x+y: their join is 1 and their meet is 0. The uniqueness-of-complements result from §1.1 then identifies it as (x+y)'. The second law follows by duality.
+\begin{workedbox}{Worked proof \ensuremath{\cdot} De Morgan’s first law}
+Show that x'\ensuremath{\cdot}y' is the complement of x+y.
+
+\Needspace{5\baselineskip}
+\begin{enumerate}
+\item Join: (x+y)+x'y'=(x+y+x')(x+y+y')=1\ensuremath{\cdot}1=1, by the second distributive law.
+\item Meet: (x+y)\ensuremath{\cdot}x'y'=x\ensuremath{\cdot}x'\ensuremath{\cdot}y'+y\ensuremath{\cdot}x'\ensuremath{\cdot}y'=0+0=0, by the first distributive law.
+\item Uniqueness of complements from §1.1 gives (x+y)'=x'y'. The second law follows by duality. \hfill{\small\color{FAUblue}§1.2}
+\end{enumerate}
+\end{workedbox}
 
 \begin{workedbox}{Worked simplification \ensuremath{\cdot} remove a redundant condition}
 Simplify x+x\ensuremath{\cdot}y using only laws from the lecture.
@@ -288,7 +305,7 @@ Simplify x+x\ensuremath{\cdot}y using only laws from the lecture.
 \Needspace{5\baselineskip}
 \begin{enumerate}
 \item Factor x with distributivity: x\ensuremath{\cdot}1+x\ensuremath{\cdot}y=x\ensuremath{\cdot}(1+y).
-\item Since 1+y=1, this becomes x\ensuremath{\cdot}1.
+\item Since 1+y=(y'+y)+y=y'+(y+y)=y'+y=1, using idempotence from §1.1, this becomes x\ensuremath{\cdot}1.
 \item Use the identity law: x\ensuremath{\cdot}1=x. Therefore x+x\ensuremath{\cdot}y=x. \hfill{\small\color{FAUblue}§1.2}
 \end{enumerate}
 
@@ -296,16 +313,36 @@ Read the result as: once x is already included, the stricter case x and y adds n
 \end{workedbox}
 
 \begin{keepsection}
-\Needspace{14\baselineskip}
+\Needspace{12\baselineskip}
 \subsection{Splitting a function into cases}
 
-\Needspace{11\baselineskip}
-The cofactor f\textsubscript{x=1} fixes x to 1; f\textsubscript{x=0} fixes it to 0. Shannon expansion inserts x+x'=1 and distributes f across the two cases. The Boolean difference is the XOR of the cofactors, so it is 1 exactly where changing x changes the output.
+\Needspace{9\baselineskip}
+The cofactor f\textsubscript{x=1} fixes x to 1; f\textsubscript{x=0} fixes it to 0. The Boolean difference ∂f/∂x is the XOR of the cofactors, so it is 1 exactly where changing x changes the output.
+
+\begin{workedbox}{Derivation \ensuremath{\cdot} Shannon expansion}
+\Needspace{6\baselineskip}
+\begin{enumerate}
+\item Insert the complement law: f=f\ensuremath{\cdot}1=f\ensuremath{\cdot}(x+x').
+\item Distribute: f=x\ensuremath{\cdot}f+x'\ensuremath{\cdot}f.
+\item Where x=1 only f\textsubscript{x=1} matters, so x\ensuremath{\cdot}f=x\ensuremath{\cdot}f\textsubscript{x=1}; likewise x'\ensuremath{\cdot}f=x'\ensuremath{\cdot}f\textsubscript{x=0}. Therefore f=x\ensuremath{\cdot}f\textsubscript{x=1}+x'\ensuremath{\cdot}f\textsubscript{x=0}. \hfill{\small\color{FAUblue}§1.2}
+\end{enumerate}
+\end{workedbox}
 
 \begin{equationcard}{Difference and quantification}
-\[ \begin{gathered} \mathrm{D}_\mathrm{x}\, \mathrm{f}\, =\, \mathrm{f}_{\mathrm{x}=1}\, \text{XOR}\, \mathrm{f}_{\mathrm{x}=0} \\ \mathrm{D}_\mathrm{x}(\text{fg})\, =\, \mathrm{f}\cdot \mathrm{D}_\text{xg}\, \text{XOR}\, \mathrm{g}\cdot \mathrm{D}_\text{xf}\, \text{XOR}\, \mathrm{D}_\text{xf}\cdot \mathrm{D}_\text{xg} \\ (\exists \mathrm{x})\mathrm{f}\, =\, \mathrm{f}_{\mathrm{x}=1}\, +\, \mathrm{f}_{\mathrm{x}=0} \\ (\forall \mathrm{x})\mathrm{f}\, =\, \mathrm{f}_{\mathrm{x}=1}\cdot \mathrm{f}_{\mathrm{x}=0} \end{gathered} \]
-{\small Existential quantification asks whether either case works; universal quantification asks whether both cases work. Both remove dependence on x.}
+\[ \begin{gathered} ∂\mathrm{f}/∂\mathrm{x}\, =\, \mathrm{f}_{\mathrm{x}=1}\, ⊕\, \mathrm{f}_{\mathrm{x}=0} \\ ∂(\mathrm{f}\, ⊕\, \mathrm{g})/∂\mathrm{x}\, =\, ∂\mathrm{f}/∂\mathrm{x}\, ⊕\, ∂\mathrm{g}/∂\mathrm{x} \\ ∂(\text{fg})/∂\mathrm{x}\, =\, \mathrm{f}\cdot ∂\mathrm{g}/∂\mathrm{x}\, ⊕\, \mathrm{g}\cdot ∂\mathrm{f}/∂\mathrm{x}\, ⊕\, ∂\mathrm{f}/∂\mathrm{x}\cdot ∂\mathrm{g}/∂\mathrm{x} \\ (\exists \mathrm{x})\mathrm{f}\, =\, \mathrm{f}_{\mathrm{x}=1}\, +\, \mathrm{f}_{\mathrm{x}=0} \\ (\forall \mathrm{x})\mathrm{f}\, =\, \mathrm{f}_{\mathrm{x}=1}\cdot \mathrm{f}_{\mathrm{x}=0} \\ (\forall \mathrm{x})\mathrm{f}\, \leq \, \mathrm{f}\, \leq \, (\exists \mathrm{x})\mathrm{f} \end{gathered} \]
+{\small f does not depend on x exactly when ∂f/∂x=0. Existential quantification (smoothing) asks whether either case works; universal quantification (consensus) asks whether both cases work. Both remove dependence on x.}
 \end{equationcard}
+
+\begin{workedbox}{Worked example \ensuremath{\cdot} difference and quantifiers}
+Let f=x+y.
+
+\Needspace{5\baselineskip}
+\begin{enumerate}
+\item Cofactors: f\textsubscript{x=1}=1 and f\textsubscript{x=0}=y.
+\item Difference: ∂f/∂x=1⊕y=y'. Changing x matters only when y=0.
+\item Quantifiers: (\ensuremath{\exists}x)f=1+y=1 and (\ensuremath{\forall}x)f=1\ensuremath{\cdot}y=y. Check: y\ensuremath{\leq}x+y\ensuremath{\leq}1. \hfill{\small\color{FAUblue}§1.2}
+\end{enumerate}
+\end{workedbox}
 
 \Needspace{5\baselineskip}
 \begin{notebox}\textbf{Memory hook:} for existential, OR the two cofactors; for universal, AND them. Check the question’s quantifier before simplifying.\end{notebox}
@@ -325,9 +362,9 @@ The cofactor f\textsubscript{x=1} fixes x to 1; f\textsubscript{x=0} fixes it to
 
 \begin{keepsection}
 \Needspace{6\baselineskip}
-\section{1.3 Completeness, normal forms, and minimization}
+\section{1.3 Completeness, normal forms, and minimisation}
 
-A representation tells you how to build a function. Completeness says whether a chosen set of connectives can represent every function; minimization asks how small a representation can be.
+A representation tells you how to build a function. Completeness says whether a chosen set of connectives can represent every function; minimisation asks how small a representation can be.
 
 \begin{keepsection}
 \Needspace{13\baselineskip}
@@ -341,15 +378,15 @@ A connective set is functionally complete if it can express every Boolean functi
 {\small Once NOT, AND, and OR are available, any formula built from those connectives can be expressed with NAND.}
 \end{equationcard}
 
-Post’s lattice classifies families of Boolean functions closed under composition. The lecture also contrasts monotone functions, which preserve order, with affine functions, which are parity expressions over F\textsubscript{2}; a function that is both monotone and affine is constant.
+Post’s lattice classifies families of Boolean functions closed under composition. The lecture also contrasts monotone functions, which preserve order, with affine functions, which are parity expressions over F\textsubscript{2}; a function that is both monotone and affine is a constant or a single variable. (The lecture says only “constant”, but f=x is a counterexample; see the slips.) Any XOR of two or more inputs falls from 1 to 0 when a second input turns on.
 \end{keepsection}
 
 \begin{keepsection}
 \Needspace{15\baselineskip}
-\subsection{Write and minimize formulas}
+\subsection{Write and minimise formulas}
 
 \Needspace{12\baselineskip}
-Every Boolean function has a disjunctive normal form (OR of minterms for true rows) and a conjunctive normal form (AND of maxterms that exclude false rows). These forms are systematic, though a minimum exact two-level DNF or CNF search is NP-complete, so practical methods use structure and heuristics.
+Every Boolean function has a disjunctive normal form (OR of minterms for true rows) and a conjunctive normal form (AND of maxterms that exclude false rows). These forms are systematic, though finding a minimum two-level form is hard (deciding this from a truth table is NP-complete, as the lecture states), so practical methods use structure and heuristics.
 
 \begin{workedbox}{Worked example \ensuremath{\cdot} XOR as DNF and CNF}
 Let f(A,B)=1 on rows 01 and 10, and 0 on rows 00 and 11.
@@ -362,8 +399,18 @@ Let f(A,B)=1 on rows 01 and 10, and 0 on rows 00 and 11.
 \end{enumerate}
 \end{workedbox}
 
-\Needspace{6\baselineskip}
+\Needspace{11\baselineskip}
 Quine–McCluskey combines minterms that differ in one literal, repeats until prime implicants remain, then selects a cover. Its steps preserve coverage: every combined implicant covers only true assignments, and every listed true minterm remains covered.
+
+\begin{workedbox}{Worked example \ensuremath{\cdot} Quine–McCluskey on minterms 1, 3, 5, 7}
+\Needspace{7\baselineskip}
+\begin{enumerate}
+\item Write the rows in A,B,C order: 001, 011, 101, 111.
+\item Combine pairs differing in one bit: 0\ensuremath{-}1, \ensuremath{-}01, \ensuremath{-}11, 1\ensuremath{-}1.
+\item Combine again: 0\ensuremath{-}1 with 1\ensuremath{-}1 gives \ensuremath{-}\ensuremath{-}1, and \ensuremath{-}01 with \ensuremath{-}11 gives the same cube.
+\item The only prime implicant is \ensuremath{-}\ensuremath{-}1, so f=C. Check: C is 1 on exactly the four odd rows. \hfill{\small\color{FAUblue}§1.3}
+\end{enumerate}
+\end{workedbox}
 
 \Needspace{4\baselineskip}
 \begin{notebox}\textbf{Trap:} a complete gate set guarantees expressiveness, not a small or fast circuit.\end{notebox}
@@ -376,7 +423,7 @@ Quine–McCluskey combines minterms that differ in one literal, repeats until pr
 \item What does DNF list, and why is finding a minimum exact form difficult?
 \end{enumerate}
 
-\nopagebreak[4]{\small\itshape Answers: see “1.3 Completeness, normal forms, and minimization” under Answers at the end.}
+\nopagebreak[4]{\small\itshape Answers: see “1.3 Completeness, normal forms, and minimisation” under Answers at the end.}
 \end{recallbox}
 \end{keepsection}
 \end{keepsection}
@@ -386,10 +433,10 @@ Quine–McCluskey combines minterms that differ in one literal, repeats until pr
 \section{1.4 Karnaugh maps remove changing variables}
 
 \Needspace{8\baselineskip}
-A K-map lays truth-table rows out so neighboring cells differ in one variable. Grouping adjacent 1s makes that changing variable disappear from the corresponding implicant.
+A K-map lays truth-table rows out so neighbouring cells differ in one variable. Grouping adjacent 1s makes that changing variable disappear from the corresponding implicant.
 
 \Needspace{11\baselineskip}
-For n variables, a map has 2\textsuperscript{n} cells in Gray-code order. A legal group contains 2\textsuperscript{k} adjacent cells, with wraparound adjacency allowed. Each grouped variable that changes across the group is eliminated; the implicant keeps n\ensuremath{-}k literals. Use don’t-care rows as either 0 or 1 when that makes a useful group.
+For n variables, a map has 2\textsuperscript{n} cells in Gray-code order. A legal group is a rectangle of 2\textsuperscript{k} cells (possibly wrapping), so that it contains every combination of k changing variables. Each variable that changes across the group is eliminated; the implicant keeps n\ensuremath{-}k literals. Use don’t-care rows as either 0 or 1 when that makes a useful group.
 
 \begin{equationcard}{K-map group rule}
 \[ \begin{gathered} \text{Map}\, \text{size}:\, 2^{\mathrm{n}}\, \text{cells} \\ \text{Group}\, \text{size}:\, 2^{\mathrm{k}}\, \text{cells} \\ \text{Remaining}\, \text{literals}:\, \mathrm{n}-\mathrm{k} \end{gathered} \]
@@ -448,8 +495,30 @@ For f(A,B)=A\ensuremath{\cdot}B+A', compute the two cofactors and reconstruct f.
 \Needspace{10\baselineskip}
 An ordered binary decision diagram (OBDD) applies Shannon expansion in a fixed variable order. Reduction merges isomorphic subgraphs and removes tests whose two branches are identical. For one fixed order, the reduced OBDD is unique; a different variable order can produce a different diagram size.
 
-\Needspace{11\baselineskip}
+\Needspace{13\baselineskip}
 The algebraic normal form (ANF) writes f as XORs of monomials over F\textsubscript{2}. Every Boolean function has a unique ANF; its coefficients can be computed by a Möbius transform. Uniqueness follows because the monomials form a basis for all truth functions on n variables. Unlike DNF, ANF uses XOR as its addition operation.
+
+\begin{workedbox}{Worked example \ensuremath{\cdot} OBDD for A?B:C with order A,B,C}
+\Needspace{9\baselineskip}
+\begin{enumerate}
+\item Split on A: the 1-branch is B and the 0-branch is C.
+\item Split the B branch: B=1 gives terminal 1, B=0 gives terminal 0. The C branch is the same shape.
+\item Each test has different branches, and the B and C nodes test different variables, so nothing reduces further: 3 nonterminal nodes.
+\item Check: with order B,C,A the same function needs 5 nodes, so order matters. \hfill{\small\color{FAUblue}§1.5}
+\end{enumerate}
+\end{workedbox}
+
+\begin{workedbox}{Worked example \ensuremath{\cdot} Möbius transform of NAND}
+Outputs for rows 00, 01, 10, 11 are 1,1,1,0, with A as the first bit.
+
+\Needspace{7\baselineskip}
+\begin{enumerate}
+\item B pass: XOR each B=1 entry with its B=0 partner, giving 1,0,1,1.
+\item A pass: XOR each A=1 entry with its A=0 partner, giving 1,0,0,1.
+\item The entries are the coefficients of 1, B, A, AB, so f=1⊕AB.
+\item Check: AB=1 only on row 11, where f=0. \hfill{\small\color{FAUblue}§1.5}
+\end{enumerate}
+\end{workedbox}
 
 \begin{equationcard}{ANF shape}
 \[ \begin{gathered} \mathrm{f}\, \text{is}\, \text{the}\, \text{XOR}\, \text{of}\, \mathrm{a}_{\mathrm{S}}\cdot ∏_{\mathrm{i}\in \mathrm{S}}\mathrm{x}_{\mathrm{i}}\, \text{over}\, \mathrm{S}⊆[\mathrm{n}] \end{gathered} \]
@@ -487,15 +556,24 @@ Equivalent formulas can behave differently while a real circuit switches. Verifi
 {\small The term yz is logically redundant but can preserve coverage during a circuit transition.}
 \end{equationcard}
 
-\Needspace{13\baselineskip}
-A static-1 hazard occurs when the output should stay 1 for a small input change but a particular two-level sum-of-products implementation briefly drops to 0 because its paths have different delays. If two product terms hand off across one changing literal, their consensus term supplies overlapping coverage.
+\Needspace{12\baselineskip}
+A static-1 hazard occurs when the output should stay 1 for a small input change but a particular two-level sum-of-products implementation briefly drops to 0 because its paths have different delays. If two product terms hand off across one changing literal, their consensus term supplies overlapping coverage, for one input changing at a time. To form it, take terms xA and x'B: the consensus is AB.
+
+\begin{workedbox}{Derivation \ensuremath{\cdot} the consensus theorem}
+\Needspace{5\baselineskip}
+\begin{enumerate}
+\item Expand: yz=yz(x+x')=xyz+x'yz.
+\item Absorb: xy+xyz=xy and x'z+x'yz=x'z.
+\item Therefore xy+x'z+yz=xy+x'z. \hfill{\small\color{FAUblue}§1.6}
+\end{enumerate}
+\end{workedbox}
 
 \begin{workedbox}{Worked example \ensuremath{\cdot} add the consensus term}
 For f=xy+x'z, the consensus term is yz.
 
-\Needspace{6\baselineskip}
+\Needspace{7\baselineskip}
 \begin{enumerate}
-\item The terms xy and x'z differ on x; both can be 1 at the boundary when y=z=1.
+\item The terms xy and x'z differ on x. When y=z=1, exactly one is 1 at each stable input, so the output should stay 1; during the change a delay can leave both at 0.
 \item Add yz. The consensus theorem gives xy+x'z+yz=xy+x'z, so the Boolean function is unchanged.
 \item In a two-level sum-of-products implementation, yz keeps the output covered during the handoff and removes the static-1 hazard described in the lecture. \hfill{\small\color{FAUblue}§1.6}
 \end{enumerate}
@@ -503,11 +581,11 @@ For f=xy+x'z, the consensus term is yz.
 \end{keepsection}
 
 \begin{keepsection}
-\Needspace{12\baselineskip}
+\Needspace{13\baselineskip}
 \subsection{Soundness and completeness}
 
-\Needspace{9\baselineskip}
-Equational reasoning is sound when every derived equation is valid in every Boolean algebra model. It is complete for tautological equivalence when every such equivalence can be derived using the calculus. The lecture’s wrap-up ties this proof view to the alternate ring, set, map, and decision-diagram representations. Its further-reading slide points to Stone on representation, Post on completeness, and Bryant on decision diagrams.
+\Needspace{10\baselineskip}
+Equational reasoning is sound when every derived equation is valid in every Boolean algebra model. It is complete for tautological equivalence when every such equivalence can be derived using the calculus; that needs the full axiom list of §1.1, including the second distributive law. The lecture’s wrap-up ties this proof view to the alternate ring, set, map, and decision-diagram representations. Its further-reading slide points to Stone on representation, Post on completeness, and Bryant on decision diagrams.
 
 \Needspace{5\baselineskip}
 \begin{notebox}\textbf{Sign check:} Boolean equivalence says outputs agree for stable inputs; it does not guarantee zero propagation delay in hardware.\end{notebox}
@@ -537,29 +615,29 @@ De Morgan & (x+y)'=x'\ensuremath{\cdot}y'(x\ensuremath{\cdot}y)'=x'+y' & Move a 
 Absorption & x+x\ensuremath{\cdot}y=x & Remove a term already covered by x. \\
 Consensus & xy+x'z+yz=xy+x'z & Remove a logically redundant term; add it back to cover a hazard. \\
 Shannon & f=xf\textsubscript{1}+x'f\textsubscript{0} & Split on a variable. \\
-Boolean difference & D\_x f=f\textsubscript{1} XOR f\textsubscript{0} & Test whether x can change the result. \\
+Boolean difference & ∂f/∂x=f\textsubscript{1}⊕f\textsubscript{0} & Test whether x can change the result. \\
 K-map group & 2\textsuperscript{k} cells leave n\ensuremath{-}k literals & Eliminate variables that change. \\
 NAND & x↑y=(xy)' & Build NOT, AND, and OR from one gate type. \\
 \bottomrule\end{tabularx}\end{center}
 \end{keepsection}
 
 \begin{keepsection}
-\Needspace{20\baselineskip}
+\Needspace{21\baselineskip}
 \section{Derive it cold}
 
-\Needspace{17\baselineskip}
-Cover the right column and rebuild each chain using only earlier definitions and laws.
+\Needspace{18\baselineskip}
+On blank paper, rebuild each chain using only earlier definitions and laws.
 
-\Needspace{15\baselineskip}
+\Needspace{16\baselineskip}
 \begin{enumerate}
-\item \textbf{Duality:} x+x=x \ensuremath{\to} x\ensuremath{\cdot}x=x. \hfill{\small\color{FAUblue}§1.1}
+\item \textbf{Duality:} each axiom’s dual is an axiom, so swapping symbols in a proof of x+x=x proves x\ensuremath{\cdot}x=x. \hfill{\small\color{FAUblue}§1.1}
 \item \textbf{De Morgan:} show x'y' complements x+y, then use uniqueness. \hfill{\small\color{FAUblue}§1.2}
 \item \textbf{Absorption:} x+xy=x(1+y)=x. \hfill{\small\color{FAUblue}§1.2}
 \item \textbf{Shannon:} f=f(x+x')=xf+x'f, then read each term as a cofactor. \hfill{\small\color{FAUblue}§1.2}
 \item \textbf{NAND completeness:} derive NOT, AND, and OR, then cite functional completeness of those connectives. \hfill{\small\color{FAUblue}§1.3}
 \item \textbf{K-map grouping:} pair adjacent cells and show the changing variable disappears. \hfill{\small\color{FAUblue}§1.4}
 \item \textbf{OBDD uniqueness:} explain why the fixed order plus reduction rules determine the same graph. \hfill{\small\color{FAUblue}§1.5}
-\item \textbf{Hazard cover:} expand yz with x+x' and show it is absorbed by xy+x'z. \hfill{\small\color{FAUblue}§1.6}
+\item \textbf{Consensus and hazard cover:} expand yz with x+x' and show it is absorbed by xy+x'z. \hfill{\small\color{FAUblue}§1.6}
 \end{enumerate}
 \end{keepsection}
 
@@ -584,20 +662,6 @@ Answer each “why” or “when” in your own words before opening the model r
 \nopagebreak[4]{\small\itshape Answers: see “Explain it” under Answers at the end.}
 \end{keepsection}
 
-\begin{keepsection}
-\Needspace{17\baselineskip}
-\section{Source checks}
-
-\Needspace{14\baselineskip}
-These two items were checked against the rendered slides. The guide states its indexing convention where it affects the result.
-
-\Needspace{11\baselineskip}
-\begin{itemize}
-\item \textbf{Slide 35 \ensuremath{\cdot} minterm order not stated:} the slide gives \ensuremath{\Sigma}m(1,3,5,7) and concludes f=B, but it does not label the variable bit order. Under the common A,B,C order with A most significant, that set describes C; the slide’s conclusion matches a different bit order with B least significant. This guide states the convention explicitly in its worked example.
-\item \textbf{Slide 36 \ensuremath{\cdot} expression conflicts with listed rows:} with W,X,Y,Z in that bit order, the listed 1s \{1,3,7,11,15\} and don’t-cares \{5,9,13\} are all odd indices, while every even index is 0; the list therefore simplifies to f=Z. The rendered slide’s printed expression includes W'Z', which is 1 on some even rows. This guide follows the listed rows and flags the mismatch for checking against the lecturer’s source.
-\end{itemize}
-\end{keepsection}
-
 \clearpage
 
 \begin{keepsection}
@@ -605,29 +669,35 @@ These two items were checked against the rendered slides. The guide states its i
 \section{Mixed practice}
 
 \Needspace{7\baselineskip}
-Try all 20 questions in order without notes. The topics are interleaved; write your confidence beside each answer before checking the hidden key.
+Try all 26 questions in order without notes. The topics are interleaved; write your confidence beside each answer before checking the hidden key.
 
 \begin{enumerate}
-\item State the dual of x+0=x. \hfill{\small\color{FAUblue}§1.1}
-\item Simplify a+a\ensuremath{\cdot}b. Name the law. \hfill{\small\color{FAUblue}§1.2}
-\item Using NAND ↑, write NOT x. \hfill{\small\color{FAUblue}§1.3}
-\item How many cells are on a 5-variable K-map? \hfill{\small\color{FAUblue}§1.4}
-\item For f(x,y)=xy+x', find f\textsubscript{x=1} and f\textsubscript{x=0}. \hfill{\small\color{FAUblue}§1.5}
-\item What consensus term can be added to xy+x'z to cover a static-1 handoff? \hfill{\small\color{FAUblue}§1.6}
-\item In a Boolean ring, calculate 1+1 and 1\ensuremath{\cdot}1. \hfill{\small\color{FAUblue}§1.1}
-\item Rewrite (a+b)' using De Morgan’s law. \hfill{\small\color{FAUblue}§1.2}
-\item For f(A,B)=1 on rows 01 and 10 only, give one DNF. \hfill{\small\color{FAUblue}§1.3}
-\item A group of 8 cells is used on a 5-variable K-map. How many literals remain? \hfill{\small\color{FAUblue}§1.4}
-\item Expand f(A,B)=AB+A' on A by listing the two cofactors. \hfill{\small\color{FAUblue}§1.5}
-\item Distinguish soundness from completeness in equational reasoning. \hfill{\small\color{FAUblue}§1.6}
-\item Give the dual of x+x'=1. \hfill{\small\color{FAUblue}§1.1}
-\item What is Dx/Dx? \hfill{\small\color{FAUblue}§1.2}
-\item A function is both monotone and affine. What does the lecture say it must be? \hfill{\small\color{FAUblue}§1.3}
-\item With WXYZ as the bit order, use the slide 36 listed rows: 1s at 1,3,7,11,15 and don’t-cares at 5,9,13. What is the simplest function? \hfill{\small\color{FAUblue}§1.4}
-\item Write A OR B in algebraic normal form over F\textsubscript{2}. \hfill{\small\color{FAUblue}§1.5}
-\item Does adding yz change the Boolean function xy+x'z? \hfill{\small\color{FAUblue}§1.6}
-\item Why can exact minimum two-level DNF search require a heuristic in practice? \hfill{\small\color{FAUblue}§1.3}
-\item What does a Boolean difference of 0 with respect to x imply? \hfill{\small\color{FAUblue}§1.2}
+\item State the dual of x+0=x.
+\item Simplify a+a\ensuremath{\cdot}b. Name the law.
+\item Using NAND ↑, write NOT x.
+\item How many cells are on a 5-variable K-map?
+\item For f(p,q,r)=pq+p'r', find f\textsubscript{p=1} and f\textsubscript{p=0}.
+\item What consensus term can be added to pq'+p'r to cover a static-1 handoff?
+\item In a Boolean ring, calculate 1⊕1 and 1\ensuremath{\cdot}1.
+\item Rewrite (a+b)' using De Morgan’s law.
+\item For f(A,B)=1 on rows 00 and 11 only, give one DNF.
+\item A group of 4 cells is used on a 4-variable K-map. How many literals remain?
+\item For f=xy+x'z, find (\ensuremath{\exists}x)f and (\ensuremath{\forall}x)f.
+\item Distinguish soundness from completeness in equational reasoning.
+\item Give the dual of x+x'=1.
+\item What is ∂x/∂x?
+\item The lecture says a monotone affine function must be constant. Give a counterexample, and state the correct result.
+\item With WXYZ as the bit order, use the slide 36 listed rows: 1s at 1,3,7,11,15 and don’t-cares at 5,9,13. What is the simplest function?
+\item Write A OR B in algebraic normal form over F\textsubscript{2}.
+\item Does removing bd change the Boolean function ab+a'd+bd?
+\item Why can exact minimum two-level DNF search require a heuristic in practice?
+\item What does a Boolean difference of 0 with respect to x imply?
+\item How many nonterminal nodes does the reduced OBDD of A?B:C have with order B,C,A?
+\item With A,B,C as the bit order, f=1 on minterms 0, 2, 4, 6. Simplify f on a K-map.
+\item Find the ANF of the outputs 1,0,0,1 for rows 00, 01, 10, 11.
+\item For f(A,B)=0 on rows 01 and 10 only, give the CNF.
+\item Read + as XOR and \ensuremath{\cdot} as AND on \{0,1\}. Which familiar law fails at x=1, and which missing axiom rules this reading out?
+\item Use Quine–McCluskey on minterms 4, 5, 6, 7 in A,B,C order. What is the prime implicant?
 \end{enumerate}
 
 \nopagebreak[4]{\small\itshape Answers: see “Mixed practice” under Answers at the end.}
@@ -640,11 +710,11 @@ Try all 20 questions in order without notes. The topics are interleaved; write y
 Allow about 20 minutes per problem. Show each identity used and check your final expression against the truth conditions.
 
 \begin{keepsection}
-\Needspace{12\baselineskip}
+\Needspace{13\baselineskip}
 \subsection{1 \ensuremath{\cdot} Prove, represent, and implement}
 
-\Needspace{9\baselineskip}
-For f(A,B,C)=A'B+AB'C, use the Boolean algebra and representation ideas from §§1.1–1.3.
+\Needspace{10\baselineskip}
+For f(A,B,C)=A'B+AB'C, use Shannon expansion, NAND construction and normal forms from §§1.2, 1.3 and 1.5.
 
 \Needspace{7\baselineskip}
 \begin{enumerate}
@@ -658,7 +728,7 @@ For f(A,B,C)=A'B+AB'C, use the Boolean algebra and representation ideas from §�
 
 \begin{keepsection}
 \Needspace{11\baselineskip}
-\subsection{2 \ensuremath{\cdot} Minimize, then check a circuit transition}
+\subsection{2 \ensuremath{\cdot} Minimise, then check a circuit transition}
 
 \Needspace{8\baselineskip}
 Let f(A,B,C)=1 for minterms 2,3,6,7 and 0 elsewhere. Use A,B,C as the bit order with A most significant.
@@ -675,6 +745,26 @@ Let f(A,B,C)=1 for minterms 2,3,6,7 and 0 elsewhere. Use A,B,C as the bit order 
 \end{keepsection}
 
 \begin{keepsection}
+\Needspace{11\baselineskip}
+\section{Slips in the notes}
+
+\Needspace{8\baselineskip}
+Each item was checked against the rendered slides and is listed with its slide number. The lecture’s wording is given too, so you can recognise it. Ask the lecturer which version an exam would mark.
+
+\begin{itemize}
+\item \textbf{Slide 6 \ensuremath{\cdot} error, second distributive law missing:} the axiom list prints only x\ensuremath{\cdot}(y+z)=x\ensuremath{\cdot}y+x\ensuremath{\cdot}z, although its intuition box says distribution works both ways. XOR and AND on \{0,1\} satisfy every printed line, yet 1 XOR 1=0, so idempotence (slide 7), absorption’s step 1+y=1, duality and completeness (slide 45) do not follow from the list as printed. §1.1 adds x+y\ensuremath{\cdot}z=(x+y)\ensuremath{\cdot}(x+z). The word “minimal” is probably also too strong, since associativity is usually derivable from Huntington’s set.
+\item \textbf{Slides 11 and 13 \ensuremath{\cdot} notation clash:} slide 11 and most of the lecture use + for join, while slide 13 reuses + for ring addition, giving x+x=0 beside x+x=x. This guide writes ring addition as ⊕ throughout.
+\item \textbf{Slide 27 \ensuremath{\cdot} error, Post’s conditions incomplete:} the slide says a nonmonotone and a nonaffine operation imply completeness. The function x\ensuremath{\cdot}y' is both, yet it preserves 0, so it cannot make NOT or 1. Post’s criterion needs five: for each of the classes 0-preserving, 1-preserving, self-dual, monotone and affine, the set must contain a function outside it. §1.3 uses only the NAND argument.
+\item \textbf{Slide 28 \ensuremath{\cdot} error, monotone and affine:} the slide says such a function is constant. But f(x)=x is both. The correct result is a constant or a single input variable; enumerating all 256 functions of three variables gives exactly 0, 1, x\textsubscript{1}, x\textsubscript{2} and x\textsubscript{3}. §1.3 and practice 15 use the corrected form.
+\item \textbf{Slide 30 \ensuremath{\cdot} simplification:} “NP-complete” is printed without saying what the input is. This guide states the truth-table form; the problem is harder when the input is a formula rather than a table. That last remark is a standard result, not from the notes.
+\item \textbf{Slide 34 \ensuremath{\cdot} wording:} changing variables are said to be “eliminated by consensus”. The step that removes a variable is xA+x'A=A, which is distribution and complement, not the consensus theorem. §1.4 says “eliminated” and §1.3 shows the combining step.
+\item \textbf{Slide 35 \ensuremath{\cdot} minterm order not stated:} the slide gives \ensuremath{\Sigma}m(1,3,5,7) and concludes f=B, without labelling the bit order. Under A,B,C with A most significant, that set describes C; the slide’s conclusion needs a different order. Its intuition box says A and C vary, which fits f=B, not the listed set in that order. The drawn map has no axis labels, and its two groups are separated by one column; with Gray columns, the B=1 columns would be next to each other. This guide states the convention in its worked example.
+\item \textbf{Slide 36 \ensuremath{\cdot} expression conflicts with listed rows:} with W,X,Y,Z in that bit order, the listed 1s \{1,3,7,11,15\} and don’t-cares \{5,9,13\} are all odd indices, and every even index is 0, so the list simplifies to f=Z when all three don’t-cares are used as 1. The printed expression YZ+X'Z+W'Z' also covers the required zeros 0, 2, 4 and 6, while YZ+X'Z alone already covers every 1. W'Z' is probably a typo for W'Z. The grid has no axis labels, and its coloured groups do not obviously match the printed terms; that reading is uncertain. This guide follows the listed rows, “1s at 1,3,7,11,15”.
+\item \textbf{Slide 43 \ensuremath{\cdot} simplification:} “adding consensus terms eliminates static hazards” holds when one input changes at a time and all the needed consensus terms are added. §1.6 says so.
+\end{itemize}
+\end{keepsection}
+
+\begin{keepsection}
 \Needspace{10\baselineskip}
 \section{Self-check}
 
@@ -682,20 +772,20 @@ Let f(A,B,C)=1 for minterms 2,3,6,7 and 0 elsewhere. Use A,B,C as the bit order 
 Use this list in a later session, at least a day after learning the material. Tick a skill only when you can demonstrate it without notes.
 
 \begin{itemize}
-\item $\mdlgwhtsquare$\ State the Boolean operations, constants, and core axioms. (1, 7)
+\item $\mdlgwhtsquare$\ State the Boolean operations, constants, and core axioms. (1, 7, 25)
 \item $\mdlgwhtsquare$\ Apply duality to a proved equation. (1, 13)
 \item $\mdlgwhtsquare$\ Prove complement uniqueness and use it for De Morgan. (Derive it cold)
 \item $\mdlgwhtsquare$\ Simplify with absorption and consensus. (2, 18)
-\item $\mdlgwhtsquare$\ Compute cofactors, Shannon expansion, and Boolean difference. (5, 11, 14, 20)
-\item $\mdlgwhtsquare$\ Distinguish existential and universal quantification.
-\item $\mdlgwhtsquare$\ Translate XOR and AND in the Boolean ring view. (7, 17)
+\item $\mdlgwhtsquare$\ Compute cofactors, Shannon expansion, and Boolean difference. (5, 14, 20)
+\item $\mdlgwhtsquare$\ Distinguish existential and universal quantification. (11)
+\item $\mdlgwhtsquare$\ Translate XOR and AND in the Boolean ring view. (7, 17, 25)
 \item $\mdlgwhtsquare$\ Build NOT, AND, and OR from NAND. (3)
-\item $\mdlgwhtsquare$\ Create DNF and CNF from truth conditions. (9)
-\item $\mdlgwhtsquare$\ Explain why minimum exact forms can be computationally hard. (19)
-\item $\mdlgwhtsquare$\ Group K-map cells and count the remaining literals. (4, 10, 16)
+\item $\mdlgwhtsquare$\ Create DNF and CNF from truth conditions. (9, 24)
+\item $\mdlgwhtsquare$\ Explain why minimum exact forms can be computationally hard. (19, 26)
+\item $\mdlgwhtsquare$\ Group K-map cells and count the remaining literals. (4, 10, 16, 22)
 \item $\mdlgwhtsquare$\ State the variable order used by minterm indices. (16)
-\item $\mdlgwhtsquare$\ Explain OBDD reduction and fixed-order canonicity.
-\item $\mdlgwhtsquare$\ Write a simple function in algebraic normal form. (17)
+\item $\mdlgwhtsquare$\ Explain OBDD reduction and fixed-order canonicity. (21)
+\item $\mdlgwhtsquare$\ Write a simple function in algebraic normal form. (17, 23)
 \item $\mdlgwhtsquare$\ Distinguish Boolean equivalence from hazard-free switching. (6, 18)
 \item $\mdlgwhtsquare$\ Rebuild the derivations from their definitions.
 \item $\mdlgwhtsquare$\ Complete both multi-part problems and justify each step.
@@ -722,7 +812,7 @@ Use this list in a later session, at least a day after learning the material. Ti
 \Needspace{4\baselineskip}
 \begin{enumerate}
 \item Binary join +, binary meet \ensuremath{\cdot}, unary complement ', and constants 0 and 1. \hfill{\small\color{FAUblue}§1.1}
-\item XOR is ring addition and AND is ring multiplication; each element satisfies x²=x. \hfill{\small\color{FAUblue}§1.1}
+\item XOR is ring addition and AND is ring multiplication; each element satisfies x\textsuperscript{2}=x. \hfill{\small\color{FAUblue}§1.1}
 \end{enumerate}
 
 \end{keepsection}
@@ -735,12 +825,12 @@ Use this list in a later session, at least a day after learning the material. Ti
 \end{enumerate}
 
 \end{keepsection}
-\begin{keepsection}\subsection{1.3 Completeness, normal forms, and minimization}
+\begin{keepsection}\subsection{1.3 Completeness, normal forms, and minimisation}
 
 \Needspace{5\baselineskip}
 \begin{enumerate}
 \item NOT x=x↑x; AND x\ensuremath{\cdot}y=(x↑y)↑(x↑y); OR x+y=(x↑x)↑(y↑y). \hfill{\small\color{FAUblue}§1.3}
-\item DNF ORs minterms for true rows. Exact minimum two-level minimization is NP-complete, so structured methods and heuristics matter. \hfill{\small\color{FAUblue}§1.3}
+\item DNF ORs minterms for true rows. Deciding exact two-level minimality from a truth table is NP-complete, as the lecture states, so structured methods and heuristics matter. \hfill{\small\color{FAUblue}§1.3}
 \end{enumerate}
 
 \end{keepsection}
@@ -775,13 +865,13 @@ Use this list in a later session, at least a day after learning the material. Ti
 
 \Needspace{22\baselineskip}
 \begin{enumerate}
-\item The duality principle preserves derivability when + and \ensuremath{\cdot}, and 0 and 1, are exchanged. Once one equation is proved, its dual follows from the same axiom system without repeating the argument.
-\item It is enough to verify that the proposed expression has join 1 and meet 0 with the original expression. Those two properties make it a complement, and uniqueness identifies it with the negation.
-\item Logical equivalence alone does not account for unequal propagation delays. A two-level sum-of-products implementation may glitch during a transition, so a consensus term can be needed even when it is algebraically redundant.
-\item NAND can produce NOT by tying its inputs together. It can then produce AND and OR, and those connectives can express every Boolean function.
-\item Include it when it helps make a larger legal group and removes literals. Ignore it when it does not help; it is not a required 1 and must never force a group through a required 0.
-\item Canonicity holds for a fixed order. Changing the order changes the sequence of Shannon splits and can therefore change the reduced diagram’s shape and size.
-\item The group contains every combination of the changing variables while the remaining variables stay fixed. Combining those cases with Boolean identities removes the changing literals, leaving only the fixed ones.
+\item The duality principle preserves derivability when + and \ensuremath{\cdot}, and 0 and 1, are exchanged. Once one equation is proved, its dual follows from the same axiom system without repeating the argument. \hfill{\small\color{FAUblue}§1.1}
+\item It is enough to verify that the proposed expression has join 1 and meet 0 with the original expression. Those two properties make it a complement, and uniqueness identifies it with the negation. \hfill{\small\color{FAUblue}§1.2}
+\item Logical equivalence alone does not account for unequal propagation delays. A two-level sum-of-products implementation may glitch during a transition, so a consensus term can be needed even when it is algebraically redundant. \hfill{\small\color{FAUblue}§1.6}
+\item NAND can produce NOT by tying its inputs together. It can then produce AND and OR, and those connectives can express every Boolean function. \hfill{\small\color{FAUblue}§1.3}
+\item Include it when it helps make a larger legal group and removes literals. Ignore it when it does not help; it is not a required 1 and must never force a group through a required 0. \hfill{\small\color{FAUblue}§1.4}
+\item Canonicity holds for a fixed order. Changing the order changes the sequence of Shannon splits and can therefore change the reduced diagram’s shape and size. \hfill{\small\color{FAUblue}§1.5}
+\item The group contains every combination of the changing variables while the remaining variables stay fixed. Combining those cases with Boolean identities removes the changing literals, leaving only the fixed ones. \hfill{\small\color{FAUblue}§1.4}
 \end{enumerate}
 
 \end{keepsection}
@@ -792,22 +882,28 @@ Use this list in a later session, at least a day after learning the material. Ti
 \item a+a\ensuremath{\cdot}b=a by absorption. \hfill{\small\color{FAUblue}§1.2}
 \item x'=x↑x because NAND of x with itself negates x. \hfill{\small\color{FAUblue}§1.3}
 \item 2\textsuperscript{5}=32 cells, one per input assignment. \hfill{\small\color{FAUblue}§1.4}
-\item f\textsubscript{x=1}=y+0=y; f\textsubscript{x=0}=0+1=1. \hfill{\small\color{FAUblue}§1.5}
-\item yz, giving xy+x'z+yz. The added term preserves the function and overlaps the handoff. \hfill{\small\color{FAUblue}§1.6}
-\item 1+1=0 by characteristic 2; 1\ensuremath{\cdot}1=1 by the multiplicative identity. \hfill{\small\color{FAUblue}§1.1}
+\item f\textsubscript{p=1}=q+0=q; f\textsubscript{p=0}=0+r'=r'. \hfill{\small\color{FAUblue}§1.5}
+\item From pA and p'B with A=q' and B=r, the consensus is q'r, giving pq'+p'r+q'r. The added term preserves the function and overlaps the handoff. \hfill{\small\color{FAUblue}§1.6}
+\item 1⊕1=0 by characteristic 2; 1\ensuremath{\cdot}1=1 by the multiplicative identity. \hfill{\small\color{FAUblue}§1.1}
 \item (a+b)'=a'b'. \hfill{\small\color{FAUblue}§1.2}
-\item A'B+AB', the two minterms for rows 01 and 10. \hfill{\small\color{FAUblue}§1.3}
-\item Two literals: n\ensuremath{-}k=5\ensuremath{-}3=2. \hfill{\small\color{FAUblue}§1.4}
-\item f\textsubscript{A=1}=B and f\textsubscript{A=0}=1, so f=AB+A'\ensuremath{\cdot}1. \hfill{\small\color{FAUblue}§1.5}
+\item A'B'+AB, the two minterms for rows 00 and 11. \hfill{\small\color{FAUblue}§1.3}
+\item Two literals: 4 cells means k=2, so n\ensuremath{-}k=4\ensuremath{-}2=2. \hfill{\small\color{FAUblue}§1.4}
+\item The cofactors are y and z, so (\ensuremath{\exists}x)f=y+z and (\ensuremath{\forall}x)f=yz. \hfill{\small\color{FAUblue}§1.2}
 \item Soundness means every derivable equation is valid; completeness means every tautological equivalence is derivable. \hfill{\small\color{FAUblue}§1.6}
 \item x\ensuremath{\cdot}x'=0, the dual of x+x'=1. \hfill{\small\color{FAUblue}§1.1}
-\item 1: the cofactors of x with respect to itself are 1 and 0, whose XOR is 1. \hfill{\small\color{FAUblue}§1.2}
-\item It must be constant, as stated in the lecture. \hfill{\small\color{FAUblue}§1.3}
+\item 1: the cofactors of x with respect to itself are 1 and 0, and 1⊕0=1. \hfill{\small\color{FAUblue}§1.2}
+\item f(x)=x is monotone and affine. Correct: a constant or a single input variable, because any XOR of two or more inputs falls from 1 to 0 when a second input turns on. \hfill{\small\color{FAUblue}§1.3}
 \item Every odd index is either 1 or a don’t-care and every even index is 0, so f=Z under the stated order. \hfill{\small\color{FAUblue}§1.4}
 \item A OR B = A XOR B XOR AB. Check rows 00, 01, 10, and 11 to verify the outputs 0,1,1,1. \hfill{\small\color{FAUblue}§1.5}
-\item No. The consensus theorem says xy+x'z+yz=xy+x'z. \hfill{\small\color{FAUblue}§1.6}
-\item Exact two-level minimization is NP-complete, so the search can grow too costly; structured methods and heuristics help. \hfill{\small\color{FAUblue}§1.3}
+\item No. bd is the consensus of ab and a'd, so it is redundant in the stable function, though it may matter for hazards. \hfill{\small\color{FAUblue}§1.6}
+\item Deciding minimality from a truth table is NP-complete, as the lecture states, so the search can grow too costly; structured methods and heuristics help. \hfill{\small\color{FAUblue}§1.3}
 \item The cofactors agree everywhere, so changing x never changes the function. \hfill{\small\color{FAUblue}§1.2}
+\item 5: B on top; each B branch needs its own C test, because they lead to different subfunctions; and those C tests lead to two different A tests, one for A and one for A'. \hfill{\small\color{FAUblue}§1.5}
+\item f=C'. The even rows fill columns 00 and 10, a group that wraps; A and B vary while C=0. \hfill{\small\color{FAUblue}§1.4}
+\item B pass gives 1,1,0,1; A pass gives 1,1,1,0. So the coefficients of 1,B,A,AB give 1⊕A⊕B. Check: row 11 gives 1⊕1⊕1=1. \hfill{\small\color{FAUblue}§1.5}
+\item (A+B')(A'+B), one maxterm for each false row 01 and 10. \hfill{\small\color{FAUblue}§1.3}
+\item Idempotence: 1+1=0, not 1. The second distributive law fails too (x=y=1, z=0 gives 1 against 0), so that axiom rules this reading out. \hfill{\small\color{FAUblue}§1.1}
+\item 100, 101, 110, 111 combine to 10\ensuremath{-} and 11\ensuremath{-}, then to 1\ensuremath{-}\ensuremath{-}, which is A. \hfill{\small\color{FAUblue}§1.3}
 \end{enumerate}
 
 \end{keepsection}
@@ -832,6 +928,6 @@ Use this list in a later session, at least a day after learning the material. Ti
 
 \end{keepsection}
 
-\vfill{\small Study guide based on Bernhard Kainz, “Boolean Algebra, Identities, Proofs, and Minimization: An advanced mathematical perspective for CS undergraduates,” supplied as APDR lecture01 - extended.pdf (48 slides, dated 5 October 2025). Written in my own words; no lecture pages or figures are reproduced. Source inconsistencies checked against rendered slides 35–36 are described above. Not an official FAU publication; check course details against the current materials.}
+\vfill{\small Personal study guide based on Bernhard Kainz, “Boolean Algebra, Identities, Proofs, and Minimization: An advanced mathematical perspective for CS undergraduates,” supplied as APDR lecture01 - extended.pdf (48 slides, dated 5 October 2025). Written in my own words; no lecture pages or figures are reproduced. Source inconsistencies are listed under Slips in the notes. Not an official FAU publication; check course details against the current materials.}
 
 \end{document}

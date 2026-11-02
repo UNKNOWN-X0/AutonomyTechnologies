@@ -27,6 +27,19 @@ test("3.4–3.5 guide arithmetic distinguishes exact result and overflow", () =>
   });
   assert.equal(P.twosArithmetic("0101", "0011", "add").overflow, true);
   assert.equal(P.twosArithmetic("1011", "0011", "add").decoded, -2);
+  assert.equal(P.twosArithmetic("0110", "0011", "add").decoded, -7); // practice 35
+  assert.equal(P.twosArithmetic("0110", "0011", "add").overflow, true);
+  assert.equal(P.unsignedArithmetic("1101", "101", "multiply").bits, "1000001"); // worked multiplication
+  assert.deepEqual(P.unsignedArithmetic("10111", "11", "divide"), { quotient: 7, remainder: 2, quotientBits: "111", remainderBits: "10" }); // worked division
+});
+
+test("lab challenge carry-no-overflow has a carry-out and no overflow", () => {
+  const r = P.twosArithmetic("1011", "0111", "add");
+  assert.deepEqual([r.pattern, r.decoded, r.carryOut, r.overflow], ["0010", 2, true, false]);
+  assert.equal(P.twosArithmetic("0101", "0011", "add").carryOut, false);
+  assert.equal(P.addColumns("1011", "0111").carryOut, 1);
+  assert.equal(P.addColumns("1011", "0111").sum.join(""), "0010");
+  assert.deepEqual(P.addColumns("0101", "0011").carries, [1, 1, 1, 0]);
 });
 
 test("4.2 guide examples convert terminating fractions and identify repeating fractions", () => {
@@ -39,6 +52,7 @@ test("4.1 guide spacing and machine epsilon scale with precision and exponent", 
   assert.equal(P.spacing(0, 24), 2 ** -23);
   assert.equal(P.spacing(3, 24), 2 ** -20);
   assert.equal(P.spacing(0, 53), 2 ** -52);
+  assert.equal(P.decodeSingle("00000001").value, 2 ** -149); // sandbox subnormal
 });
 
 test("4.4 guide examples decode normal, infinity, and NaN fields", () => {

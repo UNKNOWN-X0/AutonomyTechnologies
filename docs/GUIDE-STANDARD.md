@@ -50,7 +50,7 @@ The page contains these blocks in this order. Ids are fixed because the contents
 | 9 | Explain it | `explain` | At least 6 "why" questions answered aloud, with model answers hidden. |
 | 10 | Mixed practice | `practice` | See [Practice and testing](#practice-and-testing). |
 | 11 | Exam-style problems | `exam` | At least 2 multi-part problems, each with its own hidden worked answer. |
-| 12 | Slips in the notes | `slips` | Only when verified slips exist. See [Content rules](#content-rules). |
+| 12 | Slips in the notes | `slips` | Only when verified slips exist, headed exactly "Slips in the notes". See [Content rules](#content-rules). |
 | 13 | Self-check | `checklist` | See [Practice and testing](#practice-and-testing). |
 | 14 | Source note | — | "Personal study guide based on … written in my own words; no lecture pages or figures are reproduced. Not an official FAU publication; check course details against the current notes." |
 
@@ -77,10 +77,10 @@ Long sections split into subtopics with `h3`. In the PDF each subtopic moves to 
 | Mixed practice: size | At least 20 problems, and at least one for every topic section with exercisable content. The intro states the number. |
 | Mixed practice: order | Interleaved. At most two problems in a row from the same section; a new problem type never comes straight after its worked example. |
 | Mixed practice: variety | Mix numeric problems, sign and direction questions, "what happens if" scaling questions, limit and consistency checks, and short conceptual questions. Avoid reusing a worked example's numbers. |
-| Mixed practice: answers | One hidden answer per problem, in the same order. Each answer gives the key working (not just the number), states direction or sign where relevant, and ends with a `span.sec-ref` naming the section or sections to revisit. |
+| Mixed practice: answers | One hidden answer per problem, in the same order. Each answer gives the key working (not just the number), states direction or sign where relevant, and ends with a `span.sec-ref` naming the section or sections to revisit. Problems themselves carry no `sec-ref`, because that would give away the method. |
 | Numbers | Use the constants stated in the practice intro. Re-derive every answer independently before publishing, and round to three significant figures unless the data justify more. |
 | Explain it | Questions start with "Why" or "When" and test understanding, not recall of a formula. Model answers are two or three sentences. |
-| Exam-style problems | Each chains at least two sections, has 3–5 parts that build on each other, carries a time budget (about 20 minutes), and its worked answer has one numbered step per part. |
+| Exam-style problems | Each chains at least two sections, has 3–5 parts that build on each other, carries a time budget (about 20 minutes), and its worked answer, in a `details.answers`, has one numbered step per part and names the sections it chains in `span.sec-ref`s. |
 | Self-check | One checkbox per skill (about 12–18 per chapter). Each item names the practice problems that prove the skill, as `(3, 18, 29)`, plus one item for the derivation list and one for the exam problems. `data-k` values are short, unique and never renamed. |
 
 ## Content rules
@@ -88,7 +88,7 @@ Long sections split into subtopics with `h3`. In the PDF each subtopic moves to 
 - **Source.** The current lecture notes are the authority for scope, notation, sign conventions and symbols. Write in your own words; do not copy text passages, figures or exercise sheets.
 - **Going beyond the notes.** A result the notes do not state, such as the field-line refraction rule in EEI 1.11, may be added only when it follows directly from the notes' own relations. Say so in the text: "(This rule follows directly from …; the notes only mention …)".
 - **Notation.** Use the notes' symbols (σ<sub>A</sub>, ϱ<sub>V</sub>, φ<sub>e</sub>, <var>U</var><sub>12</sub> = φ<sub>1</sub> − φ<sub>2</sub>). Where the notes are inconsistent, follow the definition and point to the slips list.
-- **Slips list.** List only issues checked against the notes, with printed page numbers. Word uncertain ones as uncertain ("probably", "reads as … ; for the next step to follow it must be …"). Distinguish errors from notation clashes. Never list a slip found only by text extraction without checking the rendered page.
+- **Slips list.** List only issues checked against the notes, with printed page numbers. Every place where the guide silently corrects the notes gets an entry. Word uncertain ones as uncertain ("probably", "reads as … ; for the next step to follow it must be …"). Distinguish errors from notation clashes. Never list a slip found only by text extraction without checking the rendered page.
 - **Honesty.** No invented statistics, exam claims or "this always comes up". The self-check is framed as chapter learning goals, not an exam specification.
 - **Language.** Plain, direct English for a first-semester student. Define each symbol on first use, keep sentences short, and prefer "you" for instructions. Use British spelling consistently within a guide.
 
@@ -134,7 +134,7 @@ A chapter may have a lab beside its guide: predict-then-reveal experiments built
 
 A guide is done when all of the following hold:
 
-1. `python3 -I tools/check-guide.py <guide>.html` exits 0. It checks the structure, recall and answer counts, section references, interleaving, contents links, local links, the hub's `data-total`, and whether the `.tex` is current. Review its warnings; each one either gets fixed or has a reason.
+1. `python3 -I tools/check-guide.py <guide>.html` exits 0. It checks the structure and block order, recall and answer counts, section references, interleaving, contents links, local links, the hub's `data-total`, and whether the `.tex` is current. Review its warnings; each one either gets fixed or has a reason.
 2. The `.tex` and `.pdf` are regenerated, and the LaTeX log shows no errors, `Missing character` lines or overfull boxes.
 3. A contact sheet of every PDF page (Ghostscript at 40 dpi) shows no split boxes, no stranded headings, and no page holding only a line or two.
 4. The page opens in Chromium at 1280 px and at 390 px wide with no console errors and no horizontal page scroll; tables scroll inside their frame. The recall, worked and answer blocks are inspected at both widths, in light and dark mode.

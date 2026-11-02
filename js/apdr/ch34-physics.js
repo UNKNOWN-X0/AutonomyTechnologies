@@ -42,6 +42,19 @@
     return x - y;
   }
 
+  // Column-by-column addition of equal-width patterns. Index 0 is the leftmost bit; carries[i] is the carry into column i.
+  function addColumns(left, right) {
+    var a = String(left), b = String(right), n = a.length;
+    if (!n || b.length !== n || !/^[01]+$/.test(a + b)) throw new RangeError("operands must be bit patterns of equal width");
+    var sum = new Array(n), carries = new Array(n), carry = 0;
+    for (var i = n - 1; i >= 0; i--) {
+      carries[i] = carry;
+      var t = Number(a[i]) + Number(b[i]) + carry;
+      sum[i] = String(t % 2); carry = t > 1 ? 1 : 0;
+    }
+    return { a: a, b: b, sum: sum, carries: carries, carryOut: carry };
+  }
+
   var api = {
     decodeInteger: function (bits, encoding, bias) { return I.decodeInteger(bits, encoding, bias); },
     convert: function (value, from, to) { return I.convert(value, from, to); },
@@ -52,6 +65,7 @@
     fractionBits: function (value, limit) { return F.fractionBits(value, limit); },
     spacing: function (exponent, precision) { return F.spacing(exponent, precision); },
     decodeSingle: function (hex) { return F.decodeSingle(hex); },
+    addColumns: addColumns,
     cancellation: cancellation,
     stableQuadratic: stableQuadratic,
     subtractExactBySterbenz: subtractExactBySterbenz,

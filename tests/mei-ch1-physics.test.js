@@ -1,7 +1,65 @@
 // Checks Chapter 1 lab answers against the logic and set definitions in the guide.
 const test = require("node:test");
 const assert = require("node:assert");
+const fs = require("fs");
+const path = require("path");
+const vm = require("vm");
 const P = require("../js/mei/ch1-physics.js");
+
+// Runs the real lab script with a stand-in DOM and returns its challenge data.
+function labChallenges() {
+  const fake = () => new Proxy(function () {}, { get: (t, k) => (k === Symbol.toPrimitive ? () => "" : fake()), apply: () => fake(), set: () => true });
+  const defs = [];
+  const ctx = vm.createContext({ document: fake(), Lab: { experiment: (d) => defs.push(d), tween: () => Promise.resolve() }, MEI1: P });
+  ctx.window = ctx;
+  vm.runInContext(fs.readFileSync(path.join(__dirname, "../js/mei/ch1-lab.js"), "utf8"), ctx);
+  return defs.flatMap((d) => d.challenges);
+}
+
+for (const c of labChallenges()) {
+  test("lab challenge " + c.id + ": answer key is computed, not typed", () => assert.equal(c.solve(), c.answer));
+}
+
+const V = (a, b, c) => (a && b) || (a && c) || (b && c);
+const cube = P.product(P.product([0, 1], [0, 1]), [0, 1]).map(([p, c]) => [...p, c]);
+
+test("practice 5: negated implication", () => {
+  for (const r of P.truthTable(P.operators.implies)) assert.equal(!r.value, r.A && !r.B);
+});
+
+test("practice 25: (A∨B)∧(A∨¬B) simplifies to A", () => {
+  for (const [a, b] of cube) assert.equal(!!((a || b) && (a || !b)), !!a);
+});
+
+test("practice 27 and exam 1: majority vote", () => {
+  assert.deepEqual([V(1, 1, 0), V(1, 1, 1)].map(Boolean), [true, true]);
+  assert.deepEqual([V(1, 0, 0), V(1, 0, 1)].map(Boolean), [false, true]);
+  assert.equal(cube.filter(([a, b, c]) => V(a, b, c)).length, 4);
+});
+
+test("practice 28: unions, intersections and products of three sets", () => {
+  const u = P.setOp(P.setOp([1, 2], [2, 3], "union"), [2, 4], "union");
+  assert.deepEqual([...u].sort(), [1, 2, 3, 4]);
+  assert.deepEqual(P.setOp(P.setOp([1, 2], [2, 3], "intersection"), [2, 4], "intersection"), [2]);
+  assert.equal(P.product(P.product([1, 2], [2, 3]), [2, 4]).length, 8);
+});
+
+test("practice 31: distributive law over all eight rows", () => {
+  for (const [a, b, c] of cube) assert.equal(!!(a && (b || c)), !!((a && b) || (a && c)));
+});
+
+test("practice 32: {0,1}³ has 8 triples", () => assert.equal(cube.length, 8));
+
+test("practice 33: satisfiability", () => {
+  const rows = cube.map(([a, b]) => [!!a, !!b]);
+  assert.equal(rows.some(([a, b]) => (a || b) && !a && !b), false);
+  assert.equal(rows.some(([a, b]) => (a || b) && !a), true);
+});
+
+test("slip page 4: the two coffee sentences differ", () => {
+  const first = (m, s, d) => !(m || s) || !d, second = (m, s, d) => !(!m && !s) || !!d;
+  assert.equal(cube.filter(([m, s, d]) => first(m, s, d) !== second(m, s, d)).length, 4);
+});
 
 test("truth tables: implication false row and contrapositive", () => {
   assert.equal(P.operators.implies(true, false), false);
@@ -22,7 +80,8 @@ test("quantifiers: finite-domain universal, existential, negation and counterexa
   assert.equal(P.quantifier(D, even, "forall"), false);
   assert.equal(P.quantifier(D, even, "exists"), true);
   assert.equal(P.quantifier(D, (x) => !even(x), "exists"), true);
-  assert.equal(P.quantifier([1, 2], (x) => [1, 2].some((y) => x < y), "forall"), false);
+  assert.equal(P.quantifier([1, 2], (x) => [1, 2].some((y) => x !== y), "forall"), true);
+  assert.equal(P.quantifier([1, 2], (y) => [1, 2].every((x) => x !== y), "exists"), false);
   assert.equal(P.quantifier([-1, 1], (x) => x * x === 1, "forall"), true);
 });
 

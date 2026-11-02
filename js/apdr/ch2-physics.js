@@ -32,6 +32,14 @@
     return nand(nand(a, a), nand(b, b));
   }
 
+  function nandCircuit(fn, a, b) {
+    if (fn === "not") return nand(a, a);
+    if (fn === "nand") return nand(a, b);
+    if (fn === "and") return nandAnd(a, b);
+    if (fn === "or") return nandOr(a, b);
+    throw new RangeError("fn must be not, nand, and, or");
+  }
+
   function delayedOutput(before, after, time, delay) {
     if (!Number.isFinite(time) || !Number.isFinite(delay) || delay < 0) {
       throw new RangeError("time and delay must be finite; delay cannot be negative");
@@ -46,6 +54,7 @@
     nand: nand,
     nandAnd: nandAnd,
     nandOr: nandOr,
+    nandCircuit: nandCircuit,
     delayedOutput: delayedOutput,
   };
   if (typeof module === "object" && module.exports) module.exports = api;

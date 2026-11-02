@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="theme-color" content="#04316A" />
     <meta name="description" content="Predict-then-reveal lab for APDR Chapter 1a: Boolean identities, NAND completeness, K-maps, Shannon expansion, algebraic normal form, and hazards." />
-    <title>Boolean Algebra and Minimization Lab · APDR Chapter 1a</title>
+    <title>Boolean Algebra and Minimisation Lab · APDR Chapter 1a</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
@@ -29,7 +29,7 @@
         </ol>
       </nav>
       <main>
-        <header class="sign"><span class="code" aria-label="Algorithms, Programming, and Data Representation">APDR</span><h1>Boolean Algebra and Minimization Lab</h1><p class="course">Algorithms, Programming, and Data Representation · Module 92313 · Chapter 1a</p><p class="meta" id="lab-meta"></p></header>
+        <header class="sign"><span class="code" aria-label="Algorithms, Programming, and Data Representation">APDR</span><h1>Boolean Algebra and Minimisation Lab</h1><p class="course">Algorithms, Programming, and Data Representation · Module 92313 · Chapter 1a</p><p class="meta" id="lab-meta"></p></header>
         <p class="standfirst">Predict first, then reveal. Check Boolean identities, build functions from NAND, minimise with maps, compare representations, and prevent a circuit glitch.</p>
         <noscript><p class="method">The experiments need JavaScript. The <a href="ch1a-boolean-algebra.html">Chapter 1a guide</a> covers the same ideas without it.</p></noscript>
 
@@ -38,25 +38,25 @@
         <section id="exp-identity" class="experiment" data-experiment="identity" aria-labelledby="exp-identity-title">
           <h2 id="exp-identity-title">1.2 Identity checks: compare every row</h2>
           <p>Check an identity by evaluating both sides on every input row. A law is not established by a few examples, but a counterexample is enough to disprove it.</p>
-          <div class="bench"><div class="stage"><canvas role="img" aria-label="Truth-table rows compare both sides of Boolean identities"></canvas><p class="stage-note">Equal outputs on every row mean the expressions are equivalent</p></div><div class="side"><div class="challenge" aria-live="polite"></div><form class="controls" onsubmit="return false"><fieldset><legend>Choose an identity</legend><label class="field-row">Law <select data-law><option value="absorption">Absorption</option><option value="demorgan">De Morgan</option></select></label><div class="row-btns"><button class="btn small" type="button" data-act="reset">Show rows</button></div></fieldset></form></div></div>
+          <div class="bench"><div class="stage"><canvas role="img" aria-label="Truth-table rows compare both sides of Boolean identities"></canvas><p class="stage-note">Equal outputs on every row mean the expressions are equivalent</p></div><div class="side"><div class="challenge" aria-live="polite"></div><form class="controls" onsubmit="return false"><fieldset><legend>Choose an identity</legend><label class="field-row">Law <select data-law><option value="absorption">Absorption</option><option value="demorgan">De Morgan</option><option value="product">(xy)′ and x′y′</option></select></label><div class="row-btns"><button class="btn small" type="button" data-act="reset">Show rows</button></div></fieldset></form></div></div>
         </section>
 
         <section id="exp-nand" class="experiment" data-experiment="nand" aria-labelledby="exp-nand-title">
           <h2 id="exp-nand-title">1.3 NAND completeness: build basic gates</h2>
-          <p>NAND means NOT-AND. Tying inputs together makes NOT; a second NAND can invert the output to make AND; De Morgan’s law gives OR.</p>
+          <p>NAND means NOT-AND: its output is 0 only when both inputs are 1. Every function here must be wired from that one gate.</p>
           <div class="bench"><div class="stage"><canvas role="img" aria-label="NAND gate connections build NOT, AND, or OR"></canvas><p class="stage-note">The wiring changes the function while the gate type stays NAND</p></div><div class="side"><div class="challenge" aria-live="polite"></div><form class="controls" onsubmit="return false"><fieldset><legend>Choose a construction</legend><label class="field-row">Function <select data-mode><option value="not">NOT A</option><option value="and">A AND B</option><option value="or">A OR B</option></select></label><div class="row-btns"><button class="btn small" type="button" data-act="reset">Show construction</button></div></fieldset></form></div></div>
         </section>
 
         <section id="exp-kmap" class="experiment" data-experiment="kmap" aria-labelledby="exp-kmap-title">
           <h2 id="exp-kmap-title">1.4 Karnaugh maps: group adjacent ones</h2>
-          <p>Rows and columns use Gray-code order, so neighboring cells differ in one input. A group of four removes two changing variables; groups may wrap around map edges.</p>
-          <div class="bench"><div class="stage"><canvas role="img" aria-label="Three-variable Karnaugh map with Gray-code columns and grouped true rows"></canvas><p class="stage-note">Bit order is A,B,C · columns BC are 00, 01, 11, 10</p></div><div class="side"><div class="challenge" aria-live="polite"></div><form class="controls" onsubmit="return false"><fieldset><legend>Map a truth set</legend><label class="field-row">True minterms <select data-map><option value="0">2, 3, 6, 7</option><option value="1">4, 5, 6, 7</option><option value="2">1, 3, 5, 7</option><option value="3">1, 2, 5, 6</option></select></label><div class="row-btns"><button class="btn small" type="button" data-act="reset">Minimise</button></div><p class="readout" aria-live="polite">Small cover: <output data-out="result">—</output></p></fieldset></form></div></div>
+          <p>Rows and columns use Gray-code order, so neighbouring cells differ in one input. A group of four removes two changing variables; groups may wrap around map edges.</p>
+          <div class="bench"><div class="stage"><canvas role="img" aria-label="Three-variable Karnaugh map with Gray-code columns and grouped true rows"></canvas><p class="stage-note">Bit order is A,B,C · columns BC are 00, 01, 11, 10</p></div><div class="side"><div class="challenge" aria-live="polite"></div><form class="controls" onsubmit="return false"><fieldset><legend>Map a truth set</legend><label class="field-row">True minterms <select data-map><option value="0">2, 3, 6, 7</option><option value="1">4, 5, 6, 7</option><option value="2">1, 3, 5, 7</option><option value="3">1, 2, 5, 6</option><option value="4">0, 2, 4, 6</option></select></label><div class="row-btns"><button class="btn small" type="button" data-act="reset">Minimise</button></div><p class="readout" aria-live="polite">Small cover: <output data-out="result">—</output></p></fieldset></form></div></div>
         </section>
 
         <section id="exp-shannon" class="experiment" data-experiment="shannon" aria-labelledby="exp-shannon-title">
           <h2 id="exp-shannon-title">1.5 Shannon expansion: split on an input</h2>
           <p>Setting a variable to 0 and 1 gives two cofactors. A fixed variable order turns these splits into an OBDD; reduction removes duplicate tests and subgraphs.</p>
-          <div class="bench"><div class="stage"><canvas role="img" aria-label="A Shannon split routes to the two cofactors"></canvas><p class="stage-note">The selected variable chooses between its two cofactors</p></div><div class="side"><div class="challenge" aria-live="polite"></div><form class="controls" onsubmit="return false"><fieldset><legend>Count reduced OBDD nodes</legend><label class="field-row">Variable order <select data-order><option value="abc">A, B, C</option><option value="bca">B, C, A</option></select></label><label class="field-row">Function <select data-function><option value="mux">A?B:C</option></select></label><div class="row-btns"><button class="btn small" type="button" data-act="reset">Count nodes</button></div><p class="readout" aria-live="polite"><output data-out="result">—</output></p></fieldset></form></div></div>
+          <div class="bench"><div class="stage"><canvas role="img" aria-label="A Shannon split routes to the two cofactors"></canvas><p class="stage-note">The selected variable chooses between its two cofactors</p></div><div class="side"><div class="challenge" aria-live="polite"></div><form class="controls" onsubmit="return false"><fieldset><legend>Count reduced OBDD nodes</legend><label class="field-row">Variable order <select data-order><option value="abc">A, B, C</option><option value="bca">B, C, A</option></select></label><p class="readout">Function: A?B:C</p><div class="row-btns"><button class="btn small" type="button" data-act="reset">Count nodes</button></div><p class="readout" aria-live="polite"><output data-out="result">—</output></p></fieldset></form></div></div>
         </section>
 
         <section id="exp-anf" class="experiment" data-experiment="anf" aria-labelledby="exp-anf-title">
@@ -67,8 +67,8 @@
 
         <section id="exp-hazard" class="experiment" data-experiment="hazard" aria-labelledby="exp-hazard-title">
           <h2 id="exp-hazard-title">1.6 Static-1 hazards: cover the handoff</h2>
-          <p>When x changes and y=z=1, the two product paths can switch at different times. The consensus term yz keeps the output high between them.</p>
-          <div class="bench"><div class="stage"><canvas role="img" aria-label="Signal lanes show two product paths and consensus coverage during a transition"></canvas><p class="stage-note">Illustrative unequal path delays · the timing is not a hardware measurement</p></div><div class="side"><div class="challenge" aria-live="polite"></div><form class="controls" onsubmit="return false"><fieldset><legend>Explore the transition</legend><label class="field-row">Fixed inputs y,z <select data-inputs><option value="11">1, 1</option><option value="01">0, 1</option><option value="00">0, 0</option></select></label><label class="field-row"><input type="checkbox" data-consensus checked /> Include consensus term yz</label><div class="row-btns"><button class="btn small" type="button" data-act="reset">Show transition</button></div><p class="readout" aria-live="polite">Output: <output data-out="result">—</output></p></fieldset></form></div></div>
+          <p>In f=xy+x'z, the two product paths can switch at different times when x changes. Follow what each path does during the change.</p>
+          <div class="bench"><div class="stage"><canvas role="img" aria-label="Signal lanes show two product paths and consensus coverage during a transition"></canvas><p class="stage-note">Illustrative unequal path delays · the timing is not a hardware measurement</p></div><div class="side"><div class="challenge" aria-live="polite"></div><form class="controls" onsubmit="return false"><fieldset><legend>Explore the transition</legend><label class="field-row">Fixed inputs y,z <select data-inputs><option value="11">1, 1</option><option value="10">1, 0</option><option value="01">0, 1</option><option value="00">0, 0</option></select></label><label class="field-row"><input type="checkbox" data-consensus checked /> Include consensus term yz</label><div class="row-btns"><button class="btn small" type="button" data-act="reset">Show transition</button></div><p class="readout" aria-live="polite">Output: <output data-out="result">—</output></p></fieldset></form></div></div>
         </section>
 
         <section id="results" aria-labelledby="results-title"><h2 id="results-title">Your results</h2><div id="lab-results"></div></section>

@@ -27,9 +27,9 @@
           <li><a href="#formula-map">Formula map</a></li>
           <li><a href="#derivations">Derive it cold</a></li>
           <li><a href="#explain">Explain it</a></li>
-          <li><a href="#slips">Source check</a></li>
           <li><a href="#practice">Mixed practice</a></li>
           <li><a href="#exam">Exam-style problems</a></li>
+          <li><a href="#slips">Slips in the notes</a></li>
           <li><a href="#checklist">Self-check</a></li>
         </ol></details>
         <ol>
@@ -44,9 +44,9 @@
           <li><a href="#formula-map">Formula map</a></li>
           <li><a href="#derivations">Derive it cold</a></li>
           <li><a href="#explain">Explain it</a></li>
-          <li><a href="#slips">Source check</a></li>
           <li><a href="#practice">Mixed practice</a></li>
           <li><a href="#exam">Exam-style problems</a></li>
+          <li><a href="#slips">Slips in the notes</a></li>
           <li><a href="#checklist">Self-check</a></li>
         </ol>
       </nav>
@@ -90,10 +90,10 @@
           <p>Attempt mixed practice before opening its worked answers.</p>
           <ol class="study-plan">
             <li><strong>Day 0:</strong> Try the cold start and study §4.1. Explain range and precision in your own words.</li>
-            <li><strong>Day 1:</strong> Rebuild the binary fraction place values in §4.2; solve practice 1–5.</li>
-            <li><strong>Day 3:</strong> Work through multiplication, addition, rounding, and exponent limits in §4.3; solve practice 6–12.</li>
-            <li><strong>About day 7:</strong> Reconstruct the single-precision fields and conversions in §4.4; solve practice 13–17.</li>
-            <li><strong>About day 14:</strong> Recall the special-value rules in §4.5; complete both exam-style problems without notes.</li>
+            <li><strong>Day 1:</strong> Rebuild the binary fraction place values in §4.2; solve practice 1, 4, 10, 13, 20, 25.</li>
+            <li><strong>Day 3:</strong> Work through multiplication, addition, rounding, and exponent limits in §4.3; solve practice 6, 7, 11, 15, 19, 23.</li>
+            <li><strong>About day 7:</strong> Reconstruct the single-precision fields and conversions in §4.4; solve practice 2, 3, 8, 12, 14, 17, 18, 21, 27, 28.</li>
+            <li><strong>About day 14:</strong> Recall the special-value rules in §4.5; solve practice 5, 9, 16, 22, 24, 26; complete both exam-style problems without notes.</li>
             <li><strong>Before the exam:</strong> Tick only skills you can demonstrate cold; revisit the sections named in missed answers.</li>
           </ol>
           <p class="method"><strong>When stuck:</strong> state the base, format, sign, and exponent convention.</p>
@@ -146,7 +146,7 @@
                 </li>
                 <li class="cm-node" data-id="special" data-deps="ieee limits" data-sec="4.5">
                   <p class="cm-title"><strong>Special values</strong> <span class="sec-ref">§4.5</span></p>
-                  <p class="cm-formula">zero · subnormal · infinity · NaN</p>
+                  <p class="cm-formula">zero · denormalised · infinity · NaN</p>
                   <p class="cm-why">Rests on: reserved exponent patterns encode values outside the normalised range.</p>
                 </li>
               </ul>
@@ -165,12 +165,20 @@
           <h2 id="s41-title">4.1 The floating-point model</h2>
           <p class="why">A fixed number of bits cannot represent every real number.</p>
           <p>Floating point uses a sign, a significand, and an exponent to cover very large and very small magnitudes.</p>
+          <h3>Why not just use more integer bits?</h3>
+          <p>An integer of 30 decimal digits needs about 100 bits in binary, because one decimal digit carries about 3.32 bits (log<sub>2</sub>10<sup>30</sup>≈100). BCD needs 30×4=120 bits, and ASCII needs 30×8=240 bits. Scientific notation avoids this cost by storing digits and scale separately.</p>
           <h3>Range and precision</h3>
-          <p>For base β, a normalised number has the form sign × significand × β<sup>exponent</sup>.</p>
+          <p>For base R (the radix), a floating-point number has the form sign × significand × R<sup>exponent</sup>.</p>
           <p>The exponent controls scale and therefore the approximate range.</p>
           <p>The number of significand bits controls precision, or how finely nearby values can be distinguished.</p>
           <p>Floating-point values are finite in number, and their spacing changes with magnitude.</p>
-          <div class="eq"><strong>Scientific notation model</strong><span class="formula">x = s × M × β<sup>E</sup></span><span class="eq-note">s is the sign, M is the significand, β is the base or radix, and E is the exponent. In binary floating point, β=2.</span></div>
+          <div class="eq"><strong>Scientific notation model</strong><span class="formula">x = ±M × R<sup>E</sup></span><span class="eq-note">M is the coefficient (also called the significand or mantissa), R is the base or radix, and E is the exponent. In binary floating point, R=2.</span></div>
+          <h3>Zones of expressibility and gaps</h3>
+          <p>Take a signed 3-digit coefficient and a signed 2-digit exponent. The positive expressible zone runs from +.001×10<sup>−99</sup> to +.999×10<sup>+99</sup>, and the negative zone mirrors it. Magnitudes above the top lie in the overflow zones. Non-zero magnitudes below the bottom lie in the underflow zones.</p>
+          <p>The gap between neighbours varies. Next to .001×10<sup>−99</sup> the neighbours are 0 and .002×10<sup>−99</sup>, so the gap is 10<sup>−102</sup> each way. The same digits at exponent −50 are 10<sup>−53</sup>, and that value can also be written with a finer exponent. Its neighbours are .999×10<sup>−53</sup> (gap 10<sup>−56</sup>) and .101×10<sup>−52</sup> (gap 10<sup>−55</sup>).</p>
+          <div class="eq"><strong>Gap in one binary zone</strong><span class="formula">Gap in [2<sup>e</sup>, 2<sup>e+1</sup>) with p significant bits = 2<sup>e−p+1</sup></span><span class="eq-note">(This follows directly from the notes’ significand model; the notes only say the gap varies.) The last of the p bits has weight 2<sup>−(p−1)</sup>, and the exponent scales it by 2<sup>e</sup>.</span></div>
+          <h3>Normalisation</h3>
+          <p>One value has many forms: 0.023×10<sup>1</sup>=0.230×10<sup>0</sup>=2.3×10<sup>−1</sup>. Hardware needs each number to have one unique form, so the coefficient is normalised to the range [1, R). In binary that range is [1, 2), so the digit before the point is always 1. For example, 1010.11<sub>2</sub>×2<sup>2</sup>=1.01011<sub>2</sub>×2<sup>5</sup>: the point moves three places left, so the exponent rises by three.</p>
           <div class="worked"><p class="worked-title">Worked example · normalise a decimal value</p><p>Write 343000 × 10<sup>−4</sup> in normalised decimal form with 1≤M&lt;10.</p><ol>
             <li>Move the decimal point in 343000 five places left to make 3.43.</li>
             <li>Increase the exponent by five to preserve the value: 3.43 × 10<sup>1</sup>.</li>
@@ -178,10 +186,11 @@
           </ol></div>
           <p class="method"><strong>Trap:</strong> moving the radix point changes the exponent in the opposite direction if the represented value is to stay the same.</p>
           <p class="lab-link"><a href="ch4-floating-point-numbers-lab.html#exp-spacing">See how exponent zones change spacing in the lab</a></p>
-          <div class="recall"><p class="recall-title">Recall check · answer without looking</p><ol><li>Which field chiefly determines range?</li><li>Which field chiefly determines precision?</li><li>Why are floating-point values not evenly spaced over the number line?</li></ol><details class="answers"><summary>Check these answers</summary><ol>
+          <div class="recall"><p class="recall-title">Recall check · answer without looking</p><ol><li>Which field chiefly determines range?</li><li>Which field chiefly determines precision?</li><li>Why are floating-point values not evenly spaced over the number line?</li><li>What makes a normalised form useful to hardware?</li></ol><details class="answers"><summary>Check these answers</summary><ol>
             <li>The exponent field. <span class="sec-ref">§4.1</span></li>
             <li>The significand field. <span class="sec-ref">§4.1</span></li>
             <li>Each exponent scales the significand by a different power of the base, so the gap between representable values grows with magnitude. <span class="sec-ref">§4.1</span></li>
+            <li>Each number gets one unique representation. <span class="sec-ref">§4.1</span></li>
           </ol></details></div>
         </section>
 
@@ -207,7 +216,7 @@
             <li>0.5×2=1.0, so the next bit is 1; the fraction is now zero.</li>
             <li>Therefore 0.6875=0.1011<sub>2</sub>. Check: 1/2+1/8+1/16=0.6875. <span class="sec-ref">§4.2</span></li>
           </ol></div>
-          <p>Some fractions, such as 0.1 in decimal, repeat in binary.</p>
+          <p>Some fractions, such as 0.1 in decimal, repeat in binary. The remainders run 0.1, 0.2, 0.4, 0.8, 0.6, 0.2, and the return to 0.2 means the bits repeat. Cutting off at 0.000110011<sub>2</sub> gives 0.099609375, close to 0.1 but not equal.</p>
           <p>A finite significand stores only an approximation of a repeating expansion.</p>
           <p class="method"><strong>Trap:</strong> a decimal fraction that looks short is not necessarily exact in binary.</p>
           <p class="lab-link"><a href="ch4-floating-point-numbers-lab.html#exp-fractions">Trace binary fraction conversion in the lab</a></p>
@@ -223,7 +232,7 @@
           <p class="why">The exponent and significand must be managed during each operation.</p>
           <p>After the exact operation, the result may need normalisation and rounding to fit the available precision.</p>
           <h3>Multiplication</h3>
-          <div class="eq"><strong>Multiply normalised values</strong><span class="formula">(M<sub>1</sub> × β<sup>E<sub>1</sub></sup>)(M<sub>2</sub> × β<sup>E<sub>2</sub></sup>) = (M<sub>1</sub>M<sub>2</sub>) × β<sup>E<sub>1</sub>+E<sub>2</sub></sup></span><span class="eq-note">Multiply the significands and add the exponents. Then normalise and round if needed.</span></div>
+          <div class="eq"><strong>Multiply normalised values</strong><span class="formula">(M<sub>1</sub> × R<sup>E<sub>1</sub></sup>)(M<sub>2</sub> × R<sup>E<sub>2</sub></sup>) = (M<sub>1</sub>M<sub>2</sub>) × R<sup>E<sub>1</sub>+E<sub>2</sub></sup></span><span class="eq-note">Multiply the significands and add the exponents. Then normalise and round if needed.</span></div>
           <div class="worked"><p class="worked-title">Worked multiplication · normalise the result</p><p>Calculate (2.6×10<sup>3</sup>)(5.4×10<sup>−2</sup>).</p><ol>
             <li>Multiply significands: 2.6×5.4=14.04.</li>
             <li>Add exponents: 3+(−2)=1, giving 14.04×10<sup>1</sup>.</li>
@@ -233,6 +242,7 @@
           <p>Before adding, express both numbers with the same exponent.</p>
           <p>Shift the significand of the value with the smaller exponent to the right by the exponent difference.</p>
           <p>This alignment can discard low-order digits before the addition is even performed.</p>
+          <div class="eq"><strong>Align, then add</strong><span class="formula">N<sub>1</sub>+N<sub>2</sub> = (M<sub>1</sub>+M<sub>2</sub>×10<sup>E<sub>2</sub>−E<sub>1</sub></sup>)×10<sup>E<sub>1</sub></sup></span><span class="eq-note">N<sub>2</sub> is the number with the smaller exponent, so E<sub>2</sub>−E<sub>1</sub> is negative and M<sub>2</sub> shifts right.</span></div>
           <div class="worked"><p class="worked-title">Worked addition · align exponents</p><p>Use two significant decimal digits to add 4.5×10<sup>3</sup> and 6.7×10<sup>2</sup>.</p><ol>
             <li>Rewrite the second value at exponent 3: 6.7×10<sup>2</sup>=0.67×10<sup>3</sup>.</li>
             <li>Add significands: (4.5+0.67)×10<sup>3</sup>=5.17×10<sup>3</sup>.</li>
@@ -241,10 +251,15 @@
           <h3>Rounding, overflow, and comparison</h3>
           <p>Truncation drops extra digits and tends to bias results in one direction.</p>
           <p>Rounding chooses a nearby representable value and usually gives a better approximation.</p>
+          <div class="worked"><p class="worked-title">Worked comparison · truncate or round</p><p>With a 2-digit coefficient, store (2.3×10<sup>1</sup>)(2.3×10<sup>1</sup>).</p><ol>
+            <li>Multiply: 2.3×2.3=5.29, and 1+1=2, giving 5.29×10<sup>2</sup>, which needs three digits.</li>
+            <li>Truncate: 5.2×10<sup>2</sup>. The error is 9, and truncation always errs low for positive values, so the error is biased.</li>
+            <li>Round: 5.3×10<sup>2</sup>. The error is only 1, and rounding errs either way, so it is unbiased. <span class="sec-ref">§4.3</span></li>
+          </ol></div>
           <p>Exponent overflow occurs when the result is too large for the format.</p>
           <p>Exponent underflow occurs when the result is too small for the normalised range.</p>
           <p>The slides describe infinity or an exception for overflow, and zero or an exception for underflow in their simplified model.</p>
-          <p>IEEE formats also provide subnormal numbers near zero.</p>
+          <p>IEEE formats also provide denormalised numbers near zero.</p>
           <p>For approximate comparisons, choose a tolerance ε that fits the scale and precision of the problem.</p>
           <div class="eq"><strong>Absolute tolerance example</strong><span class="formula">Treat a as close to b when |a−b|&lt;ε</span><span class="formula">For b=1 and ε=0.000005: 0.999995&lt;a&lt;1.000005</span><span class="eq-note">A fixed absolute tolerance may be unsuitable when magnitudes vary greatly. The slides also introduce relative closeness.</span></div>
           <p class="method"><strong>Sign check:</strong> estimate the order of magnitude before accepting a rounded result.</p>
@@ -267,7 +282,11 @@
             <tr><td>Double</td><td>64 bits</td><td>1 bit</td><td>11 bits</td><td>52 bits</td><td>53 bits for normal values</td><td>1023</td></tr>
           </tbody></table></div>
           <p>For a normalised binary value, the leading significand bit is 1 and is omitted from the stored fraction field.</p>
-          <p>The exponent field stores a biased exponent rather than a two’s-complement exponent.</p>
+          <p>The coefficient is called the significand in the standard. Single precision gives about 7 decimal digits of precision and normalised ranges of roughly ±10<sup>−38</sup> to ±10<sup>38</sup>. Double precision gives about 16 digits and roughly ±10<sup>−308</sup> to ±10<sup>308</sup>. The notes reserve single precision for when memory is scarce, or for debugging numerical work, because rounding errors show up sooner.</p>
+          <p>The exponent field stores an excess (biased) value rather than a two’s-complement exponent. This lets non-negative floats be compared with simple integer comparisons.</p>
+          <div class="tw"><table><thead><tr><th>Exponent</th><th>8-bit excess-127 pattern</th></tr></thead><tbody>
+            <tr><td>−127</td><td>0000 0000</td></tr><tr><td>0</td><td>0111 1111</td></tr><tr><td>1</td><td>1000 0000</td></tr><tr><td>128</td><td>1111 1111</td></tr>
+          </tbody></table></div>
           <div class="eq"><strong>Normalised value rule</strong><span class="formula">value = (−1)<sup>S</sup> × 1.F × 2<sup>E−bias</sup></span><span class="formula">Single bias = 127; double bias = 1023</span><span class="eq-note">S is the sign bit, E is the unsigned exponent field, and F is the stored fraction interpreted after the binary point. This rule is for normalised values.</span></div>
           <h3>Convert decimal to single precision</h3>
           <div class="worked"><p class="worked-title">Worked conversion · 42.6875</p><ol>
@@ -284,7 +303,15 @@
             <li>Restore the hidden bit: 1.1000…<sub>2</sub>=1.5.</li>
             <li>Scale: 1.5×2<sup>−2</sup>=0.375. Apply the sign: −0.375. <span class="sec-ref">§4.4</span></li>
           </ol></div>
-          <p class="method"><strong>Trap:</strong> restore the hidden leading 1 when decoding a normalised value, but do not apply that rule to a subnormal value.</p>
+          <h3>Add in single precision</h3>
+          <div class="worked"><p class="worked-title">Worked addition · 42.6875 + 0.375</p><ol>
+            <li>Read the fields: 42.6875 has exponent field 132 and 0.375 has 125. Restore the hidden bits: 1.010101011<sub>2</sub> and 1.1<sub>2</sub>.</li>
+            <li>The exponents differ by 132−125=7, so shift the smaller significand 7 places right: 1.1<sub>2</sub> becomes 0.00000011<sub>2</sub>.</li>
+            <li>Add: 1.010101011+0.00000011=1.010110001<sub>2</sub>, at exponent 5.</li>
+            <li>Check: 1.010110001<sub>2</sub>×2<sup>5</sup>=101011.0001<sub>2</sub>=43.0625, which is 42.6875+0.375.</li>
+            <li>The fields are 0 | 10000100 | 01011000100000000000000, or hexadecimal 422C 4000. <span class="sec-ref">§4.4</span></li>
+          </ol></div>
+          <p class="method"><strong>Trap:</strong> restore the hidden leading 1 when decoding a normalised value, but do not apply that rule to a denormalised value.</p>
           <p class="lab-link"><a href="ch4-floating-point-numbers-lab.html#exp-ieee">Inspect IEEE fields and trace single-precision addition in the lab</a></p>
           <div class="recall"><p class="recall-title">Recall check · answer without looking</p><ol><li>How many bits are stored in the single-precision fraction field?</li><li>What is the single-precision exponent bias?</li><li>Why can a normalised value have 24 bits of significand precision while storing only 23 fraction bits?</li></ol><details class="answers"><summary>Check these answers</summary><ol>
             <li>Twenty-three. <span class="sec-ref">§4.4</span></li>
@@ -294,25 +321,25 @@
         </section>
 
         <section id="sec-45" aria-labelledby="s45-title">
-          <h2 id="s45-title">4.5 Zero, subnormal numbers, infinity, and NaN</h2>
+          <h2 id="s45-title">4.5 Zero, denormalised numbers, infinity, and NaN</h2>
           <p class="why">Reserved exponent patterns extend useful behaviour beyond normalised values.</p>
-          <p>In single precision, exponent field zero and exponent field all ones have special interpretations.</p>
-          <div class="tw"><table><thead><tr><th>Exponent field</th><th>Fraction field</th><th>Meaning</th></tr></thead><tbody>
-            <tr><td>All zeroes</td><td>All zeroes</td><td>Positive or negative zero</td></tr>
-            <tr><td>All zeroes</td><td>Non-zero</td><td>Subnormal number</td></tr>
-            <tr><td>Neither all zeroes nor all ones</td><td>Any pattern</td><td>Normalised number</td></tr>
-            <tr><td>All ones</td><td>All zeroes</td><td>Positive or negative infinity</td></tr>
-            <tr><td>All ones</td><td>Non-zero</td><td>NaN, or not-a-number</td></tr>
+          <p>IEEE formats encode five kinds of value: zero, normalised numbers, denormalised numbers, infinity and NaN. In single precision, exponent field zero and exponent field all ones have special interpretations, so normalised exponents run from −126 to 127 rather than −127 to 128.</p>
+          <div class="tw"><table><thead><tr><th>Exponent field</th><th>Fraction field</th><th>Meaning</th><th>True exponent</th></tr></thead><tbody>
+            <tr><td>All zeroes</td><td>All zeroes</td><td>Positive or negative zero</td><td>—</td></tr>
+            <tr><td>All zeroes</td><td>Non-zero</td><td>Denormalised (subnormal) number</td><td>−126</td></tr>
+            <tr><td>Neither all zeroes nor all ones</td><td>Any pattern</td><td>Normalised number</td><td>−126 to 127</td></tr>
+            <tr><td>All ones</td><td>All zeroes</td><td>Positive or negative infinity</td><td>—</td></tr>
+            <tr><td>All ones</td><td>Non-zero</td><td>NaN, or not-a-number</td><td>—</td></tr>
           </tbody></table></div>
-          <p>For a subnormal single-precision number, the leading bit is 0 and the effective exponent is −126.</p>
-          <p>Subnormal values provide a gradual step from the smallest normalised values toward zero.</p>
-          <p>Infinity represents overflow results and some divisions by zero.</p>
-          <p>NaN represents an operation without a real-number result, such as 0/0 or infinity−infinity.</p>
+          <p>For a denormalised single-precision number, the leading bit is 0 and the effective exponent is −126.</p>
+          <p>Denormalised values provide a gradual step from the smallest normalised values toward zero.</p>
+          <p>Infinity represents overflow results and divisions of non-zero values by zero. You can do basic arithmetic with it, such as ∞+5=∞.</p>
+          <p>NaN represents an operation without a real-number result, such as 0/0, infinity−infinity, 0×∞, or the square root of a negative number.</p>
           <p>Operations on infinity and NaN follow format rules, not ordinary real-number algebra in every case.</p>
           <h3>Special arithmetic examples</h3><div class="tw"><table><thead><tr><th>Operation</th><th>Result</th></tr></thead><tbody>
             <tr><td>N ÷ ±∞</td><td>0</td></tr><tr><td>± non-zero ÷ 0</td><td>±∞</td></tr><tr><td>+∞ + +∞</td><td>+∞</td></tr><tr><td>±∞ × ±∞</td><td>±∞</td></tr>
             <tr><td>±0 ÷ ±0</td><td>NaN</td></tr><tr><td>+∞ − +∞</td><td>NaN</td></tr><tr><td>±∞ ÷ ±∞</td><td>NaN</td></tr><tr><td>±∞ × 0</td><td>NaN</td></tr>
-          </tbody></table></div><p>The sign of the infinity in signed cases depends on the operand signs. Slides note that an invalid operation may return a quiet NaN or raise a signalling-NaN exception.</p>
+          </tbody></table></div><p>The sign of the infinity in signed cases depends on the operand signs. The notes say an invalid operation yields either a NaN result (quiet NaN) or an exception (signalling NaN); this is simplified, as the slips list explains.</p>
           <div class="worked"><p class="worked-title">Worked classification · single precision fields</p><p>Classify sign 0, exponent 11111111, fraction 000…000.</p><ol>
             <li>The exponent field is all ones.</li>
             <li>The fraction field is all zeroes.</li>
@@ -320,7 +347,7 @@
           </ol></div>
           <p class="method"><strong>Trap:</strong> an all-ones exponent does not always mean infinity; inspect the fraction field to distinguish infinity from NaN.</p>
           <p class="lab-link"><a href="ch4-floating-point-numbers-lab.html#exp-special">Classify special-value field patterns in the lab</a></p>
-          <div class="recall"><p class="recall-title">Recall check · answer without looking</p><ol><li>How do you distinguish infinity from NaN?</li><li>What is the main purpose of subnormal numbers?</li><li>What does zero exponent and zero fraction encode?</li></ol><details class="answers"><summary>Check these answers</summary><ol>
+          <div class="recall"><p class="recall-title">Recall check · answer without looking</p><ol><li>How do you distinguish infinity from NaN?</li><li>What is the main purpose of denormalised numbers?</li><li>What does zero exponent and zero fraction encode?</li></ol><details class="answers"><summary>Check these answers</summary><ol>
             <li>Both use an all-ones exponent. A zero fraction means infinity; a non-zero fraction means NaN. <span class="sec-ref">§4.5</span></li>
             <li>They represent values between zero and the smallest normalised magnitude, making the transition toward zero gradual. <span class="sec-ref">§4.5</span></li>
             <li>Positive or negative zero, according to the sign bit. <span class="sec-ref">§4.5</span></li>
@@ -330,12 +357,14 @@
         <section id="formula-map">
           <h2>Formula map</h2>
           <div class="tw"><table><thead><tr><th>Idea</th><th>Relation</th><th>Use</th></tr></thead><tbody>
-            <tr><td>Floating-point model</td><td>x = s × M × β<sup>E</sup></td><td>Separate sign, significand, and scale.</td></tr>
+            <tr><td>Floating-point model</td><td>x = ±M × R<sup>E</sup></td><td>Separate sign, significand, and scale.</td></tr>
             <tr><td>Binary fraction</td><td>0.b<sub>1</sub>b<sub>2</sub>… = Σ b<sub>i</sub>2<sup>−i</sup></td><td>Convert binary fractions to decimal.</td></tr>
-            <tr><td>Multiplication</td><td>(M<sub>1</sub>β<sup>E<sub>1</sub></sup>)(M<sub>2</sub>β<sup>E<sub>2</sub></sup>) = M<sub>1</sub>M<sub>2</sub>β<sup>E<sub>1</sub>+E<sub>2</sub></sup></td><td>Multiply significands and add exponents.</td></tr>
+            <tr><td>Multiplication</td><td>(M<sub>1</sub>R<sup>E<sub>1</sub></sup>)(M<sub>2</sub>R<sup>E<sub>2</sub></sup>) = M<sub>1</sub>M<sub>2</sub>R<sup>E<sub>1</sub>+E<sub>2</sub></sup></td><td>Multiply significands and add exponents.</td></tr>
+            <tr><td>Addition</td><td>N<sub>1</sub>+N<sub>2</sub> = (M<sub>1</sub>+M<sub>2</sub>×10<sup>E<sub>2</sub>−E<sub>1</sub></sup>)×10<sup>E<sub>1</sub></sup></td><td>Align to the larger exponent, then add coefficients.</td></tr>
+            <tr><td>Gap in one zone</td><td>2<sup>e−p+1</sup></td><td>Spacing in [2<sup>e</sup>, 2<sup>e+1</sup>) with p significant bits.</td></tr>
             <tr><td>Single normalised value</td><td>(−1)<sup>S</sup> × 1.F × 2<sup>E−127</sup></td><td>Decode a normalised single-precision pattern.</td></tr>
             <tr><td>Double normalised value</td><td>(−1)<sup>S</sup> × 1.F × 2<sup>E−1023</sup></td><td>Decode a normalised double-precision pattern.</td></tr>
-            <tr><td>Subnormal single value</td><td>(−1)<sup>S</sup> × 0.F × 2<sup>−126</sup></td><td>Decode a subnormal single-precision pattern.</td></tr>
+            <tr><td>Denormalised single value</td><td>(−1)<sup>S</sup> × 0.F × 2<sup>−126</sup></td><td>Decode a denormalised single-precision pattern.</td></tr>
             <tr><td>Absolute closeness</td><td>|a−b|&lt;ε</td><td>Compare computed values with a chosen tolerance.</td></tr>
           </tbody></table></div>
           <div class="eq"><strong>Check every answer</strong><span class="formula">State the format and whether the value is normalised</span><span class="formula">Track the exponent when shifting the radix point</span><span class="formula">Check sign, scale, range, and final rounding</span><span class="eq-note">These are representation calculations, so verify the bit fields and magnitude rather than physical units.</span></div>
@@ -350,6 +379,7 @@
             <li><strong>Multiplication:</strong> use exponent laws, then normalise. <span class="sec-ref">§4.3</span></li>
             <li><strong>Addition:</strong> align exponents, combine significands, and round. <span class="sec-ref">§4.3</span></li>
             <li><strong>Single-precision decoding:</strong> recover the sign, unbiased exponent, and hidden bit. <span class="sec-ref">§4.4</span></li>
+            <li><strong>Single-precision addition:</strong> restore hidden bits, shift by the exponent difference, add, and re-encode. <span class="sec-ref">§4.4</span></li>
             <li><strong>Special values:</strong> derive the classification from exponent and fraction fields. <span class="sec-ref">§4.5</span></li>
           </ol>
         </section>
@@ -364,7 +394,7 @@
             <li>Why must exponents be aligned before adding two floating-point values?</li>
             <li>Why can rounding during addition lose a small addend?</li>
             <li>Why is the leading 1 omitted for normalised binary significands?</li>
-            <li>When would a subnormal number be used?</li>
+            <li>When would a denormalised number be used?</li>
             <li>Why should an approximate comparison use a tolerance chosen for the problem?</li>
           </ol>
           <details class="answers"><summary>Show model explanations</summary><ol>
@@ -374,70 +404,62 @@
             <li>Only values with the same exponent have significands describing the same scale. Alignment expresses both at a shared scale before combining them.</li>
             <li>Alignment shifts the smaller significand to the right. If the exponent difference is large, its significant bits may fall beyond the available precision.</li>
             <li>Every normalised binary number begins with 1 before the point, so the format can infer that bit and use its storage for another fraction bit.</li>
-            <li>A subnormal represents a non-zero value smaller than the minimum normalised magnitude, close to zero.</li>
+            <li>A denormalised represents a non-zero value smaller than the minimum normalised magnitude, close to zero.</li>
             <li>Absolute or relative error that is acceptable depends on the scale and purpose of the calculation. One fixed tolerance may be too strict for large values or too loose for small ones.</li>
           </ol></details>
         </section>
 
-        <section id="slips">
-          <h2>Source check</h2>
-          <p>The rendered slide images were checked for these range statements.</p>
-          <ul>
-            <li><strong>Slide 40 · approximate single-precision range endpoints are reversed:</strong> it prints 10<sup>38</sup> to 10<sup>−38</sup> for the positive range. The increasing-magnitude order is approximately 10<sup>−38</sup> to 10<sup>38</sup>.</li>
-            <li><strong>Slide 42 · approximate double-precision range endpoints are reversed:</strong> it prints 10<sup>308</sup> to 10<sup>−308</sup> for the positive range. The increasing-magnitude order is approximately 10<sup>−308</sup> to 10<sup>308</sup>.</li>
-          </ul>
-          <p>These are rough decimal magnitudes for normalised values, not exact endpoint values.</p>
-          <p>The later slides give the exact normalised exponent range for single precision.</p>
-          <p>The double-precision range follows from its exponent field size and bias.</p>
-        </section>
-
         <section id="practice">
           <h2>Mixed practice</h2>
-          <p>Try all 24 problems before opening the worked answers.</p>
+          <p>Try all 28 problems before opening the worked answers.</p>
           <p>The topics are interleaved so you must choose the method each time.</p>
           <ol class="problems">
-            <li>Convert 0.1011<sub>2</sub> to decimal. <span class="sec-ref">§4.2</span></li>
-            <li>How many bits of significand precision does normalised IEEE single precision provide? <span class="sec-ref">§4.4</span></li>
-            <li>Normalise 0.000101<sub>2</sub> as M×2<sup>E</sup> with 1≤M&lt;2. <span class="sec-ref">§4.1</span></li>
-            <li>Convert 0.375 decimal to binary. <span class="sec-ref">§4.2</span></li>
-            <li>In a floating-point format, which field chiefly determines range? <span class="sec-ref">§4.1</span></li>
-            <li>Multiply (3×10<sup>2</sup>)(2×10<sup>−4</sup>) and give a normalised result. <span class="sec-ref">§4.3</span></li>
-            <li>Align 7.2×10<sup>5</sup> to exponent 7. <span class="sec-ref">§4.3</span></li>
-            <li>How many stored fraction bits does double precision have? <span class="sec-ref">§4.4</span></li>
-            <li>Classify single-precision fields S=1, E=all ones, F=0. <span class="sec-ref">§4.5</span></li>
-            <li>Convert 0.01101<sub>2</sub> to decimal. <span class="sec-ref">§4.2</span></li>
-            <li>Use two significant decimal digits to round 8.46×10<sup>3</sup> + 2.1×10<sup>2</sup>. <span class="sec-ref">§4.3</span></li>
-            <li>What is the single-precision exponent bias? <span class="sec-ref">§4.4</span></li>
-            <li>Convert decimal 0.625 to binary. <span class="sec-ref">§4.2</span></li>
-            <li>For normalised single precision with exponent field E=130, what is the unbiased exponent? <span class="sec-ref">§4.4</span></li>
-            <li>State one reason truncation can be less desirable than rounding. <span class="sec-ref">§4.3</span></li>
-            <li>Classify single-precision fields E=0 and F non-zero. <span class="sec-ref">§4.5</span></li>
-            <li>For 1.25×2<sup>3</sup>, give the decimal value. <span class="sec-ref">§4.1</span></li>
-            <li>How many total bits are used in double precision? <span class="sec-ref">§4.4</span></li>
-            <li>Give an absolute-tolerance test for a value a to be close to b using ε. <span class="sec-ref">§4.3</span></li>
-            <li>Convert 1.101<sub>2</sub> to decimal. <span class="sec-ref">§4.2</span></li>
-            <li>Why is 1.25×2<sup>3</sup> an exact binary value? <span class="sec-ref">§4.2</span></li>
-            <li>What do ±non-zero ÷ 0 and ±0 ÷ ±0 produce? <span class="sec-ref">§4.5</span></li>
-            <li>What happens to the exponent when multiplying two floating-point values? <span class="sec-ref">§4.3</span></li>
-            <li>When the exponent field is all ones and the fraction is zero, what is the value when S=0? <span class="sec-ref">§4.5</span></li>
+            <li>Convert 0.1101<sub>2</sub> to decimal.</li>
+            <li>How many bits of significand precision does normalised IEEE single precision provide?</li>
+            <li>Normalise 0.00111<sub>2</sub> as M×2<sup>E</sup> with 1≤M&lt;2.</li>
+            <li>Convert 0.375 decimal to binary.</li>
+            <li>In a floating-point format, which field chiefly determines range?</li>
+            <li>Multiply (3×10<sup>2</sup>)(5×10<sup>−4</sup>) and give a normalised result.</li>
+            <li>Align 7.2×10<sup>5</sup> to exponent 7.</li>
+            <li>How many stored fraction bits does double precision have?</li>
+            <li>Classify single-precision fields S=1, E=all ones, F=0.</li>
+            <li>Convert 0.01011<sub>2</sub> to decimal.</li>
+            <li>Use two significant decimal digits to round 8.46×10<sup>3</sup> + 2.1×10<sup>2</sup>.</li>
+            <li>What is the single-precision exponent bias?</li>
+            <li>Convert decimal 0.4375 to binary.</li>
+            <li>For normalised single precision with exponent field E=130, what is the unbiased exponent?</li>
+            <li>State one reason truncation can be less desirable than rounding.</li>
+            <li>Classify single-precision fields E=0 and F non-zero.</li>
+            <li>For 1.25×2<sup>3</sup>, give the decimal value.</li>
+            <li>How many total bits are used in double precision?</li>
+            <li>Give an absolute-tolerance test for a value a to be close to b using ε.</li>
+            <li>Convert 1.101<sub>2</sub> to decimal.</li>
+            <li>Why is 1.25×2<sup>3</sup> an exact binary value?</li>
+            <li>What do ±non-zero ÷ 0 and ±0 ÷ ±0 produce?</li>
+            <li>What happens to the exponent when multiplying two floating-point values?</li>
+            <li>When the exponent field is all ones and the fraction is zero, what is the value when S=0?</li>
+            <li>Is 0.1 finite in binary? Give the first 8 bits after the point.</li>
+            <li>With fixed p, what happens to the gap from [8, 16) to [16, 32)?</li>
+            <li>Encode 0.375 in single precision, in hexadecimal.</li>
+            <li>Decode the single-precision word C154 0000.</li>
           </ol>
           <details class="answers"><summary>Show worked answers</summary><ol>
-            <li>1/2+1/8+1/16=0.6875. <span class="sec-ref">§4.2</span></li>
+            <li>1/2+1/4+1/16=0.8125. <span class="sec-ref">§4.2</span></li>
             <li>24 bits: the 23 stored fraction bits plus the implicit leading 1. <span class="sec-ref">§4.4</span></li>
-            <li>1.01<sub>2</sub>×2<sup>−4</sup>. The point moves four places right to make the significand 1.01, so the exponent is −4. <span class="sec-ref">§4.1</span></li>
+            <li>1.11<sub>2</sub>×2<sup>−3</sup>. The point moves three places right to make the significand 1.11, so the exponent is −3. <span class="sec-ref">§4.1</span></li>
             <li>0.375=3/8=0.011<sub>2</sub>. <span class="sec-ref">§4.2</span></li>
             <li>The exponent field. <span class="sec-ref">§4.1</span></li>
-            <li>Multiply significands: 6. Add exponents: −2. Result 6×10<sup>−2</sup>, normalised as 6×10<sup>−2</sup>. <span class="sec-ref">§4.3</span></li>
+            <li>Multiply significands: 15. Add exponents: −2. Result 15×10<sup>−2</sup>, normalised as 1.5×10<sup>−1</sup>. <span class="sec-ref">§4.3</span></li>
             <li>7.2×10<sup>5</sup>=0.072×10<sup>7</sup>; shift the significand two places right as the exponent rises by two. <span class="sec-ref">§4.3</span></li>
             <li>52 stored fraction bits. <span class="sec-ref">§4.4</span></li>
             <li>Negative infinity: all-ones exponent and zero fraction mean infinity; sign bit 1 makes it negative. <span class="sec-ref">§4.5</span></li>
-            <li>1/4+1/8+1/32=0.40625. <span class="sec-ref">§4.2</span></li>
+            <li>1/4+1/16+1/32=0.34375. <span class="sec-ref">§4.2</span></li>
             <li>Align 2.1×10<sup>2</sup>=0.21×10<sup>3</sup>. Sum 8.67×10<sup>3</sup>; to two significant digits this is 8.7×10<sup>3</sup>. <span class="sec-ref">§4.3</span></li>
             <li>127. <span class="sec-ref">§4.4</span></li>
-            <li>0.625=1/2+1/8=0.101<sub>2</sub>. <span class="sec-ref">§4.2</span></li>
+            <li>0.4375=1/4+1/8+1/16=0.0111<sub>2</sub>. <span class="sec-ref">§4.2</span></li>
             <li>130−127=3. <span class="sec-ref">§4.4</span></li>
             <li>Truncation always discards in the same direction for positive values and can introduce a biased error. <span class="sec-ref">§4.3</span></li>
-            <li>A subnormal number. The exponent is zero and the fraction is non-zero. <span class="sec-ref">§4.5</span></li>
+            <li>A denormalised number. The exponent is zero and the fraction is non-zero. <span class="sec-ref">§4.5</span></li>
             <li>1.25×8=10. <span class="sec-ref">§4.1</span></li>
             <li>64 bits: one sign, eleven exponent, and 52 fraction bits. <span class="sec-ref">§4.4</span></li>
             <li>For example, treat a as close to b when |a−b|&lt;ε, with ε chosen for the expected scale and precision. <span class="sec-ref">§4.3</span></li>
@@ -446,6 +468,10 @@
             <li>±∞ and NaN, respectively. The first is division of a non-zero value by zero; zero divided by zero has no real result. <span class="sec-ref">§4.5</span></li>
             <li>Add the exponents and multiply the significands, then normalise if needed. <span class="sec-ref">§4.3</span></li>
             <li>Positive infinity. <span class="sec-ref">§4.5</span></li>
+            <li>No. Doubling the remainders gives 0.00011001…<sub>2</sub>, and the remainder 0.2 recurs, so the bits repeat without end. <span class="sec-ref">§4.2</span></li>
+            <li>It doubles: e rises from 3 to 4 while p stays fixed, and the gap is 2<sup>e−p+1</sup>. <span class="sec-ref">§4.1</span></li>
+            <li>0.375=1.1<sub>2</sub>×2<sup>−2</sup>. E=125=01111101<sub>2</sub>, F=1000…, so the word is 3EC0 0000. <span class="sec-ref">§4.4</span></li>
+            <li>S=1, E=10000010<sub>2</sub>=130, so the exponent is 3. F=10101000…, so the value is −1.10101<sub>2</sub>×2<sup>3</sup>=−13.25. <span class="sec-ref">§4.4</span></li>
           </ol></details>
         </section>
 
@@ -460,7 +486,7 @@
             <li>Normalise it and identify sign, exponent, and stored fraction.</li>
             <li>Give the exponent field and verify by decoding.</li>
           </ol>
-          <details><summary>Show the worked answer</summary><ol>
+          <details class="answers"><summary>Show the worked answer</summary><ol>
             <li>13.25=1101.01<sub>2</sub>, since 13=1101<sub>2</sub> and 0.25=0.01<sub>2</sub>. <span class="sec-ref">§4.2</span></li>
             <li>Normalise: 1.10101×2<sup>3</sup>. The sign is 0. The stored fraction is 10101000000000000000000 after padding to 23 bits. <span class="sec-ref">§4.4</span></li>
             <li>Biased exponent is 3+127=130=10000010<sub>2</sub>. The pattern is 0 | 10000010 | 10101000000000000000000. Decoding restores 1.10101<sub>2</sub>×2<sup>3</sup>=13.25. <span class="sec-ref">§4.4</span></li>
@@ -471,31 +497,49 @@
             <li>Align both values to exponent 4.</li>
             <li>Add the significands and round to two significant digits.</li>
             <li>Compare the rounded result with the exact decimal sum and explain the source of the difference.</li>
+            <li>Carry the same alignment into single precision: add 13.25 and 0.375, and give the fields of the sum.</li>
           </ol>
-          <details><summary>Show the worked answer</summary><ol>
+          <details class="answers"><summary>Show the worked answer</summary><ol>
             <li>5.6×10<sup>2</sup>=0.056×10<sup>4</sup>. <span class="sec-ref">§4.3</span></li>
             <li>(3.4+0.056)×10<sup>4</sup>=3.456×10<sup>4</sup>, which rounds to 3.5×10<sup>4</sup>. <span class="sec-ref">§4.3</span></li>
             <li>The exact sum is 34560 and the rounded result is 35000. The smaller addend contributes digits beyond the two-digit precision, so rounding changes the stored result. <span class="sec-ref">§4.3</span></li>
+            <li>13.25=1.10101<sub>2</sub>×2<sup>3</sup> and 0.375=1.1<sub>2</sub>×2<sup>−2</sup>. The exponents differ by 5, so 1.1<sub>2</sub> becomes 0.000011<sub>2</sub>. The sum is 1.101101<sub>2</sub>×2<sup>3</sup>=13.625. The fields are 0 | 10000010 | 10110100000000000000000. <span class="sec-ref">§4.4</span></li>
           </ol></details>
+        </section>
+
+        <section id="slips">
+          <h2>Slips in the notes</h2>
+          <p>Each item was checked on the rendered slide. The guide uses the corrected form; numbers are PDF slide numbers.</p>
+          <ul>
+            <li><strong>Slide 3 · light year:</strong> printed as 9,130,000,000,000 km. The accepted value is about 9.46×10<sup>12</sup> km.</li>
+            <li><strong>Slide 3 · solar mass:</strong> printed as 2 followed by nine groups of 000, which is 2×10<sup>27</sup> kg. The accepted value is about 2×10<sup>30</sup> kg.</li>
+            <li><strong>Slide 3 · electron diameter:</strong> printed as 10<sup>−20</sup> m. This is probably only illustrative, because an electron has no established diameter. The guide does not use it.</li>
+            <li><strong>Slide 40 · single-precision range endpoints are reversed:</strong> it prints 10<sup>38</sup> to 10<sup>−38</sup> for the positive range. In increasing order the range is approximately 10<sup>−38</sup> to 10<sup>38</sup>, and the negative range is −10<sup>38</sup> to −10<sup>−38</sup> as printed.</li>
+            <li><strong>Slide 42 · double-precision range endpoints are reversed:</strong> it prints 10<sup>308</sup> to 10<sup>−308</sup> for the positive range. In increasing order the range is approximately 10<sup>−308</sup> to 10<sup>308</sup>.</li>
+            <li><strong>Slide 49 · signalling NaN (simplified):</strong> it presents a signalling NaN as the outcome of an operation that raises an exception. In IEEE 754 a signalling NaN is an encoding that raises the exception when it is used. Learn the slide’s wording, but know that it is a simplification.</li>
+            <li><strong>Slides 41 and 47–48 · notation clash, not an error:</strong> slide 41 lists −127 and 128 as excess values, but those two patterns are reserved. Slide 48 reconciles this: the normalised range is −126 to 127.</li>
+            <li><strong>Slides 40 and 42 · notation clash, not an error:</strong> F is labelled “Significand”, but it holds only the stored bits after the hidden 1. The guide calls F the fraction field.</li>
+          </ul>
+          <p>The decimal ranges are rough magnitudes, not exact endpoint values.</p>
         </section>
 
         <section id="checklist">
           <h2>Self-check</h2>
           <p>Tick a skill only in a later session, at least one day after studying, when you can demonstrate it without notes.</p>
           <ul>
-            <li class="check"><label><input type="checkbox" data-k="model" />Explain how significand and exponent affect precision and range. (3, 5)</label></li>
+            <li class="check"><label><input type="checkbox" data-k="model" />Explain how significand and exponent affect precision and range. (5, 26)</label></li>
             <li class="check"><label><input type="checkbox" data-k="normalise" />Normalise a floating-point value and preserve its magnitude. (3)</label></li>
             <li class="check"><label><input type="checkbox" data-k="binary-fraction" />Convert binary fractions to decimal. (1, 10, 20)</label></li>
             <li class="check"><label><input type="checkbox" data-k="decimal-fraction" />Convert terminating decimal fractions to binary. (4, 13)</label></li>
-            <li class="check"><label><input type="checkbox" data-k="repeat" />Explain why some decimal fractions repeat in binary. (21)</label></li>
+            <li class="check"><label><input type="checkbox" data-k="repeat" />Explain why some decimal fractions repeat in binary. (25)</label></li>
             <li class="check"><label><input type="checkbox" data-k="multiply" />Multiply floating-point numbers and normalise. (6)</label></li>
-            <li class="check"><label><input type="checkbox" data-k="align" />Align exponents before adding. (7, 11, 24)</label></li>
-            <li class="check"><label><input type="checkbox" data-k="round" />Round results to a stated precision. (11, 15, 24)</label></li>
+            <li class="check"><label><input type="checkbox" data-k="align" />Align exponents before adding. (7, 11)</label></li>
+            <li class="check"><label><input type="checkbox" data-k="round" />Round results to a stated precision. (11, 15)</label></li>
             <li class="check"><label><input type="checkbox" data-k="tolerance" />State an approximate comparison using tolerance. (19)</label></li>
             <li class="check"><label><input type="checkbox" data-k="single-fields" />State the single-precision field sizes and bias. (2, 12)</label></li>
-            <li class="check"><label><input type="checkbox" data-k="encode" />Encode a decimal value in single precision. (exam 1)</label></li>
-            <li class="check"><label><input type="checkbox" data-k="decode" />Decode a normalised single-precision value. (14, exam 1)</label></li>
-            <li class="check"><label><input type="checkbox" data-k="subnormal" />Classify a subnormal pattern and explain its role. (16)</label></li>
+            <li class="check"><label><input type="checkbox" data-k="encode" />Encode a decimal value in single precision. (27, exam 1)</label></li>
+            <li class="check"><label><input type="checkbox" data-k="decode" />Decode a normalised single-precision value. (14, 28, exam 1)</label></li>
+            <li class="check"><label><input type="checkbox" data-k="subnormal" />Classify a denormalised pattern and explain its role. (16)</label></li>
             <li class="check"><label><input type="checkbox" data-k="special" />Classify special-value fields and predict basic infinity/NaN arithmetic. (9, 22, 24)</label></li>
             <li class="check"><label><input type="checkbox" data-k="derive" />Rebuild the derivations from the list.</label></li>
             <li class="check"><label><input type="checkbox" data-k="exam" />Complete both exam-style problems with checks.</label></li>

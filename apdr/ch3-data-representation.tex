@@ -97,8 +97,8 @@ Study one section, hide it, and reconstruct the rules and examples from memory. 
 \item \textbf{Day 0:} Try the cold start and study §3.1. Convert values both ways without a calculator.
 \item \textbf{Day 1:} Rebuild the integer-encoding table in §3.2; solve practice 1–8.
 \item \textbf{Day 3:} Recall the character encodings in §3.3 and work through unsigned arithmetic in §3.4.
-\item \textbf{About day 7:} Re-derive two’s-complement addition and subtraction in §3.5; solve practice 9–16.
-\item \textbf{About day 14:} Complete both exam-style problems without notes and check the source typo.
+\item \textbf{About day 7:} Re-derive two’s-complement addition and subtraction in §3.5; solve practice 9–28.
+\item \textbf{About day 14:} Complete the three exam-style problems without notes and read the slips list.
 \item \textbf{Before the exam:} Tick only skills you can demonstrate cold; revisit sections named in missed answers.
 \end{enumerate}
 
@@ -228,7 +228,7 @@ Because 8=2\textsuperscript{3}, each octal digit corresponds to three binary dig
 
 \begin{equationcard}{Compact binary groups}
 \[ \begin{gathered} 10101_{2}\, =\, 010\, 101\, =\, 25_{8} \\ 10010100_{2}\, =\, 1001\, 0100\, =\, 94_{16} \\ 1\, \text{byte}\, =\, 8\, \text{bits}\, =\, 2\, \text{hexadecimal}\, \text{digits} \end{gathered} \]
-{\small The lecture uses 16-bit words and 32-bit long words as examples; the sizes named by these terms can depend on a computer architecture.}
+{\small The lecture uses 16-bit words and 32-bit long words as examples; the sizes named by these terms can depend on a computer architecture. (This goes beyond the notes, which give only those examples.)}
 \end{equationcard}
 
 \Needspace{5\baselineskip}
@@ -278,11 +278,31 @@ An unsigned n-bit pattern represents 0 through 2\textsuperscript{n}\ensuremath{-
 \end{keepsection}
 
 \begin{keepsection}
-\Needspace{17\baselineskip}
+\Needspace{18\baselineskip}
+\subsection{What a good encoding should offer}
+
+\Needspace{15\baselineskip}
+The lecture lists the properties an integer encoding should have: one bit pattern per value, equal numbers of positive and negative values, the largest possible range, no gaps in the range, and fast, cheap arithmetic hardware. No encoding here has all of them, as this comparison for n bits shows.
+
+\Needspace{10\baselineskip}
+\begin{center}\small\begin{tabularx}{\linewidth}{>{\raggedright\arraybackslash}X>{\raggedright\arraybackslash}X>{\raggedright\arraybackslash}X>{\raggedright\arraybackslash}X}\toprule
+\textbf{Encoding} & \textbf{Patterns for zero} & \textbf{Equal positive and negative?} & \textbf{Arithmetic hardware} \\ \midrule
+Sign and magnitude & Two & Yes & Costly: compares signs and needs a subtractor \\
+One’s complement & Two & Yes & Needs carry-out adjustments \\
+Two’s complement & One & No, one extra negative & Simplest: X \ensuremath{-} Y = X + (\ensuremath{-}Y) uses the adder alone \\
+Excess-B & One & Depends on B & Chosen for ordering, covered next \\
+\bottomrule\end{tabularx}\end{center}
+\end{keepsection}
+
+\begin{keepsection}
+\Needspace{15\baselineskip}
 \subsection{Two’s complement and bias}
 
-\Needspace{14\baselineskip}
+\Needspace{12\baselineskip}
 To form \ensuremath{-}x in n-bit two’s complement, invert all n bits of x and add 1; discard a carry beyond the width. The minimum value \ensuremath{-}2\textsuperscript{n\ensuremath{-}1} is the exception: its positive counterpart is outside the signed range, so fixed-width negation leaves the same pattern and overflows. Equivalently, interpret a pattern with top bit 1 by subtracting 2\textsuperscript{n} from its unsigned value. In excess-B notation, actual value = stored unsigned value \ensuremath{-} B. The lecture’s three-bit excess-4 example therefore maps 000 to \ensuremath{-}4 and 111 to 3.
+
+\Needspace{12\baselineskip}
+Excess exists to keep numbers in order. In two’s complement a negative value starts with 1, so comparing patterns as unsigned numbers ranks every negative value above every positive one. In excess notation the all-zeros pattern is the smallest value and the all-ones pattern the largest, so the unsigned comparison gives the right order.
 
 \begin{equationcard}{Decode rules}
 \[ \begin{gathered} \text{Two}’\mathrm{s}-\text{complement}\, \text{value}\, =\, \text{unsigned}(\text{pattern})\, -\, 2^{\mathrm{n}}\, \text{when}\, \text{the}\, \text{top}\, \text{bit}\, \text{is}\, 1 \\ \text{Negate}\, \mathrm{x}:\, \text{invert}\, \mathrm{n}\, \text{bits},\, \text{then}\, \text{add}\, 1 \\ \text{Excess}-\mathrm{B}\, \text{value}\, =\, \text{stored}\, \text{value}\, -\, \mathrm{B} \end{gathered} \]
@@ -291,22 +311,27 @@ To form \ensuremath{-}x in n-bit two’s complement, invert all n bits of x and 
 \end{keepsection}
 
 \begin{keepsection}
-\Needspace{10\baselineskip}
+\Needspace{11\baselineskip}
 \subsection{BCD stores decimal digits separately}
 
-\Needspace{7\baselineskip}
+\Needspace{8\baselineskip}
 In four-bit BCD, each decimal digit has its own four-bit code. For example, decimal 59 is 0101 1001 in BCD, while the ordinary binary value 59 is 00111011. BCD uses more bits but keeps each decimal digit directly readable.
+
+\Needspace{7\baselineskip}
+A BCD digit usually takes four or eight bits. With four, only 0000–1001 are used; the six patterns 1010–1111 are not valid digits. The lecture’s number 9876510 needs 7\ensuremath{\times}4=28 bits in BCD but 24 bits in ordinary binary.
 
 \Needspace{5\baselineskip}
 \begin{notebox}\textbf{Trap:} do not convert all BCD bits as one binary number. Decode each four-bit group as a decimal digit.\end{notebox}
 
-\Needspace{10\baselineskip}
+\Needspace{12\baselineskip}
 \begin{recallbox}{Recall check \ensuremath{\cdot} answer without looking}
-\Needspace{5\baselineskip}
+\Needspace{8\baselineskip}
 \begin{enumerate}
 \item What is the four-bit two’s-complement range?
 \item Why is the two’s-complement range asymmetric?
 \item What is the BCD encoding of decimal 42?
+\item Which property does excess notation offer that two’s complement lacks?
+\item How many four-bit patterns are unused in BCD?
 \end{enumerate}
 
 \nopagebreak[4]{\small\itshape Answers: see “3.2 Integer representations” under Answers at the end.}
@@ -321,11 +346,14 @@ In four-bit BCD, each decimal digit has its own four-bit code. For example, deci
 Numbers are not the only data stored as bits. A character encoding assigns numeric codes to letters, digits, punctuation, and control characters.
 
 \begin{keepsection}
-\Needspace{14\baselineskip}
+\Needspace{16\baselineskip}
 \subsection{ASCII and Unicode}
 
-\Needspace{11\baselineskip}
-ASCII uses seven bits, giving 128 code values. The lecture describes eight-bit extensions that use the additional 128 patterns, but those upper values depend on the particular extension. Unicode assigns code points to characters across many writing systems; its first 128 code points match ASCII. A code point and its byte encoding are related but are not the same concept.
+\Needspace{13\baselineskip}
+ASCII uses seven bits, giving 128 code values. The lecture describes eight-bit extensions that use the additional 128 patterns, but those upper values depend on the particular extension. Unicode assigns code points to characters across many writing systems; its first 128 code points match ASCII. A code point and its byte encoding are related but are not the same concept. (This distinction goes beyond the notes, which do not discuss byte encodings.)
+
+\Needspace{13\baselineskip}
+The 128 ASCII patterns divide into 52 letters (26 lowercase and 26 uppercase), 10 digits, 32 punctuation marks and 34 others: whitespace such as space, tab and return, plus control characters. The lecture’s table reads by position: bits 6–4 pick the column and bits 3–0 the row, so F, 100 0110, sits in column 100 and row 0110. Unicode aims to give every character in any language a number. The lecture says over 120,000 are defined, and the first 65,536 (the 16-bit range) cover the world’s major alphabets.
 
 \begin{equationcard}{Character-code facts}
 \[ \begin{gathered} 7-\text{bit}\, \text{ASCII}:\, 2^{7}\, =\, 128\, \text{code}\, \text{values} \\ \text{ASCII}\, \text{code}\, \text{points}:\, 0\, …\, 127 \end{gathered} \]
@@ -346,12 +374,14 @@ The lecture’s example encodes “Fred” in hexadecimal as 46 72 65 64.
 \Needspace{5\baselineskip}
 \begin{notebox}\textbf{Trap:} an encoding is a mapping, not a property of the bit pattern by itself. Identify the character set and any byte encoding before decoding text.\end{notebox}
 
-\Needspace{9\baselineskip}
+\Needspace{11\baselineskip}
 \begin{recallbox}{Recall check \ensuremath{\cdot} answer without looking}
-\Needspace{4\baselineskip}
+\Needspace{7\baselineskip}
 \begin{enumerate}
 \item How many code values are available in seven-bit ASCII?
 \item What is the relation between ASCII and the first 128 Unicode code points?
+\item How many ASCII patterns are letters, and how many are digits?
+\item How many characters does the 16-bit Unicode range hold?
 \end{enumerate}
 
 \nopagebreak[4]{\small\itshape Answers: see “3.3 Character data” under Answers at the end.}
@@ -366,11 +396,11 @@ The lecture’s example encodes “Fred” in hexadecimal as 46 72 65 64.
 Binary arithmetic follows the same place-value logic as decimal arithmetic. Carries and borrows move between columns, while the fixed bit width limits which values can be stored.
 
 \begin{keepsection}
-\Needspace{13\baselineskip}
+\Needspace{15\baselineskip}
 \subsection{Add and subtract}
 
-\Needspace{10\baselineskip}
-Add each column and carry 1 when a column totals 2. For subtraction, borrow from a higher column when the current minuend bit is too small; a borrowed binary 1 is worth 2 in the current column. Subtraction can also be checked by adding the difference to the subtrahend.
+\Needspace{12\baselineskip}
+Add each column and carry 1 when a column totals 2. In a subtraction, the \textbf{minuend} is the number subtracted from and the \textbf{subtrahend} is the number being subtracted: in 612\ensuremath{-}485, 612 is the minuend and 485 the subtrahend. For subtraction, borrow from a higher column when the current minuend bit is too small; a borrowed binary 1 is worth 2 in the current column. Subtraction can also be checked by adding the difference to the subtrahend.
 
 \begin{workedbox}{Worked addition \ensuremath{\cdot} include the carry}
 Add 111011\textsubscript{2} and 101010\textsubscript{2}.
@@ -382,6 +412,20 @@ Add 111011\textsubscript{2} and 101010\textsubscript{2}.
 \item The result is 1100101\textsubscript{2}. Check: 59+42=101, and 1100101\textsubscript{2}=101. \hfill{\small\color{FAUblue}§3.4}
 \end{enumerate}
 \end{workedbox}
+
+\begin{workedbox}{Worked subtraction \ensuremath{\cdot} borrow across zeros}
+Subtract 10011\textsubscript{2} from 1000101\textsubscript{2}, numbering columns from 0 at the right.
+
+\Needspace{11\baselineskip}
+\begin{enumerate}
+\item Column 0: 1\ensuremath{-}1=0.
+\item Column 1: 0\ensuremath{-}1 needs a borrow. Column 2 drops from 1 to 0, and column 1 becomes 10, so 10\ensuremath{-}1=1.
+\item Columns 2 and 3: 0\ensuremath{-}0=0 each.
+\item Column 4: 0\ensuremath{-}1 needs a borrow, but column 5 is 0. Borrow from column 6, which drops to 0. Column 5 becomes 10, lends 1 and keeps 1, and column 4 becomes 10, so 10\ensuremath{-}1=1.
+\item Column 5: 1\ensuremath{-}0=1. Column 6: 0.
+\item The result is 0110010\textsubscript{2}. Check: 69\ensuremath{-}19=50, and 110010\textsubscript{2}=50. \hfill{\small\color{FAUblue}§3.4}
+\end{enumerate}
+\end{workedbox}
 \end{keepsection}
 
 \begin{keepsection}
@@ -389,22 +433,49 @@ Add 111011\textsubscript{2} and 101010\textsubscript{2}.
 \subsection{Multiply and divide}
 
 \Needspace{10\baselineskip}
-Binary multiplication uses partial products, like decimal long multiplication, but each multiplier bit is only 0 or 1. Binary division uses quotient and remainder. For divisor d\ensuremath{\neq}0, dividend = quotient\ensuremath{\times}divisor + remainder, where 0\ensuremath{\leq}remainder\ensuremath{<}divisor.
+Binary multiplication uses partial products, like decimal long multiplication, but each multiplier bit is only 0 or 1. Binary division uses quotient and remainder. For divisor d\ensuremath{>}0, dividend = quotient\ensuremath{\times}divisor + remainder, where 0\ensuremath{\leq}remainder\ensuremath{<}divisor.
 
 \begin{equationcard}{Division check}
 \[ \begin{gathered} \text{dividend}\, =\, \text{quotient}\, \times \, \text{divisor}\, +\, \text{remainder} \\ 0\, \leq \, \text{remainder}\, <\, \text{divisor} \end{gathered} \]
 {\small Substitute the quotient, divisor, and remainder to check a division result.}
 \end{equationcard}
 
-\Needspace{5\baselineskip}
-\begin{notebox}\textbf{Memory hook:} in binary addition, 1+1 writes 0 and carries 1. In subtraction, a borrow makes the current column worth 2 before subtracting.\end{notebox}
+\begin{workedbox}{Worked multiplication \ensuremath{\cdot} a carry of 10}
+Multiply 1111\textsubscript{2} by 111\textsubscript{2}. The partial products are 1111, 11110 and 111100. Add them column by column from the right.
+
+\Needspace{9\baselineskip}
+\begin{enumerate}
+\item Column 0 totals 1: write 1. Column 1 totals 2: write 0, carry 1.
+\item Column 2 holds three 1s plus the carry, total 4, or 100\textsubscript{2}. Write 0 and carry 10\textsubscript{2}, which puts 2 in the next column.
+\item Column 3 totals 3+2=5: write 1, carry 2. Column 4 totals 2+2=4: write 0, carry 2.
+\item Column 5 totals 1+2=3: write 1, carry 1. Column 6 is the carry: write 1.
+\item The result is 1101001\textsubscript{2}. Check: 15\ensuremath{\times}7=105=64+32+8+1. \hfill{\small\color{FAUblue}§3.4}
+\end{enumerate}
+\end{workedbox}
+
+\begin{workedbox}{Worked long division \ensuremath{\cdot} quotient and remainder}
+Divide 110101\textsubscript{2} by 101\textsubscript{2}.
+
+\Needspace{8\baselineskip}
+\begin{enumerate}
+\item The first three bits, 110, are at least 101: quotient bit 1, leaving 110\ensuremath{-}101=1.
+\item Bring down 1 to get 11, less than 101: quotient bit 0.
+\item Bring down 0 to get 110: quotient bit 1, leaving 1.
+\item Bring down 1 to get 11: quotient bit 0. No bits remain, so the remainder is 11\textsubscript{2}.
+\item Quotient 1010\textsubscript{2}, remainder 11\textsubscript{2}. Check: 53=10\ensuremath{\times}5+3 and 0\ensuremath{\leq}3\ensuremath{<}5. \hfill{\small\color{FAUblue}§3.4}
+\end{enumerate}
+\end{workedbox}
+
+\Needspace{6\baselineskip}
+\begin{notebox}\textbf{Memory hook:} in binary addition, 1+1 writes 0 and carries 1. In subtraction, a borrow makes the current column worth 2 before subtracting. In multiplication, a column can total more than 3, so a carry can be 10\textsubscript{2}.\end{notebox}
 
 \Needspace{9\baselineskip}
 \begin{recallbox}{Recall check \ensuremath{\cdot} answer without looking}
-\Needspace{4\baselineskip}
+\Needspace{5\baselineskip}
 \begin{enumerate}
 \item What bit do you write for 1+1, and what do you carry?
 \item What inequality must the remainder satisfy?
+\item In 9\ensuremath{-}4, which number is the subtrahend?
 \end{enumerate}
 
 \nopagebreak[4]{\small\itshape Answers: see “3.4 Unsigned binary arithmetic” under Answers at the end.}
@@ -419,14 +490,14 @@ Binary multiplication uses partial products, like decimal long multiplication, b
 Two’s complement lets the same adder perform signed addition and subtraction. Correct bit operations still need a range check: a fixed-width result can wrap to a pattern with a different signed value.
 
 \begin{keepsection}
-\Needspace{16\baselineskip}
+\Needspace{17\baselineskip}
 \subsection{Addition, subtraction, and overflow}
 
-\Needspace{13\baselineskip}
+\Needspace{14\baselineskip}
 Add the bit patterns and discard any carry beyond the most significant bit. For subtraction, negate the subtrahend and add it to the minuend. Signed overflow occurs when the exact mathematical result lies outside the representation’s range. For addition, it occurs when two operands with the same sign produce a result with the opposite sign; operands of unlike signs cannot overflow.
 
 \begin{equationcard}{n-bit two’s-complement checks}
-\[ \begin{gathered} \text{Range}:\, -2^{\mathrm{n}-1}\, …\, 2^{\mathrm{n}-1}-1 \\ \mathrm{A}\, -\, \mathrm{B}\, =\, \mathrm{A}\, +\, (\text{two}’\mathrm{s}-\text{complement}\, \text{negation}\, \text{of}\, \mathrm{B}) \\ \text{Same}-\text{sign}\, \text{addition}\, \text{with}\, \text{opposite}-\text{sign}\, \text{result}\, \Rightarrow \, \text{overflow} \end{gathered} \]
+\[ \begin{gathered} \text{Range}:\, -2^{\mathrm{n}-1}\, …\, 2^{\mathrm{n}-1}-1 \\ \mathrm{A}\, -\, \mathrm{B}\, =\, \mathrm{A}\, +\, (\text{two}’\mathrm{s}-\text{complement}\, \text{negation}\, \text{of}\, \mathrm{B}) \\ \text{Addition}\, \text{overflow}:\, \text{same}-\text{sign}\, \text{operands},\, \text{opposite}-\text{sign}\, \text{result} \\ \text{Subtraction}\, \text{overflow}:\, \text{operand}\, \text{signs}\, \text{differ},\, \text{result}\, \text{has}\, \text{the}\, \text{subtrahend}’\mathrm{s}\, \text{sign} \end{gathered} \]
 {\small Discarding carry-out is part of fixed-width addition. Carry-out alone does not signal signed overflow.}
 \end{equationcard}
 
@@ -440,25 +511,51 @@ Use four-bit two’s complement to calculate \ensuremath{-}7+(\ensuremath{-}6).
 \item The stored result 0011 is +3, but the exact sum is \ensuremath{-}13, outside the four-bit range \ensuremath{-}8…+7. Both inputs were negative and the result is positive, so overflow occurred. \hfill{\small\color{FAUblue}§3.5}
 \end{enumerate}
 \end{workedbox}
+
+\begin{workedbox}{Worked example \ensuremath{\cdot} carry-out without overflow}
+Use eight-bit two’s complement to calculate \ensuremath{-}2+(\ensuremath{-}5).
+
+\Needspace{8\baselineskip}
+\begin{enumerate}
+\item +2 is 00000010, so \ensuremath{-}2 is 11111101+1=11111110. +5 is 00000101, so \ensuremath{-}5 is 11111010+1=11111011.
+\item Add: 11111110+11111011=1 11111001. Discard the carry-out, leaving 11111001.
+\item Decode: 249\ensuremath{-}256=\ensuremath{-}7, which is the exact sum and lies in \ensuremath{-}128…+127.
+\item A carry came out, yet there is no overflow: both inputs are negative and so is the result. \hfill{\small\color{FAUblue}§3.5}
+\end{enumerate}
+\end{workedbox}
+
+\begin{notebox}\textbf{Trap:} do not test a subtraction by applying the addition rule to the negated subtrahend. Take 0\ensuremath{-}(\ensuremath{-}8) in four bits: \ensuremath{-}8 negates to itself, so the sum is 0000+1000, unlike signs, which seems safe. The exact result +8 overflows. The subtraction rule catches it: the operand signs differ and the result 1000 has the subtrahend’s sign.\end{notebox}
 \end{keepsection}
 
 \begin{keepsection}
-\Needspace{13\baselineskip}
+\Needspace{21\baselineskip}
 \subsection{Multiplication and division}
 
-\Needspace{10\baselineskip}
-The lecture notes that ordinary unsigned multiplication cannot simply be applied to signed two’s-complement patterns and read at the original width. A full product may require up to twice as many bits as the operands; retain a sufficient width and interpret the result consistently. For a simple signed multiplication, multiply magnitudes and make the result negative exactly when the operand signs differ, then check the available width. The supplied slides introduce this idea but do not give a complete signed division algorithm.
+\Needspace{18\baselineskip}
+The lecture notes that ordinary unsigned multiplication cannot simply be applied to signed two’s-complement patterns and read at the original width. The reason: \ensuremath{-}Y is stored as 2\textsuperscript{n}\ensuremath{-}Y, so unsigned multiplication gives X(2\textsuperscript{n}\ensuremath{-}Y)=2\textsuperscript{n}X\ensuremath{-}XY, whereas the correct 2n-bit pattern is 2\textsuperscript{2n}\ensuremath{-}XY. Sign-extending both operands to 2n bits and keeping the low 2n bits of the product works, but it is very inefficient. A full product may require up to twice as many bits as the operands; retain a sufficient width and interpret the result consistently. For a simple signed multiplication, multiply magnitudes and make the result negative exactly when the operand signs differ, then check the available width. The supplied slides introduce this idea but do not give a complete signed division algorithm.
+
+\begin{workedbox}{Worked multiplication \ensuremath{\cdot} \ensuremath{-}3\ensuremath{\times}2 in four bits}
+\Needspace{9\baselineskip}
+\begin{enumerate}
+\item Take magnitudes: 3 is 0011 and 2 is 0010.
+\item Multiply: 3\ensuremath{\times}2=6, or 0110.
+\item The signs differ, so negate: invert 0110 to 1001 and add 1, giving 1010.
+\item Check: 10\ensuremath{-}16=\ensuremath{-}6, inside \ensuremath{-}8…+7.
+\item Compare the raw patterns: 1101\ensuremath{\times}0010 is 13\ensuremath{\times}2=26, or 0001 1010, while \ensuremath{-}6 at eight bits is 1111 1010. Only the low four bits agree, which is why the patterns cannot simply be multiplied. \hfill{\small\color{FAUblue}§3.5}
+\end{enumerate}
+\end{workedbox}
 
 \Needspace{5\baselineskip}
 \begin{notebox}\textbf{Sign check:} do not treat discarded carry as overflow. Decode the fixed-width result and compare it with the exact mathematical result and allowed range.\end{notebox}
 
-\Needspace{11\baselineskip}
+\Needspace{13\baselineskip}
 \begin{recallbox}{Recall check \ensuremath{\cdot} answer without looking}
-\Needspace{5\baselineskip}
+\Needspace{7\baselineskip}
 \begin{enumerate}
 \item How is A\ensuremath{-}B implemented in two’s-complement arithmetic?
 \item Can two’s-complement addition overflow when the operands have unlike signs?
 \item Why can a signed product need more bits than either input?
+\item State the subtraction overflow rule.
 \end{enumerate}
 
 \nopagebreak[4]{\small\itshape Answers: see “3.5 Two’s-complement arithmetic and overflow” under Answers at the end.}
@@ -467,7 +564,7 @@ The lecture notes that ordinary unsigned multiplication cannot simply be applied
 \end{keepsection}
 
 \begin{keepsection}
-\Needspace{18\baselineskip}
+\Needspace{21\baselineskip}
 \section{Formula map}
 
 \Needspace{10\baselineskip}
@@ -480,6 +577,8 @@ Two’s-complement negation & Invert n bits, then add 1 & Negate within the sele
 Excess-B & actual = stored \ensuremath{-} B & Decode a biased pattern. \\
 Division & dividend = quotient\ensuremath{\times}divisor + remainder & Verify quotient and remainder. \\
 Signed overflow & exact result outside representable range & Determine whether the encoded answer is valid. \\
+Addition overflow & same-sign operands, opposite-sign result & Test a sum from its sign bits. \\
+Subtraction overflow & operand signs differ, result has the subtrahend’s sign & Test A\ensuremath{-}B from its sign bits. \\
 \bottomrule\end{tabularx}\end{center}
 
 \begin{equationcard}{Check every answer}
@@ -489,13 +588,13 @@ Signed overflow & exact result outside representable range & Determine whether t
 \end{keepsection}
 
 \begin{keepsection}
-\Needspace{17\baselineskip}
+\Needspace{20\baselineskip}
 \section{Derive it cold}
 
-\Needspace{14\baselineskip}
+\Needspace{17\baselineskip}
 Cover the explanations and rebuild each result on blank paper.
 
-\Needspace{12\baselineskip}
+\Needspace{15\baselineskip}
 \begin{enumerate}
 \item \textbf{Base conversion:} expand a binary numeral into powers of 2. \hfill{\small\color{FAUblue}§3.1}
 \item \textbf{Binary to octal/hex:} derive why groups of 3/4 bits match one digit. \hfill{\small\color{FAUblue}§3.1}
@@ -504,6 +603,7 @@ Cover the explanations and rebuild each result on blank paper.
 \item \textbf{Unsigned division:} verify a quotient by reconstructing the dividend. \hfill{\small\color{FAUblue}§3.4}
 \item \textbf{Addition overflow:} explain why same-sign inputs can produce an invalid opposite-sign result. \hfill{\small\color{FAUblue}§3.5}
 \item \textbf{Subtraction:} replace A\ensuremath{-}B with A+(\ensuremath{-}B) and show the bit width at every step. \hfill{\small\color{FAUblue}§3.5}
+\item \textbf{Signed multiplication:} expand X(2\textsuperscript{n}\ensuremath{-}Y) and compare it with the correct 2n-bit pattern 2\textsuperscript{2n}\ensuremath{-}XY. \hfill{\small\color{FAUblue}§3.5}
 \end{enumerate}
 \end{keepsection}
 
@@ -527,19 +627,6 @@ Answer each why or when question aloud before opening its model response.
 \nopagebreak[4]{\small\itshape Answers: see “Explain it” under Answers at the end.}
 \end{keepsection}
 
-\begin{keepsection}
-\Needspace{10\baselineskip}
-\section{Source check}
-
-\Needspace{7\baselineskip}
-The rendered slide table was checked visually; this is a transcription error, not a different encoding rule.
-
-\Needspace{4\baselineskip}
-\begin{itemize}
-\item \textbf{Slide 24 \ensuremath{\cdot} missing minus sign in the Excess-8 row:} the entry for bit pattern 0111 is printed as 1. With four-bit excess-8, the decoded value is stored value 7 minus bias 8, which equals \ensuremath{-}1. The surrounding table and the lecture’s earlier example use that mapping.
-\end{itemize}
-\end{keepsection}
-
 \clearpage
 
 \begin{keepsection}
@@ -547,29 +634,37 @@ The rendered slide table was checked visually; this is a transcription error, no
 \section{Mixed practice}
 
 \Needspace{7\baselineskip}
-Try all 20 problems before opening the worked answers. The topics are interleaved so you must select the encoding or operation each time.
+Try all 28 problems before opening the worked answers. The topics are interleaved so you must select the encoding or operation each time.
 
 \begin{enumerate}
-\item Convert 37\textsubscript{10} to binary and check by place value. \hfill{\small\color{FAUblue}§3.1}
-\item Decode 1110 as a four-bit two’s-complement number. \hfill{\small\color{FAUblue}§3.2}
-\item How many bits represent one hexadecimal digit? \hfill{\small\color{FAUblue}§3.1}
-\item Encode decimal 73 in four-bit BCD. \hfill{\small\color{FAUblue}§3.2}
-\item How many values are available in seven-bit ASCII? \hfill{\small\color{FAUblue}§3.3}
-\item Add 1011\textsubscript{2} and 0110\textsubscript{2} as unsigned values. \hfill{\small\color{FAUblue}§3.4}
-\item What is the four-bit two’s-complement range? \hfill{\small\color{FAUblue}§3.2}
-\item Convert 101101\textsubscript{2} to octal. \hfill{\small\color{FAUblue}§3.1}
-\item In excess-4, what value does the three-bit pattern 110 represent? \hfill{\small\color{FAUblue}§3.2}
-\item For 29÷5, give quotient and remainder and verify the division identity. \hfill{\small\color{FAUblue}§3.4}
-\item Negate 0011 in four-bit two’s complement. \hfill{\small\color{FAUblue}§3.2}
-\item Convert 11101010\textsubscript{2} to hexadecimal. \hfill{\small\color{FAUblue}§3.1}
-\item Why does two’s-complement addition discard a carry-out? \hfill{\small\color{FAUblue}§3.5}
-\item Write decimal 59 in BCD and ordinary binary. \hfill{\small\color{FAUblue}§3.2}
-\item Compute 7\ensuremath{-}(\ensuremath{-}6) using four-bit two’s complement. State the exact result and whether it fits. \hfill{\small\color{FAUblue}§3.5}
-\item What do the first 128 Unicode code points have in common with ASCII? \hfill{\small\color{FAUblue}§3.3}
-\item Multiply 101\textsubscript{2} by 11\textsubscript{2} as unsigned values. \hfill{\small\color{FAUblue}§3.4}
-\item In four-bit two’s complement, add 0101 and 0011. Does it overflow? \hfill{\small\color{FAUblue}§3.5}
-\item What is the decoded value of pattern 0111 in four-bit excess-8? \hfill{\small\color{FAUblue}§3.2}
-\item What is one reason BCD can be useful despite its extra storage? \hfill{\small\color{FAUblue}§3.2}
+\item Convert 37\textsubscript{10} to binary and check by place value.
+\item Decode 1110 as a four-bit two’s-complement number.
+\item How many bits represent one hexadecimal digit?
+\item Encode decimal 73 in four-bit BCD.
+\item How many values are available in seven-bit ASCII?
+\item Add 1011\textsubscript{2} and 0110\textsubscript{2} as unsigned values.
+\item What is the four-bit two’s-complement range?
+\item Convert 110111\textsubscript{2} to octal.
+\item In excess-4, what value does the three-bit pattern 110 represent?
+\item For 29÷5, give quotient and remainder and verify the division identity.
+\item Negate 0011 in four-bit two’s complement.
+\item Convert 11101010\textsubscript{2} to hexadecimal.
+\item Why does two’s-complement addition discard a carry-out?
+\item Write decimal 83 in BCD and ordinary binary.
+\item Compute 7\ensuremath{-}(\ensuremath{-}6) using four-bit two’s complement. State the exact result and whether it fits.
+\item What do the first 128 Unicode code points have in common with ASCII?
+\item Multiply 110\textsubscript{2} by 101\textsubscript{2} as unsigned values.
+\item In four-bit two’s complement, add 0110 and 0011. Does it overflow?
+\item What is the decoded value of pattern 0111 in four-bit excess-8?
+\item What is one reason BCD can be useful despite its extra storage?
+\item Compute 1001010\textsubscript{2}\ensuremath{-}10111\textsubscript{2} as unsigned values, and name the minuend and the subtrahend.
+\item In eight-bit two’s complement, add 11111100 and 11111001. Is there a carry-out? Does it overflow?
+\item How do the 128 ASCII patterns divide into letters, digits, punctuation and others?
+\item Multiply 1011\textsubscript{2} by 111\textsubscript{2} as unsigned values.
+\item Compute 5\ensuremath{\times}(\ensuremath{-}3) by the magnitude method. Does the result fit in four bits? Give the eight-bit pattern.
+\item In four-bit two’s complement, compute 0011\ensuremath{-}1000. Does it overflow? Name the rule you used.
+\item Why is 1100 not a valid four-bit BCD digit, and how many patterns share this problem?
+\item Compare the patterns 0011 and 1010 as unsigned numbers. Does that order match their values in excess-8? In two’s complement?
 \end{enumerate}
 
 \nopagebreak[4]{\small\itshape Answers: see “Mixed practice” under Answers at the end.}
@@ -600,10 +695,10 @@ Use four bits to represent the integer \ensuremath{-}5. Compare sign-and-magnitu
 
 \begin{keepsection}
 \Needspace{10\baselineskip}
-\subsection{2 \ensuremath{\cdot} Convert, calculate, and check}
+\subsection{2 \ensuremath{\cdot} Carry-out and overflow}
 
 \Needspace{7\baselineskip}
-Use four-bit two’s-complement inputs for \ensuremath{-}5 and +3.
+Use four-bit two’s-complement inputs for \ensuremath{-}4 and +6.
 
 \Needspace{5\baselineskip}
 \begin{enumerate}
@@ -614,6 +709,42 @@ Use four-bit two’s-complement inputs for \ensuremath{-}5 and +3.
 
 \nopagebreak[4]{\small\itshape Answers: see “Exam-style problems” under Answers at the end.}
 \end{keepsection}
+
+\begin{keepsection}
+\Needspace{14\baselineskip}
+\subsection{3 \ensuremath{\cdot} From hexadecimal to a checked result}
+
+\Needspace{11\baselineskip}
+Two bytes hold C8\textsubscript{16} and 9C\textsubscript{16}.
+
+\Needspace{9\baselineskip}
+\begin{enumerate}
+\item Write each byte in binary and give its unsigned decimal value.
+\item Decode each byte as eight-bit two’s complement.
+\item Add the bytes as unsigned numbers, keeping every bit.
+\item Keep eight bits of that sum, decode it as two’s complement, and decide whether the signed addition overflowed.
+\item Compute C8\textsubscript{16}\ensuremath{-}9C\textsubscript{16} by negating and adding, then test it for overflow.
+\end{enumerate}
+
+\nopagebreak[4]{\small\itshape Answers: see “Exam-style problems” under Answers at the end.}
+\end{keepsection}
+\end{keepsection}
+
+\begin{keepsection}
+\Needspace{21\baselineskip}
+\section{Slips in the notes}
+
+\Needspace{18\baselineskip}
+Each of these slips was checked on the rendered slide. They are transcription or wording errors, not different rules, and this guide uses the corrected form.
+
+\Needspace{15\baselineskip}
+\begin{itemize}
+\item \textbf{Slide 5 \ensuremath{\cdot} “octet”:} the slide calls an octal digit an octet. An octal digit is three bits; an octet is eight bits. This guide just says octal digit.
+\item \textbf{Slide 22 \ensuremath{\cdot} “first 127 characters”:} the slide says the first 127 Unicode characters match ASCII. ASCII has 128 codes, 0–127, as slide 20 says, so this guide says 128.
+\item \textbf{Slide 24 \ensuremath{\cdot} missing minus sign in the Excess-8 row:} the entry for bit pattern 0111 is printed as 1. With four-bit excess-8, the decoded value is stored value 7 minus bias 8, which equals \ensuremath{-}1. Slides 17 and 19 use that mapping.
+\item \textbf{Slide 39 \ensuremath{\cdot} lost minus and wrong exponent:} “X * (Y)” should read X * (\ensuremath{-}Y). “Sign extension to 2\textsuperscript{2n}” should read sign extension to 2n bits; 2\textsuperscript{2n} is the modulus, not a width.
+\item \textbf{Slide 40 \ensuremath{\cdot} sign and steps:} “3 in two’s complement … 1101” should say \ensuremath{-}3. The steps also conflict: they encode negatives, multiply ignoring signs, then apply a sign. Read literally, 1101\ensuremath{\times}0010 gives 26, then \ensuremath{-}26, not \ensuremath{-}6. This guide multiplies the magnitudes instead (§3.5).
+\end{itemize}
 \end{keepsection}
 
 \begin{keepsection}
@@ -624,21 +755,23 @@ Use four-bit two’s-complement inputs for \ensuremath{-}5 and +3.
 Tick a skill only in a later session, at least one day after studying, when you can demonstrate it without notes.
 
 \begin{itemize}
-\item $\mdlgwhtsquare$\ Expand numbers by powers of their base. (1, 8, 12)
+\item $\mdlgwhtsquare$\ Expand numbers by powers of their base. (1, 14)
 \item $\mdlgwhtsquare$\ Convert binary groups to octal and hexadecimal. (3, 8, 12)
-\item $\mdlgwhtsquare$\ State signed and unsigned ranges from a bit width. (7)
-\item $\mdlgwhtsquare$\ Decode patterns using distinct signed encodings. (2, 19)
-\item $\mdlgwhtsquare$\ Negate a two’s-complement value at fixed width. (11)
-\item $\mdlgwhtsquare$\ Decode an excess-B value. (9, 19)
-\item $\mdlgwhtsquare$\ Write and read decimal digits in BCD. (4, 14, 20)
-\item $\mdlgwhtsquare$\ Explain ASCII and Unicode code-point relationships. (5, 16)
-\item $\mdlgwhtsquare$\ Add binary values and carry correctly. (6, 17)
+\item $\mdlgwhtsquare$\ State signed and unsigned ranges from a bit width. (7, 18)
+\item $\mdlgwhtsquare$\ Decode patterns using distinct signed encodings. (2, 19, 28)
+\item $\mdlgwhtsquare$\ Negate a two’s-complement value at fixed width. (11, 15)
+\item $\mdlgwhtsquare$\ Decode an excess-B value. (9, 19, 28)
+\item $\mdlgwhtsquare$\ Write and read decimal digits in BCD. (4, 14, 20, 27)
+\item $\mdlgwhtsquare$\ Explain ASCII and Unicode code-point relationships. (5, 16, 23)
+\item $\mdlgwhtsquare$\ Add binary values and carry correctly. (6)
+\item $\mdlgwhtsquare$\ Subtract binary values with borrows. (21)
+\item $\mdlgwhtsquare$\ Multiply binary and signed values. (17, 24, 25)
 \item $\mdlgwhtsquare$\ Verify quotient and remainder. (10)
-\item $\mdlgwhtsquare$\ Add signed values and detect overflow. (13, 18)
-\item $\mdlgwhtsquare$\ Subtract by negating and adding. (15)
+\item $\mdlgwhtsquare$\ Add signed values and detect overflow. (18, 22)
+\item $\mdlgwhtsquare$\ Subtract by negating and adding. (15, 26)
 \item $\mdlgwhtsquare$\ Identify and correct the slide 24 excess-8 typo. (19)
 \item $\mdlgwhtsquare$\ Rebuild the derivations from the formula list.
-\item $\mdlgwhtsquare$\ Complete both exam-style problems with checks.
+\item $\mdlgwhtsquare$\ Complete all three exam-style problems with checks.
 \end{itemize}
 \end{keepsection}
 
@@ -669,39 +802,45 @@ Tick a skill only in a later session, at least one day after studying, when you 
 \end{keepsection}
 \begin{keepsection}\subsection{3.2 Integer representations}
 
-\Needspace{5\baselineskip}
+\Needspace{8\baselineskip}
 \begin{enumerate}
 \item \ensuremath{-}8 through +7. \hfill{\small\color{FAUblue}§3.2}
 \item There is one zero and one additional negative pattern, 1000, representing \ensuremath{-}8. \hfill{\small\color{FAUblue}§3.2}
 \item 0100 0010, one four-bit code for 4 and one for 2. \hfill{\small\color{FAUblue}§3.2}
+\item Comparing patterns as unsigned numbers gives the correct order of values. \hfill{\small\color{FAUblue}§3.2}
+\item Six: 1010 through 1111. \hfill{\small\color{FAUblue}§3.2}
 \end{enumerate}
 
 \end{keepsection}
 \begin{keepsection}\subsection{3.3 Character data}
 
-\Needspace{5\baselineskip}
+\Needspace{8\baselineskip}
 \begin{enumerate}
 \item 2\textsuperscript{7}=128. \hfill{\small\color{FAUblue}§3.3}
 \item The Unicode code points 0–127 correspond to the ASCII characters; their byte representation depends on the encoding used. \hfill{\small\color{FAUblue}§3.3}
+\item 52 letters and 10 digits. \hfill{\small\color{FAUblue}§3.3}
+\item 2\textsuperscript{16}=65,536. \hfill{\small\color{FAUblue}§3.3}
 \end{enumerate}
 
 \end{keepsection}
 \begin{keepsection}\subsection{3.4 Unsigned binary arithmetic}
 
-\Needspace{4\baselineskip}
+\Needspace{5\baselineskip}
 \begin{enumerate}
 \item Write 0 and carry 1 to the next column. \hfill{\small\color{FAUblue}§3.4}
 \item For a positive divisor, 0\ensuremath{\leq}remainder\ensuremath{<}divisor. \hfill{\small\color{FAUblue}§3.4}
+\item 4, the number being subtracted. \hfill{\small\color{FAUblue}§3.4}
 \end{enumerate}
 
 \end{keepsection}
 \begin{keepsection}\subsection{3.5 Two’s-complement arithmetic and overflow}
 
-\Needspace{7\baselineskip}
+\Needspace{9\baselineskip}
 \begin{enumerate}
 \item Negate B in the chosen width, then add it to A and discard carry-out. \hfill{\small\color{FAUblue}§3.5}
 \item No. Overflow in addition requires two operands with the same sign and a result of the opposite sign. \hfill{\small\color{FAUblue}§3.5}
 \item The product magnitude can exceed the range of either input width; a full-width product may need up to twice as many bits. \hfill{\small\color{FAUblue}§3.5}
+\item Overflow occurs when the operand signs differ and the result has the subtrahend’s sign. \hfill{\small\color{FAUblue}§3.5}
 \end{enumerate}
 
 \end{keepsection}
@@ -728,19 +867,27 @@ Tick a skill only in a later session, at least one day after studying, when you 
 \item 2\textsuperscript{7}=128 code values. \hfill{\small\color{FAUblue}§3.3}
 \item 1011+0110=10001. As an unsigned five-bit result it is 17. \hfill{\small\color{FAUblue}§3.4}
 \item \ensuremath{-}8 through +7. \hfill{\small\color{FAUblue}§3.2}
-\item Group 101 101; each group is 5, so 55\textsubscript{8}. \hfill{\small\color{FAUblue}§3.1}
+\item Group 110 111; the groups are 6 and 7, so 67\textsubscript{8}. Check: 6\ensuremath{\times}8+7=55=32+16+4+2+1. \hfill{\small\color{FAUblue}§3.1}
 \item Pattern 110 is 6; 6\ensuremath{-}4=2. \hfill{\small\color{FAUblue}§3.2}
 \item 29=5\ensuremath{\times}5+4, so quotient 5 and remainder 4; 0\ensuremath{\leq}4\ensuremath{<}5. \hfill{\small\color{FAUblue}§3.4}
 \item Invert 0011 to 1100 and add 1: 1101, which is \ensuremath{-}3. \hfill{\small\color{FAUblue}§3.2}
 \item 1110 1010 maps to E A, so EA\textsubscript{16}. \hfill{\small\color{FAUblue}§3.1}
 \item The machine keeps only the fixed n result bits. Carry-out is outside that word and does not alone indicate signed overflow. \hfill{\small\color{FAUblue}§3.5}
-\item BCD: 0101 1001. Ordinary binary: 111011. \hfill{\small\color{FAUblue}§3.2}
+\item BCD: 1000 0011. Ordinary binary: 83=64+16+2+1, so 1010011. \hfill{\small\color{FAUblue}§3.2}
 \item \ensuremath{-}6 is 1010; invert and add 1 to get +6=0110. Then 0111+0110=1101, which decodes as \ensuremath{-}3. The exact result is +13, outside \ensuremath{-}8…+7, so overflow occurs. \hfill{\small\color{FAUblue}§3.5}
 \item Unicode code points 0–127 correspond to ASCII characters. \hfill{\small\color{FAUblue}§3.3}
-\item 101 is 5 and 11 is 3; 5\ensuremath{\times}3=15=1111\textsubscript{2}. \hfill{\small\color{FAUblue}§3.4}
-\item 0101+0011=1000. The exact result is +8, outside the four-bit range \ensuremath{-}8…+7; the two positive inputs produced a negative-sign pattern, so it overflows. \hfill{\small\color{FAUblue}§3.5}
+\item 110 is 6 and 101 is 5; 6\ensuremath{\times}5=30=11110\textsubscript{2}. \hfill{\small\color{FAUblue}§3.4}
+\item 0110+0011=1001, which decodes as \ensuremath{-}7. The exact result is +9, outside the four-bit range \ensuremath{-}8…+7; the two positive inputs produced a negative-sign pattern, so it overflows. \hfill{\small\color{FAUblue}§3.5}
 \item 7\ensuremath{-}8=\ensuremath{-}1. \hfill{\small\color{FAUblue}§3.2}
 \item BCD keeps each decimal digit directly encoded, which can simplify decimal display or input/output. \hfill{\small\color{FAUblue}§3.2}
+\item Minuend 1001010, subtrahend 10111. 74\ensuremath{-}23=51=110011\textsubscript{2}. \hfill{\small\color{FAUblue}§3.4}
+\item 252+249=501=1 11110101, so there is a carry-out. The kept 11110101 decodes as 245\ensuremath{-}256=\ensuremath{-}11, the exact sum \ensuremath{-}4+(\ensuremath{-}7), inside \ensuremath{-}128…+127. No overflow. \hfill{\small\color{FAUblue}§3.5}
+\item 52 letters, 10 digits, 32 punctuation marks and 34 others (whitespace and control characters); 52+10+32+34=128. \hfill{\small\color{FAUblue}§3.3}
+\item 1011 is 11 and 111 is 7; 11\ensuremath{\times}7=77=1001101\textsubscript{2}. \hfill{\small\color{FAUblue}§3.4}
+\item Magnitudes give 5\ensuremath{\times}3=15, and the signs differ, so the result is \ensuremath{-}15. That is outside \ensuremath{-}8…+7, so it does not fit in four bits. At eight bits, +15 is 00001111; invert and add 1 to get 11110001, or 241\ensuremath{-}256=\ensuremath{-}15. \hfill{\small\color{FAUblue}§3.5}
+\item \ensuremath{-}8 negates to itself, so 0011+1000=1011, which decodes as \ensuremath{-}5. The exact result is 3\ensuremath{-}(\ensuremath{-}8)=+11, above +7, so it overflows. Subtraction rule: the operand signs differ and the result has the subtrahend’s sign. \hfill{\small\color{FAUblue}§3.5}
+\item 1100 is 12, and a BCD digit stops at 9. Six patterns, 1010–1111, are unused. \hfill{\small\color{FAUblue}§3.2}
+\item As unsigned numbers 3\ensuremath{<}10. In excess-8 they are \ensuremath{-}5 and 2, so the order matches. In two’s complement they are +3 and \ensuremath{-}6, so it does not. \hfill{\small\color{FAUblue}§3.2}
 \end{enumerate}
 
 \end{keepsection}
@@ -756,11 +903,23 @@ Tick a skill only in a later session, at least one day after studying, when you 
 \end{keepsection}
 \begin{keepsection}\subsection{Exam-style problems}
 
-\Needspace{6\baselineskip}
+\Needspace{7\baselineskip}
 \begin{enumerate}
-\item \ensuremath{-}5 is 1011 and +3 is 0011. Addition gives 1110 with no carry-out. \hfill{\small\color{FAUblue}§3.5}
-\item 1110 is 14 unsigned; subtract 16 to decode \ensuremath{-}2. The exact sum is also \ensuremath{-}2. \hfill{\small\color{FAUblue}§3.2} \hfill{\small\color{FAUblue}§3.5}
-\item No overflow: the exact result \ensuremath{-}2 lies in \ensuremath{-}8…+7. Carry-out is not the signed-overflow criterion; compare the signs or the exact result to the range. \hfill{\small\color{FAUblue}§3.5}
+\item +4 is 0100, so \ensuremath{-}4 is 1011+1=1100; +6 is 0110. Addition gives 1 0010, a carry-out of 1. \hfill{\small\color{FAUblue}§3.2} \hfill{\small\color{FAUblue}§3.5}
+\item The retained 0010 is +2. The exact sum is also +2. \hfill{\small\color{FAUblue}§3.5}
+\item No overflow: +2 lies in \ensuremath{-}8…+7, and unlike signs cannot overflow in addition. A carry came out with a correct result, so carry-out is not the signed-overflow test. \hfill{\small\color{FAUblue}§3.5}
+\end{enumerate}
+
+\end{keepsection}
+\begin{keepsection}\subsection{Exam-style problems}
+
+\Needspace{11\baselineskip}
+\begin{enumerate}
+\item C8 is 1100 1000=200, and 9C is 1001 1100=156. \hfill{\small\color{FAUblue}§3.1}
+\item 200\ensuremath{-}256=\ensuremath{-}56, and 156\ensuremath{-}256=\ensuremath{-}100. \hfill{\small\color{FAUblue}§3.2}
+\item 200+156=356=1 01100100\textsubscript{2}. \hfill{\small\color{FAUblue}§3.4}
+\item The kept 01100100 is +100. The exact sum \ensuremath{-}156 is outside \ensuremath{-}128…+127, and two negatives gave a positive result, so it overflowed. \hfill{\small\color{FAUblue}§3.5}
+\item Negating 10011100 gives 01100011+1=01100100. Then 11001000+01100100=1 00101100, and the kept 00101100 is +44, matching \ensuremath{-}56\ensuremath{-}(\ensuremath{-}100). The operand signs are the same, so the subtraction cannot overflow; the carry-out changes nothing. \hfill{\small\color{FAUblue}§3.5}
 \end{enumerate}
 
 \end{keepsection}

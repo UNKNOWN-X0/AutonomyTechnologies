@@ -17,6 +17,9 @@ Node, Tree, find = g2t.Node, g2t.Tree, g2t.find
 
 REQUIRED = ["cold-start", "plan", "route", "formula-map", "derivations", "explain", "practice", "exam", "checklist"]
 MIN_PROBLEMS, MIN_EXPLAIN, MIN_EXAM, MIN_COLD = 20, 6, 2, 4
+# Block order from GUIDE-STANDARD's page structure table; every sec-* topic section ranks as "topic".
+ORDER = ["cold-start", "plan", "route", "topic", "formula-map", "derivations", "explain", "practice", "exam", "slips", "checklist"]
+SLIPS_TITLE = "Slips in the notes"
 
 
 def all_nodes(node, pred):
@@ -96,6 +99,15 @@ def check(path):
         if sid not in sections:
             rep.err("missing required section #%s" % sid)
     topic = [s for sid, s in sections.items() if sid and sid.startswith("sec-")]
+    latest = None
+    for sid in sections:
+        block = "topic" if sid and sid.startswith("sec-") else sid
+        if block not in ORDER:
+            continue
+        if latest and ORDER.index(block) < ORDER.index(latest):
+            rep.err("section #%s must come before #%s" % (sid, latest))
+        else:
+            latest = block
     if not topic:
         rep.err("no topic sections (#sec-…) found")
     navs = all_nodes(root, lambda n: n.tag == "nav")
@@ -155,6 +167,9 @@ def check(path):
     prac = sections.get("practice")
     probs = items(find(prac, lambda n: n.tag == "ol" and "problems" in n.cls)) if prac else []
     if prac:
+        printed = sum(len(all_nodes(p, lambda n: "sec-ref" in n.cls)) for p in probs)
+        if printed:
+            rep.err("%d section references printed on practice problems; they give away the method, so keep them in the answers" % printed)
         ans = answers_of(prac) or []
         if len(probs) < MIN_PROBLEMS:
             rep.err("practice has %d problems, needs at least %d" % (len(probs), MIN_PROBLEMS))
@@ -200,6 +215,14 @@ def check(path):
             rep.err("exam has %d problems, needs at least %d" % (len(heads), MIN_EXAM))
         lists = [k for k in exam.kids if isinstance(k, Node) and k.tag == "ol"]
         dets = [k for k in exam.kids if isinstance(k, Node) and k.tag == "details"]
+        for i, det in enumerate(dets, 1):
+            if "answers" not in det.cls:
+                rep.err('exam answer %d: <details> needs class="answers"' % i)
+            cited = set()
+            for ref in all_nodes(det, lambda n: "sec-ref" in n.cls):
+                cited |= set(re.findall(r"\d+\.\d+", ref.text()))
+            if len(cited) < 2:
+                rep.warn("exam answer %d cites %d section(s); each problem must chain at least two, named in sec-refs" % (i, len(cited)))
         if len(lists) != len(dets):
             rep.err("each exam problem needs its own worked answer")
         for ol, det in zip(lists, dets):
@@ -264,6 +287,9 @@ def check(path):
 
     if not find(main, lambda n: "source-note" in n.cls):
         rep.err("missing the source note (personal material, not an official FAU publication)")
+    slips_head = find(sections["slips"], lambda n: n.tag == "h2") if sections.get("slips") else None
+    if slips_head and slips_head.text().strip() != SLIPS_TITLE:
+        rep.err('the #slips heading must read "%s", got %r' % (SLIPS_TITLE, slips_head.text().strip()))
     if not sections.get("slips"):
         rep.warn("no #slips section; add one only if you found verified slips in the notes")
     return rep
