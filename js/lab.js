@@ -211,13 +211,15 @@
         swap.style.minHeight = swap.getBoundingClientRect().height + "px";
         verdict.className = "ch-verdict " + (correct ? "right" : "wrong");
         mark.textContent = correct ? "Correct" : "Not quite";
+        // the badge's line records how well the confidence matched; the labels underneath get their own lines
+        mark.className = "ch-mark conf-" + conf;
         said.textContent = "";
         said.appendChild(document.createTextNode("You said: "));
-        said.appendChild(h("b", null, label(choice)));
+        said.appendChild(h("b", correct ? "pick-ok" : "pick-miss", label(choice)));
         said.appendChild(document.createTextNode(" (" + confText + ")"));
         if (!correct) {
           said.appendChild(document.createTextNode(". Answer: "));
-          said.appendChild(h("b", null, label(c.answer)));
+          said.appendChild(h("b", "pick-ans", label(c.answer)));
         }
         swap.classList.add("revealed");
         ask.setAttribute("aria-hidden", "true");
@@ -265,6 +267,7 @@
   };
 
   // Results: score per experiment, and the "sure but wrong" answers worth revisiting first.
+  var ticksMade = 0;
   function refresh() {
     var finished = experiments.filter(function (x) {
         return x.next() < 0;
@@ -277,6 +280,21 @@
           return checks[k] && k.indexOf("lab-") !== 0;
         }).length;
       meta.textContent = (skills ? guideDone + " of " + skills + " guide skills · " : "") + finished + " of " + experiments.length + " lab experiments";
+      // The header's tick bar: guide skills, then lab experiments after a gap, as on the hub.
+      var bar = document.getElementById("lab-ticks");
+      if (!bar) {
+        bar = document.createElement("span");
+        bar.id = "lab-ticks";
+        bar.className = "ticks";
+        bar.setAttribute("aria-hidden", "true");
+        meta.parentNode.insertBefore(bar, meta.nextSibling);
+      }
+      // experiments register one by one, so the bar follows their count
+      for (; ticksMade < skills + experiments.length; ticksMade++) bar.appendChild(h("i", skills && ticksMade === skills ? "lab-start" : null));
+      Array.prototype.forEach.call(bar.children, function (seg, n) {
+        seg.classList.toggle("on", n < skills ? n < guideDone : n - skills < finished);
+      });
+      bar.classList.toggle("mastered", bar.children.length > 0 && guideDone + finished === bar.children.length);
     }
     var box = document.getElementById("lab-results");
     if (!box) return;

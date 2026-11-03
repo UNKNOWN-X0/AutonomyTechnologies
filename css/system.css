@@ -49,6 +49,10 @@
   --f-mono: "Roboto Mono", ui-monospace, Menlo, Consolas, monospace;
 
   --ease: cubic-bezier(0.16, 1, 0.3, 1);
+  /* Forward signal: the colour of progress reached. Lines and small fills only, never text or controls. */
+  --signal-a: #80ecf1;
+  --signal-b: #9be34a;
+  --signal: linear-gradient(90deg, var(--signal-a), var(--signal-b));
   color-scheme: light;
 }
 /* Subject classes: set on a page's <body> or on a code square */
@@ -329,6 +333,52 @@ a:hover {
   font-variant-numeric: tabular-nums;
   white-space: nowrap;
 }
+/* Guide and lab headers: the bar sits under the meta line, in the sign's own white. */
+.sign .ticks {
+  grid-column: 2;
+  grid-row: 4;
+  margin-top: 4px;
+  justify-self: start;
+}
+/* After the first paint a newly ticked segment fills at once, not staggered. */
+.ticks.painted i.on {
+  animation-delay: 0ms;
+}
+/* The ticked skill's square on its way to the bar. */
+.tick-dot {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 10px;
+  height: 10px;
+  margin: -5px 0 0 -5px;
+  background: linear-gradient(90deg, var(--signal-a), var(--signal-b));
+  pointer-events: none;
+  z-index: 60;
+}
+/* Above the checklist: a bar close to the boxes, so a ticked skill has somewhere to land on screen. */
+.list-ticks {
+  margin: 4px 0 14px;
+}
+@media print {
+  .sign .ticks,
+  .review .ticks,
+  .list-ticks,
+  .tick-dot {
+    display: none;
+  }
+}
+/* Every skill ticked: the chapter is mastered, marked by a signal line under the bar. */
+.ticks.mastered {
+  padding-bottom: 5px;
+  background: var(--signal) left bottom / 100% 2px no-repeat;
+}
+@media print {
+  .ticks.mastered {
+    background: none;
+    padding-bottom: 0;
+  }
+}
 /* A gap separates the guide's skills from the lab's experiments. */
 .ticks i.lab-start {
   margin-left: 7px;
@@ -472,7 +522,7 @@ nav.toc {
     position: fixed;
     inset: 0 0 auto 0;
     height: 4px;
-    background: var(--course, var(--act));
+    background: var(--signal);
     transform-origin: 0 50%;
     transform: scaleX(0);
     animation: read-progress linear both;

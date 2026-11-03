@@ -12,9 +12,9 @@
     "semantic_hash": ""
   },
   "index.html": {
-    "mtime": 1793699544.904688,
-    "seen": 1793701070.82188,
-    "ast_hash": "b76831bd8fcfab83eb5eb857e1d6060c",
+    "mtime": 1793728701.7411735,
+    "seen": 1793728932.05824,
+    "ast_hash": "cc16e0f6c06dae1520c9a87c8be48dc7",
     "semantic_hash": ""
   },
   "assets/preview.png": {
@@ -42,15 +42,15 @@
     "semantic_hash": ""
   },
   ".impeccable/design.json": {
-    "mtime": 1793284507.3577077,
-    "seen": 1793287995.959348,
-    "ast_hash": "a9c303f1e89606927ca8fdb090a76d57",
+    "mtime": 1793727745.902937,
+    "seen": 1793728140.258985,
+    "ast_hash": "d9587cdf404fb99be7c0fe00560824a9",
     "semantic_hash": ""
   },
   "js/index.js": {
-    "mtime": 1793693985.0802035,
-    "seen": 1793694090.244151,
-    "ast_hash": "41e6671214aae567731b07bd56a4d786",
+    "mtime": 1793728701.7422228,
+    "seen": 1793728932.058194,
+    "ast_hash": "44817d5db55ca04d084f6af4e983f9ef",
     "semantic_hash": ""
   },
   ".impeccable/surfaces/index-html.md": {
@@ -60,9 +60,9 @@
     "semantic_hash": ""
   },
   "DESIGN.md": {
-    "mtime": 1793694047.2090893,
-    "seen": 1793694090.244172,
-    "ast_hash": "a1fd8e7e637a051f19336a78d156f574",
+    "mtime": 1793731949.5009964,
+    "seen": 1793732002.810656,
+    "ast_hash": "5129b2f31762fa452c27289866120795",
     "semantic_hash": ""
   },
   "PRODUCT.md": {
@@ -72,21 +72,21 @@
     "semantic_hash": ""
   },
   "js/guide.js": {
-    "mtime": 1793284507.385192,
-    "seen": 1793287995.959358,
-    "ast_hash": "d3cf270ddfaf90ac08dbd24ff1d56867",
+    "mtime": 1793731443.2256515,
+    "seen": 1793731510.6220071,
+    "ast_hash": "5401f420a9415f1dae0c90b9b621b1e4",
     "semantic_hash": ""
   },
   "tools/guide-to-tex.py": {
-    "mtime": 1793699017.3691652,
-    "seen": 1793699233.341186,
-    "ast_hash": "23a2821de9d2fa8806d9a2ceda240157",
+    "mtime": 1793722229.1279216,
+    "seen": 1793722250.755195,
+    "ast_hash": "9f75d8657e33b7a978e015f071d5cfca",
     "semantic_hash": ""
   },
   "eei/ch1-electrostatic-fields.html": {
-    "mtime": 1793698248.8824072,
-    "seen": 1793698375.1933599,
-    "ast_hash": "203179a55c436a6c88f4c40c00b41e9d",
+    "mtime": 1793705521.0104103,
+    "seen": 1793705603.2083998,
+    "ast_hash": "f58ab264375e92c360cf423d48a17230",
     "semantic_hash": ""
   },
   "tools/check-guide.py": {
@@ -102,9 +102,9 @@
     "semantic_hash": ""
   },
   "js/lab.js": {
-    "mtime": 1793693509.871957,
-    "seen": 1793693615.812701,
-    "ast_hash": "126fa2741b9e83c6b4518abd2a577af9",
+    "mtime": 1793731077.9119732,
+    "seen": 1793731121.0543702,
+    "ast_hash": "6b036beb0130f5fe022b416c25f1ca09",
     "semantic_hash": ""
   },
   "tests/eei-ch1-physics.test.js": {
@@ -126,9 +126,9 @@
     "semantic_hash": ""
   },
   "js/concept-map.js": {
-    "mtime": 1793284507.3821547,
-    "seen": 1793287995.9593549,
-    "ast_hash": "d91cffec91fdd5e6f731aebcf7c003e9",
+    "mtime": 1793731885.7315812,
+    "seen": 1793732002.8106282,
+    "ast_hash": "009feb29cba070166a3d3be62cf418b8",
     "semantic_hash": ""
   },
   "js/eei/ch1-lab.js": {
@@ -156,9 +156,9 @@
     "semantic_hash": ""
   },
   "mei/ch1-statements-logic-sets.html": {
-    "mtime": 1793698248.8800833,
-    "seen": 1793698375.1933749,
-    "ast_hash": "a32f56b8e777b5731aa9809f164882af",
+    "mtime": 1793722229.109946,
+    "seen": 1793722250.75522,
+    "ast_hash": "51679472199121853b901010360c09c0",
     "semantic_hash": ""
   },
   ".agents/skills/autonomy-course-site/SKILL.md": {
@@ -198,9 +198,9 @@
     "semantic_hash": ""
   },
   "apdr/ch3-data-representation.html": {
-    "mtime": 1793698248.873628,
-    "seen": 1793698375.193332,
-    "ast_hash": "39e614eb3274f8ee7179bc8cc1bb94f0",
+    "mtime": 1793705521.0039198,
+    "seen": 1793705603.208392,
+    "ast_hash": "478335e71d573a615d7e1adafcfee44d",
     "semantic_hash": ""
   },
   "js/apdr/ch2-lab.js": {
@@ -270,9 +270,9 @@
     "semantic_hash": ""
   },
   "apdr/ch4-floating-point-numbers.html": {
-    "mtime": 1793698248.8757408,
-    "seen": 1793698375.193343,
-    "ast_hash": "a70887f7010698b3d539ff17f74e3d12",
+    "mtime": 1793705521.0049875,
+    "seen": 1793705603.208395,
+    "ast_hash": "56e3b86f25e02cd60e80cc4fea4e8428",
     "semantic_hash": ""
   },
   "js/apdr/ch4-lab.js": {
@@ -324,9 +324,9 @@
     "semantic_hash": ""
   },
   "mei/ch2-real-numbers.html": {
-    "mtime": 1793698248.8791654,
-    "seen": 1793698375.19338,
-    "ast_hash": "36a314532e0e0cceb368aac3847954bd",
+    "mtime": 1793715798.6223881,
+    "seen": 1793715827.046881,
+    "ast_hash": "519c724e6733eea95237cef618ffaa78",
     "semantic_hash": ""
   },
   "js/mei/ch2-lab.js": {
@@ -390,9 +390,9 @@
     "semantic_hash": ""
   },
   "apdr/ch12a-boolean-algebra.html": {
-    "mtime": 1793698248.8745854,
-    "seen": 1793698375.193322,
-    "ast_hash": "4f26f23aec90d2cd65f3d00f4febaf53",
+    "mtime": 1793705393.3023896,
+    "seen": 1793705603.208388,
+    "ast_hash": "e778f4adb442a59fe824bb6b0963f71c",
     "semantic_hash": ""
   },
   "apdr/ch34a-integer-and-floating-point-lab.html": {
@@ -402,15 +402,15 @@
     "semantic_hash": ""
   },
   "apdr/ch34a-integer-and-floating-point.html": {
-    "mtime": 1793698248.8729756,
-    "seen": 1793698375.1933382,
-    "ast_hash": "65d336e6530c294416bab2682a7a070f",
+    "mtime": 1793705521.0035899,
+    "seen": 1793705603.2083929,
+    "ast_hash": "a4dce0ddf550abbabcfe7ff33ef6f6dd",
     "semantic_hash": ""
   },
   "mei/ch3-mappings.html": {
-    "mtime": 1793702602.2201304,
-    "seen": 1793702632.316449,
-    "ast_hash": "afbbf5cfacd903c8ad2ac15844f34856",
+    "mtime": 1793715798.6238072,
+    "seen": 1793715827.046883,
+    "ast_hash": "8030e3a2f1744a817aead165d835145b",
     "semantic_hash": ""
   },
   "js/mei/ch3-lab.js": {
@@ -435,6 +435,12 @@
     "mtime": 1793700418.0185714,
     "seen": 1793701070.821884,
     "ast_hash": "3f30c07df2ade8f2d45441db0a7cebdb",
+    "semantic_hash": ""
+  },
+  "docs/ROUTE-AHEAD-PLAN.md": {
+    "mtime": 1793727987.1443202,
+    "seen": 1793728140.2590468,
+    "ast_hash": "bed18fba974fd285a3b2fbfeba519731",
     "semantic_hash": ""
   }
 }

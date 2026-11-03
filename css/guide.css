@@ -655,6 +655,15 @@ details.answers[open] > :not(summary) {
   details.answers[open] > :not(summary) {
     animation: answers-unfold 320ms var(--ease) both;
   }
+  /* Answer lines then step in one after another (js/guide.js numbers them, capped at 8), so your own working is
+     compared with them in order. The list itself holds still. */
+  details.answers[open] > ol {
+    animation: none;
+  }
+  details.answers[open] > ol > li {
+    animation: answers-step 240ms var(--ease) both;
+    animation-delay: calc(var(--n, 0) * 40ms);
+  }
   section:target > h2::before,
   section:target > h3::before,
   .flash::before {
@@ -662,6 +671,17 @@ details.answers[open] > :not(summary) {
   }
   li.check input:checked {
     animation: tick-pop 260ms var(--ease);
+  }
+}
+@keyframes answers-step {
+  from {
+    opacity: 0;
+    transform: translateY(-6px);
+  }
+}
+@media print {
+  details.answers[open] > ol > li {
+    animation: none;
   }
 }
 @keyframes answers-unfold {
@@ -785,10 +805,19 @@ main > section:first-of-type > h2 {
 
 /* Concept map: three columns (measured, defined, derived). Without JavaScript each node lists what it rests on. */
 .cmap {
+  position: relative;
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 16px;
   margin: 16px 0 12px;
+}
+/* The dependency lines of the selected node (js/concept-map.js). */
+.cm-links {
+  position: absolute;
+  top: 0;
+  left: 0;
+  overflow: visible;
+  pointer-events: none;
 }
 .cm-head {
   margin: 0 0 8px;
@@ -897,6 +926,9 @@ main > section:first-of-type > h2 {
   }
 }
 @media print {
+  .cm-links {
+    display: none;
+  }
   .cmap {
     grid-template-columns: 1fr;
   }

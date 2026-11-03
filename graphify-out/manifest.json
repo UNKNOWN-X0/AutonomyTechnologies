@@ -12,9 +12,9 @@
     "semantic_hash": ""
   },
   "index.html": {
-    "mtime": 1793720971.2798524,
-    "seen": 1793721032.197139,
-    "ast_hash": "7e25d578069d76913cdd1141c863e70c",
+    "mtime": 1793728701.7411735,
+    "seen": 1793728932.05824,
+    "ast_hash": "cc16e0f6c06dae1520c9a87c8be48dc7",
     "semantic_hash": ""
   },
   "assets/preview.png": {
@@ -42,15 +42,15 @@
     "semantic_hash": ""
   },
   ".impeccable/design.json": {
-    "mtime": 1793284507.3577077,
-    "seen": 1793287995.959348,
-    "ast_hash": "a9c303f1e89606927ca8fdb090a76d57",
+    "mtime": 1793727745.902937,
+    "seen": 1793728140.258985,
+    "ast_hash": "d9587cdf404fb99be7c0fe00560824a9",
     "semantic_hash": ""
   },
   "js/index.js": {
-    "mtime": 1793716788.287327,
-    "seen": 1793721032.197095,
-    "ast_hash": "97d2cfa4e0241bbb7a245eee55651048",
+    "mtime": 1793735667.7716951,
+    "seen": 1793735686.012919,
+    "ast_hash": "a4a7744fa73f2223d8f6e21536fa38c6",
     "semantic_hash": ""
   },
   ".impeccable/surfaces/index-html.md": {
@@ -60,9 +60,9 @@
     "semantic_hash": ""
   },
   "DESIGN.md": {
-    "mtime": 1793694047.2090893,
-    "seen": 1793694090.244172,
-    "ast_hash": "a1fd8e7e637a051f19336a78d156f574",
+    "mtime": 1793736154.8567715,
+    "seen": 1793736159.88842,
+    "ast_hash": "427e2623be0560bda70d3c6a6fc7f344",
     "semantic_hash": ""
   },
   "PRODUCT.md": {
@@ -72,9 +72,9 @@
     "semantic_hash": ""
   },
   "js/guide.js": {
-    "mtime": 1793716788.287103,
-    "seen": 1793721032.197094,
-    "ast_hash": "eb1364a53f48ed33f69bc82d12f9ec49",
+    "mtime": 1793731443.2256515,
+    "seen": 1793731510.6220071,
+    "ast_hash": "5401f420a9415f1dae0c90b9b621b1e4",
     "semantic_hash": ""
   },
   "tools/guide-to-tex.py": {
@@ -102,9 +102,9 @@
     "semantic_hash": ""
   },
   "js/lab.js": {
-    "mtime": 1793693509.871957,
-    "seen": 1793693615.812701,
-    "ast_hash": "126fa2741b9e83c6b4518abd2a577af9",
+    "mtime": 1793736154.857528,
+    "seen": 1793736159.8883982,
+    "ast_hash": "99cf302eb26099493d42bc5d3e428c70",
     "semantic_hash": ""
   },
   "tests/eei-ch1-physics.test.js": {
@@ -126,9 +126,9 @@
     "semantic_hash": ""
   },
   "js/concept-map.js": {
-    "mtime": 1793284507.3821547,
-    "seen": 1793287995.9593549,
-    "ast_hash": "d91cffec91fdd5e6f731aebcf7c003e9",
+    "mtime": 1793731885.7315812,
+    "seen": 1793732002.8106282,
+    "ast_hash": "009feb29cba070166a3d3be62cf418b8",
     "semantic_hash": ""
   },
   "js/eei/ch1-lab.js": {
@@ -435,6 +435,12 @@
     "mtime": 1793700418.0185714,
     "seen": 1793701070.821884,
     "ast_hash": "3f30c07df2ade8f2d45441db0a7cebdb",
+    "semantic_hash": ""
+  },
+  "docs/ROUTE-AHEAD-PLAN.md": {
+    "mtime": 1793727987.1443202,
+    "seen": 1793728140.2590468,
+    "ast_hash": "bed18fba974fd285a3b2fbfeba519731",
     "semantic_hash": ""
   }
 }

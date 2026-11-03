@@ -493,6 +493,16 @@
           "oklch(95% 0.010 258)"
         ],
         "mode": "dark"
+      },
+      "signal-a": {
+        "role": "accent",
+        "displayName": "Forward Signal (start)",
+        "canonical": "#80ecf1"
+      },
+      "signal-b": {
+        "role": "accent",
+        "displayName": "Forward Signal (end)",
+        "canonical": "#9be34a"
       }
     },
     "typographyMeta": {

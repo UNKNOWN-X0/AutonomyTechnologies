@@ -34,8 +34,92 @@
     });
     return acc;
   }
+  // Lines: the selected node is joined to each idea it directly rests on, in the signal colours. One SVG layer over the
+  // map, redrawn when the layout moves. Narrow screens stack the columns, so there the highlights alone carry the map.
+  var NS = "http://www.w3.org/2000/svg",
+    reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches,
+    narrow = window.matchMedia("(max-width: 760px)"),
+    svg = document.createElementNS(NS, "svg");
+  svg.setAttribute("class", "cm-links");
+  svg.setAttribute("aria-hidden", "true");
+  map.appendChild(svg);
+  function box(li, origin) {
+    var r = li.getBoundingClientRect();
+    return { l: r.left - origin.left, r: r.right - origin.left, cy: r.top + r.height / 2 - origin.top };
+  }
+  function draw(animate) {
+    while (svg.firstChild) svg.removeChild(svg.firstChild);
+    if (!current || narrow.matches) return;
+    var origin = map.getBoundingClientRect(),
+      n = box(nodes[current].li, origin),
+      defs = document.createElementNS(NS, "defs");
+    svg.setAttribute("width", origin.width);
+    svg.setAttribute("height", origin.height);
+    svg.appendChild(defs);
+    nodes[current].deps.forEach(function (dep, i) {
+      if (!nodes[dep]) return;
+      var d = box(nodes[dep].li, origin),
+        x1, x2, c1, c2;
+      if (d.r <= n.l + 2) {
+        // the idea sits in a column to the left: leave by the node's left edge, arrive at its right edge
+        x1 = n.l;
+        x2 = d.r;
+        c1 = x1 - Math.max(6, (x1 - x2) / 2);
+        c2 = x2 + Math.max(6, (x1 - x2) / 2);
+      } else if (d.l >= n.r - 2) {
+        x1 = n.r;
+        x2 = d.l;
+        c1 = x1 + Math.max(6, (x2 - x1) / 2);
+        c2 = x2 - Math.max(6, (x2 - x1) / 2);
+      } else {
+        // same column: a bracket through the gap on the right
+        x1 = n.r;
+        x2 = d.r;
+        c1 = c2 = x1 + 14;
+      }
+      var id = "cm-g" + i,
+        g = document.createElementNS(NS, "linearGradient");
+      g.setAttribute("id", id);
+      g.setAttribute("gradientUnits", "userSpaceOnUse");
+      g.setAttribute("x1", x1);
+      g.setAttribute("y1", n.cy);
+      g.setAttribute("x2", x2);
+      g.setAttribute("y2", d.cy);
+      ["--signal-a", "--signal-b"].forEach(function (v, k) {
+        var stop = document.createElementNS(NS, "stop");
+        stop.setAttribute("offset", k);
+        stop.setAttribute("style", "stop-color: var(" + v + ")");
+        g.appendChild(stop);
+      });
+      defs.appendChild(g);
+      var path = document.createElementNS(NS, "path");
+      path.setAttribute("d", "M" + x1 + " " + n.cy + " C" + c1 + " " + n.cy + " " + c2 + " " + d.cy + " " + x2 + " " + d.cy);
+      path.setAttribute("fill", "none");
+      path.setAttribute("stroke", "url(#" + id + ")");
+      path.setAttribute("stroke-width", "3");
+      svg.appendChild(path);
+      if (animate && !reduce && path.animate) {
+        var len = path.getTotalLength();
+        path.style.strokeDasharray = len;
+        path.animate([{ strokeDashoffset: len }, { strokeDashoffset: 0 }], { duration: 300, easing: "cubic-bezier(0.16, 1, 0.3, 1)" });
+      }
+    });
+  }
+  var queued = false;
+  function redraw() {
+    if (queued) return;
+    queued = true;
+    requestAnimationFrame(function () {
+      queued = false;
+      draw(false);
+    });
+  }
+  window.addEventListener("resize", redraw);
+  window.addEventListener("load", redraw);
+  if (document.fonts && document.fonts.ready) document.fonts.ready.then(redraw);
+
   var current = null;
-  function select(id) {
+  function select(id, quiet) {
     if (current === id) id = null;
     current = id;
     var under = id ? below(id, {}) : {},
@@ -48,6 +132,7 @@
       n.li.classList.toggle("dim", !!id && k !== id && !under[k]);
       n.btn.setAttribute("aria-pressed", String(k === id));
     });
+    draw(!quiet);
     if (!detail) return;
     if (!id) {
       detail.hidden = true;
@@ -69,5 +154,5 @@
     detail.appendChild(a);
   }
   // Start on Gauss's law: it rests on most of the measured base, which shows how the map reads.
-  if (nodes.gauss) select("gauss");
+  if (nodes.gauss) select("gauss", true);
 })();

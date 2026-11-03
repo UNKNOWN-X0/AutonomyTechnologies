@@ -1,17 +1,17 @@
 # Graph Report - AutonomyTechnologies  (2026-11-03)
 
 ## Corpus Check
-- 51 files · ~161,235 words
+- 52 files · ~166,581 words
 - Verdict: corpus is large enough that graph structure adds value.
 - Unclassified: 6 file(s) not represented in the graph (top: .css 4, (none) 2)
 
 ## Summary
-- 758 nodes · 1425 edges · 35 communities (29 shown, 6 thin omitted)
-- Extraction: 87% EXTRACTED · 13% INFERRED · 0% AMBIGUOUS · INFERRED: 185 edges (avg confidence: 0.85)
+- 785 nodes · 1463 edges · 35 communities (30 shown, 5 thin omitted)
+- Extraction: 87% EXTRACTED · 13% INFERRED · 0% AMBIGUOUS · INFERRED: 192 edges (avg confidence: 0.85)
 - Token cost: 0 input · 0 output
 
 ## Graph Freshness
-- Built from commit: `c780e3aa`
+- Built from commit: `d5bf99d9`
 - Run `git rev-parse HEAD` and compare to check if the graph is stale.
 - Run `graphify update .` after code changes (no API cost).
 
@@ -29,15 +29,16 @@
 - ch2-lab.js
 - Computers, Algorithms, and Boolean Logic · APDR Chapter 2
 - Boolean laws / Boolean expressions
-- index.js / ago()
+- Plan: "The Route Ahead" layer
 - ch4-lab.js
+- mei/ch2-physics.js
 - Autonomy Course Site / SKILL.md
 - Q: How are the static study pages hosted, and what GitHub Pages and Jeky
 - Q: Does the graph cover the learner journey from the course home through
-- guide.js / logToday()
+- Plan: "The Route Ahead" layer
 - tooltip.js / place()
 - From Fundamentals to AI Apocalypse: hub and guide shell / index-html.md
-- below() / concept-map.js
+- concept-map.js
 - eei-ch1-lab.md / EEI Chapter 1 lab: Electrostatic Fields
 - Study Pages preview showing Electrical Engineering 1 and Mathematics for
 - Study Pages project guide
@@ -47,7 +48,6 @@
 - mei/ch2-lab.js
 - lab-challenges.test.js
 - ch5-lab.js
-- mei/ch2-physics.js
 - mei/ch1-physics.js
 - mei/ch3-lab.js
 - mei/ch3-physics.js
@@ -56,7 +56,7 @@
 1. `fieldPlayground()` - 28 edges
 2. `capacitorBench()` - 22 edges
 3. `paint()` - 21 edges
-4. `Components` - 20 edges
+4. `Components` - 21 edges
 5. `networks()` - 18 edges
 6. `draw()` - 18 edges
 7. `interfaceBench()` - 17 edges
@@ -67,19 +67,19 @@
 ## Surprising Connections (you probably didn't know these)
 - `Stage and interaction` --references--> `fmt()`  [INFERRED]
   docs/LAB-STANDARD.md → js/eei/ch1-physics.js
-- `draw()` --indirect_call--> `guess()`  [INFERRED]
-  js/mei/ch1-lab.js → js/mei/ch2-lab.js
-- `answers_of()` --calls--> `find()`  [INFERRED]
-  tools/check-guide.py → tools/guide-to-tex.py
-- `check()` --calls--> `find()`  [INFERRED]
-  tools/check-guide.py → tools/guide-to-tex.py
-- `check()` --calls--> `Node`  [INFERRED]
-  tools/check-guide.py → tools/guide-to-tex.py
+- `Task 4: Tick travels to progress` --references--> `render()`  [INFERRED]
+  docs/ROUTE-AHEAD-PLAN.md → js/guide.js
+- `Task 4: Tick travels to progress` --references--> `ticksHTML()`  [INFERRED]
+  docs/ROUTE-AHEAD-PLAN.md → js/index.js
+- `Page structure` --references--> `route()`  [INFERRED]
+  docs/GUIDE-STANDARD.md → js/index.js
+- `Task 6: Concept map traces dependencies` --references--> `direct()`  [INFERRED]
+  docs/ROUTE-AHEAD-PLAN.md → tools/check-guide.py
 
 ## Import Cycles
 - None detected.
 
-## Communities (35 total, 6 thin omitted)
+## Communities (35 total, 5 thin omitted)
 
 ### Community 0 - "capacitorBench() / paint()"
 Cohesion: 0.05
@@ -87,11 +87,11 @@ Nodes (76): capacitorBench(), charged(), circuit(), draw(), grow(), guessOn(), n
 
 ### Community 1 - "Components / Design System: From Fundamentals to AI Apocalypse"
 Cohesion: 0.05
-Nodes (39): Answer key, Buttons, Chapter switcher and tick groups, Colors, Components, Course code square, Course-part chips, Dark mode (+31 more)
+Nodes (41): Answer key, Buttons, Chapter switcher and tick groups, Colors, Components, Course code square, Course-part chips, Dark mode (+33 more)
 
 ### Community 2 - "guide-to-tex.py / Conv"
 Cohesion: 0.07
-Nodes (21): all_nodes(), answers_of(), check(), check_lab(), direct(), items(), main(), Report (+13 more)
+Nodes (22): Task 6: Concept map traces dependencies, all_nodes(), answers_of(), check(), check_lab(), direct(), items(), main() (+14 more)
 
 ### Community 3 - "ch3-lab.js"
 Cohesion: 0.11
@@ -133,9 +133,9 @@ Nodes (3): APDR lecture slides: Algorithms, programming and data representation;
 Cohesion: 0.20
 Nodes (11): Algorithm, Boolean expressions, Boolean laws, De Morgan's laws, Logic gates, NAND, Physical circuits, Program language (+3 more)
 
-### Community 13 - "index.js / ago()"
-Cohesion: 0.22
-Nodes (3): ago(), ticksHTML(), when()
+### Community 13 - "Plan: "The Route Ahead" layer"
+Cohesion: 0.09
+Nodes (19): Acceptance, Content rules, Files, Labs, Markup, Page structure, PDF, Practice and testing (+11 more)
 
 ### Community 14 - "ch4-lab.js"
 Cohesion: 0.14
@@ -153,13 +153,17 @@ Nodes (4): Answer, Outcome, Q: How are the static study pages hosted, and what G
 Cohesion: 0.40
 Nodes (4): Answer, Outcome, Q: Does the graph cover the learner journey from the course home through the electrostatics and mathematics guides and labs, including local progress state and external assets?, Source Nodes
 
-### Community 19 - "guide.js / logToday()"
-Cohesion: 0.70
-Nodes (3): logToday(), render(), stamp()
+### Community 19 - "Plan: "The Route Ahead" layer"
+Cohesion: 0.11
+Nodes (16): Before you start, Out of scope, Plan: "The Route Ahead" layer, Rules that apply to every task, Task 1: Signal tokens, reading progress and the mastered underline, Task 2: The hub route line, Task 3: Lab reveal measures the prediction, Task 4: Tick travels to progress (+8 more)
+
+### Community 22 - "concept-map.js"
+Cohesion: 0.60
+Nodes (5): below(), box(), draw(), redraw(), select()
 
 ### Community 25 - "Study Pages project guide"
-Cohesion: 0.06
-Nodes (37): Project data, Project instructions, Acceptance, Content rules, Files, Labs, Markup, Page structure (+29 more)
+Cohesion: 0.08
+Nodes (25): Project data, Project instructions, Electrical Engineering I study cards, Mathematics for Engineers I study cards, Study Pages home page, Accessibility & Inclusion, Brand Commitments, Capabilities and Constraints (+17 more)
 
 ### Community 26 - "ch4-physics.js"
 Cohesion: 0.23
@@ -199,8 +203,8 @@ Nodes (4): discriminant(), relationValues(), roots(), squarePreimages()
 
 ## Knowledge Gaps
 - **10 isolated node(s):** `Study Pages preview showing Electrical Engineering 1 and Mathematics for Engineers I course cards`, `Active-recall study workflow`, `Jekyll site CI`, `LaTeX, Pandoc, and KaTeX publishing pipeline`, `Bernhard Kainz` (+5 more)
-  These have ≤1 connection - possible missing edges or undocumented components. (Counts symbols only; 246 node(s) total have ≤1 connection when file, concept and rationale nodes are included.)
-- **6 thin communities (<3 nodes) omitted from report** — run `graphify query` to explore isolated nodes.
+  These have ≤1 connection - possible missing edges or undocumented components. (Counts symbols only; 259 node(s) total have ≤1 connection when file, concept and rationale nodes are included.)
+- **5 thin communities (<3 nodes) omitted from report** — run `graphify query` to explore isolated nodes.
 
 ## Work-memory lessons
 
@@ -211,7 +215,7 @@ Nodes (4): discriminant(), relationValues(), roots(), squarePreimages()
 _Questions this graph is uniquely positioned to answer:_
 
 - **Why does `Lab standard` connect `Lab standard` to `Study Pages project guide`?**
-  _High betweenness centrality (0.053) - this node is a cross-community bridge._
+  _High betweenness centrality (0.102) - this node is a cross-community bridge._
 - **Are the 3 inferred relationships involving `fieldPlayground()` (e.g. with `eei/ch1-lab.js` and `endDrag()`) actually correct?**
   _`fieldPlayground()` has 3 INFERRED edges - model-reasoned connections that need verification._
 - **What connects `Study Pages preview showing Electrical Engineering 1 and Mathematics for Engineers I course cards`, `Active-recall study workflow`, `Jekyll site CI` to the rest of the system?**
@@ -221,6 +225,6 @@ _Questions this graph is uniquely positioned to answer:_
 - **Are the 2 inferred relationships involving `capacitorBench()` (e.g. with `eei/ch1-lab.js` and `resize()`) actually correct?**
   _`capacitorBench()` has 2 INFERRED edges - model-reasoned connections that need verification._
 - **Should `Components / Design System: From Fundamentals to AI Apocalypse` be split into smaller, more focused modules?**
-  _Cohesion score 0.05128205128205128 - nodes in this community are weakly interconnected._
+  _Cohesion score 0.04878048780487805 - nodes in this community are weakly interconnected._
 - **Are the 5 inferred relationships involving `paint()` (e.g. with `draw()` and `draw()`) actually correct?**
   _`paint()` has 5 INFERRED edges - model-reasoned connections that need verification._

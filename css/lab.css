@@ -564,6 +564,67 @@
 .ch-said b {
   color: var(--ink);
 }
+/* Reveal: the badge carries a signal line (full when Correct and Sure, half otherwise) and a confident miss gets an ink
+   dashed outline. What you said is underlined dashed in ink when wrong, signal when right; the answer is signal. */
+.ch-mark {
+  position: relative;
+}
+.ch-mark::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -6px;
+  width: 0;
+  height: 3px;
+  background: linear-gradient(90deg, var(--signal-a), var(--signal-b));
+  transform-origin: left;
+}
+.ch-verdict.right .ch-mark::after {
+  width: 50%;
+}
+.ch-verdict.right .ch-mark.conf-sure::after {
+  width: 100%;
+}
+.ch-verdict.wrong .ch-mark.conf-sure {
+  border-color: var(--ink);
+}
+.ch-said b.pick-ok,
+.ch-said b.pick-ans {
+  padding-bottom: 2px;
+  background: linear-gradient(90deg, var(--signal-a), var(--signal-b)) 0 100% / 100% 3px no-repeat;
+}
+.ch-said b.pick-miss {
+  border-bottom: 2px dashed var(--ink);
+}
+@media (prefers-reduced-motion: no-preference) {
+  .ch-swap.revealed .ch-mark::after {
+    animation: ch-draw 400ms var(--ease) 300ms both;
+  }
+  .ch-swap.revealed .ch-said b.pick-ok {
+    animation: ch-underline 400ms var(--ease) 350ms both;
+  }
+  .ch-swap.revealed .ch-said b.pick-miss {
+    animation: ch-clip 500ms var(--ease) 350ms both;
+  }
+  .ch-swap.revealed .ch-said b.pick-ans {
+    animation: ch-underline 400ms var(--ease) 800ms both;
+  }
+}
+@keyframes ch-draw {
+  from {
+    transform: scaleX(0);
+  }
+}
+@keyframes ch-underline {
+  from {
+    background-size: 0 3px;
+  }
+}
+@keyframes ch-clip {
+  from {
+    clip-path: inset(0 100% 0 0);
+  }
+}
 .ch-why {
   font-size: 0.95rem;
   line-height: 1.55;

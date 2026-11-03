@@ -1,6 +1,6 @@
 ---
 name: From Fundamentals to AI Apocalypse
-description: A systematic wayfinding sign system for a whole engineering degree at FAU, semester by semester, with FAU-blue sign fields, subject colour-family code squares and line-form state.
+description: A systematic wayfinding sign system for a whole engineering degree at FAU, semester by semester, with FAU-blue sign fields, subject colour-family code squares and line-form state, lit by a forward signal line that traces the route from fundamentals to AI.
 colors:
   fau-blue: "#04316a"
   fau-deep: "#021d40"
@@ -34,6 +34,8 @@ colors:
   dark-muted: "#a6b4c9"
   dark-line: "#233653"
   dark-action: "#a9c4ec"
+  signal-a: "#80ecf1"
+  signal-b: "#9be34a"
 typography:
   display:
     fontFamily: "Hanken Grotesk, system-ui, -apple-system, Segoe UI, sans-serif"
@@ -213,6 +215,8 @@ The system is flat, square and typographic. There are no rounded corners and no 
 
 The world rejects the card-grid docs template and the hero-plus-cards hub. The hub is a sign field with a review board pinned across its lower edge, followed by ruled semester sections of subject rows; the guide is a single reading column with a contents rail.
 
+**Second layer: "The Route Ahead" (owner's request, 2026-11-03).** The degree is a route from fundamentals to AI, and the site should feel like it points forward, not like an archive. The sign system stays the ground; on top of it runs one **signal line**: the cyan-to-green gradient already inside the site mark, drawn as thin lines and fills that light up as the student moves forward. It traces the route through the semesters on the hub, fills as skills are mastered, and answers the student in the labs, where values move like instrument readouts. Modern here means precise, alive and responsive to what the student does; it never means decoration, glass, glow or page-load spectacle. Reading surfaces stay calm: the signal lives at the edges (route, progress, feedback), never inside the maths.
+
 **Key Characteristics:**
 - FAU blue (#04316A) sign fields for the hub masthead, guide headers and table headers.
 - Solid subject code squares in one OKLCH hue per subject (APDR violet, MEI green, EEI amber, MATLAB cyan), stepped lighter to darker for courses I, II and III, holding short codes in Hanken Grotesk 800.
@@ -220,6 +224,8 @@ The world rejects the card-grid docs template and the hero-plus-cards hub. The h
 - Square corners everywhere, flat surfaces, hairline and 2px ink rules instead of shadows.
 - Urgency as a tonal blue band; checklist, tick-bar and course-part state as dashed versus solid line form.
 - The action colour is reserved for things you can click.
+- A cyan-to-green signal line for forward progress: the route through the degree, mastery, and the answer moment in labs.
+- Interfaces that respond: values tween, lines draw, rows settle into place, always as the result of something the student did or reached.
 
 ## Colors
 
@@ -250,7 +256,12 @@ A subject class (`s-<code>-<step>`, such as `s-mei-1`) sets `--course`; the code
 ### Dark mode
 Dark mode follows `prefers-color-scheme` and can be forced with `data-theme`. The masthead and sign fields keep FAU Enamel Blue (#04316A) on a near-black navy ground (dark-paper-2, dark-paper). The h2, loop, semester and jump-tile squares lift to a lighter sign blue (dark-fau-mark), the overdue band lifts to dark-band-overdue so it separates from the ground, and the action colour inverts to a pale sky blue (dark-action) with dark text. Subject colour families keep the same values in dark mode, and their labels stay dark ink.
 
+### Signal
+- **Forward Signal** (signal-a to signal-b, `linear-gradient(90deg, #80ECF1, #9BE34A)`): the colour of moving forward, taken from the site mark's outer orbit. It appears only as lines (1 to 4px), small fills (a tick segment, a route node) and the drawn edge of something just reached: the hub route line up to the furthest chapter studied, a ticked skill's square on its way to the bar, a fully mastered chapter's tick bar, the reading-progress bar, and the lab's prediction-versus-truth marker. It reads on both FAU blue and dark paper; on white paper it is always a line or fill next to ink, never behind text.
+
 ### Named Rules
+**The Signal Is Forward Rule.** The signal gradient means "reached" or "moving forward", nothing else. It is not an action colour (nothing is clickable because it is signal-coloured), not schedule state (urgency stays the one-hue blue band) and not a subject colour. Never set text in it, never use it as a panel background, and never let it glow: no blur halos or neon shadows.
+
 **The Clickable Blue Rule.** The action colour (`--act`) is spent only on things you can click: buttons, the guide's home links, the answer-key toggle and focus rings. Signs, bands and markers use the field blue tokens (`--fau`, `--fau-mark`, `--band-overdue`), which share a hex with the action colour in light mode and separate from it in dark mode.
 
 **The Subject Fill Rule.** Subject colours are fills only: code squares, part-chip markers and sign-header squares, always with dark ink text on them. Never set a subject colour as text, border or line colour.
@@ -303,7 +314,7 @@ The system is flat. There is no box-shadow anywhere in the shared stylesheets. D
 
 Every corner is square (0px): buttons, code squares, semester squares, part chips, sign fields, panels and checklist boxes, and even the rect of the site mark. The recurring silhouette is the solid square: the subject code square, the 10px subject marker inside each part chip, the 14px blue square that precedes every guide h2, the 2.5rem semester number square and the 3rem numbered loop squares. Borders are 2px for interactive and status outlines (buttons, home links, answer key, checklist boxes, part chips) and 1px for structure.
 
-State uses line form: a dashed 2px outline means not yet, a solid line or fill means done or present. This holds for checklist boxes (dashed muted outline to solid blue with a white check), tick bars (7px by 22px dashed bars at 55% opacity to solid bars at full opacity) and course-part chips (dashed hairline outline with muted text when there is no material yet, solid ink outline and ink text once there is).
+State uses line form: a dashed 2px outline means not yet, a solid line or fill means done or present. This holds for checklist boxes (dashed muted outline to solid blue with a white check), course-part chips (dashed hairline outline with muted text when there is no material yet, solid ink outline and ink text once there is), and subjects with no material yet (their code square becomes a 2px dashed outline in the subject colour). Tick bars are the one exception: dashed bars read as missing glyphs at 7px wide, so not-yet is a faint solid fill (16% opacity) and done is full opacity.
 
 ### Named Rules
 **The Square Corner Rule.** Radius is always 0.
@@ -343,7 +354,10 @@ A wrapping row of 36px square chips, one per course part (lecture, exercise, tut
 A paper plate under an 8px ink bar, overlapping the masthead. Its head pairs "Review today" with the gap rule ("Gaps grow with each review: 1 day, then 1 week, then 1 month."). Rows are sorted by state (overdue, due, not started, fresh) and then by how far past their gap they are. A chapter's gap widens with each logged review day: 1 day after the first, 7 after the second, 30 after the third and beyond. A row is overdue once the time since its last review reaches twice its gap, due at one gap, fresh before that; ticks without any logged review count as due. Before any study, the board shows a single empty-state paragraph instead of rows. Rows change band with a 150ms background transition.
 
 ### Tick bar
-A row of 7px by 22px bars, one per exam-checklist skill, gapped by 3px and drawn in the current text colour. Dashed outline at 55% opacity is not yet; solid fill is ticked. Shown on review rows next to an "n / 14 skills" count, and on hub chapter rows.
+A row of 7px by 22px bars, one per exam-checklist skill, gapped by 3px and drawn in the current text colour. A faint fill (16% opacity) is not yet; full opacity is ticked. A visible count follows the bars ("3/23" on hub chapter rows, "n / 14 skills" on review rows). When every skill is ticked, the bar takes a 2px signal-line underline: the chapter is mastered.
+
+### The route (hub)
+A 2px vertical line down the left edge of the semester sections, joining every chapter's number like stops on a transit line, and ending at a dashed open node labelled "Continue on the route to automation" (wording chosen by the owner, 2026-11-03). The stretch up to the furthest chapter with any ticks is drawn in the signal gradient; the rest is a dashed hairline (line form: not yet). Chapter numbers sit on the line as stops: a filled square once started, an outlined square before. It grows by itself as semesters are added and carries no extra copy. Under 760px it stays as a 2px line at the left gutter.
 
 ### Study loop
 Four numbered blue squares (3rem, 800 numerals) each followed by one sentence of method, under a ruled heading.
@@ -364,11 +378,20 @@ A 2px ink rule above, 18px top padding, then a 14px solid blue square before the
 - **Table:** full width, collapsed, 1px hairline under each row, 9px by 12px cells, tabular figures. The header row is an FAU-blue band with white 700 labels at 0.85rem.
 
 ### Motion
+Motion is how the route answers the student. Each authored moment below responds to an action or to reaching something; none plays just because a page loaded, and every one respects `prefers-reduced-motion` (movement removed, colour and opacity changes kept). Ease is the system ease-out `cubic-bezier(0.16, 1, 0.3, 1)` throughout.
+
+- **Authored moments (owner's request, 2026-11-03):**
+  - **Lab reveal measures the prediction.** Challenges are multiple choice, and the verdict replaces the question block on Reveal, so the marks sit on the verdict. What you said is underlined with a 3px signal line (400ms) when right, and with a dashed ink line when wrong (500ms); a wrong pick then underlines the correct answer in signal (400ms, after the first line). The verdict badge carries the calibration as a signal line under it: full length for Correct and Sure, half for Correct and Think so or Guessing, none when wrong. A confident miss (wrong and Sure) draws the badge's dashed outline in ink. Reduced motion shows the final marks without drawing.
+  - **Tick travels to progress.** Guide sign headers carry a tick bar under the review meta line (white on the blue field); lab headers carry the same bar for guide skills then lab experiments, and the checklist has one above its list and one in the review panel beneath it. Ticking a checklist skill sends a small signal-coloured square from the box to the segment it fills, on the nearest bar that is on screen (about 450ms on a curved path); the segment fills when the square lands. If no bar is on screen, or under reduced motion, the segment just fills. Unticking never animates. Reaching the last skill draws the mastered signal underline on every bar.
+  - **Answer key in steps.** After the commit step, the answer lines appear one after another (200ms each, 40ms apart, capped at 8 steps), so the eye compares them with its own working in order. The list itself holds still; reduced motion keeps the plain fade; print shows every answer open at full opacity.
+  - **Concept map traces dependencies.** Selecting a node (click, tap or keyboard) draws a 3px signal-gradient curve from it to each idea it directly rests on, kept inside the gap between columns (300ms stroke draw). Ideas it rests on indirectly keep their existing highlight and get no line, and unrelated nodes dim as before. A node selected by default on load shows its lines at once without drawing. The lines are one decorative SVG layer (`aria-hidden`, no pointer events) that redraws on resize; under 760px, where the columns stack, only the highlights are used, and print hides the lines.
+  - **The board settles.** When a review moves a chapter from due to fresh, its row moves to its new place in the list (FLIP, 400ms) and its gap value counts up to the new interval. The hub remembers the last order in `sessionStorage` (`board-last`), so it plays on the next visit after a review, never on a first load; reduced motion skips both.
+  - **The route draws.** On the hub, the lit stretch of the route line draws down to the furthest chapter reached as it scrolls into view (scroll timeline; still and fully drawn where unsupported).
 - **Signature moment:** progress draws itself. Ticked bars on the hub fill bottom-up, one after another (420ms each, 28ms stagger, capped by the 16 bars). Ticking a skill in a guide pops the box (260ms) and lights the "skills ticked" line with the subject colour (900ms fade).
 - **Continuity:** opening an answer key unfolds its content with a clip and short drop (320ms; a plain fade under reduced motion). In-page jumps scroll smoothly and the target section's blue square flashes once in the subject colour (900ms). The contents rail tracks the section being read.
 - **Continuity (labs):** stepping to the next challenge (Next or Replay) brings the new question in from the right: 12px and fade, 260ms, prompt then options staggered 30ms. It never plays on page load, and under reduced motion it is a 150ms fade.
 - **Between pages (owner's request, 2026-11-03):** cross-document view transitions. The old page lifts out in 160ms, the new one rises in over 320ms; the contents rail and Guide/Lab switch hold their place. Reduced motion shortens every part to 120ms.
-- **Reading progress:** a 4px bar in the subject colour along the top of guides and labs fills with the page scroll (scroll timeline; absent where unsupported and in print).
+- **Reading progress:** a 4px bar in the signal gradient along the top of guides and labs fills with the page scroll (scroll timeline; absent where unsupported and in print).
 - **Arrival on scroll:** guide sections, lab experiments and hub subjects rise 28px and unclip as they enter the viewport; a section's sign square grows and turns into place; hub chapter rows follow from the left in order. View timelines only, so unsupported browsers and reduced motion show content still.
 - **Feedback:** links thicken their underline and buttons change fill in 150ms; buttons and lab answer options press down 1px.
 - **Site mark:** see Navigation.
@@ -387,7 +410,7 @@ A 2px ink rule above, 18px top padding, then a 14px solid blue square before the
 A small FAU-blue sign with white Hanken Grotesk 600 at 0.82rem, square corners, a 10px rotated-square pointer and no shadow. It sits above its target (below when there is no room), appears after 350ms of hover or at once on keyboard focus, and closes on leave, blur, scroll or Escape. Driven by `js/tooltip.js` from `data-tip` attributes; guides generate them for contents entries (full section titles), section references (now jump links) and the subject code, the hub for subject codes, course-part chips, tick bars and the semester jump list.
 
 ### Answer key
-A `details` frame with a 2px action-colour border and a 48px action-colour summary line. Opening it draws a hairline under the summary. In print it is always open and frameless.
+A `details` frame with a 2px action-colour border and a 48px action-colour summary line. The first press asks for a commitment: the whole closed frame fills with the action colour and the summary reads "Written your answer down? Open the answers"; the second press opens it and restores the normal label. Without JavaScript it opens on the first press. Opening it draws a hairline under the summary. In print it is always open and frameless.
 
 ### Exam checklist
 Each item is a full-width label row divided by hairlines. The box is a 22px square: 2px dashed muted outline when not yet, solid FAU-blue fill with a white check when done (150ms transition). A ticked item's text turns muted. Ticks save in the browser under the guide's `data-key` and log today as a review day. Under the list, the review panel (Sign Tint, 18px by 20px, max 68ch) repeats the review meta line beside the primary "Log today's review" button.
@@ -403,7 +426,9 @@ Each item is a full-width label row divided by hairlines. The box is a 22px squa
 - **Do** show not-yet as a dashed outline and done or present as a solid line or fill.
 - **Do** spend the action colour only on clickable things: buttons, home links, the answer-key toggle and focus rings.
 - **Do** put the guide's subject class and `data-key` on its `<body>`.
-- **Do** use motion only to acknowledge an action, explain a state change or show where a jump landed, with the system ease-out (`cubic-bezier(0.16, 1, 0.3, 1)`): 100–150ms feedback, 200–320ms reveals, one authored moment (the tick-bar fill). Under `prefers-reduced-motion` remove movement but keep colour and opacity changes.
+- **Do** use motion to acknowledge an action, explain a state change, show where a jump landed or show progress along the route, with the system ease-out (`cubic-bezier(0.16, 1, 0.3, 1)`): 100–150ms feedback, 200–320ms reveals, up to 600ms for the authored moments listed under Motion. Under `prefers-reduced-motion` remove movement but keep colour and opacity changes.
+- **Do** use the signal gradient for forward progress only: the route, mastery, reading progress and the lab answer moment, as lines and small fills.
+- **Do** let lab readouts behave like instruments: tabular figures, values that tween to their new state, units always shown.
 - **Do** add hover tooltips with `data-tip` for short, supplementary facts (full titles, what a state means, where a link goes); never put information only in a tooltip.
 - **Do** keep the legacy token names (--bg, --surface, --hl, --accent, --link, --course) in system.css, because css/guide.css reads them.
 - **Do** strip fills to ink text and rules in print.
@@ -416,5 +441,7 @@ Each item is a full-width label row divided by hairlines. The box is a 22px squa
 - **Don't** give a follow-on course a new hue.
 - **Don't** colour a non-clickable element with the action colour token.
 - **Don't** add decorative motion: no parallax, hover lifts, looping effects outside the site mark, or page-load choreography that delays reading. Scroll-linked motion is allowed only as listed under Motion, and content must be visible without it.
+- **Don't** read "modern" as glassmorphism, neon glow, gradient text, blurred blobs, 3D tilt cards or a dark-by-default sci-fi skin. The future is shown by the route and the signal line, not by costume.
+- **Don't** put the signal gradient behind text, on clickable controls or inside formula panels.
 - **Don't** use the FAU logo; the site mark is its own square sign.
 - **Don't** build a card grid or a hero-plus-cards hub.

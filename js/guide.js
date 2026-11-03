@@ -24,7 +24,10 @@
     render();
   }
 
-  var boxes = document.querySelectorAll("li.check input");
+  var boxes = document.querySelectorAll("li.check input"),
+    reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches,
+    bars = [],
+    hold = -1; // segment kept empty while a ticked skill travels to it
   boxes.forEach(function (cb) {
     cb.checked = !!saved[cb.dataset.k];
     cb.addEventListener("change", function () {
@@ -32,7 +35,25 @@
       try {
         localStorage.setItem(KEY, JSON.stringify(saved));
       } catch (e) {}
+      // A new tick flies to the bar segment it fills, if a bar is on screen; otherwise the segment just fills.
+      var target = null;
+      hold = -1;
+      if (cb.checked && !reduce) {
+        var idx = Array.prototype.filter.call(boxes, function (b) {
+          return b.checked;
+        }).length - 1;
+        bars.some(function (bar) {
+          var r = bar.segs[idx] && bar.segs[idx].getBoundingClientRect();
+          if (r && r.top >= 0 && r.bottom <= window.innerHeight) return (target = bar.segs[idx]);
+        });
+        if (target) hold = idx;
+      }
       logToday();
+      if (target)
+        travel(cb, target, function () {
+          hold = -1;
+          render();
+        });
       [meta, status].forEach(function (el) {
         if (!el) return;
         el.classList.remove("lit");
@@ -41,6 +62,57 @@
       });
     });
   });
+
+  // Tick bars: one segment per guide skill (then per lab experiment), like the hub's, in the sign header and under the checklist.
+  function addBar(host, before, extra) {
+    var el = document.createElement("span"),
+      segs = [],
+      total = boxes.length + (+document.body.dataset.lab || 0);
+    el.className = "ticks sign-ticks" + (extra ? " " + extra : "");
+    el.setAttribute("aria-hidden", "true");
+    for (var i = 0; i < total; i++) {
+      var seg = document.createElement("i");
+      if (i === boxes.length) seg.className = "lab-start";
+      seg.style.setProperty("--i", Math.min(i, 14));
+      el.appendChild(seg);
+      segs.push(seg);
+    }
+    host.insertBefore(el, before);
+    bars.push({ el: el, segs: segs });
+  }
+  function paint(done, labDone) {
+    bars.forEach(function (bar) {
+      bar.segs.forEach(function (seg, i) {
+        seg.classList.toggle("on", i !== hold && (i < boxes.length ? i < done : i - boxes.length < labDone));
+      });
+      bar.el.classList.toggle("mastered", bar.segs.length > 0 && done + labDone === bar.segs.length);
+    });
+  }
+  // The ticked skill's square arcs from its checkbox to the segment it fills.
+  function travel(from, to, finish) {
+    var a = from.getBoundingClientRect(),
+      b = to.getBoundingClientRect(),
+      fx = a.left + a.width / 2,
+      fy = a.top + a.height / 2,
+      tx = b.left + b.width / 2,
+      ty = b.top + b.height / 2,
+      dot = document.createElement("span");
+    dot.className = "tick-dot";
+    dot.setAttribute("aria-hidden", "true");
+    document.body.appendChild(dot);
+    var anim = dot.animate(
+      [
+        { transform: "translate(" + fx + "px," + fy + "px) scale(1)" },
+        { transform: "translate(" + (fx + tx) / 2 + "px," + (Math.min(fy, ty) - 48) + "px) scale(1.2)", offset: 0.5 },
+        { transform: "translate(" + tx + "px," + ty + "px) scale(0.7)" },
+      ],
+      { duration: 450, easing: "cubic-bezier(0.16, 1, 0.3, 1)", fill: "forwards" }
+    );
+    anim.onfinish = anim.oncancel = function () {
+      dot.remove();
+      finish();
+    };
+  }
 
   // Review log: shown in the sign header and under the checklist.
   var meta = document.getElementById("review-meta");
@@ -58,7 +130,10 @@
     panel.appendChild(status);
     panel.appendChild(button);
     list.parentNode.insertBefore(panel, list.nextSibling);
+    addBar(panel, button);
+    addBar(list.parentNode, list, "list-ticks"); // so a bar is usually on screen while you tick
   }
+  if (meta && boxes.length) addBar(meta.parentNode, meta.nextSibling);
 
   function render() {
     var done = 0;
@@ -84,12 +159,19 @@
         (since === 0 ? "today" : since === 1 ? "yesterday" : since + " days ago") +
         " · " + days.length + (days.length === 1 ? " review" : " reviews");
     }
+    paint(done, labDone);
     if (meta) meta.textContent = text;
     if (status) status.textContent = text;
     if (button) button.disabled = last === stamp();
     if (button && button.disabled) button.textContent = "Reviewed today";
   }
   render();
+  // Once the first fill has played, a newly ticked segment fills at once.
+  setTimeout(function () {
+    bars.forEach(function (bar) {
+      bar.el.classList.add("painted");
+    });
+  }, 900);
 
   // Contents: mark the last section whose heading has passed the top third.
   var links = Array.prototype.slice.call(document.querySelectorAll("nav.toc ol a"));
@@ -157,6 +239,9 @@
     var sum = d.querySelector("summary");
     if (!sum) return;
     var label = sum.textContent;
+    d.querySelectorAll(":scope > ol > li").forEach(function (li, i) {
+      li.style.setProperty("--n", Math.min(i, 8));
+    });
     sum.addEventListener("click", function (e) {
       if (d.open || d.classList.contains("armed")) return;
       e.preventDefault();
@@ -164,7 +249,6 @@
       sum.textContent = "Written your answer down? Open the answers";
     });
     d.addEventListener("toggle", function () {
-      if (d.open) return;
       d.classList.remove("armed");
       sum.textContent = label;
     });

@@ -82,11 +82,42 @@
       item.state = "due";
       item.weight = 1;
     }
+    li.classList.toggle("started", item.state !== "new");
     li.querySelector(".ticks").innerHTML = ticksHTML(item) + "<b>" + item.done + "/" + total + "</b>";
+    li.querySelector(".ticks").classList.toggle("mastered", total > 0 && item.done === total);
     li.querySelector(".ticks").dataset.tip = tickTip(item);
     li.setAttribute("aria-label", li.querySelector(".title").textContent + ": " + item.done + " of " + total + " chapter skills ticked");
     return item;
   });
+
+  // The route is lit down to the furthest chapter in each semester that has been started.
+  function topIn(el, root) {
+    var y = 0;
+    for (; el && el !== root; el = el.offsetParent) y += el.offsetTop;
+    return y;
+  }
+  function route() {
+    document.querySelectorAll(".subjects").forEach(function (ul) {
+      var last = null;
+      ul.querySelectorAll("li.chapter.started").forEach(function (li) {
+        last = li;
+      });
+      ul.style.setProperty("--route-lit", last ? topIn(last, ul) + last.offsetHeight / 2 + "px" : "0px");
+    });
+  }
+  var queued = false;
+  function reroute() {
+    if (queued) return;
+    queued = true;
+    requestAnimationFrame(function () {
+      queued = false;
+      route();
+    });
+  }
+  route();
+  window.addEventListener("resize", reroute);
+  window.addEventListener("load", reroute);
+  if (document.fonts && document.fonts.ready) document.fonts.ready.then(reroute);
 
   var order = { overdue: 0, due: 1, new: 2, fresh: 3 };
   chapters.sort(function (a, b) {
@@ -120,11 +151,11 @@
     .map(function (c) {
       var w = when(c);
       return (
-        '<li class="row ' + c.state + '">' +
+        '<li class="row ' + c.state + '" data-key="' + c.li.dataset.key + '">' +
         '<p class="gap"><b>' + w.big + "</b><span>" + w.small + "</span></p>" +
         '<span class="code ' + c.course + '">' + c.code + "</span>" +
         '<h3 class="ch">' + c.title + "</h3>" +
-        '<p class="count"><span class="ticks" aria-hidden="true" data-tip="' + tickTip(c) + '">' + ticksHTML(c) + "</span>" +
+        '<p class="count"><span class="ticks' + (c.total > 0 && c.done === c.total ? " mastered" : "") + '" aria-hidden="true" data-tip="' + tickTip(c) + '">' + ticksHTML(c) + "</span>" +
         "<span>" + c.done + " / " + c.total + " skills</span></p>" +
         '<div class="go">' + c.links + "</div>" +
         "</li>"
@@ -133,6 +164,67 @@
     .join("");
 
   tips();
+  settle();
+
+  // The board settles: when a review has moved a chapter from due to fresh since the last visit,
+  // its row slides from its old place (FLIP) and its gap value counts up to the new interval.
+  function settle() {
+    var prev = null,
+      now = { order: [], state: {} };
+    chapters.forEach(function (c) {
+      var k = c.li.dataset.key;
+      now.order.push(k);
+      now.state[k] = c.state;
+    });
+    try {
+      prev = JSON.parse(sessionStorage.getItem("board-last"));
+      sessionStorage.setItem("board-last", JSON.stringify(now));
+    } catch (e) {}
+    if (!prev || !prev.order || !prev.state) return;
+    if (window.matchMedia && matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+    if (!rows.animate) return;
+    var els = {},
+      heights = {};
+    Array.prototype.forEach.call(rows.children, function (r) {
+      els[r.dataset.key] = r;
+      heights[r.dataset.key] = r.offsetHeight;
+    });
+    var oldTop = {},
+      y = 0;
+    prev.order.forEach(function (k) {
+      if (!els[k]) return;
+      oldTop[k] = y;
+      y += heights[k];
+    });
+    var newTop = 0;
+    now.order.forEach(function (k) {
+      var el = els[k],
+        h = heights[k],
+        was = prev.state[k];
+      if (el && oldTop[k] !== undefined && was !== undefined && oldTop[k] !== newTop) {
+        el.animate([{ transform: "translateY(" + (oldTop[k] - newTop) + "px)" }, { transform: "none" }], { duration: 400, easing: "cubic-bezier(0.22, 1, 0.36, 1)" });
+      }
+      if (el && (was === "due" || was === "overdue") && now.state[k] === "fresh") countUp(el.querySelector(".gap b"));
+      newTop += h || 0;
+    });
+  }
+  function countUp(b) {
+    var m = b && /^in (\d+) d$/.exec(b.textContent);
+    if (!m) return;
+    var to = +m[1],
+      t0 = null;
+    function step(t) {
+      if (t0 === null) t0 = t;
+      var p = Math.min((t - t0) / 400, 1);
+      b.textContent = "in " + Math.round(to * p) + " d";
+      if (p < 1) requestAnimationFrame(step);
+    }
+    b.textContent = "in 0 d";
+    requestAnimationFrame(step);
+    setTimeout(function () {
+      b.textContent = "in " + to + " d";
+    }, 450);
+  }
 
   // Tooltips (shown by js/tooltip.js). Runs whether or not any chapter has been started.
   function tips() {
