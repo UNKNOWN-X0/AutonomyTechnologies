@@ -59,9 +59,9 @@
 }
 .ch-opt[aria-checked="true"] {
   border-style: solid;
-  border-color: var(--fau);
-  background: var(--fau);
-  color: var(--on-fau);
+  border-color: var(--act);
+  background: var(--act);
+  color: var(--act-ink);
 }
 .ch-opt:disabled {
   cursor: default;
@@ -75,7 +75,7 @@
 .ch-verdict {
   margin-top: 16px;
   padding: 14px 16px 16px;
-  border: 2px solid var(--fau);
+  border: 2px solid var(--act);
 }
 .ch-verdict.wrong {
   border-style: dashed;
@@ -84,14 +84,14 @@
   display: inline-block;
   margin: 0 0 8px;
   padding: 3px 10px;
-  background: var(--fau);
-  color: var(--on-fau);
+  background: var(--act);
+  color: var(--act-ink);
   font: 800 0.9rem/1.3 var(--f-display);
 }
 .ch-verdict.wrong .ch-mark {
   background: transparent;
   color: var(--ink);
-  border: 2px dashed var(--fau);
+  border: 2px dashed var(--act);
 }
 .ch-why {
   margin: 0 0 14px;
@@ -347,7 +347,7 @@
 .controls input[type="checkbox"] {
   width: 18px;
   height: 18px;
-  accent-color: var(--fau);
+  accent-color: var(--act);
 }
 .range-row {
   display: grid;
@@ -365,12 +365,12 @@
   grid-column: 1 / -1;
   width: 100%;
   min-height: 28px;
-  accent-color: var(--fau);
+  accent-color: var(--act);
 }
 .seg {
   display: flex;
   margin: 0 0 12px;
-  border: 2px solid var(--fau);
+  border: 2px solid var(--act);
 }
 .seg label {
   position: relative;
@@ -380,7 +380,7 @@
   justify-content: center;
   min-height: 40px;
   font: 700 0.9rem/1.2 var(--f-display);
-  color: var(--fau);
+  color: var(--act);
   cursor: pointer;
   transition: background-color 150ms var(--ease), color 150ms var(--ease);
 }
@@ -390,8 +390,8 @@
   pointer-events: none;
 }
 .seg label:has(input:checked) {
-  background: var(--fau);
-  color: var(--on-fau);
+  background: var(--act);
+  color: var(--act-ink);
 }
 .seg label:has(input:focus-visible) {
   outline: 3px solid var(--act);
@@ -527,20 +527,20 @@
   padding: 0 6px;
   border: 0;
   background: none;
-  color: var(--fau);
+  color: var(--act);
   font: 700 0.85rem/1.2 var(--f-display);
   cursor: pointer;
   transition: background-color 150ms var(--ease), color 150ms var(--ease);
 }
 .ch-seg + .ch-seg {
-  border-left: 2px solid var(--fau);
+  border-left: 2px solid var(--act);
 }
 .ch-seg:hover:not(:disabled) {
   background: var(--fau-tint);
 }
 .ch-seg[aria-checked="true"] {
-  background: var(--fau);
-  color: var(--on-fau);
+  background: var(--act);
+  color: var(--act-ink);
 }
 .ch-seg:disabled {
   cursor: default;

@@ -82,7 +82,7 @@
       item.state = "due";
       item.weight = 1;
     }
-    li.querySelector(".ticks").innerHTML = ticksHTML(item);
+    li.querySelector(".ticks").innerHTML = ticksHTML(item) + "<b>" + item.done + "/" + total + "</b>";
     li.querySelector(".ticks").dataset.tip = tickTip(item);
     li.setAttribute("aria-label", li.querySelector(".title").textContent + ": " + item.done + " of " + total + " chapter skills ticked");
     return item;

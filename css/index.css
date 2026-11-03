@@ -109,7 +109,7 @@ main {
   font-size: 0.95rem;
 }
 .board-empty {
-  padding: 20px max(28px, calc(100% - 62ch)) 26px 28px;
+  padding: 12px 28px 16px;
   border-top: 1px solid var(--line);
   color: var(--muted);
 }
@@ -253,6 +253,12 @@ main {
   width: 100%;
   height: 4.25rem;
   font-size: 1.1rem;
+}
+/* A subject with no material yet keeps its tile as a dashed outline, like its course parts. */
+.subject:not(:has(.parts li.has)) > .code {
+  background: none;
+  border: 2px dashed var(--course);
+  color: var(--muted);
 }
 .subject h3 {
   font: 700 1.25rem/1.25 var(--f-display);

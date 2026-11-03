@@ -152,6 +152,24 @@
     });
   });
 
+  // Answer keys ask for a commitment first: the first press arms, the second opens.
+  document.querySelectorAll("details.answers").forEach(function (d) {
+    var sum = d.querySelector("summary");
+    if (!sum) return;
+    var label = sum.textContent;
+    sum.addEventListener("click", function (e) {
+      if (d.open || d.classList.contains("armed")) return;
+      e.preventDefault();
+      d.classList.add("armed");
+      sum.textContent = "Written your answer down? Open the answers";
+    });
+    d.addEventListener("toggle", function () {
+      if (d.open) return;
+      d.classList.remove("armed");
+      sum.textContent = label;
+    });
+  });
+
   // Subject code: name the course.
   var code = document.querySelector(".sign .code"),
     course = document.querySelector(".sign .course");
