@@ -78,9 +78,9 @@
     "semantic_hash": ""
   },
   "tools/guide-to-tex.py": {
-    "mtime": 1793705521.0110002,
-    "seen": 1793705603.20838,
-    "ast_hash": "cc420bdb94138649defd9c4dc6a7f15c",
+    "mtime": 1793722229.1279216,
+    "seen": 1793722250.755195,
+    "ast_hash": "9f75d8657e33b7a978e015f071d5cfca",
     "semantic_hash": ""
   },
   "eei/ch1-electrostatic-fields.html": {
@@ -156,9 +156,9 @@
     "semantic_hash": ""
   },
   "mei/ch1-statements-logic-sets.html": {
-    "mtime": 1793715798.6208227,
-    "seen": 1793715827.046879,
-    "ast_hash": "81ebc8060441f223133211a29047e2af",
+    "mtime": 1793722229.109946,
+    "seen": 1793722250.75522,
+    "ast_hash": "51679472199121853b901010360c09c0",
     "semantic_hash": ""
   },
   ".agents/skills/autonomy-course-site/SKILL.md": {

@@ -433,7 +433,7 @@ Each operation is easiest to understand by asking when an arbitrary element x be
 Union collects elements in either set; intersection keeps elements in both; difference keeps elements in A but removes those in B. The Cartesian product contains ordered pairs, not sets of the factors.
 
 \begin{equationcard}{Operations on n sets}
-\[ \begin{gathered} \cup _{{k}=1}^{{n}}{A}_{{k}}\, \text{contains}\, {x}\, \text{when}\, {x}\, \text{belongs}\, \text{to}\, \text{at}\, \text{least}\, \text{one}\, {A}_{{k}} \\ \cap _{{k}=1}^{{n}}{A}_{{k}}\, \text{contains}\, {x}\, \text{when}\, {x}\, \text{belongs}\, \text{to}\, \text{every}\, {A}_{{k}} \\ \prod_{{k}=1}^{{n}} {A}_{{k}}\, =\, {A}_{1}\times ⋯\times {A}_{{n}},\, \text{the}\, \text{ordered}\, {n}-\text{tuples}\, ({x}_{1},…,{x}_{{n}})\, \text{with}\, {x}_{{k}}\in {A}_{{k}} \end{gathered} \]
+\[ \begin{gathered} \bigcup_{{k}=1}^{{n}} {A}_{{k}}\, \text{contains}\, {x}\, \text{when}\, {x}\, \text{belongs}\, \text{to}\, \text{at}\, \text{least}\, \text{one}\, {A}_{{k}} \\ \bigcap_{{k}=1}^{{n}} {A}_{{k}}\, \text{contains}\, {x}\, \text{when}\, {x}\, \text{belongs}\, \text{to}\, \text{every}\, {A}_{{k}} \\ \prod_{{k}=1}^{{n}} {A}_{{k}}\, =\, {A}_{1}\times ⋯\times {A}_{{n}},\, \text{the}\, \text{ordered}\, {n}-\text{tuples}\, ({x}_{1},…,{x}_{{n}})\, \text{with}\, {x}_{{k}}\in {A}_{{k}} \end{gathered} \]
 {\small In particular, \ensuremath{\mathbb{R}}\textsuperscript{2}=\ensuremath{\mathbb{R}}\ensuremath{\times}\ensuremath{\mathbb{R}} is the plane and \ensuremath{\mathbb{R}}\textsuperscript{3}=\ensuremath{\mathbb{R}}\ensuremath{\times}\ensuremath{\mathbb{R}}\ensuremath{\times}\ensuremath{\mathbb{R}} is three-dimensional space. Also, [1,3]\ensuremath{\times}[1,2]=\{(x,y)\ensuremath{\in}\ensuremath{\mathbb{R}}\textsuperscript{2} : 1\ensuremath{\leq}x\ensuremath{\leq}3, 1\ensuremath{\leq}y\ensuremath{\leq}2\} is a rectangle, and \{0,1\}\textsuperscript{3}=\{0,1\}\ensuremath{\times}\{0,1\}\ensuremath{\times}\{0,1\} is the eight vertices of the unit cube.}
 \end{equationcard}
 
@@ -584,7 +584,7 @@ Try all 33 problems before opening the answer key. The sections alternate so you
 \item Simplify (A\ensuremath{\lor}B)\ensuremath{\land}(A\ensuremath{\lor}\ensuremath{\neg}B) with the logical rules, naming each rule. How many gates does this remove?
 \item Let A=\{1,3\}, B=\{2,4\}, C=\{3,4\}. Which pairs of these sets are disjoint?
 \item For the sensor vote V, find V for A=B=1 with C=0 and with C=1. Then repeat for A=1, B=0. What do the results show about a faulty third sensor?
-\item Let A\textsubscript{1}=\{1,2\}, A\textsubscript{2}=\{2,3\}, A\textsubscript{3}=\{2,4\}. Find \ensuremath{\cup}\textsubscript{k=1}\textsuperscript{3}A\textsubscript{k} and \ensuremath{\cap}\textsubscript{k=1}\textsuperscript{3}A\textsubscript{k}. How many elements has $\prod_{\mathrm{k}=1}^{3} $A\textsubscript{k}? Give one.
+\item Let A\textsubscript{1}=\{1,2\}, A\textsubscript{2}=\{2,3\}, A\textsubscript{3}=\{2,4\}. Find $\bigcup_{\mathrm{k}=1}^{3} $A\textsubscript{k} and $\bigcap_{\mathrm{k}=1}^{3} $A\textsubscript{k}. How many elements has $\prod_{\mathrm{k}=1}^{3} $A\textsubscript{k}? Give one.
 \item Negate \ensuremath{\forall}S \ensuremath{\exists}T: T helps S, and say it in words.
 \item Describe [0,2]\ensuremath{\times}[1,3] as a set in \ensuremath{\mathbb{R}}\textsuperscript{2} and name its shape. Is (2,3) in it? Is (3,2)?
 \item Use an 8-row truth table to prove A\ensuremath{\land}(B\ensuremath{\lor}C) \ensuremath{\Leftrightarrow} (A\ensuremath{\land}B)\ensuremath{\lor}(A\ensuremath{\land}C).

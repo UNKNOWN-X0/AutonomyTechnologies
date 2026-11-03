@@ -173,7 +173,7 @@ def math(node):
     return "".join(out)
 
 
-BIG_OPS = {"Σ": r"\sum", "∑": r"\sum", "Π": r"\prod", "∏": r"\prod", "∫": r"\int", "∮": r"\oint", "∬": r"\iint", "∯": r"\oiint"}
+BIG_OPS = {"Σ": r"\sum", "∑": r"\sum", "Π": r"\prod", "∏": r"\prod", "∫": r"\int", "∮": r"\oint", "∬": r"\iint", "∯": r"\oiint", "∪": r"\bigcup", "∩": r"\bigcap", "⋃": r"\bigcup", "⋂": r"\bigcap"}
 
 
 def big_op(node):

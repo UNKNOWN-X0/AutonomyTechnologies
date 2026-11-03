@@ -518,6 +518,7 @@
   gap: 8px;
 }
 .ch-conf.seg {
+  gap: 0;
   flex: 1 1 12rem;
   margin: 0;
 }

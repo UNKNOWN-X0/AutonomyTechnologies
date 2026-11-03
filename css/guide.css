@@ -908,7 +908,7 @@ main > section:first-of-type > h2 {
   }
 }
 
-/* Big operators with limits: sums and products stack top limit, sign, bottom limit;
+/* Big operators with limits: sums, products, unions and intersections stack top limit, sign, bottom limit;
    integrals keep the sign on the left with the top limit over the bottom one on its right. */
 .op {
   display: inline-grid;
