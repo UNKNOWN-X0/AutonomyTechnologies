@@ -356,6 +356,11 @@ A paper plate under an 8px ink bar, overlapping the masthead. Its head pairs "Re
 ### Tick bar
 A row of 7px by 22px bars, one per exam-checklist skill, gapped by 3px and drawn in the current text colour. A faint fill (16% opacity) is not yet; full opacity is ticked. A visible count follows the bars ("3/23" on hub chapter rows, "n / 14 skills" on review rows). When every skill is ticked, the bar takes a 2px signal-line underline: the chapter is mastered.
 
+### Hub folding
+- **Subjects:** each subject with chapters gets a quiet action-colour text button under its module line ("7 chapters", with a chevron) that folds its chapter list. Until any chapter is started every subject is open; after that a subject with a started chapter opens by default and the rest start folded; a subject opened or folded by hand stays that way (`localStorage` `hub-folds`). When the furthest started chapter sits in a folded subject, the route stops at that subject's tile. Opening a list uncovers it top-down (240ms; none on page load or under reduced motion).
+- **Review board:** when something is due, only the due and overdue rows show, with a full-width **Show all N chapters** row under them; when nothing is due, the fresh rows show and only the new ones fold.
+- Print shows every list and row.
+
 ### The route (hub)
 A 2px vertical line down the left edge of the semester sections, joining every chapter's number like stops on a transit line, and ending at a dashed open node labelled "Continue on the route to automation" (wording chosen by the owner, 2026-11-03). The stretch up to the furthest chapter with any ticks is drawn in the signal gradient; the rest is a dashed hairline (line form: not yet). Chapter numbers sit on the line as stops: a filled square once started, an outlined square before. It grows by itself as semesters are added and carries no extra copy. Under 760px it stays as a 2px line at the left gutter.
 

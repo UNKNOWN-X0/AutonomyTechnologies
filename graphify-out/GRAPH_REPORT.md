@@ -1,17 +1,17 @@
-# Graph Report - AutonomyTechnologies  (2026-11-03)
+# Graph Report - AutonomyTechnologies  (2026-11-04)
 
 ## Corpus Check
-- 54 files · ~170,921 words
+- 54 files · ~171,391 words
 - Verdict: corpus is large enough that graph structure adds value.
 - Unclassified: 6 file(s) not represented in the graph (top: .css 4, (none) 2)
 
 ## Summary
-- 820 nodes · 1510 edges · 36 communities (32 shown, 4 thin omitted)
+- 824 nodes · 1514 edges · 36 communities (31 shown, 5 thin omitted)
 - Extraction: 87% EXTRACTED · 13% INFERRED · 0% AMBIGUOUS · INFERRED: 197 edges (avg confidence: 0.85)
 - Token cost: 0 input · 0 output
 
 ## Graph Freshness
-- Built from commit: `3a3d44e7`
+- Built from commit: `0904d241`
 - Run `git rev-parse HEAD` and compare to check if the graph is stale.
 - Run `graphify update .` after code changes (no API cost).
 
@@ -43,7 +43,7 @@
 - Study Pages preview showing Electrical Engineering 1 and Mathematics for
 - Study Pages project guide
 - ch4-physics.js
-- apdr/ch3-physics.js
+- mei/ch2-physics.js
 - ch34-lab.js
 - mei/ch2-lab.js
 - nav.js
@@ -56,8 +56,8 @@
 ## God Nodes (most connected - your core abstractions)
 1. `fieldPlayground()` - 28 edges
 2. `capacitorBench()` - 22 edges
-3. `paint()` - 21 edges
-4. `Components` - 21 edges
+3. `Components` - 22 edges
+4. `paint()` - 21 edges
 5. `networks()` - 18 edges
 6. `draw()` - 18 edges
 7. `interfaceBench()` - 17 edges
@@ -80,7 +80,7 @@
 ## Import Cycles
 - None detected.
 
-## Communities (36 total, 4 thin omitted)
+## Communities (36 total, 5 thin omitted)
 
 ### Community 0 - "capacitorBench() / paint()"
 Cohesion: 0.05
@@ -88,7 +88,7 @@ Nodes (76): capacitorBench(), charged(), circuit(), draw(), grow(), guessOn(), n
 
 ### Community 1 - "Components / Design System: From Fundamentals to AI Apocalypse"
 Cohesion: 0.05
-Nodes (41): Answer key, Buttons, Chapter switcher and tick groups, Colors, Components, Course code square, Course-part chips, Dark mode (+33 more)
+Nodes (42): Answer key, Buttons, Chapter switcher and tick groups, Colors, Components, Course code square, Course-part chips, Dark mode (+34 more)
 
 ### Community 2 - "guide-to-tex.py / Conv"
 Cohesion: 0.07
@@ -135,8 +135,8 @@ Cohesion: 0.20
 Nodes (11): Algorithm, Boolean expressions, Boolean laws, De Morgan's laws, Logic gates, NAND, Physical circuits, Program language (+3 more)
 
 ### Community 13 - "index.js"
-Cohesion: 0.08
-Nodes (23): Acceptance, Content rules, Files, Labs, Markup, Page structure, PDF, Practice and testing (+15 more)
+Cohesion: 0.07
+Nodes (24): Acceptance, Content rules, Files, Labs, Markup, Page structure, PDF, Practice and testing (+16 more)
 
 ### Community 14 - "ch4-lab.js"
 Cohesion: 0.14
@@ -174,10 +174,6 @@ Nodes (25): Project data, Project instructions, Electrical Engineering I study c
 Cohesion: 0.23
 Nodes (10): binaryValue(), classifySingle(), decodeSingle(), float32(), fractionBits(), fractionValue(), normalizedBinary(), scientificOperation() (+2 more)
 
-### Community 27 - "apdr/ch3-physics.js"
-Cohesion: 0.26
-Nodes (10): columnSubtract(), convert(), decodeInteger(), decodeTwos(), negatePattern(), parseBase(), parseBits(), toBase() (+2 more)
-
 ### Community 28 - "ch34-lab.js"
 Cohesion: 0.19
 Nodes (12): challenge(), colors(), draw(), drawColumns(), drawFields(), drawLine(), x(), mount() (+4 more)
@@ -192,7 +188,7 @@ Nodes (9): fold(), follow(), groupOf(), idOf(), lit(), show(), build(), href() (
 
 ### Community 31 - "lab-challenges.test.js"
 Cohesion: 0.05
-Nodes (13): moduleConfiguration(), rowsToBytes(), choose(), pascalRow(), row(), rows(), src2, context() (+5 more)
+Nodes (21): columnSubtract(), convert(), decodeInteger(), decodeTwos(), negatePattern(), parseBase(), parseBits(), toBase() (+13 more)
 
 ### Community 32 - "ch5-lab.js"
 Cohesion: 0.38
@@ -212,8 +208,8 @@ Nodes (4): discriminant(), relationValues(), roots(), squarePreimages()
 
 ## Knowledge Gaps
 - **10 isolated node(s):** `Study Pages preview showing Electrical Engineering 1 and Mathematics for Engineers I course cards`, `Active-recall study workflow`, `Jekyll site CI`, `LaTeX, Pandoc, and KaTeX publishing pipeline`, `Bernhard Kainz` (+5 more)
-  These have ≤1 connection - possible missing edges or undocumented components. (Counts symbols only; 274 node(s) total have ≤1 connection when file, concept and rationale nodes are included.)
-- **4 thin communities (<3 nodes) omitted from report** — run `graphify query` to explore isolated nodes.
+  These have ≤1 connection - possible missing edges or undocumented components. (Counts symbols only; 277 node(s) total have ≤1 connection when file, concept and rationale nodes are included.)
+- **5 thin communities (<3 nodes) omitted from report** — run `graphify query` to explore isolated nodes.
 
 ## Work-memory lessons
 
@@ -224,7 +220,7 @@ Nodes (4): discriminant(), relationValues(), roots(), squarePreimages()
 _Questions this graph is uniquely positioned to answer:_
 
 - **Why does `Lab standard` connect `Lab standard` to `Study Pages project guide`?**
-  _High betweenness centrality (0.103) - this node is a cross-community bridge._
+  _High betweenness centrality (0.104) - this node is a cross-community bridge._
 - **Are the 3 inferred relationships involving `fieldPlayground()` (e.g. with `eei/ch1-lab.js` and `endDrag()`) actually correct?**
   _`fieldPlayground()` has 3 INFERRED edges - model-reasoned connections that need verification._
 - **What connects `Study Pages preview showing Electrical Engineering 1 and Mathematics for Engineers I course cards`, `Active-recall study workflow`, `Jekyll site CI` to the rest of the system?**
@@ -234,6 +230,6 @@ _Questions this graph is uniquely positioned to answer:_
 - **Are the 2 inferred relationships involving `capacitorBench()` (e.g. with `eei/ch1-lab.js` and `resize()`) actually correct?**
   _`capacitorBench()` has 2 INFERRED edges - model-reasoned connections that need verification._
 - **Should `Components / Design System: From Fundamentals to AI Apocalypse` be split into smaller, more focused modules?**
-  _Cohesion score 0.04878048780487805 - nodes in this community are weakly interconnected._
+  _Cohesion score 0.047619047619047616 - nodes in this community are weakly interconnected._
 - **Are the 5 inferred relationships involving `paint()` (e.g. with `draw()` and `draw()`) actually correct?**
   _`paint()` has 5 INFERRED edges - model-reasoned connections that need verification._

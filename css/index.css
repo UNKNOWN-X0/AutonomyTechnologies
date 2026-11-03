@@ -332,6 +332,75 @@ html.sweeping .chapter.started:not(.lit)::before {
   }
 }
 
+/* Folding: a subject's chapter list and the board's not-yet-due rows (js/index.js). */
+.subject-fold,
+.board-more {
+  display: inline-flex;
+  align-items: center;
+  min-height: 36px;
+  padding: 0;
+  border: 0;
+  background: none;
+  color: var(--act);
+  font: 700 0.95rem/1.2 var(--f-display);
+  cursor: pointer;
+}
+.subject-fold {
+  margin-top: 6px;
+}
+.board-more {
+  width: 100%;
+  min-height: 48px;
+  padding: 0 28px;
+  border-top: 1px solid var(--line);
+}
+.subject-fold::after,
+.board-more::after {
+  content: "";
+  width: 7px;
+  height: 7px;
+  margin: -3px 0 0 10px;
+  border: solid currentColor;
+  border-width: 0 2px 2px 0;
+  transform: rotate(45deg);
+}
+.subject-fold[aria-expanded="true"]::after,
+.board-more[aria-expanded="true"]::after {
+  margin-top: 3px;
+  transform: rotate(225deg);
+}
+.subject-fold:hover,
+.board-more:hover {
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+@media (prefers-reduced-motion: no-preference) {
+  .chapters.opening {
+    animation: fold-open 240ms var(--ease) both;
+  }
+}
+@keyframes fold-open {
+  from {
+    opacity: 0;
+    clip-path: inset(0 0 100% 0);
+  }
+}
+.rows > .row[hidden] {
+  display: none;
+}
+@media print {
+  .subject-fold,
+  .board-more {
+    display: none;
+  }
+  .chapters[hidden] {
+    display: block;
+  }
+  .row[hidden] {
+    display: grid;
+  }
+}
+
 /* Semesters and subjects */
 .semester h2 {
   display: flex;

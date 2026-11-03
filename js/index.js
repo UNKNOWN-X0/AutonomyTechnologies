@@ -102,7 +102,9 @@
       ul.querySelectorAll("li.chapter.started").forEach(function (li) {
         last = li;
       });
-      ul.style.setProperty("--route-lit", last ? topIn(last, ul) + last.offsetHeight / 2 + "px" : "0px");
+      // a folded subject hides its chapters, so the route then stops at the subject's tile
+      var at = last && !last.offsetParent ? last.closest("li.subject").querySelector(".code") : last;
+      ul.style.setProperty("--route-lit", at ? topIn(at, ul) + at.offsetHeight / 2 + "px" : "0px");
     });
   }
   var queued = false;
@@ -118,6 +120,44 @@
   window.addEventListener("resize", reroute);
   window.addEventListener("load", reroute);
   if (document.fonts && document.fonts.ready) document.fonts.ready.then(reroute);
+
+  // Subjects fold their chapter lists. Until any chapter is started everything is open; after that a subject you have
+  // started opens by default and the rest start folded. A subject you open or fold yourself stays that way (saved here).
+  var folds = read("hub-folds", {}),
+    anyStarted = !!document.querySelector("li.chapter.started");
+  document.querySelectorAll("li.subject").forEach(function (sub, n) {
+    var list = sub.querySelector("ol.chapters"),
+      items = list ? list.querySelectorAll("li.chapter") : [],
+      about = sub.querySelector(".about"),
+      code = (sub.querySelector(".code") || {}).textContent;
+    if (!items.length || !about) return;
+    var btn = document.createElement("button");
+    btn.type = "button";
+    btn.className = "subject-fold";
+    list.id = list.id || "chapters-" + n;
+    btn.setAttribute("aria-controls", list.id);
+    btn.textContent = items.length + (items.length === 1 ? " chapter" : " chapters");
+    about.appendChild(btn);
+    function set(open) {
+      list.hidden = !open;
+      btn.setAttribute("aria-expanded", String(open));
+      sub.classList.toggle("folded", !open);
+    }
+    set(code in folds ? folds[code] : !anyStarted || !!sub.querySelector("li.chapter.started"));
+    btn.addEventListener("click", function () {
+      set(list.hidden);
+      folds[code] = !list.hidden;
+      list.classList.toggle("opening", !list.hidden);
+      setTimeout(function () {
+        list.classList.remove("opening");
+      }, 300);
+      try {
+        localStorage.setItem("hub-folds", JSON.stringify(folds));
+      } catch (e) {}
+      reroute();
+    });
+  });
+  route();
 
   var order = { overdue: 0, due: 1, new: 2, fresh: 3 };
   chapters.sort(function (a, b) {
@@ -219,6 +259,39 @@
 
   tips();
   settle();
+  foldBoard();
+
+  // The board shows what is due first. Chapters not due yet (new or fresh) fold under one button when something is due;
+  // when nothing is due, the fresh ones show and only the new ones fold.
+  function foldBoard() {
+    var all = Array.prototype.slice.call(rows.children),
+      due = all.filter(function (r) {
+        return r.classList.contains("due") || r.classList.contains("overdue");
+      }),
+      keep = due.length ? due : all.filter(function (r) {
+        return r.classList.contains("fresh");
+      }),
+      rest = all.filter(function (r) {
+        return keep.indexOf(r) < 0;
+      });
+    if (!keep.length || !rest.length) return;
+    var btn = document.createElement("button");
+    btn.type = "button";
+    btn.className = "board-more";
+    btn.setAttribute("aria-controls", "rows");
+    rows.parentNode.insertBefore(btn, rows.nextSibling);
+    function set(open) {
+      rest.forEach(function (r) {
+        r.hidden = !open;
+      });
+      btn.setAttribute("aria-expanded", String(open));
+      btn.textContent = open ? "Show only what is " + (due.length ? "due" : "reviewed") : "Show all " + all.length + " chapters";
+    }
+    set(false);
+    btn.addEventListener("click", function () {
+      set(rest[0].hidden);
+    });
+  }
 
   // The board settles: when a review has moved a chapter from due to fresh since the last visit,
   // its row slides from its old place (FLIP) and its gap value counts up to the new interval.
