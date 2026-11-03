@@ -190,13 +190,15 @@
   var imp = { head: "A ⇒ B", f: O.implies }, con = { head: "B ⇒ A", f: function (a, b) { return O.implies(b, a); } };
   var or = { head: "A ∨ B", f: O.or }, xor = { head: "either-or", f: O.xor };
   var nand = { head: "¬(A ∧ B)", f: function (a, b) { return !O.and(a, b); } }, orn = { head: "¬A ∨ ¬B", f: function (a, b) { return O.or(!a, !b); } };
-  var contra = { head: "¬B ⇒ ¬A", f: function (a, b) { return O.implies(!b, !a); } };
+  var nab = { head: "¬A ∨ B", f: function (a, b) { return O.or(!a, b); } }, eqv = { head: "⇔", f: function (a, b) { return O.iff(O.implies(a, b), O.or(!a, b)); } };
+  var contra ={ head: "¬B ⇒ ¬A", f: function (a, b) { return O.implies(!b, !a); } };
   function even(x) { return x % 2 === 0; }
   function square(x) { return x * x === 1; }
   var data = {
     logic: [
-      challenge("implication-false", "For A=1 (true) and B=0 (false), what is A ⇒ B?", [["true", "True"], ["false", "False"], ["undefined", "Undefined"]], "false", "1.1", "Implication false row", "An implication is false only when its premise is true and its conclusion false. This is that row, so it is the one case that fails.",
-        function () { return String(O.implies(true, false)); }, logicStage([true, false], [imp], "True premise, false conclusion: 0.")),
+      challenge("tautology", "Is (A ⇒ B) ⇔ (¬A ∨ B) true for every choice of A and B?", [["tautology", "Yes, in all four rows"], ["fails", "No, it fails at A=1, B=0"], ["only-a", "Only in rows where A is true"]], "tautology", "1.1", "Tautology", "A tautology is true for every input. A ⇒ B and ¬A ∨ B match in all four rows, even at A=1, B=0 where both are 0, so their equivalence is always 1. This is how the notes rewrite ⇒ with ¬ and ∨.",
+        function () { return P.truthTable(function (a, b) { return O.iff(O.implies(a, b), O.or(!a, b)); }).every(function (r) { return r.value; }) ? "tautology" : "fails"; },
+        logicStage([true, false], [imp, nab, eqv], "Columns match, so ⇔ is 1 in every row: a tautology.")),
       challenge("inclusive-or", "For A=1 and B=1, what is the mathematical A ∨ B?", [["false", "False"], ["xor", "True only if exactly one holds"], ["true", "True"]], "true", "1.1", "Inclusive OR", "Inclusive OR needs at least one true input, so it stays true when both are true. The everyday either-or would give 0 here, but ∨ is not that operator.",
         function () { return String(O.or(true, true)); }, logicStage([true, true], [or, xor], "A ∨ B = 1 here; only either-or gives 0.")),
       challenge("converse", "For A=0 and B=1, compare A ⇒ B with its converse B ⇒ A.", [["different", "First true, converse false"], ["same", "Both true"], ["false", "Both false"]], "different", "1.1", "Converse", "Swapping an implication gives its converse, which need not share its truth value: here 1 against 0. The contrapositive ¬B ⇒ ¬A does stay equivalent, as the sandbox shows.",
@@ -208,9 +210,9 @@
       challenge("forall-negation", "On D={1,2,3}, let P(x): x is even. What is the negation of ∀x P(x)?", [["all", "Every x is odd"], ["none", "No x is odd"], ["some", "At least one x is odd"]], "some", "1.1", "Negating ∀", "Negating ‘for every’ gives one counterexample: ∃x ¬P(x). Here x=1 is enough; it does not take every x failing.",
         function () { return P.quantifier([1, 2, 3], even, "forall") === false && P.quantifier([1, 2, 3], function (x) { return !even(x); }, "exists") ? "some" : "all"; },
         domainStage(["P(x): x is even", "D = {1, 2, 3}"], [{ xs: [1, 2, 3], test: even }], ["¬∀x P(x) ⇔ ∃x ¬P(x): x=1 and x=3 fail."])),
-      challenge("exists-negation", "On D={1,2,3}, let P(x): x>3. What is the negation of ∃x P(x)?", [["forall-le", "For every x, x≤3"], ["exists-le", "There is an x with x≤3"], ["forall-gt", "For every x, x>3"]], "forall-le", "1.1", "Negating ∃", "¬∃x P(x) ⇔ ∀x ¬P(x), so ‘none exceeds 3’ means ‘every x is at most 3’. Swap the quantifier and negate the predicate; doing only one of the two gives the other options.",
-        function () { var D = [1, 2, 3], gt = function (x) { return x > 3; }; return !P.quantifier(D, gt, "exists") === P.quantifier(D, function (x) { return !gt(x); }, "forall") ? "forall-le" : "exists-le"; },
-        domainStage(["P(x): x>3", "D = {1, 2, 3}"], [{ xs: [1, 2, 3], test: function (x) { return x > 3; } }], ["No witness, so ∀x (x≤3) is the true negation."])),
+      challenge("unique-exists", "On D={1,2,3,4}, let P(x): x is even. Is ∃!x P(x) true?", [["yes", "True: an even x exists"], ["no", "False: two values are even"], ["domain", "Undecided until D is larger"]], "no", "1.1", "Unique existence", "∃! means exactly one. ∃x P(x) holds here, but both 2 and 4 pass, so ‘exactly one’ fails. Count the witnesses instead of stopping at the first.",
+        function () { return [1, 2, 3, 4].filter(even).length === 1 ? "yes" : "no"; },
+        domainStage(["P(x): x is even", "D = {1, 2, 3, 4}"], [{ xs: [1, 2, 3, 4], test: even }], ["Two witnesses, 2 and 4, so ∃!x P(x) is false."])),
       challenge("domain-matters", "Let P(x): x²=1. Compare ∀x∈{−1,1} P(x) with ∀x∈{−1,0,1} P(x).", [["yes", "Both true"], ["different", "First true, second false"], ["no", "Both false"]], "different", "1.1", "State the domain", "The predicate is the same; only the domain changed. Both members of {−1,1} pass, but x=0 fails in the larger domain, so a quantified claim has no truth value until its domain is stated.",
         function () { return P.quantifier([-1, 1], square, "forall") && !P.quantifier([-1, 0, 1], square, "forall") ? "different" : "no"; },
         domainStage(["P(x): x²=1"], [{ label: "Domain {−1, 1}", xs: [-1, 1], test: square }, { label: "Domain {−1, 0, 1}", xs: [-1, 0, 1], test: square }], ["Same predicate: true, then false."])),
@@ -221,7 +223,7 @@
     sets: [
       challenge("union", "Let X={1,2,3,4}, A={1,2}, B={2,3}. What is A∪B?", [["2", "{2}"], ["123", "{1,2,3}"], ["1234", "{1,2,3,4}"]], "123", "1.2", "Union", "Union keeps elements in at least one set, so it is membership with ∨. Element 4 belongs to neither set, so being in X is not enough.",
         function () { return P.setOp(SA, SB, "union").join(""); }, setStage(function (x) { return P.setOp(SA, SB, "union").indexOf(x) >= 0; }, "A ∪ B = " + set(P.setOp(SA, SB, "union")))),
-      challenge("intersection", "For the same A and B, compare A\\B with B\\A.", [["same", "Both {1}"], ["both", "Both {1,3}"], ["different", "A\\B={1}, B\\A={3}"]], "different", "1.2", "Difference direction", "A\\B starts from A and removes B, which leaves 1. B\\A starts from B and removes A, which leaves 3. The first set supplies the candidates, so the order matters.",
+      challenge("difference-order", "For the same A and B, compare A\\B with B\\A.", [["same", "Both {1}"], ["both", "Both {1,3}"], ["different", "A\\B={1}, B\\A={3}"]], "different", "1.2", "Difference direction", "A\\B starts from A and removes B, which leaves 1. B\\A starts from B and removes A, which leaves 3. The first set supplies the candidates, so the order matters.",
         function () { return P.setOp(SA, SB, "difference").join() === "1" && P.setOp(SB, SA, "difference").join() === "3" ? "different" : "same"; },
         setStage(function (x) { return P.setOp(SA, SB, "difference").concat(P.setOp(SB, SA, "difference")).indexOf(x) >= 0; }, "A\\B = " + set(P.setOp(SA, SB, "difference")) + ", B\\A = " + set(P.setOp(SB, SA, "difference")))),
       challenge("complement", "With X={1,2,3,4} and A={1,2}, what is Aᶜ?", [["34", "{3,4}"], ["empty", "∅"], ["1234", "X"]], "34", "1.2", "Relative complement", "A complement is relative to the stated universal set. The elements of X not in A are 3 and 4; change X and the answer changes.",
