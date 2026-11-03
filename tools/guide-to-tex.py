@@ -356,6 +356,9 @@ PREAMBLE = r"""\documentclass[11pt]{article}
 \usepackage[most]{tcolorbox}
 \usepackage{titlesec,fancyhdr}
 \usepackage[hidelinks]{hyperref}
+\usepackage{draftwatermark}
+\SetWatermarkText{Made by Thanate Amornjiraporn (Focus)}
+\SetWatermarkColor{black!7}\SetWatermarkFontSize{30pt}\SetWatermarkAngle{45}
 \setlength{\parindent}{0pt}
 \setlength{\parskip}{5pt}
 \setlist{itemsep=2pt,topsep=3pt,leftmargin=1.6em,beginpenalty=10000,endpenalty=10000}
