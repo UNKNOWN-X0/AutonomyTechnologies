@@ -240,8 +240,11 @@ A function is more than a formula: its domain and codomain are part of its defin
 {\small A\ensuremath{\subseteq}X and B\ensuremath{\subseteq}Y. Preimage notation f\textsuperscript{\ensuremath{-}1}(B) is defined even when f has no inverse function.}
 \end{equationcard}
 
-\Needspace{12\baselineskip}
+\Needspace{11\baselineskip}
 A real-valued function has a graph in the coordinate plane. Each vertical line must meet the graph at most once: two y-values for one x would violate the mapping rule. A horizontal line may meet it more than once; that tells you the function is not injective, not that it fails to be a function.
+
+\Needspace{13\baselineskip}
+A rule need not be a single formula. The absolute value |x| splits into cases, and the Dirichlet function on [0,1] takes the value 1 at rational x and 0 at irrational x: it is a perfectly good mapping even though its graph cannot be drawn. A real-world assignment counts too, provided every input gets exactly one output, for example each product on a supermarket shelf gets exactly one price.
 
 \begin{workedbox}{Worked example \ensuremath{\cdot} image and preimage}
 Let f:\ensuremath{\mathbb{R}}\ensuremath{\to}\ensuremath{\mathbb{R}} be f(x)=x\textsuperscript{2}, and let A=\{\ensuremath{-}2,0,3\}, B=\{4\}.
@@ -283,7 +286,7 @@ Injectivity and surjectivity answer different questions. Together they determine
 
 \begin{equationcard}{Surjective and bijective}
 \[ \begin{gathered} \mathrm{f}\, \text{is}\, \text{onto}\, \mathrm{Y}\, \text{iff}\, \text{Im}(\mathrm{f})=\mathrm{Y}; \text{bijective}\, \text{iff}\, \text{injective}\, \text{and}\, \text{surjective} \end{gathered} \]
-{\small Surjectivity depends on the chosen codomain. A function is always surjective when its codomain is restricted to its image.}
+{\small Surjectivity depends on the chosen codomain. A function is always surjective when its codomain is restricted to its image. Injectivity, in contrast, depends only on the graph \{(x,f(x)):x\ensuremath{\in}X\}: changing the codomain never changes it.}
 \end{equationcard}
 
 \Needspace{12\baselineskip}
@@ -438,8 +441,8 @@ Solve x\textsuperscript{2}\ensuremath{-}5x+6=0.
 \end{enumerate}
 \end{workedbox}
 
-\Needspace{7\baselineskip}
-The notes mention general root formulas for degrees 3 and 4, but no general formula for every polynomial of degree at least 5. This does not prevent a particular higher-degree polynomial from factoring or having roots found by another method.
+\Needspace{8\baselineskip}
+General root formulas exist for degrees 3 and 4. For degree 5 and above there is no general formula built from the coefficients using only +, \ensuremath{-}, \ensuremath{\times}, ÷ and roots (the Abel–Ruffini theorem); the notes say “no general formulas”, which is meant in this sense. This does not prevent a particular higher-degree polynomial from factoring or having roots found by another method.
 
 \begin{notebox}\textbf{Sign check:} for Δ\ensuremath{<}0 there are no real roots, but the polynomial still has a real graph. “No real roots” does not mean “no roots in every number system.”\end{notebox}
 \end{keepsection}
@@ -464,8 +467,13 @@ The notes mention general root formulas for degrees 3 and 4, but no general form
 {\small sin and cos have period 2π. Their zeros are sin x=0 at x=kπ and cos x=0 at x=π/2+kπ, k\ensuremath{\in}\ensuremath{\mathbb{Z}}.}
 \end{equationcard}
 
+\begin{equationcard}{Shifts and periodicity}
+\[ \begin{gathered} \text{sin}(\mathrm{x}+π/2)=\text{cos}\, \mathrm{x};\, \text{cos}(\mathrm{x}+π/2)=-\text{sin}\, \mathrm{x} \\ \text{sin}(\mathrm{x}+π)=-\text{sin}\, \mathrm{x};\, \text{cos}(\mathrm{x}+π)=-\text{cos}\, \mathrm{x};\, \text{sin}(\mathrm{x}+2π)=\text{sin}\, \mathrm{x};\, \text{cos}(\mathrm{x}+2π)=\text{cos}\, \mathrm{x} \end{gathered} \]
+{\small Each follows from an addition formula with cos and sin of π/2, π or 2π. A quarter turn turns sine into cosine; a half turn flips both signs.}
+\end{equationcard}
+
 \begin{equationcard}{Double-angle and square identities}
-\[ \begin{gathered} \text{sin}(2\mathrm{x})=2\, \text{sin}\, \mathrm{x}\, \text{cos}\, \mathrm{x}; \text{cos}(2\mathrm{x})=1-2\, \text{sin}^{2}\mathrm{x} \\ \text{sin}^{2}\mathrm{x}=(1-\text{cos}\, 2\mathrm{x})/2; \text{cos}^{2}\mathrm{x}=(1+\text{cos}\, 2\mathrm{x})/2 \end{gathered} \]
+\[ \begin{gathered} \text{sin}(2\mathrm{x})=2\, \text{sin}\, \mathrm{x}\, \text{cos}\, \mathrm{x}; \text{cos}(2\mathrm{x})=1-2\, \text{sin}^{2}\mathrm{x}=2\, \text{cos}^{2}\mathrm{x}-1=\text{cos}^{2}\mathrm{x}-\text{sin}^{2}\mathrm{x} \\ \text{sin}^{2}\mathrm{x}=(1-\text{cos}\, 2\mathrm{x})/2; \text{cos}^{2}\mathrm{x}=(1+\text{cos}\, 2\mathrm{x})/2 \end{gathered} \]
 {\small These follow from the addition formulas and sin\textsuperscript{2}x+cos\textsuperscript{2}x=1.}
 \end{equationcard}
 
@@ -660,7 +668,7 @@ Try all 24 problems before opening the answer key. The topics are interleaved, s
 \item Convert (x,y)=(\ensuremath{-}1,\ensuremath{-}\ensuremath{\surd}3) to polar coordinates with 0\ensuremath{\leq}φ\ensuremath{<}2π.
 \item Find the inverse of f(x)=4x\ensuremath{-}7 on \ensuremath{\mathbb{R}}.
 \item For f(x)=3x\ensuremath{-}2 and g(x)=x+4, find g\ensuremath{\circ}f and f\ensuremath{\circ}g.
-\item For f:\ensuremath{\mathbb{N}}\ensuremath{\to}\ensuremath{\mathbb{N}}, f(n)=n\textsuperscript{2}, find f(\{1,3,5\}) and state its codomain image relationship.
+\item For f:\ensuremath{\mathbb{N}}\ensuremath{\to}\ensuremath{\mathbb{N}}, f(n)=n\textsuperscript{2}, find f(\{1,3,5\}) and say whether Im(f) equals the codomain \ensuremath{\mathbb{N}}.
 \item Convert 150° to radians and give cos(150°).
 \item Make x\ensuremath{\mapsto}x\textsuperscript{2} bijective by choosing a domain and codomain restriction.
 \item Solve 2\textsuperscript{x}=16 and state which property makes your step valid.
@@ -719,7 +727,7 @@ Consider P(x)=x²\ensuremath{-}2x\ensuremath{-}3 and the point with polar coordi
 \item Use the discriminant to find and classify the roots of P.
 \item Write P in factored form and verify one root.
 \item Convert (r,φ) to Cartesian coordinates.
-\item Find sin(π/3+π/6) using an addition theorem, and explain why the result is consistent with the unit circle.
+\item Find sin(5π/12) exactly by writing 5π/12=π/4+π/6, and explain why the size of the result is consistent with the unit circle.
 \end{enumerate}
 
 \nopagebreak[4]{\small\itshape Answers: see “Exam-style problems” under Answers at the end.}
@@ -727,15 +735,18 @@ Consider P(x)=x²\ensuremath{-}2x\ensuremath{-}3 and the point with polar coordi
 \end{keepsection}
 
 \begin{keepsection}
-\Needspace{9\baselineskip}
+\Needspace{18\baselineskip}
 \section{Slips in the notes}
 
-\Needspace{6\baselineskip}
-This is a source-checked issue. Printed page numbers refer to the lecture notes.
+\Needspace{15\baselineskip}
+These are source-checked issues. Printed page numbers refer to the lecture notes.
 
-\Needspace{4\baselineskip}
+\Needspace{13\baselineskip}
 \begin{enumerate}
 \item \textbf{Printed page 27, composition label:} the sentence says the composition “f\ensuremath{\circ}g” is defined, but the condition and displayed formula define “g\ensuremath{\circ}f”, with (g\ensuremath{\circ}f)(x)=g(f(x)). The latter is the consistent statement: if f:X\ensuremath{\to}Y, g:D(g)\ensuremath{\subseteq}Y\ensuremath{\to}Z and Im(f)\ensuremath{\subseteq}D(g), then g\ensuremath{\circ}f:X\ensuremath{\to}Z is defined.
+\item \textbf{Printed page 28, “no general formulas”:} for degree 5 and above, what does not exist is a general formula in radicals (Abel–Ruffini). Roots can still be found numerically, and particular polynomials can still be solved.
+\item \textbf{Printed page 29, radian arc:} the notes say the arc runs “from (0,1)” to P. The angle is measured from the positive x-axis, so the arc starts at (1,0).
+\item \textbf{Printed page 33, W(e):} the range of e\textsuperscript{x} is written W(e), from German \emph{Wertebereich}. It means the same as Im(f) used elsewhere in the chapter.
 \end{enumerate}
 \end{keepsection}
 
@@ -750,7 +761,7 @@ Tick a skill only in a later session, at least one day after learning it, when y
 \item $\mdlgwhtsquare$\ Decide whether a rule defines a mapping and identify its domain and codomain. (13, 24)
 \item $\mdlgwhtsquare$\ Find images and preimages without confusing preimage with inverse. (1, 7, 17)
 \item $\mdlgwhtsquare$\ Test injectivity, surjectivity and bijectivity for a stated codomain. (3, 9, 24)
-\item $\mdlgwhtsquare$\ Find an inverse and verify it by composition. (5, 11, 19)
+\item $\mdlgwhtsquare$\ Find an inverse and verify it by composition. (5, 11; exam 1)
 \item $\mdlgwhtsquare$\ Compose mappings in the right order and check domains. (6, 12, 20)
 \item $\mdlgwhtsquare$\ Use polynomial degree to bound the number of real roots. (18)
 \item $\mdlgwhtsquare$\ Use the discriminant and quadratic formula correctly. (2, 15)
@@ -861,7 +872,7 @@ Tick a skill only in a later session, at least one day after learning it, when y
 \item r=\ensuremath{\surd}(1+3)=2. The point is in quadrant III, so φ=4π/3; answer (2,4π/3). \hfill{\small\color{FAUblue}§3.6}
 \item Set y=4x\ensuremath{-}7 and solve x=(y+7)/4, so f\textsuperscript{\ensuremath{-}1}(y)=(y+7)/4. \hfill{\small\color{FAUblue}§3.3}
 \item (g\ensuremath{\circ}f)(x)=3x+2; (f\ensuremath{\circ}g)(x)=3x+10. The order changes the result. \hfill{\small\color{FAUblue}§3.4}
-\item f(\{1,3,5\})=\{1,9,25\}; Im(f) is a subset of the codomain \ensuremath{\mathbb{N}}, and these are values reached by the selected subset. \hfill{\small\color{FAUblue}§3.1}
+\item f(\{1,3,5\})=\{1,9,25\}. Im(f) is the set of perfect squares \{1,4,9,…\}, a proper subset of \ensuremath{\mathbb{N}} (2 is never reached), so f is not onto \ensuremath{\mathbb{N}}. \hfill{\small\color{FAUblue}§3.1}
 \item 150°=150π/180=5π/6. On the unit circle cos(5π/6)=\ensuremath{-}\ensuremath{\surd}3/2. \hfill{\small\color{FAUblue}§3.5}
 \item Use domain [0,\ensuremath{\infty}) and codomain [0,\ensuremath{\infty}). Then x² is strictly increasing and every y\ensuremath{\geq}0 has input \ensuremath{\surd}y. \hfill{\small\color{FAUblue}§3.2}
 \item 2\textsuperscript{x}=2\textsuperscript{4}, hence x=4 because 2\textsuperscript{x} is injective for base 2\ensuremath{>}1. \hfill{\small\color{FAUblue}§3.5}
@@ -895,12 +906,12 @@ Tick a skill only in a later session, at least one day after learning it, when y
 \end{keepsection}
 \begin{keepsection}\subsection{Exam-style problems}
 
-\Needspace{9\baselineskip}
+\Needspace{10\baselineskip}
 \begin{enumerate}
 \item Δ=(\ensuremath{-}2)²\ensuremath{-}4\ensuremath{\cdot}1\ensuremath{\cdot}(\ensuremath{-}3)=16\ensuremath{>}0, so there are two distinct real roots. The formula gives x=(2\ensuremath{\pm}4)/2, or 3 and \ensuremath{-}1. \hfill{\small\color{FAUblue}§3.5}
 \item P(x)=(x\ensuremath{-}3)(x+1). Substituting x=3 gives 9\ensuremath{-}6\ensuremath{-}3=0. \hfill{\small\color{FAUblue}§3.5}
 \item x=4cos(π/3)=2 and y=4sin(π/3)=2\ensuremath{\surd}3, so (x,y)=(2,2\ensuremath{\surd}3). \hfill{\small\color{FAUblue}§3.6}
-\item sin(π/3+π/6)=sin(π/3)cos(π/6)+cos(π/3)sin(π/6)=3/4+1/4=1. The angle is π/2, where the unit-circle sine is 1. \hfill{\small\color{FAUblue}§3.5}
+\item By the addition theorem, sin(π/4+π/6) = sin(π/4) cos(π/6) + cos(π/4) sin(π/6) = (\ensuremath{\surd}2/2)(\ensuremath{\surd}3/2) + (\ensuremath{\surd}2/2)(1/2), which equals (\ensuremath{\surd}6+\ensuremath{\surd}2)/4\ensuremath{\approx}0.966. The angle 5π/12=75° is in quadrant I just below π/2, where sine is 1, so a positive value just under 1 fits. \hfill{\small\color{FAUblue}§3.5}
 \end{enumerate}
 
 \end{keepsection}

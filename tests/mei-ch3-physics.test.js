@@ -60,3 +60,20 @@ test("polar conversions handle quadrants, components, and the origin", () => {
   assert.ok(Math.abs(xy.y - 2 * Math.sqrt(3)) < 1e-12);
   assert.equal(P.cartesianToPolar(0, 0).phi, null);
 });
+
+test("lab helpers compute relation values, preimages, monotonicity and composition domains", () => {
+  assert.deepEqual(P.relationValues(4), [2, -2]);
+  assert.deepEqual(P.relationValues(0), [0]);
+  assert.deepEqual(P.relationValues(-1), []);
+  assert.deepEqual(P.squarePreimages(1, -2, 2), [1, -1]);
+  assert.deepEqual(P.squarePreimages(1, 0, 2), [1]);
+  assert.equal(P.strictlyDecreasing(Math.cos, 0, Math.PI), true);
+  assert.equal(P.strictlyDecreasing(Math.cos, 0, 2 * Math.PI), false);
+  assert.equal(P.fogDefined(0.5), false);
+  assert.equal(P.fogDefined(1), true);
+  assert.equal(P.chain(1, [x => x + 1, x => 2 * x, x => x * x]), 16);
+});
+
+test("exam 2(d) value sin(5π/12) matches (√6+√2)/4", () => {
+  assert.ok(Math.abs(Math.sin(5 * Math.PI / 12) - (Math.sqrt(6) + Math.sqrt(2)) / 4) < 1e-12);
+});
