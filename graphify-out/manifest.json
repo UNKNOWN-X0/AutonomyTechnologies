@@ -12,9 +12,9 @@
     "semantic_hash": ""
   },
   "index.html": {
-    "mtime": 1793648294.9025767,
-    "seen": 1793649111.616995,
-    "ast_hash": "2c90b31e5518e91be15d31ec6990bf93",
+    "mtime": 1793692860.5009484,
+    "seen": 1793692888.458679,
+    "ast_hash": "51b4fc196a5b387cb6cab5dba6244437",
     "semantic_hash": ""
   },
   "assets/preview.png": {
@@ -336,9 +336,9 @@
     "semantic_hash": ""
   },
   "apdr/ch2a-integer-and-floating-point.html": {
-    "mtime": 1793648041.0283139,
-    "seen": 1793649111.616982,
-    "ast_hash": "09453cdb56c1bb5a9c0235419e08d313",
+    "mtime": 1793692860.4947286,
+    "seen": 1793692888.458667,
+    "ast_hash": "572631d722120fadf1edeeab84c550e5",
     "semantic_hash": ""
   },
   "tests/lab-challenges.test.js": {
@@ -354,9 +354,9 @@
     "semantic_hash": ""
   },
   "js/mei/ch2-lab.js": {
-    "mtime": 1793630350.9019756,
-    "seen": 1793630690.127691,
-    "ast_hash": "f53c40896a31961fe9ffd6b0792825e1",
+    "mtime": 1793692214.4070444,
+    "seen": 1793692232.117441,
+    "ast_hash": "ee42dd75f99fcc3c925d50b8ca0fbca7",
     "semantic_hash": ""
   },
   "js/mei/ch2-physics.js": {
@@ -366,9 +366,9 @@
     "semantic_hash": ""
   },
   "tests/mei-ch2-physics.test.js": {
-    "mtime": 1793629416.3060448,
-    "seen": 1793630087.921887,
-    "ast_hash": "293dde14def59d3d8243c45d25256ee8",
+    "mtime": 1793692217.4386356,
+    "seen": 1793692232.117453,
+    "ast_hash": "0fb64a9352082a10439cda1e9de13546",
     "semantic_hash": ""
   },
   "mei/ch2-real-numbers-lab.html": {
