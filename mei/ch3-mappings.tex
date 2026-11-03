@@ -231,12 +231,12 @@ Where is an angle or point? & Use the unit circle or quadrant-aware polar conver
 A function is more than a formula: its domain and codomain are part of its definition. This lets you ask exactly which outputs occur and which inputs lead to a chosen set of outputs.
 
 \begin{equationcard}{Mapping and image}
-\[ \begin{gathered} \mathrm{f}:\mathrm{X}\to \mathrm{Y}; \text{Im}(\mathrm{f})=\{\mathrm{f}(\mathrm{x}):\mathrm{x}\in \mathrm{X}\}⊆\mathrm{Y} \end{gathered} \]
+\[ \begin{gathered} {f}:{X}\to {Y} \\ \text{Im}({f})\, =\, \{{f}({x}):{x}\in {X}\}⊆{Y} \end{gathered} \]
 {\small X is the domain; Y is the codomain; Im(f) is the image or range. Every x\ensuremath{\in}X must be assigned exactly one value f(x)\ensuremath{\in}Y.}
 \end{equationcard}
 
 \begin{equationcard}{Image, preimage and graph}
-\[ \begin{gathered} \mathrm{f}(\mathrm{A})=\{\mathrm{f}(\mathrm{x}):\mathrm{x}\in \mathrm{A}\}; \mathrm{f}^{-1}(\mathrm{B})=\{\mathrm{x}\in \mathrm{X}:\mathrm{f}(\mathrm{x})\in \mathrm{B}\}; \text{Gr}(\mathrm{f})=\{(\mathrm{x},\mathrm{y})\in \mathrm{X}\times \mathrm{Y}:\mathrm{y}=\mathrm{f}(\mathrm{x})\} \end{gathered} \]
+\[ \begin{gathered} {f}({A})\, =\, \{{f}({x}):{x}\in {A}\} \\ {f}^{-1}({B})\, =\, \{{x}\in {X}:{f}({x})\in {B}\} \\ \text{Gr}({f})\, =\, \{({x},{y})\in {X}\times {Y}:{y}\, =\, {f}({x})\} \end{gathered} \]
 {\small A\ensuremath{\subseteq}X and B\ensuremath{\subseteq}Y. Preimage notation f\textsuperscript{\ensuremath{-}1}(B) is defined even when f has no inverse function.}
 \end{equationcard}
 
@@ -273,19 +273,19 @@ Let f:\ensuremath{\mathbb{R}}\ensuremath{\to}\ensuremath{\mathbb{R}} be f(x)=x\t
 \end{keepsection}
 
 \begin{keepsection}
-\Needspace{11\baselineskip}
+\Needspace{12\baselineskip}
 \section{3.2 Types of Mappings}
 
-\Needspace{8\baselineskip}
+\Needspace{9\baselineskip}
 Injectivity and surjectivity answer different questions. Together they determine whether every output has exactly one input.
 
 \begin{equationcard}{Injective}
-\[ \begin{gathered} \mathrm{x}_{1}≠\mathrm{x}_{2}\, \Rightarrow \, \mathrm{f}(\mathrm{x}_{1})≠\mathrm{f}(\mathrm{x}_{2}) \end{gathered} \]
+\[ \begin{gathered} {x}_{1}\, ≠\, {x}_{2}\, \Rightarrow \, {f}({x}_{1})\, ≠\, {f}({x}_{2}) \end{gathered} \]
 {\small Distinct inputs have distinct outputs; equivalently, f(x\textsubscript{1})=f(x\textsubscript{2}) implies x\textsubscript{1}=x\textsubscript{2}.}
 \end{equationcard}
 
 \begin{equationcard}{Surjective and bijective}
-\[ \begin{gathered} \mathrm{f}\, \text{is}\, \text{onto}\, \mathrm{Y}\, \text{iff}\, \text{Im}(\mathrm{f})=\mathrm{Y}; \text{bijective}\, \text{iff}\, \text{injective}\, \text{and}\, \text{surjective} \end{gathered} \]
+\[ \begin{gathered} {f}\, \text{is}\, \text{onto}\, {Y}\, \text{iff}\, \text{Im}({f})\, =\, {Y} \\ \text{bijective}\, \text{iff}\, \text{injective}\, \text{and}\, \text{surjective} \end{gathered} \]
 {\small Surjectivity depends on the chosen codomain. A function is always surjective when its codomain is restricted to its image. Injectivity, in contrast, depends only on the graph \{(x,f(x)):x\ensuremath{\in}X\}: changing the codomain never changes it.}
 \end{equationcard}
 
@@ -326,12 +326,12 @@ Consider f(x)=x\textsuperscript{2} with domain [0,\ensuremath{\infty}).
 An inverse undoes a mapping. It can do that consistently only when an output identifies one input.
 
 \begin{equationcard}{Inverse function}
-\[ \begin{gathered} \mathrm{f}:\mathrm{X}\to \mathrm{Y}\, \text{injective}\, \Rightarrow \, \mathrm{f}^{-1}:\text{Im}(\mathrm{f})\to \mathrm{X} \end{gathered} \]
+\[ \begin{gathered} {f}:{X}\to {Y}\, \text{injective}\, \Rightarrow \, {f}^{-1}:\text{Im}({f})\to {X} \end{gathered} \]
 {\small For y\ensuremath{\in}Im(f), f\textsuperscript{\ensuremath{-}1}(y) is the unique x\ensuremath{\in}X satisfying f(x)=y. The inverse domain is Im(f), not necessarily all of Y.}
 \end{equationcard}
 
 \begin{equationcard}{Inverse identities}
-\[ \begin{gathered} \mathrm{f}^{-1}\circ \mathrm{f}=\text{id}_{\mathrm{X}}; \mathrm{f}\circ \mathrm{f}^{-1}=\text{id}_{\text{Im}(\mathrm{f})} \end{gathered} \]
+\[ \begin{gathered} {f}^{-1}\circ {f}\, =\, \text{id}_{{X}} \\ {f}\circ {f}^{-1}\, =\, \text{id}_{\text{Im}({f})} \end{gathered} \]
 {\small The domain and image switch. For real-valued functions, the two graphs reflect across y=x.}
 \end{equationcard}
 
@@ -372,12 +372,12 @@ Let f:\ensuremath{\mathbb{R}}\ensuremath{\to}\ensuremath{\mathbb{R}}, f(x)=2x+3.
 Composition chains mappings. The output of the first mapping must be a valid input to the next.
 
 \begin{equationcard}{Composition}
-\[ \begin{gathered} \text{If}\, \mathrm{f}:\mathrm{X}\to \mathrm{Y},\, \mathrm{g}:\mathrm{D}(\mathrm{g})⊆\mathrm{Y}\to \mathrm{Z},\, \text{and}\, \text{Im}(\mathrm{f})⊆\mathrm{D}(\mathrm{g}),\, \text{then}\, (\mathrm{g}\circ \mathrm{f})(\mathrm{x})=\mathrm{g}(\mathrm{f}(\mathrm{x})) \end{gathered} \]
+\[ \begin{gathered} \text{If}\, {f}:{X}\to {Y},\, {g}:{D}({g})⊆{Y}\to {Z},\, \text{and}\, \text{Im}({f})⊆{D}({g}),\, \text{then}\, ({g}\circ {f})({x})\, =\, {g}({f}({x})) \end{gathered} \]
 {\small Read right to left: apply f first, then g. The containment condition guarantees the second step is defined for every first-step output.}
 \end{equationcard}
 
 \begin{equationcard}{Composition laws}
-\[ \begin{gathered} \mathrm{h}\circ (\mathrm{g}\circ \mathrm{f})=(\mathrm{h}\circ \mathrm{g})\circ \mathrm{f}; \text{in}\, \text{general}\, \mathrm{g}\circ \mathrm{f}≠\mathrm{f}\circ \mathrm{g} \end{gathered} \]
+\[ \begin{gathered} {h}\circ ({g}\circ {f})\, =\, ({h}\circ {g})\circ {f} \\ \text{in}\, \text{general}\, {g}\circ {f}\, ≠\, {f}\circ {g} \end{gathered} \]
 {\small Composition is associative when the domains fit, but order usually matters. For a bijection, f\textsuperscript{\ensuremath{-}1}\ensuremath{\circ}f=id\textsubscript{X}.}
 \end{equationcard}
 
@@ -418,12 +418,12 @@ This section collects important real-valued mappings. Their domain and range det
 \subsection{Real polynomials}
 
 \begin{equationcard}{Polynomial and roots}
-\[ \begin{gathered} \mathrm{P}(\mathrm{x})=\mathrm{a}_{\mathrm{n}}\mathrm{x}^{\mathrm{n}}+…+\mathrm{a}_{1}\mathrm{x}+\mathrm{a}_{0}, \mathrm{a}_{\mathrm{n}}≠0; \mathrm{P}(\mathrm{x}_{0})=0\, \text{means}\, \mathrm{x}_{0}\, \text{is}\, \mathrm{a}\, \text{root} \end{gathered} \]
+\[ \begin{gathered} {P}({x})\, =\, {a}_{{n}}{x}^{{n}}+…+{a}_{1}{x}+{a}_{0}, {a}_{{n}}\, ≠\, 0 \\ {P}({x}_{0})\, =\, 0\, \text{means}\, {x}_{0}\, \text{is}\, {a}\, \text{root} \end{gathered} \]
 {\small The degree is n and the domain is \ensuremath{\mathbb{R}}. A degree-n polynomial has at most n real roots.}
 \end{equationcard}
 
 \begin{equationcard}{Quadratic formula and discriminant}
-\[ \begin{gathered} Δ=\mathrm{b}^{2}-4\text{ac}; \mathrm{x}=(-\mathrm{b}\pm \sqrtΔ)/(2\mathrm{a}), \text{ax}^{2}+\text{bx}+\mathrm{c}=0,\, \mathrm{a}≠0 \end{gathered} \]
+\[ \begin{gathered} Δ\, =\, {b}^{2}-4\text{ac} \\ {x}\, =\, (-{b}\pm \sqrtΔ)/(2{a}), \text{ax}^{2}+\text{bx}+{c}\, =\, 0,\, {a}\, ≠\, 0 \end{gathered} \]
 {\small Δ\ensuremath{>}0 gives two distinct real roots; Δ=0 gives one repeated root; Δ\ensuremath{<}0 gives no real roots. When Δ\ensuremath{\geq}0, the roots factor the polynomial as a(x\ensuremath{-}x\textsubscript{1})(x\ensuremath{-}x\textsubscript{2}).}
 \end{equationcard}
 
@@ -452,7 +452,7 @@ General root formulas exist for degrees 3 and 4. For degree 5 and above there is
 \subsection{Trigonometric functions}
 
 \begin{equationcard}{Unit circle and radians}
-\[ \begin{gathered} \mathrm{P}=(\text{cos}\, \mathrm{x},\text{sin}\, \mathrm{x}); \text{tan}\, \mathrm{x}=\text{sin}\, \mathrm{x}/\text{cos}\, \mathrm{x} \end{gathered} \]
+\[ \begin{gathered} {P}\, =\, (\text{cos}\, {x},\text{sin}\, {x}) \\ \text{tan}\, {x}\, =\, \text{sin}\, {x}/\text{cos}\, {x} \end{gathered} \]
 {\small Angles are in radians. One full turn is 2π radians = 360°. On a right triangle, sin x is opposite/hypotenuse and cos x is adjacent/hypotenuse for acute x.}
 \end{equationcard}
 
@@ -463,22 +463,22 @@ General root formulas exist for degrees 3 and 4. For degree 5 and above there is
 \bottomrule\end{tabularx}\end{center}
 
 \begin{equationcard}{Core trigonometric identities}
-\[ \begin{gathered} \text{sin}(-\mathrm{x})=-\text{sin}\, \mathrm{x}; \text{cos}(-\mathrm{x})=\text{cos}\, \mathrm{x}; \text{sin}^{2}\mathrm{x}+\text{cos}^{2}\mathrm{x}=1 \\ \text{sin}(\mathrm{x}\pm \mathrm{y})=\text{sin}\, \mathrm{x}\, \text{cos}\, \mathrm{y}\pm \text{cos}\, \mathrm{x}\, \text{sin}\, \mathrm{y} \\ \text{cos}(\mathrm{x}\pm \mathrm{y})=\text{cos}\, \mathrm{x}\, \text{cos}\, \mathrm{y}\mp \text{sin}\, \mathrm{x}\, \text{sin}\, \mathrm{y} \end{gathered} \]
+\[ \begin{gathered} \text{sin}(-{x})\, =\, -\text{sin}\, {x} \\ \text{cos}(-{x})\, =\, \text{cos}\, {x} \\ \text{sin}^{2}{x}+\text{cos}^{2}{x}\, =\, 1 \\ \text{sin}({x}\pm {y})\, =\, \text{sin}\, {x}\, \text{cos}\, {y}\pm \text{cos}\, {x}\, \text{sin}\, {y} \\ \text{cos}({x}\pm {y})\, =\, \text{cos}\, {x}\, \text{cos}\, {y}\mp \text{sin}\, {x}\, \text{sin}\, {y} \end{gathered} \]
 {\small sin and cos have period 2π. Their zeros are sin x=0 at x=kπ and cos x=0 at x=π/2+kπ, k\ensuremath{\in}\ensuremath{\mathbb{Z}}.}
 \end{equationcard}
 
 \begin{equationcard}{Shifts and periodicity}
-\[ \begin{gathered} \text{sin}(\mathrm{x}+π/2)=\text{cos}\, \mathrm{x};\, \text{cos}(\mathrm{x}+π/2)=-\text{sin}\, \mathrm{x} \\ \text{sin}(\mathrm{x}+π)=-\text{sin}\, \mathrm{x};\, \text{cos}(\mathrm{x}+π)=-\text{cos}\, \mathrm{x};\, \text{sin}(\mathrm{x}+2π)=\text{sin}\, \mathrm{x};\, \text{cos}(\mathrm{x}+2π)=\text{cos}\, \mathrm{x} \end{gathered} \]
+\[ \begin{gathered} \text{sin}({x}+π/2)\, =\, \text{cos}\, {x} \\ \text{cos}({x}+π/2)\, =\, -\text{sin}\, {x} \\ \text{sin}({x}+π)\, =\, -\text{sin}\, {x} \\ \text{cos}({x}+π)\, =\, -\text{cos}\, {x} \\ \text{sin}({x}+2π)\, =\, \text{sin}\, {x} \\ \text{cos}({x}+2π)\, =\, \text{cos}\, {x} \end{gathered} \]
 {\small Each follows from an addition formula with cos and sin of π/2, π or 2π. A quarter turn turns sine into cosine; a half turn flips both signs.}
 \end{equationcard}
 
 \begin{equationcard}{Double-angle and square identities}
-\[ \begin{gathered} \text{sin}(2\mathrm{x})=2\, \text{sin}\, \mathrm{x}\, \text{cos}\, \mathrm{x}; \text{cos}(2\mathrm{x})=1-2\, \text{sin}^{2}\mathrm{x}=2\, \text{cos}^{2}\mathrm{x}-1=\text{cos}^{2}\mathrm{x}-\text{sin}^{2}\mathrm{x} \\ \text{sin}^{2}\mathrm{x}=(1-\text{cos}\, 2\mathrm{x})/2; \text{cos}^{2}\mathrm{x}=(1+\text{cos}\, 2\mathrm{x})/2 \end{gathered} \]
+\[ \begin{gathered} \text{sin}(2{x})\, =\, 2\, \text{sin}\, {x}\, \text{cos}\, {x} \\ \text{cos}(2{x})\, =\, 1-2\, \text{sin}^{2}{x}\, =\, 2\, \text{cos}^{2}{x}-1\, =\, \text{cos}^{2}{x}-\text{sin}^{2}{x} \\ \text{sin}^{2}{x}\, =\, (1-\text{cos}\, 2{x})/2 \\ \text{cos}^{2}{x}\, =\, (1+\text{cos}\, 2{x})/2 \end{gathered} \]
 {\small These follow from the addition formulas and sin\textsuperscript{2}x+cos\textsuperscript{2}x=1.}
 \end{equationcard}
 
 \begin{equationcard}{Difference-to-product identities}
-\[ \begin{gathered} \text{sin}\, \mathrm{x}-\text{sin}\, \mathrm{y}=2\, \text{cos}((\mathrm{x}+\mathrm{y})/2)\, \text{sin}((\mathrm{x}-\mathrm{y})/2) \\ \text{cos}\, \mathrm{x}-\text{cos}\, \mathrm{y}=2\, \text{sin}((\mathrm{x}+\mathrm{y})/2)\, \text{sin}((\mathrm{y}-\mathrm{x})/2) \end{gathered} \]
+\[ \begin{gathered} \text{sin}\, {x}-\text{sin}\, {y}\, =\, 2\, \text{cos}(({x}+{y})/2)\, \text{sin}(({x}-{y})/2) \\ \text{cos}\, {x}-\text{cos}\, {y}\, =\, 2\, \text{sin}(({x}+{y})/2)\, \text{sin}(({y}-{x})/2) \end{gathered} \]
 {\small The second factor uses (y\ensuremath{-}x)/2; reversing its sign would reverse the whole result.}
 \end{equationcard}
 
@@ -493,11 +493,11 @@ Find sin(π/3+π/6).
 \end{enumerate}
 \end{workedbox}
 
-\Needspace{10\baselineskip}
+\Needspace{11\baselineskip}
 For inverse functions, restrict sine to [\ensuremath{-}π/2,π/2], cosine to [0,π], and tangent to (\ensuremath{-}π/2,π/2). Then arcsin and arccos have domain [\ensuremath{-}1,1], while arctan has domain \ensuremath{\mathbb{R}}. tan x is undefined when cos x=0, that is x=π/2+kπ.
 
 \begin{equationcard}{Tangent identities}
-\[ \begin{gathered} \text{tan}(-\mathrm{x})=-\text{tan}\, \mathrm{x}; \text{tan}(\mathrm{x}\pm \mathrm{y})=(\text{tan}\, \mathrm{x}\pm \text{tan}\, \mathrm{y})/(1\mp \text{tan}\, \mathrm{x}\, \text{tan}\, \mathrm{y}) \\ \text{tan}(2\mathrm{x})=2\, \text{tan}\, \mathrm{x}/(1-\text{tan}^{2}\mathrm{x}) \end{gathered} \]
+\[ \begin{gathered} \text{tan}(-{x})\, =\, -\text{tan}\, {x} \\ \text{tan}({x}\pm {y})\, =\, (\text{tan}\, {x}\pm \text{tan}\, {y})/(1\mp \text{tan}\, {x}\, \text{tan}\, {y}) \\ \text{tan}(2{x})\, =\, 2\, \text{tan}\, {x}/(1-\text{tan}^{2}{x}) \end{gathered} \]
 {\small Use only where each tangent and denominator is defined. These follow by dividing the sine and cosine addition formulas.}
 \end{equationcard}
 
@@ -509,12 +509,12 @@ For inverse functions, restrict sine to [\ensuremath{-}π/2,π/2], cosine to [0,
 \subsection{Exponential and logarithmic functions}
 
 \begin{equationcard}{Exponential and natural logarithm}
-\[ \begin{gathered} \mathrm{e}^{\mathrm{x}+\mathrm{y}}=\mathrm{e}^{\mathrm{x}}\mathrm{e}^{\mathrm{y}}; \text{ln}(\mathrm{e}^{\mathrm{x}})=\mathrm{x}; \mathrm{e}^{\text{ln}\, \mathrm{y}}=\mathrm{y}\, \text{for}\, \mathrm{y}>0 \\ \text{ln}(\text{xy})=\text{ln}\, \mathrm{x}+\text{ln}\, \mathrm{y}\, \text{for}\, \mathrm{x},\mathrm{y}>0; \text{ln}\, 1=0 \end{gathered} \]
+\[ \begin{gathered} {e}^{{x}+{y}}\, =\, {e}^{{x}}{e}^{{y}} \\ \text{ln}({e}^{{x}})\, =\, {x} \\ {e}^{\text{ln}\, {y}}\, =\, {y}\, \text{for}\, {y}\, >\, 0 \\ \text{ln}(\text{xy})\, =\, \text{ln}\, {x}+\text{ln}\, {y}\, \text{for}\, {x},{y}\, >\, 0 \\ \text{ln}\, 1\, =\, 0 \end{gathered} \]
 {\small e\textsuperscript{x} is strictly increasing, positive, and has range (0,\ensuremath{\infty}). ln is its inverse, with domain (0,\ensuremath{\infty}).}
 \end{equationcard}
 
 \begin{equationcard}{Base a and real powers}
-\[ \begin{gathered} \mathrm{a}^{\mathrm{x}}=\mathrm{e}^{\mathrm{x}\, \text{ln}\, \mathrm{a}}\, (\mathrm{a}>0); \text{log}_{\mathrm{a}}\mathrm{x}=\text{ln}\, \mathrm{x}/\text{ln}\, \mathrm{a}\, (\mathrm{a}>0,\, \mathrm{a}≠1,\, \mathrm{x}>0) \\ \mathrm{x}^{α}=\mathrm{e}^{α\, \text{ln}\, \mathrm{x}}\, \text{for}\, \mathrm{x}>0,\, α\in \mathbb{R} \end{gathered} \]
+\[ \begin{gathered} {a}^{{x}}\, =\, {e}^{{x}\, \text{ln}\, {a}}\, ({a}\, >\, 0) \\ \text{log}_{{a}}{x}\, =\, \text{ln}\, {x}/\text{ln}\, {a}\, ({a}\, >\, 0,\, {a}\, ≠\, 1,\, {x}\, >\, 0) \\ {x}^{α}\, =\, {e}^{α\, \text{ln}\, {x}}\, \text{for}\, {x}\, >\, 0,\, α\in \mathbb{R} \end{gathered} \]
 {\small For 0\ensuremath{<}a\ensuremath{<}1, a\textsuperscript{x} decreases; for a\ensuremath{>}1 it increases. The notes define arbitrary real powers x\textsuperscript{α} only for positive x.}
 \end{equationcard}
 
@@ -554,12 +554,12 @@ Solve 5\textsuperscript{x}=125.
 Cartesian coordinates locate a point by horizontal and vertical displacement. Polar coordinates use distance from the origin and angle from the positive x-axis.
 
 \begin{equationcard}{Polar to Cartesian}
-\[ \begin{gathered} \mathrm{x}=\mathrm{r}\, \text{cos}\, φ; \mathrm{y}=\mathrm{r}\, \text{sin}\, φ \end{gathered} \]
+\[ \begin{gathered} {x}\, =\, {r}\, \text{cos}\, φ \\ {y}\, =\, {r}\, \text{sin}\, φ \end{gathered} \]
 {\small Here r\ensuremath{\geq}0 and φ is measured in radians from the positive x-axis. The point is (x,y)=(r cos φ,r sin φ).}
 \end{equationcard}
 
 \begin{equationcard}{Cartesian to polar}
-\[ \begin{gathered} \mathrm{r}=\sqrt(\mathrm{x}^{2}+\mathrm{y}^{2}); \text{tan}\, φ=\mathrm{y}/\mathrm{x}\, \text{when}\, \mathrm{x}≠0 \end{gathered} \]
+\[ \begin{gathered} {r}\, =\, \sqrt({x}^{2}+{y}^{2}) \\ \text{tan}\, φ\, =\, {y}/{x}\, \text{when}\, {x}\, ≠\, 0 \end{gathered} \]
 {\small Use the signs of x and y to select the quadrant. For 0\ensuremath{\leq}φ\ensuremath{<}2π: use arctan(y/x) when x\ensuremath{>}0,y\ensuremath{\geq}0; add 2π when x\ensuremath{>}0,y\ensuremath{<}0; add π when x\ensuremath{<}0; take π/2 when x=0,y\ensuremath{>}0 and 3π/2 when x=0,y\ensuremath{<}0. The origin has r=0 and no unique angle.}
 \end{equationcard}
 

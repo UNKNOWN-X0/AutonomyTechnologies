@@ -927,3 +927,26 @@ main > section:first-of-type > h2 {
 }
 .op-int > sup { grid-area: hi; align-self: start; }
 .op-int > sub { grid-area: lo; align-self: end; }
+
+/* Maths guides: one formula per line, italic variables, the note set apart under a hairline. */
+[class*="s-mei"] .eq {
+  gap: 0;
+}
+[class*="s-mei"] .eq > strong {
+  margin-bottom: 8px;
+}
+[class*="s-mei"] .formula {
+  padding: 0.12em 0;
+  line-height: 1.6;
+  word-spacing: 0.02em;
+}
+[class*="s-mei"] .formula var {
+  font-style: italic;
+  padding-inline-end: 0.04em;
+}
+[class*="s-mei"] .eq-note {
+  margin-top: 12px;
+  padding-top: 10px;
+  border-top: 1px solid var(--line);
+  line-height: 1.55;
+}
