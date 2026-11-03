@@ -1,17 +1,17 @@
 # Graph Report - AutonomyTechnologies  (2026-11-03)
 
 ## Corpus Check
-- 48 files · ~149,479 words
+- 48 files · ~150,405 words
 - Verdict: corpus is large enough that graph structure adds value.
 - Unclassified: 6 file(s) not represented in the graph (top: .css 4, (none) 2)
 
 ## Summary
-- 705 nodes · 1308 edges · 33 communities (27 shown, 6 thin omitted)
+- 708 nodes · 1314 edges · 39 communities (28 shown, 11 thin omitted)
 - Extraction: 87% EXTRACTED · 13% INFERRED · 0% AMBIGUOUS · INFERRED: 167 edges (avg confidence: 0.85)
 - Token cost: 0 input · 0 output
 
 ## Graph Freshness
-- Built from commit: `d841f043`
+- Built from commit: `1375e2b6`
 - Run `git rev-parse HEAD` and compare to check if the graph is stale.
 - Run `graphify update .` after code changes (no API cost).
 
@@ -31,7 +31,7 @@
 - Boolean laws / Boolean expressions
 - index.js / ago()
 - ch4-lab.js
-- lab-challenges.test.js
+- ref_node_assert
 - Autonomy Course Site / SKILL.md
 - Q: How are the static study pages hosted, and what GitHub Pages and Jeky
 - Q: Does the graph cover the learner journey from the course home through
@@ -46,9 +46,14 @@
 - ch3-physics.js
 - ch34-lab.js
 - mei/ch2-lab.js
+- apdr/ch2-physics.js
+- mei-ch1-physics.test.js
 - ch5-lab.js
 - mei/ch2-physics.js
 - mei/ch1-physics.js
+- lab-challenges.test.js
+- ch5-physics.js
+- eei-ch1-physics.test.js
 
 ## God Nodes (most connected - your core abstractions)
 1. `fieldPlayground()` - 28 edges
@@ -77,7 +82,7 @@
 ## Import Cycles
 - None detected.
 
-## Communities (33 total, 6 thin omitted)
+## Communities (39 total, 11 thin omitted)
 
 ### Community 0 - "capacitorBench() / paint()"
 Cohesion: 0.05
@@ -139,10 +144,6 @@ Nodes (3): ago(), ticksHTML(), when()
 Cohesion: 0.14
 Nodes (26): animate(), arithmeticResult(), arrow(), box(), challenge(), colours(), drawArithmetic(), drawFraction() (+18 more)
 
-### Community 15 - "lab-challenges.test.js"
-Cohesion: 0.06
-Nodes (15): nand(), nandAnd(), nandCircuit(), nandOr(), moduleConfiguration(), rowsToBytes(), row(), rows() (+7 more)
-
 ### Community 16 - "Autonomy Course Site / SKILL.md"
 Cohesion: 0.33
 Nodes (5): APDR content rule, Autonomy Course Site, Before changing the site, Boundaries, Study materials
@@ -176,8 +177,12 @@ Cohesion: 0.19
 Nodes (12): challenge(), colors(), draw(), drawColumns(), drawFields(), drawLine(), x(), mount() (+4 more)
 
 ### Community 29 - "mei/ch2-lab.js"
-Cohesion: 0.24
+Cohesion: 0.21
 Nodes (20): binaryDraw(), bindSlider(), boundsDraw(), box(), distanceDraw(), guess(), inductionDraw(), line() (+12 more)
+
+### Community 30 - "apdr/ch2-physics.js"
+Cohesion: 0.36
+Nodes (4): nand(), nandAnd(), nandCircuit(), nandOr()
 
 ### Community 32 - "ch5-lab.js"
 Cohesion: 0.38
@@ -187,10 +192,14 @@ Nodes (9): box(), challenge(), colours(), draw(), fit(), label(), line(), mount(
 Cohesion: 0.18
 Nodes (6): complement(), formatInterval(), intersect(), interval(), member(), setOp()
 
+### Community 35 - "lab-challenges.test.js"
+Cohesion: 0.39
+Nodes (5): context(), fake(), loadExperiments(), ROOT, runEngine()
+
 ## Knowledge Gaps
 - **10 isolated node(s):** `Study Pages preview showing Electrical Engineering 1 and Mathematics for Engineers I course cards`, `Active-recall study workflow`, `Jekyll site CI`, `LaTeX, Pandoc, and KaTeX publishing pipeline`, `Bernhard Kainz` (+5 more)
-  These have ≤1 connection - possible missing edges or undocumented components. (Counts symbols only; 222 node(s) total have ≤1 connection when file, concept and rationale nodes are included.)
-- **6 thin communities (<3 nodes) omitted from report** — run `graphify query` to explore isolated nodes.
+  These have ≤1 connection - possible missing edges or undocumented components. (Counts symbols only; 225 node(s) total have ≤1 connection when file, concept and rationale nodes are included.)
+- **11 thin communities (<3 nodes) omitted from report** — run `graphify query` to explore isolated nodes.
 
 ## Work-memory lessons
 

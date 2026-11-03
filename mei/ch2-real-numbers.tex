@@ -351,9 +351,26 @@ Summation and product notation compress repeated operations. Factorials count ar
 {\small Read the index bounds inclusively. A constant factor c can be taken outside a sum; for a product it becomes c raised to the number of factors.}
 \end{equationcard}
 
+\begin{equationcard}{Calculation rules for \ensuremath{\Sigma} and Π}
+\[ \begin{gathered} \text{Split}:\, \sum_{\mathrm{k}=1}^{\mathrm{n}}\mathrm{a}_{\mathrm{k}}\, =\, \mathrm{a}_{1}+\sum_{\mathrm{k}=2}^{\mathrm{n}}\mathrm{a}_{\mathrm{k}} \\ \text{Reverse}:\, \sum_{\mathrm{k}=1}^{\mathrm{n}}\mathrm{a}_{\mathrm{k}}\, =\, \sum_{\mathrm{k}=1}^{\mathrm{n}}\mathrm{a}_{\mathrm{n}+1-\mathrm{k}} \\ \text{Index}\, \text{shift}:\, \sum_{\mathrm{k}=1}^{\mathrm{n}}\mathrm{a}_{\mathrm{k}}\, =\, \sum_{\mathrm{l}=2}^{\mathrm{n}+1}\mathrm{a}_{\mathrm{l}-1} \\ \text{Constant}:\, \sum_{\mathrm{k}=\mathrm{m}}^{\mathrm{n}}\mathrm{a}\, =\, (\mathrm{n}-\mathrm{m}+1)\mathrm{a};\, Π_{\mathrm{k}=\mathrm{m}}^{\mathrm{n}}\mathrm{a}\, =\, \mathrm{a}^{\mathrm{n}-\mathrm{m}+1} \\ \text{Telescoping}:\, \sum_{\mathrm{k}=\mathrm{m}}^{\mathrm{n}}(\mathrm{a}_{\mathrm{k}}-\mathrm{a}_{\mathrm{k}+1})\, =\, \mathrm{a}_{\mathrm{m}}-\mathrm{a}_{\mathrm{n}+1};\, Π_{\mathrm{k}=\mathrm{m}}^{\mathrm{n}}\mathrm{a}_{\mathrm{k}}/\mathrm{a}_{\mathrm{k}+1}\, =\, \mathrm{a}_{\mathrm{m}}/\mathrm{a}_{\mathrm{n}+1} \end{gathered} \]
+{\small Splitting, reversing, separating \ensuremath{\Sigma}(a\textsubscript{k}+b\textsubscript{k}), double sums and index shifts carry over to Π with + replaced by \ensuremath{\cdot}. A constant factor does not: Π\textsubscript{k=1}\textsuperscript{5}(2k)=2\textsuperscript{5}Π\textsubscript{k=1}\textsuperscript{5}k. Check a telescoping sum with m=n: it is the single term a\textsubscript{n}\ensuremath{-}a\textsubscript{n+1}.}
+\end{equationcard}
+
+\begin{workedbox}{Worked example \ensuremath{\cdot} a telescoping sum}
+Evaluate \ensuremath{\Sigma}\textsubscript{k=1}\textsuperscript{n}1/(k(k+1)).
+
+\Needspace{7\baselineskip}
+\begin{enumerate}
+\item Split each term: 1/(k(k+1)) = 1/k \ensuremath{-} 1/(k+1), so with a\textsubscript{k}=1/k it is a\textsubscript{k}\ensuremath{-}a\textsubscript{k+1}.
+\item Write out the sum: (1\ensuremath{-}1/2)+(1/2\ensuremath{-}1/3)+…+(1/n\ensuremath{-}1/(n+1)). Every inner term cancels.
+\item What remains is a\textsubscript{1}\ensuremath{-}a\textsubscript{n+1} = 1\ensuremath{-}1/(n+1) = n/(n+1).
+\item Check: n=1 gives 1/2, and 1/(1\ensuremath{\cdot}2)=1/2. \hfill{\small\color{FAUblue}§2.4}
+\end{enumerate}
+\end{workedbox}
+
 \begin{equationcard}{Factorial and binomial coefficient}
 \[ \begin{gathered} \mathrm{n}!\, =\, Π_{\mathrm{k}=1}^{\mathrm{n}}\mathrm{k},\, 0!\, =\, 1;\, \mathrm{C}(\mathrm{n},\mathrm{k})\, =\, \mathrm{n}!/[\mathrm{k}!(\mathrm{n}-\mathrm{k})!] \end{gathered} \]
-{\small For 0\ensuremath{\leq}k\ensuremath{\leq}n. C(n,k) counts k-element subsets chosen from n distinct elements, with order ignored.}
+{\small For 0\ensuremath{\leq}k\ensuremath{\leq}n. C(n,k) counts k-element subsets chosen from n distinct elements, with order ignored. n! counts the orderings (permutations) of n distinct elements: \{1,2,3\} has 3!=6.}
 \end{equationcard}
 
 \begin{equationcard}{Pascal identity and binomial theorem}
@@ -397,8 +414,13 @@ Induction proves infinitely many linked claims using a finite argument: establis
 {\small Then A(n) holds for every integer n\ensuremath{\geq}n\textsubscript{0}. State the starting index and keep the induction hypothesis available in the step.}
 \end{equationcard}
 
-\Needspace{11\baselineskip}
-Write the induction step as a conditional: assume A(n) for an arbitrary allowed n, and use it to prove A(n+1). Do not assume the result you are trying to prove. The base case starts the chain; the implication advances it. For two-step induction, verify two consecutive base cases and advance from n to n+2, which covers both parities.
+\Needspace{14\baselineskip}
+Write the induction step as a conditional: assume A(n) for an arbitrary allowed n, and use it to prove A(n+1). Do not assume the result you are trying to prove. The base case starts the chain; the implication advances it. For two-step induction, verify two consecutive base cases and advance from n to n+2, which covers both parities. In \textbf{strong induction} (the notes’ “extended induction hypothesis”) you assume A(n\textsubscript{0}), A(n\textsubscript{0}+1), …, A(n) all hold and use any of them to prove A(n+1); this helps when the next case depends on an earlier case rather than only on the one before.
+
+\begin{equationcard}{Sums proved by induction}
+\[ \begin{gathered} \sum_{\mathrm{k}=1}^{\mathrm{n}}\mathrm{k}\, =\, \mathrm{n}(\mathrm{n}+1)/2 \\ \sum_{\mathrm{k}=1}^{\mathrm{n}}\mathrm{k}^{2}\, =\, \mathrm{n}(\mathrm{n}+1)(2\mathrm{n}+1)/6 \\ \sum_{\mathrm{k}=1}^{\mathrm{n}}\mathrm{k}^{3}\, =\, (\mathrm{n}(\mathrm{n}+1)/2)^{2} \end{gathered} \]
+{\small Each is proved with base case n=1 and the step from n to n+1. Check n=2: 3, 5 and 9.}
+\end{equationcard}
 
 \begin{equationcard}{Bernoulli’s inequality}
 \[ \begin{gathered} (1+\mathrm{x})^{\mathrm{n}}\, \geq \, 1+\text{nx},\, \text{for}\, \mathrm{n}\in \mathbb{N}\, \text{and}\, \mathrm{x}\geq -1 \end{gathered} \]
@@ -506,7 +528,7 @@ Try all 25 problems before opening the answer key. They are interleaved, so iden
 \begin{enumerate}
 \item Classify \ensuremath{-}5/2 as natural, integer, rational, irrational or real; list every applicable category.
 \item Solve |x\ensuremath{-}4|\ensuremath{<}3 and write the answer as an interval.
-\item Use induction to prove 1+2+…+n=n(n+1)/2 for n\ensuremath{\in}\ensuremath{\mathbb{N}}.
+\item Prove by induction that \ensuremath{\Sigma}\textsubscript{k=1}\textsuperscript{n}k\textsuperscript{2}=n(n+1)(2n+1)/6 for n\ensuremath{\in}\ensuremath{\mathbb{N}}.
 \item Expand (a+b)\textsuperscript{3}.
 \item For M=\{1\ensuremath{-}1/n:n\ensuremath{\in}\ensuremath{\mathbb{N}}\}, find sup(M), max(M), inf(M), and min(M).
 \item Evaluate \ensuremath{\Sigma}\textsubscript{k=1}\textsuperscript{4}(2k\ensuremath{-}1) and Π\textsubscript{k=1}\textsuperscript{4}k.
@@ -525,7 +547,7 @@ Try all 25 problems before opening the answer key. They are interleaved, so iden
 \item Use Pascal’s identity to evaluate C(6,2)+C(6,3).
 \item Use Bernoulli’s inequality to give a lower bound for (1.1)\textsuperscript{5}.
 \item What is the principal real fourth root of 16?
-\item Show why a rational square root of 2 would contradict lowest terms.
+\item Evaluate \ensuremath{\Sigma}\textsubscript{k=1}\textsuperscript{n}1/(k(k+1)) by writing each term as 1/k\ensuremath{-}1/(k+1).
 \item Evaluate Π\textsubscript{k=2}\textsuperscript{4}k.
 \item Prove by induction that 1+3+…+(2n\ensuremath{-}1)=n\textsuperscript{2}.
 \item Find the coefficient of x\textsuperscript{2}y\textsuperscript{3} in (x+y)\textsuperscript{5}.
@@ -578,15 +600,18 @@ Let P(n) be the claim (a+b)\textsuperscript{n}=\ensuremath{\Sigma}\textsubscript
 \end{keepsection}
 
 \begin{keepsection}
-\Needspace{10\baselineskip}
+\Needspace{22\baselineskip}
 \section{Slips in the notes}
 
-\Needspace{7\baselineskip}
+\Needspace{19\baselineskip}
 These are source-checked issues and the corresponding precise statement used in this guide. Printed page numbers refer to the lecture notes.
 
-\Needspace{4\baselineskip}
+\Needspace{16\baselineskip}
 \begin{enumerate}
 \item \textbf{Printed page 12, missing condition:} the remark says that for arbitrary rational a,b, the equation ax=b always has a solution x\ensuremath{\in}\ensuremath{\mathbb{Q}}. This fails when a=0 and b\ensuremath{\neq}0. The statement is correct when a\ensuremath{\neq}0; for a=0 it has no solution if b\ensuremath{\neq}0 and every rational x is a solution if b=0.
+\item \textbf{Printed page 18, error:} the telescoping rule is printed as \ensuremath{\Sigma}\textsubscript{k=m}\textsuperscript{n}(a\textsubscript{k}\ensuremath{-}a\textsubscript{k+1})=a\textsubscript{m}\ensuremath{-}a\textsubscript{n}. Writing out the terms leaves a\textsubscript{m}\ensuremath{-}a\textsubscript{n+1}, and the product rule likewise gives a\textsubscript{m}/a\textsubscript{n+1}. For m=n the printed form gives 0 instead of a\textsubscript{n}\ensuremath{-}a\textsubscript{n+1}. This guide uses the corrected rules.
+\item \textbf{Printed page 19, missing condition:} Theorem 2.13(iii) is stated for k=0,…,n, but at k=n it needs C(n,n+1), which the notes do not define. This guide states Pascal’s identity for 0\ensuremath{\leq}k\ensuremath{\leq}n\ensuremath{-}1 (or set C(n,k)=0 for k\ensuremath{>}n).
+\item \textbf{Printed page 15, loose wording:} “for \ensuremath{\mathbb{R}}\textsuperscript{2} and \ensuremath{\mathbb{C}} the order axioms do not hold” means that no ordering of \ensuremath{\mathbb{C}} satisfies all of (A10)–(A13) together with the field operations. \ensuremath{\mathbb{C}} can be totally ordered, for example lexicographically, but such an order is not compatible with multiplication (A13).
 \end{enumerate}
 \end{keepsection}
 
@@ -598,14 +623,14 @@ These are source-checked issues and the corresponding precise statement used in 
 Tick a skill only in a later session, at least one day after learning it, when you can show it without notes. Use the problem numbers as evidence.
 
 \begin{itemize}
-\item $\mdlgwhtsquare$\ Classify values in \ensuremath{\mathbb{N}}, \ensuremath{\mathbb{Z}}, \ensuremath{\mathbb{Q}} and \ensuremath{\mathbb{R}} and distinguish irrational numbers. (1, 7, 22)
+\item $\mdlgwhtsquare$\ Classify values in \ensuremath{\mathbb{N}}, \ensuremath{\mathbb{Z}}, \ensuremath{\mathbb{Q}} and \ensuremath{\mathbb{R}} and distinguish irrational numbers. (1, 7)
 \item $\mdlgwhtsquare$\ Convert binary integers and fixed-point numbers. (11, 16)
-\item $\mdlgwhtsquare$\ Rebuild the contradiction proof for \ensuremath{\surd}2. (7, 22)
+\item $\mdlgwhtsquare$\ Rebuild the contradiction proof for \ensuremath{\surd}2. (7)
 \item $\mdlgwhtsquare$\ Explain why \ensuremath{\mathbb{Q}} is an ordered field but not complete. (9, 18, 21)
 \item $\mdlgwhtsquare$\ Find bounds, suprema, infima, maxima and minima. (5, 14)
 \item $\mdlgwhtsquare$\ Solve absolute-value inequalities with correct endpoints. (2, 8, 17)
 \item $\mdlgwhtsquare$\ Apply the triangle inequality and check it numerically. (12)
-\item $\mdlgwhtsquare$\ Evaluate and interpret summation and product notation. (6, 23)
+\item $\mdlgwhtsquare$\ Evaluate and interpret summation and product notation, including telescoping sums. (6, 22, 23)
 \item $\mdlgwhtsquare$\ Use factorials and binomial coefficients for counting. (10, 15)
 \item $\mdlgwhtsquare$\ Use Pascal’s identity and expand a binomial. (4, 19, 25)
 \item $\mdlgwhtsquare$\ Write complete induction proofs from the correct base index. (3, 13, 24)
@@ -693,7 +718,7 @@ Tick a skill only in a later session, at least one day after learning it, when y
 \begin{enumerate}
 \item It is rational and real; it is not natural or an integer. \hfill{\small\color{FAUblue}§2.1}
 \item Distance from 4 is less than 3, so 1\ensuremath{<}x\ensuremath{<}7; solution (1,7). \hfill{\small\color{FAUblue}§2.3}
-\item Base n=1 holds. If the sum through n is n(n+1)/2, add n+1: n(n+1)/2+(n+1)=(n+1)(n+2)/2. \hfill{\small\color{FAUblue}§2.5}
+\item Base n=1: 1=1\ensuremath{\cdot}2\ensuremath{\cdot}3/6. Assume the sum through n is n(n+1)(2n+1)/6 and add (n+1)\textsuperscript{2}: (n+1)[n(2n+1)+6(n+1)]/6 = (n+1)(2n\textsuperscript{2}+7n+6)/6 = (n+1)(n+2)(2n+3)/6, the formula at n+1. \hfill{\small\color{FAUblue}§2.5}
 \item a\textsuperscript{3}+3a\textsuperscript{2}b+3ab\textsuperscript{2}+b\textsuperscript{3}. \hfill{\small\color{FAUblue}§2.4}
 \item sup=1, no maximum; inf=min=0. The values approach 1 but never equal it, while n=1 gives 0. \hfill{\small\color{FAUblue}§2.2}
 \item 1+3+5+7=16; 1\ensuremath{\cdot}2\ensuremath{\cdot}3\ensuremath{\cdot}4=24. \hfill{\small\color{FAUblue}§2.4}
@@ -712,7 +737,7 @@ Tick a skill only in a later session, at least one day after learning it, when y
 \item By Pascal, C(6,2)+C(6,3)=C(7,3)=35. \hfill{\small\color{FAUblue}§2.4}
 \item Bernoulli with x=0.1,n=5 gives (1.1)\textsuperscript{5}\ensuremath{\geq}1+5(0.1)=1.5. \hfill{\small\color{FAUblue}§2.5}
 \item The principal fourth root is 2, the unique non-negative real whose fourth power is 16. (\ensuremath{-}2) is another fourth root, but not the principal root. \hfill{\small\color{FAUblue}§2.2}
-\item If \ensuremath{\surd}2=p/q in lowest terms, p\textsuperscript{2}=2q\textsuperscript{2}, so 2|p. Put p=2m to get q\textsuperscript{2}=2m\textsuperscript{2}, so 2|q too, contradiction. \hfill{\small\color{FAUblue}§2.1}
+\item It telescopes with a\textsubscript{k}=1/k: a\textsubscript{1}\ensuremath{-}a\textsubscript{n+1}=1\ensuremath{-}1/(n+1)=n/(n+1). \hfill{\small\color{FAUblue}§2.4}
 \item 2\ensuremath{\cdot}3\ensuremath{\cdot}4=24. \hfill{\small\color{FAUblue}§2.4}
 \item Base n=1: 1=1\textsuperscript{2}. Assume the sum through n is n\textsuperscript{2}; adding 2n+1 gives n\textsuperscript{2}+2n+1=(n+1)\textsuperscript{2}. \hfill{\small\color{FAUblue}§2.5}
 \item The term is indexed by k=3, so its coefficient is C(5,3)=10. \hfill{\small\color{FAUblue}§2.4}

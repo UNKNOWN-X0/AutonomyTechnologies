@@ -12,9 +12,9 @@
     "semantic_hash": ""
   },
   "index.html": {
-    "mtime": 1793693347.2939978,
-    "seen": 1793693404.636396,
-    "ast_hash": "c292807822c673d7ac1a7237157f108b",
+    "mtime": 1793695138.8952549,
+    "seen": 1793695269.1150599,
+    "ast_hash": "4822b003c6788f30e926bb3d051b42ef",
     "semantic_hash": ""
   },
   "assets/preview.png": {
@@ -156,9 +156,9 @@
     "semantic_hash": ""
   },
   "mei/ch1-statements-logic-sets.html": {
-    "mtime": 1793613373.1492965,
-    "seen": 1793624688.337332,
-    "ast_hash": "66adaf0aaae9b742c69395f84810d50e",
+    "mtime": 1793695138.8960793,
+    "seen": 1793695269.115062,
+    "ast_hash": "8c9612a6435aa4c90baa67e6dfe95469",
     "semantic_hash": ""
   },
   ".agents/skills/autonomy-course-site/SKILL.md": {
@@ -174,27 +174,27 @@
     "semantic_hash": ""
   },
   "js/mei/ch1-lab.js": {
-    "mtime": 1793694414.6025927,
-    "seen": 1793694423.564506,
-    "ast_hash": "2a3723a2c709d60b7278f6bf8067b019",
+    "mtime": 1793695118.9621058,
+    "seen": 1793695269.1150138,
+    "ast_hash": "afd8a7899d39232853f34c8159206cfe",
     "semantic_hash": ""
   },
   "js/mei/ch1-physics.js": {
-    "mtime": 1793284507.3862967,
-    "seen": 1793287995.959361,
-    "ast_hash": "09f0443c7e96a59f732b1279f9b325a8",
+    "mtime": 1793695066.4147391,
+    "seen": 1793695269.115015,
+    "ast_hash": "e71a2509c70ea61a313b2706d7309cc1",
     "semantic_hash": ""
   },
   "tests/mei-ch1-physics.test.js": {
-    "mtime": 1793613324.3024652,
-    "seen": 1793624688.337307,
-    "ast_hash": "5d63ba896f31baeb6597b67d574275e1",
+    "mtime": 1793695067.550827,
+    "seen": 1793695269.115028,
+    "ast_hash": "4a534a3f31f0e53cd069ce880dafd02e",
     "semantic_hash": ""
   },
   "mei/ch1-statements-logic-sets-lab.html": {
-    "mtime": 1793613238.9794643,
-    "seen": 1793624688.337331,
-    "ast_hash": "7e165c9213172be54e1e6b29cb103c2d",
+    "mtime": 1793695138.8938847,
+    "seen": 1793695269.115062,
+    "ast_hash": "d471a4696dc6dcd4c53310863d6213ce",
     "semantic_hash": ""
   },
   "apdr/ch3-data-representation.html": {

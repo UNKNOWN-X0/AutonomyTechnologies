@@ -156,9 +156,9 @@
     "semantic_hash": ""
   },
   "mei/ch1-statements-logic-sets.html": {
-    "mtime": 1793695138.8960793,
-    "seen": 1793695269.115062,
-    "ast_hash": "8c9612a6435aa4c90baa67e6dfe95469",
+    "mtime": 1793695652.6880052,
+    "seen": 1793695737.351156,
+    "ast_hash": "1268d36d1675d5c9ebc201f8e360388c",
     "semantic_hash": ""
   },
   ".agents/skills/autonomy-course-site/SKILL.md": {
@@ -324,15 +324,15 @@
     "semantic_hash": ""
   },
   "mei/ch2-real-numbers.html": {
-    "mtime": 1793629348.4142435,
-    "seen": 1793630087.9219148,
-    "ast_hash": "53216a8159979d6bc1771594b617e85b",
+    "mtime": 1793695670.0440881,
+    "seen": 1793695737.351158,
+    "ast_hash": "405ad9a8672b6ad40445c1e6304914ad",
     "semantic_hash": ""
   },
   "js/mei/ch2-lab.js": {
-    "mtime": 1793692214.4070444,
-    "seen": 1793692232.117441,
-    "ast_hash": "ee42dd75f99fcc3c925d50b8ca0fbca7",
+    "mtime": 1793695652.6867695,
+    "seen": 1793695737.351116,
+    "ast_hash": "0bfabbc6b223e085eb5a15bb92e93129",
     "semantic_hash": ""
   },
   "js/mei/ch2-physics.js": {
@@ -342,9 +342,9 @@
     "semantic_hash": ""
   },
   "tests/mei-ch2-physics.test.js": {
-    "mtime": 1793692217.4386356,
-    "seen": 1793692232.117453,
-    "ast_hash": "0fb64a9352082a10439cda1e9de13546",
+    "mtime": 1793695652.6871235,
+    "seen": 1793695737.351128,
+    "ast_hash": "b83648d149903b59b6dad550e0b5349b",
     "semantic_hash": ""
   },
   "mei/ch2-real-numbers-lab.html": {

@@ -1,17 +1,17 @@
 # Graph Report - AutonomyTechnologies  (2026-11-03)
 
 ## Corpus Check
-- 48 files · ~147,308 words
+- 48 files · ~149,479 words
 - Verdict: corpus is large enough that graph structure adds value.
 - Unclassified: 6 file(s) not represented in the graph (top: .css 4, (none) 2)
 
 ## Summary
-- 688 nodes · 1273 edges · 33 communities (26 shown, 7 thin omitted)
-- Extraction: 87% EXTRACTED · 13% INFERRED · 0% AMBIGUOUS · INFERRED: 160 edges (avg confidence: 0.85)
+- 705 nodes · 1308 edges · 33 communities (27 shown, 6 thin omitted)
+- Extraction: 87% EXTRACTED · 13% INFERRED · 0% AMBIGUOUS · INFERRED: 167 edges (avg confidence: 0.85)
 - Token cost: 0 input · 0 output
 
 ## Graph Freshness
-- Built from commit: `c3b93924`
+- Built from commit: `d841f043`
 - Run `git rev-parse HEAD` and compare to check if the graph is stale.
 - Run `graphify update .` after code changes (no API cost).
 
@@ -77,7 +77,7 @@
 ## Import Cycles
 - None detected.
 
-## Communities (33 total, 7 thin omitted)
+## Communities (33 total, 6 thin omitted)
 
 ### Community 0 - "capacitorBench() / paint()"
 Cohesion: 0.05
@@ -100,8 +100,8 @@ Cohesion: 0.12
 Nodes (34): animate(), arrow(), box(), colours(), drawAnf(), drawGraph(), drawHazard(), drawIdentity() (+26 more)
 
 ### Community 5 - "mei/ch1-lab.js"
-Cohesion: 0.12
-Nodes (24): bindStagePointer(), choose(), coords(), bit(), count(), domainRows(), domainStage(), drawSlider() (+16 more)
+Cohesion: 0.10
+Nodes (32): bindStagePointer(), choose(), coords(), bit(), count(), domainRows(), domainStage(), drawSlider() (+24 more)
 
 ### Community 6 - "ch12-physics.js"
 Cohesion: 0.18
@@ -183,10 +183,14 @@ Nodes (20): binaryDraw(), bindSlider(), boundsDraw(), box(), distanceDraw(), gue
 Cohesion: 0.38
 Nodes (9): box(), challenge(), colours(), draw(), fit(), label(), line(), mount() (+1 more)
 
+### Community 34 - "mei/ch1-physics.js"
+Cohesion: 0.18
+Nodes (6): complement(), formatInterval(), intersect(), interval(), member(), setOp()
+
 ## Knowledge Gaps
 - **10 isolated node(s):** `Study Pages preview showing Electrical Engineering 1 and Mathematics for Engineers I course cards`, `Active-recall study workflow`, `Jekyll site CI`, `LaTeX, Pandoc, and KaTeX publishing pipeline`, `Bernhard Kainz` (+5 more)
-  These have ≤1 connection - possible missing edges or undocumented components. (Counts symbols only; 217 node(s) total have ≤1 connection when file, concept and rationale nodes are included.)
-- **7 thin communities (<3 nodes) omitted from report** — run `graphify query` to explore isolated nodes.
+  These have ≤1 connection - possible missing edges or undocumented components. (Counts symbols only; 222 node(s) total have ≤1 connection when file, concept and rationale nodes are included.)
+- **6 thin communities (<3 nodes) omitted from report** — run `graphify query` to explore isolated nodes.
 
 ## Work-memory lessons
 

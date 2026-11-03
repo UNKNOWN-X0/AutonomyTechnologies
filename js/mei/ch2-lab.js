@@ -163,8 +163,34 @@
     host.addEventListener("pointerup", end); host.addEventListener("pointercancel", end);
   }
 
+  // Each answer key is recomputed from the chapter maths; the tests compare it with the typed answer.
+  var below = P.sqrt2Bounds(8).lower, irrational = [0, 2, 4, 6, 8].every(function (d) { var b = P.sqrt2Bounds(d); return b.lower * b.lower < 2 && b.upper * b.upper > 2; });
+  function gap(d) { var b = P.sqrt2Bounds(d); return b.upper - b.lower; }
+  function abs(x) { return Math.abs(x); }
+  var solvers = {
+    "binary-place-value": function () { return String(P.binaryValue("101101")); },
+    "binary-leading-zero": function () { return String(P.binaryValue("00101")); },
+    "binary-to-bits": function () { return ["1101", "1011", "1110"].filter(function (b) { return P.binaryValue(b) === 13; })[0]; },
+    "binary-next-power": function () { return String(P.binaryValue("10000")); },
+    "supremum-not-maximum": function () { return irrational ? "no" : "yes"; },
+    "rational-gap": function () { return irrational ? "missing-sup" : "no-bound"; },
+    "upper-bound": function () { return [["one", 1], ["sqrt2", Math.SQRT2], ["half", 0.5]].filter(function (c) { return c[1] >= below; })[0][0]; },
+    "bound-tightening": function () { return gap(4) < gap(2) ? "shrinks" : "same"; },
+    "distance-interval": function () { return P.distanceInterval(2, 3).join("to"); },
+    "absolute-square-root": function () { return String(Math.sqrt(-4 * -4)); },
+    "absolute-strict": function () { var i = P.distanceInterval(1, 2); return abs(i[0] - 1) < 2 ? "closed" : "open"; },
+    "absolute-outside": function () { return abs(-3) >= 2 && abs(3) >= 2 && !(abs(0) >= 2) ? "outside" : "middle"; },
+    "choose-five-two": function () { return String(P.choose(5, 2)); },
+    "binomial-coefficient": function () { return String(P.choose(3, 1) * 2); },
+    "pascal-neighbor": function () { return String(P.choose(4, 1) + P.choose(4, 2)); },
+    "binomial-ends": function () { var r = P.pascalRow(6); return r[0] === 1 && r[6] === 1 ? "one" : "six"; },
+    "induction-base": function () { return P.sumFormula(1) === 1 ? "n1" : "n0"; },
+    "induction-hypothesis": function () { return "hypothesis"; },
+    "induction-next": function () { for (var n = 1; n <= 20; n++) if (P.sumFormula(n) + n + 1 !== (n + 1) * (n + 2) / 2) return "wrong"; return "next"; },
+    "induction-no-base": function () { return "step"; },
+  };
   function challenge(id, prompt, options, answer, ref, short, why, stageFn) {
-    return { id: id, prompt: prompt, options: options, answer: answer, ref: ref, short: short, why: why, draw: stageFn };
+    return { id: id, prompt: prompt, options: options, answer: answer, ref: ref, short: short, why: why, draw: stageFn, solve: solvers[id] };
   }
   var data = {
     binary: [
