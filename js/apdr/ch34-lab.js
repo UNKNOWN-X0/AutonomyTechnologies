@@ -110,7 +110,7 @@
     var count = s.done ? s.steps.length : s.revealing ? Math.ceil(s.progress * s.steps.length) : 0, lines = [], lineH = 18;
     ctx.font = "600 13px " + (c.font || "sans-serif");
     for (var i = 0; i < count; i++) wrap(ctx, s.steps[i], w - 32).forEach(function (l) { lines.push({ text: l, last: i === count - 1 }); });
-    lines = lines.slice(-Math.max(1, Math.floor((h - bottom - 4) / lineH))); // keep the newest lines when the stage is short
+    lines = lines.slice(-Math.max(1, Math.floor((h - bottom - 34) / lineH))); // keep the newest lines when the stage is short
     lines.forEach(function (l, i) { text(ctx, l.text, w / 2, bottom + 9 + i * lineH, c, 13, "center", l.last ? c.fau : c.ink); });
   }
 
@@ -130,6 +130,7 @@
 
   function mount(id, title, card, form, canvas, specs, initial, run, showResult) {
     var start = Object.assign({ guess: "", done: false, revealing: false, steps: [], viz: null, answer: "?", nodes: ["input", "rule", "?"] }, initial), state = Object.assign({}, start);
+    canvas.parentElement.style.aspectRatio = "auto"; canvas.parentElement.style.minHeight = "448px"; // the standard height for stages with plots; the note overlays the bottom
     function paint() { queue(canvas, state); }
     function lock(on) {
       form.querySelectorAll("input, select, button").forEach(function (el) { el.disabled = on; });
@@ -242,7 +243,7 @@
       spec("ieee-infinity", "classify infinity", "4.5", "What does 7F800000₁₆ encode?", "+Infinity", o("NaN", "largest finite value", "+Infinity"), "Reserved exponent", ["7F800000₁₆", "S | E | F", "?"], ["All-one exponent with zero fraction is infinity.", "The sign bit is zero, so it is positive infinity."], "The exponent is all ones, the fraction is zero, and the sign is positive: positive infinity.", { type: "fields", hex: "7F800000" }),
       spec("ieee-nan", "classify NaN", "4.5", "What does 7FC00000₁₆ encode?", "NaN", o("+Infinity", "NaN", "positive zero"), "Exponent and fraction", ["7FC00000₁₆", "S | E | F", "?"], ["All-one exponent with non-zero fraction is NaN.", "The exact payload does not turn it into a finite number."], "An all-one exponent and non-zero fraction encode NaN, regardless of the payload bits.", { type: "fields", hex: "7FC00000" }),
     ], { heading: "IEEE single precision", nodes: ["sign", "8-bit exponent", "23-bit fraction"] }, function (form) {
-      var r = P.decodeSingle(form.querySelector("[data-hex]").value), exp = parseInt(r.exponent, 2), hasValue = r.classification === "normalised" || r.classification.indexOf("subnormal") >= 0, detail = hasValue ? r.classification + " value " + r.value : r.classification, rule = r.classification.indexOf("subnormal") >= 0 ? "Exponent field 0 and non-zero fraction: value = 0.F × 2⁻¹²⁶, hidden bit 0." : "The stored exponent is " + exp + "; normalised values subtract bias 127.";
+      var r = P.decodeSingle(form.querySelector("[data-hex]").value), exp = parseInt(r.exponent, 2), hasValue = r.classification === "normalised" || /subnormal|denormal/i.test(r.classification), detail = hasValue ? r.classification + " value " + r.value : r.classification, rule = /subnormal|denormal/i.test(r.classification) ? "Exponent field 0 and non-zero fraction: value = 0.F × 2⁻¹²⁶, hidden bit 0." : "The stored exponent is " + exp + "; normalised values subtract bias 127.";
       return { heading: "IEEE single-precision decode", nodes: ["S=" + r.sign, "E=" + r.exponent, "F=" + r.fraction], answer: detail, viz: { type: "fields", hex: r.hex }, steps: [rule, "Classification and decoded value: " + detail + "."] };
     }, function (r) { return r.answer; });
   })();

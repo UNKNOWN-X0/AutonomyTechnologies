@@ -65,7 +65,7 @@ def find(node, pred):
 TEXT_SPECIAL = {"&": r"\&", "%": r"\%", "$": r"\$", "#": r"\#", "_": r"\_",
                 "{": r"\{", "}": r"\}", "~": r"\textasciitilde{}", "^": r"\textasciicircum{}",
                 "\\": r"\textbackslash{}"}
-TEXT_MATH = {"∫": r"\int", "∮": r"\oint", "∯": r"\oiint", "∬": r"\iint", "∭": r"\iiint",
+TEXT_MATH = {"⊕": r"\oplus", "∂": r"\partial", "∫": r"\int", "∮": r"\oint", "∯": r"\oiint", "∬": r"\iint", "∭": r"\iiint",
              "≈": r"\approx", "∝": r"\propto", "≪": r"\ll", "≤": r"\leq", "≥": r"\geq",
              "→": r"\to", "≠": r"\neq", "±": r"\pm", "∓": r"\mp", "·": r"\cdot",
              "×": r"\times", "−": "-", "√": r"\surd", "∞": r"\infty", "Σ": r"\Sigma",

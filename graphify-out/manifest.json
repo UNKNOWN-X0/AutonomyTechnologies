@@ -12,9 +12,9 @@
     "semantic_hash": ""
   },
   "index.html": {
-    "mtime": 1793526654.7132516,
-    "seen": 1793526682.060578,
-    "ast_hash": "b164accfd55e735c7b119d71aedde7c3",
+    "mtime": 1793648294.9025767,
+    "seen": 1793649111.616995,
+    "ast_hash": "2c90b31e5518e91be15d31ec6990bf93",
     "semantic_hash": ""
   },
   "assets/preview.png": {
@@ -78,9 +78,9 @@
     "semantic_hash": ""
   },
   "tools/guide-to-tex.py": {
-    "mtime": 1793284507.3903465,
-    "seen": 1793287995.9593658,
-    "ast_hash": "ba148fd9c419d9d1bbe4bd9fda3af840",
+    "mtime": 1793648041.0318062,
+    "seen": 1793649111.61697,
+    "ast_hash": "2c0ce2829fcf76e4b18bdd6454cb9bea",
     "semantic_hash": ""
   },
   "eei/ch1-electrostatic-fields.html": {
@@ -89,16 +89,10 @@
     "ast_hash": "c5ae6ef9c6b512257f0a068f134edaf2",
     "semantic_hash": ""
   },
-  "eei/ch1-electrostatic-fields.pdf": {
-    "mtime": 1793284507.371406,
-    "seen": 1793287995.9593868,
-    "ast_hash": "2168d534b2fe5f10e2aadd8755179bae",
-    "semantic_hash": ""
-  },
   "tools/check-guide.py": {
-    "mtime": 1793526679.085629,
-    "seen": 1793526682.060556,
-    "ast_hash": "2f8dcf35ba9ea725ef9bdfdab8a762fb",
+    "mtime": 1793612877.272227,
+    "seen": 1793624688.337308,
+    "ast_hash": "37eee62502ae4bf269870217444bfeff",
     "semantic_hash": ""
   },
   "js/tooltip.js": {
@@ -108,9 +102,9 @@
     "semantic_hash": ""
   },
   "js/lab.js": {
-    "mtime": 1793478261.385761,
-    "seen": 1793491192.1079,
-    "ast_hash": "df19abc007dec0fe10f4832612735c8c",
+    "mtime": 1793612877.2705421,
+    "seen": 1793624688.337297,
+    "ast_hash": "96f60d32a426771c572b3558056f9c1b",
     "semantic_hash": ""
   },
   "tests/eei-ch1-physics.test.js": {
@@ -150,27 +144,21 @@
     "semantic_hash": ""
   },
   "docs/GUIDE-STANDARD.md": {
-    "mtime": 1793526679.0859606,
-    "seen": 1793526682.0605729,
-    "ast_hash": "7b8fe4afbc3d9cc94b0c335cd855ecce",
+    "mtime": 1793612877.2684596,
+    "seen": 1793624688.3373241,
+    "ast_hash": "64daa6ac516c6723b6cb18f16dd002d5",
     "semantic_hash": ""
   },
   "docs/LAB-STANDARD.md": {
-    "mtime": 1793526679.0862663,
-    "seen": 1793526682.060574,
-    "ast_hash": "7aa8ae454ce30015c1033583ecd9a9f0",
+    "mtime": 1793612877.2693608,
+    "seen": 1793624688.337325,
+    "ast_hash": "3d9cdf3a962c68687e853b9bbd6524db",
     "semantic_hash": ""
   },
   "mei/ch1-statements-logic-sets.html": {
-    "mtime": 1793284507.3873563,
-    "seen": 1793287995.959384,
-    "ast_hash": "2ed5dd2086dffabe9f5a2f99fba8706a",
-    "semantic_hash": ""
-  },
-  "mei/ch1-statements-logic-sets.pdf": {
-    "mtime": 1793284507.3884687,
-    "seen": 1793287995.959388,
-    "ast_hash": "1d5f25a04365f81d02b8a23d755c689a",
+    "mtime": 1793613373.1492965,
+    "seen": 1793624688.337332,
+    "ast_hash": "66adaf0aaae9b742c69395f84810d50e",
     "semantic_hash": ""
   },
   ".agents/skills/autonomy-course-site/SKILL.md": {
@@ -180,21 +168,15 @@
     "semantic_hash": ""
   },
   "apdr/ch2-computers.html": {
-    "mtime": 1793519345.1931748,
-    "seen": 1793519882.25615,
-    "ast_hash": "8ac8e46edf61f43a0060cedaa9b07fd8",
-    "semantic_hash": ""
-  },
-  "apdr/ch2-computers.pdf": {
-    "mtime": 1793519423.916828,
-    "seen": 1793519882.256172,
-    "ast_hash": "5d4c7d6bc62bb3219b84daa8ba7a0af3",
+    "mtime": 1793613194.3733306,
+    "seen": 1793624688.337319,
+    "ast_hash": "ff0cf19883fa2a7bbf4e571182338243",
     "semantic_hash": ""
   },
   "js/mei/ch1-lab.js": {
-    "mtime": 1793284507.386019,
-    "seen": 1793287995.95936,
-    "ast_hash": "59cde6c305cc2ef357610cb902ccf3b7",
+    "mtime": 1793613324.3022118,
+    "seen": 1793624688.337298,
+    "ast_hash": "2a1dbdd576840912775dbfdd73dc2328",
     "semantic_hash": ""
   },
   "js/mei/ch1-physics.js": {
@@ -204,183 +186,225 @@
     "semantic_hash": ""
   },
   "tests/mei-ch1-physics.test.js": {
-    "mtime": 1793284507.3897114,
-    "seen": 1793287995.9593651,
-    "ast_hash": "6ff7766c769b459468ec8593c6a2a9f7",
+    "mtime": 1793613324.3024652,
+    "seen": 1793624688.337307,
+    "ast_hash": "5d63ba896f31baeb6597b67d574275e1",
     "semantic_hash": ""
   },
   "mei/ch1-statements-logic-sets-lab.html": {
-    "mtime": 1793284507.386848,
-    "seen": 1793287995.959384,
-    "ast_hash": "c77351597f4b93b45165d1c92ce7298a",
+    "mtime": 1793613238.9794643,
+    "seen": 1793624688.337331,
+    "ast_hash": "7e165c9213172be54e1e6b29cb103c2d",
     "semantic_hash": ""
   },
   "apdr/ch3-data-representation.html": {
-    "mtime": 1793519635.5393064,
-    "seen": 1793519882.256153,
-    "ast_hash": "355cd5e1a8fcedf055ef01a018a7d2b3",
-    "semantic_hash": ""
-  },
-  "apdr/ch3-data-representation.pdf": {
-    "mtime": 1793519823.2552333,
-    "seen": 1793519882.2561731,
-    "ast_hash": "84c12cef12aaeaa6ad9d07f129965b79",
+    "mtime": 1793613234.4930177,
+    "seen": 1793624688.337322,
+    "ast_hash": "1f830b8b410542ea22665d000fd26bb7",
     "semantic_hash": ""
   },
   "js/apdr/ch2-lab.js": {
-    "mtime": 1793519323.5324461,
-    "seen": 1793519882.256093,
-    "ast_hash": "a1be37b7ca7f471a2e3afae2a115126b",
+    "mtime": 1793629940.2607524,
+    "seen": 1793630087.92186,
+    "ast_hash": "ff1fd6b813cbdd13d014563f7632d9c9",
     "semantic_hash": ""
   },
   "js/apdr/ch2-physics.js": {
-    "mtime": 1793284507.3819013,
-    "seen": 1793287995.959352,
-    "ast_hash": "89f9e1ca69e524a00f398cc23e815aba",
+    "mtime": 1793613256.7260764,
+    "seen": 1793624688.337285,
+    "ast_hash": "976ac8923bcf7b694376674f522b9f5e",
     "semantic_hash": ""
   },
   "tests/apdr-ch2-physics.test.js": {
-    "mtime": 1793519188.0933392,
-    "seen": 1793519882.2561228,
-    "ast_hash": "227354aaf8c96d9895c07d427d758267",
+    "mtime": 1793613256.7541916,
+    "seen": 1793624688.337302,
+    "ast_hash": "e6e73112ba28d69b633dde1274ee3b5d",
     "semantic_hash": ""
   },
   "apdr/ch2-computers-lab.html": {
-    "mtime": 1793284507.361878,
-    "seen": 1793287995.9593742,
-    "ast_hash": "638eb8db406ef1967a82eb470d214fa1",
+    "mtime": 1793613256.7265418,
+    "seen": 1793624688.337318,
+    "ast_hash": "027ba4e2edb6ff5923f24993030a250c",
     "semantic_hash": ""
   },
   "js/apdr/ch3-lab.js": {
-    "mtime": 1793370476.4417238,
-    "seen": 1793370913.273252,
-    "ast_hash": "c9291a6ccfdb71654e044b0d19bff5e9",
+    "mtime": 1793613358.7934797,
+    "seen": 1793624688.337286,
+    "ast_hash": "d161247ee087d6a79d5e343b2b15a3cc",
     "semantic_hash": ""
   },
   "js/apdr/ch3-physics.js": {
-    "mtime": 1793287517.5090523,
-    "seen": 1793287995.9593542,
-    "ast_hash": "25fcd5663ab16b16bf761e942635ac86",
+    "mtime": 1793613358.791449,
+    "seen": 1793624688.337287,
+    "ast_hash": "66254a090ef4a6c0b2ca0747681edea6",
     "semantic_hash": ""
   },
   "tests/apdr-ch3-physics.test.js": {
-    "mtime": 1793519661.9982479,
-    "seen": 1793519882.256124,
-    "ast_hash": "6d1442cd513f9adac71bf4affe1edd85",
+    "mtime": 1793613358.8136017,
+    "seen": 1793624688.337302,
+    "ast_hash": "9942fd92ebad1505660879ef2550d388",
     "semantic_hash": ""
   },
   "apdr/ch3-data-representation-lab.html": {
-    "mtime": 1793287543.8128219,
-    "seen": 1793287995.9593759,
-    "ast_hash": "1710df4b24674afd0f1a2b7c1f17ed56",
+    "mtime": 1793613358.79194,
+    "seen": 1793624688.337321,
+    "ast_hash": "984844faffbfe0674fbe54692d39bb58",
     "semantic_hash": ""
   },
   "js/apdr/ch12-lab.js": {
-    "mtime": 1793519129.3026545,
-    "seen": 1793519882.256087,
-    "ast_hash": "bbb1e12b30f62cbbfb801098ded045b1",
+    "mtime": 1793630128.4673638,
+    "seen": 1793630197.527,
+    "ast_hash": "d7f56145e352e231b5217f399c780e16",
     "semantic_hash": ""
   },
   "js/apdr/ch12-physics.js": {
-    "mtime": 1793526592.6912374,
-    "seen": 1793526614.407371,
-    "ast_hash": "6b3b0612ecf470f7f484de9d5022f161",
+    "mtime": 1793613166.6814532,
+    "seen": 1793624688.3372831,
+    "ast_hash": "9f7095617a00b1075b26df145af891a5",
     "semantic_hash": ""
   },
   "tests/apdr-ch12-physics.test.js": {
-    "mtime": 1793344787.564345,
-    "seen": 1793345471.819502,
-    "ast_hash": "dcfef1862f15f3d981a8d81a9d202c69",
+    "mtime": 1793613340.072044,
+    "seen": 1793624688.337301,
+    "ast_hash": "2748952a27328c92b7d233cf2f8c026e",
     "semantic_hash": ""
   },
   "apdr/ch4-floating-point-numbers.html": {
-    "mtime": 1793519672.1379054,
-    "seen": 1793519882.2561579,
-    "ast_hash": "9eb03093896c035e8c8eb27c90b66a2a",
-    "semantic_hash": ""
-  },
-  "apdr/ch4-floating-point-numbers.pdf": {
-    "mtime": 1793519823.7322788,
-    "seen": 1793519882.256175,
-    "ast_hash": "a2c9d52894ecffbaf406a5002728c3d4",
+    "mtime": 1793613216.2166085,
+    "seen": 1793624688.3373241,
+    "ast_hash": "b869d0409a76f7ed391c434f43f316bb",
     "semantic_hash": ""
   },
   "js/apdr/ch4-lab.js": {
-    "mtime": 1793370351.872558,
-    "seen": 1793370381.282144,
-    "ast_hash": "3009817810024a7830dbd6b628f64921",
+    "mtime": 1793613523.9820974,
+    "seen": 1793624688.33729,
+    "ast_hash": "0d0bbd576389e82455143988a816ffec",
     "semantic_hash": ""
   },
   "js/apdr/ch4-physics.js": {
-    "mtime": 1793369648.1823075,
-    "seen": 1793370381.282146,
-    "ast_hash": "fa2e3350a0b91c4f19cdff70547ae230",
+    "mtime": 1793613293.3982604,
+    "seen": 1793624688.337291,
+    "ast_hash": "d5b5526d3d79e02eb8de8bed0b639f02",
     "semantic_hash": ""
   },
   "tests/apdr-ch4-physics.test.js": {
-    "mtime": 1793370057.5974817,
-    "seen": 1793370381.2821581,
-    "ast_hash": "a5245b32d8746636e1aab9a2548e23b4",
+    "mtime": 1793613293.3986213,
+    "seen": 1793624688.337304,
+    "ast_hash": "22be4a11440f2cb63210a2ac716c45d0",
     "semantic_hash": ""
   },
   "apdr/ch4-floating-point-numbers-lab.html": {
-    "mtime": 1793370351.8498118,
-    "seen": 1793370381.282175,
-    "ast_hash": "f31bf8c40f490bf2a672291316705135",
+    "mtime": 1793613319.501097,
+    "seen": 1793624688.337323,
+    "ast_hash": "30f6e2d44d595d8e45e441f70140990c",
     "semantic_hash": ""
   },
   "js/apdr/ch34-lab.js": {
-    "mtime": 1793526592.6919265,
-    "seen": 1793526614.407377,
-    "ast_hash": "59414718fc6ee820509c5db4342230d9",
+    "mtime": 1793629998.5599453,
+    "seen": 1793630087.921864,
+    "ast_hash": "105843a6a54f83235c143722bb330c58",
     "semantic_hash": ""
   },
   "js/apdr/ch34-physics.js": {
-    "mtime": 1793526592.6915343,
-    "seen": 1793526614.407378,
-    "ast_hash": "85f4fcd89f2d057e0d5b2b1661916ea0",
+    "mtime": 1793613349.8427303,
+    "seen": 1793624688.3372889,
+    "ast_hash": "45bfbad63ef48f57be06c082ce9f7a65",
     "semantic_hash": ""
   },
   "tests/apdr-ch34-physics.test.js": {
-    "mtime": 1793526648.6765141,
-    "seen": 1793526682.060552,
-    "ast_hash": "a961d55972b2c0812bbc85bd544cf318",
+    "mtime": 1793613349.8431876,
+    "seen": 1793624688.337303,
+    "ast_hash": "9b0d1b13e22dc51139e32b09180825c7",
     "semantic_hash": ""
   },
   "apdr/ch1a-boolean-algebra-lab.html": {
-    "mtime": 1793526648.6760268,
-    "seen": 1793526682.060564,
-    "ast_hash": "fec7e8589b8dde23f71479a7e3f1362a",
+    "mtime": 1793613166.6828444,
+    "seen": 1793624688.3373172,
+    "ast_hash": "e1dd9c1ce8b9336f0cb0bdc71d41b7c8",
     "semantic_hash": ""
   },
   "apdr/ch1a-boolean-algebra.html": {
-    "mtime": 1793526648.6741982,
-    "seen": 1793526682.060565,
-    "ast_hash": "c80d648495d364eab541a4942d64f10b",
+    "mtime": 1793629934.6974986,
+    "seen": 1793630087.921897,
+    "ast_hash": "5be525c1906bfc86fcc761975e8cf508",
     "semantic_hash": ""
   },
   "apdr/ch2a-integer-and-floating-point-lab.html": {
-    "mtime": 1793526648.6745424,
-    "seen": 1793526682.060568,
-    "ast_hash": "dc67f7c2503fb5ec73be6d174d3ebe3a",
+    "mtime": 1793613349.8435037,
+    "seen": 1793624688.3373199,
+    "ast_hash": "eaea8cf24e0a1aefb47350d72ddb2f3a",
     "semantic_hash": ""
   },
   "apdr/ch2a-integer-and-floating-point.html": {
-    "mtime": 1793526648.6755078,
-    "seen": 1793526682.060568,
-    "ast_hash": "d1ea555256b066b4768f6a7f4356f185",
+    "mtime": 1793648041.0283139,
+    "seen": 1793649111.616982,
+    "ast_hash": "09453cdb56c1bb5a9c0235419e08d313",
     "semantic_hash": ""
   },
-  "apdr/ch1a-boolean-algebra.pdf": {
-    "mtime": 1793526662.5068593,
-    "seen": 1793526682.06058,
-    "ast_hash": "37c3d70f86134a79c3575b2f00955b6c",
+  "tests/lab-challenges.test.js": {
+    "mtime": 1793612902.1759236,
+    "seen": 1793624688.337306,
+    "ast_hash": "5bc80340e535854f474b336709c5b5ce",
     "semantic_hash": ""
   },
-  "apdr/ch2a-integer-and-floating-point.pdf": {
-    "mtime": 1793526667.4704788,
-    "seen": 1793526682.060582,
-    "ast_hash": "b89b4e32b80f4f2d54e068121607fb1e",
+  "mei/ch2-real-numbers.html": {
+    "mtime": 1793629348.4142435,
+    "seen": 1793630087.9219148,
+    "ast_hash": "53216a8159979d6bc1771594b617e85b",
+    "semantic_hash": ""
+  },
+  "js/mei/ch2-lab.js": {
+    "mtime": 1793630350.9019756,
+    "seen": 1793630690.127691,
+    "ast_hash": "f53c40896a31961fe9ffd6b0792825e1",
+    "semantic_hash": ""
+  },
+  "js/mei/ch2-physics.js": {
+    "mtime": 1793629212.297006,
+    "seen": 1793630087.921877,
+    "ast_hash": "1df1cf62cdabfc2940c8b8faf0a47556",
+    "semantic_hash": ""
+  },
+  "tests/mei-ch2-physics.test.js": {
+    "mtime": 1793629416.3060448,
+    "seen": 1793630087.921887,
+    "ast_hash": "293dde14def59d3d8243c45d25256ee8",
+    "semantic_hash": ""
+  },
+  "mei/ch2-real-numbers-lab.html": {
+    "mtime": 1793629464.3399332,
+    "seen": 1793630087.921914,
+    "ast_hash": "e6495d7cf9ae38a180d6b4c830aa927f",
+    "semantic_hash": ""
+  },
+  "apdr/ch5-memory-organisation.html": {
+    "mtime": 1793648137.457824,
+    "seen": 1793649111.616988,
+    "ast_hash": "aabec130bb8a1bddb6a065c6602092ed",
+    "semantic_hash": ""
+  },
+  "js/apdr/ch5-lab.js": {
+    "mtime": 1793648259.420512,
+    "seen": 1793649111.616946,
+    "ast_hash": "5dbd65bfca75dc166f6322fe6df28fb9",
+    "semantic_hash": ""
+  },
+  "js/apdr/ch5-physics.js": {
+    "mtime": 1793648168.2997968,
+    "seen": 1793649111.616948,
+    "ast_hash": "e4cc2bdb96e8a045a494df2104a15e8e",
+    "semantic_hash": ""
+  },
+  "tests/apdr-ch5-physics.test.js": {
+    "mtime": 1793649173.3601952,
+    "seen": 1793649180.897996,
+    "ast_hash": "78c0e1bd154475f1afb6840ee72f4c1c",
+    "semantic_hash": ""
+  },
+  "apdr/ch5-memory-organisation-lab.html": {
+    "mtime": 1793648277.0054467,
+    "seen": 1793649111.616987,
+    "ast_hash": "9beab3853756283e33c316d6af555092",
     "semantic_hash": ""
   }
 }

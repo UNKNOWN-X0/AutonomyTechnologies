@@ -96,9 +96,9 @@
     ctx.beginPath(); ctx.moveTo(updateX, y + bh); ctx.lineTo(updateX, backY); ctx.lineTo(testX, backY); ctx.stroke();
     wire(ctx, testX, backY, testX, y + bh, c, false);
     text(ctx, "g ← (g + x/g) / 2", w / 2, y + bh + 42, c, 15);
-    text(ctx, "x = " + (s.x == null ? 16 : s.x) + "     g = " + (s.g == null ? 3 : Number(s.g).toFixed(3)), w / 2, h - 72, c, 14);
-    if (s.guess) text(ctx, "Your prediction: " + s.guess, w / 2, h - 46, c, 13);
-    if (s.result) text(ctx, "Result: " + s.result, w / 2, h - 28, c, 13);
+    text(ctx, "x = " + (s.x == null ? 16 : s.x) + "     g = " + (s.g == null ? 3 : Number(s.g).toFixed(3)), w / 2, h - 96, c, 14);
+    if (s.guess) text(ctx, "Your prediction: " + s.guess, w / 2, h - 70, c, 13);
+    if (s.result) text(ctx, "Result: " + s.result, w / 2, h - 48, c, 13);
   }
 
   function drawLogic(ctx, w, h, c, s) {
@@ -122,8 +122,8 @@
     wire(ctx, gateX + gateW, top + 100 + gateH / 2, andX, top + 50 + gateH / 2 + 9, c, s.revealing && s.progress > 0.55);
     wire(ctx, andX + gateW, top + 50 + gateH / 2, outputX, top + 50 + gateH / 2, c, s.revealing && s.progress > 0.8);
     box(ctx, "U = " + (s.result == null ? "?" : Number(s.result)), outputX, top + 50 + 1, 44, 36, c, !!s.result, 11);
-    if (s.guess) text(ctx, "Your prediction: " + s.guess, w / 2, h - 45, c, 12);
-    if (s.note) text(ctx, s.note, w / 2, h - 25, c, 12);
+    if (s.guess) text(ctx, "Your prediction: " + s.guess, w / 2, h - 69, c, 12);
+    if (s.note) text(ctx, s.note, w / 2, h - 49, c, 12);
   }
 
   function drawNand(ctx, w, h, c, s) {
@@ -168,7 +168,7 @@
       wire(ctx, w * 0.69 + bw / 2, y + 59, w - 65, y + 59, c, true);
       box(ctx, s.result == null ? "?" : "= " + Number(s.result), w - 64, y + 46, 58, bh, c, !!s.result, 12);
     }
-    if (s.guess) text(ctx, "Your prediction: " + s.guess, w / 2, h - 22, c, 13);
+    if (s.guess) text(ctx, "Your prediction: " + s.guess, w / 2, h - 46, c, 13);
   }
 
   function drawTiming(ctx, w, h, c, s) {
@@ -198,9 +198,9 @@
     text(ctx, "Δt", settleX, yOutput + 63, c, 11);
     text(ctx, "2Δt", x1, yOutput + 63, c, 11, "right");
     ctx.strokeStyle = c.act; ctx.lineWidth = 2; ctx.beginPath(); ctx.moveTo(sampleX, yInput - 10); ctx.lineTo(sampleX, yOutput + 45); ctx.stroke();
-    text(ctx, "A=" + Number(a) + " · B: " + Number(before) + " → " + Number(after), w / 2, h - 46, c, 12);
-    if (s.guess) text(ctx, "Your prediction: " + s.guess, w / 2, h - 28, c, 12);
-    if (s.result != null) text(ctx, typeof s.result === "boolean" ? "Output at sample: " + Number(s.result) : s.result, w / 2, h - 10, c, 12);
+    text(ctx, "A=" + Number(a) + " · B: " + Number(before) + " → " + Number(after), w / 2, h - 70, c, 12);
+    if (s.guess) text(ctx, "Your prediction: " + s.guess, w / 2, h - 52, c, 12);
+    if (s.result != null) text(ctx, typeof s.result === "boolean" ? "Output at sample: " + Number(s.result) : s.result, w / 2, h - 34, c, 12);
   }
 
   function stageFor(section, data) {
@@ -257,11 +257,11 @@
     var section = document.querySelector('[data-experiment="logic"]'), form = section.querySelector("form"), canvas = section.querySelector("canvas"), state = { kind: "logic" };
     function show() { queue(canvas,state); }
     form.querySelector('[data-act="evaluate"]').addEventListener("click",function(){state.bits=bits(form,["car","forecast","rain"]);state.result=P.umbrella(state.bits.car,state.bits.forecast,state.bits.rain);form.querySelector('[data-out="result"]').textContent=Number(state.result);show();});
-    function challenge(id,short,car,forecast,rain,answer,prompt,why,note,flip){var zero=["0","U = 0 · no umbrella"],one=["1","U = 1 · take umbrella"];return {id:id,short:short,ref:note?"2.5":"2.4",prompt:prompt,options:flip?[one,zero]:[zero,one],answer:String(Number(answer)),stage:function(){state.bits={car:!!car,forecast:!!forecast,rain:!!rain};state.result=null;state.note="";show();},preview:function(choice){state.guess="U = "+choice;show();},reveal:function(){state.result=P.umbrella(!!car,!!forecast,!!rain);state.revealing=true;return Lab.tween(1300,function(t){state.progress=t;show();}).then(function(){state.revealing=false;state.note=note||"";show();});},why:why};}
+    function challenge(id,short,car,forecast,rain,answer,prompt,why,note,flip){var zero=["0","U = 0 · no umbrella"],one=["1","U = 1 · take umbrella"];return {id:id,short:short,ref:note?"2.5":"2.4",prompt:prompt,options:flip?[zero,one]:[one,zero],answer:String(Number(answer)),stage:function(){state.bits={car:!!car,forecast:!!forecast,rain:!!rain};state.result=null;state.note="";show();},preview:function(choice){state.guess="U = "+choice;show();},reveal:function(){state.result=P.umbrella(!!car,!!forecast,!!rain);state.revealing=true;return Lab.tween(1300,function(t){state.progress=t;show();}).then(function(){state.revealing=false;state.note=note||"";show();});},why:why};}
     Lab.experiment({id:"logic",title:"2.4 Boolean umbrella rule",card:section.querySelector(".challenge"),lock:function(on){lock(form,section,on);},setup:function(challenge){state.guess="";state.result=null;state.note="";state.progress=0;state.revealing=false;challenge.stage();},sandbox:function(){state.guess="";state.note="";state.bits=bits(form,["car","forecast","rain"]);state.result=null;show();},challenges:[
       challenge("clear-day", "grouping with parentheses",1,0,1,false,"C=1, W=0, R=1. Compare U=C'·(W+R) with C'·W+R (slide 31). What is U for the rule with parentheses?","C'·(W+R)=0·1=0, but C'·W+R=0+1=1. Parentheses change the result, because AND binds tighter than OR.","Without parentheses: C'·W+R = 1"),
       challenge("bad-forecast", "bad forecast",0,1,0,true,"You are not taking the car (C=0), and only the forecast is bad (W=1, R=0). What is U?","C'=1 and W+R=1, so U=1. Either weather condition is enough when you are not taking the car.",null,true),
-      challenge("rain", "rain",0,0,1,true,"You are not taking the car (C=0), and it is raining (R=1) with a good forecast (W=0). What is U?","C'=1 and W+R=1 because R=1, so U=1. The OR is inclusive and either condition can make it true.",null,true),
+      challenge("rain", "rain",0,0,1,true,"You are not taking the car (C=0), and it is raining (R=1) with a good forecast (W=0). What is U?","C'=1 and W+R=1 because R=1, so U=1. The OR is inclusive and either condition can make it true."),
       challenge("car", "car condition",1,1,1,false,"You are taking the car (C=1), with bad weather (W=1) and rain (R=1). What is U?","C'=0, so C'·(W+R)=0 even though both weather inputs are 1. The outer AND condition still has to be true."),
     ]});
   }
@@ -270,10 +270,10 @@
     var section=document.querySelector('[data-experiment="nand"]'),form=section.querySelector("form"),canvas=section.querySelector("canvas"),state={kind:"nand"};
     function show(){queue(canvas,state);}
     form.querySelector('[data-act="build"]').addEventListener("click",function(){state.fn=form.querySelector("[data-fn]").value;state.a=form.querySelector('[data-bit="a"]').value==="1";state.b=form.querySelector('[data-bit="b"]').value==="1";state.result=P.nandCircuit(state.fn,state.a,state.b);form.querySelector('[data-out="result"]').textContent=Number(state.result);show();});
-    function challenge(id,short,fn,a,b,answer,prompt,why,flip){var zero=["0","Output 0"],one=["1","Output 1"];return {id:id,short:short,ref:"2.7",prompt:prompt,options:flip?[one,zero]:[zero,one],answer:String(Number(answer)),stage:function(){state.fn=fn;state.a=!!a;state.b=!!b;state.result=null;show();},preview:function(choice){state.guess="Output "+choice;show();},reveal:function(){state.result=P.nandCircuit(fn,!!a,!!b);state.revealing=true;return Lab.tween(1350,function(t){state.progress=t;show();}).then(function(){state.revealing=false;show();});},why:why};}
+    function challenge(id,short,fn,a,b,answer,prompt,why,flip){var zero=["0","Output 0"],one=["1","Output 1"];return {id:id,short:short,ref:"2.7",prompt:prompt,options:flip?[zero,one]:[one,zero],answer:String(Number(answer)),stage:function(){state.fn=fn;state.a=!!a;state.b=!!b;state.result=null;show();},preview:function(choice){state.guess="Output "+choice;show();},reveal:function(){state.result=P.nandCircuit(fn,!!a,!!b);state.revealing=true;return Lab.tween(1350,function(t){state.progress=t;show();}).then(function(){state.revealing=false;show();});},why:why};}
     Lab.experiment({id:"nand",title:"2.7 Build functions with NAND",card:section.querySelector(".challenge"),lock:function(on){lock(form,section,on);},setup:function(challenge){state.guess="";state.result=null;state.progress=0;state.revealing=false;challenge.stage();},sandbox:function(){state.guess="";state.fn=form.querySelector("[data-fn]").value;state.a=form.querySelector('[data-bit="a"]').value==="1";state.b=form.querySelector('[data-bit="b"]').value==="1";state.result=null;show();},challenges:[
       challenge("nand-one", "NAND of two 1s", "nand",1,1,0,"A single NAND gate receives A=1 and B=1. What is its output?","AND gives 1 for two true inputs, then NAND inverts it to 0. The output is low only for the 1,1 input pair."),
-      challenge("not-tied", "NOT from tied inputs", "not",0,0,1,"Both inputs of one NAND gate are tied to A=0. What is the output?","NAND(A,A)=NOT A. With A=0, the AND is 0 and inversion gives 1.",true),
+      challenge("not-tied", "NOT from tied inputs", "not",0,0,1,"Both inputs of one NAND gate are tied to A=0. What is the output?","NAND(A,A)=NOT A. With A=0, the AND is 0 and inversion gives 1."),
       challenge("and-build", "AND from NAND", "and",1,0,0,"A=1 and B=0 feed the two-NAND AND construction. What is the final output?","The first NAND gives 1 for inputs 1 and 0; the second NAND ties those outputs together and inverts 1 to 0. That reproduces A AND B."),
       challenge("or-build", "OR from NAND", "or",0,1,1,"A=0 and B=1 feed the three-NAND OR construction. What is the final output?","The tied-input NANDs form NOT A=1 and NOT B=0; NAND(1,0)=1. This is A OR B, built with NAND gates only.",true),
     ]});
@@ -295,7 +295,7 @@
   function drawEquivalent(ctx,w,h,c,state){
     text(ctx,"Same stable truth table · timing not specified",w/2,28,c,14);
     text(ctx,"A OR B",w*.17,h*.47,c,14);box(ctx,"OR",w*.36-36,h*.39,72,45,c,false,13);wire(ctx,w*.17+28,h*.47,w*.36-36,h*.47,c,false);wire(ctx,w*.36+36,h*.47,w*.58,h*.47,c,false);text(ctx,"versus",w*.53,h*.47,c,12);box(ctx,"NANDs",w*.66,h*.39,66,45,c,state.revealing&&state.progress>.4,12);wire(ctx,w*.58,h*.47,w*.66,h*.47,c,state.revealing&&state.progress>.4);wire(ctx,w*.66+66,h*.47,w*.88,h*.47,c,state.revealing&&state.progress>.75);text(ctx,"?",w*.91,h*.47,c,18);
-    if(state.guess)text(ctx,"Your prediction: "+state.guess,w/2,h-43,c,13);if(state.result)text(ctx,state.result,w/2,h-25,c,13);
+    if(state.guess)text(ctx,"Your prediction: "+state.guess,w/2,h-67,c,13);if(state.result)text(ctx,state.result,w/2,h-49,c,13);
   }
 
   experimentAlgorithm();experimentLogic();experimentNand();experimentTiming();

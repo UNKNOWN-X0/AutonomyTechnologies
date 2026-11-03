@@ -16,7 +16,7 @@
       canvas.width = Math.round(r.width * dpr); canvas.height = Math.round(r.height * dpr);
       ctx.setTransform(dpr, 0, 0, dpr, 0, 0); ctx.clearRect(0, 0, r.width, r.height);
       ctx.fillStyle = c.paper; ctx.fillRect(0, 0, r.width, r.height); ctx.lineJoin = "round"; ctx.lineCap = "round";
-      ({ identity: drawIdentity, nand: drawNand, kmap: drawKmap, shannon: drawShannon, anf: drawAnf, hazard: drawHazard })[state.kind](ctx, r.width, r.height, c, state);
+      ({ identity: drawIdentity, nand: drawNand, kmap: drawKmap, shannon: drawShannon, anf: drawAnf, hazard: drawHazard })[state.kind](ctx, r.width, r.height - 28, c, state);
     });
   }
   function text(ctx, value, x, y, c, size, colour) {
@@ -105,7 +105,7 @@
     if (!seen) { text(ctx, "Build the tree, then merge and remove", w / 2, 110, c, 13, c.muted); if (s.guess) text(ctx, "Your prediction: " + s.guess, w / 2, h - 48, c, 11); return; }
     s.order.forEach(function (v, lvl) {
       var here = g.nodes.filter(function (n) { return n.v === v; });
-      here.forEach(function (n, i) { pos[n.id] = { x: w * (i + 1) / (here.length + 1), y: top + lvl * step, lvl: lvl }; });
+      here.forEach(function (n, i) { pos[n.id] = { x: here.length > 1 || !lvl ? w * (i + 1) / (here.length + 1) : w * (lvl % 2 ? .34 : .66), y: top + lvl * step, lvl: lvl }; });
     });
     pos[0] = { x: w * .36, y: bottom + 8, lvl: 3 }; pos[1] = { x: w * .64, y: bottom + 8, lvl: 3 };
     g.nodes.forEach(function (n) {
