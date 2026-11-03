@@ -12,9 +12,9 @@
     "semantic_hash": ""
   },
   "index.html": {
-    "mtime": 1793698248.8828416,
-    "seen": 1793698375.1933692,
-    "ast_hash": "55770c7577766b9fd17cc5851ff24f0b",
+    "mtime": 1793699544.904688,
+    "seen": 1793701070.82188,
+    "ast_hash": "b76831bd8fcfab83eb5eb857e1d6060c",
     "semantic_hash": ""
   },
   "assets/preview.png": {
@@ -78,9 +78,9 @@
     "semantic_hash": ""
   },
   "tools/guide-to-tex.py": {
-    "mtime": 1793698248.883292,
-    "seen": 1793698375.193293,
-    "ast_hash": "e729268faaf8c0c46c3aabc3badf0d21",
+    "mtime": 1793699017.3691652,
+    "seen": 1793699233.341186,
+    "ast_hash": "23a2821de9d2fa8806d9a2ceda240157",
     "semantic_hash": ""
   },
   "eei/ch1-electrostatic-fields.html": {
@@ -405,6 +405,36 @@
     "mtime": 1793698248.8729756,
     "seen": 1793698375.1933382,
     "ast_hash": "65d336e6530c294416bab2682a7a070f",
+    "semantic_hash": ""
+  },
+  "mei/ch3-mappings.html": {
+    "mtime": 1793699542.0393534,
+    "seen": 1793701070.8218849,
+    "ast_hash": "6d1f1bd0d36cdf21b3e4da857c4aa1f5",
+    "semantic_hash": ""
+  },
+  "js/mei/ch3-lab.js": {
+    "mtime": 1793700471.024488,
+    "seen": 1793701070.821843,
+    "ast_hash": "e328b30e11a964cb22429517bcc77ad3",
+    "semantic_hash": ""
+  },
+  "js/mei/ch3-physics.js": {
+    "mtime": 1793699528.3677742,
+    "seen": 1793701070.8218439,
+    "ast_hash": "afefd58e372c0b21b8e64c36baffd8df",
+    "semantic_hash": ""
+  },
+  "tests/mei-ch3-physics.test.js": {
+    "mtime": 1793699557.0252402,
+    "seen": 1793701070.821855,
+    "ast_hash": "1b6d62111046db3c7bd3e51088d88346",
+    "semantic_hash": ""
+  },
+  "mei/ch3-mappings-lab.html": {
+    "mtime": 1793700418.0185714,
+    "seen": 1793701070.821884,
+    "ast_hash": "3f30c07df2ade8f2d45441db0a7cebdb",
     "semantic_hash": ""
   }
 }

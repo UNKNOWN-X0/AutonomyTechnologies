@@ -1,17 +1,17 @@
 # Graph Report - AutonomyTechnologies  (2026-11-03)
 
 ## Corpus Check
-- 48 files · ~150,523 words
+- 51 files · ~160,371 words
 - Verdict: corpus is large enough that graph structure adds value.
 - Unclassified: 6 file(s) not represented in the graph (top: .css 4, (none) 2)
 
 ## Summary
-- 708 nodes · 1314 edges · 39 communities (28 shown, 11 thin omitted)
-- Extraction: 87% EXTRACTED · 13% INFERRED · 0% AMBIGUOUS · INFERRED: 167 edges (avg confidence: 0.85)
+- 751 nodes · 1415 edges · 40 communities (29 shown, 11 thin omitted)
+- Extraction: 87% EXTRACTED · 13% INFERRED · 0% AMBIGUOUS · INFERRED: 180 edges (avg confidence: 0.85)
 - Token cost: 0 input · 0 output
 
 ## Graph Freshness
-- Built from commit: `09c7ca9e`
+- Built from commit: `e153931f`
 - Run `git rev-parse HEAD` and compare to check if the graph is stale.
 - Run `graphify update .` after code changes (no API cost).
 
@@ -51,9 +51,10 @@
 - ch5-lab.js
 - mei/ch2-physics.js
 - mei/ch1-physics.js
-- lab-challenges.test.js
+- mei/ch3-lab.js
 - ch5-physics.js
 - eei-ch1-physics.test.js
+- mei/ch3-physics.js
 
 ## God Nodes (most connected - your core abstractions)
 1. `fieldPlayground()` - 28 edges
@@ -70,19 +71,19 @@
 ## Surprising Connections (you probably didn't know these)
 - `Stage and interaction` --references--> `fmt()`  [INFERRED]
   docs/LAB-STANDARD.md → js/eei/ch1-physics.js
-- `update()` --indirect_call--> `X()`  [INFERRED]
-  js/mei/ch1-lab.js → js/eei/ch1-lab.js
 - `draw()` --indirect_call--> `guess()`  [INFERRED]
   js/mei/ch1-lab.js → js/mei/ch2-lab.js
 - `answers_of()` --calls--> `find()`  [INFERRED]
   tools/check-guide.py → tools/guide-to-tex.py
 - `check()` --calls--> `find()`  [INFERRED]
   tools/check-guide.py → tools/guide-to-tex.py
+- `check()` --calls--> `Node`  [INFERRED]
+  tools/check-guide.py → tools/guide-to-tex.py
 
 ## Import Cycles
 - None detected.
 
-## Communities (39 total, 11 thin omitted)
+## Communities (40 total, 11 thin omitted)
 
 ### Community 0 - "capacitorBench() / paint()"
 Cohesion: 0.05
@@ -184,6 +185,10 @@ Nodes (20): binaryDraw(), bindSlider(), boundsDraw(), box(), distanceDraw(), gue
 Cohesion: 0.36
 Nodes (4): nand(), nandAnd(), nandCircuit(), nandOr()
 
+### Community 31 - "mei-ch1-physics.test.js"
+Cohesion: 0.18
+Nodes (6): context(), fake(), loadExperiments(), ROOT, runEngine(), cube
+
 ### Community 32 - "ch5-lab.js"
 Cohesion: 0.38
 Nodes (9): box(), challenge(), colours(), draw(), fit(), label(), line(), mount() (+1 more)
@@ -192,13 +197,13 @@ Nodes (9): box(), challenge(), colours(), draw(), fit(), label(), line(), mount(
 Cohesion: 0.18
 Nodes (6): complement(), formatInterval(), intersect(), interval(), member(), setOp()
 
-### Community 35 - "lab-challenges.test.js"
-Cohesion: 0.39
-Nodes (5): context(), fake(), loadExperiments(), ROOT, runEngine()
+### Community 35 - "mei/ch3-lab.js"
+Cohesion: 0.21
+Nodes (21): bindSlider(), compositionDraw(), elementaryDraw(), X(), Y(), graphDraw(), line(), mappingDraw() (+13 more)
 
 ## Knowledge Gaps
 - **10 isolated node(s):** `Study Pages preview showing Electrical Engineering 1 and Mathematics for Engineers I course cards`, `Active-recall study workflow`, `Jekyll site CI`, `LaTeX, Pandoc, and KaTeX publishing pipeline`, `Bernhard Kainz` (+5 more)
-  These have ≤1 connection - possible missing edges or undocumented components. (Counts symbols only; 225 node(s) total have ≤1 connection when file, concept and rationale nodes are included.)
+  These have ≤1 connection - possible missing edges or undocumented components. (Counts symbols only; 242 node(s) total have ≤1 connection when file, concept and rationale nodes are included.)
 - **11 thin communities (<3 nodes) omitted from report** — run `graphify query` to explore isolated nodes.
 
 ## Work-memory lessons
@@ -210,7 +215,7 @@ Nodes (5): context(), fake(), loadExperiments(), ROOT, runEngine()
 _Questions this graph is uniquely positioned to answer:_
 
 - **Why does `Lab standard` connect `Lab standard` to `Study Pages project guide`?**
-  _High betweenness centrality (0.054) - this node is a cross-community bridge._
+  _High betweenness centrality (0.053) - this node is a cross-community bridge._
 - **Are the 3 inferred relationships involving `fieldPlayground()` (e.g. with `eei/ch1-lab.js` and `endDrag()`) actually correct?**
   _`fieldPlayground()` has 3 INFERRED edges - model-reasoned connections that need verification._
 - **What connects `Study Pages preview showing Electrical Engineering 1 and Mathematics for Engineers I course cards`, `Active-recall study workflow`, `Jekyll site CI` to the rest of the system?**

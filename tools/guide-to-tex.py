@@ -65,7 +65,7 @@ def find(node, pred):
 TEXT_SPECIAL = {"&": r"\&", "%": r"\%", "$": r"\$", "#": r"\#", "_": r"\_",
                 "{": r"\{", "}": r"\}", "~": r"\textasciitilde{}", "^": r"\textasciicircum{}",
                 "\\": r"\textbackslash{}"}
-TEXT_MATH = {"⊕": r"\oplus", "∂": r"\partial", "∫": r"\int", "∮": r"\oint", "∯": r"\oiint", "∬": r"\iint", "∭": r"\iiint",
+TEXT_MATH = {"⊕": r"\oplus", "∘": r"\circ", "↦": r"\mapsto", "∂": r"\partial", "∫": r"\int", "∮": r"\oint", "∯": r"\oiint", "∬": r"\iint", "∭": r"\iiint",
              "≈": r"\approx", "∝": r"\propto", "≪": r"\ll", "≤": r"\leq", "≥": r"\geq",
              "→": r"\to", "≠": r"\neq", "±": r"\pm", "∓": r"\mp", "·": r"\cdot",
              "×": r"\times", "−": "-", "√": r"\surd", "∞": r"\infty", "Σ": r"\Sigma",
@@ -120,7 +120,7 @@ def inline(node):
 
 
 # ---------- math mode (formula spans) ----------
-MATH_MAP = {"−": "-", "·": r"\cdot ", "×": r"\times ", "≈": r"\approx ", "½": r"\tfrac{1}{2}",
+MATH_MAP = {"−": "-", "∘": r"\circ ", "↦": r"\mapsto ", "·": r"\cdot ", "×": r"\times ", "≈": r"\approx ", "½": r"\tfrac{1}{2}",
             "Σ": r"\sum", "→": r"\to ", "∝": r"\propto ", "≪": r"\ll ", "√": r"\sqrt",
             "∞": r"\infty ", "≥": r"\geq ", "≤": r"\leq ", "±": r"\pm ", "∓": r"\mp ",
             "¬": r"\neg ", "∧": r"\land ", "∨": r"\lor ", "⇒": r"\Rightarrow ", "⇔": r"\Leftrightarrow ",
