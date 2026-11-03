@@ -100,3 +100,18 @@ test("finite sets: empty subset, power set size, coordinate order, and empty pro
   assert.deepEqual(P.product([1, 2], ["x"]), [[1, "x"], [2, "x"]]);
   assert.deepEqual(P.product([], [1, 2]), []);
 });
+
+test("practice 6 and 14: interval intersection, union ends, and complement", () => {
+  const I = P.interval, F = P.formatInterval;
+  assert.equal(F(P.intersect(I(0, 2, true, true), I(1, 3, false, false))), "(1,2]");
+  assert.equal(P.complement(I(-1, 3, false, true)).map(F).join(" ∪ "), "(−∞,−1] ∪ (3,∞)");
+  assert.equal(P.inInterval(I(-1, 3, false, true), 3), true);
+  assert.equal(P.inInterval(I(-1, 3, false, true), -1), false);
+  assert.equal(P.intersect(I(0, 1, true, false), I(1, 2, true, true)), null);
+});
+
+test("lab vote: one faulty sensor matters only when the others disagree", () => {
+  assert.deepEqual([P.vote(1, 1, 0), P.vote(1, 1, 1)], [true, true]);
+  assert.deepEqual([P.vote(1, 0, 0), P.vote(1, 0, 1)], [false, true]);
+  assert.deepEqual([P.vote(0, 0, 0), P.vote(0, 0, 1)], [false, false]);
+});

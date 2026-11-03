@@ -125,6 +125,65 @@
       text(el, givens.concat(steps.slice(0, n)));
     };
   }
+  function shape(el, tag, attrs) {
+    var n = document.createElementNS(ns, tag);
+    Object.keys(attrs).forEach(function (k) { n.setAttribute(k, attrs[k]); });
+    el.appendChild(n); return n;
+  }
+  // Three sensors feed the pair terms, which feed V. `s` holds each reading, or null for unknown; `shown` fills terms and V.
+  function voteDiagram(el, s, shown, caption) {
+    el.innerHTML = "";
+    var ink = tok("--ink"), course = tok("--course"), paper = tok("--paper"), ys = [60, 140, 220];
+    var terms = [["A ∧ B", 0, 1, 70], ["A ∧ C", 0, 2, 140], ["B ∧ C", 1, 2, 210]];
+    function out(v) { return v === null ? "?" : bit(v); }
+    function fill(v) { return v ? course : paper; }
+    terms.forEach(function (t) {
+      [t[1], t[2]].forEach(function (i) { shape(el, "line", { x1: 92, y1: ys[i], x2: 200, y2: t[3], stroke: ink, "stroke-width": 1.5 }); });
+      shape(el, "line", { x1: 310, y1: t[3], x2: 388, y2: 140, stroke: ink, "stroke-width": 1.5 });
+    });
+    ["A", "B", "C"].forEach(function (name, i) {
+      shape(el, "circle", { cx: 70, cy: ys[i], r: 22, fill: fill(s[i]), "fill-opacity": ".42", stroke: ink, "stroke-width": 2 });
+      label(el, name, 24, ys[i] + 6, 16, ink, "700");
+      label(el, out(s[i]), 70, ys[i] + 6, 18, ink, "700", "middle");
+    });
+    var known = s.every(function (v) { return v !== null; }), v = known ? P.vote(s[0], s[1], s[2]) : null;
+    terms.forEach(function (t) {
+      var tv = shown && known ? !!(s[t[1]] && s[t[2]]) : null;
+      shape(el, "rect", { x: 200, y: t[3] - 20, width: 110, height: 40, rx: 6, fill: fill(tv), "fill-opacity": ".42", stroke: ink, "stroke-width": 2 });
+      label(el, t[0] + " = " + out(tv), 255, t[3] + 6, 15, ink, null, "middle");
+    });
+    shape(el, "circle", { cx: 410, cy: 140, r: 22, fill: fill(shown ? v : null), "fill-opacity": ".42", stroke: ink, "stroke-width": 2 });
+    label(el, "V", 410, 106, 16, ink, "700", "middle");
+    label(el, out(shown ? v : null), 410, 146, 18, ink, "700", "middle");
+    if (caption) label(el, caption, 24, 276, 16, tok("--act"), "700");
+    el.setAttribute("aria-label", "Majority vote of sensors A, B and C" + (shown && known ? ", V = " + bit(v) : ""));
+  }
+  // Number lines from −3 to 5. Each row is { label, parts }; a filled end is included, a hollow one is not.
+  function px(v) { return 48 + (Math.max(-3.6, Math.min(5.6, v)) + 3) * 48; }
+  function numberLine(el, y, row) {
+    var ink = tok("--ink"), course = tok("--course"), paper = tok("--paper");
+    label(el, row.label, 24, y - 24, 14, ink, "700");
+    shape(el, "line", { x1: 20, y1: y, x2: 460, y2: y, stroke: ink, "stroke-width": 1.5 });
+    for (var k = -3; k <= 5; k++) {
+      shape(el, "line", { x1: px(k), y1: y - 5, x2: px(k), y2: y + 5, stroke: ink, "stroke-width": 1.5 });
+      label(el, k < 0 ? "−" + -k : String(k), px(k), y + 22, 12, tok("--muted"), null, "middle");
+    }
+    row.parts.forEach(function (I) {
+      shape(el, "line", { x1: px(I.lo), y1: y, x2: px(I.hi), y2: y, stroke: course, "stroke-width": 8, "stroke-opacity": ".7" });
+      [[I.lo, I.loIn], [I.hi, I.hiIn]].forEach(function (end) {
+        if (isFinite(end[0])) shape(el, "circle", { cx: px(end[0]), cy: y, r: 6, fill: end[1] ? ink : paper, stroke: ink, "stroke-width": 2 });
+      });
+    });
+  }
+  function lines(el, rows, caption) {
+    el.innerHTML = "";
+    rows.forEach(function (row, i) { numberLine(el, 60 + i * 80, row); });
+    if (caption) label(el, caption, 24, 276, 16, tok("--act"), "700");
+    el.setAttribute("aria-label", "Number lines: " + rows.map(function (r) { return r.label; }).join("; "));
+  }
+  function lineStage(givens, answer, caption) {
+    return function (el, t) { lines(el, t > 0 ? givens.concat([answer]) : givens, t >= 1 ? caption : null); };
+  }
   function drawSlider(root, el, values, selected, update) {
     var ink = getComputedStyle(document.body).getPropertyValue("--ink").trim();
     var course = getComputedStyle(document.body).getPropertyValue("--course").trim();
@@ -238,14 +297,44 @@
       challenge("power-count", "If A={a,b,c}, how many subsets does 𝒫(A) contain?", [["3", "3"], ["6", "6"], ["8", "8"]], "8", "1.2", "Power set size", "Each of the three elements is either included or not, giving 2³=8 subsets. The count includes ∅ and A itself, which is why 6 is the common wrong answer.",
         function () { return String(P.powerSet(["a", "b", "c"]).length); },
         stepStage(["A = {a,b,c}"], [0, 1, 2, 3].map(function (size) { return "Size " + size + ": " + P.powerSet(["a", "b", "c"]).filter(function (s) { return s.length === size; }).map(function (s) { return s.length ? "{" + s.join(",") + "}" : "∅"; }).join(" "); }).concat(["=Count: 2³ = " + P.powerSet(["a", "b", "c"]).length]))),
-      challenge("ordered-pair", "If A={1,2} and B={x}, which pair belongs to A×B?", [["x2", "(x,2)"], ["2x", "(2,x)"], ["sets", "(1,2)"]], "2x", "1.2", "Coordinate order", "In A×B the first coordinate comes from A and the second from B. Ordered pairs keep that order, so (x,2) is in B×A instead, and (1,2) has no second coordinate from B.",
-        function () { var ps = P.product(SA, ["x"]).map(String); return ps.indexOf("2,x") >= 0 && ps.indexOf("x,2") < 0 ? "2x" : "x2"; },
-        stepStage(["A = {1,2}", "B = {x}"], ["First coordinate from A, second from B", "=A × B = {" + P.product(SA, ["x"]).map(function (p) { return "(" + p.join(",") + ")"; }).join(", ") + "}"])),
+      challenge("element-subset", "Let A={1,2}. Which statement is true?", [["in", "{1} ∈ A"], ["sub", "{1} ⊂ A"], ["both", "Both"]], "sub", "1.2", "Element or subset", "The elements of A are the numbers 1 and 2. The set {1} is not one of them, so {1} ∉ A. Its only element, 1, is in A, so {1} ⊂ A. ∈ compares one object with the list; ⊂ compares every element.",
+        function () { var A = [1, 2], one = [1], isIn = A.some(function (x) { return Array.isArray(x) && String(x) === String(one); }), isSub = one.every(function (x) { return A.indexOf(x) >= 0; }); return isIn && isSub ? "both" : isSub ? "sub" : "in"; },
+        stepStage(["A = {1,2}: its elements are 1 and 2"], ["{1} ∈ A? No: the set {1} is not listed in A", "{1} ⊂ A? Yes: its element 1 is in A", "={1} ⊂ A and 1 ∈ A, but {1} ∉ A"])),
       challenge("product-empty", "If A=∅, how many ordered pairs are in A×{1,2}?", [["0", "0"], ["1", "1"], ["2", "2"]], "0", "1.2", "Empty Cartesian factor", "There is no first coordinate to pair with either element, so an empty factor makes the Cartesian product empty. The count is 0×2.",
         function () { return String(P.product([], [1, 2]).length); }, stepStage(["A = ∅", "B = {1,2}"], ["No first coordinate is available", "=Pairs: 0 × 2 = " + P.product([], [1, 2]).length])),
     ],
   };
-  var predicates = { even: ["x is even", even], positive: ["x>0", function (x) { return x > 0; }], large: ["x>3", function (x) { return x > 3; }] };
+  var I = P.interval, F = P.formatInterval, A13 = I(-1, 3, false, true);
+  function union(parts) { return parts.map(F).join(" ∪ "); }
+  function circuit(a, b) { return O.or(O.and(a, b), O.and(a, !b)); }
+  data.vote = [
+    challenge("vote-agree", "Sensors read A=1, B=1, C=0. What is the vote V?", [["0", "0"], ["1", "1"], ["depends", "Depends on which sensor is faulty"]], "1", "1.1", "Majority vote", "V is 1 when at least two sensors read 1. A ∧ B is already 1, so V is 1 whatever C reads.",
+      function () { return bit(P.vote(true, true, false)); }, function (el, t) { voteDiagram(el, [true, true, false], t > 0, t >= 1 ? "A ∧ B = 1, so V = 1." : null); }),
+    challenge("vote-decides", "A=1 and B=0, and sensor C is faulty: it may read 0 or 1. Does C decide V?", [["decides", "Yes: V equals C"], ["no", "No: A already reads 1"], ["zero", "No: V is 0 either way"]], "decides", "1.1", "When one sensor matters", "With A and B disagreeing, each pair term needs C. C=0 gives V=0 and C=1 gives V=1, so the faulty sensor decides. One fault is harmless only when the other two agree.",
+      function () { return P.vote(true, false, false) !== P.vote(true, false, true) ? "decides" : "no"; },
+      stepStage(["A = 1, B = 0, C faulty"], ["C = 0: (1∧0) ∨ (1∧0) ∨ (0∧0) = " + bit(P.vote(true, false, false)), "C = 1: (1∧0) ∨ (1∧1) ∨ (0∧1) = " + bit(P.vote(true, false, true)), "=A and B disagree, so C decides V"])),
+    challenge("vote-outvoted", "A=0 and B=0 are working; faulty C reads 1. What is V?", [["1", "1: C reports a reading"], ["unknown", "Cannot tell"], ["0", "0"]], "0", "1.1", "Outvoted fault", "Every pair term needs two 1s, and only C reads 1, so all three terms are 0 and V is 0. The two working sensors outvote the faulty one.",
+      function () { return bit(P.vote(false, false, true)); }, function (el, t) { voteDiagram(el, [false, false, true], t > 0, t >= 1 ? "One 1 is not a majority: V = 0." : null); }),
+    challenge("circuit", "Which single input does (A ∧ B) ∨ (A ∧ ¬B) equal?", [["a", "A"], ["b", "B"], ["one", "Always 1"]], "a", "1.1", "Circuit simplification", "By the distributive law it is A ∧ (B ∨ ¬B), and B ∨ ¬B is always 1, so it is A. The notes use this to replace four gates with one wire.",
+      function () { return P.truthTable(circuit).every(function (r) { return r.value === r.A; }) ? "a" : "b"; },
+      logicStage([false, true], [{ head: "(A∧B)∨(A∧¬B)", f: circuit }, { head: "A", f: function (a) { return a; } }], "Same column as A: four gates become a wire.")),
+  ];
+  data.intervals = [
+    challenge("closed-end", "Is 3 an element of (−1,3]?", [["no", "No: 3 is an endpoint"], ["yes", "Yes: ] includes 3"], ["closed", "Only if written [−1,3]"]], "yes", "1.2", "Closed end", "A square bracket includes its endpoint and a round one excludes it. (−1,3] has ] at 3, so 3 is in it, while −1 is not.",
+      function () { return P.inInterval(A13, 3) ? "yes" : "no"; },
+      lineStage([{ label: "A = (−1,3]", parts: [A13] }], { label: "x = 3 sits on the filled end", parts: [I(3, 3, true, true)] }, "3 ∈ A, because ] includes it; −1 ∉ A.")),
+    challenge("complement-ends", "What is the complement of (−1,3] in ℝ?", [["swap", "(−∞,−1) ∪ [3,∞)"], ["mid", "[−1,3)"], ["right", "(−∞,−1] ∪ (3,∞)"]], "right", "1.2", "Complement flips ends", "The complement takes every real number not in A. −1 is not in A, so it joins the complement; 3 is in A, so it does not. Each shared end changes bracket.",
+      function () { return union(P.complement(A13)) === "(−∞,−1] ∪ (3,∞)" ? "right" : "swap"; },
+      lineStage([{ label: "A = (−1,3]", parts: [A13] }], { label: "Aᶜ = " + union(P.complement(A13)), parts: P.complement(A13) }, "Filled and hollow ends swap at −1 and 3.")),
+    challenge("interval-meet", "What is [0,2] ∩ (1,3)?", [["right", "(1,2]"], ["closed", "[1,2]"], ["span", "(0,3)"]], "right", "1.2", "Intersecting intervals", "The intersection keeps points in both. It starts after 1, because (1,3) excludes 1, and ends at 2 inclusive, because [0,2] includes 2.",
+      function () { return F(P.intersect(I(0, 2, true, true), I(1, 3, false, false))) === "(1,2]" ? "right" : "closed"; },
+      lineStage([{ label: "[0,2]", parts: [I(0, 2, true, true)] }, { label: "(1,3)", parts: [I(1, 3, false, false)] }], { label: "[0,2] ∩ (1,3) = " + F(P.intersect(I(0, 2, true, true), I(1, 3, false, false))), parts: [P.intersect(I(0, 2, true, true), I(1, 3, false, false))] }, "Each end comes from the stricter interval.")),
+    challenge("nonneg", "Which interval is ℝ≥0?", [["pos", "(0,∞)"], ["right", "[0,∞)"], ["neg", "(−∞,0]"]], "right", "1.2", "ℝ≥0 against ℝ+", "ℝ≥0 includes 0, so its left end is closed: [0,∞). ℝ+ = (0,∞) leaves 0 out. ∞ always gets a round bracket, because it is not a number in the set.",
+      function () { return P.inInterval(I(0, Infinity, true, false), 0) && F(I(0, Infinity, true, false)) === "[0,∞)" ? "right" : "pos"; },
+      lineStage([{ label: "ℝ+ = (0,∞)", parts: [I(0, Infinity, false, false)] }], { label: "ℝ≥0 = [0,∞)", parts: [I(0, Infinity, true, false)] }, "Only the end at 0 differs.")),
+  ];
+  var ends = { "(−1,3)": [false, false], "[−1,3)": [true, false], "(−1,3]": [false, true], "[−1,3]": [true, true] };
+  var predicates ={ even: ["x is even", even], positive: ["x>0", function (x) { return x > 0; }], large: ["x>3", function (x) { return x > 3; }] };
   function register(id, title) {
     var root = document.querySelector("[data-experiment='" + id + "']"), card = root.querySelector(".challenge"), visual = stage(id);
     function setup(c) {
@@ -276,6 +365,16 @@
           var op = c.value, result = P.setOp(SA, op === "complement" ? [] : SB, op, X), symbol = { union: "∪", intersection: "∩", difference: "\\" }[op];
           venn(visual, result); setCaption(visual, (op === "complement" ? "Aᶜ" : "A " + symbol + " B") + " = " + set(result));
           drawSlider(root, visual, ["union", "intersection", "difference", "complement"], op, function (v) { c.value = v; update(); });
+        } else if (id === "vote") {
+          var s = ["a", "b", "c"].map(function (k) { return root.querySelector("[data-control='" + k + "']").value === "true"; });
+          voteDiagram(visual, s, true);
+          drawSlider(root, visual, ["000", "001", "010", "011", "100", "101", "110", "111"], s.map(bit).join(""), function (v) {
+            ["a", "b", "c"].forEach(function (k, i) { root.querySelector("[data-control='" + k + "']").value = String(v[i] === "1"); }); update();
+          });
+        } else if (id === "intervals") {
+          var e = ends[c.value], A = I(-1, 3, e[0], e[1]);
+          lines(visual, [{ label: "A = " + F(A), parts: [A] }, { label: "Aᶜ = " + union(P.complement(A)), parts: P.complement(A) }]);
+          drawSlider(root, visual, Object.keys(ends), c.value, function (v) { c.value = v; update(); });
         } else {
           var ps = P.powerSet(["a", "b", "c"]), pairs = P.product(SA, ["x"]);
           text(visual, c.value === "power" ? ["A = {a,b,c}", "𝒫(A) = {∅,{a},{b},{c},{a,b},{a,c},{b,c},{a,b,c}}", "=Count: 2³ = " + ps.length] : ["A = {1,2}    B = {x}", "=A × B = {" + pairs.map(function (p) { return "(" + p.join(",") + ")"; }).join(", ") + "}", "Pair order follows A, then B."]);
@@ -298,5 +397,6 @@
     }) });
   }
   register("logic", "1.1 Truth tables"); register("quantifiers", "1.1 Quantifiers");
-  register("sets", "1.2 Set operations"); register("finite", "1.2 Finite sets");
+  register("vote", "1.1 Sensor vote and circuits");
+  register("sets", "1.2 Set operations"); register("finite", "1.2 Finite sets"); register("intervals", "1.2 Intervals");
 })();

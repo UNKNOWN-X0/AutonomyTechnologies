@@ -31,7 +31,30 @@
   function product(A, B) {
     return A.flatMap(function (a) { return B.map(function (b) { return [a, b]; }); });
   }
-  var api = { operators: operators, truthTable: truthTable, quantifier: quantifier, setOp: setOp, powerSet: powerSet, product: product };
+  // Majority vote of three sensors, V ⇔ (A ∧ B) ∨ (A ∧ C) ∨ (B ∧ C).
+  function vote(a, b, c) { return !!((a && b) || (a && c) || (b && c)); }
+  // A real interval; an infinite end is never included.
+  function interval(lo, hi, loIn, hiIn) { return { lo: lo, hi: hi, loIn: !!loIn && isFinite(lo), hiIn: !!hiIn && isFinite(hi) }; }
+  function inInterval(I, x) { return (x > I.lo || (I.loIn && x === I.lo)) && (x < I.hi || (I.hiIn && x === I.hi)); }
+  // Complement in ℝ: the parts left and right of I, each taking the opposite bracket at the shared end.
+  function complement(I) {
+    var out = [];
+    if (I.lo > -Infinity) out.push(interval(-Infinity, I.lo, false, !I.loIn));
+    if (I.hi < Infinity) out.push(interval(I.hi, Infinity, !I.hiIn, false));
+    return out;
+  }
+  function intersect(I, J) {
+    var lo = Math.max(I.lo, J.lo), hi = Math.min(I.hi, J.hi);
+    var loIn = (I.lo !== lo || I.loIn) && (J.lo !== lo || J.loIn), hiIn = (I.hi !== hi || I.hiIn) && (J.hi !== hi || J.hiIn);
+    if (lo > hi || (lo === hi && !(loIn && hiIn))) return null;
+    return interval(lo, hi, loIn, hiIn);
+  }
+  function formatInterval(I) {
+    function n(v) { return v === Infinity ? "∞" : v === -Infinity ? "−∞" : v < 0 ? "−" + -v : String(v); }
+    return (I.loIn ? "[" : "(") + n(I.lo) + "," + n(I.hi) + (I.hiIn ? "]" : ")");
+  }
+  var api = { operators: operators, truthTable: truthTable, quantifier: quantifier, setOp: setOp, powerSet: powerSet, product: product,
+    vote: vote, interval: interval, inInterval: inInterval, complement: complement, intersect: intersect, formatInterval: formatInterval };
   if (typeof module === "object" && module.exports) module.exports = api;
   else root.MEI1 = api;
 })(this);
