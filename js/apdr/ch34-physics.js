@@ -1,4 +1,4 @@
-/* APDR Chapter 2a calculations reused by the combined lab and its tests. */
+/* APDR Chapter 34a calculations reused by the combined lab and its tests. */
 (function (root) {
   var I = root.APDR3, F = root.APDR4;
   if (typeof module === "object" && module.exports) {

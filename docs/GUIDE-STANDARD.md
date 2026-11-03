@@ -21,7 +21,7 @@ Each rule below serves one of these study principles, taken from the ultimate-st
 
 ## Files
 
-Chapter numbers may include a lowercase letter suffix (for example, `1a` or `2a`); use that label consistently in filenames.
+Chapter numbers may include a lowercase letter suffix (for example, `12a` or `34a`); use that label consistently in filenames.
 
 | Item | Rule |
 |---|---|

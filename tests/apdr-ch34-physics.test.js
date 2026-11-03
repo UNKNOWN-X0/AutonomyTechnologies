@@ -1,4 +1,4 @@
-// Chapter 2a combined lab calculations and one guide example per experiment.
+// Chapter 34a combined lab calculations and one guide example per experiment.
 const test = require("node:test");
 const assert = require("node:assert/strict");
 const fs = require("node:fs");
@@ -85,7 +85,7 @@ test("4.5 stable roots scale coefficients before forming the discriminant", () =
 });
 
 test("combined lab experiments follow chapter order", () => {
-  const html = fs.readFileSync(require.resolve("../apdr/ch2a-integer-and-floating-point-lab.html"), "utf8");
+  const html = fs.readFileSync(require.resolve("../apdr/ch34a-integer-and-floating-point-lab.html"), "utf8");
   const order = ["integers", "arithmetic", "spacing", "fractions", "ieee", "stability"];
   assert.deepEqual([...html.matchAll(/<section id="exp-([^"]+)"/g)].map(m => m[1]), order);
   assert.ok(html.indexOf('href="#exp-spacing"') < html.indexOf('href="#exp-fractions"'));

@@ -1,4 +1,4 @@
-/* APDR Chapter 1a: identities, completeness, minimisation, representations, and hazards. */
+/* APDR Chapter 12a: identities, completeness, minimisation, representations, and hazards. */
 (function () {
   var P = window.APDR12, canvases = [];
 
