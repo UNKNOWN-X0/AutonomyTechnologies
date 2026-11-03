@@ -127,7 +127,7 @@ Integer representation explains exact bit-level meaning. Floating point extends 
 \textbf{Positional bases} \hfill{\small\color{FAUblue}§3.1}
 
 \Needspace{4\baselineskip}
-\ensuremath{\Sigma} d\textsubscript{i}b\textsuperscript{i}
+$\sum_{\mathrm{i}=0}^{\mathrm{k}} $ d\textsubscript{i}b\textsuperscript{i}
 
 Rests on: each digit's place has a power-of-base weight.
 
@@ -236,7 +236,7 @@ A numeral is a compact way to write a sum of place values. Binary, octal, decima
 In base b, each digit d\textsubscript{i} contributes d\textsubscript{i}b\textsuperscript{i}, where the rightmost digit has i=0. Binary digits are 0 or 1. Decimal-to-binary repeated division records remainders; read them from last to first.
 
 \begin{equationcard}{Positional value}
-\[ \begin{gathered} (\mathrm{d}_{\mathrm{k}}…\mathrm{d}_{1}\mathrm{d}_{0})_{\mathrm{b}}\, =\, \sum\, \mathrm{d}_{\mathrm{i}}\mathrm{b}^{\mathrm{i}} \\ (1100010)_{2}\, =\, 1\cdot 2^{6}\, +\, 1\cdot 2^{5}\, +\, 1\cdot 2^{1}\, =\, 98 \end{gathered} \]
+\[ \begin{gathered} (\mathrm{d}_{\mathrm{k}}…\mathrm{d}_{1}\mathrm{d}_{0})_{\mathrm{b}}\, =\, \sum_{\mathrm{i}=0}^{\mathrm{k}} \, \mathrm{d}_{\mathrm{i}}\mathrm{b}^{\mathrm{i}} \\ (1100010)_{2}\, =\, 1\cdot 2^{6}\, +\, 1\cdot 2^{5}\, +\, 1\cdot 2^{1}\, =\, 98 \end{gathered} \]
 {\small The worked binary number is 98 in decimal. Subscripts identify the base.}
 \end{equationcard}
 
@@ -1228,7 +1228,7 @@ Priority & Direct control and performance & Safety and developer productivity \\
 \Needspace{10\baselineskip}
 \begin{center}\small\begin{tabularx}{\linewidth}{>{\raggedright\arraybackslash}X>{\raggedright\arraybackslash}X>{\raggedright\arraybackslash}X}\toprule
 \textbf{Idea} & \textbf{Relation} & \textbf{Use} \\ \midrule
-Positional value & \ensuremath{\Sigma}d\textsubscript{i}b\textsuperscript{i} & Decode a numeral. \\
+Positional value & $\sum_{\mathrm{i}=0}^{\mathrm{k}} $d\textsubscript{i}b\textsuperscript{i} & Decode a numeral. \\
 Unsigned n-bit range & 0 … 2\textsuperscript{n}\ensuremath{-}1 & Check fit. \\
 Two’s-complement range & \ensuremath{-}2\textsuperscript{n\ensuremath{-}1} … 2\textsuperscript{n\ensuremath{-}1}\ensuremath{-}1 & Check signed fit. \\
 Biased exponent & actual exponent = stored exponent \ensuremath{-} bias & Decode a normal IEEE value. \\

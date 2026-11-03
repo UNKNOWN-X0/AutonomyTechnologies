@@ -884,3 +884,46 @@ main > section:first-of-type > h2 {
     display: none;
   }
 }
+
+/* Big operators with limits: sums and products stack top limit, sign, bottom limit;
+   integrals keep the sign on the left with the top limit over the bottom one on its right. */
+.op {
+  display: inline-grid;
+  vertical-align: middle;
+  margin-inline: 0.08em 0.16em;
+  line-height: 1.05;
+  white-space: nowrap;
+}
+.op > sub,
+.op > sup {
+  position: static;
+  vertical-align: baseline;
+  font-size: 0.64em;
+  line-height: 1.1;
+}
+.op-sum {
+  grid-template-areas: "hi" "sym" "lo";
+  justify-items: center;
+}
+.op-sum > .op-sym {
+  grid-area: sym;
+  font-family: "Cambria Math", "STIX Two Math", "Times New Roman", serif;
+  font-size: 1.3em;
+  line-height: 1;
+}
+.op-sum > sup { grid-area: hi; }
+.op-sum > sub { grid-area: lo; }
+.op-int {
+  grid-template-areas: "sym hi" "sym lo";
+  grid-template-columns: auto auto;
+  align-items: center;
+}
+.op-int > .op-sym {
+  grid-area: sym;
+  font-family: "Cambria Math", "STIX Two Math", "Times New Roman", serif;
+  font-size: 1.7em;
+  line-height: 1;
+  padding-inline-end: 0.06em;
+}
+.op-int > sup { grid-area: hi; align-self: start; }
+.op-int > sub { grid-area: lo; align-self: end; }

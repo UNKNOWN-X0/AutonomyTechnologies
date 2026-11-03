@@ -107,6 +107,8 @@ def inline(node):
             out.append(r"\textbf{%s}" % inline(k))
         elif t == "em":
             out.append(r"\emph{%s}" % inline(k))
+        elif t == "span" and "op" in c:
+            out.append("$%s$" % big_op(k))
         elif t == "span" and "frac" in c:
             num, den = [x for x in k.kids if isinstance(x, Node)]
             out.append(r"(%s)/(%s)" % (inline(num), inline(den)))
@@ -161,12 +163,28 @@ def math(node):
             out.append("_{%s}" % math(k))
         elif t == "sup":
             out.append("^{%s}" % math(k))
+        elif t == "span" and "op" in c:
+            out.append(big_op(k))
         elif t == "span" and "frac" in c:
             num, den = [x for x in k.kids if isinstance(x, Node)]
             out.append(r"\dfrac{%s}{%s}" % (math(num), math(den)))
         else:
             out.append(math(k))
     return "".join(out)
+
+
+BIG_OPS = {"Σ": r"\sum", "∑": r"\sum", "Π": r"\prod", "∏": r"\prod", "∫": r"\int", "∮": r"\oint", "∬": r"\iint", "∯": r"\oiint"}
+
+
+def big_op(node):
+    """A <span class="op"> sum, product or integral: the sign with its <sub> and <sup> limits."""
+    parts = {x.tag: x for x in node.kids if isinstance(x, Node)}
+    s = BIG_OPS[parts["span"].text().strip()]
+    if "sub" in parts:
+        s += "_{%s}" % math(parts["sub"])
+    if "sup" in parts:
+        s += "^{%s}" % math(parts["sup"])
+    return s + " "
 
 
 def var_math(node):

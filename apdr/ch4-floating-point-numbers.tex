@@ -149,7 +149,7 @@ Rests on: scientific notation separates a number’s digits from its scale.
 \textbf{Binary fractions} \hfill{\small\color{FAUblue}§4.2}
 
 \Needspace{4\baselineskip}
-0.b\textsubscript{1}b\textsubscript{2}… = \ensuremath{\Sigma} b\textsubscript{i}2\textsuperscript{\ensuremath{-}i}
+0.b\textsubscript{1}b\textsubscript{2}… = $\sum_{\mathrm{i}=1}^{\infty } $ b\textsubscript{i}2\textsuperscript{\ensuremath{-}i}
 
 Rests on: each fractional bit has a negative power-of-two place value.
 
@@ -701,7 +701,7 @@ Classify sign 0, exponent 11111111, fraction 000…000.
 \begin{center}\small\begin{tabularx}{\linewidth}{>{\raggedright\arraybackslash}X>{\raggedright\arraybackslash}X>{\raggedright\arraybackslash}X}\toprule
 \textbf{Idea} & \textbf{Relation} & \textbf{Use} \\ \midrule
 Floating-point model & x = \ensuremath{\pm}M \ensuremath{\times} R\textsuperscript{E} & Separate sign, significand, and scale. \\
-Binary fraction & 0.b\textsubscript{1}b\textsubscript{2}… = \ensuremath{\Sigma} b\textsubscript{i}2\textsuperscript{\ensuremath{-}i} & Convert binary fractions to decimal. \\
+Binary fraction & 0.b\textsubscript{1}b\textsubscript{2}… = $\sum_{\mathrm{i}=1}^{\infty } $ b\textsubscript{i}2\textsuperscript{\ensuremath{-}i} & Convert binary fractions to decimal. \\
 Multiplication & (M\textsubscript{1}R\textsuperscript{E\textsubscript{1}})(M\textsubscript{2}R\textsuperscript{E\textsubscript{2}}) = M\textsubscript{1}M\textsubscript{2}R\textsuperscript{E\textsubscript{1}+E\textsubscript{2}} & Multiply significands and add exponents. \\
 Addition & N\textsubscript{1}+N\textsubscript{2} = (M\textsubscript{1}+M\textsubscript{2}\ensuremath{\times}10\textsuperscript{E\textsubscript{2}\ensuremath{-}E\textsubscript{1}})\ensuremath{\times}10\textsuperscript{E\textsubscript{1}} & Align to the larger exponent, then add coefficients. \\
 Gap in one zone & 2\textsuperscript{e\ensuremath{-}p+1} & Spacing in [2\textsuperscript{e}, 2\textsuperscript{e+1}) with p significant bits. \\

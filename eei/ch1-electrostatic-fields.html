@@ -334,7 +334,7 @@
         <section id="sec-14">
           <h2>1.4 Superposition of fields</h2>
           <p>Experiments show that the forces of several charges on one probe add as vectors. In a homogeneous medium the total field is therefore the vector sum of the individual fields.</p>
-          <div class="eq"><strong>Field of <var>N</var> point charges</strong><span class="formula"><var>E</var>(<var>r</var><sub>P</sub>) = <span class="frac"><span>1</span><span>4π ε<sub>0</sub></span></span> Σ<sub>i=1</sub><sup>N</sup> <var>Q</var><sub>i</sub> <span class="frac"><span><var>r</var><sub>i</sub></span><span><var>r</var><sub>i</sub><sup>3</sup></span></span>, &nbsp; <var>r</var><sub>i</sub> = <var>r</var><sub>P</sub> − <var>r</var><sub>Qi</sub></span><span class="eq-note">The force on a further charge <var>Q</var><sub>4</sub> at P is <var>Q</var><sub>4</sub> <var>E</var>(<var>r</var><sub>P</sub>), where the sum leaves out <var>Q</var><sub>4</sub> itself: a charge does not push on itself.</span></div>
+          <div class="eq"><strong>Field of <var>N</var> point charges</strong><span class="formula"><var>E</var>(<var>r</var><sub>P</sub>) = <span class="frac"><span>1</span><span>4π ε<sub>0</sub></span></span> <span class="op op-sum"><span class="op-sym">∑</span><sub>i=1</sub><sup>N</sup></span> <var>Q</var><sub>i</sub> <span class="frac"><span><var>r</var><sub>i</sub></span><span><var>r</var><sub>i</sub><sup>3</sup></span></span>, &nbsp; <var>r</var><sub>i</sub> = <var>r</var><sub>P</sub> − <var>r</var><sub>Qi</sub></span><span class="eq-note">The force on a further charge <var>Q</var><sub>4</sub> at P is <var>Q</var><sub>4</sub> <var>E</var>(<var>r</var><sub>P</sub>), where the sum leaves out <var>Q</var><sub>4</sub> itself: a charge does not push on itself.</span></div>
           <ol class="method-list">
             <li>Sketch the charges and P with coordinates.</li>
             <li>For each charge write <var>r</var><sub>i</sub> = <var>r</var><sub>P</sub> − <var>r</var><sub>Qi</sub> and its length.</li>
@@ -382,8 +382,8 @@
             <table>
               <thead><tr><th>Distribution</th><th>Density</th><th>Uniform case</th><th>Total charge</th><th>Unit</th></tr></thead>
               <tbody>
-                <tr><td>Line</td><td>λ = d<var>Q</var>/d<var>l</var></td><td>λ = <var>Q</var>/<var>l</var></td><td><var>Q</var> = ∫<sub>l</sub> λ d<var>l</var></td><td>C/m</td></tr>
-                <tr><td>Surface</td><td>σ<sub>A</sub> = d<var>Q</var>/d<var>A</var></td><td>σ<sub>A</sub> = <var>Q</var>/<var>A</var></td><td><var>Q</var> = ∬<sub>A</sub> σ<sub>A</sub> d<var>A</var></td><td>C/m²</td></tr>
+                <tr><td>Line</td><td>λ = d<var>Q</var>/d<var>l</var></td><td>λ = <var>Q</var>/<var>l</var></td><td><var>Q</var> = <span class="op op-int"><span class="op-sym">∫</span><sub>l</sub></span> λ d<var>l</var></td><td>C/m</td></tr>
+                <tr><td>Surface</td><td>σ<sub>A</sub> = d<var>Q</var>/d<var>A</var></td><td>σ<sub>A</sub> = <var>Q</var>/<var>A</var></td><td><var>Q</var> = <span class="op op-int"><span class="op-sym">∬</span><sub>A</sub></span> σ<sub>A</sub> d<var>A</var></td><td>C/m²</td></tr>
                 <tr><td>Volume</td><td>ϱ<sub>V</sub> = d<var>Q</var>/d<var>V</var></td><td>ϱ<sub>V</sub> = <var>Q</var>/<var>V</var></td><td><var>Q</var> = ∭<sub>V</sub> ϱ<sub>V</sub> d<var>V</var></td><td>C/m³</td></tr>
               </tbody>
             </table>
@@ -393,7 +393,7 @@
             <p class="worked-title">Worked example</p>
             <p>A sphere of radius <var>R</var> has ϱ(<var>r</var>) = ϱ<sub>0</sub>(1 − <var>r</var>/<var>R</var>). Find its total charge.</p>
             <ol class="method-list">
-              <li>The density depends only on <var>r</var>, so use shells: <var>Q</var> = ∫<sub>0</sub><sup>R</sup> ϱ<sub>0</sub>(1 − <var>r</var>/<var>R</var>) 4π<var>r</var><sup>2</sup> d<var>r</var>.</li>
+              <li>The density depends only on <var>r</var>, so use shells: <var>Q</var> = <span class="op op-int"><span class="op-sym">∫</span><sub>0</sub><sup>R</sup></span> ϱ<sub>0</sub>(1 − <var>r</var>/<var>R</var>) 4π<var>r</var><sup>2</sup> d<var>r</var>.</li>
               <li>= 4πϱ<sub>0</sub> (<var>R</var><sup>3</sup>/3 − <var>R</var><sup>3</sup>/4) = πϱ<sub>0</sub><var>R</var><sup>3</sup>/3.</li>
               <li>Check: a uniform ϱ<sub>0</sub> would give 4πϱ<sub>0</sub><var>R</var><sup>3</sup>/3. Our density falls to zero at the edge, so a quarter of that is plausible.</li>
             </ol>
@@ -442,11 +442,11 @@
         <section id="sec-18">
           <h2>1.8 Electrostatic potential</h2>
           <p><strong>Work.</strong> Moving a charge <var>Q</var> from P<sub>0</sub> to P<sub>1</sub> against the field costs energy; moving it with the field releases energy. The notes count the work supplied from outside, hence the minus sign.</p>
-          <div class="eq"><strong>Externally supplied work</strong><span class="formula"><var>W</var><sub>e</sub> = −∫<sub>P0</sub><sup>P1</sup> <var>F</var> · d<var>s</var> = −<var>Q</var> ∫<sub>P0</sub><sup>P1</sup> <var>E</var> · d<var>s</var></span><span class="eq-note"><var>W</var><sub>e</sub> &gt; 0: energy is supplied to the system. <var>W</var><sub>e</sub> &lt; 0: the field does the work and the system gives energy away.</span></div>
+          <div class="eq"><strong>Externally supplied work</strong><span class="formula"><var>W</var><sub>e</sub> = −<span class="op op-int"><span class="op-sym">∫</span><sub>P0</sub><sup>P1</sup></span> <var>F</var> · d<var>s</var> = −<var>Q</var> <span class="op op-int"><span class="op-sym">∫</span><sub>P0</sub><sup>P1</sup></span> <var>E</var> · d<var>s</var></span><span class="eq-note"><var>W</var><sub>e</sub> &gt; 0: energy is supplied to the system. <var>W</var><sub>e</sub> &lt; 0: the field does the work and the system gives energy away.</span></div>
           <p><strong>Path independence.</strong> Carry the charge from P<sub>0</sub> along one path to P<sub>1</sub> and back along another. Afterwards the field is exactly as before, so the system’s energy is unchanged and the total work is zero. Since the return path was arbitrary, the work from P<sub>0</sub> to P<sub>1</sub> cannot depend on the path.</p>
-          <div class="eq"><strong>The electrostatic field is conservative</strong><span class="formula">∮<sub>C</sub> <var>E</var> · d<var>s</var> = 0 &nbsp; and therefore &nbsp; ∮<sub>C</sub> <var>F</var> · d<var>s</var> = 0</span><span class="eq-note">The notes call it a source field, like gravity: the charges are its sources.</span></div>
+          <div class="eq"><strong>The electrostatic field is conservative</strong><span class="formula"><span class="op op-int"><span class="op-sym">∮</span><sub>C</sub></span> <var>E</var> · d<var>s</var> = 0 &nbsp; and therefore &nbsp; <span class="op op-int"><span class="op-sym">∮</span><sub>C</sub></span> <var>F</var> · d<var>s</var> = 0</span><span class="eq-note">The notes call it a source field, like gravity: the charges are its sources.</span></div>
           <p><strong>Potential.</strong> Because the work depends only on the end points, every point P can be given a number: the work per unit charge needed to bring a charge there from a reference point P<sub>0</sub>, where φ<sub>e</sub>(P<sub>0</sub>) = 0.</p>
-          <div class="eq"><strong>Potential (unit V)</strong><span class="formula">φ<sub>e</sub>(P) = <span class="frac"><span><var>W</var><sub>e</sub>(P)</span><span><var>Q</var></span></span> = −∫<sub>P0</sub><sup>P</sup> <var>E</var> · d<var>s</var>, &nbsp; <var>W</var><sub>e</sub> = <var>Q</var>(φ<sub>e</sub>(P<sub>end</sub>) − φ<sub>e</sub>(P<sub>start</sub>))</span><span class="eq-note">Usual references: earth, infinity, or circuit ground (the negative battery pole or a metal housing). Like height above sea level, only differences are physical.</span></div>
+          <div class="eq"><strong>Potential (unit V)</strong><span class="formula">φ<sub>e</sub>(P) = <span class="frac"><span><var>W</var><sub>e</sub>(P)</span><span><var>Q</var></span></span> = −<span class="op op-int"><span class="op-sym">∫</span><sub>P0</sub><sup>P</sup></span> <var>E</var> · d<var>s</var>, &nbsp; <var>W</var><sub>e</sub> = <var>Q</var>(φ<sub>e</sub>(P<sub>end</sub>) − φ<sub>e</sub>(P<sub>start</sub>))</span><span class="eq-note">Usual references: earth, infinity, or circuit ground (the negative battery pole or a metal housing). Like height above sea level, only differences are physical.</span></div>
           <div class="eq"><strong>Point charge <var>Q</var><sub>0</sub>, reference at infinity</strong><span class="formula"><var>W</var><sub>e</sub> = <span class="frac"><span><var>Q Q</var><sub>0</sub></span><span>4π ε<sub>0</sub></span></span> (<span class="frac"><span>1</span><span><var>r</var><sub>2</sub></span></span> − <span class="frac"><span>1</span><span><var>r</var><sub>1</sub></span></span>) &nbsp; (from <var>r</var><sub>1</sub> to <var>r</var><sub>2</sub>), &nbsp; φ<sub>e</sub>(<var>r</var>) = <span class="frac"><span><var>Q</var><sub>0</sub></span><span>4π ε<sub>0</sub><var>r</var></span></span></span><span class="eq-note">Potential is a scalar: for several charges add the signed potentials, no components needed. <var>E</var> ∝ 1/<var>r</var><sup>2</sup>, <var>D</var> ∝ 1/<var>r</var><sup>2</sup>, φ ∝ 1/<var>r</var>.</span></div>
           <div class="tw">
             <table>
@@ -489,7 +489,7 @@
         <section id="sec-19">
           <h2>1.9 Voltage</h2>
           <p>Write φ<sub>e</sub>(P<sub>1</sub>) − φ<sub>e</sub>(P<sub>2</sub>) with the definition of potential. The two integrals from the reference point P<sub>0</sub> join into one integral from P<sub>1</sub> to P<sub>2</sub>, and P<sub>0</sub> drops out: a potential difference does not depend on the reference point.</p>
-          <div class="eq"><strong>Voltage from P<sub>1</sub> to P<sub>2</sub> (unit V)</strong><span class="formula"><var>U</var><sub>12</sub> = φ<sub>e</sub>(P<sub>1</sub>) − φ<sub>e</sub>(P<sub>2</sub>) = ∫<sub>P1</sub><sup>P2</sup> <var>E</var> · d<var>s</var></span><span class="eq-note">Any path from P<sub>1</sub> to P<sub>2</sub> gives the same value. Uniform field along a path of length <var>d</var>: <var>U</var> = <var>E d</var>.</span></div>
+          <div class="eq"><strong>Voltage from P<sub>1</sub> to P<sub>2</sub> (unit V)</strong><span class="formula"><var>U</var><sub>12</sub> = φ<sub>e</sub>(P<sub>1</sub>) − φ<sub>e</sub>(P<sub>2</sub>) = <span class="op op-int"><span class="op-sym">∫</span><sub>P1</sub><sup>P2</sup></span> <var>E</var> · d<var>s</var></span><span class="eq-note">Any path from P<sub>1</sub> to P<sub>2</sub> gives the same value. Uniform field along a path of length <var>d</var>: <var>U</var> = <var>E d</var>.</span></div>
           <ul>
             <li><var>U</var><sub>12</sub> &gt; 0 means P<sub>1</sub> is at the higher potential. <var>E</var> points from high to low potential.</li>
             <li>Link to work: moving <var>Q</var> from P<sub>1</sub> to P<sub>2</sub> needs <var>W</var><sub>e</sub> = <var>Q</var>(φ<sub>2</sub> − φ<sub>1</sub>) = −<var>Q U</var><sub>12</sub>.</li>
@@ -502,7 +502,7 @@
               <li>φ<sub>A</sub> = 5 V and φ<sub>B</sub> = 8 V. What is <var>U</var><sub>AB</sub>, and which way does <var>E</var> roughly point?</li>
             </ol>
             <details class="answers"><summary>Answers</summary><ol>
-              <li>φ<sub>1</sub> − φ<sub>2</sub> = −∫<sub>P0</sub><sup>P1</sup> + ∫<sub>P0</sub><sup>P2</sup> = ∫<sub>P1</sub><sup>P0</sup> + ∫<sub>P0</sub><sup>P2</sup> = ∫<sub>P1</sub><sup>P2</sup> <var>E</var> · d<var>s</var>.</li>
+              <li>φ<sub>1</sub> − φ<sub>2</sub> = −<span class="op op-int"><span class="op-sym">∫</span><sub>P0</sub><sup>P1</sup></span> + <span class="op op-int"><span class="op-sym">∫</span><sub>P0</sub><sup>P2</sup></span> = <span class="op op-int"><span class="op-sym">∫</span><sub>P1</sub><sup>P0</sup></span> + <span class="op op-int"><span class="op-sym">∫</span><sub>P0</sub><sup>P2</sup></span> = <span class="op op-int"><span class="op-sym">∫</span><sub>P1</sub><sup>P2</sup></span> <var>E</var> · d<var>s</var>.</li>
               <li><var>U</var><sub>AB</sub> = −3 V; <var>E</var> points from B (higher) toward A.</li>
             </ol></details>
           </div>
@@ -512,11 +512,11 @@
           <h2>1.10 Electric flux density and Gauss’s law</h2>
           <p><strong>Two field quantities.</strong> <var>E</var> describes the effect (the force on charges). The flux density <var>D</var> describes the cause and makes the influence of matter explicit. For the linear materials in this course they are proportional.</p>
           <div class="eq"><strong>Flux density (unit A s/m² = C/m²)</strong><span class="formula"><var>D</var> = ε <var>E</var> = ε<sub>0</sub> ε<sub>r</sub> <var>E</var></span><span class="eq-note">ε<sub>r</sub> = 1 in vacuum and, to a good approximation, in air.</span></div>
-          <div class="eq"><strong>Electric flux through a surface (unit A s = C)</strong><span class="formula">Ψ = ∬<sub>A</sub> <var>D</var> · d<var>A</var>, &nbsp; d<var>A</var> = <var>n</var> d<var>A</var></span><span class="eq-note"><var>n</var> is the unit normal of the surface element. Only the part of <var>D</var> along <var>n</var> contributes.</span></div>
+          <div class="eq"><strong>Electric flux through a surface (unit A s = C)</strong><span class="formula">Ψ = <span class="op op-int"><span class="op-sym">∬</span><sub>A</sub></span> <var>D</var> · d<var>A</var>, &nbsp; d<var>A</var> = <var>n</var> d<var>A</var></span><span class="eq-note"><var>n</var> is the unit normal of the surface element. Only the part of <var>D</var> along <var>n</var> contributes.</span></div>
           <p class="method"><strong>Language trap:</strong> “flux” and “flux density” are historical names. Nothing flows in an electrostatic field; do not confuse flux with current, where charges really move.</p>
           <h3>Gauss’s law</h3>
           <p>Around a point charge in vacuum, <var>D</var> = <var>Q</var>/(4π<var>r</var><sup>2</sup>) <var>e</var><sub>r</sub>. On a concentric sphere <var>D</var> is parallel to d<var>A</var> and has constant size, so the flux is <var>D</var> × 4π<var>r</var><sup>2</sup> = <var>Q</var>, whatever the radius. The same holds for any closed surface and any position of the charge inside it, and by superposition for any charge distribution:</p>
-          <div class="eq"><strong>Gauss’s law in integral form</strong><span class="formula">Ψ = ∯<sub>A</sub> <var>D</var> · d<var>A</var> = <var>Q</var><sub>enclosed</sub> = ∭<sub>V</sub> ϱ<sub>V</sub> d<var>V</var></span><span class="eq-note">Valid always, not only in electrostatics. In this course the material is described by ε, so <var>Q</var> means the charges you place (on electrodes or given as densities). The material’s own polarisation charges are already included through ε.</span></div>
+          <div class="eq"><strong>Gauss’s law in integral form</strong><span class="formula">Ψ = <span class="op op-int"><span class="op-sym">∯</span><sub>A</sub></span> <var>D</var> · d<var>A</var> = <var>Q</var><sub>enclosed</sub> = ∭<sub>V</sub> ϱ<sub>V</sub> d<var>V</var></span><span class="eq-note">Valid always, not only in electrostatics. In this course the material is described by ε, so <var>Q</var> means the charges you place (on electrodes or given as densities). The material’s own polarisation charges are already included through ε.</span></div>
           <p>Gauss’s law always holds, but it only gives you the field when symmetry tells you the direction of <var>D</var> and that its size is constant on the surface. In practice that means three shapes: sphere (point charge, charged shell or ball), infinitely long cylinder (line charge, coax) and infinite plane (plate capacitor).</p>
           <ol class="method-list">
             <li>From the symmetry, state the direction of <var>D</var> and which coordinate it can depend on.</li>
@@ -627,7 +627,7 @@
             <li><strong>Displacement polarisation:</strong> the field pulls an atom’s electron cloud and nucleus slightly apart (electronic), or shifts ions in a crystal (ionic).</li>
             <li><strong>Orientation polarisation:</strong> molecules with a built-in dipole, such as water, turn toward the field.</li>
           </ul>
-          <div class="eq"><strong>Dipole moment and polarisation</strong><span class="formula"><var>p</var> = <var>Q d</var> &nbsp; (<var>d</var> from − to +), &nbsp; <var>P</var> = <span class="frac"><span>1</span><span><var>V</var></span></span> Σ<sub>n=1</sub><sup>N</sup> <var>p</var><sub>n</sub></span><span class="eq-note">In a uniform field the two forces on a dipole are equal and opposite: no net force, but a torque that turns <var>p</var> toward <var>E</var>.</span></div>
+          <div class="eq"><strong>Dipole moment and polarisation</strong><span class="formula"><var>p</var> = <var>Q d</var> &nbsp; (<var>d</var> from − to +), &nbsp; <var>P</var> = <span class="frac"><span>1</span><span><var>V</var></span></span> <span class="op op-sum"><span class="op-sym">∑</span><sub>n=1</sub><sup>N</sup></span> <var>p</var><sub>n</sub></span><span class="eq-note">In a uniform field the two forces on a dipole are equal and opposite: no net force, but a torque that turns <var>p</var> toward <var>E</var>.</span></div>
           <div class="eq"><strong>How polarisation enters <var>D</var></strong><span class="formula"><var>D</var> = ε<sub>0</sub><var>E</var> + <var>P</var>, &nbsp; <var>P</var> = ε<sub>0</sub>χ<var>E</var>, &nbsp; χ = ε<sub>r</sub> − 1, &nbsp; so <var>D</var> = ε<sub>0</sub>ε<sub>r</sub><var>E</var></span><span class="eq-note">χ is the electric susceptibility; vacuum and air: ε<sub>r</sub> = 1, χ = 0.</span></div>
           <p>The aligned dipoles leave a thin layer of bound charge on each face of the slab, opposite in sign to the neighbouring plate. These polarisation charges weaken the field inside. Read ε<sub>r</sub> two ways: at the same <var>D</var>, <var>E</var> in the dielectric is ε<sub>r</sub> times smaller; at the same <var>E</var>, <var>D</var> is ε<sub>r</sub> times larger.</p>
           <div class="worked">
@@ -658,7 +658,7 @@
         <section id="sec-113">
           <h2>1.13 Capacitors and capacitance</h2>
           <p>A capacitor is two conductors carrying equal and opposite charge, so that all the flux leaving the positive one ends on the negative one. Scale the charge by any factor and <var>D</var>, <var>E</var> and <var>U</var> scale by the same factor, so <var>Q</var> ∝ <var>U</var>.</p>
-          <div class="eq"><strong>Capacitance (unit A s/V = F)</strong><span class="formula"><var>C</var> = <span class="frac"><span><var>Q</var></span><span><var>U</var></span></span> = <span class="frac"><span>∯<sub>A</sub> <var>D</var> · d<var>A</var></span><span>∫<sub>s</sub> <var>E</var> · d<var>s</var></span></span></span><span class="eq-note">The surface encloses one electrode; the path runs from one electrode to the other. <var>C</var> depends only on geometry and material.</span></div>
+          <div class="eq"><strong>Capacitance (unit A s/V = F)</strong><span class="formula"><var>C</var> = <span class="frac"><span><var>Q</var></span><span><var>U</var></span></span> = <span class="frac"><span><span class="op op-int"><span class="op-sym">∯</span><sub>A</sub></span> <var>D</var> · d<var>A</var></span><span><span class="op op-int"><span class="op-sym">∫</span><sub>s</sub></span> <var>E</var> · d<var>s</var></span></span></span><span class="eq-note">The surface encloses one electrode; the path runs from one electrode to the other. <var>C</var> depends only on geometry and material.</span></div>
           <p class="method"><strong>Recipe for any geometry:</strong> assume ±<var>Q</var> → find <var>D</var> with Gauss → <var>E</var> = <var>D</var>/ε → <var>U</var> = ∫ <var>E</var> · d<var>s</var> → <var>C</var> = <var>Q</var>/<var>U</var>. The <var>Q</var> must cancel; if it does not, there is a mistake.</p>
           <div class="tw">
             <table>
@@ -672,7 +672,7 @@
           </div>
           <ul>
             <li><strong>Spherical:</strong> <var>U</var> = <var>Q</var>/(4π ε<sub>0</sub>) (1/<var>a</var> − 1/<var>b</var>) = <var>Q</var>(<var>b</var> − <var>a</var>)/(4π ε<sub>0</sub><var>a b</var>). Limit check: for a thin gap <var>d</var> = <var>b</var> − <var>a</var> ≪ <var>a</var>, <var>C</var> ≈ ε<sub>0</sub>4π<var>a</var><sup>2</sup>/<var>d</var>, the plate formula with the sphere’s area.</li>
-            <li><strong>Coaxial:</strong> <var>U</var> = <var>Q</var>/(2π ε <var>l</var>) ∫<sub>a</sub><sup>b</sup> dρ/ρ = <var>Q</var> ln(<var>b</var>/<var>a</var>)/(2π ε <var>l</var>).</li>
+            <li><strong>Coaxial:</strong> <var>U</var> = <var>Q</var>/(2π ε <var>l</var>) <span class="op op-int"><span class="op-sym">∫</span><sub>a</sub><sup>b</sup></span> dρ/ρ = <var>Q</var> ln(<var>b</var>/<var>a</var>)/(2π ε <var>l</var>).</li>
             <li><strong>Large <var>C</var> in practice:</strong> small gap (but the risk of breakdown grows), large area (metal foil on both sides of a thin film, rolled up: a wound capacitor), or high ε<sub>r</sub> (electrolytic capacitor).</li>
           </ul>
           <h3>Capacitor networks</h3>
@@ -680,8 +680,8 @@
             <table>
               <thead><tr><th>Connection</th><th>Same for every capacitor</th><th>Total</th><th>Why</th></tr></thead>
               <tbody>
-                <tr><td>Parallel</td><td>voltage <var>U</var></td><td><var>C</var> = Σ <var>C</var><sub>n</sub></td><td>charges add: <var>Q</var> = <var>U</var> Σ <var>C</var><sub>n</sub></td></tr>
-                <tr><td>Series</td><td>charge <var>Q</var></td><td>1/<var>C</var> = Σ 1/<var>C</var><sub>n</sub></td><td>induction gives every plate pair ±<var>Q</var>; voltages add</td></tr>
+                <tr><td>Parallel</td><td>voltage <var>U</var></td><td><var>C</var> = <span class="op op-sum"><span class="op-sym">∑</span><sub>n=1</sub><sup>N</sup></span> <var>C</var><sub>n</sub></td><td>charges add: <var>Q</var> = <var>U</var> <span class="op op-sum"><span class="op-sym">∑</span><sub>n=1</sub><sup>N</sup></span> <var>C</var><sub>n</sub></td></tr>
+                <tr><td>Series</td><td>charge <var>Q</var></td><td>1/<var>C</var> = <span class="op op-sum"><span class="op-sym">∑</span><sub>n=1</sub><sup>N</sup></span> 1/<var>C</var><sub>n</sub></td><td>induction gives every plate pair ±<var>Q</var>; voltages add</td></tr>
               </tbody>
             </table>
           </div>
@@ -719,7 +719,7 @@
         <section id="sec-114">
           <h2>1.14 Energy stored in an electric field</h2>
           <p>Charge a capacitor step by step. When it already holds ±<var>q</var>, its voltage is <var>u</var> = <var>q</var>/<var>C</var>. Carrying a further d<var>q</var> from the negative to the positive plate, against the field, costs d<var>W</var><sub>e</sub> = <var>u</var> d<var>q</var> = (<var>q</var>/<var>C</var>) d<var>q</var>. (Lower-case letters mark quantities that change with time.)</p>
-          <div class="eq"><strong>Energy of a charged capacitor</strong><span class="formula"><var>W</var><sub>e</sub> = <span class="frac"><span>1</span><span><var>C</var></span></span> ∫<sub>0</sub><sup>Q</sup> <var>q</var> d<var>q</var> = <span class="frac"><span><var>Q</var><sup>2</sup></span><span>2<var>C</var></span></span> = ½ <var>C U</var><sup>2</sup> = ½ <var>Q U</var></span><span class="eq-note">Not <var>Q U</var>: the voltage grows from 0 to <var>U</var> during charging, so on average each bit of charge is lifted through only <var>U</var>/2.</span></div>
+          <div class="eq"><strong>Energy of a charged capacitor</strong><span class="formula"><var>W</var><sub>e</sub> = <span class="frac"><span>1</span><span><var>C</var></span></span> <span class="op op-int"><span class="op-sym">∫</span><sub>0</sub><sup>Q</sup></span> <var>q</var> d<var>q</var> = <span class="frac"><span><var>Q</var><sup>2</sup></span><span>2<var>C</var></span></span> = ½ <var>C U</var><sup>2</sup> = ½ <var>Q U</var></span><span class="eq-note">Not <var>Q U</var>: the voltage grows from 0 to <var>U</var> during charging, so on average each bit of charge is lifted through only <var>U</var>/2.</span></div>
           <p><strong>Where is the energy?</strong> In the field. For a plate capacitor, ½<var>C U</var><sup>2</sup> = ½(ε<var>A</var>/<var>d</var>)(<var>E d</var>)<sup>2</sup> = ½ε<var>E</var><sup>2</sup> × <var>A d</var>, and <var>A d</var> is the volume of the field region. Dividing by the volume gives an energy density that also holds for non-uniform fields:</p>
           <div class="eq"><strong>Energy density (unit J/m³)</strong><span class="formula"><var>w</var><sub>e</sub> = ½ <var>E</var> · <var>D</var> = ½ ε <var>E</var><sup>2</sup>, &nbsp; <var>W</var><sub>e</sub> = ∭<sub>V</sub> <var>w</var><sub>e</sub> d<var>V</var></span></div>
           <p><strong>Spring analogy:</strong> a spring with constant <var>c</var><sub>s</sub> stores ½<var>c</var><sub>s</sub><var>X</var><sup>2</sup> = ½<var>F</var><sub>X</sub><sup>2</sup>/<var>c</var><sub>s</sub>. Matching it to ½<var>Q</var><sup>2</sup>/<var>C</var>, capacitance plays the part of 1/<var>c</var><sub>s</sub> (a soft spring) and voltage the part of force.</p>
@@ -739,7 +739,7 @@
               <li>Write the energy density two ways and give its unit.</li>
             </ol>
             <details class="answers"><summary>Answers</summary><ol>
-              <li>d<var>W</var> = <var>u</var> d<var>q</var>; <var>u</var> = <var>q</var>/<var>C</var>; ∫<sub>0</sub><sup>Q</sup> (<var>q</var>/<var>C</var>) d<var>q</var> = <var>Q</var><sup>2</sup>/(2<var>C</var>).</li>
+              <li>d<var>W</var> = <var>u</var> d<var>q</var>; <var>u</var> = <var>q</var>/<var>C</var>; <span class="op op-int"><span class="op-sym">∫</span><sub>0</sub><sup>Q</sup></span> (<var>q</var>/<var>C</var>) d<var>q</var> = <var>Q</var><sup>2</sup>/(2<var>C</var>).</li>
               <li><var>w</var><sub>e</sub> = ½<var>E</var> · <var>D</var> = ½ε<var>E</var><sup>2</sup>, in J/m³.</li>
             </ol></details>
           </div>
@@ -755,8 +755,8 @@
                 <tr><td>Charge</td><td><var>Q</var> = <var>N e</var>, <var>Q</var> = ∭ ϱ<sub>V</sub> d<var>V</var></td><td>C = A s</td></tr>
                 <tr><td>Force</td><td><var>F</var> = <var>Q E</var></td><td>N</td></tr>
                 <tr><td>Field strength</td><td><var>E</var> = <var>Q</var> <var>r</var>/(4π ε<sub>0</sub><var>r</var><sup>3</sup>)</td><td>V/m = N/C</td></tr>
-                <tr><td>Potential</td><td>φ<sub>e</sub>(P) = −∫<sub>P0</sub><sup>P</sup> <var>E</var> · d<var>s</var></td><td>V</td></tr>
-                <tr><td>Voltage</td><td><var>U</var><sub>12</sub> = φ<sub>1</sub> − φ<sub>2</sub> = ∫<sub>1</sub><sup>2</sup> <var>E</var> · d<var>s</var></td><td>V</td></tr>
+                <tr><td>Potential</td><td>φ<sub>e</sub>(P) = −<span class="op op-int"><span class="op-sym">∫</span><sub>P0</sub><sup>P</sup></span> <var>E</var> · d<var>s</var></td><td>V</td></tr>
+                <tr><td>Voltage</td><td><var>U</var><sub>12</sub> = φ<sub>1</sub> − φ<sub>2</sub> = <span class="op op-int"><span class="op-sym">∫</span><sub>1</sub><sup>2</sup></span> <var>E</var> · d<var>s</var></td><td>V</td></tr>
                 <tr><td>Work (external)</td><td><var>W</var><sub>e</sub> = <var>Q</var>(φ<sub>end</sub> − φ<sub>start</sub>)</td><td>J</td></tr>
                 <tr><td>Flux density</td><td><var>D</var> = ε<sub>0</sub>ε<sub>r</sub><var>E</var> = ε<sub>0</sub><var>E</var> + <var>P</var></td><td>C/m²</td></tr>
                 <tr><td>Flux</td><td>Ψ = ∬ <var>D</var> · d<var>A</var>; closed: Ψ = <var>Q</var><sub>enc</sub></td><td>C</td></tr>
@@ -862,7 +862,7 @@
             <ol>
               <li><var>r</var> = 0.05 m, |<var>F</var>| = 8.988 × 10<sup>9</sup> × 2 × 10<sup>−12</sup>/0.0025 ≈ 7.19 N along (0.6, 0.8): <var>F</var> ≈ (4.31, 5.75) N, repulsion. <span class="sec-ref">§1.2</span></li>
               <li><var>D</var> = ε<sub>0</sub>ε<sub>r</sub><var>E</var> ≈ 8.85 × 10<sup>−9</sup> C/m². <span class="sec-ref">§1.10</span></li>
-              <li><var>Q</var> = ∫<sub>0</sub><sup>3</sup> 2<var>x</var> d<var>x</var> μC = 9 μC. <span class="sec-ref">§1.6</span></li>
+              <li><var>Q</var> = <span class="op op-int"><span class="op-sym">∫</span><sub>0</sub><sup>3</sup></span> 2<var>x</var> d<var>x</var> μC = 9 μC. <span class="sec-ref">§1.6</span></li>
               <li><var>U</var><sub>AB</sub> = 15 V; <var>W</var><sub>e</sub> = <var>Q</var>(φ<sub>B</sub> − φ<sub>A</sub>) = 2 μC × (−15 V) = −30 μJ: the field does the work. <span class="sec-ref">§1.9</span></li>
               <li>½ × 10 μF × 12<sup>2</sup> = 720 μJ. <span class="sec-ref">§1.14</span></li>
               <li><var>E</var><sub>n2</sub> = (ε<sub>1</sub>/ε<sub>2</sub>)<var>E</var><sub>n1</sub> = 50 V/m; <var>E</var><sub>t2</sub> = 80 V/m. <span class="sec-ref">§1.11</span></li>
@@ -874,7 +874,7 @@
               <li>Inside: ϱ<sub>V</sub><var>a</var>/2; outside: ϱ<sub>V</sub><var>a</var><sup>2</sup>/(2<var>a</var>) = ϱ<sub>V</sub><var>a</var>/2. There is no surface charge at ρ = <var>a</var>, so normal <var>D</var> must be continuous; a mismatch would reveal an algebra slip. <span class="sec-ref">§1.10</span></li>
               <li>Both distances are 0.05 m, each field ≈ 1.08 × 10<sup>4</sup> V/m. <var>E</var><sub>1</sub> points along (0.6, 0.8); <var>E</var><sub>2</sub> points toward the −3 nC, along (0.6, −0.8). The y-parts cancel: <var>E</var> ≈ 1.29 × 10<sup>4</sup> V/m along +x. <span class="sec-ref">§1.4</span></li>
               <li><var>w</var><sub>e</sub> = ½ε<sub>0</sub><var>E</var><sup>2</sup> ≈ 44 mJ/m³. <span class="sec-ref">§1.14</span></li>
-              <li><var>U</var><sub>AB</sub> = ∫<sub>A</sub><sup>B</sup> <var>E</var> · d<var>s</var> = 500 × 0.08 = +40 V. <span class="sec-ref">§1.9</span></li>
+              <li><var>U</var><sub>AB</sub> = <span class="op op-int"><span class="op-sym">∫</span><sub>A</sub><sup>B</sup></span> <var>E</var> · d<var>s</var> = 500 × 0.08 = +40 V. <span class="sec-ref">§1.9</span></li>
               <li><var>C</var> = 4π ε<sub>0</sub> × 0.05 × 0.06/0.01 ≈ 33.4 pF. The plate approximation ε<sub>0</sub>4π<var>a</var><sup>2</sup>/<var>d</var> ≈ 27.8 pF is about 17 % low, because the gap (1 cm) is not small compared with <var>a</var>. <span class="sec-ref">§1.13</span></li>
               <li>Outside σ<sub>A</sub>/ε<sub>0</sub> ≈ 452 V/m, normal to the surface; inside 0. <span class="sec-ref">§1.11</span></li>
               <li><var>Q</var> = λ<var>l</var> = 2.0 μC. <span class="sec-ref">§1.6</span></li>
@@ -888,7 +888,7 @@
               <li>A quarter, since <var>F</var> ∝ 1/<var>r</var><sup>2</sup>. <span class="sec-ref">§1.2</span></li>
               <li>9 × 8.854 × 10<sup>−12</sup> × 1000 × 10<sup>−4</sup>/10<sup>−5</sup> ≈ 0.80 μF. <span class="sec-ref">§1.13</span></li>
               <li>Δφ = −<var>E d</var> = −20 V, so <var>W</var><sub>e</sub> = <var>Q</var>Δφ = −40 μJ: the field supplies the energy. <span class="sec-ref">§1.8</span></li>
-              <li><var>Q</var> = ∫<sub>0</sub><sup>R</sup> <var>k r</var> 4π<var>r</var><sup>2</sup> d<var>r</var> = π<var>k R</var><sup>4</sup> ≈ 3.14 × 10<sup>−10</sup> C; <var>D</var>(<var>R</var>) = <var>Q</var>/(4π<var>R</var><sup>2</sup>) = <var>k R</var><sup>2</sup>/4 = 2.5 × 10<sup>−9</sup> C/m². <span class="sec-ref">§1.6, 1.10</span></li>
+              <li><var>Q</var> = <span class="op op-int"><span class="op-sym">∫</span><sub>0</sub><sup>R</sup></span> <var>k r</var> 4π<var>r</var><sup>2</sup> d<var>r</var> = π<var>k R</var><sup>4</sup> ≈ 3.14 × 10<sup>−10</sup> C; <var>D</var>(<var>R</var>) = <var>Q</var>/(4π<var>R</var><sup>2</sup>) = <var>k R</var><sup>2</sup>/4 = 2.5 × 10<sup>−9</sup> C/m². <span class="sec-ref">§1.6, 1.10</span></li>
               <li>Each field is ≈ 1.80 × 10<sup>3</sup> V/m toward +x (away from +, toward −): <var>E</var> ≈ 3.60 × 10<sup>3</sup> V/m along +x. <span class="sec-ref">§1.4</span></li>
               <li><var>C</var> = ε<sub>0</sub>ε<sub>r</sub><var>A</var>/<var>d</var> ≈ 354 pF. <span class="sec-ref">§1.13</span></li>
               <li>σ<sub>A</sub> = <var>Q</var>/(4π<var>a</var><sup>2</sup>) ≈ 1.59 × 10<sup>−8</sup> C/m²; <var>E</var> = σ<sub>A</sub>/ε<sub>0</sub> ≈ 1.80 kV/m, the same as the point-charge field 8.988 × 10<sup>9</sup> × 2 × 10<sup>−9</sup>/0.01. <span class="sec-ref">§1.11</span></li>

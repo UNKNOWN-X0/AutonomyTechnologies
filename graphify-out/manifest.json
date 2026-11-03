@@ -78,15 +78,15 @@
     "semantic_hash": ""
   },
   "tools/guide-to-tex.py": {
-    "mtime": 1793699017.3691652,
-    "seen": 1793699233.341186,
-    "ast_hash": "23a2821de9d2fa8806d9a2ceda240157",
+    "mtime": 1793705521.0110002,
+    "seen": 1793705603.20838,
+    "ast_hash": "cc420bdb94138649defd9c4dc6a7f15c",
     "semantic_hash": ""
   },
   "eei/ch1-electrostatic-fields.html": {
-    "mtime": 1793698248.8824072,
-    "seen": 1793698375.1933599,
-    "ast_hash": "203179a55c436a6c88f4c40c00b41e9d",
+    "mtime": 1793705521.0104103,
+    "seen": 1793705603.2083998,
+    "ast_hash": "f58ab264375e92c360cf423d48a17230",
     "semantic_hash": ""
   },
   "tools/check-guide.py": {
@@ -156,9 +156,9 @@
     "semantic_hash": ""
   },
   "mei/ch1-statements-logic-sets.html": {
-    "mtime": 1793698248.8800833,
-    "seen": 1793698375.1933749,
-    "ast_hash": "a32f56b8e777b5731aa9809f164882af",
+    "mtime": 1793705521.0080266,
+    "seen": 1793705603.208405,
+    "ast_hash": "253ed0acd6460ab50b47a579721c7662",
     "semantic_hash": ""
   },
   ".agents/skills/autonomy-course-site/SKILL.md": {
@@ -198,9 +198,9 @@
     "semantic_hash": ""
   },
   "apdr/ch3-data-representation.html": {
-    "mtime": 1793698248.873628,
-    "seen": 1793698375.193332,
-    "ast_hash": "39e614eb3274f8ee7179bc8cc1bb94f0",
+    "mtime": 1793705521.0039198,
+    "seen": 1793705603.208392,
+    "ast_hash": "478335e71d573a615d7e1adafcfee44d",
     "semantic_hash": ""
   },
   "js/apdr/ch2-lab.js": {
@@ -270,9 +270,9 @@
     "semantic_hash": ""
   },
   "apdr/ch4-floating-point-numbers.html": {
-    "mtime": 1793698248.8757408,
-    "seen": 1793698375.193343,
-    "ast_hash": "a70887f7010698b3d539ff17f74e3d12",
+    "mtime": 1793705521.0049875,
+    "seen": 1793705603.208395,
+    "ast_hash": "56e3b86f25e02cd60e80cc4fea4e8428",
     "semantic_hash": ""
   },
   "js/apdr/ch4-lab.js": {
@@ -324,9 +324,9 @@
     "semantic_hash": ""
   },
   "mei/ch2-real-numbers.html": {
-    "mtime": 1793698248.8791654,
-    "seen": 1793698375.19338,
-    "ast_hash": "36a314532e0e0cceb368aac3847954bd",
+    "mtime": 1793705521.007302,
+    "seen": 1793705603.208406,
+    "ast_hash": "126e3a031dba62b3de092faf7ec3a080",
     "semantic_hash": ""
   },
   "js/mei/ch2-lab.js": {
@@ -390,9 +390,9 @@
     "semantic_hash": ""
   },
   "apdr/ch12a-boolean-algebra.html": {
-    "mtime": 1793698248.8745854,
-    "seen": 1793698375.193322,
-    "ast_hash": "4f26f23aec90d2cd65f3d00f4febaf53",
+    "mtime": 1793705393.3023896,
+    "seen": 1793705603.208388,
+    "ast_hash": "e778f4adb442a59fe824bb6b0963f71c",
     "semantic_hash": ""
   },
   "apdr/ch34a-integer-and-floating-point-lab.html": {
@@ -402,9 +402,9 @@
     "semantic_hash": ""
   },
   "apdr/ch34a-integer-and-floating-point.html": {
-    "mtime": 1793698248.8729756,
-    "seen": 1793698375.1933382,
-    "ast_hash": "65d336e6530c294416bab2682a7a070f",
+    "mtime": 1793705521.0035899,
+    "seen": 1793705603.2083929,
+    "ast_hash": "a4dce0ddf550abbabcfe7ff33ef6f6dd",
     "semantic_hash": ""
   },
   "mei/ch3-mappings.html": {

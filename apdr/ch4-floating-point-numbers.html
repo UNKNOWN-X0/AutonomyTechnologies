@@ -116,7 +116,7 @@
                 </li>
                 <li class="cm-node" data-id="fractions" data-deps="model" data-sec="4.2">
                   <p class="cm-title"><strong>Binary fractions</strong> <span class="sec-ref">§4.2</span></p>
-                  <p class="cm-formula">0.b<sub>1</sub>b<sub>2</sub>… = Σ b<sub>i</sub>2<sup>−i</sup></p>
+                  <p class="cm-formula">0.b<sub>1</sub>b<sub>2</sub>… = <span class="op op-sum"><span class="op-sym">∑</span><sub>i=1</sub><sup>∞</sup></span> b<sub>i</sub>2<sup>−i</sup></p>
                   <p class="cm-why">Rests on: each fractional bit has a negative power-of-two place value.</p>
                 </li>
               </ul>
@@ -358,7 +358,7 @@
           <h2>Formula map</h2>
           <div class="tw"><table><thead><tr><th>Idea</th><th>Relation</th><th>Use</th></tr></thead><tbody>
             <tr><td>Floating-point model</td><td>x = ±M × R<sup>E</sup></td><td>Separate sign, significand, and scale.</td></tr>
-            <tr><td>Binary fraction</td><td>0.b<sub>1</sub>b<sub>2</sub>… = Σ b<sub>i</sub>2<sup>−i</sup></td><td>Convert binary fractions to decimal.</td></tr>
+            <tr><td>Binary fraction</td><td>0.b<sub>1</sub>b<sub>2</sub>… = <span class="op op-sum"><span class="op-sym">∑</span><sub>i=1</sub><sup>∞</sup></span> b<sub>i</sub>2<sup>−i</sup></td><td>Convert binary fractions to decimal.</td></tr>
             <tr><td>Multiplication</td><td>(M<sub>1</sub>R<sup>E<sub>1</sub></sup>)(M<sub>2</sub>R<sup>E<sub>2</sub></sup>) = M<sub>1</sub>M<sub>2</sub>R<sup>E<sub>1</sub>+E<sub>2</sub></sup></td><td>Multiply significands and add exponents.</td></tr>
             <tr><td>Addition</td><td>N<sub>1</sub>+N<sub>2</sub> = (M<sub>1</sub>+M<sub>2</sub>×10<sup>E<sub>2</sub>−E<sub>1</sub></sup>)×10<sup>E<sub>1</sub></sup></td><td>Align to the larger exponent, then add coefficients.</td></tr>
             <tr><td>Gap in one zone</td><td>2<sup>e−p+1</sup></td><td>Spacing in [2<sup>e</sup>, 2<sup>e+1</sup>) with p significant bits.</td></tr>

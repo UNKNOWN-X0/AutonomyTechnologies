@@ -408,27 +408,27 @@
     "semantic_hash": ""
   },
   "mei/ch3-mappings.html": {
-    "mtime": 1793699542.0393534,
-    "seen": 1793701070.8218849,
-    "ast_hash": "6d1f1bd0d36cdf21b3e4da857c4aa1f5",
+    "mtime": 1793702602.2201304,
+    "seen": 1793702632.316449,
+    "ast_hash": "afbbf5cfacd903c8ad2ac15844f34856",
     "semantic_hash": ""
   },
   "js/mei/ch3-lab.js": {
-    "mtime": 1793700471.024488,
-    "seen": 1793701070.821843,
-    "ast_hash": "e328b30e11a964cb22429517bcc77ad3",
+    "mtime": 1793702563.6724076,
+    "seen": 1793702632.316407,
+    "ast_hash": "e2a3c945e31d8a20161b186d359e9008",
     "semantic_hash": ""
   },
   "js/mei/ch3-physics.js": {
-    "mtime": 1793699528.3677742,
-    "seen": 1793701070.8218439,
-    "ast_hash": "afefd58e372c0b21b8e64c36baffd8df",
+    "mtime": 1793702563.6717513,
+    "seen": 1793702632.3164082,
+    "ast_hash": "a7f13cbfdce8ad87b975316b9f68f127",
     "semantic_hash": ""
   },
   "tests/mei-ch3-physics.test.js": {
-    "mtime": 1793699557.0252402,
-    "seen": 1793701070.821855,
-    "ast_hash": "1b6d62111046db3c7bd3e51088d88346",
+    "mtime": 1793702563.6773174,
+    "seen": 1793702632.3164191,
+    "ast_hash": "8a5465084f9e9db8860f554357e136d5",
     "semantic_hash": ""
   },
   "mei/ch3-mappings-lab.html": {

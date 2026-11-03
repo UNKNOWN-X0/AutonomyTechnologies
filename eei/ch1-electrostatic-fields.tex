@@ -390,7 +390,7 @@ Coulomb’s law describes a pair of charges but says nothing about the space aro
 Experiments show that the forces of several charges on one probe add as vectors. In a homogeneous medium the total field is therefore the vector sum of the individual fields.
 
 \begin{equationcard}{Field of \textit{N} point charges}
-\[ \begin{gathered} {E}({r}_{\mathrm{P}})\, =\, \dfrac{1}{4π\, ε_{0}}\, \sum_{\mathrm{i}=1}^{\mathrm{N}}\, {Q}_{\mathrm{i}}\, \dfrac{{r}_{\mathrm{i}}}{{r}_{\mathrm{i}}^{3}},\, \quad \, {r}_{\mathrm{i}}\, =\, {r}_{\mathrm{P}}\, -\, {r}_{\text{Qi}} \end{gathered} \]
+\[ \begin{gathered} {E}({r}_{\mathrm{P}})\, =\, \dfrac{1}{4π\, ε_{0}}\, \sum_{\mathrm{i}=1}^{\mathrm{N}} \, {Q}_{\mathrm{i}}\, \dfrac{{r}_{\mathrm{i}}}{{r}_{\mathrm{i}}^{3}},\, \quad \, {r}_{\mathrm{i}}\, =\, {r}_{\mathrm{P}}\, -\, {r}_{\text{Qi}} \end{gathered} \]
 {\small The force on a further charge \textit{Q}\textsubscript{4} at P is \textit{Q}\textsubscript{4} \textit{E}(\textit{r}\textsubscript{P}), where the sum leaves out \textit{Q}\textsubscript{4} itself: a charge does not push on itself.}
 \end{equationcard}
 
@@ -457,8 +457,8 @@ A point charge is an idealised charge squeezed into a single point, so its densi
 \Needspace{10\baselineskip}
 \begin{center}\small\begin{tabularx}{\linewidth}{>{\raggedright\arraybackslash}X>{\raggedright\arraybackslash}X>{\raggedright\arraybackslash}X>{\raggedright\arraybackslash}X>{\raggedright\arraybackslash}X}\toprule
 \textbf{Distribution} & \textbf{Density} & \textbf{Uniform case} & \textbf{Total charge} & \textbf{Unit} \\ \midrule
-Line & λ = d\textit{Q}/d\textit{l} & λ = \textit{Q}/\textit{l} & \textit{Q} = \ensuremath{\int}\textsubscript{l} λ d\textit{l} & C/m \\
-Surface & σ\textsubscript{A} = d\textit{Q}/d\textit{A} & σ\textsubscript{A} = \textit{Q}/\textit{A} & \textit{Q} = \ensuremath{\iint}\textsubscript{A} σ\textsubscript{A} d\textit{A} & C/m² \\
+Line & λ = d\textit{Q}/d\textit{l} & λ = \textit{Q}/\textit{l} & \textit{Q} = $\int_{\mathrm{l}} $ λ d\textit{l} & C/m \\
+Surface & σ\textsubscript{A} = d\textit{Q}/d\textit{A} & σ\textsubscript{A} = \textit{Q}/\textit{A} & \textit{Q} = $\iint_{\mathrm{A}} $ σ\textsubscript{A} d\textit{A} & C/m² \\
 Volume & ϱ\textsubscript{V} = d\textit{Q}/d\textit{V} & ϱ\textsubscript{V} = \textit{Q}/\textit{V} & \textit{Q} = \ensuremath{\iiint}\textsubscript{V} ϱ\textsubscript{V} d\textit{V} & C/m³ \\
 \bottomrule\end{tabularx}\end{center}
 
@@ -470,7 +470,7 @@ A sphere of radius \textit{R} has ϱ(\textit{r}) = ϱ\textsubscript{0}(1 \ensure
 
 \Needspace{6\baselineskip}
 \begin{enumerate}
-\item The density depends only on \textit{r}, so use shells: \textit{Q} = \ensuremath{\int}\textsubscript{0}\textsuperscript{R} ϱ\textsubscript{0}(1 \ensuremath{-} \textit{r}/\textit{R}) 4π\textit{r}\textsuperscript{2} d\textit{r}.
+\item The density depends only on \textit{r}, so use shells: \textit{Q} = $\int_{0}^{\mathrm{R}} $ ϱ\textsubscript{0}(1 \ensuremath{-} \textit{r}/\textit{R}) 4π\textit{r}\textsuperscript{2} d\textit{r}.
 \item = 4πϱ\textsubscript{0} (\textit{R}\textsuperscript{3}/3 \ensuremath{-} \textit{R}\textsuperscript{3}/4) = πϱ\textsubscript{0}\textit{R}\textsuperscript{3}/3.
 \item Check: a uniform ϱ\textsubscript{0} would give 4πϱ\textsubscript{0}\textit{R}\textsuperscript{3}/3. Our density falls to zero at the edge, so a quarter of that is plausible.
 \end{enumerate}
@@ -533,7 +533,7 @@ A field line is a curve whose tangent at every point has the direction of \texti
 \textbf{Work.} Moving a charge \textit{Q} from P\textsubscript{0} to P\textsubscript{1} against the field costs energy; moving it with the field releases energy. The notes count the work supplied from outside, hence the minus sign.
 
 \begin{equationcard}{Externally supplied work}
-\[ \begin{gathered} {W}_{\mathrm{e}}\, =\, -∫_{\mathrm{P}0}^{\mathrm{P}1}\, {F}\, \cdot \, \mathrm{d}{s}\, =\, -{Q}\, ∫_{\mathrm{P}0}^{\mathrm{P}1}\, {E}\, \cdot \, \mathrm{d}{s} \end{gathered} \]
+\[ \begin{gathered} {W}_{\mathrm{e}}\, =\, -\int_{\mathrm{P}0}^{\mathrm{P}1} \, {F}\, \cdot \, \mathrm{d}{s}\, =\, -{Q}\, \int_{\mathrm{P}0}^{\mathrm{P}1} \, {E}\, \cdot \, \mathrm{d}{s} \end{gathered} \]
 {\small \textit{W}\textsubscript{e} \ensuremath{>} 0: energy is supplied to the system. \textit{W}\textsubscript{e} \ensuremath{<} 0: the field does the work and the system gives energy away.}
 \end{equationcard}
 
@@ -541,7 +541,7 @@ A field line is a curve whose tangent at every point has the direction of \texti
 \textbf{Path independence.} Carry the charge from P\textsubscript{0} along one path to P\textsubscript{1} and back along another. Afterwards the field is exactly as before, so the system’s energy is unchanged and the total work is zero. Since the return path was arbitrary, the work from P\textsubscript{0} to P\textsubscript{1} cannot depend on the path.
 
 \begin{equationcard}{The electrostatic field is conservative}
-\[ \begin{gathered} ∮_{\mathrm{C}}\, {E}\, \cdot \, \mathrm{d}{s}\, =\, 0\, \quad \, \text{and}\, \text{therefore}\, \quad \, ∮_{\mathrm{C}}\, {F}\, \cdot \, \mathrm{d}{s}\, =\, 0 \end{gathered} \]
+\[ \begin{gathered} \oint_{\mathrm{C}} \, {E}\, \cdot \, \mathrm{d}{s}\, =\, 0\, \quad \, \text{and}\, \text{therefore}\, \quad \, \oint_{\mathrm{C}} \, {F}\, \cdot \, \mathrm{d}{s}\, =\, 0 \end{gathered} \]
 {\small The notes call it a source field, like gravity: the charges are its sources.}
 \end{equationcard}
 
@@ -549,7 +549,7 @@ A field line is a curve whose tangent at every point has the direction of \texti
 \textbf{Potential.} Because the work depends only on the end points, every point P can be given a number: the work per unit charge needed to bring a charge there from a reference point P\textsubscript{0}, where φ\textsubscript{e}(P\textsubscript{0}) = 0.
 
 \begin{equationcard}{Potential (unit V)}
-\[ \begin{gathered} φ_{\mathrm{e}}(\mathrm{P})\, =\, \dfrac{{W}_{\mathrm{e}}(\mathrm{P})}{{Q}}\, =\, -∫_{\mathrm{P}0}^{\mathrm{P}}\, {E}\, \cdot \, \mathrm{d}{s},\, \quad \, {W}_{\mathrm{e}}\, =\, {Q}(φ_{\mathrm{e}}(\mathrm{P}_{\text{end}})\, -\, φ_{\mathrm{e}}(\mathrm{P}_{\text{start}})) \end{gathered} \]
+\[ \begin{gathered} φ_{\mathrm{e}}(\mathrm{P})\, =\, \dfrac{{W}_{\mathrm{e}}(\mathrm{P})}{{Q}}\, =\, -\int_{\mathrm{P}0}^{\mathrm{P}} \, {E}\, \cdot \, \mathrm{d}{s},\, \quad \, {W}_{\mathrm{e}}\, =\, {Q}(φ_{\mathrm{e}}(\mathrm{P}_{\text{end}})\, -\, φ_{\mathrm{e}}(\mathrm{P}_{\text{start}})) \end{gathered} \]
 {\small Usual references: earth, infinity, or circuit ground (the negative battery pole or a metal housing). Like height above sea level, only differences are physical.}
 \end{equationcard}
 
@@ -609,7 +609,7 @@ How much work is needed to bring +1 nC from infinity to 0.10 m from a fixed +2 n
 Write φ\textsubscript{e}(P\textsubscript{1}) \ensuremath{-} φ\textsubscript{e}(P\textsubscript{2}) with the definition of potential. The two integrals from the reference point P\textsubscript{0} join into one integral from P\textsubscript{1} to P\textsubscript{2}, and P\textsubscript{0} drops out: a potential difference does not depend on the reference point.
 
 \begin{equationcard}{Voltage from P\textsubscript{1} to P\textsubscript{2} (unit V)}
-\[ \begin{gathered} {U}_{12}\, =\, φ_{\mathrm{e}}(\mathrm{P}_{1})\, -\, φ_{\mathrm{e}}(\mathrm{P}_{2})\, =\, ∫_{\mathrm{P}1}^{\mathrm{P}2}\, {E}\, \cdot \, \mathrm{d}{s} \end{gathered} \]
+\[ \begin{gathered} {U}_{12}\, =\, φ_{\mathrm{e}}(\mathrm{P}_{1})\, -\, φ_{\mathrm{e}}(\mathrm{P}_{2})\, =\, \int_{\mathrm{P}1}^{\mathrm{P}2} \, {E}\, \cdot \, \mathrm{d}{s} \end{gathered} \]
 {\small Any path from P\textsubscript{1} to P\textsubscript{2} gives the same value. Uniform field along a path of length \textit{d}: \textit{U} = \textit{E d}.}
 \end{equationcard}
 
@@ -646,7 +646,7 @@ Write φ\textsubscript{e}(P\textsubscript{1}) \ensuremath{-} φ\textsubscript{e}
 \end{equationcard}
 
 \begin{equationcard}{Electric flux through a surface (unit A s = C)}
-\[ \begin{gathered} Ψ\, =\, ∬_{\mathrm{A}}\, {D}\, \cdot \, \mathrm{d}{A},\, \quad \, \mathrm{d}{A}\, =\, {n}\, \mathrm{d}{A} \end{gathered} \]
+\[ \begin{gathered} Ψ\, =\, \iint_{\mathrm{A}} \, {D}\, \cdot \, \mathrm{d}{A},\, \quad \, \mathrm{d}{A}\, =\, {n}\, \mathrm{d}{A} \end{gathered} \]
 {\small \textit{n} is the unit normal of the surface element. Only the part of \textit{D} along \textit{n} contributes.}
 \end{equationcard}
 
@@ -660,7 +660,7 @@ Write φ\textsubscript{e}(P\textsubscript{1}) \ensuremath{-} φ\textsubscript{e}
 Around a point charge in vacuum, \textit{D} = \textit{Q}/(4π\textit{r}\textsuperscript{2}) \textit{e}\textsubscript{r}. On a concentric sphere \textit{D} is parallel to d\textit{A} and has constant size, so the flux is \textit{D} \ensuremath{\times} 4π\textit{r}\textsuperscript{2} = \textit{Q}, whatever the radius. The same holds for any closed surface and any position of the charge inside it, and by superposition for any charge distribution:
 
 \begin{equationcard}{Gauss’s law in integral form}
-\[ \begin{gathered} Ψ\, =\, ∯_{\mathrm{A}}\, {D}\, \cdot \, \mathrm{d}{A}\, =\, {Q}_{\text{enclosed}}\, =\, ∭_{\mathrm{V}}\, ϱ_{\mathrm{V}}\, \mathrm{d}{V} \end{gathered} \]
+\[ \begin{gathered} Ψ\, =\, \oiint_{\mathrm{A}} \, {D}\, \cdot \, \mathrm{d}{A}\, =\, {Q}_{\text{enclosed}}\, =\, ∭_{\mathrm{V}}\, ϱ_{\mathrm{V}}\, \mathrm{d}{V} \end{gathered} \]
 {\small Valid always, not only in electrostatics. In this course the material is described by ε, so \textit{Q} means the charges you place (on electrodes or given as densities). The material’s own polarisation charges are already included through ε.}
 \end{equationcard}
 
@@ -811,7 +811,7 @@ An insulator has no free charge carriers, but its bound charges can shift or tur
 \end{itemize}
 
 \begin{equationcard}{Dipole moment and polarisation}
-\[ \begin{gathered} {p}\, =\, {Q\,d}\, \quad \, ({d}\, \text{from}\, -\, \text{to}\, +),\, \quad \, {P}\, =\, \dfrac{1}{{V}}\, \sum_{\mathrm{n}=1}^{\mathrm{N}}\, {p}_{\mathrm{n}} \end{gathered} \]
+\[ \begin{gathered} {p}\, =\, {Q\,d}\, \quad \, ({d}\, \text{from}\, -\, \text{to}\, +),\, \quad \, {P}\, =\, \dfrac{1}{{V}}\, \sum_{\mathrm{n}=1}^{\mathrm{N}} \, {p}_{\mathrm{n}} \end{gathered} \]
 {\small In a uniform field the two forces on a dipole are equal and opposite: no net force, but a torque that turns \textit{p} toward \textit{E}.}
 \end{equationcard}
 
@@ -856,7 +856,7 @@ An isolated plate capacitor has voltage \textit{U}\textsubscript{a} = \textit{E 
 A capacitor is two conductors carrying equal and opposite charge, so that all the flux leaving the positive one ends on the negative one. Scale the charge by any factor and \textit{D}, \textit{E} and \textit{U} scale by the same factor, so \textit{Q} \ensuremath{\propto} \textit{U}.
 
 \begin{equationcard}{Capacitance (unit A s/V = F)}
-\[ \begin{gathered} {C}\, =\, \dfrac{{Q}}{{U}}\, =\, \dfrac{∯_{\mathrm{A}}\, {D}\, \cdot \, \mathrm{d}{A}}{∫_{\mathrm{s}}\, {E}\, \cdot \, \mathrm{d}{s}} \end{gathered} \]
+\[ \begin{gathered} {C}\, =\, \dfrac{{Q}}{{U}}\, =\, \dfrac{\oiint_{\mathrm{A}} \, {D}\, \cdot \, \mathrm{d}{A}}{\int_{\mathrm{s}} \, {E}\, \cdot \, \mathrm{d}{s}} \end{gathered} \]
 {\small The surface encloses one electrode; the path runs from one electrode to the other. \textit{C} depends only on geometry and material.}
 \end{equationcard}
 
@@ -874,7 +874,7 @@ Coaxial, radii \textit{a} \ensuremath{<} \textit{b}, length \textit{l} & \textit
 \Needspace{7\baselineskip}
 \begin{itemize}
 \item \textbf{Spherical:} \textit{U} = \textit{Q}/(4π ε\textsubscript{0}) (1/\textit{a} \ensuremath{-} 1/\textit{b}) = \textit{Q}(\textit{b} \ensuremath{-} \textit{a})/(4π ε\textsubscript{0}\textit{a b}). Limit check: for a thin gap \textit{d} = \textit{b} \ensuremath{-} \textit{a} \ensuremath{\ll} \textit{a}, \textit{C} \ensuremath{\approx} ε\textsubscript{0}4π\textit{a}\textsuperscript{2}/\textit{d}, the plate formula with the sphere’s area.
-\item \textbf{Coaxial:} \textit{U} = \textit{Q}/(2π ε \textit{l}) \ensuremath{\int}\textsubscript{a}\textsuperscript{b} dρ/ρ = \textit{Q} ln(\textit{b}/\textit{a})/(2π ε \textit{l}).
+\item \textbf{Coaxial:} \textit{U} = \textit{Q}/(2π ε \textit{l}) $\int_{\mathrm{a}}^{\mathrm{b}} $ dρ/ρ = \textit{Q} ln(\textit{b}/\textit{a})/(2π ε \textit{l}).
 \item \textbf{Large \textit{C} in practice:} small gap (but the risk of breakdown grows), large area (metal foil on both sides of a thin film, rolled up: a wound capacitor), or high ε\textsubscript{r} (electrolytic capacitor).
 \end{itemize}
 
@@ -885,8 +885,8 @@ Coaxial, radii \textit{a} \ensuremath{<} \textit{b}, length \textit{l} & \textit
 \Needspace{10\baselineskip}
 \begin{center}\small\begin{tabularx}{\linewidth}{>{\raggedright\arraybackslash}X>{\raggedright\arraybackslash}X>{\raggedright\arraybackslash}X>{\raggedright\arraybackslash}X}\toprule
 \textbf{Connection} & \textbf{Same for every capacitor} & \textbf{Total} & \textbf{Why} \\ \midrule
-Parallel & voltage \textit{U} & \textit{C} = \ensuremath{\Sigma} \textit{C}\textsubscript{n} & charges add: \textit{Q} = \textit{U} \ensuremath{\Sigma} \textit{C}\textsubscript{n} \\
-Series & charge \textit{Q} & 1/\textit{C} = \ensuremath{\Sigma} 1/\textit{C}\textsubscript{n} & induction gives every plate pair \ensuremath{\pm}\textit{Q}; voltages add \\
+Parallel & voltage \textit{U} & \textit{C} = $\sum_{\mathrm{n}=1}^{\mathrm{N}} $ \textit{C}\textsubscript{n} & charges add: \textit{Q} = \textit{U} $\sum_{\mathrm{n}=1}^{\mathrm{N}} $ \textit{C}\textsubscript{n} \\
+Series & charge \textit{Q} & 1/\textit{C} = $\sum_{\mathrm{n}=1}^{\mathrm{N}} $ 1/\textit{C}\textsubscript{n} & induction gives every plate pair \ensuremath{\pm}\textit{Q}; voltages add \\
 \bottomrule\end{tabularx}\end{center}
 
 \Needspace{11\baselineskip}
@@ -936,7 +936,7 @@ Quick checks: a parallel total is larger than the largest capacitor; a series to
 Charge a capacitor step by step. When it already holds \ensuremath{\pm}\textit{q}, its voltage is \textit{u} = \textit{q}/\textit{C}. Carrying a further d\textit{q} from the negative to the positive plate, against the field, costs d\textit{W}\textsubscript{e} = \textit{u} d\textit{q} = (\textit{q}/\textit{C}) d\textit{q}. (Lower-case letters mark quantities that change with time.)
 
 \begin{equationcard}{Energy of a charged capacitor}
-\[ \begin{gathered} {W}_{\mathrm{e}}\, =\, \dfrac{1}{{C}}\, ∫_{0}^{\mathrm{Q}}\, {q}\, \mathrm{d}{q}\, =\, \dfrac{{Q}^{2}}{2{C}}\, =\, \tfrac{1}{2}\, {C\,U}^{2}\, =\, \tfrac{1}{2}\, {Q\,U} \end{gathered} \]
+\[ \begin{gathered} {W}_{\mathrm{e}}\, =\, \dfrac{1}{{C}}\, \int_{0}^{\mathrm{Q}} \, {q}\, \mathrm{d}{q}\, =\, \dfrac{{Q}^{2}}{2{C}}\, =\, \tfrac{1}{2}\, {C\,U}^{2}\, =\, \tfrac{1}{2}\, {Q\,U} \end{gathered} \]
 {\small Not \textit{Q U}: the voltage grows from 0 to \textit{U} during charging, so on average each bit of charge is lifted through only \textit{U}/2.}
 \end{equationcard}
 
@@ -985,8 +985,8 @@ Close the page and rebuild this table from memory before checking it.
 Charge & \textit{Q} = \textit{N e}, \textit{Q} = \ensuremath{\iiint} ϱ\textsubscript{V} d\textit{V} & C = A s \\
 Force & \textit{F} = \textit{Q E} & N \\
 Field strength & \textit{E} = \textit{Q} \textit{r}/(4π ε\textsubscript{0}\textit{r}\textsuperscript{3}) & V/m = N/C \\
-Potential & φ\textsubscript{e}(P) = \ensuremath{-}\ensuremath{\int}\textsubscript{P0}\textsuperscript{P} \textit{E} \ensuremath{\cdot} d\textit{s} & V \\
-Voltage & \textit{U}\textsubscript{12} = φ\textsubscript{1} \ensuremath{-} φ\textsubscript{2} = \ensuremath{\int}\textsubscript{1}\textsuperscript{2} \textit{E} \ensuremath{\cdot} d\textit{s} & V \\
+Potential & φ\textsubscript{e}(P) = \ensuremath{-}$\int_{\mathrm{P}0}^{\mathrm{P}} $ \textit{E} \ensuremath{\cdot} d\textit{s} & V \\
+Voltage & \textit{U}\textsubscript{12} = φ\textsubscript{1} \ensuremath{-} φ\textsubscript{2} = $\int_{1}^{2} $ \textit{E} \ensuremath{\cdot} d\textit{s} & V \\
 Work (external) & \textit{W}\textsubscript{e} = \textit{Q}(φ\textsubscript{end} \ensuremath{-} φ\textsubscript{start}) & J \\
 Flux density & \textit{D} = ε\textsubscript{0}ε\textsubscript{r}\textit{E} = ε\textsubscript{0}\textit{E} + \textit{P} & C/m² \\
 Flux & Ψ = \ensuremath{\iint} \textit{D} \ensuremath{\cdot} d\textit{A}; closed: Ψ = \textit{Q}\textsubscript{enc} & C \\
@@ -1273,7 +1273,7 @@ Tick a skill only when you have done its problems without notes on a later day t
 
 \Needspace{4\baselineskip}
 \begin{enumerate}
-\item φ\textsubscript{1} \ensuremath{-} φ\textsubscript{2} = \ensuremath{-}\ensuremath{\int}\textsubscript{P0}\textsuperscript{P1} + \ensuremath{\int}\textsubscript{P0}\textsuperscript{P2} = \ensuremath{\int}\textsubscript{P1}\textsuperscript{P0} + \ensuremath{\int}\textsubscript{P0}\textsuperscript{P2} = \ensuremath{\int}\textsubscript{P1}\textsuperscript{P2} \textit{E} \ensuremath{\cdot} d\textit{s}.
+\item φ\textsubscript{1} \ensuremath{-} φ\textsubscript{2} = \ensuremath{-}$\int_{\mathrm{P}0}^{\mathrm{P}1} $ + $\int_{\mathrm{P}0}^{\mathrm{P}2} $ = $\int_{\mathrm{P}1}^{\mathrm{P}0} $ + $\int_{\mathrm{P}0}^{\mathrm{P}2} $ = $\int_{\mathrm{P}1}^{\mathrm{P}2} $ \textit{E} \ensuremath{\cdot} d\textit{s}.
 \item \textit{U}\textsubscript{AB} = \ensuremath{-}3 V; \textit{E} points from B (higher) toward A.
 \end{enumerate}
 
@@ -1322,7 +1322,7 @@ Tick a skill only when you have done its problems without notes on a later day t
 
 \Needspace{4\baselineskip}
 \begin{enumerate}
-\item d\textit{W} = \textit{u} d\textit{q}; \textit{u} = \textit{q}/\textit{C}; \ensuremath{\int}\textsubscript{0}\textsuperscript{Q} (\textit{q}/\textit{C}) d\textit{q} = \textit{Q}\textsuperscript{2}/(2\textit{C}).
+\item d\textit{W} = \textit{u} d\textit{q}; \textit{u} = \textit{q}/\textit{C}; $\int_{0}^{\mathrm{Q}} $ (\textit{q}/\textit{C}) d\textit{q} = \textit{Q}\textsuperscript{2}/(2\textit{C}).
 \item \textit{w}\textsubscript{e} = \ensuremath{\tfrac12}\textit{E} \ensuremath{\cdot} \textit{D} = \ensuremath{\tfrac12}ε\textit{E}\textsuperscript{2}, in J/m³.
 \end{enumerate}
 
@@ -1347,7 +1347,7 @@ Tick a skill only when you have done its problems without notes on a later day t
 \begin{enumerate}
 \item \textit{r} = 0.05 m, |\textit{F}| = 8.988 \ensuremath{\times} 10\textsuperscript{9} \ensuremath{\times} 2 \ensuremath{\times} 10\textsuperscript{\ensuremath{-}12}/0.0025 \ensuremath{\approx} 7.19 N along (0.6, 0.8): \textit{F} \ensuremath{\approx} (4.31, 5.75) N, repulsion. \hfill{\small\color{FAUblue}§1.2}
 \item \textit{D} = ε\textsubscript{0}ε\textsubscript{r}\textit{E} \ensuremath{\approx} 8.85 \ensuremath{\times} 10\textsuperscript{\ensuremath{-}9} C/m². \hfill{\small\color{FAUblue}§1.10}
-\item \textit{Q} = \ensuremath{\int}\textsubscript{0}\textsuperscript{3} 2\textit{x} d\textit{x} μC = 9 μC. \hfill{\small\color{FAUblue}§1.6}
+\item \textit{Q} = $\int_{0}^{3} $ 2\textit{x} d\textit{x} μC = 9 μC. \hfill{\small\color{FAUblue}§1.6}
 \item \textit{U}\textsubscript{AB} = 15 V; \textit{W}\textsubscript{e} = \textit{Q}(φ\textsubscript{B} \ensuremath{-} φ\textsubscript{A}) = 2 μC \ensuremath{\times} (\ensuremath{-}15 V) = \ensuremath{-}30 μJ: the field does the work. \hfill{\small\color{FAUblue}§1.9}
 \item \ensuremath{\tfrac12} \ensuremath{\times} 10 μF \ensuremath{\times} 12\textsuperscript{2} = 720 μJ. \hfill{\small\color{FAUblue}§1.14}
 \item \textit{E}\textsubscript{n2} = (ε\textsubscript{1}/ε\textsubscript{2})\textit{E}\textsubscript{n1} = 50 V/m; \textit{E}\textsubscript{t2} = 80 V/m. \hfill{\small\color{FAUblue}§1.11}
@@ -1359,7 +1359,7 @@ Tick a skill only when you have done its problems without notes on a later day t
 \item Inside: ϱ\textsubscript{V}\textit{a}/2; outside: ϱ\textsubscript{V}\textit{a}\textsuperscript{2}/(2\textit{a}) = ϱ\textsubscript{V}\textit{a}/2. There is no surface charge at ρ = \textit{a}, so normal \textit{D} must be continuous; a mismatch would reveal an algebra slip. \hfill{\small\color{FAUblue}§1.10}
 \item Both distances are 0.05 m, each field \ensuremath{\approx} 1.08 \ensuremath{\times} 10\textsuperscript{4} V/m. \textit{E}\textsubscript{1} points along (0.6, 0.8); \textit{E}\textsubscript{2} points toward the \ensuremath{-}3 nC, along (0.6, \ensuremath{-}0.8). The y-parts cancel: \textit{E} \ensuremath{\approx} 1.29 \ensuremath{\times} 10\textsuperscript{4} V/m along +x. \hfill{\small\color{FAUblue}§1.4}
 \item \textit{w}\textsubscript{e} = \ensuremath{\tfrac12}ε\textsubscript{0}\textit{E}\textsuperscript{2} \ensuremath{\approx} 44 mJ/m³. \hfill{\small\color{FAUblue}§1.14}
-\item \textit{U}\textsubscript{AB} = \ensuremath{\int}\textsubscript{A}\textsuperscript{B} \textit{E} \ensuremath{\cdot} d\textit{s} = 500 \ensuremath{\times} 0.08 = +40 V. \hfill{\small\color{FAUblue}§1.9}
+\item \textit{U}\textsubscript{AB} = $\int_{\mathrm{A}}^{\mathrm{B}} $ \textit{E} \ensuremath{\cdot} d\textit{s} = 500 \ensuremath{\times} 0.08 = +40 V. \hfill{\small\color{FAUblue}§1.9}
 \item \textit{C} = 4π ε\textsubscript{0} \ensuremath{\times} 0.05 \ensuremath{\times} 0.06/0.01 \ensuremath{\approx} 33.4 pF. The plate approximation ε\textsubscript{0}4π\textit{a}\textsuperscript{2}/\textit{d} \ensuremath{\approx} 27.8 pF is about 17 \% low, because the gap (1 cm) is not small compared with \textit{a}. \hfill{\small\color{FAUblue}§1.13}
 \item Outside σ\textsubscript{A}/ε\textsubscript{0} \ensuremath{\approx} 452 V/m, normal to the surface; inside 0. \hfill{\small\color{FAUblue}§1.11}
 \item \textit{Q} = λ\textit{l} = 2.0 μC. \hfill{\small\color{FAUblue}§1.6}
@@ -1373,7 +1373,7 @@ Tick a skill only when you have done its problems without notes on a later day t
 \item A quarter, since \textit{F} \ensuremath{\propto} 1/\textit{r}\textsuperscript{2}. \hfill{\small\color{FAUblue}§1.2}
 \item 9 \ensuremath{\times} 8.854 \ensuremath{\times} 10\textsuperscript{\ensuremath{-}12} \ensuremath{\times} 1000 \ensuremath{\times} 10\textsuperscript{\ensuremath{-}4}/10\textsuperscript{\ensuremath{-}5} \ensuremath{\approx} 0.80 μF. \hfill{\small\color{FAUblue}§1.13}
 \item Δφ = \ensuremath{-}\textit{E d} = \ensuremath{-}20 V, so \textit{W}\textsubscript{e} = \textit{Q}Δφ = \ensuremath{-}40 μJ: the field supplies the energy. \hfill{\small\color{FAUblue}§1.8}
-\item \textit{Q} = \ensuremath{\int}\textsubscript{0}\textsuperscript{R} \textit{k r} 4π\textit{r}\textsuperscript{2} d\textit{r} = π\textit{k R}\textsuperscript{4} \ensuremath{\approx} 3.14 \ensuremath{\times} 10\textsuperscript{\ensuremath{-}10} C; \textit{D}(\textit{R}) = \textit{Q}/(4π\textit{R}\textsuperscript{2}) = \textit{k R}\textsuperscript{2}/4 = 2.5 \ensuremath{\times} 10\textsuperscript{\ensuremath{-}9} C/m². \hfill{\small\color{FAUblue}§1.6, 1.10}
+\item \textit{Q} = $\int_{0}^{\mathrm{R}} $ \textit{k r} 4π\textit{r}\textsuperscript{2} d\textit{r} = π\textit{k R}\textsuperscript{4} \ensuremath{\approx} 3.14 \ensuremath{\times} 10\textsuperscript{\ensuremath{-}10} C; \textit{D}(\textit{R}) = \textit{Q}/(4π\textit{R}\textsuperscript{2}) = \textit{k R}\textsuperscript{2}/4 = 2.5 \ensuremath{\times} 10\textsuperscript{\ensuremath{-}9} C/m². \hfill{\small\color{FAUblue}§1.6, 1.10}
 \item Each field is \ensuremath{\approx} 1.80 \ensuremath{\times} 10\textsuperscript{3} V/m toward +x (away from +, toward \ensuremath{-}): \textit{E} \ensuremath{\approx} 3.60 \ensuremath{\times} 10\textsuperscript{3} V/m along +x. \hfill{\small\color{FAUblue}§1.4}
 \item \textit{C} = ε\textsubscript{0}ε\textsubscript{r}\textit{A}/\textit{d} \ensuremath{\approx} 354 pF. \hfill{\small\color{FAUblue}§1.13}
 \item σ\textsubscript{A} = \textit{Q}/(4π\textit{a}\textsuperscript{2}) \ensuremath{\approx} 1.59 \ensuremath{\times} 10\textsuperscript{\ensuremath{-}8} C/m²; \textit{E} = σ\textsubscript{A}/ε\textsubscript{0} \ensuremath{\approx} 1.80 kV/m, the same as the point-charge field 8.988 \ensuremath{\times} 10\textsuperscript{9} \ensuremath{\times} 2 \ensuremath{\times} 10\textsuperscript{\ensuremath{-}9}/0.01. \hfill{\small\color{FAUblue}§1.11}
