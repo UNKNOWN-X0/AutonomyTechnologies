@@ -270,6 +270,31 @@ main {
   border-color: var(--fau-mark);
   background: var(--fau-mark);
 }
+/* First visit of the session: started stops wait empty until the sweep line (js/index.js) reaches them. */
+html.sweeping .chapter.started:not(.lit)::before {
+  border-color: var(--muted);
+  background: var(--paper);
+}
+.sweep-line {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: var(--signal);
+  pointer-events: none;
+  z-index: 60;
+}
+@media (prefers-reduced-motion: no-preference) {
+  .chapter.started::before {
+    transition: border-color 150ms var(--ease), background-color 150ms var(--ease);
+  }
+}
+@media print {
+  .sweep-line {
+    display: none;
+  }
+}
 .route-end {
   position: relative;
   display: flex;

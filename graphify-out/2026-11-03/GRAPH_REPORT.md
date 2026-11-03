@@ -1,17 +1,17 @@
 # Graph Report - AutonomyTechnologies  (2026-11-03)
 
 ## Corpus Check
-- 52 files · ~166,288 words
+- 54 files · ~170,931 words
 - Verdict: corpus is large enough that graph structure adds value.
 - Unclassified: 6 file(s) not represented in the graph (top: .css 4, (none) 2)
 
 ## Summary
-- 782 nodes · 1459 edges · 34 communities (29 shown, 5 thin omitted)
-- Extraction: 87% EXTRACTED · 13% INFERRED · 0% AMBIGUOUS · INFERRED: 191 edges (avg confidence: 0.85)
+- 820 nodes · 1510 edges · 36 communities (32 shown, 4 thin omitted)
+- Extraction: 87% EXTRACTED · 13% INFERRED · 0% AMBIGUOUS · INFERRED: 197 edges (avg confidence: 0.85)
 - Token cost: 0 input · 0 output
 
 ## Graph Freshness
-- Built from commit: `d5bf99d9`
+- Built from commit: `3a3d44e7`
 - Run `git rev-parse HEAD` and compare to check if the graph is stale.
 - Run `graphify update .` after code changes (no API cost).
 
@@ -29,12 +29,13 @@
 - ch2-lab.js
 - Computers, Algorithms, and Boolean Logic · APDR Chapter 2
 - Boolean laws / Boolean expressions
-- Plan: "The Route Ahead" layer
+- index.js
 - ch4-lab.js
-- mei/ch2-physics.js
+- apdr/ch2-physics.js
 - Autonomy Course Site / SKILL.md
 - Q: How are the static study pages hosted, and what GitHub Pages and Jeky
 - Q: Does the graph cover the learner journey from the course home through
+- Plan: "The Sweep" motion layer
 - tooltip.js / place()
 - From Fundamentals to AI Apocalypse: hub and guide shell / index-html.md
 - concept-map.js
@@ -42,9 +43,10 @@
 - Study Pages preview showing Electrical Engineering 1 and Mathematics for
 - Study Pages project guide
 - ch4-physics.js
-- ch3-physics.js
+- apdr/ch3-physics.js
 - ch34-lab.js
 - mei/ch2-lab.js
+- nav.js
 - lab-challenges.test.js
 - ch5-lab.js
 - mei/ch1-physics.js
@@ -72,13 +74,13 @@
   docs/ROUTE-AHEAD-PLAN.md → js/index.js
 - `Page structure` --references--> `route()`  [INFERRED]
   docs/GUIDE-STANDARD.md → js/index.js
-- `Task 6: Concept map traces dependencies` --references--> `direct()`  [INFERRED]
-  docs/ROUTE-AHEAD-PLAN.md → tools/check-guide.py
+- `Task 3: Lab reveal measures the prediction` --references--> `go()`  [INFERRED]
+  docs/ROUTE-AHEAD-PLAN.md → js/index.js
 
 ## Import Cycles
 - None detected.
 
-## Communities (34 total, 5 thin omitted)
+## Communities (36 total, 4 thin omitted)
 
 ### Community 0 - "capacitorBench() / paint()"
 Cohesion: 0.05
@@ -132,13 +134,17 @@ Nodes (3): APDR lecture slides: Algorithms, programming and data representation;
 Cohesion: 0.20
 Nodes (11): Algorithm, Boolean expressions, Boolean laws, De Morgan's laws, Logic gates, NAND, Physical circuits, Program language (+3 more)
 
-### Community 13 - "Plan: "The Route Ahead" layer"
-Cohesion: 0.05
-Nodes (33): Acceptance, Content rules, Files, Labs, Markup, Page structure, PDF, Practice and testing (+25 more)
+### Community 13 - "index.js"
+Cohesion: 0.08
+Nodes (23): Acceptance, Content rules, Files, Labs, Markup, Page structure, PDF, Practice and testing (+15 more)
 
 ### Community 14 - "ch4-lab.js"
 Cohesion: 0.14
 Nodes (26): animate(), arithmeticResult(), arrow(), box(), challenge(), colours(), drawArithmetic(), drawFraction() (+18 more)
+
+### Community 15 - "apdr/ch2-physics.js"
+Cohesion: 0.36
+Nodes (4): nand(), nandAnd(), nandCircuit(), nandOr()
 
 ### Community 16 - "Autonomy Course Site / SKILL.md"
 Cohesion: 0.33
@@ -152,9 +158,13 @@ Nodes (4): Answer, Outcome, Q: How are the static study pages hosted, and what G
 Cohesion: 0.40
 Nodes (4): Answer, Outcome, Q: Does the graph cover the learner journey from the course home through the electrostatics and mathematics guides and labs, including local progress state and external assets?, Source Nodes
 
+### Community 19 - "Plan: "The Sweep" motion layer"
+Cohesion: 0.06
+Nodes (30): Before you start, Out of scope, Plan: "The Route Ahead" layer, Rules that apply to every task, Task 1: Signal tokens, reading progress and the mastered underline, Task 2: The hub route line, Task 4: Tick travels to progress, Task 5: Answer key in steps (+22 more)
+
 ### Community 22 - "concept-map.js"
-Cohesion: 0.60
-Nodes (5): below(), box(), draw(), redraw(), select()
+Cohesion: 0.46
+Nodes (7): below(), box(), draw(), pulse(), redraw(), select(), stopPulses()
 
 ### Community 25 - "Study Pages project guide"
 Cohesion: 0.08
@@ -164,7 +174,7 @@ Nodes (25): Project data, Project instructions, Electrical Engineering I study c
 Cohesion: 0.23
 Nodes (10): binaryValue(), classifySingle(), decodeSingle(), float32(), fractionBits(), fractionValue(), normalizedBinary(), scientificOperation() (+2 more)
 
-### Community 27 - "ch3-physics.js"
+### Community 27 - "apdr/ch3-physics.js"
 Cohesion: 0.26
 Nodes (10): columnSubtract(), convert(), decodeInteger(), decodeTwos(), negatePattern(), parseBase(), parseBits(), toBase() (+2 more)
 
@@ -176,9 +186,13 @@ Nodes (12): challenge(), colors(), draw(), drawColumns(), drawFields(), drawLine
 Cohesion: 0.21
 Nodes (20): binaryDraw(), bindSlider(), boundsDraw(), box(), distanceDraw(), guess(), inductionDraw(), line() (+12 more)
 
+### Community 30 - "nav.js"
+Cohesion: 0.24
+Nodes (9): fold(), follow(), groupOf(), idOf(), lit(), show(), build(), href() (+1 more)
+
 ### Community 31 - "lab-challenges.test.js"
-Cohesion: 0.06
-Nodes (15): nand(), nandAnd(), nandCircuit(), nandOr(), moduleConfiguration(), rowsToBytes(), row(), rows() (+7 more)
+Cohesion: 0.05
+Nodes (13): moduleConfiguration(), rowsToBytes(), choose(), pascalRow(), row(), rows(), src2, context() (+5 more)
 
 ### Community 32 - "ch5-lab.js"
 Cohesion: 0.38
@@ -198,8 +212,8 @@ Nodes (4): discriminant(), relationValues(), roots(), squarePreimages()
 
 ## Knowledge Gaps
 - **10 isolated node(s):** `Study Pages preview showing Electrical Engineering 1 and Mathematics for Engineers I course cards`, `Active-recall study workflow`, `Jekyll site CI`, `LaTeX, Pandoc, and KaTeX publishing pipeline`, `Bernhard Kainz` (+5 more)
-  These have ≤1 connection - possible missing edges or undocumented components. (Counts symbols only; 258 node(s) total have ≤1 connection when file, concept and rationale nodes are included.)
-- **5 thin communities (<3 nodes) omitted from report** — run `graphify query` to explore isolated nodes.
+  These have ≤1 connection - possible missing edges or undocumented components. (Counts symbols only; 274 node(s) total have ≤1 connection when file, concept and rationale nodes are included.)
+- **4 thin communities (<3 nodes) omitted from report** — run `graphify query` to explore isolated nodes.
 
 ## Work-memory lessons
 
@@ -210,7 +224,7 @@ Nodes (4): discriminant(), relationValues(), roots(), squarePreimages()
 _Questions this graph is uniquely positioned to answer:_
 
 - **Why does `Lab standard` connect `Lab standard` to `Study Pages project guide`?**
-  _High betweenness centrality (0.101) - this node is a cross-community bridge._
+  _High betweenness centrality (0.103) - this node is a cross-community bridge._
 - **Are the 3 inferred relationships involving `fieldPlayground()` (e.g. with `eei/ch1-lab.js` and `endDrag()`) actually correct?**
   _`fieldPlayground()` has 3 INFERRED edges - model-reasoned connections that need verification._
 - **What connects `Study Pages preview showing Electrical Engineering 1 and Mathematics for Engineers I course cards`, `Active-recall study workflow`, `Jekyll site CI` to the rest of the system?**

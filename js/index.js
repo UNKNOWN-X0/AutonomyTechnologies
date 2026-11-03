@@ -135,6 +135,60 @@
   }
   document.getElementById("board-empty").hidden = true;
 
+  // First hub visit of the session: a signal line sweeps down the screen once and each started chapter's route stop
+  // fills as the line reaches it. Content stays visible throughout; only the stops and the line move.
+  (function sweep() {
+    var SPAN = 600;
+    if (window.scrollY > 0) return;
+    if (window.matchMedia && matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+    if (!document.documentElement.animate) return;
+    try {
+      if (sessionStorage.getItem("hub-swept")) return;
+      sessionStorage.setItem("hub-swept", "1");
+    } catch (e) {
+      return;
+    }
+    var root = document.documentElement,
+      stops = Array.prototype.slice.call(document.querySelectorAll("li.chapter.started"));
+    if (!stops.length) return;
+    root.classList.add("sweeping");
+    // Stops below the fold fill the first time they scroll into view, so the route reads as reached as you go.
+    var waiting = stops.length,
+      seen = "IntersectionObserver" in window ? new IntersectionObserver(reach) : null;
+    function light(li) {
+      if (li.classList.contains("lit")) return;
+      li.classList.add("lit");
+      if (--waiting === 0) root.classList.remove("sweeping");
+    }
+    function reach(entries) {
+      entries.forEach(function (e) {
+        if (!e.isIntersecting) return;
+        seen.unobserve(e.target);
+        light(e.target);
+      });
+    }
+    function go() {
+      var line = document.createElement("div"),
+        h = window.innerHeight;
+      line.className = "sweep-line";
+      line.setAttribute("aria-hidden", "true");
+      document.body.appendChild(line);
+      stops.forEach(function (li) {
+        var r = li.getBoundingClientRect(),
+          at = r.top + r.height / 2;
+        if (at < h) setTimeout(function () { light(li); }, (Math.max(at, 0) / h) * SPAN);
+        else if (seen) seen.observe(li);
+        else light(li);
+      });
+      line
+        .animate([{ transform: "translateY(0)" }, { transform: "translateY(" + h + "px)" }], { duration: SPAN, easing: "linear", fill: "forwards" })
+        .finished.then(function () { line.remove(); }, function () { line.remove(); });
+    }
+    // Arriving from another page of the site means a page transition is playing: wait it out, so two sweeps never overlap.
+    var inside = document.referrer.indexOf(location.origin) === 0;
+    setTimeout(go, inside ? 450 : 0);
+  })();
+
   function ago(n) {
     return n === 0 ? "today" : n === 1 ? "yesterday" : n + " days ago";
   }

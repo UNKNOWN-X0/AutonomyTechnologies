@@ -126,6 +126,182 @@ nav.toc li a[aria-current] {
   font-weight: 700;
 }
 
+/* Folding. Group headings in the rail are buttons that fold the entries under them; the chapter list folds the same way. */
+button.toc-fold {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  min-height: 32px;
+  padding: 0;
+  border: 0;
+  background: none;
+  color: inherit;
+  font: inherit;
+  letter-spacing: inherit;
+  text-transform: inherit;
+  text-align: left;
+  cursor: pointer;
+}
+button.toc-fold::after,
+.chapter-fold > summary::after {
+  content: "";
+  flex: none;
+  width: 7px;
+  height: 7px;
+  margin: -3px 2px 0 8px;
+  border: solid currentColor;
+  border-width: 0 2px 2px 0;
+  transform: rotate(45deg);
+}
+button.toc-fold[aria-expanded="true"]::after,
+.chapter-fold[open] > summary::after {
+  margin-top: 3px;
+  transform: rotate(225deg);
+}
+.chapter-fold {
+  margin: 0 0 6px;
+  border-bottom: 1px solid var(--line);
+}
+.chapter-fold > summary {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  min-height: 40px;
+  padding: 0 4px 0 2px;
+  color: var(--act);
+  font: 700 0.95rem/1.2 var(--f-display);
+  cursor: pointer;
+  list-style: none;
+}
+.chapter-fold > summary::-webkit-details-marker {
+  display: none;
+}
+.chapter-fold ul {
+  list-style: none;
+  margin: 0 0 8px;
+  padding: 0;
+}
+.chapter-fold li.fold-code {
+  padding: 8px 10px 2px;
+  color: var(--ink);
+  font: 800 0.75rem/1.2 var(--f-display);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+.chapter-fold li a {
+  display: block;
+  padding: 8px 10px;
+  color: var(--muted);
+  text-decoration: none;
+}
+.chapter-fold li a:hover {
+  color: var(--ink);
+  background: var(--paper);
+}
+.chapter-fold li a[aria-current] {
+  background: var(--fau);
+  color: var(--on-fau);
+  font-weight: 700;
+}
+@media (prefers-reduced-motion: no-preference) {
+  .chapter-fold[open] > ul {
+    animation: sheet-in 220ms var(--ease) both;
+  }
+}
+/* Previous and next chapter, at the end of the page. */
+.chapter-pager {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 16px;
+  margin: 56px 0 0;
+  padding: 24px 0 8px;
+  border-top: 2px solid var(--ink);
+}
+.chapter-pager > * {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  min-height: 44px;
+  padding: 12px 16px;
+  border: 2px solid var(--act);
+  color: var(--act);
+  text-decoration: none;
+}
+.chapter-pager > span {
+  border-color: var(--line);
+  border-style: dashed;
+  color: var(--muted);
+}
+.chapter-pager > span .pager-title {
+  display: none;
+}
+.chapter-pager a:hover {
+  background: var(--fau-tint);
+}
+.chapter-pager .next {
+  text-align: right;
+  grid-column: 2;
+}
+.chapter-pager .prev {
+  grid-column: 1;
+}
+.pager-kind {
+  font: 800 0.75rem/1.2 var(--f-display);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+.pager-title {
+  font: 700 0.95rem/1.3 var(--f-display);
+}
+@media (max-width: 600px) {
+  .chapter-pager {
+    grid-template-columns: 1fr;
+  }
+  .chapter-pager .next,
+  .chapter-pager .prev {
+    grid-column: 1;
+    text-align: left;
+  }
+}
+@media print {
+  .chapter-pager,
+  .chapter-fold {
+    display: none;
+  }
+}
+
+/* The route line: one signal line down the rail's left edge, from the top to the entry being read (js/nav.js sets --lit). */
+nav.toc > ol {
+  position: relative;
+}
+nav.toc > ol::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 3px;
+  height: var(--lit, 0px);
+  background: linear-gradient(to bottom, var(--signal-a), var(--signal-b));
+  pointer-events: none;
+}
+@media (prefers-reduced-motion: no-preference) {
+  nav.toc > ol::after {
+    transition: height 260ms var(--ease);
+  }
+}
+@media print {
+  nav.toc > ol::after {
+    display: none;
+  }
+}
+
+/* Phone contents bar (js/nav.js): appears once the rail has scrolled away, names the section being read and opens the list. */
+.toc-bar,
+.toc-sheet {
+  display: none;
+}
+
 /* Reading column */
 main {
   min-width: 0;
@@ -351,6 +527,10 @@ li.check label:has(input:checked) {
   }
 }
 @media print {
+  .toc-bar,
+  .toc-sheet {
+    display: none !important;
+  }
   nav.toc,
   .review button {
     display: none;
@@ -490,6 +670,96 @@ main > section {
 .method-list {
   padding-left: 1.5rem;
 }
+/* Step through: the button sits under the steps; a revealed step is uncovered left to right and underlined once in signal. */
+.step-btn {
+  margin: 4px 0 10px;
+}
+.method-list > li {
+  position: relative;
+}
+@media (prefers-reduced-motion: no-preference) {
+  .method-list > li.step-in {
+    animation: step-reveal 260ms var(--ease) both;
+  }
+  .method-list > li.step-in::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: -2px;
+    height: 2px;
+    background: var(--signal);
+    transform-origin: left;
+    animation: step-line 800ms var(--ease) both;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .method-list > li.step-in {
+    animation: answers-fade 200ms ease both;
+  }
+}
+@keyframes step-reveal {
+  from {
+    clip-path: inset(0 100% 0 0);
+  }
+}
+@keyframes step-line {
+  0% {
+    transform: scaleX(0);
+    opacity: 1;
+  }
+  45% {
+    transform: scaleX(1);
+    opacity: 1;
+  }
+  100% {
+    transform: scaleX(1);
+    opacity: 0;
+  }
+}
+@media print {
+  .step-btn {
+    display: none;
+  }
+  .method-list > li[hidden] {
+    display: list-item;
+  }
+}
+/* Symbol tracing (js/guide.js): the same symbol underlined across its section while it is hovered. */
+.trace {
+  position: relative;
+}
+.trace::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -2px;
+  height: 2px;
+  background: var(--signal);
+  transform-origin: left;
+  transition: opacity 150ms var(--ease);
+  pointer-events: none;
+}
+.trace-off::after {
+  opacity: 0;
+}
+@media (prefers-reduced-motion: no-preference) {
+  .trace::after {
+    animation: trace-draw 240ms var(--ease) both;
+    animation-delay: calc(var(--t, 0) * 30ms);
+  }
+}
+@keyframes trace-draw {
+  from {
+    transform: scaleX(0);
+  }
+}
+@media print {
+  .trace::after {
+    display: none;
+  }
+}
 /* Callout boxes share one form with the lab's challenge card: a 3px rule on top, 16px by 20px padding.
    Worked examples and challenges carry the subject colour on cool paper; recall checks are open, with an action-blue rule. */
 .worked,
@@ -589,6 +859,151 @@ details.answers {
   }
 }
 @media (max-width: 900px) {
+  main section[id],
+  main .experiment {
+    scroll-margin-top: 64px;
+  }
+  .toc-bar {
+    display: block;
+    position: fixed;
+    top: 4px;
+    left: 0;
+    right: 0;
+    z-index: 45;
+    background: var(--surface);
+    border-bottom: 1px solid var(--line);
+    visibility: hidden;
+    transform: translateY(calc(-100% - 4px));
+  }
+  .toc-bar.on {
+    visibility: visible;
+    transform: none;
+  }
+  @media (prefers-reduced-motion: no-preference) {
+    .toc-bar {
+      transition:
+        transform 220ms var(--ease),
+        visibility 0s linear 220ms;
+    }
+    .toc-bar.on {
+      transition:
+        transform 220ms var(--ease),
+        visibility 0s;
+    }
+  }
+  .toc-bar-btn {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    width: 100%;
+    min-height: 48px;
+    padding: 0 16px;
+    border: 0;
+    background: none;
+    color: var(--ink);
+    font: 700 0.95rem/1.2 var(--f-display);
+    text-align: left;
+    cursor: pointer;
+  }
+  .toc-bar-label {
+    min-width: 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+  .toc-bar-label::before {
+    content: "";
+    display: inline-block;
+    width: 10px;
+    height: 10px;
+    margin-right: 10px;
+    background: var(--fau-mark);
+  }
+  .toc-bar-word {
+    display: flex;
+    align-items: center;
+    flex: none;
+    color: var(--act);
+  }
+  .toc-bar-word::after {
+    content: "";
+    width: 7px;
+    height: 7px;
+    margin: -3px 0 0 9px;
+    border: solid var(--act);
+    border-width: 0 2px 2px 0;
+    transform: rotate(45deg);
+  }
+  .toc-bar.open .toc-bar-word::after {
+    margin-top: 3px;
+    transform: rotate(225deg);
+  }
+  .toc-sheet {
+    position: fixed;
+    top: 53px;
+    left: 0;
+    right: 0;
+    z-index: 44;
+    max-height: calc(100vh - 53px);
+    max-height: calc(100dvh - 53px);
+    overflow-y: auto;
+    background: var(--surface);
+    border-bottom: 2px solid var(--ink);
+    font: 500 0.95rem/1.35 var(--f-display);
+  }
+  .toc-sheet:not([hidden]) {
+    display: block;
+  }
+  @media (prefers-reduced-motion: no-preference) {
+    .toc-sheet:not([hidden]) {
+      animation: sheet-in 220ms var(--ease) both;
+    }
+  }
+  .toc-sheet ol {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+  .toc-sheet li {
+    margin: 0;
+    border-bottom: 1px solid var(--line);
+  }
+  nav.toc .chapter-fold li a {
+    display: flex;
+    align-items: center;
+    min-height: 44px;
+  }
+  .toc-sheet .chapter-fold {
+    margin: 0;
+    padding: 0 16px;
+  }
+  .toc-sheet .chapter-fold li a {
+    min-height: 44px;
+    align-items: center;
+    display: flex;
+    padding: 0 8px;
+  }
+  .toc-sheet li.toc-group {
+    padding: 14px 16px 4px;
+    border-bottom: 0;
+    font: 800 0.75rem/1.2 var(--f-display);
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+  }
+  .toc-sheet li a {
+    display: flex;
+    align-items: center;
+    min-height: 44px;
+    padding: 0 16px;
+    color: var(--muted);
+    text-decoration: none;
+  }
+  .toc-sheet li a[aria-current] {
+    background: var(--fau);
+    color: var(--on-fau);
+    font-weight: 700;
+  }
   .wrap nav.toc details.mobile-toc {
     display: block;
     width: 100%;
@@ -664,13 +1079,16 @@ details.answers[open] > :not(summary) {
     animation: answers-step 240ms var(--ease) both;
     animation-delay: calc(var(--n, 0) * 40ms);
   }
-  section:target > h2::before,
-  section:target > h3::before,
-  .flash::before {
-    animation: sign-flash 900ms var(--ease) 1;
+  section:target > h2::after {
+    animation: lock-on 1800ms linear 250ms 1 forwards;
   }
   li.check input:checked {
     animation: tick-pop 260ms var(--ease);
+  }
+}
+@keyframes sheet-in {
+  from {
+    clip-path: inset(0 0 100% 0);
   }
 }
 @keyframes answers-step {
@@ -696,16 +1114,72 @@ details.answers[open] > :not(summary) {
     transform: none;
   }
 }
-@keyframes sign-flash {
+/* Jump target: four signal corners close in on the heading's square, hold, then fade. The square sits about 29px below
+   the heading's top edge (2px rule + 18px padding + the baseline offset), so the corners are placed from there. */
+section:target > h2 {
+  position: relative;
+}
+section:target > h2::after {
+  content: "";
+  position: absolute;
+  left: -3px;
+  top: 26px;
+  width: 20px;
+  height: 20px;
+  pointer-events: none;
+  opacity: 0;
+  background:
+    var(--signal) 0 0 / 7px 2px no-repeat,
+    var(--signal) 0 0 / 2px 7px no-repeat,
+    var(--signal) 100% 0 / 7px 2px no-repeat,
+    var(--signal) 100% 0 / 2px 7px no-repeat,
+    var(--signal) 0 100% / 7px 2px no-repeat,
+    var(--signal) 0 100% / 2px 7px no-repeat,
+    var(--signal) 100% 100% / 7px 2px no-repeat,
+    var(--signal) 100% 100% / 2px 7px no-repeat;
+}
+/* The delay lets the smooth scroll arrive first. Easing sits on the closing step only: the shared ease is so front-loaded
+   that the corners would snap shut in a few frames and read as a blink. */
+@keyframes lock-on {
   0% {
-    transform: translateY(-1px) scale(1);
+    opacity: 1;
+    left: -17px;
+    top: 12px;
+    width: 48px;
+    height: 48px;
+    animation-timing-function: cubic-bezier(0.3, 0.6, 0.3, 1);
   }
-  25% {
-    transform: translateY(-1px) scale(1.9);
-    background: var(--course);
+  33% {
+    opacity: 1;
+    left: -3px;
+    top: 26px;
+    width: 20px;
+    height: 20px;
+  }
+  85% {
+    opacity: 1;
   }
   100% {
-    transform: translateY(-1px) scale(1);
+    opacity: 0;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  section:target > h2::after {
+    animation: lock-fade 1200ms ease 250ms 1 forwards;
+  }
+}
+@keyframes lock-fade {
+  0%,
+  60% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+@media print {
+  section:target > h2::after {
+    display: none;
   }
 }
 @keyframes tick-pop {

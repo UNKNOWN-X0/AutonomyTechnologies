@@ -47,7 +47,32 @@
     var r = li.getBoundingClientRect();
     return { l: r.left - origin.left, r: r.right - origin.left, cy: r.top + r.height / 2 - origin.top };
   }
+  // After a line has drawn, one small square runs along it from the idea to the selected node: the direction of "builds on".
+  var pulses = [],
+    loop = 0;
+  function stopPulses() {
+    cancelAnimationFrame(loop);
+    pulses = [];
+  }
+  function pulse(t) {
+    pulses = pulses.filter(function (p) {
+      var k = (t - p.t0) / 500;
+      if (k < 0) return true;
+      if (k >= 1) {
+        if (p.dot.parentNode) p.dot.parentNode.removeChild(p.dot);
+        return false;
+      }
+      var e = 1 - Math.pow(1 - k, 2),
+        pt = p.path.getPointAtLength(p.len * (1 - e));
+      p.dot.setAttribute("x", pt.x - 3);
+      p.dot.setAttribute("y", pt.y - 3);
+      p.dot.setAttribute("opacity", 1);
+      return true;
+    });
+    if (pulses.length) loop = requestAnimationFrame(pulse);
+  }
   function draw(animate) {
+    stopPulses();
     while (svg.firstChild) svg.removeChild(svg.firstChild);
     if (!current || narrow.matches) return;
     var origin = map.getBoundingClientRect(),
@@ -102,8 +127,16 @@
         var len = path.getTotalLength();
         path.style.strokeDasharray = len;
         path.animate([{ strokeDashoffset: len }, { strokeDashoffset: 0 }], { duration: 300, easing: "cubic-bezier(0.16, 1, 0.3, 1)" });
+        var dot = document.createElementNS(NS, "rect");
+        dot.setAttribute("width", 6);
+        dot.setAttribute("height", 6);
+        dot.setAttribute("opacity", 0);
+        dot.setAttribute("style", "fill: var(--signal-b)");
+        svg.appendChild(dot);
+        pulses.push({ path: path, len: len, dot: dot, t0: performance.now() + 300 });
       }
     });
+    if (pulses.length) loop = requestAnimationFrame(pulse);
   }
   var queued = false;
   function redraw() {

@@ -482,17 +482,46 @@ nav.toc {
 .chapter-switch {
   view-transition-name: switch;
 }
+/* The sweep: the new page is uncovered top to bottom while a 2px signal line rides the edge. Cross-document transitions
+   give no script hook, so the line is a fixed layer parked just above the viewport on every page. It has its own
+   transition name, and only its group animation (below) ever carries it into view. */
+html::before {
+  content: "";
+  position: fixed;
+  top: -2px;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: var(--signal);
+  pointer-events: none;
+  view-transition-name: sweep;
+}
+:root {
+  /* the shared ease is too front-loaded here: the line would be gone before it could be seen */
+  --sweep-ease: cubic-bezier(0.45, 0, 0.25, 1);
+}
 @media (prefers-reduced-motion: no-preference) {
   ::view-transition-old(root) {
-    animation: vt-out 160ms var(--ease) both;
+    animation: vt-out 200ms var(--ease) both;
   }
   ::view-transition-new(root) {
-    animation: vt-in 320ms var(--ease) both;
+    animation: vt-sweep 420ms var(--sweep-ease) both;
+  }
+  ::view-transition-group(sweep) {
+    animation: vt-line 420ms var(--sweep-ease) both;
+  }
+  ::view-transition-old(sweep) {
+    display: none;
   }
   ::view-transition-group(switch),
   ::view-transition-group(rail) {
     animation-duration: 320ms;
     animation-timing-function: var(--ease);
+  }
+}
+@media print {
+  html::before {
+    display: none;
   }
 }
 @media (prefers-reduced-motion: reduce) {
@@ -505,13 +534,22 @@ nav.toc {
 @keyframes vt-out {
   to {
     opacity: 0;
-    transform: translateY(-6px);
   }
 }
-@keyframes vt-in {
+@keyframes vt-sweep {
   from {
-    opacity: 0;
-    transform: translateY(10px);
+    clip-path: inset(0 0 100% 0);
+  }
+  to {
+    clip-path: inset(0);
+  }
+}
+@keyframes vt-line {
+  from {
+    transform: translateY(2px);
+  }
+  to {
+    transform: translateY(calc(100vh + 2px));
   }
 }
 
