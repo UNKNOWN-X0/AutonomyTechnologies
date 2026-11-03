@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#04316A" />
+    <meta name="description" content="Predict-then-reveal experiments for MEI Chapter 2: real numbers, completeness, inequalities, binomial coefficients, and induction." />
+    <title>Real Numbers Lab · MEI Chapter 2</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="../css/system.css" />
+    <link rel="stylesheet" href="../css/guide.css" />
+    <link rel="stylesheet" href="../css/lab.css" />
+  </head>
+  <body class="s-mei-1 lab" data-key="mei1-ch2" data-guide="ch2-real-numbers.html" data-skills="14">
+    <div class="wrap">
+      <nav class="toc" aria-label="Lab contents">
+        <a class="brand" href="../index.html"><span>From Fundamentals to AI Apocalypse</span></a>
+        <a class="home" href="../index.html">All semesters</a>
+        <nav class="chapter-switch" aria-label="Chapter 2"><a href="ch2-real-numbers.html">Guide</a><a aria-current="page" href="ch2-real-numbers-lab.html">Lab</a></nav>
+        <details class="mobile-toc"><summary>Jump to an experiment</summary><ol>
+          <li><a href="#how">How the lab works</a></li><li class="toc-group" aria-hidden="true">Experiments</li>
+          <li><a href="#exp-binary">2.1 Number systems</a></li><li><a href="#exp-bounds">2.2 Suprema</a></li><li><a href="#exp-distance">2.3 Absolute value</a></li><li><a href="#exp-binomial">2.4 Binomial coefficients</a></li><li><a href="#exp-induction">2.5 Induction</a></li><li><a href="#lab-results">Your results</a></li>
+        </ol></details>
+        <ol><li><a href="#how">How the lab works</a></li><li class="toc-group" aria-hidden="true">Experiments</li>
+          <li><a href="#exp-binary">2.1 Number systems</a></li><li><a href="#exp-bounds">2.2 Suprema</a></li><li><a href="#exp-distance">2.3 Absolute value</a></li><li><a href="#exp-binomial">2.4 Binomial coefficients</a></li><li><a href="#exp-induction">2.5 Induction</a></li><li><a href="#lab-results">Your results</a></li>
+        </ol>
+      </nav>
+      <main>
+        <header class="sign"><span class="code" aria-label="Mathematics for Engineers I">MEI</span><h1>Real Numbers Lab</h1><p class="course">Mathematics for Engineers I · Module 62765 · Chapter 2</p><p class="meta" id="lab-meta"></p></header>
+        <p class="standfirst">Commit to a prediction, rate your confidence, then reveal the mechanism. Finish an experiment’s four challenges to open its controls and try new values.</p>
+        <noscript><p class="method">The experiments need JavaScript. The <a href="ch2-real-numbers.html">Chapter 2 guide</a> covers the same ideas without it.</p></noscript>
+        <section id="how" aria-labelledby="how-title"><h2 id="how-title">How the lab works</h2><ol class="route">
+          <li><strong>Predict.</strong> Choose an answer before the stage changes.</li><li><strong>Rate your confidence.</strong> A sure but wrong answer marks an idea to revisit first.</li><li><strong>Reveal.</strong> Watch the rule play out and follow its link back to the guide.</li><li><strong>Explore.</strong> Finish all four challenges to open that experiment’s controls.</li>
+        </ol></section>
+        <section id="exp-binary" class="experiment" data-experiment="binary" aria-labelledby="binary-title"><h2 id="binary-title">2.1 Number systems: binary place value</h2><p>Each bit marks a power of two. Read the places from right to left, then add the marked values to recover the integer.</p><div class="bench"><div class="stage"><svg class="handles" data-visual="binary" viewBox="0 0 480 320"></svg><p class="stage-note">After challenges, drag the stage marker or focus it and use arrow keys.</p></div><div class="side"><div class="challenge" aria-live="polite"></div><form class="controls" onsubmit="return false"><fieldset><legend>Choose a binary numeral</legend><label class="field-row">Bits<select data-control="bits"><option value="00101">00101</option><option value="101101" selected>101101</option><option value="11010">11010</option><option value="111111">111111</option></select></label></fieldset></form></div></div></section>
+        <section id="exp-bounds" class="experiment" data-experiment="bounds" aria-labelledby="bounds-title"><h2 id="bounds-title">2.2 Suprema: rationals around √2</h2><p>Rational lower and upper bounds can squeeze toward √2. The real numbers contain the least upper bound even though this particular set contains no maximum.</p><div class="bench"><div class="stage"><svg class="handles" data-visual="bounds" viewBox="0 0 480 320"></svg><p class="stage-note">After challenges, drag or focus the marker to change decimal precision.</p></div><div class="side"><div class="challenge" aria-live="polite"></div><form class="controls" onsubmit="return false"><fieldset><legend>Set the decimal precision</legend><label class="field-row">Places<select data-control="places"><option>1</option><option>2</option><option selected>3</option><option>4</option><option>5</option></select></label></fieldset></form></div></div></section>
+        <section id="exp-distance" class="experiment" data-experiment="distance" aria-labelledby="distance-title"><h2 id="distance-title">2.3 Absolute value: distance on the line</h2><p>The inequality |x−a|≤r describes all points at distance at most r from a. The center shifts the interval; the radius sets its width.</p><div class="bench"><div class="stage"><svg class="handles" data-visual="distance" viewBox="0 0 480 320"></svg><p class="stage-note">After challenges, drag or focus the stage marker; the radius stays adjustable below.</p></div><div class="side"><div class="challenge" aria-live="polite"></div><form class="controls" onsubmit="return false"><fieldset><legend>Choose a center and radius</legend><label class="field-row">Center<select data-control="center"><option value="-2">−2</option><option value="-1">−1</option><option selected value="0">0</option><option value="1">1</option><option value="2">2</option></select></label><label class="field-row">Radius<select data-control="radius"><option>1</option><option selected>2</option><option>3</option></select></label></fieldset></form></div></div></section>
+        <section id="exp-binomial" class="experiment" data-experiment="binomial" aria-labelledby="binomial-title"><h2 id="binomial-title">2.4 Binomial coefficients: Pascal’s rows</h2><p>Each interior coefficient is the sum of the two above it. Row n supplies the coefficients for (a+b)<sup>n</sup>, while the term exponents run in opposite directions.</p><div class="bench"><div class="stage"><svg class="handles" data-visual="binomial" viewBox="0 0 480 320"></svg><p class="stage-note">After challenges, choose a row to inspect its coefficients.</p></div><div class="side"><div class="challenge" aria-live="polite"></div><form class="controls" onsubmit="return false"><fieldset><legend>Choose a Pascal row</legend><label class="field-row">Exponent n<select data-control="n"><option>0</option><option>1</option><option>2</option><option>3</option><option>4</option><option selected>5</option><option>6</option></select></label></fieldset></form></div></div></section>
+        <section id="exp-induction" class="experiment" data-experiment="induction" aria-labelledby="induction-title"><h2 id="induction-title">2.5 Induction: start and advance</h2><p>An induction proof establishes a starting case, then shows that any allowed case passes the statement to the next one. The chain cannot move until its first link is true.</p><div class="bench"><div class="stage"><svg class="handles" data-visual="induction" viewBox="0 0 480 320"></svg><p class="stage-note">After challenges, check the sum formula at a chosen n.</p></div><div class="side"><div class="challenge" aria-live="polite"></div><form class="controls" onsubmit="return false"><fieldset><legend>Choose an induction index</legend><label class="field-row">n<select data-control="n"><option>1</option><option>2</option><option>3</option><option selected>4</option><option>5</option><option>6</option><option>7</option><option>8</option></select></label></fieldset></form></div></div></section>
+        <section id="lab-results"><h2>Your results</h2><p>Scores are saved in this browser. “Sure, but wrong” highlights confident mistakes to revisit in the guide.</p></section>
+        <p class="source-note">Personal interactive lab based on Mathematics for Engineers I lecture notes, Chapter 2 “Real Numbers” (printed pages 11–22), by Rhoslyn Coles and Cornelia Schneider. Not an official FAU publication; check course details against the current notes.</p>
+      </main>
+    </div>
+    <script src="../js/mei/ch2-physics.js"></script><script src="../js/lab.js"></script><script src="../js/mei/ch2-lab.js"></script><script src="../js/tooltip.js" defer></script>
+  </body>
+</html>

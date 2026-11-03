@@ -1,0 +1,747 @@
+\documentclass[11pt]{article}
+\usepackage[margin=18mm,headheight=22pt]{geometry}
+\usepackage{amsmath}
+\usepackage{fontspec}
+\usepackage{unicode-math}
+\setmainfont{NewCM10}[Extension=.otf,UprightFont=*-Book,BoldFont=*-Bold,ItalicFont=*-BookItalic,BoldItalicFont=*-BoldItalic]
+\setsansfont{NewCMSans10}[Extension=.otf,UprightFont=*-Book,BoldFont=*-Bold,ItalicFont=*-BookOblique,BoldItalicFont=*-BoldOblique]
+\setmathfont{NewCMMath-Book.otf}
+\usepackage{xcolor}
+\definecolor{FAUblue}{HTML}{04316A}
+\definecolor{Paperblue}{HTML}{EEF2F7}
+\definecolor{EEIgold}{HTML}{CC9C42}
+\usepackage{etoolbox,enumitem,booktabs,tabularx,array,needspace,microtype}
+\usepackage[most]{tcolorbox}
+\usepackage{titlesec,fancyhdr}
+\usepackage[hidelinks]{hyperref}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{5pt}
+\setlist{itemsep=2pt,topsep=3pt,leftmargin=1.6em,beginpenalty=10000,endpenalty=10000}
+\raggedbottom
+\clubpenalty=10000 \widowpenalty=10000 \displaywidowpenalty=10000 \interlinepenalty=10000
+\setcounter{secnumdepth}{0}
+\setcounter{tocdepth}{1}
+\pagestyle{fancy}\fancyhf{}
+\fancyhead[L]{\small\sffamily\color{FAUblue} From Fundamentals to AI Apocalypse · MEI · Chapter 2}
+\fancyhead[R]{\small\sffamily Real Numbers}
+\fancyfoot[C]{\small\thepage}
+\titleformat{\section}{\Large\bfseries\sffamily\color{FAUblue}}{}{0pt}{}
+\titleformat{\subsection}{\large\bfseries\sffamily\color{FAUblue}}{}{0pt}{}
+\titlespacing*{\section}{0pt}{16pt}{6pt}
+\preto\section{\Needspace{8\baselineskip}}
+\preto\subsection{\Needspace{6\baselineskip}}
+\newtcolorbox{equationcard}[1]{colback=Paperblue,colframe=Paperblue,boxrule=0pt,arc=0pt,left=10pt,right=10pt,top=6pt,bottom=6pt,title={#1},fonttitle=\small\bfseries\sffamily,coltitle=FAUblue,before skip=8pt,after skip=8pt}
+\newtcolorbox{workedbox}[1]{colback=white,colframe=EEIgold,boxrule=0pt,leftrule=3pt,arc=0pt,left=10pt,top=4pt,bottom=4pt,title={#1},fonttitle=\small\bfseries\sffamily,coltitle=FAUblue,attach title to upper={\par},before skip=8pt,after skip=8pt}
+\newtcolorbox{recallbox}[1]{colback=white,colframe=FAUblue,boxrule=0pt,leftrule=3pt,arc=0pt,left=10pt,top=4pt,bottom=4pt,title={#1},fonttitle=\small\bfseries\sffamily,coltitle=FAUblue,attach title to upper={\par},before skip=8pt,after skip=8pt}
+\usepackage{environ}
+\newsavebox\measurebox
+% Typeset the section once invisibly to measure it; start a new page if it will not fit in what is left.
+\makeatletter
+\newif\ifkeep@measuring
+\NewEnviron{keepsection}{%
+  \ifkeep@measuring \BODY \else
+    \edef\keep@sec{\the\value{section}}\edef\keep@sub{\the\value{subsection}}%
+    \setbox\measurebox\vbox{\hsize\linewidth\keep@measuringtrue\def\Needspace##1{}\BODY}%
+    \setcounter{section}{\keep@sec}\setcounter{subsection}{\keep@sub}%
+    \dimen2=\ht\measurebox \advance\dimen2\dp\measurebox
+    \dimen@=\textheight
+    \ifdim\pagegoal<\maxdimen
+      \dimen@=\pagegoal \advance\dimen@-\pagetotal
+      \ifdim\dimen2>\dimen@ \clearpage \dimen@=\textheight \fi
+    \fi
+    % if it fits, nothing inside may force an early break
+    \ifdim\dimen2>\dimen@ \BODY \else \begingroup\def\Needspace##1{}\BODY\endgroup \fi
+  \fi}
+\makeatother
+\newtcolorbox{notebox}{colback=Paperblue,colframe=Paperblue,boxrule=0pt,arc=0pt,left=8pt,right=8pt,top=4pt,bottom=4pt,before skip=6pt,after skip=6pt}
+\title{\sffamily\bfseries\color{FAUblue}Real Numbers}
+\author{Mathematics for Engineers I \ensuremath{\cdot} Module 62765 \ensuremath{\cdot} Chapter 2\\[2pt]\small From Fundamentals to AI Apocalypse · personal study guide}
+\date{}
+\begin{document}
+\maketitle
+\begingroup\footnotesize\setlength{\parskip}{0pt}\tableofcontents\endgroup
+\clearpage
+
+\Needspace{9\baselineskip}
+{\large This chapter starts with number systems, builds the real numbers from algebra, order and completeness, then uses those properties to solve inequalities and prove identities. The final tools—binomial coefficients and induction—turn repeated patterns into general results.}
+
+
+\begin{keepsection}
+\Needspace{14\baselineskip}
+\section{Start from memory}
+
+\Needspace{11\baselineskip}
+Try these before reading. Write an answer even if you are uncertain; the gap tells you what to look for.
+
+\Needspace{8\baselineskip}
+\begin{enumerate}
+\item Which number systems sit between the natural numbers and the real numbers?
+\item What extra property distinguishes the real numbers from the rationals?
+\item What does |x\ensuremath{-}a| measure on the number line?
+\item How many ways can you choose k objects from n when order does not matter?
+\item What are the two essential steps in an induction proof?
+\end{enumerate}
+
+\nopagebreak[4]{\small\itshape Answers: see “Start from memory” under Answers at the end.}
+\end{keepsection}
+
+\begin{keepsection}
+\Needspace{22\baselineskip}
+\section{How to use this guide}
+
+\Needspace{19\baselineskip}
+Attempt before reading each worked solution. Then hide the guide and retrieve the method on a later day.
+
+\Needspace{16\baselineskip}
+\begin{enumerate}
+\item \textbf{Day 0:} Do the cold start. Read §§2.1–2.2 and reconstruct the number-system map and the definitions of supremum and completeness.
+\item \textbf{Day 1:} Read §§2.3–2.4. Re-solve their worked examples from a blank page, then try mixed practice 1–8.
+\item \textbf{Day 3:} Study §2.5 and the derivation list. Solve practice 9–16 without notes; check each answer and revisit its cited section.
+\item \textbf{About day 7:} Shuffle practice 17–25. Explain aloud why each method applies, then try one exam problem timed.
+\item \textbf{About day 14:} Rebuild all derivations and retry every marked question. Complete the self-check only with evidence from unaided work.
+\item \textbf{Before the exam:} Do both exam problems under time limits, then review only the skills your evidence shows are weak.
+\end{enumerate}
+\end{keepsection}
+
+\begin{keepsection}
+\Needspace{17\baselineskip}
+\section{How the chapter fits together}
+
+\Needspace{14\baselineskip}
+Number systems lead to the complete ordered field \ensuremath{\mathbb{R}}. Its structure supports inequalities, counting formulas and induction.
+
+\Needspace{6\baselineskip}
+\subsection{Measured \ensuremath{\cdot} starting objects}
+
+\Needspace{3\baselineskip}
+\begin{itemize}
+\item 
+\Needspace{4\baselineskip}
+\textbf{Number systems and binary} \hfill{\small\color{FAUblue}§2.1}
+
+\Needspace{4\baselineskip}
+\ensuremath{\mathbb{N}} \ensuremath{\subsetneq} \ensuremath{\mathbb{Z}} \ensuremath{\subsetneq} \ensuremath{\mathbb{Q}} \ensuremath{\subsetneq} \ensuremath{\mathbb{R}}; binary uses 2\textsuperscript{k}
+
+Rests on: set membership and place value.
+
+\end{itemize}
+
+\Needspace{9\baselineskip}
+\subsection{Defined \ensuremath{\cdot} structure and tools}
+
+\Needspace{6\baselineskip}
+\begin{itemize}
+\item 
+\Needspace{4\baselineskip}
+\textbf{Complete ordered field} \hfill{\small\color{FAUblue}§2.2}
+
+\Needspace{4\baselineskip}
+\ensuremath{\mathbb{R}}: algebra + order + suprema
+
+Rests on: field, order and least upper bounds.
+
+\item 
+\Needspace{4\baselineskip}
+\textbf{Absolute value} \hfill{\small\color{FAUblue}§2.3}
+
+\Needspace{4\baselineskip}
+|x\ensuremath{-}a| = distance to a
+
+Rests on: order cases and additive inverses.
+
+\item 
+\Needspace{4\baselineskip}
+\textbf{Binomial coefficient} \hfill{\small\color{FAUblue}§2.4}
+
+\Needspace{4\baselineskip}
+C(n,k) = n!/[k!(n\ensuremath{-}k)!]
+
+Rests on: counting selections without order.
+
+\end{itemize}
+
+\Needspace{8\baselineskip}
+\subsection{Derived \ensuremath{\cdot} reusable results}
+
+\Needspace{5\baselineskip}
+\begin{itemize}
+\item 
+\Needspace{4\baselineskip}
+\textbf{Triangle inequality} \hfill{\small\color{FAUblue}§2.3}
+
+\Needspace{4\baselineskip}
+|x+y| \ensuremath{\leq} |x|+|y|
+
+Rests on: absolute value and order rules.
+
+\item 
+\Needspace{4\baselineskip}
+\textbf{Binomial theorem} \hfill{\small\color{FAUblue}§2.4}
+
+\Needspace{4\baselineskip}
+(a+b)\textsuperscript{n} = \ensuremath{\Sigma} C(n,k)a\textsuperscript{n\ensuremath{-}k}b\textsuperscript{k}
+
+Rests on: factorial algebra and Pascal’s identity.
+
+\item 
+\Needspace{4\baselineskip}
+\textbf{Induction} \hfill{\small\color{FAUblue}§2.5}
+
+\Needspace{4\baselineskip}
+A(n\textsubscript{0}) and A(n)\ensuremath{\Rightarrow}A(n+1)
+
+Rests on: a start and a valid next-step implication.
+
+\end{itemize}
+
+\begin{keepsection}
+\Needspace{14\baselineskip}
+\subsection{Choose a tool}
+
+\Needspace{10\baselineskip}
+\begin{center}\small\begin{tabularx}{\linewidth}{>{\raggedright\arraybackslash}X>{\raggedright\arraybackslash}X}\toprule
+\textbf{If the task asks…} & \textbf{Choose this tool} \\ \midrule
+Which number set contains a value? & Definitions and set inclusions. \\
+What is the least upper bound? & Bounds and completeness. \\
+Which values satisfy a distance condition? & Absolute value as an interval or cases. \\
+How many terms or choices? & Binomial theorem or C(n,k). \\
+Must a claim hold for every n? & Induction with a base and step. \\
+\bottomrule\end{tabularx}\end{center}
+\end{keepsection}
+\end{keepsection}
+
+\begin{keepsection}
+\Needspace{12\baselineskip}
+\section{2.1 Number Systems}
+
+\Needspace{9\baselineskip}
+The sets grow by solving equations that smaller number systems cannot always solve. Knowing which set contains a number determines which tools are valid.
+
+\begin{equationcard}{Number-system inclusion}
+\[ \begin{gathered} \mathbb{N}\, \subsetneq \, \mathbb{Z}\, \subsetneq \, \mathbb{Q}\, \subsetneq \, \mathbb{R};\, \text{irrational}\, \text{numbers}\, =\, \mathbb{R}\\mathbb{Q} \end{gathered} \]
+{\small Here \ensuremath{\mathbb{N}}=\{1,2,…\}; \ensuremath{\mathbb{N}}\textsubscript{0}=\ensuremath{\mathbb{N}}\ensuremath{\cup}\{0\}. A rational is p/q with p\ensuremath{\in}\ensuremath{\mathbb{Z}}, q\ensuremath{\in}\ensuremath{\mathbb{N}} and p,q coprime.}
+\end{equationcard}
+
+\Needspace{10\baselineskip}
+Integers add negatives to \ensuremath{\mathbb{N}}. Rationals add quotients with non-zero integer denominator. The real numbers add limits such as \ensuremath{\surd}2 that cannot be expressed as a rational quotient. For example, \ensuremath{\surd}2 is irrational: if \ensuremath{\surd}2=p/q in lowest terms, then p\textsuperscript{2}=2q\textsuperscript{2} makes p even; substituting p=2m makes q even too, contradicting lowest terms.
+
+\Needspace{12\baselineskip}
+Binary uses place values that are powers of two. A bit string [a\textsubscript{m}…a\textsubscript{0}]\textsubscript{2} represents \ensuremath{\Sigma}\textsubscript{k=0}\textsuperscript{m}a\textsubscript{k}2\textsuperscript{k}, where each a\textsubscript{k} is 0 or 1. For a fixed-point example, [10.11]\textsubscript{2}=2+1/2+1/4=2.75. The field \ensuremath{\mathbb{Z}}\textsubscript{2} uses arithmetic modulo 2; ordinary binary integer addition and multiplication instead represent integer arithmetic and do not make the set of finite bit strings a field.
+
+\begin{workedbox}{Worked example \ensuremath{\cdot} classify and convert}
+\Needspace{7\baselineskip}
+\begin{enumerate}
+\item \ensuremath{\surd}49=7, so it is natural, integer, rational and real.
+\item \ensuremath{-}7/3 is rational and real, but not an integer.
+\item \ensuremath{\surd}2 is real and irrational, so it is not rational.
+\item [11010]\textsubscript{2}=1\ensuremath{\cdot}2\textsuperscript{4}+1\ensuremath{\cdot}2\textsuperscript{3}+0\ensuremath{\cdot}2\textsuperscript{2}+1\ensuremath{\cdot}2+0=26. Check: 16+8+2=26.
+\end{enumerate}
+\end{workedbox}
+
+\Needspace{5\baselineskip}
+\begin{notebox}\textbf{Trap:} zero is not in \ensuremath{\mathbb{N}} under these notes’ convention. Write \ensuremath{\mathbb{N}}\textsubscript{0} when zero is included. Also, an integer written as a decimal or fraction can still belong to a smaller set, such as 6/3=2\ensuremath{\in}\ensuremath{\mathbb{Z}}.\end{notebox}
+
+\Needspace{8\baselineskip}
+\begin{recallbox}{Recall check \ensuremath{\cdot} answer before opening}
+\Needspace{4\baselineskip}
+\begin{enumerate}
+\item Why is \ensuremath{\surd}2 not rational?
+\item What integer does [101101]\textsubscript{2} represent?
+\end{enumerate}
+
+\nopagebreak[4]{\small\itshape Answers: see “2.1 Number Systems” under Answers at the end.}
+\end{recallbox}
+\end{keepsection}
+
+\begin{keepsection}
+\Needspace{12\baselineskip}
+\section{2.2 Real Numbers}
+
+\Needspace{9\baselineskip}
+The real-number rules explain why algebraic transformations are legitimate and why limits do not leave gaps in the number line.
+
+\begin{equationcard}{Field and order}
+\[ \begin{gathered} \mathbb{R}\, \text{is}\, \mathrm{a}\, \text{complete}\, \text{ordered}\, \text{field} \end{gathered} \]
+{\small The notes list 9 field axioms, 4 order axioms and 1 completeness axiom. A field has 0, 1, additive inverses and multiplicative inverses for non-zero elements.}
+\end{equationcard}
+
+\Needspace{12\baselineskip}
+The field axioms encode commutativity, associativity, neutral elements, inverses and distributivity. The order axioms make \ensuremath{<} a total, transitive order compatible with addition and multiplication by positive numbers. Together these support the familiar algebra of inequalities. \ensuremath{\mathbb{Z}} is not a field because, for example, 1/3 is not an integer. \ensuremath{\mathbb{Q}} is an ordered field, but it is not complete.
+
+\begin{equationcard}{Upper bound and supremum}
+\[ \begin{gathered} \mathrm{S}\, =\, \text{sup}(\mathrm{M})\, \text{iff}\, (\mathrm{i})\, \mathrm{x}\leq \mathrm{S}\, \text{for}\, \text{every}\, \mathrm{x}\in \mathrm{M}\, \text{and}\, (\text{ii})\, \mathrm{S}\leq \mathrm{T}\, \text{for}\, \text{every}\, \text{upper}\, \text{bound}\, \mathrm{T}\, \text{of}\, \mathrm{M} \end{gathered} \]
+{\small The supremum is the least upper bound. It need not belong to M. An infimum is the greatest lower bound.}
+\end{equationcard}
+
+\Needspace{10\baselineskip}
+For M=\{1, 1/2, 1/3,…\}, sup(M)=1 and inf(M)=0. The maximum is 1 because 1\ensuremath{\in}M; there is no minimum because 0\ensuremath{\notin}M. The completeness axiom says every non-empty real subset bounded above has a supremum in \ensuremath{\mathbb{R}}. It is the property that fills the “gaps” missing in \ensuremath{\mathbb{Q}}.
+
+\begin{equationcard}{n-th root from completeness}
+\[ \begin{gathered} \text{root}_{\mathrm{n}}(\mathrm{x})\, =\, \text{sup}\{\mathrm{r}\in \mathbb{Q}\, :\, \mathrm{r}\geq 0\, \text{and}\, \mathrm{r}^{\mathrm{n}}\leq \mathrm{x}\},\, \text{for}\, \mathrm{x}\geq 0 \end{gathered} \]
+{\small root\textsubscript{n}(x) is the unique non-negative real number whose n-th power is x.}
+\end{equationcard}
+
+\begin{workedbox}{Worked example \ensuremath{\cdot} identify bounds and extrema}
+Let M=\{1\ensuremath{-}1/n : n\ensuremath{\in}\ensuremath{\mathbb{N}}\}. Its first values are 0, 1/2, 2/3, 3/4, … . Every value is below 1, so 1 is an upper bound. Values approach 1, so no smaller number is an upper bound: sup(M)=1. But 1\ensuremath{\notin}M, so M has no maximum. The smallest member is 0, hence inf(M)=min(M)=0.
+\end{workedbox}
+
+\Needspace{5\baselineskip}
+\begin{notebox}\textbf{Trap:} a supremum is not automatically a maximum. First establish the least or greatest bound, then check whether it belongs to the set.\end{notebox}
+
+\Needspace{9\baselineskip}
+\begin{recallbox}{Recall check \ensuremath{\cdot} answer before opening}
+\Needspace{4\baselineskip}
+\begin{enumerate}
+\item What two conditions define sup(M)?
+\item Why does \ensuremath{\mathbb{Q}} fail the completeness axiom?
+\end{enumerate}
+
+\nopagebreak[4]{\small\itshape Answers: see “2.2 Real Numbers” under Answers at the end.}
+\end{recallbox}
+\end{keepsection}
+
+\begin{keepsection}
+\Needspace{12\baselineskip}
+\section{2.3 Absolute Values and Inequalities}
+
+\Needspace{9\baselineskip}
+Absolute value turns signs into distance, while the order axioms let you solve distance constraints as intervals.
+
+\begin{equationcard}{Absolute value}
+\[ \begin{gathered} |\mathrm{x}|\, =\, \mathrm{x}\, \text{if}\, \mathrm{x}\geq 0;\, |\mathrm{x}|\, =\, -\mathrm{x}\, \text{if}\, \mathrm{x}<0 \end{gathered} \]
+{\small |x| is distance from x to 0; |x\ensuremath{-}a| is distance from x to a. In particular, \ensuremath{\surd}(x\textsuperscript{2})=|x|.}
+\end{equationcard}
+
+\begin{equationcard}{Absolute-value laws}
+\[ \begin{gathered} |\text{xy}|=|\mathrm{x}||\mathrm{y}|;\, ||\mathrm{x}|-|\mathrm{y}||\, \leq \, |\mathrm{x}+\mathrm{y}|\, \leq \, |\mathrm{x}|+|\mathrm{y}| \end{gathered} \]
+{\small The right-hand inequality is the triangle inequality. Equality is possible.}
+\end{equationcard}
+
+\Needspace{11\baselineskip}
+For c\ensuremath{\geq}0, |x\ensuremath{-}a|\ensuremath{\leq}c is equivalent to a\ensuremath{-}c\ensuremath{\leq}x\ensuremath{\leq}a+c. It describes the closed interval of points no more than c from a. For c\ensuremath{>}0, |x\ensuremath{-}a|\ensuremath{<}c gives an open interval. An inequality with a “greater than” sign usually describes the outside of an interval. Splitting at the point where the expression changes sign is a reliable general method.
+
+\begin{workedbox}{Worked example \ensuremath{\cdot} solve a distance inequality}
+Solve |2x\ensuremath{-}1|\ensuremath{\leq}5. By the two-sided form, \ensuremath{-}5\ensuremath{\leq}2x\ensuremath{-}1\ensuremath{\leq}5. Add 1: \ensuremath{-}4\ensuremath{\leq}2x\ensuremath{\leq}6. Divide by 2: \ensuremath{-}2\ensuremath{\leq}x\ensuremath{\leq}3. The centre is 1/2 and the radius is 5/2, consistent with the interval endpoints.
+\end{workedbox}
+
+\Needspace{5\baselineskip}
+\begin{notebox}\textbf{Sign check:} squaring both sides can introduce solutions unless both sides are known to be non-negative. Also, \ensuremath{\surd}(x\textsuperscript{2}) is |x|, not always x.\end{notebox}
+
+\Needspace{8\baselineskip}
+\begin{recallbox}{Recall check \ensuremath{\cdot} answer before opening}
+\Needspace{4\baselineskip}
+\begin{enumerate}
+\item What does |x\ensuremath{-}a|\ensuremath{\leq}c mean geometrically?
+\item What is \ensuremath{\surd}(x\textsuperscript{2}) for every real x?
+\end{enumerate}
+
+\nopagebreak[4]{\small\itshape Answers: see “2.3 Absolute Values and Inequalities” under Answers at the end.}
+\end{recallbox}
+\end{keepsection}
+
+\begin{keepsection}
+\Needspace{12\baselineskip}
+\section{2.4 Sums, Products, Binomial Coefficient}
+
+\Needspace{9\baselineskip}
+Summation and product notation compress repeated operations. Factorials count arrangements; binomial coefficients count selections and become the weights in expansions.
+
+\begin{equationcard}{Summation and product}
+\[ \begin{gathered} \sum_{\mathrm{k}=\mathrm{m}}^{\mathrm{n}}\mathrm{a}_{\mathrm{k}}\, =\, \mathrm{a}_{\mathrm{m}}+…+\mathrm{a}_{\mathrm{n}};\, Π_{\mathrm{k}=\mathrm{m}}^{\mathrm{n}}\mathrm{a}_{\mathrm{k}}\, =\, \mathrm{a}_{\mathrm{m}}\cdot …\cdot \mathrm{a}_{\mathrm{n}} \end{gathered} \]
+{\small Read the index bounds inclusively. A constant factor c can be taken outside a sum; for a product it becomes c raised to the number of factors.}
+\end{equationcard}
+
+\begin{equationcard}{Factorial and binomial coefficient}
+\[ \begin{gathered} \mathrm{n}!\, =\, Π_{\mathrm{k}=1}^{\mathrm{n}}\mathrm{k},\, 0!\, =\, 1;\, \mathrm{C}(\mathrm{n},\mathrm{k})\, =\, \mathrm{n}!/[\mathrm{k}!(\mathrm{n}-\mathrm{k})!] \end{gathered} \]
+{\small For 0\ensuremath{\leq}k\ensuremath{\leq}n. C(n,k) counts k-element subsets chosen from n distinct elements, with order ignored.}
+\end{equationcard}
+
+\begin{equationcard}{Pascal identity and binomial theorem}
+\[ \begin{gathered} \mathrm{C}(\mathrm{n},\mathrm{k})+\mathrm{C}(\mathrm{n},\mathrm{k}+1)=\mathrm{C}(\mathrm{n}+1,\mathrm{k}+1);\, (\mathrm{a}+\mathrm{b})^{\mathrm{n}}=\sum_{\mathrm{k}=0}^{\mathrm{n}}\mathrm{C}(\mathrm{n},\mathrm{k})\mathrm{a}^{\mathrm{n}-\mathrm{k}}\mathrm{b}^{\mathrm{k}} \end{gathered} \]
+{\small The Pascal identity is valid for 0\ensuremath{\leq}k\ensuremath{\leq}n\ensuremath{-}1. The notes state a,b\ensuremath{\neq}0; the polynomial identity also holds when either is zero. The theorem gives n+1 terms; powers of a descend while powers of b rise.}
+\end{equationcard}
+
+\Needspace{12\baselineskip}
+Useful coefficient properties are C(n,0)=C(n,n)=1 and C(n,k)=C(n,n\ensuremath{-}k). Pascal’s identity says adjacent entries combine to form the next row. The binomial theorem generalises the familiar square and cube patterns.
+
+\begin{workedbox}{Worked example \ensuremath{\cdot} expand and count}
+Expand (x+2)\textsuperscript{4}. The row of coefficients is 1, 4, 6, 4, 1, so the terms are x\textsuperscript{4}, 4x\textsuperscript{3}\ensuremath{\cdot}2, 6x\textsuperscript{2}\ensuremath{\cdot}2\textsuperscript{2}, 4x\ensuremath{\cdot}2\textsuperscript{3}, and 2\textsuperscript{4}. Thus (x+2)\textsuperscript{4}=x\textsuperscript{4}+8x\textsuperscript{3}+24x\textsuperscript{2}+32x+16. Check the endpoints: the leading term is x\textsuperscript{4}, and the constant is 16.
+
+Separately, the number of 3-person groups from 8 people is C(8,3)=8\ensuremath{\cdot}7\ensuremath{\cdot}6/(3\ensuremath{\cdot}2\ensuremath{\cdot}1)=56; ordering the group members would overcount each group 3! times.
+\end{workedbox}
+
+\Needspace{5\baselineskip}
+\begin{notebox}\textbf{Memory hook:} in the term indexed by k, the exponent on a is n\ensuremath{-}k and the exponent on b is k. Check that each term’s exponents add to n.\end{notebox}
+
+\Needspace{9\baselineskip}
+\begin{recallbox}{Recall check \ensuremath{\cdot} answer before opening}
+\Needspace{4\baselineskip}
+\begin{enumerate}
+\item How does C(n,k) differ from a permutation count?
+\item What are the coefficients in the expansion of (a+b)\textsuperscript{4}?
+\end{enumerate}
+
+\nopagebreak[4]{\small\itshape Answers: see “2.4 Sums, Products, Binomial Coefficient” under Answers at the end.}
+\end{recallbox}
+\end{keepsection}
+
+\begin{keepsection}
+\Needspace{12\baselineskip}
+\section{2.5 Mathematical Induction}
+
+\Needspace{9\baselineskip}
+Induction proves infinitely many linked claims using a finite argument: establish a starting case, then show each true case passes the claim to the next one.
+
+\begin{equationcard}{Induction principle}
+\[ \begin{gathered} \text{Prove}\, \mathrm{A}(\mathrm{n}_{0}),\, \text{and}\, \text{prove}\, \mathrm{A}(\mathrm{n})\Rightarrow \mathrm{A}(\mathrm{n}+1)\, \text{for}\, \text{arbitrary}\, \mathrm{n}\geq \mathrm{n}_{0} \end{gathered} \]
+{\small Then A(n) holds for every integer n\ensuremath{\geq}n\textsubscript{0}. State the starting index and keep the induction hypothesis available in the step.}
+\end{equationcard}
+
+\Needspace{11\baselineskip}
+Write the induction step as a conditional: assume A(n) for an arbitrary allowed n, and use it to prove A(n+1). Do not assume the result you are trying to prove. The base case starts the chain; the implication advances it. For two-step induction, verify two consecutive base cases and advance from n to n+2, which covers both parities.
+
+\begin{equationcard}{Bernoulli’s inequality}
+\[ \begin{gathered} (1+\mathrm{x})^{\mathrm{n}}\, \geq \, 1+\text{nx},\, \text{for}\, \mathrm{n}\in \mathbb{N}\, \text{and}\, \mathrm{x}\geq -1 \end{gathered} \]
+{\small In the notes’ first proof, x is restricted to x\ensuremath{\geq}\ensuremath{-}1; this makes 1+x non-negative so multiplying preserves the inequality.}
+\end{equationcard}
+
+\begin{equationcard}{Extended Bernoulli inequality}
+\[ \begin{gathered} (1+\mathrm{x})^{\mathrm{n}}\, \geq \, 1+\text{nx},\, \text{for}\, \mathrm{n}\in \mathbb{N}\, \text{and}\, \mathrm{x}\geq -2 \end{gathered} \]
+{\small Use two-step induction: prove n=1 and n=2, then advance from n to n+2.}
+\end{equationcard}
+
+\Needspace{11\baselineskip}
+In the extended step, (1+x)\textsuperscript{n+2}=(1+x)\textsuperscript{2}(1+x)\textsuperscript{n}. The square factor is non-negative. Applying the hypothesis and expanding leaves the extra term x\textsuperscript{2}(2n+1+nx), which is non-negative for x\ensuremath{\geq}\ensuremath{-}2 and n\ensuremath{\geq}1.
+
+\begin{workedbox}{Worked example \ensuremath{\cdot} sum the first n integers}
+Claim: 1+2+…+n=n(n+1)/2 for n\ensuremath{\in}\ensuremath{\mathbb{N}}.
+
+\Needspace{7\baselineskip}
+\begin{enumerate}
+\item \textbf{Base:} n=1 gives 1=1\ensuremath{\cdot}2/2.
+\item \textbf{Hypothesis:} assume 1+…+n=n(n+1)/2.
+\item \textbf{Step:} 1+…+n+(n+1)=n(n+1)/2+(n+1)=(n+1)(n+2)/2.
+\item This is the claimed formula with n replaced by n+1, so it holds for all n\ensuremath{\in}\ensuremath{\mathbb{N}}.
+\end{enumerate}
+\end{workedbox}
+
+\Needspace{5\baselineskip}
+\begin{notebox}\textbf{Trap:} checking several values is not an induction proof. In the step, n is arbitrary—not one particular example—and the induction hypothesis must be stated before it is used.\end{notebox}
+
+\Needspace{10\baselineskip}
+\begin{recallbox}{Recall check \ensuremath{\cdot} answer before opening}
+\Needspace{4\baselineskip}
+\begin{enumerate}
+\item What is the logical role of the induction hypothesis?
+\item Why does proving A(n)\ensuremath{\Rightarrow}A(n+1) for arbitrary n not suffice without a base case?
+\end{enumerate}
+
+\nopagebreak[4]{\small\itshape Answers: see “2.5 Mathematical Induction” under Answers at the end.}
+\end{recallbox}
+\end{keepsection}
+
+\begin{keepsection}
+\Needspace{18\baselineskip}
+\section{Formula map and checks}
+
+\Needspace{10\baselineskip}
+\begin{center}\small\begin{tabularx}{\linewidth}{>{\raggedright\arraybackslash}X>{\raggedright\arraybackslash}X>{\raggedright\arraybackslash}X}\toprule
+\textbf{Topic} & \textbf{Relation} & \textbf{Check} \\ \midrule
+Number systems & \ensuremath{\mathbb{N}} \ensuremath{\subsetneq} \ensuremath{\mathbb{Z}} \ensuremath{\subsetneq} \ensuremath{\mathbb{Q}} \ensuremath{\subsetneq} \ensuremath{\mathbb{R}} & Does the value have a ratio of integers? \\
+Supremum & least upper bound of M & Upper bound and least among all upper bounds. \\
+Absolute value & |x|\ensuremath{\geq}0; |xy|=|x||y| & Distance cannot be negative; check signs. \\
+Triangle inequality & |x+y|\ensuremath{\leq}|x|+|y| & Try equality and opposite signs. \\
+Counting & C(n,k)=n!/[k!(n\ensuremath{-}k)!] & Order ignored; 0\ensuremath{\leq}k\ensuremath{\leq}n. \\
+Binomial theorem & (a+b)\textsuperscript{n}=\ensuremath{\Sigma} C(n,k)a\textsuperscript{n\ensuremath{-}k}b\textsuperscript{k} & n+1 terms; powers in each term add to n. \\
+Induction & A(n\textsubscript{0}); A(n)\ensuremath{\Rightarrow}A(n+1) & Base case and arbitrary induction step. \\
+\bottomrule\end{tabularx}\end{center}
+\end{keepsection}
+
+\begin{keepsection}
+\Needspace{15\baselineskip}
+\section{Derive it cold}
+
+\Needspace{12\baselineskip}
+Rebuild these on blank paper before opening the answers in the relevant sections.
+
+\Needspace{10\baselineskip}
+\begin{enumerate}
+\item Prove \ensuremath{\surd}2 is irrational by contradiction. \hfill{\small\color{FAUblue}§2.1}
+\item Derive \ensuremath{\surd}(x\textsuperscript{2})=|x| by splitting x\ensuremath{\geq}0 and x\ensuremath{<}0. \hfill{\small\color{FAUblue}§2.3}
+\item Derive the factorial expression for C(n,k) by counting ordered selections and dividing by k!. \hfill{\small\color{FAUblue}§2.4}
+\item Prove the sum 1+…+n=n(n+1)/2 by induction. \hfill{\small\color{FAUblue}§2.5}
+\item Use the induction hypothesis and Pascal’s identity to prove the binomial theorem for n+1 from n. \hfill{\small\color{FAUblue}§2.4–2.5}
+\end{enumerate}
+\end{keepsection}
+
+\begin{keepsection}
+\Needspace{16\baselineskip}
+\section{Explain it}
+
+\Needspace{13\baselineskip}
+Answer aloud in complete sentences. Then compare with the model answer. (Retrieval and explanatory questioning [MIS, AMN, NEW].)
+
+\Needspace{10\baselineskip}
+\begin{enumerate}
+\item \textbf{Why} does being expressible as p/q not guarantee a unique written fraction?
+\item \textbf{Why} are field and order axioms not enough to define \ensuremath{\mathbb{R}}?
+\item \textbf{When} is a supremum a maximum?
+\item \textbf{Why} is \ensuremath{\surd}(x\textsuperscript{2}) not always x?
+\item \textbf{When} should you use a binomial coefficient instead of a permutation count?
+\item \textbf{Why} does induction need both a base case and a step?
+\end{enumerate}
+
+\nopagebreak[4]{\small\itshape Answers: see “Explain it” under Answers at the end.}
+\end{keepsection}
+
+\clearpage
+
+\begin{keepsection}
+\Needspace{10\baselineskip}
+\section{Mixed practice}
+
+\Needspace{7\baselineskip}
+Try all 25 problems before opening the answer key. They are interleaved, so identify the method before calculating. (Desirable difficulty and varied retrieval [MIS, AMN].)
+
+\begin{enumerate}
+\item Classify \ensuremath{-}5/2 as natural, integer, rational, irrational or real; list every applicable category.
+\item Solve |x\ensuremath{-}4|\ensuremath{<}3 and write the answer as an interval.
+\item Use induction to prove 1+2+…+n=n(n+1)/2 for n\ensuremath{\in}\ensuremath{\mathbb{N}}.
+\item Expand (a+b)\textsuperscript{3}.
+\item For M=\{1\ensuremath{-}1/n:n\ensuremath{\in}\ensuremath{\mathbb{N}}\}, find sup(M), max(M), inf(M), and min(M).
+\item Evaluate \ensuremath{\Sigma}\textsubscript{k=1}\textsuperscript{4}(2k\ensuremath{-}1) and Π\textsubscript{k=1}\textsuperscript{4}k.
+\item In one sentence, state the contradiction in the proof that \ensuremath{\surd}2 is irrational.
+\item Solve |3x\ensuremath{-}2|\ensuremath{>}7.
+\item Why is \ensuremath{\mathbb{Z}} not a field under ordinary addition and multiplication? Give one specific failed field property.
+\item How many 2-element subsets can be chosen from an 8-element set?
+\item Convert [101101]\textsubscript{2} to base ten.
+\item Check the triangle inequality for x=\ensuremath{-}7, y=3. Compute both sides.
+\item Prove by induction that 7 divides 8\textsuperscript{n}\ensuremath{-}1 for n\ensuremath{\in}\ensuremath{\mathbb{N}}.
+\item For M=\{1/n:n\ensuremath{\in}\ensuremath{\mathbb{N}}\}, give its supremum and infimum. Say which are attained.
+\item Compute C(7,3), showing the cancellation.
+\item Convert [10.11]\textsubscript{2} to base ten.
+\item Solve |2x+1|\ensuremath{\geq}5 by cases and check endpoints.
+\item In an ordered field, if a\ensuremath{<}b, what can you conclude about a+c and b+c? What if you multiply by c\ensuremath{<}0?
+\item Use Pascal’s identity to evaluate C(6,2)+C(6,3).
+\item Use Bernoulli’s inequality to give a lower bound for (1.1)\textsuperscript{5}.
+\item What is the principal real fourth root of 16?
+\item Show why a rational square root of 2 would contradict lowest terms.
+\item Evaluate Π\textsubscript{k=2}\textsuperscript{4}k.
+\item Prove by induction that 1+3+…+(2n\ensuremath{-}1)=n\textsuperscript{2}.
+\item Find the coefficient of x\textsuperscript{2}y\textsuperscript{3} in (x+y)\textsuperscript{5}.
+\end{enumerate}
+
+\nopagebreak[4]{\small\itshape Answers: see “Mixed practice” under Answers at the end.}
+\end{keepsection}
+
+\begin{keepsection}
+\Needspace{6\baselineskip}
+\section{Exam-style problems}
+
+Allow about 20 minutes for each. Work every part before checking the answer. Afterward, note where you lost a step and revisit the cited sections.
+
+\begin{keepsection}
+\Needspace{12\baselineskip}
+\subsection{1 \ensuremath{\cdot} Bounds, distance and counting}
+
+\Needspace{9\baselineskip}
+Let M=\{x\ensuremath{\in}\ensuremath{\mathbb{R}}: |x\ensuremath{-}2|\ensuremath{\leq}3\} and let S be the set of 2-element subsets of \{1,2,3,4,5\}.
+
+\Needspace{7\baselineskip}
+\begin{enumerate}
+\item Write M as an interval and give its minimum, maximum, infimum and supremum.
+\item Find all x\ensuremath{\in}M for which |x|\ensuremath{>}2.
+\item How many members does S have? Explain why order does not matter.
+\item Find the coefficient of x\textsuperscript{3}y\textsuperscript{2} in (x+y)\textsuperscript{5}.
+\end{enumerate}
+
+\nopagebreak[4]{\small\itshape Answers: see “Exam-style problems” under Answers at the end.}
+\end{keepsection}
+
+\begin{keepsection}
+\Needspace{12\baselineskip}
+\subsection{2 \ensuremath{\cdot} Prove the binomial theorem}
+
+\Needspace{9\baselineskip}
+Let P(n) be the claim (a+b)\textsuperscript{n}=\ensuremath{\Sigma}\textsubscript{k=0}\textsuperscript{n}C(n,k)a\textsuperscript{n\ensuremath{-}k}b\textsuperscript{k}, for non-zero real a,b and n\ensuremath{\in}\ensuremath{\mathbb{N}}.
+
+\Needspace{7\baselineskip}
+\begin{enumerate}
+\item Verify P(1).
+\item Assume P(n). Multiply its right-hand side by (a+b) to obtain the expression for (a+b)\textsuperscript{n+1}.
+\item Group adjacent terms and use Pascal’s identity to prove P(n+1).
+\item Use the theorem to expand (x+2)\textsuperscript{4}.
+\end{enumerate}
+
+\nopagebreak[4]{\small\itshape Answers: see “Exam-style problems” under Answers at the end.}
+\end{keepsection}
+\end{keepsection}
+
+\begin{keepsection}
+\Needspace{10\baselineskip}
+\section{Slips in the notes}
+
+\Needspace{7\baselineskip}
+These are source-checked issues and the corresponding precise statement used in this guide. Printed page numbers refer to the lecture notes.
+
+\Needspace{4\baselineskip}
+\begin{enumerate}
+\item \textbf{Printed page 12, missing condition:} the remark says that for arbitrary rational a,b, the equation ax=b always has a solution x\ensuremath{\in}\ensuremath{\mathbb{Q}}. This fails when a=0 and b\ensuremath{\neq}0. The statement is correct when a\ensuremath{\neq}0; for a=0 it has no solution if b\ensuremath{\neq}0 and every rational x is a solution if b=0.
+\end{enumerate}
+\end{keepsection}
+
+\begin{keepsection}
+\Needspace{10\baselineskip}
+\section{Self-check}
+
+\Needspace{7\baselineskip}
+Tick a skill only in a later session, at least one day after learning it, when you can show it without notes. Use the problem numbers as evidence.
+
+\begin{itemize}
+\item $\mdlgwhtsquare$\ Classify values in \ensuremath{\mathbb{N}}, \ensuremath{\mathbb{Z}}, \ensuremath{\mathbb{Q}} and \ensuremath{\mathbb{R}} and distinguish irrational numbers. (1, 7, 22)
+\item $\mdlgwhtsquare$\ Convert binary integers and fixed-point numbers. (11, 16)
+\item $\mdlgwhtsquare$\ Rebuild the contradiction proof for \ensuremath{\surd}2. (7, 22)
+\item $\mdlgwhtsquare$\ Explain why \ensuremath{\mathbb{Q}} is an ordered field but not complete. (9, 18, 21)
+\item $\mdlgwhtsquare$\ Find bounds, suprema, infima, maxima and minima. (5, 14)
+\item $\mdlgwhtsquare$\ Solve absolute-value inequalities with correct endpoints. (2, 8, 17)
+\item $\mdlgwhtsquare$\ Apply the triangle inequality and check it numerically. (12)
+\item $\mdlgwhtsquare$\ Evaluate and interpret summation and product notation. (6, 23)
+\item $\mdlgwhtsquare$\ Use factorials and binomial coefficients for counting. (10, 15)
+\item $\mdlgwhtsquare$\ Use Pascal’s identity and expand a binomial. (4, 19, 25)
+\item $\mdlgwhtsquare$\ Write complete induction proofs from the correct base index. (3, 13, 24)
+\item $\mdlgwhtsquare$\ Apply Bernoulli’s inequality with its stated condition. (20)
+\item $\mdlgwhtsquare$\ Rebuild the listed derivations without notes.
+\item $\mdlgwhtsquare$\ Solve both multi-part problems and justify every step.
+\end{itemize}
+\end{keepsection}
+
+
+\clearpage
+\section{Answers}
+\begin{keepsection}\subsection{Start from memory}
+
+\Needspace{9\baselineskip}
+\begin{enumerate}
+\item \ensuremath{\mathbb{N}} \ensuremath{\subsetneq} \ensuremath{\mathbb{Z}} \ensuremath{\subsetneq} \ensuremath{\mathbb{Q}} \ensuremath{\subsetneq} \ensuremath{\mathbb{R}}; the irrational reals are \ensuremath{\mathbb{R}}\textbackslash{}\ensuremath{\mathbb{Q}}. \hfill{\small\color{FAUblue}§2.1}
+\item Completeness: each non-empty real subset that is bounded above has a least upper bound in \ensuremath{\mathbb{R}}. \hfill{\small\color{FAUblue}§2.2}
+\item The distance between x and a. \hfill{\small\color{FAUblue}§2.3}
+\item The binomial coefficient (n choose k)=n!/(k!(n\ensuremath{-}k)!). \hfill{\small\color{FAUblue}§2.4}
+\item Prove a base case, then prove A(n) implies A(n+1) for arbitrary n in the stated domain. \hfill{\small\color{FAUblue}§2.5}
+\end{enumerate}
+
+\end{keepsection}
+\begin{keepsection}\subsection{2.1 Number Systems}
+
+\Needspace{4\baselineskip}
+\begin{enumerate}
+\item Assuming \ensuremath{\surd}2=p/q in lowest terms forces both p and q even, a contradiction. \hfill{\small\color{FAUblue}§2.1}
+\item 32+8+4+1=45. \hfill{\small\color{FAUblue}§2.1}
+\end{enumerate}
+
+\end{keepsection}
+\begin{keepsection}\subsection{2.2 Real Numbers}
+
+\Needspace{5\baselineskip}
+\begin{enumerate}
+\item It is an upper bound, and it is no larger than any other upper bound. \hfill{\small\color{FAUblue}§2.2}
+\item The rationals bounded by \ensuremath{\surd}2 have no supremum in \ensuremath{\mathbb{Q}} because their least upper bound is the irrational \ensuremath{\surd}2. \hfill{\small\color{FAUblue}§2.2}
+\end{enumerate}
+
+\end{keepsection}
+\begin{keepsection}\subsection{2.3 Absolute Values and Inequalities}
+
+\Needspace{4\baselineskip}
+\begin{enumerate}
+\item x lies within distance c of a; for c\ensuremath{\geq}0, a\ensuremath{-}c\ensuremath{\leq}x\ensuremath{\leq}a+c. \hfill{\small\color{FAUblue}§2.3}
+\item |x|. \hfill{\small\color{FAUblue}§2.3}
+\end{enumerate}
+
+\end{keepsection}
+\begin{keepsection}\subsection{2.4 Sums, Products, Binomial Coefficient}
+
+\Needspace{4\baselineskip}
+\begin{enumerate}
+\item It counts selections where order does not matter; permutations count orderings. \hfill{\small\color{FAUblue}§2.4}
+\item 1, 4, 6, 4, 1. \hfill{\small\color{FAUblue}§2.4}
+\end{enumerate}
+
+\end{keepsection}
+\begin{keepsection}\subsection{2.5 Mathematical Induction}
+
+\Needspace{4\baselineskip}
+\begin{enumerate}
+\item It is the assumption used to derive the next case; it is not itself the conclusion. \hfill{\small\color{FAUblue}§2.5}
+\item Without a true starting case, the implication could advance a chain that never begins. \hfill{\small\color{FAUblue}§2.5}
+\end{enumerate}
+
+\end{keepsection}
+\begin{keepsection}\subsection{Explain it}
+
+\Needspace{16\baselineskip}
+\begin{enumerate}
+\item Many numerator-denominator pairs represent the same quotient, such as 2/3 and 4/6. Requiring coprime numerator and denominator gives the reduced representation used in the notes.
+\item \ensuremath{\mathbb{Q}} satisfies the field and order rules too, but it has gaps. Completeness distinguishes \ensuremath{\mathbb{R}} by guaranteeing least upper bounds for non-empty bounded-above subsets.
+\item When the supremum belongs to the set. A supremum can bound a set without being one of its elements, as with \{1\ensuremath{-}1/n\}.
+\item The square root is non-negative. If x is negative, the non-negative number whose square is x\textsuperscript{2} is \ensuremath{-}x, so the result is |x|.
+\item Use C(n,k) when selecting k distinct objects from n and order does not matter. If different orders count as different outcomes, use a permutation count.
+\item The base case starts the chain. The step says every true case passes truth to the next one; together they cover every index from the starting point onward.
+\end{enumerate}
+
+\end{keepsection}
+\begin{keepsection}\subsection{Mixed practice}
+
+\begin{enumerate}
+\item It is rational and real; it is not natural or an integer. \hfill{\small\color{FAUblue}§2.1}
+\item Distance from 4 is less than 3, so 1\ensuremath{<}x\ensuremath{<}7; solution (1,7). \hfill{\small\color{FAUblue}§2.3}
+\item Base n=1 holds. If the sum through n is n(n+1)/2, add n+1: n(n+1)/2+(n+1)=(n+1)(n+2)/2. \hfill{\small\color{FAUblue}§2.5}
+\item a\textsuperscript{3}+3a\textsuperscript{2}b+3ab\textsuperscript{2}+b\textsuperscript{3}. \hfill{\small\color{FAUblue}§2.4}
+\item sup=1, no maximum; inf=min=0. The values approach 1 but never equal it, while n=1 gives 0. \hfill{\small\color{FAUblue}§2.2}
+\item 1+3+5+7=16; 1\ensuremath{\cdot}2\ensuremath{\cdot}3\ensuremath{\cdot}4=24. \hfill{\small\color{FAUblue}§2.4}
+\item Writing \ensuremath{\surd}2=p/q in lowest terms forces p even from p\textsuperscript{2}=2q\textsuperscript{2}, then q even after substituting p=2m. That contradicts coprimality. \hfill{\small\color{FAUblue}§2.1}
+\item 3x\ensuremath{-}2\ensuremath{>}7 or 3x\ensuremath{-}2\ensuremath{<}\ensuremath{-}7, so x\ensuremath{>}3 or x\ensuremath{<}\ensuremath{-}5/3. \hfill{\small\color{FAUblue}§2.3}
+\item Non-zero integers need not have multiplicative inverses in \ensuremath{\mathbb{Z}}: 2 has inverse 1/2, which is not an integer. \hfill{\small\color{FAUblue}§2.2}
+\item C(8,2)=8\ensuremath{\cdot}7/(2\ensuremath{\cdot}1)=28. \hfill{\small\color{FAUblue}§2.4}
+\item 32+8+4+1=45. \hfill{\small\color{FAUblue}§2.1}
+\item |x+y|=|\ensuremath{-}4|=4 and |x|+|y|=7+3=10; 4\ensuremath{\leq}10. \hfill{\small\color{FAUblue}§2.3}
+\item Base n=1: 8\ensuremath{-}1=7. Assume 8\textsuperscript{n}\ensuremath{-}1=7m. Then 8\textsuperscript{n+1}\ensuremath{-}1=8(8\textsuperscript{n}\ensuremath{-}1)+7=56m+7, divisible by 7. \hfill{\small\color{FAUblue}§2.5}
+\item sup=max=1; inf=0, not attained. Every term is positive and tends to 0. \hfill{\small\color{FAUblue}§2.2}
+\item C(7,3)=7\ensuremath{\cdot}6\ensuremath{\cdot}5/(3\ensuremath{\cdot}2\ensuremath{\cdot}1)=35. \hfill{\small\color{FAUblue}§2.4}
+\item 2+1/2+1/4=2.75. \hfill{\small\color{FAUblue}§2.1}
+\item 2x+1\ensuremath{\geq}5 gives x\ensuremath{\geq}2; 2x+1\ensuremath{\leq}\ensuremath{-}5 gives x\ensuremath{\leq}\ensuremath{-}3. Include equality in both cases: (\ensuremath{-}\ensuremath{\infty},\ensuremath{-}3]\ensuremath{\cup}[2,\ensuremath{\infty}). \hfill{\small\color{FAUblue}§2.3}
+\item a+c\ensuremath{<}b+c. Multiplying by a negative reverses direction: ac\ensuremath{>}bc. \hfill{\small\color{FAUblue}§2.2}
+\item By Pascal, C(6,2)+C(6,3)=C(7,3)=35. \hfill{\small\color{FAUblue}§2.4}
+\item Bernoulli with x=0.1,n=5 gives (1.1)\textsuperscript{5}\ensuremath{\geq}1+5(0.1)=1.5. \hfill{\small\color{FAUblue}§2.5}
+\item The principal fourth root is 2, the unique non-negative real whose fourth power is 16. (\ensuremath{-}2) is another fourth root, but not the principal root. \hfill{\small\color{FAUblue}§2.2}
+\item If \ensuremath{\surd}2=p/q in lowest terms, p\textsuperscript{2}=2q\textsuperscript{2}, so 2|p. Put p=2m to get q\textsuperscript{2}=2m\textsuperscript{2}, so 2|q too, contradiction. \hfill{\small\color{FAUblue}§2.1}
+\item 2\ensuremath{\cdot}3\ensuremath{\cdot}4=24. \hfill{\small\color{FAUblue}§2.4}
+\item Base n=1: 1=1\textsuperscript{2}. Assume the sum through n is n\textsuperscript{2}; adding 2n+1 gives n\textsuperscript{2}+2n+1=(n+1)\textsuperscript{2}. \hfill{\small\color{FAUblue}§2.5}
+\item The term is indexed by k=3, so its coefficient is C(5,3)=10. \hfill{\small\color{FAUblue}§2.4}
+\end{enumerate}
+
+\end{keepsection}
+\begin{keepsection}\subsection{Exam-style problems}
+
+\Needspace{8\baselineskip}
+\begin{enumerate}
+\item |x\ensuremath{-}2|\ensuremath{\leq}3 means \ensuremath{-}3\ensuremath{\leq}x\ensuremath{-}2\ensuremath{\leq}3, hence \ensuremath{-}1\ensuremath{\leq}x\ensuremath{\leq}5. Thus M=[\ensuremath{-}1,5], and min=inf=\ensuremath{-}1, max=sup=5. \hfill{\small\color{FAUblue}§2.2} \hfill{\small\color{FAUblue}§2.3}
+\item Within [\ensuremath{-}1,5], the condition |x|\ensuremath{>}2 leaves x\ensuremath{>}2, so (2,5]. \hfill{\small\color{FAUblue}§2.3}
+\item |S|=C(5,2)=5\ensuremath{\cdot}4/(2\ensuremath{\cdot}1)=10. Each pair of distinct elements describes one subset regardless of order. \hfill{\small\color{FAUblue}§2.4}
+\item The k=2 term is C(5,2)x\textsuperscript{3}y\textsuperscript{2}, so the coefficient is 10. \hfill{\small\color{FAUblue}§2.4}
+\end{enumerate}
+
+\end{keepsection}
+\begin{keepsection}\subsection{Exam-style problems}
+
+\Needspace{10\baselineskip}
+\begin{enumerate}
+\item For n=1, C(1,0)a+C(1,1)b=a+b=(a+b)\textsuperscript{1}. \hfill{\small\color{FAUblue}§2.4} \hfill{\small\color{FAUblue}§2.5}
+\item By P(n), (a+b)\textsuperscript{n+1}=\ensuremath{\Sigma} C(n,k)a\textsuperscript{n\ensuremath{-}k}b\textsuperscript{k}(a+b). Distributing gives terms with one extra a and terms with one extra b. \hfill{\small\color{FAUblue}§2.4} \hfill{\small\color{FAUblue}§2.5}
+\item For each interior power, the coefficient is C(n,k)+C(n,k\ensuremath{-}1)=C(n+1,k), by Pascal’s identity with the index shifted. The endpoint coefficients are 1. Thus the sum is \ensuremath{\Sigma}\textsubscript{k=0}\textsuperscript{n+1}C(n+1,k)a\textsuperscript{n+1\ensuremath{-}k}b\textsuperscript{k}; P(n+1) follows. The base and implication prove the theorem for all n\ensuremath{\in}\ensuremath{\mathbb{N}}. \hfill{\small\color{FAUblue}§2.4} \hfill{\small\color{FAUblue}§2.5}
+\item The coefficients 1,4,6,4,1 give x\textsuperscript{4}+8x\textsuperscript{3}+24x\textsuperscript{2}+32x+16. \hfill{\small\color{FAUblue}§2.4}
+\end{enumerate}
+
+\end{keepsection}
+
+\vfill{\small Personal study guide based on Mathematics for Engineers I lecture notes, Chapter 2 “Real Numbers” (printed pages 11–22), by Rhoslyn Coles and Cornelia Schneider. Written in my own words; no lecture pages or figures are reproduced. Not an official FAU publication; check course details against the current notes.}
+
+\end{document}
