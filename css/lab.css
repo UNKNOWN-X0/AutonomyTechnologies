@@ -595,6 +595,44 @@
 .ch-verdict {
   animation: none;
 }
+/* A stepped-to challenge arrives from the right, so the change of question is seen, not just swapped. */
+.challenge.ch-enter > * {
+  animation: answers-fade 150ms var(--ease) both;
+}
+@media (prefers-reduced-motion: no-preference) {
+  .challenge.ch-enter > * {
+    animation: ch-step-in 260ms var(--ease) both;
+  }
+  .challenge.ch-enter > :nth-child(2) {
+    animation-delay: 30ms;
+  }
+  .challenge.ch-enter > :nth-child(n + 3) {
+    animation-delay: 60ms;
+  }
+  .ch-opt,
+  .ch-seg {
+    transition:
+      background-color 150ms var(--ease),
+      border-color 150ms var(--ease),
+      color 150ms var(--ease),
+      transform 100ms var(--ease);
+  }
+  .ch-opt:active:not(:disabled),
+  .ch-seg:active:not(:disabled) {
+    transform: translateY(1px);
+  }
+}
+@keyframes ch-step-in {
+  from {
+    opacity: 0;
+    transform: translateX(12px);
+  }
+}
+@keyframes answers-fade {
+  from {
+    opacity: 0;
+  }
+}
 
 /* Desktop: card and stage share one row height. The stage keeps its old size as a minimum and grows to the card. */
 @container (min-width: 640px) {

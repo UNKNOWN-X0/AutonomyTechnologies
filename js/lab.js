@@ -105,6 +105,9 @@
       def = this.def,
       card = this.card;
     card.innerHTML = "";
+    // Only a user's step (Next, Replay) animates the new question in; page load stays still.
+    card.classList.toggle("ch-enter", !!this.stepped);
+    this.stepped = false;
     if (i < 0) return this.done();
     var c = def.challenges[i],
       choice = null,
@@ -174,6 +177,7 @@
     nxt.tabIndex = -1;
     nxt.addEventListener("click", function () {
       if (last) complete(def.id);
+      self.stepped = !last;
       self.show(self.next());
       if (last) refresh();
     });
@@ -250,6 +254,7 @@
       results[def.id] = self.saved = {};
       write(STORE, results);
       self.card.classList.remove("finished");
+      self.stepped = true;
       self.show(0);
       refresh();
     });

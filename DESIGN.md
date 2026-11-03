@@ -366,7 +366,8 @@ A 2px ink rule above, 18px top padding, then a 14px solid blue square before the
 ### Motion
 - **Signature moment:** progress draws itself. Ticked bars on the hub fill bottom-up, one after another (420ms each, 28ms stagger, capped by the 16 bars). Ticking a skill in a guide pops the box (260ms) and lights the "skills ticked" line with the subject colour (900ms fade).
 - **Continuity:** opening an answer key unfolds its content with a clip and short drop (320ms; a plain fade under reduced motion). In-page jumps scroll smoothly and the target section's blue square flashes once in the subject colour (900ms). The contents rail tracks the section being read.
-- **Feedback:** links thicken their underline and buttons change fill in 150ms; buttons press down 1px.
+- **Continuity (labs):** stepping to the next challenge (Next or Replay) brings the new question in from the right: 12px and fade, 260ms, prompt then options staggered 30ms. It never plays on page load, and under reduced motion it is a 150ms fade.
+- **Feedback:** links thicken their underline and buttons change fill in 150ms; buttons and lab answer options press down 1px.
 - **Site mark:** see Navigation.
 
 ### Widths and boxes in guides and labs
