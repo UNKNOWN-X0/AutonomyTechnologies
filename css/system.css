@@ -416,3 +416,125 @@ button[data-tip] {
     scroll-behavior: auto !important;
   }
 }
+
+/* Motion layer 2: pages hand over to each other, reading shows its progress, content arrives as it is reached.
+   Every effect starts from visible content, so a browser without support simply shows the page. */
+@view-transition {
+  navigation: auto;
+}
+nav.toc {
+  view-transition-name: rail;
+}
+.chapter-switch {
+  view-transition-name: switch;
+}
+@media (prefers-reduced-motion: no-preference) {
+  ::view-transition-old(root) {
+    animation: vt-out 160ms var(--ease) both;
+  }
+  ::view-transition-new(root) {
+    animation: vt-in 320ms var(--ease) both;
+  }
+  ::view-transition-group(switch),
+  ::view-transition-group(rail) {
+    animation-duration: 320ms;
+    animation-timing-function: var(--ease);
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  ::view-transition-group(*),
+  ::view-transition-old(*),
+  ::view-transition-new(*) {
+    animation-duration: 120ms;
+  }
+}
+@keyframes vt-out {
+  to {
+    opacity: 0;
+    transform: translateY(-6px);
+  }
+}
+@keyframes vt-in {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+}
+
+/* Reading progress: a thin bar in the subject colour fills with the page scroll. */
+@supports (animation-timeline: scroll()) {
+  body:has(nav.toc)::after {
+    content: "";
+    position: fixed;
+    inset: 0 0 auto 0;
+    height: 4px;
+    background: var(--course, var(--act));
+    transform-origin: 0 50%;
+    transform: scaleX(0);
+    animation: read-progress linear both;
+    animation-timeline: scroll(root block);
+    z-index: 50;
+    pointer-events: none;
+  }
+  @media print {
+    body:has(nav.toc)::after {
+      display: none;
+    }
+  }
+}
+@keyframes read-progress {
+  to {
+    transform: scaleX(1);
+  }
+}
+
+/* Content arrives as it is scrolled to: sections and lab experiments rise and clear in, their sign square grows. */
+@supports (animation-timeline: view()) {
+  @media (prefers-reduced-motion: no-preference) and (not print) {
+    main > section,
+    main .experiment {
+      animation: arrive linear both;
+      animation-timeline: view();
+      animation-range: entry 0% entry 40%;
+    }
+    main > section > h2::before {
+      animation: sign-grow linear both;
+      animation-timeline: view();
+      animation-range: entry 10% entry 60%;
+    }
+  }
+}
+@keyframes arrive {
+  from {
+    opacity: 0.15;
+    transform: translateY(28px);
+    clip-path: inset(0 0 12% 0);
+  }
+}
+@keyframes sign-grow {
+  from {
+    transform: translateY(-1px) scale(0.2) rotate(-45deg);
+  }
+}
+
+/* Hub: each subject sets down as it scrolls into view, its chapter rows following in order. */
+@supports (animation-timeline: view()) {
+  @media (prefers-reduced-motion: no-preference) and (not print) {
+    .subjects > .subject {
+      animation: arrive linear both;
+      animation-timeline: view();
+      animation-range: entry 0% entry 50%;
+    }
+    .subjects .chapter {
+      animation: chapter-in linear both;
+      animation-timeline: view();
+      animation-range: entry calc(var(--c, 0) * 6%) entry calc(60% + var(--c, 0) * 6%);
+    }
+  }
+}
+@keyframes chapter-in {
+  from {
+    opacity: 0;
+    transform: translateX(-14px);
+  }
+}

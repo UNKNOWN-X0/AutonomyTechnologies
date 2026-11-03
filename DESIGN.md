@@ -367,6 +367,9 @@ A 2px ink rule above, 18px top padding, then a 14px solid blue square before the
 - **Signature moment:** progress draws itself. Ticked bars on the hub fill bottom-up, one after another (420ms each, 28ms stagger, capped by the 16 bars). Ticking a skill in a guide pops the box (260ms) and lights the "skills ticked" line with the subject colour (900ms fade).
 - **Continuity:** opening an answer key unfolds its content with a clip and short drop (320ms; a plain fade under reduced motion). In-page jumps scroll smoothly and the target section's blue square flashes once in the subject colour (900ms). The contents rail tracks the section being read.
 - **Continuity (labs):** stepping to the next challenge (Next or Replay) brings the new question in from the right: 12px and fade, 260ms, prompt then options staggered 30ms. It never plays on page load, and under reduced motion it is a 150ms fade.
+- **Between pages (owner's request, 2026-11-03):** cross-document view transitions. The old page lifts out in 160ms, the new one rises in over 320ms; the contents rail and Guide/Lab switch hold their place. Reduced motion shortens every part to 120ms.
+- **Reading progress:** a 4px bar in the subject colour along the top of guides and labs fills with the page scroll (scroll timeline; absent where unsupported and in print).
+- **Arrival on scroll:** guide sections, lab experiments and hub subjects rise 28px and unclip as they enter the viewport; a section's sign square grows and turns into place; hub chapter rows follow from the left in order. View timelines only, so unsupported browsers and reduced motion show content still.
 - **Feedback:** links thicken their underline and buttons change fill in 150ms; buttons and lab answer options press down 1px.
 - **Site mark:** see Navigation.
 
@@ -412,6 +415,6 @@ Each item is a full-width label row divided by hairlines. The box is a 22px squa
 - **Don't** use a subject colour as text, border or line colour; it is a fill behind dark ink.
 - **Don't** give a follow-on course a new hue.
 - **Don't** colour a non-clickable element with the action colour token.
-- **Don't** add decorative motion: no scroll-reveals, page-load choreography on reading content, parallax or hover lifts.
+- **Don't** add decorative motion: no parallax, hover lifts, looping effects outside the site mark, or page-load choreography that delays reading. Scroll-linked motion is allowed only as listed under Motion, and content must be visible without it.
 - **Don't** use the FAU logo; the site mark is its own square sign.
 - **Don't** build a card grid or a hero-plus-cards hub.

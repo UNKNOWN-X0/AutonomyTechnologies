@@ -60,9 +60,9 @@
     "semantic_hash": ""
   },
   "DESIGN.md": {
-    "mtime": 1793284507.3589919,
-    "seen": 1793287995.959371,
-    "ast_hash": "19418f094d3a39c4f1dcac83e05254d4",
+    "mtime": 1793693612.1449697,
+    "seen": 1793693615.812722,
+    "ast_hash": "8005f257e7ab7ff7de19472623fefef2",
     "semantic_hash": ""
   },
   "PRODUCT.md": {
@@ -102,9 +102,9 @@
     "semantic_hash": ""
   },
   "js/lab.js": {
-    "mtime": 1793612877.2705421,
-    "seen": 1793624688.337297,
-    "ast_hash": "96f60d32a426771c572b3558056f9c1b",
+    "mtime": 1793693509.871957,
+    "seen": 1793693615.812701,
+    "ast_hash": "126fa2741b9e83c6b4518abd2a577af9",
     "semantic_hash": ""
   },
   "tests/eei-ch1-physics.test.js": {

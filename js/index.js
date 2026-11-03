@@ -1,4 +1,10 @@
 (function () {
+  // Chapter rows follow each other in as their subject scrolls into view.
+  document.querySelectorAll(".subjects .chapters").forEach(function (list) {
+    list.querySelectorAll(".chapter").forEach(function (c, i) {
+      c.style.setProperty("--c", Math.min(i, 6));
+    });
+  });
   // Spaced review: each distinct study day logged by a guide widens the gap.
   var GAPS = [1, 7, 30];
   var DAY = 86400000;
