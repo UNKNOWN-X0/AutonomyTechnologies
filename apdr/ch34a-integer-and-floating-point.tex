@@ -225,21 +225,24 @@ What does this pointer or name refer to? & Draw the memory: boxes and addresses 
 \end{keepsection}
 
 \begin{keepsection}
-\Needspace{6\baselineskip}
+\Needspace{11\baselineskip}
 \section{3.1 Number systems and positional notation}
 
+\Needspace{8\baselineskip}
 A numeral is a compact way to write a sum of place values. Binary, octal, decimal, and hexadecimal use the same positional rule with different bases.
 
+\begin{plainbox}\textbf{In plain words:} a numeral is shorthand for a sum: each digit is multiplied by a power of the base, set by its position. In decimal, 352 means 3 \ensuremath{\cdot} 100 + 5 \ensuremath{\cdot} 10 + 2 \ensuremath{\cdot} 1; in binary the place values are 1, 2, 4, 8, … instead. Octal and hexadecimal are short ways to write long binary strings, because one octal digit is exactly 3 bits and one hexadecimal digit exactly 4.\end{plainbox}
+
 \begin{keepsection}
-\Needspace{12\baselineskip}
+\Needspace{13\baselineskip}
 \subsection{Expand and convert}
 
-\Needspace{9\baselineskip}
+\Needspace{10\baselineskip}
 In base b, each digit d\textsubscript{i} contributes d\textsubscript{i}b\textsuperscript{i}, where the rightmost digit has i=0. Binary digits are 0 or 1. Decimal-to-binary repeated division records remainders; read them from last to first.
 
 \begin{equationcard}{Positional value}
 \[ \begin{gathered} ({d}_{{k}}…{d}_{1}{d}_{0})_{{b}}\, =\, \sum_{{i}=0}^{{k}} \, {d}_{{i}}{b}^{{i}} \\ (1100010)_{2}\, =\, 1\cdot 2^{6}\, +\, 1\cdot 2^{5}\, +\, 1\cdot 2^{1}\, =\, 98 \end{gathered} \]
-{\small The worked binary number is 98 in decimal. Subscripts identify the base.}
+{\small \emph{Read it as: “the number with digits d\textsubscript{k} down to d\textsubscript{0} in base b is the sum of d\textsubscript{i} times b to the i”: each digit times its place value.}\par The worked binary number is 98 in decimal. Subscripts identify the base.}
 \end{equationcard}
 
 \begin{workedbox}{Worked conversion \ensuremath{\cdot} decimal to binary}
@@ -278,8 +281,11 @@ Convert 2F\textsubscript{16}.
 \end{enumerate}
 \end{workedbox}
 
-\Needspace{5\baselineskip}
+\Needspace{6\baselineskip}
 \begin{notebox}\textbf{Trap:} do not read a binary string as an ordinary decimal integer. Attach its base, expand it, and only then compare values.\end{notebox}
+
+\Needspace{5\baselineskip}
+\begin{notebox}\textbf{Near miss:} 10\textsubscript{2} looks like ten, but in binary it is 1 \ensuremath{\cdot} 2 + 0 \ensuremath{\cdot} 1 = 2. Read the base before the digits.\end{notebox}
 
 \Needspace{10\baselineskip}
 \begin{recallbox}{Recall check \ensuremath{\cdot} answer without looking}
@@ -296,21 +302,24 @@ Convert 2F\textsubscript{16}.
 \end{keepsection}
 
 \begin{keepsection}
-\Needspace{6\baselineskip}
+\Needspace{11\baselineskip}
 \section{3.2 Integer representations}
 
+\Needspace{8\baselineskip}
 A computer stores a fixed number of bits, not a plus or minus sign unless the encoding defines one. The same pattern can mean different values under different encodings.
 
+\begin{plainbox}\textbf{In plain words:} a computer stores only a row of bits; whether the row means a positive number, a negative number or something else depends on the agreed encoding. Unsigned uses every bit for size. The signed encodings give part of the range to negatives, and two’s complement, the one computers use, gives the top bit a negative weight.\end{plainbox}
+
 \begin{keepsection}
-\Needspace{16\baselineskip}
+\Needspace{17\baselineskip}
 \subsection{Unsigned and signed ranges}
 
-\Needspace{13\baselineskip}
+\Needspace{14\baselineskip}
 An unsigned n-bit pattern represents 0 through 2\textsuperscript{n}\ensuremath{-}1. Signed encodings trade positive range for negative values. The source compares sign-and-magnitude, one’s complement, two’s complement, excess (biased) notation, and binary-coded decimal (BCD). The lecture judges a signed encoding by four wishes: one zero, a balanced range, simple fast addition hardware, and no gaps in the number line.
 
 \begin{equationcard}{Ranges for n bits}
 \[ \begin{gathered} \text{Unsigned}:\, 0\, …\, 2^{{n}}-1 \\ \text{Sign}\, \text{and}\, \text{magnitude}:\, -(2^{{n}-1}-1)\, …\, +(2^{{n}-1}-1) \\ \text{One}’\mathrm{s}\, \text{complement}:\, -(2^{{n}-1}-1)\, …\, +(2^{{n}-1}-1) \\ \text{Two}’\mathrm{s}\, \text{complement}:\, -2^{{n}-1}\, …\, 2^{{n}-1}-1 \end{gathered} \]
-{\small Sign-and-magnitude and one’s complement have two zero encodings. Two’s complement has one zero and one extra negative value.}
+{\small \emph{Read it as: “with n bits, unsigned runs from 0 to 2\textsuperscript{n} \ensuremath{-} 1; two’s complement runs from \ensuremath{-}2\textsuperscript{n\ensuremath{-}1} to 2\textsuperscript{n\ensuremath{-}1} \ensuremath{-} 1”.}\par Sign-and-magnitude and one’s complement have two zero encodings. Two’s complement has one zero and one extra negative value.}
 \end{equationcard}
 
 \begin{workedbox}{Worked comparison \ensuremath{\cdot} decode 1111 in four encodings}
@@ -332,15 +341,15 @@ Sign-and-magnitude has two zeros, and its adder must compare signs and then choo
 \end{keepsection}
 
 \begin{keepsection}
-\Needspace{20\baselineskip}
+\Needspace{21\baselineskip}
 \subsection{Two’s complement and bias}
 
-\Needspace{17\baselineskip}
+\Needspace{18\baselineskip}
 To form \ensuremath{-}x in n-bit two’s complement, invert all n bits of x and add 1; discard a carry beyond the width. The minimum value \ensuremath{-}2\textsuperscript{n\ensuremath{-}1} is the exception: its positive counterpart is outside the signed range, so fixed-width negation leaves the same pattern and overflows. Why inverting and adding one works: inverting x gives (2\textsuperscript{n}\ensuremath{-}1)\ensuremath{-}x, because each bit becomes 1 minus itself. Adding 1 gives 2\textsuperscript{n}\ensuremath{-}x, which is exactly the pattern for \ensuremath{-}x modulo 2\textsuperscript{n}. Equivalently, interpret a pattern with top bit 1 by subtracting 2\textsuperscript{n} from its unsigned value. In excess-B notation, actual value = stored unsigned value \ensuremath{-} B. The lecture’s three-bit excess-4 example therefore maps 000 to \ensuremath{-}4 and 111 to 3. Bias has a practical reason: the order of the true values matches the unsigned order of the stored patterns, so comparing two excess values is a plain unsigned comparison.
 
 \begin{equationcard}{Decode rules}
 \[ \begin{gathered} \text{Two}’\mathrm{s}-\text{complement}\, \text{value}\, =\, \text{unsigned}(\text{pattern})\, -\, 2^{{n}}\, \text{when}\, \text{the}\, \text{top}\, \text{bit}\, \text{is}\, 1 \\ \text{Negate}\, {x}:\, \text{invert}\, {n}\, \text{bits},\, \text{then}\, \text{add}\, 1 \\ \text{Excess}-\mathrm{B}\, \text{value}\, =\, \text{stored}\, \text{value}\, -\, {B} \end{gathered} \]
-{\small Keep the width fixed throughout. The same bit pattern has no signed meaning until an encoding is specified.}
+{\small \emph{Read it as: “when the top bit is 1, the two’s-complement value is the unsigned value minus 2\textsuperscript{n}”; to negate, flip every bit and add 1.}\par Keep the width fixed throughout. The same bit pattern has no signed meaning until an encoding is specified.}
 \end{equationcard}
 \end{keepsection}
 
@@ -351,8 +360,11 @@ To form \ensuremath{-}x in n-bit two’s complement, invert all n bits of x and 
 \Needspace{7\baselineskip}
 In four-bit BCD, each decimal digit has its own four-bit code. For example, decimal 59 is 0101 1001 in BCD, while the ordinary binary value 59 is 00111011. BCD uses more bits but keeps each decimal digit directly readable.
 
-\Needspace{5\baselineskip}
+\Needspace{6\baselineskip}
 \begin{notebox}\textbf{Trap:} do not convert all BCD bits as one binary number. Decode each four-bit group as a decimal digit.\end{notebox}
+
+\Needspace{5\baselineskip}
+\begin{notebox}\textbf{Near miss:} +8 in four-bit two’s complement looks as if it should be 1000, but 1000 is \ensuremath{-}8: the range stops at +7, so +8 cannot be stored in four bits.\end{notebox}
 
 \Needspace{10\baselineskip}
 \begin{recallbox}{Recall check \ensuremath{\cdot} answer without looking}
@@ -369,21 +381,24 @@ In four-bit BCD, each decimal digit has its own four-bit code. For example, deci
 \end{keepsection}
 
 \begin{keepsection}
-\Needspace{6\baselineskip}
+\Needspace{11\baselineskip}
 \section{3.3 Character data}
 
+\Needspace{8\baselineskip}
 Numbers are not the only data stored as bits. A character encoding assigns numeric codes to letters, digits, punctuation, and control characters.
 
+\begin{plainbox}\textbf{In plain words:} text is stored as numbers too: a character encoding is a table that gives every letter, digit and symbol a numeric code. 7-bit ASCII has 128 codes, enough for basic English; Unicode extends the table to the world’s scripts, and a byte encoding says how each code is written as bytes.\end{plainbox}
+
 \begin{keepsection}
-\Needspace{14\baselineskip}
+\Needspace{15\baselineskip}
 \subsection{ASCII and Unicode}
 
-\Needspace{11\baselineskip}
+\Needspace{12\baselineskip}
 ASCII uses seven bits, giving 128 code values. The lecture describes eight-bit extensions that use the additional 128 patterns, but those upper values depend on the particular extension. Unicode assigns code points to characters across many writing systems; its first 128 code points match ASCII. A code point and its byte encoding are related but are not the same concept.
 
 \begin{equationcard}{Character-code facts}
 \[ \begin{gathered} 7-\text{bit}\, \text{ASCII}:\, 2^{7}\, =\, 128\, \text{code}\, \text{values} \\ \text{ASCII}\, \text{code}\, \text{points}:\, 0\, …\, 127 \end{gathered} \]
-{\small The first 128 Unicode code points correspond to ASCII. Byte encodings represent code points as bytes by their own rules.}
+{\small \emph{Read it as: “7-bit ASCII has 2\textsuperscript{7} = 128 code values, numbered 0 to 127”.}\par The first 128 Unicode code points correspond to ASCII. Byte encodings represent code points as bytes by their own rules.}
 \end{equationcard}
 
 \begin{workedbox}{Worked encoding \ensuremath{\cdot} read a short ASCII string}
@@ -397,8 +412,11 @@ The lecture’s example encodes “Fred” in hexadecimal as 46 72 65 64.
 \end{enumerate}
 \end{workedbox}
 
-\Needspace{10\baselineskip}
+\Needspace{6\baselineskip}
 \begin{notebox}\textbf{Trap:} an encoding is a mapping, not a property of the bit pattern by itself. Identify the character set and any byte encoding before decoding text.\end{notebox}
+
+\Needspace{10\baselineskip}
+\begin{notebox}\textbf{Near miss:} the character '7' looks like the number 7, but its ASCII code is 55. Arithmetic on character codes goes wrong unless you subtract the code of '0', which is 48, first.\end{notebox}
 
 \begin{recallbox}{Recall check \ensuremath{\cdot} answer without looking}
 \Needspace{4\baselineskip}
@@ -413,10 +431,13 @@ The lecture’s example encodes “Fred” in hexadecimal as 46 72 65 64.
 \end{keepsection}
 
 \begin{keepsection}
-\Needspace{6\baselineskip}
+\Needspace{11\baselineskip}
 \section{3.4 Unsigned binary arithmetic}
 
+\Needspace{8\baselineskip}
 Binary arithmetic follows the same place-value logic as decimal arithmetic. Carries and borrows move between columns, while the fixed bit width limits which values can be stored.
+
+\begin{plainbox}\textbf{In plain words:} binary arithmetic works column by column like the decimal method from school, only the columns are worth 1, 2, 4, 8, …. 1 + 1 makes 2, which is written 0 with 1 carried. The difference is that a computer has a fixed number of columns, so a carry out of the last column is lost.\end{plainbox}
 
 \begin{keepsection}
 \Needspace{13\baselineskip}
@@ -450,15 +471,15 @@ Calculate 1010\textsubscript{2}\ensuremath{-}0011\textsubscript{2}.
 \end{keepsection}
 
 \begin{keepsection}
-\Needspace{13\baselineskip}
+\Needspace{14\baselineskip}
 \subsection{Multiply and divide}
 
-\Needspace{10\baselineskip}
+\Needspace{11\baselineskip}
 Binary multiplication uses partial products, like decimal long multiplication, but each multiplier bit is only 0 or 1. Binary division uses quotient and remainder. For divisor d\ensuremath{\neq}0, dividend = quotient\ensuremath{\times}divisor + remainder, where 0\ensuremath{\leq}remainder\ensuremath{<}divisor.
 
 \begin{equationcard}{Division check}
 \[ \begin{gathered} \text{dividend}\, =\, \text{quotient}\, \times \, \text{divisor}\, +\, \text{remainder} \\ 0\, \leq \, \text{remainder}\, <\, \text{divisor} \end{gathered} \]
-{\small Substitute the quotient, divisor, and remainder to check a division result.}
+{\small \emph{Read it as: “dividend equals quotient times divisor plus remainder, with the remainder at least 0 and smaller than the divisor”.}\par Substitute the quotient, divisor, and remainder to check a division result.}
 \end{equationcard}
 
 \begin{workedbox}{Worked multiplication \ensuremath{\cdot} partial products}
@@ -485,8 +506,11 @@ Calculate 10111\textsubscript{2}÷11\textsubscript{2}.
 \end{enumerate}
 \end{workedbox}
 
-\Needspace{5\baselineskip}
+\Needspace{6\baselineskip}
 \begin{notebox}\textbf{Memory hook:} in binary addition, 1+1 writes 0 and carries 1. In subtraction, a borrow makes the current column worth 2 before subtracting.\end{notebox}
+
+\Needspace{5\baselineskip}
+\begin{notebox}\textbf{Near miss:} in four bits, 1100 + 0101 gives the correct sum 10001, but only four bits are kept: 0001. The column arithmetic was right; the result just does not fit.\end{notebox}
 
 \Needspace{9\baselineskip}
 \begin{recallbox}{Recall check \ensuremath{\cdot} answer without looking}
@@ -502,21 +526,24 @@ Calculate 10111\textsubscript{2}÷11\textsubscript{2}.
 \end{keepsection}
 
 \begin{keepsection}
-\Needspace{7\baselineskip}
+\Needspace{12\baselineskip}
 \section{3.5 Two’s-complement arithmetic and overflow}
 
+\Needspace{9\baselineskip}
 Two’s complement lets the same adder perform signed addition and subtraction. Correct bit operations still need a range check: a fixed-width result can wrap to a pattern with a different signed value.
 
+\begin{plainbox}\textbf{In plain words:} two’s complement lets one adder handle both signs: to subtract, add the negation. The catch is the fixed range. Adding two positive numbers can go past the largest value and wrap round to a pattern that reads as negative. That is \textbf{overflow}, and it is not the same thing as a carry out of the top bit.\end{plainbox}
+
 \begin{keepsection}
-\Needspace{16\baselineskip}
+\Needspace{17\baselineskip}
 \subsection{Addition, subtraction, and overflow}
 
-\Needspace{13\baselineskip}
+\Needspace{14\baselineskip}
 Add the bit patterns and discard any carry beyond the most significant bit. For subtraction, negate the subtrahend and add it to the minuend. Signed overflow occurs when the exact mathematical result lies outside the representation’s range. For addition, it occurs when two operands with the same sign produce a result with the opposite sign; operands of unlike signs cannot overflow.
 
 \begin{equationcard}{n-bit two’s-complement checks}
 \[ \begin{gathered} \text{Range}:\, -2^{{n}-1}\, …\, 2^{{n}-1}-1 \\ {A}\, -\, {B}\, =\, {A}\, +\, (\text{two}’\mathrm{s}-\text{complement}\, \text{negation}\, \text{of}\, {B}) \\ \text{Same}-\text{sign}\, \text{addition}\, \text{with}\, \text{opposite}-\text{sign}\, \text{result}\, \Rightarrow \, \text{overflow} \end{gathered} \]
-{\small Discarding carry-out is part of fixed-width addition. Carry-out alone does not signal signed overflow.}
+{\small \emph{Read it as: “A minus B is A plus the negation of B”; overflow on addition means two operands of the same sign gave a result of the other sign.}\par Discarding carry-out is part of fixed-width addition. Carry-out alone does not signal signed overflow.}
 \end{equationcard}
 
 \begin{workedbox}{Worked example \ensuremath{\cdot} detect overflow}
@@ -553,8 +580,11 @@ Calculate (\ensuremath{-}3)\ensuremath{\times}(+5) and store it in eight-bit two
 \Needspace{7\baselineskip}
 Overflow also matters for safety. The lecture warns that an integer overflow in a memory-size calculation can become a security hole, such as a buffer overflow, because too little memory gets allocated.
 
-\Needspace{5\baselineskip}
+\Needspace{7\baselineskip}
 \begin{notebox}\textbf{Sign check:} do not treat discarded carry as overflow. Decode the fixed-width result and compare it with the exact mathematical result and allowed range.\end{notebox}
+
+\Needspace{6\baselineskip}
+\begin{notebox}\textbf{Near miss:} in four bits, 0111 + 0001 = 1000 has no carry out of the top bit, yet it is wrong: 7 + 1 = 8 is out of range, and 1000 reads as \ensuremath{-}8. Overflow is judged by the signs, not by the carry.\end{notebox}
 
 \Needspace{11\baselineskip}
 \begin{recallbox}{Recall check \ensuremath{\cdot} answer without looking}
@@ -571,10 +601,13 @@ Overflow also matters for safety. The lecture warns that an integer overflow in 
 \end{keepsection}
 
 \begin{keepsection}
-\Needspace{7\baselineskip}
+\Needspace{13\baselineskip}
 \section{4.1 The floating-point model}
 
+\Needspace{10\baselineskip}
 Fixed-width integers from §3.5 cannot hold fractions or very large and very small values. Floating point uses a sign, a significand, and an exponent to cover those magnitudes, at the cost of exactness.
+
+\begin{plainbox}\textbf{In plain words:} a floating-point number is scientific notation in binary: a sign, a short run of significant digits (the \textbf{significand}) and an \textbf{exponent} that slides the point left or right. A fixed number of bits holds only so many significant digits, so most real numbers are stored as the nearest value the format can hold, and the gaps between neighbouring values grow as the numbers get larger.\end{plainbox}
 
 \begin{keepsection}
 \Needspace{9\baselineskip}
@@ -583,17 +616,17 @@ Fixed-width integers from §3.5 cannot hold fractions or very large and very sma
 \Needspace{6\baselineskip}
 For base β, a normalised number has the form sign \ensuremath{\times} significand \ensuremath{\times} β\textsuperscript{exponent}. The exponent controls scale and therefore the approximate range. The number of significand bits controls precision, or how finely nearby values can be distinguished.
 
-\Needspace{8\baselineskip}
+\Needspace{9\baselineskip}
 Floating-point values are finite in number, and their spacing changes with magnitude.
 
 \begin{equationcard}{Scientific notation model}
 \[ \begin{gathered} {x}\, =\, {s}\, \times \, {M}\, \times \, β^{{E}} \end{gathered} \]
-{\small s is the sign, M is the significand, β is the base or radix, and E is the exponent. In binary floating point, β=2.}
+{\small \emph{Read it as: “x is s times M times β to the E”: the sign s, the significand M with the digits, and the exponent E that says where the point goes.}\par s is the sign, M is the significand, β is the base or radix, and E is the exponent. In binary floating point, β=2.}
 \end{equationcard}
 
 \begin{equationcard}{Local gap between neighbours}
 \[ \begin{gathered} \text{gap}\, \text{within}\, [2^{{E}},\, 2^{{E}+1})\, =\, 2^{{E}-{p}+1} \end{gathered} \]
-{\small p is the number of significand bits. (This follows directly from the notes’ model: the last of p bits has weight 2\textsuperscript{\ensuremath{-}(p\ensuremath{-}1)}, scaled by 2\textsuperscript{E}. The notes only say the gap grows.) Between 8 and 16, E=3, so p=24 gives 2\textsuperscript{\ensuremath{-}20}.}
+{\small \emph{Read it as: “the gap between neighbouring values in [2\textsuperscript{E}, 2\textsuperscript{E+1}) is 2\textsuperscript{E\ensuremath{-}p+1}”: it doubles every time the values cross a power of 2.}\par p is the number of significand bits. (This follows directly from the notes’ model: the last of p bits has weight 2\textsuperscript{\ensuremath{-}(p\ensuremath{-}1)}, scaled by 2\textsuperscript{E}. The notes only say the gap grows.) Between 8 and 16, E=3, so p=24 gives 2\textsuperscript{\ensuremath{-}20}.}
 \end{equationcard}
 
 \begin{workedbox}{Worked example \ensuremath{\cdot} normalise a decimal value}
@@ -607,8 +640,11 @@ Write 343000 \ensuremath{\times} 10\textsuperscript{\ensuremath{-}4} in normalis
 \end{enumerate}
 \end{workedbox}
 
-\Needspace{5\baselineskip}
+\Needspace{7\baselineskip}
 \begin{notebox}\textbf{Trap:} moving the radix point changes the exponent in the opposite direction if the represented value is to stay the same.\end{notebox}
+
+\Needspace{6\baselineskip}
+\begin{notebox}\textbf{Near miss:} 12.5 \ensuremath{\times} 10\textsuperscript{0} and 1.25 \ensuremath{\times} 10\textsuperscript{1} are the same number, but only the second is normalised, with one non-zero digit before the point. A format that allowed both would spend bit patterns on duplicate values.\end{notebox}
 
 \Needspace{11\baselineskip}
 \begin{recallbox}{Recall check \ensuremath{\cdot} answer without looking}
@@ -625,21 +661,24 @@ Write 343000 \ensuremath{\times} 10\textsuperscript{\ensuremath{-}4} in normalis
 \end{keepsection}
 
 \begin{keepsection}
-\Needspace{9\baselineskip}
+\Needspace{10\baselineskip}
 \section{4.2 Binary fractions}
 
-\Needspace{6\baselineskip}
+\Needspace{7\baselineskip}
 The significand from §4.1 is a binary fraction, so its place values explain both conversion and approximation.
+
+\Needspace{7\baselineskip}
+\begin{plainbox}\textbf{In plain words:} binary fractions work like decimal ones with halves instead of tenths: after the binary point the places are worth 1/2, 1/4, 1/8, …. Some fractions that are short in decimal never end in binary, just as 1/3 never ends in decimal.\end{plainbox}
 
 The first bit after the binary point has weight 2\textsuperscript{\ensuremath{-}1}, and each following bit has half the previous weight.
 
 \begin{keepsection}
-\Needspace{9\baselineskip}
+\Needspace{10\baselineskip}
 \subsection{Convert binary fractions to decimal}
 
 \begin{equationcard}{Binary fractional place values}
 \[ \begin{gathered} 0.{b}_{1}{b}_{2}…{b}_{{k}}\, =\, {b}_{1}2^{-1}\, +\, {b}_{2}2^{-2}\, +\, …\, +\, {b}_{{k}}2^{-{k}} \end{gathered} \]
-{\small Each b\textsubscript{i} is 0 or 1. A leading integer part is evaluated with non-negative powers of 2.}
+{\small \emph{Read it as: “0.b\textsubscript{1}b\textsubscript{2}…b\textsubscript{k} is b\textsubscript{1} halves plus b\textsubscript{2} quarters plus …”: each bit times its power of one half.}\par Each b\textsubscript{i} is 0 or 1. A leading integer part is evaluated with non-negative powers of 2.}
 \end{equationcard}
 
 \begin{workedbox}{Worked conversion \ensuremath{\cdot} binary fraction to decimal}
@@ -683,8 +722,11 @@ Some fractions, such as 0.1 in decimal, repeat in binary.
 \Needspace{4\baselineskip}
 A finite significand stores only an approximation of a repeating expansion.
 
-\Needspace{4\baselineskip}
+\Needspace{6\baselineskip}
 \begin{notebox}\textbf{Trap:} a decimal fraction that looks short is not necessarily exact in binary.\end{notebox}
+
+\Needspace{6\baselineskip}
+\begin{notebox}\textbf{Near miss:} 0.1 has a single digit in decimal, but in binary it is 0.000110011… with the block 0011 repeating forever, so a computer can only store an approximation. 0.5 = 0.1\textsubscript{2}, by contrast, is exact.\end{notebox}
 
 \Needspace{10\baselineskip}
 \begin{recallbox}{Recall check \ensuremath{\cdot} answer without looking}
@@ -701,11 +743,14 @@ A finite significand stores only an approximation of a repeating expansion.
 \end{keepsection}
 
 \begin{keepsection}
-\Needspace{8\baselineskip}
+\Needspace{10\baselineskip}
 \section{4.3 Floating-point arithmetic and error}
 
-\Needspace{5\baselineskip}
+\Needspace{7\baselineskip}
 The exponent and significand must be managed during each operation.
+
+\Needspace{8\baselineskip}
+\begin{plainbox}\textbf{In plain words:} to multiply two floating-point numbers, multiply the significands and add the exponents. To add them, first shift the one with the smaller exponent until the exponents match, then add. Either way the result is normalised and rounded, and that rounding is where small errors creep in.\end{plainbox}
 
 After the exact operation, the result may need normalisation and rounding to fit the available precision.
 
@@ -782,11 +827,14 @@ For approximate comparisons, choose a tolerance ε that fits the scale and preci
 
 \begin{equationcard}{Absolute tolerance example}
 \[ \begin{gathered} \text{Treat}\, {a}\, \text{as}\, \text{close}\, \text{to}\, {b}\, \text{when}\, |{a}-{b}|\, <\, ε \\ \text{For}\, {b}\, =\, 1\, \text{and}\, ε\, =\, 0.000005:\, 0.999995\, <\, {a}\, <\, 1.000005 \end{gathered} \]
-{\small A fixed absolute tolerance may be unsuitable when magnitudes vary greatly. The slides also introduce relative closeness.}
+{\small \emph{Read it as: “treat a as close to b when the distance between them is less than ε”.}\par A fixed absolute tolerance may be unsuitable when magnitudes vary greatly. The slides also introduce relative closeness.}
 \end{equationcard}
 
-\Needspace{4\baselineskip}
+\Needspace{6\baselineskip}
 \begin{notebox}\textbf{Sign check:} estimate the order of magnitude before accepting a rounded result.\end{notebox}
+
+\Needspace{6\baselineskip}
+\begin{notebox}\textbf{Near miss:} 0.1 + 0.2 looks as if it should equal 0.3, but in double precision the computed sum is 0.30000000000000004, so the test 0.1 + 0.2 == 0.3 is false. Compare floating-point results with a tolerance instead.\end{notebox}
 
 \Needspace{13\baselineskip}
 \begin{recallbox}{Recall check \ensuremath{\cdot} answer without looking}
@@ -804,11 +852,14 @@ For approximate comparisons, choose a tolerance ε that fits the scale and preci
 \end{keepsection}
 
 \begin{keepsection}
-\Needspace{8\baselineskip}
+\Needspace{10\baselineskip}
 \section{4.4 IEEE 754 binary formats}
 
-\Needspace{5\baselineskip}
+\Needspace{7\baselineskip}
 A shared format defines how floating-point fields are stored and how arithmetic behaves.
+
+\Needspace{8\baselineskip}
+\begin{plainbox}\textbf{In plain words:} IEEE 754 is the shared recipe for storing a floating-point number: one sign bit, an exponent field stored with an offset (the \textbf{bias}) so it needs no sign of its own, and the fraction bits after the binary point. A normalised number always starts with 1., so that 1 is not stored at all: it is the \textbf{hidden bit}.\end{plainbox}
 
 The slides introduce IEEE 754 as a widely adopted standard for predictable binary floating-point arithmetic.
 
@@ -826,12 +877,12 @@ Double & 64 bits & 1 bit & 11 bits & 52 bits & 53 bits for normal values & 1023 
 \Needspace{6\baselineskip}
 For a normalised binary value, the leading significand bit is 1 and is omitted from the stored fraction field.
 
-\Needspace{10\baselineskip}
+\Needspace{11\baselineskip}
 The exponent field stores a biased exponent rather than a two’s-complement exponent. Stored order then matches true order, so hardware can compare two exponents as plain unsigned integers.
 
 \begin{equationcard}{Normalised value rule}
 \[ \begin{gathered} \text{value}\, =\, (-1)^{{S}}\, \times \, 1.{F}\, \times \, 2^{{E}-\text{bias}} \\ \text{Single}\, \text{bias}\, =\, 127 \\ \text{double}\, \text{bias}\, =\, 1023 \end{gathered} \]
-{\small S is the sign bit, E is the unsigned exponent field, and F is the stored fraction interpreted after the binary point. This rule is for normalised values.}
+{\small \emph{Read it as: “value is \ensuremath{-}1 to the S, times 1.F, times 2 to the (E minus bias)”: the sign, the stored fraction with its hidden 1, and the exponent once the bias is removed.}\par S is the sign bit, E is the unsigned exponent field, and F is the stored fraction interpreted after the binary point. This rule is for normalised values.}
 \end{equationcard}
 \end{keepsection}
 
@@ -865,8 +916,11 @@ The exponent field stores a biased exponent rather than a two’s-complement exp
 \end{enumerate}
 \end{workedbox}
 
-\Needspace{5\baselineskip}
+\Needspace{6\baselineskip}
 \begin{notebox}\textbf{Trap:} restore the hidden leading 1 when decoding a normalised value, but do not apply that rule to a subnormal value.\end{notebox}
+
+\Needspace{5\baselineskip}
+\begin{notebox}\textbf{Near miss:} the single-precision exponent field 10000000 looks like a large exponent, but it means 128 \ensuremath{-} 127 = 1. Subtract the bias before reading the exponent.\end{notebox}
 
 \Needspace{11\baselineskip}
 \begin{recallbox}{Recall check \ensuremath{\cdot} answer without looking}
@@ -883,11 +937,14 @@ The exponent field stores a biased exponent rather than a two’s-complement exp
 \end{keepsection}
 
 \begin{keepsection}
-\Needspace{8\baselineskip}
+\Needspace{9\baselineskip}
 \section{4.5 Zero, subnormal numbers, infinity, and NaN}
 
-\Needspace{5\baselineskip}
+\Needspace{6\baselineskip}
 Reserved exponent patterns extend useful behaviour beyond normalised values.
+
+\Needspace{7\baselineskip}
+\begin{plainbox}\textbf{In plain words:} some exponent patterns are kept for special cases. An exponent of all zeros means zero or a tiny \textbf{subnormal} number that fills the gap just above zero; an exponent of all ones means infinity when the fraction is zero, and NaN, “not a number”, for results such as 0/0.\end{plainbox}
 
 \Needspace{14\baselineskip}
 In single precision, exponent field zero and exponent field all ones have special interpretations.
@@ -904,7 +961,7 @@ All ones & Non-zero & NaN, or not-a-number \\
 
 \begin{equationcard}{Subnormal value rule}
 \[ \begin{gathered} \text{value}\, =\, (-1)^{{S}}\, \times \, 0.{F}\, \times \, 2^{-126} \\ \text{Smallest}\, \text{normal}\, \text{single}:\, 2^{-126}\, \approx \, 1.175\times 10^{-38} \end{gathered} \]
-{\small For a subnormal single-precision number, the hidden bit is 0 and the exponent is fixed at \ensuremath{-}126. Precision falls as the value nears zero.}
+{\small \emph{Read it as: “a subnormal value is \ensuremath{-}1 to the S times 0.F times 2\textsuperscript{\ensuremath{-}126}”: no hidden 1, and the exponent stays at its smallest value.}\par For a subnormal single-precision number, the hidden bit is 0 and the exponent is fixed at \ensuremath{-}126. Precision falls as the value nears zero.}
 \end{equationcard}
 
 \Needspace{8\baselineskip}
@@ -964,20 +1021,20 @@ Cancellation occurs when subtracting close stored values. The subtraction may it
 \end{keepsection}
 
 \begin{keepsection}
-\Needspace{14\baselineskip}
+\Needspace{15\baselineskip}
 \subsection{Machine epsilon and relative error}
 
-\Needspace{11\baselineskip}
+\Needspace{12\baselineskip}
 Machine epsilon is the gap from 1 to the next larger representable value. For radix β and p significant digits, ε\textsubscript{mach}=β\textsuperscript{1\ensuremath{-}p}. Here p counts the full significand digits, including the hidden leading bit in a normalised IEEE value.
 
 \begin{equationcard}{Binary machine epsilon}
 \[ \begin{gathered} \text{Single}\, \text{precision}:\, {p}\, =\, 24,\, ε_{\text{mach}}\, =\, 2^{-23}\, \approx \, 1.19\times 10^{-7} \\ \text{Double}\, \text{precision}:\, {p}\, =\, 53,\, ε_{\text{mach}}\, =\, 2^{-52}\, \approx \, 2.22\times 10^{-16} \end{gathered} \]
-{\small Under round-to-nearest, the unit roundoff u is ε\textsubscript{mach}/2 for normal results. “Unit roundoff” is not a term from the slides.}
+{\small \emph{Read it as: “ε\textsubscript{mach} is the gap between 1 and the next larger value the format can store”: 2\textsuperscript{\ensuremath{-}23} in single precision.}\par Under round-to-nearest, the unit roundoff u is ε\textsubscript{mach}/2 for normal results. “Unit roundoff” is not a term from the slides.}
 \end{equationcard}
 
 \begin{equationcard}{Relative rounding model}
 \[ \begin{gathered} \text{fl}({x})\, =\, {x}(1+δ),\, \text{with}\, |δ|\, \leq \, {u} \end{gathered} \]
-{\small For finite non-zero normal results, round-to-nearest, and no overflow. Relative error is measured against |x|, so the same absolute error matters more when the true answer is small.}
+{\small \emph{Read it as: “the stored value fl(x) is x times (1 + δ), with |δ| at most u”: rounding changes a number by a small relative amount.}\par For finite non-zero normal results, round-to-nearest, and no overflow. Relative error is measured against |x|, so the same absolute error matters more when the true answer is small.}
 \end{equationcard}
 
 \Needspace{10\baselineskip}
@@ -1042,6 +1099,9 @@ A fused multiply-add evaluates a\ensuremath{\times}b+c with one final rounding. 
 {\small The fused operation avoids the intermediate rounding step.}
 \end{equationcard}
 
+\Needspace{5\baselineskip}
+\begin{notebox}\textbf{Near miss:} +0 and \ensuremath{-}0 have different bit patterns and compare as equal, yet they are not interchangeable: 1/(+0) gives +\ensuremath{\infty} while 1/(\ensuremath{-}0) gives \ensuremath{-}\ensuremath{\infty}. The sign bit still matters at zero.\end{notebox}
+
 \Needspace{14\baselineskip}
 \begin{recallbox}{Recall check \ensuremath{\cdot} answer without looking}
 \Needspace{8\baselineskip}
@@ -1059,34 +1119,37 @@ A fused multiply-add evaluates a\ensuremath{\times}b+c with one final rounding. 
 \end{keepsection}
 
 \begin{keepsection}
-\Needspace{7\baselineskip}
+\Needspace{11\baselineskip}
 \section{5.1 C memory and pointers}
 
+\Needspace{8\baselineskip}
 Everything so far gave meaning to bit patterns. C also lets you handle where those patterns live, because an address is itself a number you can store. That gives direct control and direct ways to fail.
 
+\begin{plainbox}\textbf{In plain words:} every variable lives at an address in memory, and in C that address is a value you can store: a \textbf{pointer}. \& gives the address of a variable, and * follows an address to the value stored there. That gives direct control over memory, and direct ways to break it.\end{plainbox}
+
 \begin{keepsection}
-\Needspace{13\baselineskip}
+\Needspace{15\baselineskip}
 \subsection{Addresses, \& and *}
 
-\Needspace{10\baselineskip}
+\Needspace{12\baselineskip}
 C treats memory as a contiguous line of bytes, each with a numerical address, usually written in hexadecimal. A pointer is a variable that stores an address. The operator \& gives the address of a variable, and * reads or writes the value at an address.
 
 \begin{equationcard}{Core syntax}
 \[ \begin{gathered} \text{int}\, *\mathrm{p};\, \text{declares}\, \mathrm{a}\, \text{pointer}\, \text{to}\, \text{int} \\ \text{int}\, \mathrm{x}\, =\, 10;\, \mathrm{p}\, =\, \&\mathrm{x};\, \mathrm{p}\, \text{now}\, \text{holds}\, \text{the}\, \text{address}\, \text{of}\, \mathrm{x} \\ *{p}\, =\, 20 \\ \text{writes}\, \text{through}\, {p},\, \text{so}\, {x}\, \text{becomes}\, 20 \end{gathered} \]
-{\small In a declaration, * builds a pointer type. In an expression, * dereferences.}
+{\small \emph{Read it as: “int *p declares p as a pointer to an int”; “p = \&x puts the address of x into p”; “*p = 20 writes 20 wherever p points”.}\par In a declaration, * builds a pointer type. In an expression, * dereferences.}
 \end{equationcard}
 \end{keepsection}
 
 \begin{keepsection}
-\Needspace{12\baselineskip}
+\Needspace{13\baselineskip}
 \subsection{Pointer arithmetic and arrays}
 
-\Needspace{9\baselineskip}
+\Needspace{10\baselineskip}
 Adding n to a pointer moves n elements, not n bytes. In most expressions an array name decays to a pointer to its first element, and subscripting is defined through that pointer.
 
 \begin{equationcard}{Scaling and subscripts}
 \[ \begin{gathered} \text{new}\, \text{address}\, =\, \text{old}\, \text{address}\, +\, \mathrm{n}\, \times \, \text{sizeof}(\text{type}) \\ {a}[{i}]\, \text{means}\, *({a}\, +\, {i}) \end{gathered} \]
-{\small Sizes depend on the platform; the lecture assumes 4 bytes for int and 8 for double.}
+{\small \emph{Read it as: “adding n to a pointer moves it n elements, that is n \ensuremath{\times} sizeof(type) bytes, not n bytes”; a[i] is the same as *(a + i).}\par Sizes depend on the platform; the lecture assumes 4 bytes for int and 8 for double.}
 \end{equationcard}
 
 \begin{workedbox}{Worked example \ensuremath{\cdot} scaled steps}
@@ -1134,8 +1197,11 @@ Memory leak & The only pointer to a malloc block is lost, so it can never be fre
 Dangling pointer & The pointer still holds the address of freed memory, which may be reused. & free(p); p = NULL; \\
 \bottomrule\end{tabularx}\end{center}
 
-\Needspace{12\baselineskip}
+\Needspace{7\baselineskip}
 \begin{notebox}\textbf{Trap:} setting p to NULL after free only protects that one pointer. Any other copy of the address still dangles.\end{notebox}
+
+\Needspace{13\baselineskip}
+\begin{notebox}\textbf{Near miss:} after int *p = malloc(sizeof(int)); free(p); the pointer p still holds the old address, and *p may even still show the old value, but reading it is undefined behaviour: that memory no longer belongs to you.\end{notebox}
 
 \begin{recallbox}{Recall check \ensuremath{\cdot} answer without looking}
 \Needspace{5\baselineskip}
@@ -1151,10 +1217,13 @@ Dangling pointer & The pointer still holds the address of freed memory, which ma
 \end{keepsection}
 
 \begin{keepsection}
-\Needspace{6\baselineskip}
+\Needspace{11\baselineskip}
 \section{5.2 The Python memory model}
 
+\Needspace{8\baselineskip}
 Python keeps the reference idea from §5.1 but hides the addresses and the freeing. Knowing the model tells you when a change through one name shows up through another.
+
+\begin{plainbox}\textbf{In plain words:} in Python a variable is a name tag tied to an object, not a box that holds a value. b = a ties a second tag to the same object. If the object can change, as a list can, a change made through one name shows up through the other; if it cannot, as a number or a string cannot, “changing” it really ties the name to a new object.\end{plainbox}
 
 \begin{keepsection}
 \Needspace{17\baselineskip}
@@ -1207,8 +1276,11 @@ Priority & Direct control and performance & Safety and developer productivity \\
 \Needspace{6\baselineskip}
 \begin{notebox}\textbf{Trap:} b = a never copies a list. To get a separate list you must ask for one, for example with list(a).\end{notebox}
 
-\Needspace{12\baselineskip}
+\Needspace{7\baselineskip}
 \begin{notebox}\textbf{Trap:} id() is unique only among objects alive at the same time, so a freed object’s identifier can come back.\end{notebox}
+
+\Needspace{13\baselineskip}
+\begin{notebox}\textbf{Near miss:} a = [1, 2]; b = a; a = a + [3] leaves b as [1, 2], but a = [1, 2]; b = a; a += [3] makes b [1, 2, 3] too. For lists, + builds a new list, while += changes the existing one in place.\end{notebox}
 
 \begin{recallbox}{Recall check \ensuremath{\cdot} answer without looking}
 \Needspace{5\baselineskip}

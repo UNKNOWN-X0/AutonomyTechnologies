@@ -216,15 +216,18 @@ Must a claim hold for every n? & Induction with a base and step. \\
 \end{keepsection}
 
 \begin{keepsection}
-\Needspace{12\baselineskip}
+\Needspace{11\baselineskip}
 \section{2.1 Number Systems}
 
-\Needspace{9\baselineskip}
+\Needspace{8\baselineskip}
 The sets grow by solving equations that smaller number systems cannot always solve. Knowing which set contains a number determines which tools are valid.
+
+\Needspace{12\baselineskip}
+\begin{plainbox}\textbf{In plain words:} each number system fixes an equation the smaller one cannot always solve. In \ensuremath{\mathbb{N}} you can count but not always subtract; \ensuremath{\mathbb{Z}} adds the negatives, so \textit{x} + 3 = 1 has a solution; \ensuremath{\mathbb{Q}} adds fractions, so 2\textit{x} = 1 does; \ensuremath{\mathbb{R}} fills the remaining gaps, so \textit{x}\textsuperscript{2} = 2 does. Each set sits inside the next.\end{plainbox}
 
 \begin{equationcard}{Number-system inclusion}
 \[ \begin{gathered} \mathbb{N}\, \subsetneq \, \mathbb{Z}\, \subsetneq \, \mathbb{Q}\, \subsetneq \, \mathbb{R} \\ \text{irrational}\, \text{numbers}\, =\, \mathbb{R}\\mathbb{Q} \end{gathered} \]
-{\small Here \ensuremath{\mathbb{N}}=\{1,2,…\}; \ensuremath{\mathbb{N}}\textsubscript{0}=\ensuremath{\mathbb{N}}\ensuremath{\cup}\{0\}. A rational is p/q with p\ensuremath{\in}\ensuremath{\mathbb{Z}}, q\ensuremath{\in}\ensuremath{\mathbb{N}} and p,q coprime.}
+{\small \emph{Read it as: “\ensuremath{\mathbb{N}} is a proper subset of \ensuremath{\mathbb{Z}}, which is a proper subset of \ensuremath{\mathbb{Q}}, which is a proper subset of \ensuremath{\mathbb{R}}”: each system strictly contains the one before.}\par Here \ensuremath{\mathbb{N}}=\{1,2,…\}; \ensuremath{\mathbb{N}}\textsubscript{0}=\ensuremath{\mathbb{N}}\ensuremath{\cup}\{0\}. A rational is p/q with p\ensuremath{\in}\ensuremath{\mathbb{Z}}, q\ensuremath{\in}\ensuremath{\mathbb{N}} and p,q coprime.}
 \end{equationcard}
 
 \Needspace{10\baselineskip}
@@ -243,8 +246,11 @@ Binary uses place values that are powers of two. A bit string [a\textsubscript{m
 \end{enumerate}
 \end{workedbox}
 
-\Needspace{5\baselineskip}
+\Needspace{7\baselineskip}
 \begin{notebox}\textbf{Trap:} zero is not in \ensuremath{\mathbb{N}} under these notes’ convention. Write \ensuremath{\mathbb{N}}\textsubscript{0} when zero is included. Also, an integer written as a decimal or fraction can still belong to a smaller set, such as 6/3=2\ensuremath{\in}\ensuremath{\mathbb{Z}}.\end{notebox}
+
+\Needspace{6\baselineskip}
+\begin{notebox}\textbf{Near miss:} \ensuremath{\surd}4 is written with a root sign, but its value is the natural number 2; \ensuremath{\surd}2 has no fraction form at all. Decide which set a number belongs to by its value, not by how it is written.\end{notebox}
 
 \Needspace{8\baselineskip}
 \begin{recallbox}{Recall check \ensuremath{\cdot} answer before opening}
@@ -259,23 +265,26 @@ Binary uses place values that are powers of two. A bit string [a\textsubscript{m
 \end{keepsection}
 
 \begin{keepsection}
-\Needspace{12\baselineskip}
+\Needspace{11\baselineskip}
 \section{2.2 Real Numbers}
 
-\Needspace{9\baselineskip}
+\Needspace{8\baselineskip}
 The real-number rules explain why algebraic transformations are legitimate and why limits do not leave gaps in the number line.
 
+\Needspace{11\baselineskip}
+\begin{plainbox}\textbf{In plain words:} the real numbers are the number line with no holes. The field axioms say you can add, subtract, multiply and divide (except by 0) with the usual rules; the order axioms say how \ensuremath{<} behaves; and \textbf{completeness} says every non-empty set that is bounded above has a smallest upper bound, its \textbf{supremum}. That last rule is what makes \ensuremath{\surd}2 a real number.\end{plainbox}
+
 \begin{equationcard}{Field and order}
-\[ \begin{gathered} \mathbb{R}\, \text{is}\, {a}\, \text{complete}\, \text{ordered}\, \text{field} \end{gathered} \]
+\[ \begin{gathered} \mathbb{R}\, \text{is}\, \mathrm{a}\, \text{complete}\, \text{ordered}\, \text{field} \end{gathered} \]
 {\small The notes list 9 field axioms, 4 order axioms and 1 completeness axiom. A field has 0, 1, additive inverses and multiplicative inverses for non-zero elements.}
 \end{equationcard}
 
-\Needspace{12\baselineskip}
+\Needspace{14\baselineskip}
 The field axioms encode commutativity, associativity, neutral elements, inverses and distributivity. The order axioms make \ensuremath{<} a total, transitive order compatible with addition and multiplication by positive numbers. Together these support the familiar algebra of inequalities. \ensuremath{\mathbb{Z}} is not a field because, for example, 1/3 is not an integer. \ensuremath{\mathbb{Q}} is an ordered field, but it is not complete.
 
 \begin{equationcard}{Upper bound and supremum}
 \[ \begin{gathered} {S}\, =\, \text{sup}({M})\, \text{iff}\, (\mathrm{i})\, {x}\, \leq \, {S}\, \text{for}\, \text{every}\, {x}\in {M}\, \text{and}\, (\text{ii})\, {S}\, \leq \, {T}\, \text{for}\, \text{every}\, \text{upper}\, \text{bound}\, {T}\, \text{of}\, {M} \end{gathered} \]
-{\small The supremum is the least upper bound. It need not belong to M. An infimum is the greatest lower bound.}
+{\small \emph{Read it as: “S is the supremum of M if no element of M is bigger than S, and S is no bigger than any other upper bound”: the smallest number that sits on or above the whole set.}\par The supremum is the least upper bound. It need not belong to M. An infimum is the greatest lower bound.}
 \end{equationcard}
 
 \Needspace{10\baselineskip}
@@ -290,8 +299,11 @@ For M=\{1, 1/2, 1/3,…\}, sup(M)=1 and inf(M)=0. The maximum is 1 because 1\ens
 Let M=\{1\ensuremath{-}1/n : n\ensuremath{\in}\ensuremath{\mathbb{N}}\}. Its first values are 0, 1/2, 2/3, 3/4, … . Every value is below 1, so 1 is an upper bound. Values approach 1, so no smaller number is an upper bound: sup(M)=1. But 1\ensuremath{\notin}M, so M has no maximum. The smallest member is 0, hence inf(M)=min(M)=0.
 \end{workedbox}
 
-\Needspace{5\baselineskip}
+\Needspace{7\baselineskip}
 \begin{notebox}\textbf{Trap:} a supremum is not automatically a maximum. First establish the least or greatest bound, then check whether it belongs to the set.\end{notebox}
+
+\Needspace{6\baselineskip}
+\begin{notebox}\textbf{Near miss:} the set M = \{\textit{x} : \textit{x} \ensuremath{<} 1\} has upper bounds 1, 2, 10 and so on, and its supremum is 1, but 1 is not in M, so M has no maximum. A bounded set always has a supremum; it may not have a maximum.\end{notebox}
 
 \Needspace{9\baselineskip}
 \begin{recallbox}{Recall check \ensuremath{\cdot} answer before opening}
@@ -306,20 +318,23 @@ Let M=\{1\ensuremath{-}1/n : n\ensuremath{\in}\ensuremath{\mathbb{N}}\}. Its fir
 \end{keepsection}
 
 \begin{keepsection}
-\Needspace{12\baselineskip}
+\Needspace{10\baselineskip}
 \section{2.3 Absolute Values and Inequalities}
 
-\Needspace{9\baselineskip}
+\Needspace{7\baselineskip}
 Absolute value turns signs into distance, while the order axioms let you solve distance constraints as intervals.
+
+\Needspace{11\baselineskip}
+\begin{plainbox}\textbf{In plain words:} absolute value is distance: |\textit{x}| is how far \textit{x} is from 0, and |\textit{x} \ensuremath{-} \textit{a}| is how far \textit{x} is from \textit{a}. So an inequality such as |\textit{x} \ensuremath{-} 3| \ensuremath{<} 2 simply says “\textit{x} is less than 2 away from 3”, which is the interval (1, 5).\end{plainbox}
 
 \begin{equationcard}{Absolute value}
 \[ \begin{gathered} |{x}|\, =\, {x}\, \text{if}\, {x}\, \geq \, 0 \\ |{x}|\, =\, -{x}\, \text{if}\, {x}\, <\, 0 \end{gathered} \]
-{\small |x| is distance from x to 0; |x\ensuremath{-}a| is distance from x to a. In particular, \ensuremath{\surd}(x\textsuperscript{2})=|x|.}
+{\small \emph{Read it as: “the absolute value of x is x when x is not negative, and minus x when x is negative”: either way the result is not negative.}\par |x| is distance from x to 0; |x\ensuremath{-}a| is distance from x to a. In particular, \ensuremath{\surd}(x\textsuperscript{2})=|x|.}
 \end{equationcard}
 
 \begin{equationcard}{Absolute-value laws}
 \[ \begin{gathered} |\text{xy}|\, =\, |{x}||{y}| \\ ||{x}|-|{y}||\, \leq \, |{x}+{y}|\, \leq \, |{x}|+|{y}| \end{gathered} \]
-{\small The right-hand inequality is the triangle inequality. Equality is possible.}
+{\small \emph{Read it as: “the absolute value of a product is the product of the absolute values”, and the triangle inequality: “|x + y| is at most |x| + |y|”.}\par The right-hand inequality is the triangle inequality. Equality is possible.}
 \end{equationcard}
 
 \Needspace{11\baselineskip}
@@ -329,8 +344,11 @@ For c\ensuremath{\geq}0, |x\ensuremath{-}a|\ensuremath{\leq}c is equivalent to a
 Solve |2x\ensuremath{-}1|\ensuremath{\leq}5. By the two-sided form, \ensuremath{-}5\ensuremath{\leq}2x\ensuremath{-}1\ensuremath{\leq}5. Add 1: \ensuremath{-}4\ensuremath{\leq}2x\ensuremath{\leq}6. Divide by 2: \ensuremath{-}2\ensuremath{\leq}x\ensuremath{\leq}3. The centre is 1/2 and the radius is 5/2, consistent with the interval endpoints.
 \end{workedbox}
 
-\Needspace{5\baselineskip}
+\Needspace{6\baselineskip}
 \begin{notebox}\textbf{Sign check:} squaring both sides can introduce solutions unless both sides are known to be non-negative. Also, \ensuremath{\surd}(x\textsuperscript{2}) is |x|, not always x.\end{notebox}
+
+\Needspace{5\baselineskip}
+\begin{notebox}\textbf{Near miss:} solving |\textit{x}| = \ensuremath{-}2 with “\textit{x} = 2 or \textit{x} = \ensuremath{-}2” looks routine, but a distance cannot be negative, so there is no solution. Check the sign of the right-hand side first.\end{notebox}
 
 \Needspace{8\baselineskip}
 \begin{recallbox}{Recall check \ensuremath{\cdot} answer before opening}
@@ -351,9 +369,12 @@ Solve |2x\ensuremath{-}1|\ensuremath{\leq}5. By the two-sided form, \ensuremath{
 \Needspace{9\baselineskip}
 Summation and product notation compress repeated operations. Factorials count arrangements; binomial coefficients count selections and become the weights in expansions.
 
+\Needspace{13\baselineskip}
+\begin{plainbox}\textbf{In plain words:} ∑ is shorthand for “add up” and ∏ for “multiply together”. The index under the sign says where to start, the number on top where to stop, and the expression after the sign is what to take for each value of the index. \textit{n}! counts the orders in which \textit{n} different things can be lined up; the binomial coefficient counts the ways to choose \textit{k} of them when order does not matter.\end{plainbox}
+
 \begin{equationcard}{Summation and product}
 \[ \begin{gathered} \sum_{{k}={m}}^{{n}} {a}_{{k}}\, =\, {a}_{{m}}\, +\, …\, +\, {a}_{{n}} \\ \prod_{{k}={m}}^{{n}} {a}_{{k}}\, =\, {a}_{{m}}\, \cdot \, …\, \cdot \, {a}_{{n}} \end{gathered} \]
-{\small Read the index bounds inclusively. A constant factor c can be taken outside a sum; for a product it becomes c raised to the number of factors.}
+{\small \emph{Read it as: “the sum of a k for k from m to n”: add a\textsubscript{m}, then a\textsubscript{m+1}, and so on up to a\textsubscript{n}.}\par Read the index bounds inclusively. A constant factor c can be taken outside a sum; for a product it becomes c raised to the number of factors.}
 \end{equationcard}
 
 \begin{equationcard}{Calculation rules for \ensuremath{\Sigma} and Π}
@@ -375,7 +396,7 @@ Evaluate $\sum_{\mathrm{k}=1}^{\mathrm{n}} $1/(k(k+1)).
 
 \begin{equationcard}{Factorial and binomial coefficient}
 \[ \begin{gathered} {n}!\, =\, \prod_{{k}=1}^{{n}} {k},\, 0!\, =\, 1 \\ {C}({n},{k})\, =\, {n}!/[{k}!({n}-{k})!] \end{gathered} \]
-{\small For 0\ensuremath{\leq}k\ensuremath{\leq}n. C(n,k) counts k-element subsets chosen from n distinct elements, with order ignored. n! counts the orderings (permutations) of n distinct elements: \{1,2,3\} has 3!=6.}
+{\small \emph{Read it as: “n factorial is the product of k for k from 1 to n”, so 4! = 1 \ensuremath{\cdot} 2 \ensuremath{\cdot} 3 \ensuremath{\cdot} 4 = 24.}\par For 0\ensuremath{\leq}k\ensuremath{\leq}n. C(n,k) counts k-element subsets chosen from n distinct elements, with order ignored. n! counts the orderings (permutations) of n distinct elements: \{1,2,3\} has 3!=6.}
 \end{equationcard}
 
 \begin{equationcard}{Pascal identity and binomial theorem}
@@ -392,8 +413,11 @@ Expand (x+2)\textsuperscript{4}. The row of coefficients is 1, 4, 6, 4, 1, so th
 Separately, the number of 3-person groups from 8 people is C(8,3)=8\ensuremath{\cdot}7\ensuremath{\cdot}6/(3\ensuremath{\cdot}2\ensuremath{\cdot}1)=56; ordering the group members would overcount each group 3! times.
 \end{workedbox}
 
-\Needspace{5\baselineskip}
+\Needspace{7\baselineskip}
 \begin{notebox}\textbf{Memory hook:} in the term indexed by k, the exponent on a is n\ensuremath{-}k and the exponent on b is k. Check that each term’s exponents add to n.\end{notebox}
+
+\Needspace{6\baselineskip}
+\begin{notebox}\textbf{Near miss:} “the sum of \textit{k}\textsuperscript{2} for \textit{k} = 1 to 3” looks as if it might be (1 + 2 + 3)\textsuperscript{2} = 36, but it means 1\textsuperscript{2} + 2\textsuperscript{2} + 3\textsuperscript{2} = 14. The expression after ∑ is worked out for each \textit{k} first, then the results are added.\end{notebox}
 
 \Needspace{9\baselineskip}
 \begin{recallbox}{Recall check \ensuremath{\cdot} answer before opening}
@@ -408,15 +432,18 @@ Separately, the number of 3-person groups from 8 people is C(8,3)=8\ensuremath{\
 \end{keepsection}
 
 \begin{keepsection}
-\Needspace{12\baselineskip}
+\Needspace{10\baselineskip}
 \section{2.5 Mathematical Induction}
 
-\Needspace{9\baselineskip}
+\Needspace{7\baselineskip}
 Induction proves infinitely many linked claims using a finite argument: establish a starting case, then show each true case passes the claim to the next one.
+
+\Needspace{11\baselineskip}
+\begin{plainbox}\textbf{In plain words:} induction works like a row of dominoes. Show that the first one falls (the \textbf{base case}), and show that whenever one falls it knocks over the next (the \textbf{step}). Then every domino falls, so the claim holds for every \textit{n} from the starting value on.\end{plainbox}
 
 \begin{equationcard}{Induction principle}
 \[ \begin{gathered} \text{Prove}\, {A}({n}_{0}),\, \text{and}\, \text{prove}\, {A}({n})\, \Rightarrow \, {A}({n}+1)\, \text{for}\, \text{arbitrary}\, {n}\, \geq \, {n}_{0} \end{gathered} \]
-{\small Then A(n) holds for every integer n\ensuremath{\geq}n\textsubscript{0}. State the starting index and keep the induction hypothesis available in the step.}
+{\small \emph{Read it as: “if A(n\textsubscript{0}) is true, and A(n) being true always makes A(n+1) true, then A(n) is true for every n \ensuremath{\geq} n\textsubscript{0}”.}\par Then A(n) holds for every integer n\ensuremath{\geq}n\textsubscript{0}. State the starting index and keep the induction hypothesis available in the step.}
 \end{equationcard}
 
 \Needspace{14\baselineskip}
@@ -452,8 +479,11 @@ Claim: 1+2+…+n=n(n+1)/2 for n\ensuremath{\in}\ensuremath{\mathbb{N}}.
 \end{enumerate}
 \end{workedbox}
 
-\Needspace{5\baselineskip}
+\Needspace{6\baselineskip}
 \begin{notebox}\textbf{Trap:} checking several values is not an induction proof. In the step, n is arbitrary—not one particular example—and the induction hypothesis must be stated before it is used.\end{notebox}
+
+\Needspace{5\baselineskip}
+\begin{notebox}\textbf{Near miss:} \textit{n}\textsuperscript{2} + \textit{n} + 41 is prime for \textit{n} = 0, 1, 2, …, 39, yet at \textit{n} = 40 it gives 1681 = 41\textsuperscript{2}. Forty checked cases are still not a proof; only the step from \textit{n} to \textit{n} + 1 covers every case.\end{notebox}
 
 \Needspace{10\baselineskip}
 \begin{recallbox}{Recall check \ensuremath{\cdot} answer before opening}

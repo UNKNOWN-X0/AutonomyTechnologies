@@ -203,21 +203,24 @@ Can a function be represented more compactly? & Try a normal form, a K-map, or a
 \end{keepsection}
 
 \begin{keepsection}
-\Needspace{6\baselineskip}
+\Needspace{11\baselineskip}
 \section{1.1 Foundations: one structure, several views}
 
+\Needspace{8\baselineskip}
 A Boolean algebra packages truth operations into a system of equations. The same structure can also be understood through order, sets, or arithmetic modulo two.
 
+\begin{plainbox}\textbf{In plain words:} a Boolean algebra is any system with two operations that behave like OR and AND, a complement that behaves like NOT, and the constants 0 and 1, all obeying the same short list of rules. Logic, sets (with \ensuremath{\cup}, \ensuremath{\cap} and complement) and switching circuits are all examples, so a law proved once holds in each of them.\end{plainbox}
+
 \begin{keepsection}
-\Needspace{15\baselineskip}
+\Needspace{16\baselineskip}
 \subsection{Operations and axioms}
 
-\Needspace{12\baselineskip}
+\Needspace{13\baselineskip}
 Write the structure as (B, +, \ensuremath{\cdot}, ', 0, 1). Join (+) and meet (\ensuremath{\cdot}) are binary operations; complement (') is unary. The Huntington-style axioms used in the lecture state commutativity, associativity, distributivity, identities, and complements.
 
 \begin{equationcard}{Core axioms}
 \[ \begin{gathered} {x}\, +\, {y}\, =\, {y}\, +\, {x} \\ ({x}\, +\, {y})\, +\, {z}\, =\, {x}\, +\, ({y}\, +\, {z}) \\ {x}\cdot ({y}\, +\, {z})\, =\, {x}\cdot {y}\, +\, {x}\cdot {z} \\ {x}\, +\, {y}\cdot {z}\, =\, ({x}\, +\, {y})\cdot ({x}\, +\, {z}) \\ {x}\, +\, 0\, =\, {x} \\ {x}\cdot 1\, =\, {x} \\ {x}\, +\, {x}'\, =\, 1 \\ {x}\cdot {x}'\, =\, 0 \end{gathered} \]
-{\small The lecture’s axiom list also states the dual commutative and associative laws for meet. It prints only the first distributive law; the second is needed, because XOR and AND on \{0,1\} satisfy the printed list but not x+x=x.}
+{\small \emph{Read it as: “x or y equals y or x”, and so on down the list; the last two say “x or not x is 1” and “x and not x is 0”.}\par The lecture’s axiom list also states the dual commutative and associative laws for meet. It prints only the first distributive law; the second is needed, because XOR and AND on \{0,1\} satisfy the printed list but not x+x=x.}
 \end{equationcard}
 
 \Needspace{14\baselineskip}
@@ -238,15 +241,15 @@ The proof relies on the stated complement conditions; it does not assume uniquen
 \end{keepsection}
 
 \begin{keepsection}
-\Needspace{15\baselineskip}
+\Needspace{16\baselineskip}
 \subsection{Sets, rings, and maps}
 
-\Needspace{12\baselineskip}
+\Needspace{13\baselineskip}
 The power set P(U), with union as +, intersection as \ensuremath{\cdot}, set complement as ', empty set as 0, and U as 1, is a Boolean algebra. There is also a ring view: XOR is addition, AND is multiplication, and every element is idempotent under multiplication. Formula cards use a circled plus for XOR, because slide 13 reuses + for it.
 
 \begin{equationcard}{Boolean ring translation}
 \[ \begin{gathered} {x}\, ⊕\, {y}\, =\, ({x}\cdot {y}')\, +\, ({x}'\cdot {y}) \\ {x}\, ⊙\, {y}\, =\, {x}\cdot {y} \\ {x}\, \land \, {y}\, =\, {x}{y} \\ {x}\, \lor \, {y}\, =\, {x}\, ⊕\, {y}\, ⊕\, {x}{y} \\ \neg {x}\, =\, 1\, ⊕\, {x} \\ {x}^{2}\, =\, {x} \\ {x}\, ⊕\, {x}\, =\, 0 \end{gathered} \]
-{\small Slide 13 reuses + for ring addition; here XOR keeps it apart from join. The power-set example uses symmetric difference for ring addition and intersection for multiplication.}
+{\small \emph{Read it as: “x XOR y is (x and not y) or (not x and y)”, true when exactly one of them is 1; and “x squared is x”, because x \ensuremath{\cdot} x = x for both 0 and 1.}\par Slide 13 reuses + for ring addition; here XOR keeps it apart from join. The power-set example uses symmetric difference for ring addition and intersection for multiplication.}
 \end{equationcard}
 
 \Needspace{15\baselineskip}
@@ -261,8 +264,11 @@ Characteristic 2 & x XOR x=0, so \ensuremath{-}x=x: every element is its own neg
 Finite Boolean rings & Each is isomorphic to F\textsubscript{2}\textsuperscript{n}, computed componentwise \\
 \bottomrule\end{tabularx}\end{center}
 
-\Needspace{5\baselineskip}
+\Needspace{6\baselineskip}
 \begin{notebox}\textbf{Trap:} duality is a rule for transforming a proved equation; it does not mean complement every variable or reverse every term.\end{notebox}
+
+\Needspace{5\baselineskip}
+\begin{notebox}\textbf{Near miss:} the dual of \textit{x} + 0 = \textit{x} is \textit{x} \ensuremath{\cdot} 1 = \textit{x}: swap + with \ensuremath{\cdot}, and 0 with 1. Swapping only the operator gives \textit{x} \ensuremath{\cdot} 0 = \textit{x}, which is false for \textit{x} = 1. Duality swaps the constants as well.\end{notebox}
 
 \Needspace{10\baselineskip}
 \begin{recallbox}{Recall check \ensuremath{\cdot} answer without looking}
@@ -278,11 +284,14 @@ Finite Boolean rings & Each is isomorphic to F\textsubscript{2}\textsuperscript{
 \end{keepsection}
 
 \begin{keepsection}
-\Needspace{15\baselineskip}
+\Needspace{11\baselineskip}
 \section{1.2 Core identities and proof tools}
 
-\Needspace{12\baselineskip}
+\Needspace{8\baselineskip}
 Axioms are the starting point; identities are reusable consequences. Proofs become shorter when you name the law that justifies each step.
+
+\Needspace{14\baselineskip}
+\begin{plainbox}\textbf{In plain words:} the identities here are the tools you reach for in every proof, so learn them by name. Two of them ask how a function depends on one input: the \textbf{difference} \ensuremath{\partial}\textit{f}/\ensuremath{\partial}\textit{x} is 1 exactly where flipping \textit{x} changes \textit{f}, and the quantifiers (\ensuremath{\exists}\textit{x})\textit{f} and (\ensuremath{\forall}\textit{x})\textit{f} ask whether \textit{f} is 1 for some, or for every, value of \textit{x}.\end{plainbox}
 
 \Needspace{10\baselineskip}
 \begin{center}\small\begin{tabularx}{\linewidth}{>{\raggedright\arraybackslash}X>{\raggedright\arraybackslash}X}\toprule
@@ -335,7 +344,7 @@ The cofactor f\textsubscript{x=1} fixes x to 1; f\textsubscript{x=0} fixes it to
 
 \begin{equationcard}{Difference and quantification}
 \[ \begin{gathered} ∂{f}/∂{x}\, =\, {f}_{{x}=1}\, ⊕\, {f}_{{x}=0} \\ ∂({f}\, ⊕\, {g})/∂{x}\, =\, ∂{f}/∂{x}\, ⊕\, ∂{g}/∂{x} \\ ∂({f}{g})/∂{x}\, =\, {f}\cdot ∂{g}/∂{x}\, ⊕\, {g}\cdot ∂{f}/∂{x}\, ⊕\, ∂{f}/∂{x}\cdot ∂{g}/∂{x} \\ (\exists {x}){f}\, =\, {f}_{{x}=1}\, +\, {f}_{{x}=0} \\ (\forall {x}){f}\, =\, {f}_{{x}=1}\cdot {f}_{{x}=0} \\ (\forall {x}){f}\, \leq \, {f}\, \leq \, (\exists {x}){f} \end{gathered} \]
-{\small f does not depend on x exactly when its difference in x is 0. Existential quantification (smoothing) asks whether either case works; universal quantification (consensus) asks whether both cases work. Both remove dependence on x.}
+{\small \emph{Read it as: “the difference of f in x is f with x set to 1, XOR f with x set to 0”; “there exists x: f” is the OR of the two cofactors, and “for all x: f” is their AND.}\par f does not depend on x exactly when its difference in x is 0. Existential quantification (smoothing) asks whether either case works; universal quantification (consensus) asks whether both cases work. Both remove dependence on x.}
 \end{equationcard}
 
 \begin{workedbox}{Worked example \ensuremath{\cdot} difference and quantifiers}
@@ -349,8 +358,11 @@ Let f=x+y.
 \end{enumerate}
 \end{workedbox}
 
-\Needspace{5\baselineskip}
+\Needspace{6\baselineskip}
 \begin{notebox}\textbf{Memory hook:} for existential, OR the two cofactors; for universal, AND them. Check the question’s quantifier before simplifying.\end{notebox}
+
+\Needspace{5\baselineskip}
+\begin{notebox}\textbf{Near miss:} for \textit{f} = \textit{x} \ensuremath{\cdot} \textit{y}, \ensuremath{\partial}\textit{f}/\ensuremath{\partial}\textit{x} = (1 \ensuremath{\cdot} \textit{y}) \ensuremath{\oplus} (0 \ensuremath{\cdot} \textit{y}) = \textit{y}, not 1: \textit{f} depends on \textit{x} only when \textit{y} = 1. A formula can contain \textit{x} and still ignore it for some inputs.\end{notebox}
 
 \Needspace{10\baselineskip}
 \begin{recallbox}{Recall check \ensuremath{\cdot} answer without looking}
@@ -366,21 +378,24 @@ Let f=x+y.
 \end{keepsection}
 
 \begin{keepsection}
-\Needspace{6\baselineskip}
+\Needspace{11\baselineskip}
 \section{1.3 Completeness, normal forms, and minimisation}
 
+\Needspace{8\baselineskip}
 A representation tells you how to build a function. Completeness says whether a chosen set of connectives can represent every function; minimisation asks how small a representation can be.
 
+\begin{plainbox}\textbf{In plain words:} a set of connectives is \textbf{complete} if every Boolean function can be written with them alone. NOT, AND and OR are complete, and so is NAND on its own, because it can rebuild all three. \textbf{Minimisation} is a separate question: of all the formulas for a function, which is the smallest?\end{plainbox}
+
 \begin{keepsection}
-\Needspace{13\baselineskip}
+\Needspace{14\baselineskip}
 \subsection{Build every function from a small gate set}
 
-\Needspace{10\baselineskip}
+\Needspace{11\baselineskip}
 A connective set is functionally complete if it can express every Boolean function. NAND alone is complete because it can express NOT, AND, and OR. NOR alone is complete by the dual argument.
 
 \begin{equationcard}{NAND construction}
 \[ \begin{gathered} {x}\, ↑\, {y}\, =\, ({x}\cdot {y})' \\ \neg {x}\, =\, {x}\, ↑\, {x} \\ {x}\cdot {y}\, =\, ({x}\, ↑\, {y})\, ↑\, ({x}\, ↑\, {y}) \\ {x}+{y}\, =\, ({x}\, ↑\, {x})\, ↑\, ({y}\, ↑\, {y}) \end{gathered} \]
-{\small Once NOT, AND, and OR are available, any formula built from those connectives can be expressed with NAND.}
+{\small \emph{Read it as: “x NAND y is not (x and y)”, and “not x is x NAND x”.}\par Once NOT, AND, and OR are available, any formula built from those connectives can be expressed with NAND.}
 \end{equationcard}
 
 Post’s lattice classifies families of Boolean functions closed under composition. The lecture also contrasts monotone functions, which preserve order, with affine functions, which are parity expressions over F\textsubscript{2}; a function that is both monotone and affine is a constant or a single variable. (The lecture says only “constant”, but f=x is a counterexample; see the slips.) Any XOR of two or more inputs falls from 1 to 0 when a second input turns on.
@@ -417,8 +432,11 @@ Quine–McCluskey combines minterms that differ in one literal, repeats until pr
 \end{enumerate}
 \end{workedbox}
 
-\Needspace{4\baselineskip}
+\Needspace{5\baselineskip}
 \begin{notebox}\textbf{Trap:} a complete gate set guarantees expressiveness, not a small or fast circuit.\end{notebox}
+
+\Needspace{5\baselineskip}
+\begin{notebox}\textbf{Near miss:} \{AND, OR\} without NOT looks almost complete, but it cannot produce NOT \textit{x}: a formula built from AND and OR alone outputs 0 when every input is 0, whereas NOT \textit{x} gives 1 there.\end{notebox}
 
 \Needspace{10\baselineskip}
 \begin{recallbox}{Recall check \ensuremath{\cdot} answer without looking}
@@ -434,18 +452,21 @@ Quine–McCluskey combines minterms that differ in one literal, repeats until pr
 \end{keepsection}
 
 \begin{keepsection}
-\Needspace{11\baselineskip}
+\Needspace{10\baselineskip}
 \section{1.4 Karnaugh maps remove changing variables}
 
-\Needspace{8\baselineskip}
+\Needspace{7\baselineskip}
 A K-map lays truth-table rows out so neighbouring cells differ in one variable. Grouping adjacent 1s makes that changing variable disappear from the corresponding implicant.
 
-\Needspace{11\baselineskip}
+\Needspace{9\baselineskip}
+\begin{plainbox}\textbf{In plain words:} a \textbf{Karnaugh map} is a truth table folded into a grid in which each cell differs from its neighbours in exactly one variable. Grouping a block of neighbouring 1s makes the variables that change inside the block drop out, which leaves a shorter product term.\end{plainbox}
+
+\Needspace{12\baselineskip}
 For n variables, a map has 2\textsuperscript{n} cells in Gray-code order. A legal group is a rectangle of 2\textsuperscript{k} cells (possibly wrapping), so that it contains every combination of k changing variables. Each variable that changes across the group is eliminated; the implicant keeps n\ensuremath{-}k literals. Use don’t-care rows as either 0 or 1 when that makes a useful group.
 
 \begin{equationcard}{K-map group rule}
 \[ \begin{gathered} \text{Map}\, \text{size}:\, 2^{{n}}\, \text{cells} \\ \text{Group}\, \text{size}:\, 2^{{k}}\, \text{cells} \\ \text{Remaining}\, \text{literals}:\, {n}-{k} \end{gathered} \]
-{\small Cover every required 1 at least once. Do not include a required 0. A don’t-care can be included or ignored.}
+{\small \emph{Read it as: “a map for n variables has 2 to the n cells; a group of 2 to the k cells leaves n \ensuremath{-} k literals”.}\par Cover every required 1 at least once. Do not include a required 0. A don’t-care can be included or ignored.}
 \end{equationcard}
 
 \begin{workedbox}{Worked example \ensuremath{\cdot} simplify using an explicit bit order}
@@ -459,8 +480,11 @@ Use variable order A,B,C with A as the most significant bit. Suppose f=1 for min
 \end{enumerate}
 \end{workedbox}
 
-\Needspace{5\baselineskip}
+\Needspace{6\baselineskip}
 \begin{notebox}\textbf{Trap:} write the variable bit order beside minterm indices. A minterm number has no meaning without a variable order.\end{notebox}
+
+\Needspace{5\baselineskip}
+\begin{notebox}\textbf{Near miss:} three adjacent 1s look like a natural block, but a group must have 1, 2, 4, 8 … cells; with three cells no variable drops out. Cover them with two overlapping pairs instead.\end{notebox}
 
 \Needspace{9\baselineskip}
 \begin{recallbox}{Recall check \ensuremath{\cdot} answer without looking}
@@ -475,15 +499,18 @@ Use variable order A,B,C with A as the most significant bit. Suppose f=1 for min
 \end{keepsection}
 
 \begin{keepsection}
-\Needspace{12\baselineskip}
+\Needspace{11\baselineskip}
 \section{1.5 Shannon views, OBDDs, and algebraic normal form}
 
-\Needspace{9\baselineskip}
+\Needspace{8\baselineskip}
 Shannon expansion recursively splits a function into simpler cases. Reusing the same split structure leads to decision diagrams; a different basis expresses the function as parity over F\textsubscript{2}.
+
+\Needspace{12\baselineskip}
+\begin{plainbox}\textbf{In plain words:} \textbf{Shannon expansion} splits a function on one input: what is \textit{f} when \textit{x} = 1, and what is it when \textit{x} = 0? Repeating the split gives a decision tree, and merging identical branches gives a compact decision diagram, an OBDD. Algebraic normal form writes the same function as an XOR of AND terms instead.\end{plainbox}
 
 \begin{equationcard}{Shannon expansion}
 \[ \begin{gathered} {f}\, =\, {x}\cdot {f}_{{x}=1}\, +\, {x}'\cdot {f}_{{x}=0} \end{gathered} \]
-{\small The selected input x chooses between the two cofactors, like a 2-to-1 multiplexer.}
+{\small \emph{Read it as: “f equals x and (f with x = 1), or not x and (f with x = 0)”: x selects which cofactor passes through.}\par The selected input x chooses between the two cofactors, like a 2-to-1 multiplexer.}
 \end{equationcard}
 
 \begin{workedbox}{Worked example \ensuremath{\cdot} expand on A}
@@ -533,7 +560,10 @@ Outputs for rows 00, 01, 10, 11 are 1,1,1,0, with A as the first bit.
 \Needspace{4\baselineskip}
 \begin{notebox}\textbf{Trap:} an OBDD is only canonical after you fix the variable order.\end{notebox}
 
-\Needspace{4\baselineskip}
+\Needspace{6\baselineskip}
+\Needspace{6\baselineskip}
+\begin{notebox}\textbf{Near miss:} two OBDDs for the same function can look completely different if they test the variables in different orders; the diagram is unique only once the order is fixed. Comparing diagrams built with different orders proves nothing about equivalence.\end{notebox}
+
 \Needspace{10\baselineskip}
 \begin{recallbox}{Recall check \ensuremath{\cdot} answer without looking}
 \Needspace{4\baselineskip}
@@ -547,18 +577,21 @@ Outputs for rows 00, 01, 10, 11 are 1,1,1,0, with A as the first bit.
 \end{keepsection}
 
 \begin{keepsection}
-\Needspace{6\baselineskip}
+\Needspace{11\baselineskip}
 \section{1.6 Verification, hazards, and wrap-up}
 
+\Needspace{8\baselineskip}
 Equivalent formulas can behave differently while a real circuit switches. Verification must check both the Boolean function and, where needed, the physical transitions.
 
+\begin{plainbox}\textbf{In plain words:} two formulas can be logically equal and still behave differently in hardware. While an input changes, signals travel along paths of different length, and the output can blip to a wrong value for an instant: a \textbf{hazard}. Verification checks the function and, for circuits, the transitions too.\end{plainbox}
+
 \begin{keepsection}
-\Needspace{9\baselineskip}
+\Needspace{10\baselineskip}
 \subsection{Static-1 hazards}
 
 \begin{equationcard}{Consensus relation}
 \[ \begin{gathered} {x}{y}\, +\, {x}'{z}\, +\, {y}{z}\, =\, {x}{y}\, +\, {x}'{z} \end{gathered} \]
-{\small The term yz is logically redundant but can preserve coverage during a circuit transition.}
+{\small \emph{Read it as: “xy + x'z + yz equals xy + x'z”: the yz term never changes the value, but it covers the moment when x switches.}\par The term yz is logically redundant but can preserve coverage during a circuit transition.}
 \end{equationcard}
 
 \Needspace{12\baselineskip}
@@ -592,8 +625,11 @@ For f=xy+x'z, the consensus term is yz.
 \Needspace{10\baselineskip}
 Equational reasoning is sound when every derived equation is valid in every Boolean algebra model. It is complete for tautological equivalence when every such equivalence can be derived using the calculus; that needs the full axiom list of §1.1, including the second distributive law. The lecture’s wrap-up ties this proof view to the alternate ring, set, map, and decision-diagram representations. Its further-reading slide points to Stone on representation, Post on completeness, and Bryant on decision diagrams.
 
-\Needspace{5\baselineskip}
+\Needspace{7\baselineskip}
 \begin{notebox}\textbf{Sign check:} Boolean equivalence says outputs agree for stable inputs; it does not guarantee zero propagation delay in hardware.\end{notebox}
+
+\Needspace{6\baselineskip}
+\begin{notebox}\textbf{Near miss:} for \textit{f} = \textit{x}\ensuremath{\cdot}\textit{y} + \textit{x}'\ensuremath{\cdot}\textit{z} with \textit{y} = \textit{z} = 1, the output should stay 1 while \textit{x} switches, yet for an instant both \textit{x}\ensuremath{\cdot}\textit{y} and \textit{x}'\ensuremath{\cdot}\textit{z} can be 0. Adding the redundant term \textit{y}\ensuremath{\cdot}\textit{z} keeps one term at 1 throughout.\end{notebox}
 
 \Needspace{10\baselineskip}
 \begin{recallbox}{Recall check \ensuremath{\cdot} answer without looking}

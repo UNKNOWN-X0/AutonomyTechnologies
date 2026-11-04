@@ -84,9 +84,9 @@
     "semantic_hash": ""
   },
   "eei/ch1-electrostatic-fields.html": {
-    "mtime": 1793747298.879093,
-    "seen": 1793747372.339021,
-    "ast_hash": "66329f54a2fe1a50b378a06ca0a48078",
+    "mtime": 1793804765.8095148,
+    "seen": 1793804861.074697,
+    "ast_hash": "c836442e2f95996e92c1a76af57f8277",
     "semantic_hash": ""
   },
   "tools/check-guide.py": {
@@ -156,9 +156,9 @@
     "semantic_hash": ""
   },
   "mei/ch1-statements-logic-sets.html": {
-    "mtime": 1793747210.387025,
-    "seen": 1793747372.3390248,
-    "ast_hash": "2a0d2514a0968be6707e54269f222e1d",
+    "mtime": 1793804277.9648476,
+    "seen": 1793804861.074701,
+    "ast_hash": "19f919d744dfa1c48790db2526554c98",
     "semantic_hash": ""
   },
   ".agents/skills/autonomy-course-site/SKILL.md": {
@@ -168,9 +168,9 @@
     "semantic_hash": ""
   },
   "apdr/ch2-computers.html": {
-    "mtime": 1793747317.6035972,
-    "seen": 1793747372.339008,
-    "ast_hash": "df9d58274316e275cb8b278cacc454f9",
+    "mtime": 1793804363.3235366,
+    "seen": 1793804861.074686,
+    "ast_hash": "32d6f4c188e9f7d34e405141c93f5643",
     "semantic_hash": ""
   },
   "js/mei/ch1-lab.js": {
@@ -198,9 +198,9 @@
     "semantic_hash": ""
   },
   "apdr/ch3-data-representation.html": {
-    "mtime": 1793747298.848592,
-    "seen": 1793747372.33901,
-    "ast_hash": "8798f27a8f3110ad7821fc4f71bbd5b7",
+    "mtime": 1793804431.0609636,
+    "seen": 1793804861.074688,
+    "ast_hash": "f9a11981d239df9baa4cbc581a86ea27",
     "semantic_hash": ""
   },
   "js/apdr/ch2-lab.js": {
@@ -270,9 +270,9 @@
     "semantic_hash": ""
   },
   "apdr/ch4-floating-point-numbers.html": {
-    "mtime": 1793747298.851079,
-    "seen": 1793747372.339013,
-    "ast_hash": "718ecb8a1b422f2e86d830105bf2b435",
+    "mtime": 1793804470.3409765,
+    "seen": 1793804861.074692,
+    "ast_hash": "4182651d64415185435e16ec8daf7ebe",
     "semantic_hash": ""
   },
   "js/apdr/ch4-lab.js": {
@@ -324,9 +324,9 @@
     "semantic_hash": ""
   },
   "mei/ch2-real-numbers.html": {
-    "mtime": 1793801075.6309276,
-    "seen": 1793801111.285105,
-    "ast_hash": "f369d2e7c11c0b2a8fbc681daf29ba0c",
+    "mtime": 1793804277.9896874,
+    "seen": 1793804861.0747032,
+    "ast_hash": "e5d76fe0a43b2129b2aa1d1febfc199f",
     "semantic_hash": ""
   },
   "js/mei/ch2-lab.js": {
@@ -354,9 +354,9 @@
     "semantic_hash": ""
   },
   "apdr/ch5-memory-organisation.html": {
-    "mtime": 1793747298.85171,
-    "seen": 1793747372.339015,
-    "ast_hash": "3559d057f75ed88a086399a8c3be3501",
+    "mtime": 1793804513.072812,
+    "seen": 1793804861.0746932,
+    "ast_hash": "4c640a40d575403c42714e18e2fe43ab",
     "semantic_hash": ""
   },
   "js/apdr/ch5-lab.js": {
@@ -390,9 +390,9 @@
     "semantic_hash": ""
   },
   "apdr/ch12a-boolean-algebra.html": {
-    "mtime": 1793747317.6027822,
-    "seen": 1793747372.339006,
-    "ast_hash": "65bcef02b13defab0aa0425751e0be6c",
+    "mtime": 1793804398.0386906,
+    "seen": 1793804861.0746849,
+    "ast_hash": "e21cc608d3c2506525eddaba57b6307a",
     "semantic_hash": ""
   },
   "apdr/ch34a-integer-and-floating-point-lab.html": {
@@ -402,15 +402,15 @@
     "semantic_hash": ""
   },
   "apdr/ch34a-integer-and-floating-point.html": {
-    "mtime": 1793747298.8501728,
-    "seen": 1793747372.3390121,
-    "ast_hash": "9b0df2eacd42178189093aaf0c175748",
+    "mtime": 1793804513.0455253,
+    "seen": 1793804861.07469,
+    "ast_hash": "e09ee07972220002bfbab7b4e0b93819",
     "semantic_hash": ""
   },
   "mei/ch3-mappings.html": {
-    "mtime": 1793803241.318984,
-    "seen": 1793803471.117067,
-    "ast_hash": "f223b984f4ba6008ebb8fd54702e3c49",
+    "mtime": 1793804253.42674,
+    "seen": 1793804861.074705,
+    "ast_hash": "61d7803e319d5f123cd3cae4feff2e13",
     "semantic_hash": ""
   },
   "js/mei/ch3-lab.js": {
@@ -462,9 +462,9 @@
     "semantic_hash": ""
   },
   "about/version-log.html": {
-    "mtime": 1793803325.5042505,
-    "seen": 1793803471.1170309,
-    "ast_hash": "cb32fafd2ede634efc91b81cfd069288",
+    "mtime": 1793804689.9170232,
+    "seen": 1793804861.074683,
+    "ast_hash": "9609f988425033fa57d6558b2a954caa",
     "semantic_hash": ""
   }
 }

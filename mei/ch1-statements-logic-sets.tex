@@ -212,10 +212,13 @@ What is the negation of a quantified claim? & Swap \ensuremath{\forall} and \ens
 \end{keepsection}
 
 \begin{keepsection}
-\Needspace{6\baselineskip}
+\Needspace{11\baselineskip}
 \section{1.1 Propositional Logic}
 
+\Needspace{8\baselineskip}
 Logic gives precise rules for combining claims. It lets you test arguments, simplify conditions, and express properties that will reappear throughout mathematics.
+
+\begin{plainbox}\textbf{In plain words:} logic is a set of rules for combining claims that are either true or false. \ensuremath{\neg} flips a claim, \ensuremath{\land} (and) needs both parts true, \ensuremath{\lor} (or) needs at least one, and \ensuremath{\Rightarrow} (if … then) fails only when the first part is true and the second false. A \textbf{quantifier} says how many things a claim is about: \ensuremath{\forall} means every one, \ensuremath{\exists} means at least one.\end{plainbox}
 
 \begin{keepsection}
 \Needspace{14\baselineskip}
@@ -226,7 +229,7 @@ A \textbf{statement} is a sentence that is either true or false; its truth value
 
 \begin{equationcard}{Logical connectives}
 \[ \begin{gathered} \neg {A} \\ {A}\, \land \, {B} \\ {A}\, \lor \, {B} \\ {A}\, \Rightarrow \, {B} \\ {A}\, \Leftrightarrow \, {B} \end{gathered} \]
-{\small Truth tables define the meaning of each connective. The notes use 1 for true and 0 for false; \ensuremath{\lor} is inclusive “or”.}
+{\small \emph{Read it as: “not A”, “A and B”, “A or B (or both)”.}\par Truth tables define the meaning of each connective. The notes use 1 for true and 0 for false; \ensuremath{\lor} is inclusive “or”.}
 \end{equationcard}
 
 \Needspace{10\baselineskip}
@@ -296,26 +299,26 @@ Prove \ensuremath{\neg}(A \ensuremath{\land} B) \ensuremath{\Leftrightarrow} \en
 \end{keepsection}
 
 \begin{keepsection}
-\Needspace{13\baselineskip}
+\Needspace{14\baselineskip}
 \subsection{Predicates and quantifiers}
 
-\Needspace{10\baselineskip}
+\Needspace{11\baselineskip}
 A \textbf{propositional form} A(x\textsubscript{1},…,x\textsubscript{n}) depends on variables; assigning values turns it into a statement. For A(x,y): 5+x=10y, A(5,1) is true and A(6,1) is false. Below, P(x) is a form in one variable. A quantifier specifies how many values in a domain must satisfy it.
 
 \begin{equationcard}{Quantifiers}
 \[ \begin{gathered} \forall {x}\, {P}({x}):\, {P}({x})\, \text{holds}\, \text{for}\, \text{every}\, {x}\, \text{in}\, \text{the}\, \text{domain} \\ \exists {x}\, {P}({x}):\, {P}({x})\, \text{holds}\, \text{for}\, \text{at}\, \text{least}\, \text{one}\, {x} \\ \exists !{x}\, {P}({x}):\, {P}({x})\, \text{holds}\, \text{for}\, \text{exactly}\, \text{one}\, {x} \end{gathered} \]
-{\small The domain matters. Quantifier order matters too; see the dog example below.}
+{\small \emph{Read it as: “for all x, P of x” and “there exists an x with P of x”.}\par The domain matters. Quantifier order matters too; see the dog example below.}
 \end{equationcard}
 
 \Needspace{6\baselineskip}
 Let D be a dog and P a person. \ensuremath{\exists}D \ensuremath{\forall}P: D bites P says one dog bites everyone. \ensuremath{\forall}P \ensuremath{\exists}D: D bites P says each person is bitten by some dog, possibly different dogs.
 
-\Needspace{9\baselineskip}
+\Needspace{10\baselineskip}
 Negation changes “every” to “there exists at least one counterexample”, and changes “there exists” to “none exist”.
 
 \begin{equationcard}{Negating quantified statements}
 \[ \begin{gathered} \neg (\forall {x}\, {P}({x}))\, \Leftrightarrow \, \exists {x}\, \neg {P}({x}) \\ \neg (\exists {x}\, {P}({x}))\, \Leftrightarrow \, \forall {x}\, \neg {P}({x}) \end{gathered} \]
-{\small Negate the predicate after swapping the quantifier. The notes also write \ensuremath{\exists} with a stroke through it for \ensuremath{\neg}\ensuremath{\exists}.}
+{\small \emph{Read it as: “not every x has P” says the same as “some x does not have P”.}\par Negate the predicate after swapping the quantifier. The notes also write \ensuremath{\exists} with a stroke through it for \ensuremath{\neg}\ensuremath{\exists}.}
 \end{equationcard}
 
 \begin{workedbox}{Worked example \ensuremath{\cdot} negate a quantified claim}
@@ -364,6 +367,9 @@ These apply the truth rules; they add no new operators.
 \item \textbf{SAT.} Satisfiability asks: given a formula F(A\textsubscript{1},…,A\textsubscript{n}), is there an assignment of truth values that makes F true? A\ensuremath{\land}\ensuremath{\neg}B is satisfiable, with A=1, B=0. A\ensuremath{\land}\ensuremath{\neg}A is not, since no assignment makes it true. SAT solvers test and verify hardware and model constraints in scheduling and planning.
 \end{itemize}
 
+\Needspace{7\baselineskip}
+\begin{notebox}\textbf{Near miss:} “if \textit{n} is divisible by 4, then \textit{n} is even” is true, and its converse “if \textit{n} is even, then \textit{n} is divisible by 4” sounds just as reasonable, but it fails at \textit{n} = 2. One counterexample is enough to sink a universal claim.\end{notebox}
+
 \Needspace{10\baselineskip}
 \begin{recallbox}{Recall check \ensuremath{\cdot} answer without looking}
 \Needspace{5\baselineskip}
@@ -379,21 +385,24 @@ These apply the truth rules; they add no new operators.
 \end{keepsection}
 
 \begin{keepsection}
-\Needspace{6\baselineskip}
+\Needspace{11\baselineskip}
 \section{1.2 Set Theory}
 
+\Needspace{8\baselineskip}
 Sets let us collect objects by a precise membership rule. Logical connectives reappear here as operations on membership conditions.
 
+\begin{plainbox}\textbf{In plain words:} a set is a collection with a clear membership test: for any object you can say whether it is in or out. The \textbf{union} A \ensuremath{\cup} B collects everything in either set, the \textbf{intersection} A \ensuremath{\cap} B keeps what is in both, and the \textbf{difference} A \textbackslash{} B keeps what is in A but not in B. Each operation is a logic connective applied to the membership test.\end{plainbox}
+
 \begin{keepsection}
-\Needspace{15\baselineskip}
+\Needspace{16\baselineskip}
 \subsection{Membership, descriptions, and inclusion}
 
-\Needspace{12\baselineskip}
+\Needspace{13\baselineskip}
 A \textbf{set} is a well-defined collection of distinct objects. Write x \ensuremath{\in} A when x is a member and x \ensuremath{\notin} A otherwise. A set may be given by listing its elements, such as \{1,2,3\}, or by a property, such as \{x \ensuremath{\in} \ensuremath{\mathbb{R}} : x \ensuremath{>} 0\}. The notes also write \{x | A(x)\} for \{x : A(x)\}. The solutions of x³\ensuremath{-}2x=0 form \{x : x³=2x\}=\{0,\ensuremath{\surd}2,\ensuremath{-}\ensuremath{\surd}2\}. Order and repetition do not change a set.
 
 \begin{equationcard}{Subset and equality}
 \[ \begin{gathered} {A}\, \subset \, {B}\, \Leftrightarrow \, \text{every}\, {x}\, \in \, {A}\, \text{also}\, \text{belongs}\, \text{to}\, {B} \\ {A}\, =\, {B}\, \Leftrightarrow \, {A}\, \subset \, {B}\, \text{and}\, {B}\, \subset \, {A} \\ {A}\, \subsetneq \, {B}\, \Leftrightarrow \, {A}\, \subset \, {B}\, \text{and}\, \text{some}\, \text{element}\, \text{of}\, {B}\, \text{is}\, \text{not}\, \text{in}\, {A} \end{gathered} \]
-{\small The notes use \ensuremath{\subset} for subset and \ensuremath{\subsetneq} for proper subset. Some authors write \ensuremath{\subseteq} for subset and \ensuremath{\subset} for proper subset, so check the convention.}
+{\small \emph{Read it as: “A is a subset of B when every x in A is also in B”; two sets are equal when each is a subset of the other.}\par The notes use \ensuremath{\subset} for subset and \ensuremath{\subsetneq} for proper subset. Some authors write \ensuremath{\subseteq} for subset and \ensuremath{\subset} for proper subset, so check the convention.}
 \end{equationcard}
 
 The empty set \ensuremath{\emptyset}=\{x : x\ensuremath{\neq}x\} has no elements and is a subset of every set. Every set is also a subset of itself: X\ensuremath{\subset}X. Standard number sets are \ensuremath{\mathbb{N}} (positive natural numbers in these notes), \ensuremath{\mathbb{Z}} (integers), \ensuremath{\mathbb{Q}} (rationals), \ensuremath{\mathbb{R}} (reals), and \ensuremath{\mathbb{C}} (complex numbers).
@@ -420,15 +429,15 @@ Let X=\{a,b\}. List \ensuremath{\mathcal{P}}(X) and its size.
 \end{keepsection}
 
 \begin{keepsection}
-\Needspace{14\baselineskip}
+\Needspace{15\baselineskip}
 \subsection{Set operations}
 
-\Needspace{11\baselineskip}
+\Needspace{12\baselineskip}
 Each operation is easiest to understand by asking when an arbitrary element x belongs to the result. Sets with empty intersection are called \textbf{disjoint}.
 
 \begin{equationcard}{Operations and membership tests}
 \[ \begin{gathered} {x}\, \in \, {A}\, \cup \, {B}\, \Leftrightarrow \, ({x}\, \in \, {A})\, \lor \, ({x}\, \in \, {B}) \\ {x}\, \in \, {A}\, \cap \, {B}\, \Leftrightarrow \, ({x}\, \in \, {A})\, \land \, ({x}\, \in \, {B}) \\ {x}\, \in \, {A}\, \\, {B}\, \Leftrightarrow \, ({x}\, \in \, {A})\, \land \, ({x}\, \notin \, {B}) \\ {A}\, \times \, {B}\, =\, \{({a},{b}):\, {a}\, \in \, {A}\, \text{and}\, {b}\, \in \, {B}\} \\ {A}^{c}\, =\, {X}\, \\, {A},\, \text{where}\, {X}\, \text{is}\, \text{the}\, \text{fixed}\, \text{non}-\text{empty}\, \text{universal}\, \text{set} \end{gathered} \]
-{\small Pairs are ordered: (a,b) is generally different from (b,a). A complement is defined for A \ensuremath{\subset} X, relative to X. The notes also write an overline, A̅, for A\ensuremath{^{c}}.}
+{\small \emph{Read it as: “x is in A union B exactly when x is in A or x is in B”, and the same with “and” for the intersection.}\par Pairs are ordered: (a,b) is generally different from (b,a). A complement is defined for A \ensuremath{\subset} X, relative to X. The notes also write an overline, A̅, for A\ensuremath{^{c}}.}
 \end{equationcard}
 
 \Needspace{12\baselineskip}
@@ -469,8 +478,11 @@ Set identities can be proved by translating both sides into membership condition
 {\small Each set rule in Theorem 1.13 is the matching logic rule of Theorem 1.4 applied to membership: for example x\ensuremath{\in}A\ensuremath{\cap}B \ensuremath{\Leftrightarrow} x\ensuremath{\in}A \ensuremath{\land} x\ensuremath{\in}B. The notes prove (R1) this way: x\ensuremath{\in}(A\ensuremath{^{c}})\ensuremath{^{c}} \ensuremath{\Leftrightarrow} \ensuremath{\neg}(x\ensuremath{\in}A\ensuremath{^{c}}) \ensuremath{\Leftrightarrow} \ensuremath{\neg}\ensuremath{\neg}(x\ensuremath{\in}A) \ensuremath{\Leftrightarrow} x\ensuremath{\in}A (notes p. 11).}
 \end{equationcard}
 
-\Needspace{5\baselineskip}
+\Needspace{6\baselineskip}
 \begin{notebox}\textbf{Trap:} A\textbackslash{}B is not generally B\textbackslash{}A. Check the direction by testing membership: the first set supplies candidates; the second removes them.\end{notebox}
+
+\Needspace{5\baselineskip}
+\begin{notebox}\textbf{Near miss:} \{1, 2\} \ensuremath{\subset} \{1, 2, 3\} is true, but \{1, 4\} \ensuremath{\subset} \{1, 2, 3\} fails: the single element 4 lies outside, and one element outside is enough.\end{notebox}
 
 \Needspace{10\baselineskip}
 \begin{recallbox}{Recall check \ensuremath{\cdot} answer without looking}

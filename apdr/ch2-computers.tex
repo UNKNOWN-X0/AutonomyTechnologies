@@ -230,21 +230,24 @@ Can a circuit use only NAND gates? & Rewrite NOT, AND, and OR using NAND and Boo
 \end{keepsection}
 
 \begin{keepsection}
-\Needspace{6\baselineskip}
+\Needspace{10\baselineskip}
 \section{2.1 Algorithms are finite, executable procedures}
 
+\Needspace{7\baselineskip}
 An algorithm turns a problem into steps that a person or machine can carry out. A precise procedure also makes it possible to decide whether it finishes and what output it should produce.
 
+\begin{plainbox}\textbf{In plain words:} an algorithm is a recipe precise enough for a machine to follow: it says what goes in, what to do at each step, and what comes out. It must also stop. “Keep improving the guess” only becomes an algorithm once it says when the guess is good enough.\end{plainbox}
+
 \begin{keepsection}
-\Needspace{14\baselineskip}
+\Needspace{16\baselineskip}
 \subsection{From declarative facts to imperative steps}
 
-\Needspace{11\baselineskip}
+\Needspace{13\baselineskip}
 \textbf{Declarative knowledge} states facts. \textbf{Imperative knowledge} describes how to do something: a sequence of actions with a flow of control and a stopping condition. An algorithm is a finite, well-defined sequence of executable instructions for a class of problems or a computation.
 
 \begin{equationcard}{Algorithm checklist}
 \[ \begin{gathered} \text{input}\, \to \, \text{defined}\, \text{instructions}\, \to \, \text{output} \\ \text{finite}\, \text{text}\, \cdot \, \text{executable}\, \text{steps}\, \cdot \, \text{finite}\, \text{memory}\, \cdot \, \text{finite}\, \text{steps} \end{gathered} \]
-{\small The slides call finite memory use dynamic finiteness and a finite number of steps halting. A procedure that never stops does not deliver its required result.}
+{\small \emph{Read it as: “input goes through clearly defined instructions to output”, and the four checks: the text is finite, each step can be carried out, memory use stays finite, and it stops after finitely many steps.}\par The slides call finite memory use dynamic finiteness and a finite number of steps halting. A procedure that never stops does not deliver its required result.}
 \end{equationcard}
 
 \Needspace{7\baselineskip}
@@ -265,8 +268,11 @@ For \textit{x} = 16 and initial guess \textit{g} = 3, calculate two updates.
 \end{enumerate}
 \end{workedbox}
 
-\Needspace{5\baselineskip}
+\Needspace{7\baselineskip}
 \begin{notebox}\textbf{Trap:} an iteration rule is not complete until it states what counts as close enough and what happens when that test is not met.\end{notebox}
+
+\Needspace{6\baselineskip}
+\begin{notebox}\textbf{Near miss:} “start at 1 and keep adding 1 until you reach the largest whole number” has finite text and steps anyone can carry out, but it never stops, because there is no largest whole number. It fails the finite-steps check, so it is not an algorithm.\end{notebox}
 
 \Needspace{11\baselineskip}
 \begin{recallbox}{Recall check \ensuremath{\cdot} answer without looking}
@@ -283,28 +289,34 @@ For \textit{x} = 16 and initial guess \textit{g} = 3, calculate two updates.
 \end{keepsection}
 
 \begin{keepsection}
-\Needspace{8\baselineskip}
+\Needspace{13\baselineskip}
 \section{2.2 A stored-program computer executes instructions}
 
+\Needspace{10\baselineskip}
 At bottom a computer does two things: it calculates and it remembers results, and it only knows what it is told. A stored-program computer can carry out many different procedures because its instructions are data stored in memory. The same machine follows a different algorithm when the stored program changes.
 
+\begin{plainbox}\textbf{In plain words:} a computer only calculates and remembers. A stored-program computer keeps its instructions in the same memory as its data, so loading a different program turns the same hardware into a different machine. The processor takes each instruction from memory and carries it out.\end{plainbox}
+
 \begin{keepsection}
-\Needspace{17\baselineskip}
+\Needspace{18\baselineskip}
 \subsection{Instructions, control flow, and architecture}
 
-\Needspace{14\baselineskip}
+\Needspace{15\baselineskip}
 A \textbf{fixed-program computer}, such as a calculator, does one built-in job. A \textbf{stored-program computer} stores and executes instructions, so its job can change. It keeps a sequence of instructions in memory. A processor executes them using primitive operations such as arithmetic or logic, simple tests, and moving data. Tests can change which instruction runs next; execution stops when the program says it is done or reaches its stopping condition.
 
 \begin{equationcard}{Machine-level view}
 \[ \begin{gathered} \text{program}\, \text{in}\, \text{memory}\, \to \, \text{processor}\, \text{executes}\, \text{instructions}\, \to \, \text{input}\, \text{becomes}\, \text{output} \end{gathered} \]
-{\small The slide's diagram: the CPU holds a control unit and a processor; the processor holds registers and combinational logic. Main memory, input and output sit outside the CPU, and instructions pass from memory to the control unit. It is a simplified model, not a particular modern computer.}
+{\small \emph{Read it as: “the program sits in memory, the processor executes its instructions one after another, and that turns the input into the output”.}\par The slide's diagram: the CPU holds a control unit and a processor; the processor holds registers and combinational logic. Main memory, input and output sit outside the CPU, and instructions pass from memory to the control unit. It is a simplified model, not a particular modern computer.}
 \end{equationcard}
 
 \Needspace{10\baselineskip}
 The lecture lists six abstract Turing-machine primitives: move right, move left, print a symbol, scan the current symbol, erase it, and do nothing (halt). Modern programming languages package low-level actions into more convenient operations, and you can use abstract methods to create new primitives. A language gives you primitives; expressions are legal combinations of them; expressions and computations have values and meanings. A computable procedure can be expressed in different general-purpose languages, even though syntax and tools differ.
 
-\Needspace{11\baselineskip}
+\Needspace{8\baselineskip}
 \begin{notebox}\textbf{Memory hook:} the algorithm is the recipe; the stored program is that recipe represented as instructions the machine can execute.\end{notebox}
+
+\Needspace{13\baselineskip}
+\begin{notebox}\textbf{Near miss:} a basic calculator with fixed buttons for +, \ensuremath{-}, \ensuremath{\times} and ÷ calculates and remembers a result, but its procedures are built into its circuits rather than stored as instructions in memory; giving it a new procedure would mean building a new device. That is the difference a stored program makes.\end{notebox}
 
 \begin{recallbox}{Recall check \ensuremath{\cdot} answer without looking}
 \Needspace{5\baselineskip}
@@ -320,10 +332,13 @@ The lecture lists six abstract Turing-machine primitives: move right, move left,
 \end{keepsection}
 
 \begin{keepsection}
-\Needspace{7\baselineskip}
+\Needspace{12\baselineskip}
 \section{2.3 Programs have syntax, static meaning, and behaviour}
 
+\Needspace{9\baselineskip}
 A computer needs instructions that are legal in its language and have a defined interpretation. Separating the kinds of errors helps explain why a program can be rejected, crash, or run while still giving the wrong answer.
+
+\begin{plainbox}\textbf{In plain words:} a program can go wrong at three levels. \textbf{Syntax} is grammar: are the symbols arranged legally? \textbf{Static semantics} is sense: do the legal pieces fit together, such as adding a number to a number? \textbf{Semantics} is meaning: what the program actually does when it runs, which may differ from what you intended.\end{plainbox}
 
 \begin{keepsection}
 \Needspace{16\baselineskip}
@@ -333,7 +348,7 @@ A computer needs instructions that are legal in its language and have a defined 
 \textbf{Syntax} asks whether the symbols form a legal expression. \textbf{Static semantics} asks whether a syntactically legal expression is meaningful under the language's rules, such as whether the operands have compatible types. \textbf{Semantics} is the meaning associated with an expression that passes those checks.
 
 \begin{equationcard}{Examples from the slides}
-\[ \begin{gathered} "\text{hi}"5\, \to \, \text{not}\, \text{syntactically}\, \text{valid} \\ 3.2\, *\, 5\, \to \, \text{syntactically}\, \text{valid}\, \text{and}\, \text{meaningful} \\ 3\, +\, "\text{hi}"\, \to \, \text{syntactically}\, \text{valid},\, \text{but}\, {a}\, \text{static}\, \text{semantic}\, \text{error} \end{gathered} \]
+\[ \begin{gathered} "\text{hi}"5\, \to \, \text{not}\, \text{syntactically}\, \text{valid} \\ 3.2\, *\, 5\, \to \, \text{syntactically}\, \text{valid}\, \text{and}\, \text{meaningful} \\ 3\, +\, "\text{hi}"\, \to \, \text{syntactically}\, \text{valid},\, \text{but}\, \mathrm{a}\, \text{static}\, \text{semantic}\, \text{error} \end{gathered} \]
 {\small English shows the same split: “cat dog boy” is not syntactically valid, and “I are hungry” is valid syntax with a static semantic error. The exact type rules depend on the language.}
 \end{equationcard}
 
@@ -343,8 +358,11 @@ A syntactic error is common and easily caught. Only some languages check for sta
 \Needspace{7\baselineskip}
 A program can contain definitions and commands. An interpreter evaluates them in a shell, or a compiler translates the program into processor instructions. Commands may be entered directly or saved in a file for the shell to read.
 
-\Needspace{14\baselineskip}
+\Needspace{7\baselineskip}
 \begin{notebox}\textbf{Trap:} “it runs” does not mean “it is right”. A program with no syntax or static semantic errors can still give the wrong answer.\end{notebox}
+
+\Needspace{15\baselineskip}
+\begin{notebox}\textbf{Near miss:} a program meant to average three marks that computes a + b + c / 3 has legal syntax and no static semantic error, and it runs, but the division happens before the additions, so it returns the wrong value. It passes every check except doing what was meant.\end{notebox}
 
 \begin{recallbox}{Recall check \ensuremath{\cdot} answer without looking}
 \Needspace{5\baselineskip}
@@ -360,10 +378,13 @@ A program can contain definitions and commands. An interpreter evaluates them in
 \end{keepsection}
 
 \begin{keepsection}
-\Needspace{6\baselineskip}
+\Needspace{11\baselineskip}
 \section{2.4 Propositions turn logic into two-valued inputs}
 
+\Needspace{8\baselineskip}
 Boolean circuits calculate with truth values. Propositional logic gives precise rules for combining statements before those rules are translated into algebra or gates.
+
+\begin{plainbox}\textbf{In plain words:} a \textbf{proposition} is a statement that is either true or false, such as “it is raining”. Connectives build bigger statements from smaller ones: NOT flips the value, AND is true only when both parts are true, and OR is true when at least one is. Writing 1 for true and 0 for false turns these rules into arithmetic a circuit can do.\end{plainbox}
 
 \begin{keepsection}
 \Needspace{14\baselineskip}
@@ -374,14 +395,17 @@ A \textbf{proposition} is a statement that is either true or false. Compound pro
 
 \begin{equationcard}{Core connectives}
 \[ \begin{gathered} \neg {A}\, \text{is}\, \text{true}\, \text{exactly}\, \text{when}\, {A}\, \text{is}\, \text{false} \\ {A}\, \land \, {B}\, \text{is}\, \text{true}\, \text{exactly}\, \text{when}\, \text{both}\, {A}\, \text{and}\, {B}\, \text{are}\, \text{true} \\ {A}\, \lor \, {B}\, \text{is}\, \text{true}\, \text{when}\, \text{at}\, \text{least}\, \text{one}\, \text{of}\, {A}\, \text{or}\, {B}\, \text{is}\, \text{true} \end{gathered} \]
-{\small The OR in this lecture is inclusive: it is also true when both inputs are true.}
+{\small \emph{Read it as: “not A”, “A and B”, “A or B”; this OR includes the case where both are true.}\par The OR in this lecture is inclusive: it is also true when both inputs are true.}
 \end{equationcard}
 
 \Needspace{7\baselineskip}
 For example, let \textit{R} mean “it is raining” and \textit{W} mean “the weather forecast is bad”. The umbrella decision is \textit{U} = \textit{W} \ensuremath{\lor} \textit{R}. If \textit{W} = 0 and \textit{R} = 1, then \textit{U} = 1.
 
-\Needspace{6\baselineskip}
+\Needspace{8\baselineskip}
 More complex decisions combine several operations. The lecture gives \textit{U} = \textit{C}' \ensuremath{\cdot} (\textit{W} + \textit{R}): take an umbrella when you are not taking the car and either the forecast is bad or it is raining. Parentheses matter because the operations have different precedence.
+
+\Needspace{6\baselineskip}
+\begin{notebox}\textbf{Near miss:} in everyday speech “tea or coffee” often means one but not both, but this lecture’s OR is inclusive: \textit{A} \ensuremath{\lor} \textit{B} is also true when both are true. Exclusive or is a separate operation, XOR (§2.7).\end{notebox}
 
 \Needspace{10\baselineskip}
 \begin{recallbox}{Recall check \ensuremath{\cdot} answer without looking}
@@ -398,21 +422,24 @@ More complex decisions combine several operations. The lecture gives \textit{U} 
 \end{keepsection}
 
 \begin{keepsection}
-\Needspace{7\baselineskip}
+\Needspace{11\baselineskip}
 \section{2.5 Boolean algebra and truth tables make the rules checkable}
 
+\Needspace{8\baselineskip}
 Boolean algebra replaces long verbal propositions with symbols and gives every operation a precise meaning. Truth tables then provide a direct way to calculate an expression for every possible input.
 
+\begin{plainbox}\textbf{In plain words:} Boolean algebra writes logic as short formulas: a prime ' for NOT, \ensuremath{\cdot} for AND and + for OR, with 1 for true and 0 for false. A \textbf{truth table} checks a formula by listing every combination of inputs with the output for each; with \textit{n} inputs there are 2\textsuperscript{\textit{n}} rows.\end{plainbox}
+
 \begin{keepsection}
-\Needspace{14\baselineskip}
+\Needspace{15\baselineskip}
 \subsection{Translate propositions into algebra}
 
-\Needspace{11\baselineskip}
+\Needspace{12\baselineskip}
 Boolean values use 1 for TRUE and 0 for FALSE. Variables stand for propositions. The supplied slides write NOT as a prime, OR as +, and AND as \ensuremath{\cdot}. Read the notation carefully: here + is logical OR, not ordinary arithmetic addition.
 
 \begin{equationcard}{Notation and precedence}
 \[ \begin{gathered} {A}'\, =\, \text{NOT}\, {A} \\ {A}\, \cdot \, {B}\, =\, {A}\, \text{AND}\, {B} \\ {A}\, +\, {B}\, =\, {A}\, \text{OR}\, {B} \\ \text{NOT}\, \text{first}\, \cdot \, \text{AND}\, \text{next}\, \cdot \, \text{OR}\, \text{last} \end{gathered} \]
-{\small Use parentheses to make grouping explicit. For example, C' \ensuremath{\cdot} (W + R) is different from C' \ensuremath{\cdot} W + R. In C, logical operators are \&\&, ||, !; bitwise operators are \&, |, ~ (the slide labels these “Binary”; see Slips in the notes).}
+{\small \emph{Read it as: “A prime is not A”, “A dot B is A and B”, “A plus B is A or B”; NOT is applied first, then AND, then OR.}\par Use parentheses to make grouping explicit. For example, C' \ensuremath{\cdot} (W + R) is different from C' \ensuremath{\cdot} W + R. In C, logical operators are \&\&, ||, !; bitwise operators are \&, |, ~ (the slide labels these “Binary”; see Slips in the notes).}
 \end{equationcard}
 \end{keepsection}
 
@@ -466,8 +493,11 @@ U = 1 only for (R,W,C) = 010, 100, 110. Sanity check: those are exactly the rows
 \Needspace{8\baselineskip}
 Implication is not in these slides; the “=\ensuremath{>}” on slide 24 only means “we could write”. Take this truth table as its definition: A \ensuremath{\Rightarrow} B is false only for A = 1, B = 0, so its column for (A,B) = 00, 01, 10, 11 is 1, 1, 0, 1. Evaluating A' + B gives 1, 1, 0, 1 as well, so the two are equivalent.
 
-\Needspace{5\baselineskip}
+\Needspace{6\baselineskip}
 \begin{notebox}\textbf{Trap:} three input variables require eight rows, not six. List all assignments before calculating an output column. And + means OR here, so 1 + 1 = 1.\end{notebox}
+
+\Needspace{5\baselineskip}
+\begin{notebox}\textbf{Near miss:} 1 + 1 looks as if it should be 2, but here + means OR, and 1 OR 1 = 1. A two-valued system has no 2.\end{notebox}
 
 \Needspace{10\baselineskip}
 \begin{recallbox}{Recall check \ensuremath{\cdot} answer without looking}
@@ -484,18 +514,21 @@ Implication is not in these slides; the “=\ensuremath{>}” on slide 24 only m
 \end{keepsection}
 
 \begin{keepsection}
-\Needspace{6\baselineskip}
+\Needspace{10\baselineskip}
 \section{2.6 Boolean laws simplify expressions}
 
+\Needspace{7\baselineskip}
 Boolean laws let you transform an expression while preserving its output. Each identity can be checked with a truth table, and the same law can simplify the design of a circuit.
 
+\begin{plainbox}\textbf{In plain words:} Boolean laws are rewriting rules: each swaps an expression for another that gives the same output for every input, which a truth table can confirm. They shorten formulas, and a shorter formula means a circuit with fewer gates.\end{plainbox}
+
 \begin{keepsection}
-\Needspace{10\baselineskip}
+\Needspace{11\baselineskip}
 \subsection{Core identities}
 
 \begin{equationcard}{Negation, identity, and idempotence}
 \[ \begin{gathered} ({A}')'\, =\, {A} \\ {A}\, \cdot \, {A}'\, =\, 0 \\ {A}\, +\, {A}'\, =\, 1 \\ {A}\, \cdot \, {A}\, =\, {A} \\ {A}\, +\, {A}\, =\, {A} \\ {A}\, \cdot \, 0\, =\, 0 \\ {A}\, \cdot \, 1\, =\, {A} \\ {A}\, +\, 0\, =\, {A} \\ {A}\, +\, 1\, =\, 1 \end{gathered} \]
-{\small The slides use \ensuremath{\cdot} for AND and + for OR. A and B may themselves be compound Boolean expressions. (A')' = A is listed under “Negation”, and the NAND slides call it the Involution law.}
+{\small \emph{Read it as: “A or not A is always 1” and “A and not A is always 0”: a statement and its opposite are never both true and never both false.}\par The slides use \ensuremath{\cdot} for AND and + for OR. A and B may themselves be compound Boolean expressions. (A')' = A is listed under “Negation”, and the NAND slides call it the Involution law.}
 \end{equationcard}
 
 \begin{equationcard}{Commutative, associative, and distributive}
@@ -505,15 +538,15 @@ Boolean laws let you transform an expression while preserving its output. Each i
 \end{keepsection}
 
 \begin{keepsection}
-\Needspace{12\baselineskip}
+\Needspace{13\baselineskip}
 \subsection{De Morgan's rules}
 
-\Needspace{9\baselineskip}
+\Needspace{10\baselineskip}
 Negating a compound expression changes its operation and negates each input: NOT of an OR becomes an AND of the negations, and NOT of an AND becomes an OR of the negations.
 
 \begin{equationcard}{De Morgan's laws}
 \[ \begin{gathered} ({A}\, +\, {B})'\, =\, {A}'\, \cdot \, {B}' \\ ({A}\, \cdot \, {B})'\, =\, {A}'\, +\, {B}' \\ ({A}\, +\, {B}\, +\, {C}\, +\, …)'\, =\, {A}'\, \cdot \, {B}'\, \cdot \, {C}'\, \cdot \, … \\ ({A}\, \cdot \, {B}\, \cdot \, {C}\, \cdot \, …)'\, =\, {A}'\, +\, {B}'\, +\, {C}'\, +\, … \end{gathered} \]
-{\small The rules hold for any number of inputs.}
+{\small \emph{Read it as: “not (A or B) equals not A and not B”, and “not (A and B) equals not A or not B”.}\par The rules hold for any number of inputs.}
 \end{equationcard}
 
 \begin{workedbox}{Worked example \ensuremath{\cdot} simplify a negated expression}
@@ -527,8 +560,11 @@ Rewrite (A + B)' using De Morgan's law, then evaluate it when A = 0 and B = 1.
 \end{enumerate}
 \end{workedbox}
 
-\Needspace{4\baselineskip}
+\Needspace{5\baselineskip}
 \begin{notebox}\textbf{Trap:} De Morgan swaps the operator as well as priming each input. (A + B)' is not A' + B'.\end{notebox}
+
+\Needspace{5\baselineskip}
+\begin{notebox}\textbf{Near miss:} (\textit{A} \ensuremath{\cdot} \textit{B})' = \textit{A}' \ensuremath{\cdot} \textit{B}' looks natural, but try \textit{A} = 1, \textit{B} = 0: the left side is (0)' = 1 and the right side is 0 \ensuremath{\cdot} 1 = 0. De Morgan’s law also swaps the operator: (\textit{A} \ensuremath{\cdot} \textit{B})' = \textit{A}' + \textit{B}'.\end{notebox}
 
 \Needspace{10\baselineskip}
 \begin{recallbox}{Recall check \ensuremath{\cdot} answer without looking}
@@ -545,10 +581,13 @@ Rewrite (A + B)' using De Morgan's law, then evaluate it when A = 0 and B = 1.
 \end{keepsection}
 
 \begin{keepsection}
-\Needspace{6\baselineskip}
+\Needspace{11\baselineskip}
 \section{2.7 Logic gates implement Boolean functions}
 
+\Needspace{8\baselineskip}
 A gate is a circuit block whose output follows a Boolean rule. Algebra connects a circuit diagram to its expression and makes it possible to build several operations from a universal gate.
+
+\begin{plainbox}\textbf{In plain words:} a \textbf{logic gate} is a small circuit that computes one Boolean operation; its output stands for 1 or 0 according to its inputs. A small circle on an output means the result is inverted, turning AND into NAND and OR into NOR. NAND alone can build every other gate, so it is called universal.\end{plainbox}
 
 \begin{keepsection}
 \Needspace{20\baselineskip}
@@ -571,7 +610,7 @@ AND, OR, and NOT gates represent the corresponding operations. A small circle at
 
 \begin{equationcard}{Inverted gates and exclusive gates}
 \[ \begin{gathered} \text{NAND}({A},{B})\, =\, ({A}\, \cdot \, {B})' \\ \text{NOR}({A},{B})\, =\, ({A}\, +\, {B})' \\ \text{XOR}({A},{B})\, =\, {A}'\, \cdot \, {B}\, +\, {A}\, \cdot \, {B}' \\ \text{XNOR}({A},{B})\, =\, {A}'\, \cdot \, {B}'\, +\, {A}\, \cdot \, {B} \end{gathered} \]
-{\small XOR is true when exactly one input is true. XNOR is true when both inputs agree.}
+{\small \emph{Read it as: “NAND of A and B is not (A and B)”; “XOR is true when exactly one input is true”.}\par XOR is true when exactly one input is true. XNOR is true when both inputs agree.}
 \end{equationcard}
 \end{keepsection}
 
@@ -614,8 +653,11 @@ The first NAND receives B and C and produces I. A second NAND receives A and I a
 Sanity check with the gates, row 1,1,0: I = (1 \ensuremath{\cdot} 0)' = 1, then X = (1 \ensuremath{\cdot} 1)' = 0, which matches the table.
 \end{workedbox}
 
-\Needspace{5\baselineskip}
+\Needspace{7\baselineskip}
 \begin{notebox}\textbf{Memory hook:} bubbles on outputs mean “invert this result”; translate them as a prime before simplifying.\end{notebox}
+
+\Needspace{6\baselineskip}
+\begin{notebox}\textbf{Near miss:} XOR and OR agree on three of the four input rows; they differ only at \textit{A} = \textit{B} = 1, where OR gives 1 and XOR gives 0. A circuit that mixes them up is right three times out of four and still wrong.\end{notebox}
 
 \Needspace{9\baselineskip}
 \begin{recallbox}{Recall check \ensuremath{\cdot} answer without looking}
@@ -632,25 +674,31 @@ Sanity check with the gates, row 1,1,0: I = (1 \ensuremath{\cdot} 0)' = 1, then 
 \end{keepsection}
 
 \begin{keepsection}
-\Needspace{6\baselineskip}
+\Needspace{10\baselineskip}
 \section{2.8 Physical circuits take time to switch}
 
+\Needspace{7\baselineskip}
 A Boolean truth table describes the stable input-output rule. Real circuits also have timing behaviour because their physical components need time to change state.
 
+\begin{plainbox}\textbf{In plain words:} a truth table says which output a gate settles on, but not when. A real gate is built from physical parts that take a short time to switch, so for a moment after an input changes, the output can still show the old value.\end{plainbox}
+
 \begin{keepsection}
-\Needspace{17\baselineskip}
+\Needspace{18\baselineskip}
 \subsection{From ideal logic to a real signal}
 
-\Needspace{14\baselineskip}
+\Needspace{15\baselineskip}
 The final slides contrast an ideal, instantaneous gate with real switching. They identify time delay and saturation as limits on how quickly a physical circuit can change its output. Slide 48 shows the output of a NOT built from NAND following a gradual curve across a time Δt rather than jumping. Real gates are built from transistors; slide 49 shows a transistor-transistor logic (TTL) NAND gate. A logic diagram therefore describes function, while a timing diagram is needed to reason about when a change becomes visible.
 
 \begin{equationcard}{Two useful models}
 \[ \begin{gathered} \text{Boolean}\, \text{model}\, \to \, \text{which}\, \text{stable}\, \text{output}\, \text{follows}\, \text{each}\, \text{input}? \\ \text{Physical}\, \text{model}\, \to \, \text{how}\, \text{long}\, \text{does}\, \text{the}\, \text{output}\, \text{take}\, \text{to}\, \text{reach}\, \text{its}\, \text{new}\, \text{state}? \end{gathered} \]
-{\small The supplied slides introduce the distinction but do not provide numerical delay values or a timing-analysis procedure.}
+{\small \emph{Read it as: the Boolean model answers “which output?”; the physical model answers “how long until the output gets there?”.}\par The supplied slides introduce the distinction but do not provide numerical delay values or a timing-analysis procedure.}
 \end{equationcard}
 
-\Needspace{5\baselineskip}
+\Needspace{8\baselineskip}
 \begin{notebox}\textbf{Trap:} do not claim that a real gate changes output at exactly the same instant as its input. The lecture explicitly notes switching delay.\end{notebox}
+
+\Needspace{7\baselineskip}
+\begin{notebox}\textbf{Near miss:} a circuit whose truth table is exactly right can still show a wrong value for a moment: if two signals reach a gate along paths with different delays, the gate briefly sees the new value on one input and the old value on the other. Correct logic is not the same as correct timing.\end{notebox}
 
 \Needspace{11\baselineskip}
 \begin{recallbox}{Recall check \ensuremath{\cdot} answer without looking}

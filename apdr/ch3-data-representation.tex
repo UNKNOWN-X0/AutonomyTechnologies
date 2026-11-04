@@ -194,21 +194,24 @@ Did signed arithmetic overflow? & Check the exact result against the fixed-width
 \end{keepsection}
 
 \begin{keepsection}
-\Needspace{6\baselineskip}
+\Needspace{11\baselineskip}
 \section{3.1 Number systems and positional notation}
 
+\Needspace{8\baselineskip}
 A numeral is a compact way to write a sum of place values. Binary, octal, decimal, and hexadecimal use the same positional rule with different bases.
 
+\begin{plainbox}\textbf{In plain words:} a numeral is shorthand for a sum: each digit is multiplied by a power of the base, set by its position. In decimal, 352 means 3 \ensuremath{\cdot} 100 + 5 \ensuremath{\cdot} 10 + 2 \ensuremath{\cdot} 1; in binary the place values are 1, 2, 4, 8, … instead. Octal and hexadecimal are short ways to write long binary strings, because one octal digit is exactly 3 bits and one hexadecimal digit exactly 4.\end{plainbox}
+
 \begin{keepsection}
-\Needspace{12\baselineskip}
+\Needspace{13\baselineskip}
 \subsection{Expand and convert}
 
-\Needspace{9\baselineskip}
+\Needspace{10\baselineskip}
 In base b, each digit d\textsubscript{i} contributes d\textsubscript{i}b\textsuperscript{i}, where the rightmost digit has i=0. Binary digits are 0 or 1. Decimal-to-binary repeated division records remainders; read them from last to first.
 
 \begin{equationcard}{Positional value}
 \[ \begin{gathered} ({d}_{{k}}…{d}_{1}{d}_{0})_{{b}}\, =\, \sum_{{i}=0}^{{k}} \, {d}_{{i}}{b}^{{i}} \\ (1100010)_{2}\, =\, 1\cdot 2^{6}\, +\, 1\cdot 2^{5}\, +\, 1\cdot 2^{1}\, =\, 98 \end{gathered} \]
-{\small The worked binary number is 98 in decimal. Subscripts identify the base.}
+{\small \emph{Read it as: “the number with digits d\textsubscript{k} down to d\textsubscript{0} in base b is the sum of d\textsubscript{i} times b to the i”: each digit times its place value.}\par The worked binary number is 98 in decimal. Subscripts identify the base.}
 \end{equationcard}
 
 \begin{workedbox}{Worked conversion \ensuremath{\cdot} decimal to binary}
@@ -236,8 +239,11 @@ Because 8=2\textsuperscript{3}, each octal digit corresponds to three binary dig
 {\small The lecture uses 16-bit words and 32-bit long words as examples; the sizes named by these terms can depend on a computer architecture. (This goes beyond the notes, which give only those examples.)}
 \end{equationcard}
 
-\Needspace{5\baselineskip}
+\Needspace{6\baselineskip}
 \begin{notebox}\textbf{Trap:} do not read a binary string as an ordinary decimal integer. Attach its base, expand it, and only then compare values.\end{notebox}
+
+\Needspace{5\baselineskip}
+\begin{notebox}\textbf{Near miss:} 10\textsubscript{2} looks like ten, but in binary it is 1 \ensuremath{\cdot} 2 + 0 \ensuremath{\cdot} 1 = 2. Read the base before the digits.\end{notebox}
 
 \Needspace{10\baselineskip}
 \begin{recallbox}{Recall check \ensuremath{\cdot} answer without looking}
@@ -254,21 +260,24 @@ Because 8=2\textsuperscript{3}, each octal digit corresponds to three binary dig
 \end{keepsection}
 
 \begin{keepsection}
-\Needspace{6\baselineskip}
+\Needspace{11\baselineskip}
 \section{3.2 Integer representations}
 
+\Needspace{8\baselineskip}
 A computer stores a fixed number of bits, not a plus or minus sign unless the encoding defines one. The same pattern can mean different values under different encodings.
 
+\begin{plainbox}\textbf{In plain words:} a computer stores only a row of bits; whether the row means a positive number, a negative number or something else depends on the agreed encoding. Unsigned uses every bit for size. The signed encodings give part of the range to negatives, and two’s complement, the one computers use, gives the top bit a negative weight.\end{plainbox}
+
 \begin{keepsection}
-\Needspace{14\baselineskip}
+\Needspace{15\baselineskip}
 \subsection{Unsigned and signed ranges}
 
-\Needspace{11\baselineskip}
+\Needspace{12\baselineskip}
 An unsigned n-bit pattern represents 0 through 2\textsuperscript{n}\ensuremath{-}1. Signed encodings trade positive range for negative values. The source compares sign-and-magnitude, one’s complement, two’s complement, excess (biased) notation, and binary-coded decimal (BCD).
 
 \begin{equationcard}{Ranges for n bits}
 \[ \begin{gathered} \text{Unsigned}:\, 0\, …\, 2^{{n}}-1 \\ \text{Sign}\, \text{and}\, \text{magnitude}:\, -(2^{{n}-1}-1)\, …\, +(2^{{n}-1}-1) \\ \text{One}’\mathrm{s}\, \text{complement}:\, -(2^{{n}-1}-1)\, …\, +(2^{{n}-1}-1) \\ \text{Two}’\mathrm{s}\, \text{complement}:\, -2^{{n}-1}\, …\, 2^{{n}-1}-1 \end{gathered} \]
-{\small Sign-and-magnitude and one’s complement have two zero encodings. Two’s complement has one zero and one extra negative value.}
+{\small \emph{Read it as: “with n bits, unsigned runs from 0 to 2\textsuperscript{n} \ensuremath{-} 1; two’s complement runs from \ensuremath{-}2\textsuperscript{n\ensuremath{-}1} to 2\textsuperscript{n\ensuremath{-}1} \ensuremath{-} 1”.}\par Sign-and-magnitude and one’s complement have two zero encodings. Two’s complement has one zero and one extra negative value.}
 \end{equationcard}
 
 \begin{workedbox}{Worked comparison \ensuremath{\cdot} decode 1111 in four encodings}
@@ -306,12 +315,12 @@ Excess-B & One & Depends on B & Chosen for ordering, covered next \\
 \Needspace{12\baselineskip}
 To form \ensuremath{-}x in n-bit two’s complement, invert all n bits of x and add 1; discard a carry beyond the width. The minimum value \ensuremath{-}2\textsuperscript{n\ensuremath{-}1} is the exception: its positive counterpart is outside the signed range, so fixed-width negation leaves the same pattern and overflows. Equivalently, interpret a pattern with top bit 1 by subtracting 2\textsuperscript{n} from its unsigned value. In excess-B notation, actual value = stored unsigned value \ensuremath{-} B. The lecture’s three-bit excess-4 example therefore maps 000 to \ensuremath{-}4 and 111 to 3.
 
-\Needspace{12\baselineskip}
+\Needspace{13\baselineskip}
 Excess exists to keep numbers in order. In two’s complement a negative value starts with 1, so comparing patterns as unsigned numbers ranks every negative value above every positive one. In excess notation the all-zeros pattern is the smallest value and the all-ones pattern the largest, so the unsigned comparison gives the right order.
 
 \begin{equationcard}{Decode rules}
 \[ \begin{gathered} \text{Two}’\mathrm{s}-\text{complement}\, \text{value}\, =\, \text{unsigned}(\text{pattern})\, -\, 2^{{n}}\, \text{when}\, \text{the}\, \text{top}\, \text{bit}\, \text{is}\, 1 \\ \text{Negate}\, {x}:\, \text{invert}\, {n}\, \text{bits},\, \text{then}\, \text{add}\, 1 \\ \text{Excess}-\mathrm{B}\, \text{value}\, =\, \text{stored}\, \text{value}\, -\, {B} \end{gathered} \]
-{\small Keep the width fixed throughout. The same bit pattern has no signed meaning until an encoding is specified.}
+{\small \emph{Read it as: “when the top bit is 1, the two’s-complement value is the unsigned value minus 2\textsuperscript{n}”; to negate, flip every bit and add 1.}\par Keep the width fixed throughout. The same bit pattern has no signed meaning until an encoding is specified.}
 \end{equationcard}
 \end{keepsection}
 
@@ -325,8 +334,11 @@ In four-bit BCD, each decimal digit has its own four-bit code. For example, deci
 \Needspace{7\baselineskip}
 A BCD digit usually takes four or eight bits. With four, only 0000–1001 are used; the six patterns 1010–1111 are not valid digits. The lecture’s number 9876510 needs 7\ensuremath{\times}4=28 bits in BCD but 24 bits in ordinary binary.
 
-\Needspace{5\baselineskip}
+\Needspace{6\baselineskip}
 \begin{notebox}\textbf{Trap:} do not convert all BCD bits as one binary number. Decode each four-bit group as a decimal digit.\end{notebox}
+
+\Needspace{5\baselineskip}
+\begin{notebox}\textbf{Near miss:} +8 in four-bit two’s complement looks as if it should be 1000, but 1000 is \ensuremath{-}8: the range stops at +7, so +8 cannot be stored in four bits.\end{notebox}
 
 \Needspace{12\baselineskip}
 \begin{recallbox}{Recall check \ensuremath{\cdot} answer without looking}
@@ -345,10 +357,13 @@ A BCD digit usually takes four or eight bits. With four, only 0000–1001 are us
 \end{keepsection}
 
 \begin{keepsection}
-\Needspace{6\baselineskip}
+\Needspace{11\baselineskip}
 \section{3.3 Character data}
 
+\Needspace{8\baselineskip}
 Numbers are not the only data stored as bits. A character encoding assigns numeric codes to letters, digits, punctuation, and control characters.
+
+\begin{plainbox}\textbf{In plain words:} text is stored as numbers too: a character encoding is a table that gives every letter, digit and symbol a numeric code. 7-bit ASCII has 128 codes, enough for basic English; Unicode extends the table to the world’s scripts, and a byte encoding says how each code is written as bytes.\end{plainbox}
 
 \begin{keepsection}
 \Needspace{16\baselineskip}
@@ -357,12 +372,12 @@ Numbers are not the only data stored as bits. A character encoding assigns numer
 \Needspace{13\baselineskip}
 ASCII uses seven bits, giving 128 code values. The lecture describes eight-bit extensions that use the additional 128 patterns, but those upper values depend on the particular extension. Unicode assigns code points to characters across many writing systems; its first 128 code points match ASCII. A code point and its byte encoding are related but are not the same concept. (This distinction goes beyond the notes, which do not discuss byte encodings.)
 
-\Needspace{13\baselineskip}
+\Needspace{14\baselineskip}
 The 128 ASCII patterns divide into 52 letters (26 lowercase and 26 uppercase), 10 digits, 32 punctuation marks and 34 others: whitespace such as space, tab and return, plus control characters. The lecture’s table reads by position: bits 6–4 pick the column and bits 3–0 the row, so F, 100 0110, sits in column 100 and row 0110. Unicode aims to give every character in any language a number. The lecture says over 120,000 are defined, and the first 65,536 (the 16-bit range) cover the world’s major alphabets.
 
 \begin{equationcard}{Character-code facts}
 \[ \begin{gathered} 7-\text{bit}\, \text{ASCII}:\, 2^{7}\, =\, 128\, \text{code}\, \text{values} \\ \text{ASCII}\, \text{code}\, \text{points}:\, 0\, …\, 127 \end{gathered} \]
-{\small The first 128 Unicode code points correspond to ASCII. Byte encodings represent code points as bytes by their own rules.}
+{\small \emph{Read it as: “7-bit ASCII has 2\textsuperscript{7} = 128 code values, numbered 0 to 127”.}\par The first 128 Unicode code points correspond to ASCII. Byte encodings represent code points as bytes by their own rules.}
 \end{equationcard}
 
 \begin{workedbox}{Worked encoding \ensuremath{\cdot} read a short ASCII string}
@@ -376,8 +391,11 @@ The lecture’s example encodes “Fred” in hexadecimal as 46 72 65 64.
 \end{enumerate}
 \end{workedbox}
 
-\Needspace{5\baselineskip}
+\Needspace{6\baselineskip}
 \begin{notebox}\textbf{Trap:} an encoding is a mapping, not a property of the bit pattern by itself. Identify the character set and any byte encoding before decoding text.\end{notebox}
+
+\Needspace{5\baselineskip}
+\begin{notebox}\textbf{Near miss:} the character '7' looks like the number 7, but its ASCII code is 55. Arithmetic on character codes goes wrong unless you subtract the code of '0', which is 48, first.\end{notebox}
 
 \Needspace{11\baselineskip}
 \begin{recallbox}{Recall check \ensuremath{\cdot} answer without looking}
@@ -395,10 +413,13 @@ The lecture’s example encodes “Fred” in hexadecimal as 46 72 65 64.
 \end{keepsection}
 
 \begin{keepsection}
-\Needspace{6\baselineskip}
+\Needspace{11\baselineskip}
 \section{3.4 Unsigned binary arithmetic}
 
+\Needspace{8\baselineskip}
 Binary arithmetic follows the same place-value logic as decimal arithmetic. Carries and borrows move between columns, while the fixed bit width limits which values can be stored.
+
+\begin{plainbox}\textbf{In plain words:} binary arithmetic works column by column like the decimal method from school, only the columns are worth 1, 2, 4, 8, …. 1 + 1 makes 2, which is written 0 with 1 carried. The difference is that a computer has a fixed number of columns, so a carry out of the last column is lost.\end{plainbox}
 
 \begin{keepsection}
 \Needspace{15\baselineskip}
@@ -434,15 +455,15 @@ Subtract 10011\textsubscript{2} from 1000101\textsubscript{2}, numbering columns
 \end{keepsection}
 
 \begin{keepsection}
-\Needspace{13\baselineskip}
+\Needspace{14\baselineskip}
 \subsection{Multiply and divide}
 
-\Needspace{10\baselineskip}
+\Needspace{11\baselineskip}
 Binary multiplication uses partial products, like decimal long multiplication, but each multiplier bit is only 0 or 1. Binary division uses quotient and remainder. For divisor d\ensuremath{>}0, dividend = quotient\ensuremath{\times}divisor + remainder, where 0\ensuremath{\leq}remainder\ensuremath{<}divisor.
 
 \begin{equationcard}{Division check}
 \[ \begin{gathered} \text{dividend}\, =\, \text{quotient}\, \times \, \text{divisor}\, +\, \text{remainder} \\ 0\, \leq \, \text{remainder}\, <\, \text{divisor} \end{gathered} \]
-{\small Substitute the quotient, divisor, and remainder to check a division result.}
+{\small \emph{Read it as: “dividend equals quotient times divisor plus remainder, with the remainder at least 0 and smaller than the divisor”.}\par Substitute the quotient, divisor, and remainder to check a division result.}
 \end{equationcard}
 
 \begin{workedbox}{Worked multiplication \ensuremath{\cdot} a carry of 10}
@@ -471,8 +492,11 @@ Divide 110101\textsubscript{2} by 101\textsubscript{2}.
 \end{enumerate}
 \end{workedbox}
 
-\Needspace{6\baselineskip}
+\Needspace{7\baselineskip}
 \begin{notebox}\textbf{Memory hook:} in binary addition, 1+1 writes 0 and carries 1. In subtraction, a borrow makes the current column worth 2 before subtracting. In multiplication, a column can total more than 3, so a carry can be 10\textsubscript{2}.\end{notebox}
+
+\Needspace{5\baselineskip}
+\begin{notebox}\textbf{Near miss:} in four bits, 1100 + 0101 gives the correct sum 10001, but only four bits are kept: 0001. The column arithmetic was right; the result just does not fit.\end{notebox}
 
 \Needspace{9\baselineskip}
 \begin{recallbox}{Recall check \ensuremath{\cdot} answer without looking}
@@ -489,21 +513,24 @@ Divide 110101\textsubscript{2} by 101\textsubscript{2}.
 \end{keepsection}
 
 \begin{keepsection}
-\Needspace{7\baselineskip}
+\Needspace{12\baselineskip}
 \section{3.5 Two’s-complement arithmetic and overflow}
 
+\Needspace{9\baselineskip}
 Two’s complement lets the same adder perform signed addition and subtraction. Correct bit operations still need a range check: a fixed-width result can wrap to a pattern with a different signed value.
 
+\begin{plainbox}\textbf{In plain words:} two’s complement lets one adder handle both signs: to subtract, add the negation. The catch is the fixed range. Adding two positive numbers can go past the largest value and wrap round to a pattern that reads as negative. That is \textbf{overflow}, and it is not the same thing as a carry out of the top bit.\end{plainbox}
+
 \begin{keepsection}
-\Needspace{17\baselineskip}
+\Needspace{18\baselineskip}
 \subsection{Addition, subtraction, and overflow}
 
-\Needspace{14\baselineskip}
+\Needspace{15\baselineskip}
 Add the bit patterns and discard any carry beyond the most significant bit. For subtraction, negate the subtrahend and add it to the minuend. Signed overflow occurs when the exact mathematical result lies outside the representation’s range. For addition, it occurs when two operands with the same sign produce a result with the opposite sign; operands of unlike signs cannot overflow.
 
 \begin{equationcard}{n-bit two’s-complement checks}
 \[ \begin{gathered} \text{Range}:\, -2^{{n}-1}\, …\, 2^{{n}-1}-1 \\ {A}\, -\, {B}\, =\, {A}\, +\, (\text{two}’\mathrm{s}-\text{complement}\, \text{negation}\, \text{of}\, {B}) \\ \text{Addition}\, \text{overflow}:\, \text{same}-\text{sign}\, \text{operands},\, \text{opposite}-\text{sign}\, \text{result} \\ \text{Subtraction}\, \text{overflow}:\, \text{operand}\, \text{signs}\, \text{differ},\, \text{result}\, \text{has}\, \text{the}\, \text{subtrahend}’\mathrm{s}\, \text{sign} \end{gathered} \]
-{\small Discarding carry-out is part of fixed-width addition. Carry-out alone does not signal signed overflow.}
+{\small \emph{Read it as: “A minus B is A plus the negation of B”; overflow on addition means two operands of the same sign gave a result of the other sign.}\par Discarding carry-out is part of fixed-width addition. Carry-out alone does not signal signed overflow.}
 \end{equationcard}
 
 \begin{workedbox}{Worked example \ensuremath{\cdot} detect overflow}
@@ -550,8 +577,11 @@ The lecture notes that ordinary unsigned multiplication cannot simply be applied
 \end{enumerate}
 \end{workedbox}
 
-\Needspace{5\baselineskip}
+\Needspace{7\baselineskip}
 \begin{notebox}\textbf{Sign check:} do not treat discarded carry as overflow. Decode the fixed-width result and compare it with the exact mathematical result and allowed range.\end{notebox}
+
+\Needspace{6\baselineskip}
+\begin{notebox}\textbf{Near miss:} in four bits, 0111 + 0001 = 1000 has no carry out of the top bit, yet it is wrong: 7 + 1 = 8 is out of range, and 1000 reads as \ensuremath{-}8. Overflow is judged by the signs, not by the carry.\end{notebox}
 
 \Needspace{13\baselineskip}
 \begin{recallbox}{Recall check \ensuremath{\cdot} answer without looking}

@@ -219,11 +219,14 @@ Why did a computation change a value? & Check finite precision, exponent range, 
 \end{keepsection}
 
 \begin{keepsection}
-\Needspace{8\baselineskip}
+\Needspace{11\baselineskip}
 \section{4.1 The floating-point model}
 
-\Needspace{5\baselineskip}
+\Needspace{8\baselineskip}
 A fixed number of bits cannot represent every real number.
+
+\Needspace{9\baselineskip}
+\begin{plainbox}\textbf{In plain words:} a floating-point number is scientific notation in binary: a sign, a short run of significant digits (the \textbf{significand}) and an \textbf{exponent} that slides the point left or right. A fixed number of bits holds only so many significant digits, so most real numbers are stored as the nearest value the format can hold, and the gaps between neighbouring values grow as the numbers get larger.\end{plainbox}
 
 Floating point uses a sign, a significand, and an exponent to cover very large and very small magnitudes.
 
@@ -247,12 +250,12 @@ The exponent controls scale and therefore the approximate range.
 \Needspace{5\baselineskip}
 The number of significand bits controls precision, or how finely nearby values can be distinguished.
 
-\Needspace{8\baselineskip}
+\Needspace{9\baselineskip}
 Floating-point values are finite in number, and their spacing changes with magnitude.
 
 \begin{equationcard}{Scientific notation model}
 \[ \begin{gathered} {x}\, =\, \pm {M}\, \times \, {R}^{{E}} \end{gathered} \]
-{\small M is the coefficient (also called the significand or mantissa), R is the base or radix, and E is the exponent. In binary floating point, R=2.}
+{\small \emph{Read it as: “x is plus or minus M times R to the E”: the significand M carries the digits, and the exponent E says where the point goes.}\par M is the coefficient (also called the significand or mantissa), R is the base or radix, and E is the exponent. In binary floating point, R=2.}
 \end{equationcard}
 \end{keepsection}
 
@@ -263,12 +266,12 @@ Floating-point values are finite in number, and their spacing changes with magni
 \Needspace{9\baselineskip}
 Take a signed 3-digit coefficient and a signed 2-digit exponent. The positive expressible zone runs from +.001\ensuremath{\times}10\textsuperscript{\ensuremath{-}99} to +.999\ensuremath{\times}10\textsuperscript{+99}, and the negative zone mirrors it. Magnitudes above the top lie in the overflow zones. Non-zero magnitudes below the bottom lie in the underflow zones.
 
-\Needspace{12\baselineskip}
+\Needspace{13\baselineskip}
 The gap between neighbours varies. Next to .001\ensuremath{\times}10\textsuperscript{\ensuremath{-}99} the neighbours are 0 and .002\ensuremath{\times}10\textsuperscript{\ensuremath{-}99}, so the gap is 10\textsuperscript{\ensuremath{-}102} each way. The same digits at exponent \ensuremath{-}50 are 10\textsuperscript{\ensuremath{-}53}, and that value can also be written with a finer exponent. Its neighbours are .999\ensuremath{\times}10\textsuperscript{\ensuremath{-}53} (gap 10\textsuperscript{\ensuremath{-}56}) and .101\ensuremath{\times}10\textsuperscript{\ensuremath{-}52} (gap 10\textsuperscript{\ensuremath{-}55}).
 
 \begin{equationcard}{Gap in one binary zone}
 \[ \begin{gathered} \text{Gap}\, \text{in}\, [2^{{e}},\, 2^{{e}+1})\, \text{with}\, {p}\, \text{significant}\, \text{bits}\, =\, 2^{{e}-{p}+1} \end{gathered} \]
-{\small (This follows directly from the notes’ significand model; the notes only say the gap varies.) The last of the p bits has weight 2\textsuperscript{\ensuremath{-}(p\ensuremath{-}1)}, and the exponent scales it by 2\textsuperscript{e}.}
+{\small \emph{Read it as: “with p significant bits, neighbours in [2\textsuperscript{e}, 2\textsuperscript{e+1}) are 2\textsuperscript{e\ensuremath{-}p+1} apart”: the gap doubles at each power of 2.}\par (This follows directly from the notes’ significand model; the notes only say the gap varies.) The last of the p bits has weight 2\textsuperscript{\ensuremath{-}(p\ensuremath{-}1)}, and the exponent scales it by 2\textsuperscript{e}.}
 \end{equationcard}
 \end{keepsection}
 
@@ -290,8 +293,11 @@ Write 343000 \ensuremath{\times} 10\textsuperscript{\ensuremath{-}4} in normalis
 \end{enumerate}
 \end{workedbox}
 
-\Needspace{5\baselineskip}
+\Needspace{7\baselineskip}
 \begin{notebox}\textbf{Trap:} moving the radix point changes the exponent in the opposite direction if the represented value is to stay the same.\end{notebox}
+
+\Needspace{6\baselineskip}
+\begin{notebox}\textbf{Near miss:} 12.5 \ensuremath{\times} 10\textsuperscript{0} and 1.25 \ensuremath{\times} 10\textsuperscript{1} are the same number, but only the second is normalised, with one non-zero digit before the point. A format that allowed both would spend bit patterns on duplicate values.\end{notebox}
 
 \Needspace{12\baselineskip}
 \begin{recallbox}{Recall check \ensuremath{\cdot} answer without looking}
@@ -309,11 +315,14 @@ Write 343000 \ensuremath{\times} 10\textsuperscript{\ensuremath{-}4} in normalis
 \end{keepsection}
 
 \begin{keepsection}
-\Needspace{7\baselineskip}
+\Needspace{9\baselineskip}
 \section{4.2 Binary fractions}
 
-\Needspace{4\baselineskip}
+\Needspace{6\baselineskip}
 Binary fractional place values explain both conversion and approximation.
+
+\Needspace{6\baselineskip}
+\begin{plainbox}\textbf{In plain words:} binary fractions work like decimal ones with halves instead of tenths: after the binary point the places are worth 1/2, 1/4, 1/8, …. Some fractions that are short in decimal never end in binary, just as 1/3 never ends in decimal.\end{plainbox}
 
 \Needspace{4\baselineskip}
 The first bit after the binary point has weight 2\textsuperscript{\ensuremath{-}1}.
@@ -321,12 +330,12 @@ The first bit after the binary point has weight 2\textsuperscript{\ensuremath{-}
 Each following bit has half the previous weight.
 
 \begin{keepsection}
-\Needspace{9\baselineskip}
+\Needspace{10\baselineskip}
 \subsection{Convert binary fractions to decimal}
 
 \begin{equationcard}{Binary fractional place values}
 \[ \begin{gathered} 0.{b}_{1}{b}_{2}…{b}_{{k}}\, =\, {b}_{1}2^{-1}\, +\, {b}_{2}2^{-2}\, +\, …\, +\, {b}_{{k}}2^{-{k}} \end{gathered} \]
-{\small Each b\textsubscript{i} is 0 or 1. A leading integer part is evaluated with non-negative powers of 2.}
+{\small \emph{Read it as: “0.b\textsubscript{1}b\textsubscript{2}…b\textsubscript{k} is b\textsubscript{1} halves plus b\textsubscript{2} quarters plus …”: each bit times its power of one half.}\par Each b\textsubscript{i} is 0 or 1. A leading integer part is evaluated with non-negative powers of 2.}
 \end{equationcard}
 
 \begin{workedbox}{Worked conversion \ensuremath{\cdot} binary fraction to decimal}
@@ -370,8 +379,11 @@ Some fractions, such as 0.1 in decimal, repeat in binary. The remainders run 0.1
 \Needspace{4\baselineskip}
 A finite significand stores only an approximation of a repeating expansion.
 
-\Needspace{4\baselineskip}
+\Needspace{6\baselineskip}
 \begin{notebox}\textbf{Trap:} a decimal fraction that looks short is not necessarily exact in binary.\end{notebox}
+
+\Needspace{6\baselineskip}
+\begin{notebox}\textbf{Near miss:} 0.1 has a single digit in decimal, but in binary it is 0.000110011… with the block 0011 repeating forever, so a computer can only store an approximation. 0.5 = 0.1\textsubscript{2}, by contrast, is exact.\end{notebox}
 
 \Needspace{10\baselineskip}
 \begin{recallbox}{Recall check \ensuremath{\cdot} answer without looking}
@@ -388,11 +400,14 @@ A finite significand stores only an approximation of a repeating expansion.
 \end{keepsection}
 
 \begin{keepsection}
-\Needspace{8\baselineskip}
+\Needspace{10\baselineskip}
 \section{4.3 Floating-point arithmetic and error}
 
-\Needspace{5\baselineskip}
+\Needspace{7\baselineskip}
 The exponent and significand must be managed during each operation.
+
+\Needspace{8\baselineskip}
+\begin{plainbox}\textbf{In plain words:} to multiply two floating-point numbers, multiply the significands and add the exponents. To add them, first shift the one with the smaller exponent until the exponents match, then add. Either way the result is normalised and rounded, and that rounding is where small errors creep in.\end{plainbox}
 
 After the exact operation, the result may need normalisation and rounding to fit the available precision.
 
@@ -485,11 +500,14 @@ For approximate comparisons, choose a tolerance ε that fits the scale and preci
 
 \begin{equationcard}{Absolute tolerance example}
 \[ \begin{gathered} \text{Treat}\, {a}\, \text{as}\, \text{close}\, \text{to}\, {b}\, \text{when}\, |{a}-{b}|\, <\, ε \\ \text{For}\, {b}\, =\, 1\, \text{and}\, ε\, =\, 0.000005:\, 0.999995\, <\, {a}\, <\, 1.000005 \end{gathered} \]
-{\small A fixed absolute tolerance may be unsuitable when magnitudes vary greatly. The slides also introduce relative closeness.}
+{\small \emph{Read it as: “treat a as close to b when the distance between them is less than ε”.}\par A fixed absolute tolerance may be unsuitable when magnitudes vary greatly. The slides also introduce relative closeness.}
 \end{equationcard}
 
-\Needspace{4\baselineskip}
+\Needspace{6\baselineskip}
 \begin{notebox}\textbf{Sign check:} estimate the order of magnitude before accepting a rounded result.\end{notebox}
+
+\Needspace{6\baselineskip}
+\begin{notebox}\textbf{Near miss:} 0.1 + 0.2 looks as if it should equal 0.3, but in double precision the computed sum is 0.30000000000000004, so the test 0.1 + 0.2 == 0.3 is false. Compare floating-point results with a tolerance instead.\end{notebox}
 
 \Needspace{13\baselineskip}
 \begin{recallbox}{Recall check \ensuremath{\cdot} answer without looking}
@@ -507,11 +525,14 @@ For approximate comparisons, choose a tolerance ε that fits the scale and preci
 \end{keepsection}
 
 \begin{keepsection}
-\Needspace{8\baselineskip}
+\Needspace{10\baselineskip}
 \section{4.4 IEEE 754 binary formats}
 
-\Needspace{5\baselineskip}
+\Needspace{7\baselineskip}
 A shared format defines how floating-point fields are stored and how arithmetic behaves.
+
+\Needspace{8\baselineskip}
+\begin{plainbox}\textbf{In plain words:} IEEE 754 is the shared recipe for storing a floating-point number: one sign bit, an exponent field stored with an offset (the \textbf{bias}) so it needs no sign of its own, and the fraction bits after the binary point. A normalised number always starts with 1., so that 1 is not stored at all: it is the \textbf{hidden bit}.\end{plainbox}
 
 The slides introduce IEEE 754 as a widely adopted standard for predictable binary floating-point arithmetic.
 
@@ -546,7 +567,7 @@ The exponent field stores an excess (biased) value rather than a two’s-complem
 
 \begin{equationcard}{Normalised value rule}
 \[ \begin{gathered} \text{value}\, =\, (-1)^{{S}}\, \times \, 1.{F}\, \times \, 2^{{E}-\text{bias}} \\ \text{Single}\, \text{bias}\, =\, 127 \\ \text{double}\, \text{bias}\, =\, 1023 \end{gathered} \]
-{\small S is the sign bit, E is the unsigned exponent field, and F is the stored fraction interpreted after the binary point. This rule is for normalised values.}
+{\small \emph{Read it as: “value is \ensuremath{-}1 to the S, times 1.F, times 2 to the (E minus bias)”: the sign, the stored fraction with its hidden 1, and the exponent once the bias is removed.}\par S is the sign bit, E is the unsigned exponent field, and F is the stored fraction interpreted after the binary point. This rule is for normalised values.}
 \end{equationcard}
 \end{keepsection}
 
@@ -596,8 +617,11 @@ The exponent field stores an excess (biased) value rather than a two’s-complem
 \end{enumerate}
 \end{workedbox}
 
-\Needspace{5\baselineskip}
+\Needspace{6\baselineskip}
 \begin{notebox}\textbf{Trap:} restore the hidden leading 1 when decoding a normalised value, but do not apply that rule to a denormalised value.\end{notebox}
+
+\Needspace{5\baselineskip}
+\begin{notebox}\textbf{Near miss:} the single-precision exponent field 10000000 looks like a large exponent, but it means 128 \ensuremath{-} 127 = 1. Subtract the bias before reading the exponent.\end{notebox}
 
 \Needspace{11\baselineskip}
 \begin{recallbox}{Recall check \ensuremath{\cdot} answer without looking}
@@ -619,6 +643,9 @@ The exponent field stores an excess (biased) value rather than a two’s-complem
 
 \Needspace{6\baselineskip}
 Reserved exponent patterns extend useful behaviour beyond normalised values.
+
+\Needspace{8\baselineskip}
+\begin{plainbox}\textbf{In plain words:} some exponent patterns are kept for special cases. An exponent of all zeros means zero or a tiny \textbf{subnormal} number that fills the gap just above zero; an exponent of all ones means infinity when the fraction is zero, and NaN, “not a number”, for results such as 0/0.\end{plainbox}
 
 \Needspace{16\baselineskip}
 IEEE formats encode five kinds of value: zero, normalised numbers, denormalised numbers, infinity and NaN. In single precision, exponent field zero and exponent field all ones have special interpretations, so normalised exponents run from \ensuremath{-}126 to 127 rather than \ensuremath{-}127 to 128.
@@ -678,8 +705,11 @@ Classify sign 0, exponent 11111111, fraction 000…000.
 \end{enumerate}
 \end{workedbox}
 
-\Needspace{5\baselineskip}
+\Needspace{6\baselineskip}
 \begin{notebox}\textbf{Trap:} an all-ones exponent does not always mean infinity; inspect the fraction field to distinguish infinity from NaN.\end{notebox}
+
+\Needspace{5\baselineskip}
+\begin{notebox}\textbf{Near miss:} +0 and \ensuremath{-}0 have different bit patterns and compare as equal, yet they are not interchangeable: 1/(+0) gives +\ensuremath{\infty} while 1/(\ensuremath{-}0) gives \ensuremath{-}\ensuremath{\infty}. The sign bit still matters at zero.\end{notebox}
 
 \Needspace{11\baselineskip}
 \begin{recallbox}{Recall check \ensuremath{\cdot} answer without looking}

@@ -194,15 +194,18 @@ Where does this address go? & Split module-selection and row bits. \\
 \end{keepsection}
 
 \begin{keepsection}
-\Needspace{12\baselineskip}
+\Needspace{11\baselineskip}
 \section{5.1 Memory hierarchy and properties}
 
-\Needspace{9\baselineskip}
+\Needspace{8\baselineskip}
 Hierarchy balances speed, capacity, cost, volatility, and flexibility. Registers are fastest and smallest; storage devices are largest and slowest.
+
+\Needspace{12\baselineskip}
+\begin{plainbox}\textbf{In plain words:} memory is a ladder of trade-offs: the faster a memory is, the smaller and more expensive it is. Registers inside the processor are fastest; RAM is larger and slower; disks and SSDs are largest and slowest but keep their contents without power. SRAM and DRAM are two ways to build RAM: SRAM is faster, DRAM denser and cheaper.\end{plainbox}
 
 \begin{equationcard}{Memory hierarchy}
 \[ \begin{gathered} \text{fastest}/\text{smallest}\, \to \, \text{registers}\, \to \, \text{RAM}\, \to \, \text{storage}\, \to \, \text{largest}/\text{slowest} \end{gathered} \]
-{\small This is a qualitative ordering, not a universal timing specification.}
+{\small \emph{Read it as: “from fastest and smallest to largest and slowest: registers, then RAM, then storage”.}\par This is a qualitative ordering, not a universal timing specification.}
 \end{equationcard}
 
 Memory holds data, instructions, and addresses as binary values. Contents change only when overwritten. Registers are fixed in the CPU; RAM is expandable main memory; disks and other devices provide expandable storage. The lecture’s comparison is qualitative: registers are expensive, small, fast, volatile; RAM is intermediate; disks are cheap, large, slower, and non-volatile.
@@ -233,7 +236,10 @@ A program, its data, and pointers to both can all be represented as binary value
 \Needspace{5\baselineskip}
 \begin{notebox}\textbf{Trap:} state the addressable unit, width, and byte order before calculating. Do not treat a qualitative lecture comparison as a fixed hardware specification.\end{notebox}
 
-\Needspace{4\baselineskip}
+\Needspace{6\baselineskip}
+\Needspace{6\baselineskip}
+\begin{notebox}\textbf{Near miss:} DRAM holds data for as long as the computer runs, so it can seem permanent, but it is volatile: it needs power and constant refreshing, and switching off loses its contents, unlike flash storage.\end{notebox}
+
 \Needspace{13\baselineskip}
 \begin{recallbox}{Recall check \ensuremath{\cdot} answer without looking}
 \Needspace{8\baselineskip}
@@ -250,15 +256,18 @@ A program, its data, and pointers to both can all be represented as binary value
 \end{keepsection}
 
 \begin{keepsection}
-\Needspace{10\baselineskip}
+\Needspace{9\baselineskip}
 \section{5.2 RAM cells, addressing, and capacity}
 
-\Needspace{7\baselineskip}
+\Needspace{6\baselineskip}
 A memory needs a way to identify locations and a unit that each address selects.
+
+\Needspace{10\baselineskip}
+\begin{plainbox}\textbf{In plain words:} think of memory as a table of numbered rows. The \textbf{address} is the row number, and each row holds a fixed number of bits, the addressable unit (often one byte). With \textit{k} address bits you can number 2\textsuperscript{\textit{k}} rows, so the capacity is the number of rows times the bits per row.\end{plainbox}
 
 \begin{equationcard}{Memory size}
 \[ \begin{gathered} {R}\, \text{rows}\, \times \, {W}\, \text{bits}\, \text{per}\, \text{row}\, =\, {R}\times {W}\, \text{bits} \end{gathered} \]
-{\small Address count depends on address width and the addressable unit.}
+{\small \emph{Read it as: “R rows times W bits per row is R \ensuremath{\times} W bits”.}\par Address count depends on address width and the addressable unit.}
 \end{equationcard}
 
 \Needspace{12\baselineskip}
@@ -273,8 +282,11 @@ The lecture’s 1GB example has 256M rows \ensuremath{\times} 32 bits = 8,192M b
 \end{enumerate}
 \end{workedbox}
 
-\Needspace{5\baselineskip}
+\Needspace{6\baselineskip}
 \begin{notebox}\textbf{Trap:} state the addressable unit, width, and byte order before calculating. Do not treat a qualitative lecture comparison as a fixed hardware specification.\end{notebox}
+
+\Needspace{5\baselineskip}
+\begin{notebox}\textbf{Near miss:} a 16-bit address looks as if it should give 16 rows, but it gives 2\textsuperscript{16} = 65 536 rows: each extra address bit doubles the count.\end{notebox}
 
 \Needspace{10\baselineskip}
 \begin{recallbox}{Recall check \ensuremath{\cdot} answer without looking}
@@ -289,15 +301,18 @@ The lecture’s 1GB example has 256M rows \ensuremath{\times} 32 bits = 8,192M b
 \end{keepsection}
 
 \begin{keepsection}
-\Needspace{12\baselineskip}
+\Needspace{10\baselineskip}
 \section{5.3 Endianness and aligned access}
 
-\Needspace{9\baselineskip}
+\Needspace{7\baselineskip}
 When a value spans multiple bytes, the byte order determines what appears at increasing addresses.
+
+\Needspace{11\baselineskip}
+\begin{plainbox}\textbf{In plain words:} a number wider than one byte is spread over several addresses, so the order of its bytes needs a rule. \textbf{Big-endian} puts the most significant byte first, at the lowest address, the way we write numbers; \textbf{little-endian} puts the least significant byte first.\end{plainbox}
 
 \begin{equationcard}{Byte order}
 \[ \begin{gathered} \text{Big}-\text{endian}:\, \text{MSB}\, \text{at}\, \text{lowest}\, \text{address}\, \cdot \, \text{Little}-\text{endian}:\, \text{LSB}\, \text{at}\, \text{lowest}\, \text{address} \end{gathered} \]
-{\small The starting address is the address of the first byte of the item.}
+{\small \emph{Read it as: “big-endian: most significant byte at the lowest address; little-endian: least significant byte at the lowest address”.}\par The starting address is the address of the first byte of the item.}
 \end{equationcard}
 
 \Needspace{13\baselineskip}
@@ -312,8 +327,11 @@ A 16-bit value A9A1 beginning at byte address 2 is aligned in the slide’s exam
 \end{enumerate}
 \end{workedbox}
 
-\Needspace{5\baselineskip}
+\Needspace{7\baselineskip}
 \begin{notebox}\textbf{Trap:} state the addressable unit, width, and byte order before calculating. Do not treat a qualitative lecture comparison as a fixed hardware specification.\end{notebox}
+
+\Needspace{6\baselineskip}
+\begin{notebox}\textbf{Near miss:} 0x12345678 stored little-endian from address 100 puts 0x78 at 100 and 0x12 at 103, so the bytes in address order read 78 56 34 12. That looks backwards, but it is the same value read with the other rule.\end{notebox}
 
 \Needspace{9\baselineskip}
 \begin{recallbox}{Recall check \ensuremath{\cdot} answer without looking}
@@ -328,15 +346,18 @@ A 16-bit value A9A1 beginning at byte address 2 is aligned in the slide’s exam
 \end{keepsection}
 
 \begin{keepsection}
-\Needspace{12\baselineskip}
+\Needspace{10\baselineskip}
 \section{5.4 Memory chips and modules}
 
-\Needspace{9\baselineskip}
+\Needspace{7\baselineskip}
 Chip organisation connects a chip’s row count and data width to the capacity and width of a module.
+
+\Needspace{10\baselineskip}
+\begin{plainbox}\textbf{In plain words:} a memory chip is a grid of rows, each a few bits wide. Larger memories combine chips: side by side to widen the data path, or added rows to hold more. A module’s capacity is simply the total of its chips’ bits.\end{plainbox}
 
 \begin{equationcard}{Chip capacity}
 \[ \begin{gathered} \text{rows}\, \times \, \text{bits}\, \text{per}\, \text{row}\, =\, \text{bits} \\ \text{divide}\, \text{by}\, 8\, \text{for}\, \text{bytes} \end{gathered} \]
-{\small Here M means 2\textsuperscript{20}, as in the lecture’s capacity convention.}
+{\small \emph{Read it as: “rows times bits per row gives bits; divide by 8 for bytes”.}\par Here M means 2\textsuperscript{20}, as in the lecture’s capacity convention.}
 \end{equationcard}
 
 \Needspace{14\baselineskip}
@@ -360,8 +381,11 @@ Four 128M\ensuremath{\times}8 chips provide 128M rows of 32 bits, or 512 MiB. Tw
 \end{enumerate}
 \end{workedbox}
 
-\Needspace{5\baselineskip}
+\Needspace{6\baselineskip}
 \begin{notebox}\textbf{Trap:} state the addressable unit, width, and byte order before calculating. Do not treat a qualitative lecture comparison as a fixed hardware specification.\end{notebox}
+
+\Needspace{5\baselineskip}
+\begin{notebox}\textbf{Near miss:} a 1M \ensuremath{\times} 4 chip looks like 4 MB, but it holds 1M rows of 4 bits, which is 4 Mbit = 512 KB, because a byte is 8 bits. Divide by 8 before writing bytes.\end{notebox}
 
 \Needspace{9\baselineskip}
 \begin{recallbox}{Recall check \ensuremath{\cdot} answer without looking}
@@ -376,15 +400,18 @@ Four 128M\ensuremath{\times}8 chips provide 128M rows of 32 bits, or 512 MiB. Tw
 \end{keepsection}
 
 \begin{keepsection}
-\Needspace{12\baselineskip}
+\Needspace{11\baselineskip}
 \section{5.5 Memory interleaving}
 
-\Needspace{9\baselineskip}
+\Needspace{8\baselineskip}
 Interleaving assigns addresses across modules so independent modules can serve requests in parallel.
+
+\Needspace{12\baselineskip}
+\begin{plainbox}\textbf{In plain words:} interleaving spreads consecutive addresses across several memory modules, like dealing cards round a table. While one module is still busy with a request, the next address is already in another module that can start straight away, so a run of consecutive reads goes faster.\end{plainbox}
 
 \begin{equationcard}{Address split for four modules}
 \[ \begin{gathered} 22\, \text{address}\, \text{bits}\, =\, 2\, \text{module}\, \text{bits}\, +\, 20\, \text{row}\, \text{bits} \end{gathered} \]
-{\small The 2 module bits select one of four modules; the 20 row bits select a row.}
+{\small \emph{Read it as: “22 address bits are 2 bits that choose the module plus 20 bits that choose the row inside it”.}\par The 2 module bits select one of four modules; the 20 row bits select a row.}
 \end{equationcard}
 
 \Needspace{13\baselineskip}
@@ -399,8 +426,11 @@ Low-order interleaving sends adjacent addresses to different modules; high-order
 \end{enumerate}
 \end{workedbox}
 
-\Needspace{5\baselineskip}
+\Needspace{7\baselineskip}
 \begin{notebox}\textbf{Trap:} state the addressable unit, width, and byte order before calculating. Do not treat a qualitative lecture comparison as a fixed hardware specification.\end{notebox}
+
+\Needspace{6\baselineskip}
+\begin{notebox}\textbf{Near miss:} using the top two address bits to choose the module also splits memory across four modules, but then consecutive addresses all land in the same module and nothing runs in parallel. Interleaving takes the module bits from the low end of the address.\end{notebox}
 
 \Needspace{9\baselineskip}
 \begin{recallbox}{Recall check \ensuremath{\cdot} answer without looking}
