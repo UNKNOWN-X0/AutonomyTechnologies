@@ -324,6 +324,14 @@ def viz_tikz(f):
             out.append(r"\fill[white] %s;" % circ(B))
         if shade == "inter":
             out.append(r"\begin{scope}\clip %s; \fill[FAUblue!25] %s; \end{scope}" % (circ(A), circ(B)))
+        if shade in ("nor", "nand", "imp"):
+            out.append(r"\fill[FAUblue!25] %s;" % U)
+        if shade == "nor":
+            out += [r"\fill[white] %s;" % circ(A), r"\fill[white] %s;" % circ(B)]
+        if shade == "nand":
+            out.append(r"\begin{scope}\clip %s; \fill[white] %s; \end{scope}" % (circ(A), circ(B)))
+        if shade == "imp":
+            out += [r"\fill[white] %s;" % circ(A), r"\fill[FAUblue!25] %s;" % circ(B)]
         out += [r"\draw[black!70] %s;" % U, r"\draw[black!80] %s;" % circ(A), r"\draw[black!80] %s;" % circ(B)]
         L = (a.get("data-labels") or "A B X").split(" ")
         out += [T(28, 32, L[0], italic=True), T(172, 32, L[1], italic=True)]
@@ -392,8 +400,12 @@ def viz_tikz(f):
         pts = lambda t: " -- ".join(P(X(float(p.split(",")[0])), Y(float(p.split(",")[1]))) for p in t.split())
         if a.get("data-shade"):
             out.append(r"\fill[FAUblue!25] %s -- cycle;" % pts(a["data-shade"]))
-        out += [arrow_t(X0, Y0, X1 + 10, Y0), arrow_t(X0, Y0, X0, Y1 - 8)]
-        for i, l in enumerate(l for l in (a.get("data-lines") or "").split(";") if l.strip()):
+        ax = X(0) if xr[0] < 0 < xr[1] else X0
+        ay = Y(0) if yr[0] < 0 < yr[1] else Y0
+        out += [arrow_t(X0, ay, X1 + 10, ay), arrow_t(ax, Y0, ax, Y1 - 8)]
+        for i, l in enumerate((a.get("data-lines") or "").split(";")):
+            if not l.strip():
+                continue
             style = ["FAUblue,line width=1.6pt", "black!85,line width=1pt", "black!55,dashed"][min(i, 2)]
             out.append(r"\draw[%s] %s;" % (style, pts(l)))
         for m in (a.get("data-marks") or "").split(";"):
@@ -401,12 +413,12 @@ def viz_tikz(f):
                 xy, _, lab = m.partition(":")
                 x_, y_ = [float(v) for v in xy.split(",")]
                 out.append(T(X(x_) + 6, Y(y_) - 6, lab, r"\footnotesize", "anchor=west", False, "FAUblue"))
-        out += [T(X1 + 8, Y0 + 16, a.get("data-xlabel") or "x", r"\footnotesize", "anchor=east", True),
-                T(X0 - 8, Y1 - 2, a.get("data-ylabel") if a.get("data-ylabel") is not None else "y", r"\footnotesize", "anchor=east", True)]
+        out += [T(X1 + 8, ay + 16, a.get("data-xlabel") or "x", r"\footnotesize", "anchor=east", True),
+                T(ax - 8, Y1 - 2, a.get("data-ylabel") if a.get("data-ylabel") is not None else "y", r"\footnotesize", "anchor=east", True)]
         for t in (a.get("data-xticks") or "").split():
             v, _, lab = t.partition(":")
-            out.append(r"\draw[black!80] %s -- %s;" % (P(X(float(v)), Y0 - 4), P(X(float(v)), Y0 + 4)))
-            out.append(T(X(float(v)), Y0 + 16, lab or v, r"\footnotesize"))
+            out.append(r"\draw[black!80] %s -- %s;" % (P(X(float(v)), ay - 4), P(X(float(v)), ay + 4)))
+            out.append(T(X(float(v)), ay + 16, lab or v, r"\footnotesize"))
     elif kind == "field":
         def charge(x, y, sign):
             out.append(r"\filldraw[draw=FAUblue,fill=FAUblue] %s circle (%.3f);" % (P(x, y), 12 * VS))
@@ -471,6 +483,39 @@ def viz_tikz(f):
                 out.append(arrow_t(*(p2 + p1)) if neg else arrow_t(*(p1 + p2)))
             out.append(r"\filldraw[draw=FAUblue,fill=FAUblue] %s circle (%.3f);" % (P(c, c), 13 * VS))
             out.append(r"\node[text=white,font=\small\bfseries] at %s {%s};" % (P(c, c), "−" if neg else "+"))
+    elif kind == "nest":
+        R = [[x.strip() for x in r.split(":")] for r in a["data-rings"].split("|")]
+        for i in range(len(R) - 1, -1, -1):
+            w, h = 84 + i * 60, 44 + i * 40
+            x0, y0 = 136 - w / 2, 94 - h / 2
+            out.append(r"\filldraw[draw=black!50,fill=%s] %s rectangle %s;" % ("FAUblue!25" if i == 0 else "Paperblue", P(x0, y0), P(x0 + w, y0 + h)))
+            out.append(T(x0 + 8, y0 + 14, R[i][0], r"\small", "anchor=west"))
+            if len(R[i]) > 1:
+                out.append(T(x0 + w - 8, y0 + 14, R[i][1], r"\footnotesize", "anchor=east", False, "FAUblue"))
+    elif kind == "flow":
+        S = a["data-steps"].split("|")
+        BW, G, X = 108, 24, 4
+        for i, st in enumerate(S):
+            lines = st.split(" / ")
+            out.append(r"\filldraw[draw=black!50,fill=%s] %s rectangle %s;" % ("FAUblue!25" if i == len(S) - 1 else "Paperblue", P(X, 10), P(X + BW, 66)))
+            for k_, l in enumerate(lines):
+                out.append(T(X + BW / 2, 38 + (k_ - (len(lines) - 1) / 2) * 16, l, r"\small" if k_ == 0 else r"\scriptsize"))
+            if i < len(S) - 1:
+                out.append(arrow_t(X + BW + 2, 38, X + BW + G - 2, 38))
+            X += BW + G
+    elif kind == "pascal":
+        n = int(a.get("data-rows") or 5)
+        sm = (a.get("data-sum") or "").split(":")
+        C = [[1]]
+        for r_ in range(1, n + 1):
+            C.append([1] + [C[r_ - 1][k_ - 1] + C[r_ - 1][k_] for k_ in range(1, r_)] + [1])
+        for r_, row in enumerate(C):
+            for k_, val in enumerate(row):
+                x, y = 130 + (k_ - r_ / 2) * 34, 20 + r_ * 24
+                hot = len(sm) == 2 and ((r_ == int(sm[0]) and k_ in (int(sm[1]), int(sm[1]) + 1)) or (r_ == int(sm[0]) + 1 and k_ == int(sm[1]) + 1))
+                if hot:
+                    out.append(r"\fill[FAUblue!25] %s circle (%.3f);" % (P(x, y - 2), 11 * VS))
+                out.append(T(x, y - 2, str(val), r"\small", "", False, "FAUblue" if hot else ""))
     elif kind == "ladder":
         L = a["data-levels"].split(";")
         n, H, top = len(L), 30, 24

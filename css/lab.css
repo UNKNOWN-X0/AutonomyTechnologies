@@ -781,3 +781,29 @@
   border-color: var(--act);
   color: var(--act);
 }
+
+/* "Or try your own" (MEI labs): typed rules under the presets. */
+.controls .own input[type="text"] {
+  min-height: 36px;
+  padding: 4px 8px;
+  border: 2px solid var(--ink);
+  border-radius: 0;
+  background: var(--paper);
+  color: var(--ink);
+  font: 600 0.95rem/1.2 "Cambria Math", "STIX Two Math", "Times New Roman", serif;
+  width: 100%;
+  max-width: 16em;
+  box-sizing: border-box;
+}
+.controls .own-msg {
+  min-height: 1.3em;
+  margin: 6px 0 0;
+  color: var(--act);
+  font-weight: 600;
+  font-size: 0.9rem;
+}
+.controls .own-help {
+  margin: 2px 0 0;
+  color: var(--muted);
+  font-size: 0.85rem;
+}

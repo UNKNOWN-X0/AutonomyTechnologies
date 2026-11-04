@@ -230,6 +230,25 @@ The sets grow by solving equations that smaller number systems cannot always sol
 {\small \emph{Read it as: “\ensuremath{\mathbb{N}} is a proper subset of \ensuremath{\mathbb{Z}}, which is a proper subset of \ensuremath{\mathbb{Q}}, which is a proper subset of \ensuremath{\mathbb{R}}”: each system strictly contains the one before.}\par Here \ensuremath{\mathbb{N}}=\{1,2,…\}; \ensuremath{\mathbb{N}}\textsubscript{0}=\ensuremath{\mathbb{N}}\ensuremath{\cup}\{0\}. A rational is p/q with p\ensuremath{\in}\ensuremath{\mathbb{Z}}, q\ensuremath{\in}\ensuremath{\mathbb{N}} and p,q coprime.}
 \end{equationcard}
 
+\Needspace{14\baselineskip}
+\begin{center}
+\begin{minipage}[t]{0.950\linewidth}\centering
+\begin{tikzpicture}
+\filldraw[draw=black!50,fill=Paperblue] (0.072,-0.216) rectangle (4.824,-3.168);
+\node[anchor=west,inner sep=1pt,font=\small] at (0.216,-0.468) {\ensuremath{\mathbb{R}}};
+\node[anchor=east,text=FAUblue,inner sep=1pt,font=\footnotesize] at (4.680,-0.468) {\ensuremath{\surd}2};
+\filldraw[draw=black!50,fill=Paperblue] (0.612,-0.576) rectangle (4.284,-2.808);
+\node[anchor=west,inner sep=1pt,font=\small] at (0.756,-0.828) {\ensuremath{\mathbb{Q}}};
+\node[anchor=east,text=FAUblue,inner sep=1pt,font=\footnotesize] at (4.140,-0.828) {1/2};
+\filldraw[draw=black!50,fill=Paperblue] (1.152,-0.936) rectangle (3.744,-2.448);
+\node[anchor=west,inner sep=1pt,font=\small] at (1.296,-1.188) {\ensuremath{\mathbb{Z}}};
+\node[anchor=east,text=FAUblue,inner sep=1pt,font=\footnotesize] at (3.600,-1.188) {\ensuremath{-}3};
+\filldraw[draw=black!50,fill=FAUblue!25] (1.692,-1.296) rectangle (3.204,-2.088);
+\node[anchor=west,inner sep=1pt,font=\small] at (1.836,-1.548) {\ensuremath{\mathbb{N}}};
+\node[anchor=east,text=FAUblue,inner sep=1pt,font=\footnotesize] at (3.060,-1.548) {2};
+\end{tikzpicture}\par\smallskip{\small\raggedright \textbf{Each number system sits inside the next}, with an example that first appears at each level: 2 \ensuremath{\in} \ensuremath{\mathbb{N}}, \ensuremath{-}3 \ensuremath{\in} \ensuremath{\mathbb{Z}}, 1/2 \ensuremath{\in} \ensuremath{\mathbb{Q}}, \ensuremath{\surd}2 \ensuremath{\in} \ensuremath{\mathbb{R}}.\par}\end{minipage}
+\end{center}
+
 \Needspace{10\baselineskip}
 Integers add negatives to \ensuremath{\mathbb{N}}. Rationals add quotients with non-zero integer denominator. The real numbers add limits such as \ensuremath{\surd}2 that cannot be expressed as a rational quotient. For example, \ensuremath{\surd}2 is irrational: if \ensuremath{\surd}2=p/q in lowest terms, then p\textsuperscript{2}=2q\textsuperscript{2} makes p even; substituting p=2m makes q even too, contradicting lowest terms.
 
@@ -449,6 +468,37 @@ Evaluate $\sum_{\mathrm{k}=1}^{\mathrm{n}} $1/(k(k+1)).
 {\small The Pascal identity is valid for 0\ensuremath{\leq}k\ensuremath{\leq}n\ensuremath{-}1. The notes state a,b\ensuremath{\neq}0; the polynomial identity also holds when either is zero. The theorem gives n+1 terms; powers of a descend while powers of b rise.}
 \end{equationcard}
 
+\Needspace{14\baselineskip}
+\begin{center}
+\begin{minipage}[t]{0.950\linewidth}\centering
+\begin{tikzpicture}
+\node[,inner sep=1pt,font=\small] at (2.340,-0.324) {1};
+\node[,inner sep=1pt,font=\small] at (2.034,-0.756) {1};
+\node[,inner sep=1pt,font=\small] at (2.646,-0.756) {1};
+\node[,inner sep=1pt,font=\small] at (1.728,-1.188) {1};
+\node[,inner sep=1pt,font=\small] at (2.340,-1.188) {2};
+\node[,inner sep=1pt,font=\small] at (2.952,-1.188) {1};
+\node[,inner sep=1pt,font=\small] at (1.422,-1.620) {1};
+\node[,inner sep=1pt,font=\small] at (2.034,-1.620) {3};
+\node[,inner sep=1pt,font=\small] at (2.646,-1.620) {3};
+\node[,inner sep=1pt,font=\small] at (3.258,-1.620) {1};
+\node[,inner sep=1pt,font=\small] at (1.116,-2.052) {1};
+\fill[FAUblue!25] (1.728,-2.052) circle (0.198);
+\node[text=FAUblue,inner sep=1pt,font=\small] at (1.728,-2.052) {4};
+\fill[FAUblue!25] (2.340,-2.052) circle (0.198);
+\node[text=FAUblue,inner sep=1pt,font=\small] at (2.340,-2.052) {6};
+\node[,inner sep=1pt,font=\small] at (2.952,-2.052) {4};
+\node[,inner sep=1pt,font=\small] at (3.564,-2.052) {1};
+\node[,inner sep=1pt,font=\small] at (0.810,-2.484) {1};
+\node[,inner sep=1pt,font=\small] at (1.422,-2.484) {5};
+\fill[FAUblue!25] (2.034,-2.484) circle (0.198);
+\node[text=FAUblue,inner sep=1pt,font=\small] at (2.034,-2.484) {10};
+\node[,inner sep=1pt,font=\small] at (2.646,-2.484) {10};
+\node[,inner sep=1pt,font=\small] at (3.258,-2.484) {5};
+\node[,inner sep=1pt,font=\small] at (3.870,-2.484) {1};
+\end{tikzpicture}\par\smallskip{\small\raggedright \textbf{Pascal’s triangle}: each entry is the sum of the two above it, as in 4 + 6 = 10, which is C(4, 1) + C(4, 2) = C(5, 2).\par}\end{minipage}
+\end{center}
+
 \Needspace{12\baselineskip}
 Useful coefficient properties are C(n,0)=C(n,n)=1 and C(n,k)=C(n,n\ensuremath{-}k). Pascal’s identity says adjacent entries combine to form the next row. The binomial theorem generalises the familiar square and cube patterns.
 
@@ -490,6 +540,24 @@ Induction proves infinitely many linked claims using a finite argument: establis
 \[ \begin{gathered} \text{Prove}\, {A}({n}_{0}),\, \text{and}\, \text{prove}\, {A}({n})\, \Rightarrow \, {A}({n}+1)\, \text{for}\, \text{arbitrary}\, {n}\, \geq \, {n}_{0} \end{gathered} \]
 {\small \emph{Read it as: “if A(n\textsubscript{0}) is true, and A(n) being true always makes A(n+1) true, then A(n) is true for every n \ensuremath{\geq} n\textsubscript{0}”.}\par Then A(n) holds for every integer n\ensuremath{\geq}n\textsubscript{0}. State the starting index and keep the induction hypothesis available in the step.}
 \end{equationcard}
+
+\Needspace{14\baselineskip}
+\begin{center}
+\begin{minipage}[t]{0.950\linewidth}\centering
+\begin{tikzpicture}
+\filldraw[draw=black!50,fill=Paperblue] (0.072,-0.180) rectangle (2.016,-1.188);
+\node[,inner sep=1pt,font=\small] at (1.044,-0.540) {Base case};
+\node[,inner sep=1pt,font=\scriptsize] at (1.044,-0.828) {A(n₀) is true};
+\draw[-{Stealth[length=4pt]},black!80] (2.052,-0.684) -- (2.412,-0.684);
+\filldraw[draw=black!50,fill=Paperblue] (2.448,-0.180) rectangle (4.392,-1.188);
+\node[,inner sep=1pt,font=\small] at (3.420,-0.540) {Step};
+\node[,inner sep=1pt,font=\scriptsize] at (3.420,-0.828) {A(n) \ensuremath{\Rightarrow} A(n+1)};
+\draw[-{Stealth[length=4pt]},black!80] (4.428,-0.684) -- (4.788,-0.684);
+\filldraw[draw=black!50,fill=FAUblue!25] (4.824,-0.180) rectangle (6.768,-1.188);
+\node[,inner sep=1pt,font=\small] at (5.796,-0.540) {Conclusion};
+\node[,inner sep=1pt,font=\scriptsize] at (5.796,-0.828) {A(n) for all n \ensuremath{\geq} n₀};
+\end{tikzpicture}\par\smallskip{\small\raggedright \textbf{Induction as a chain}: the base case starts it and the step passes it on, so it reaches every \textit{n} from \textit{n}\textsubscript{0} on.\par}\end{minipage}
+\end{center}
 
 \Needspace{14\baselineskip}
 Write the induction step as a conditional: assume A(n) for an arbitrary allowed n, and use it to prove A(n+1). Do not assume the result you are trying to prove. The base case starts the chain; the implication advances it. For two-step induction, verify two consecutive base cases and advance from n to n+2, which covers both parities. In \textbf{strong induction} (the notes’ “extended induction hypothesis”) you assume A(n\textsubscript{0}), A(n\textsubscript{0}+1), …, A(n) all hold and use any of them to prove A(n+1); this helps when the next case depends on an earlier case rather than only on the one before.

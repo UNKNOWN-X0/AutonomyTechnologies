@@ -232,6 +232,21 @@ A \textbf{statement} is a sentence that is either true or false; its truth value
 {\small \emph{Read it as: “not A”, “A and B”, “A or B (or both)”.}\par Truth tables define the meaning of each connective. The notes use 1 for true and 0 for false; \ensuremath{\lor} is inclusive “or”.}
 \end{equationcard}
 
+\Needspace{14\baselineskip}
+\begin{center}
+\begin{minipage}[t]{0.950\linewidth}\centering
+\begin{tikzpicture}
+\fill[FAUblue!25] (0.072,-0.072) rectangle (3.528,-2.268);
+\fill[white] (1.404,-1.224) circle (0.792);
+\fill[FAUblue!25] (2.196,-1.224) circle (0.792);
+\draw[black!70] (0.072,-0.072) rectangle (3.528,-2.268);
+\draw[black!80] (1.404,-1.224) circle (0.792);
+\draw[black!80] (2.196,-1.224) circle (0.792);
+\node[,inner sep=1pt,font=\small] at (0.504,-0.576) {\textit{A}};
+\node[,inner sep=1pt,font=\small] at (3.096,-0.576) {\textit{B}};
+\end{tikzpicture}\par\smallskip{\small\raggedright \textbf{A \ensuremath{\Rightarrow} B} is false only where A is true and B is not (the white crescent); everywhere else it is true.\par}\end{minipage}
+\end{center}
+
 \Needspace{10\baselineskip}
 \begin{center}\small\begin{tabularx}{\linewidth}{>{\raggedright\arraybackslash}X>{\raggedright\arraybackslash}X>{\raggedright\arraybackslash}X}\toprule
 \textbf{Form} & \textbf{Meaning} & \textbf{True when} \\ \midrule
@@ -519,6 +534,33 @@ Set identities can be proved by translating both sides into membership condition
 \[ \begin{gathered} ({A}^{c})^{c}\, =\, {A} \\ {A}\cap {B}\, =\, {B}\cap {A} \\ {A}\cup {B}\, =\, {B}\cup {A} \\ {A}\cap ({B}\cap {C})\, =\, ({A}\cap {B})\cap {C} \\ {A}\cup ({B}\cup {C})\, =\, ({A}\cup {B})\cup {C} \\ {A}\cap ({B}\cup {C})\, =\, ({A}\cap {B})\cup ({A}\cap {C}) \\ {A}\cup ({B}\cap {C})\, =\, ({A}\cup {B})\cap ({A}\cup {C}) \\ ({A}\cap {B})^{c}\, =\, {A}^{c}\cup {B}^{c} \\ ({A}\cup {B})^{c}\, =\, {A}^{c}\cap {B}^{c} \end{gathered} \]
 {\small Complements use the same fixed universal set X.}
 \end{equationcard}
+
+\Needspace{14\baselineskip}
+\begin{center}
+\begin{minipage}[t]{0.465\linewidth}\centering
+\begin{tikzpicture}
+\fill[FAUblue!25] (0.072,-0.072) rectangle (3.528,-2.268);
+\fill[white] (1.404,-1.224) circle (0.792);
+\fill[white] (2.196,-1.224) circle (0.792);
+\draw[black!70] (0.072,-0.072) rectangle (3.528,-2.268);
+\draw[black!80] (1.404,-1.224) circle (0.792);
+\draw[black!80] (2.196,-1.224) circle (0.792);
+\node[,inner sep=1pt,font=\small] at (0.504,-0.576) {\textit{A}};
+\node[,inner sep=1pt,font=\small] at (3.096,-0.576) {\textit{B}};
+\node[anchor=west,inner sep=1pt,font=\footnotesize] at (0.216,-2.088) {\textit{X}};
+\end{tikzpicture}\par\smallskip{\small\raggedright \textbf{(A \ensuremath{\cup} B)\ensuremath{^{c}} = A\ensuremath{^{c}} \ensuremath{\cap} B\ensuremath{^{c}}}: outside both circles, the same region either way.\par}\end{minipage}\hfill
+\begin{minipage}[t]{0.465\linewidth}\centering
+\begin{tikzpicture}
+\fill[FAUblue!25] (0.072,-0.072) rectangle (3.528,-2.268);
+\begin{scope}\clip (1.404,-1.224) circle (0.792); \fill[white] (2.196,-1.224) circle (0.792); \end{scope}
+\draw[black!70] (0.072,-0.072) rectangle (3.528,-2.268);
+\draw[black!80] (1.404,-1.224) circle (0.792);
+\draw[black!80] (2.196,-1.224) circle (0.792);
+\node[,inner sep=1pt,font=\small] at (0.504,-0.576) {\textit{A}};
+\node[,inner sep=1pt,font=\small] at (3.096,-0.576) {\textit{B}};
+\node[anchor=west,inner sep=1pt,font=\footnotesize] at (0.216,-2.088) {\textit{X}};
+\end{tikzpicture}\par\smallskip{\small\raggedright \textbf{(A \ensuremath{\cap} B)\ensuremath{^{c}} = A\ensuremath{^{c}} \ensuremath{\cup} B\ensuremath{^{c}}}: everything except the overlap.\par}\end{minipage}
+\end{center}
 
 \begin{equationcard}{Logic and sets side by side}
 \[ \begin{gathered} {A}\land {B}\, ↔\, {A}\cap {B} \\ {A}\lor {B}\, ↔\, {A}\cup {B} \\ \neg {A}\, ↔\, {A}^{c} \\ {A}\, \Rightarrow \, {B}\, ↔\, {A}\subset {B} \\ {A}\, \Leftrightarrow \, {B}\, ↔\, {A}\, =\, {B} \end{gathered} \]

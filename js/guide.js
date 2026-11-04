@@ -451,21 +451,24 @@
         Y = function (v) { return Y0 - ((v - yr[0]) / (yr[1] - yr[0])) * (Y0 - Y1); },
         pts = function (s) { return s.trim().split(" ").map(function (p) { var q = p.split(","); return X(+q[0]).toFixed(1) + "," + Y(+q[1]).toFixed(1); }).join(" "); };
       if (d.shade) el("polygon", { points: pts(d.shade), class: "vz-fill" }, svg);
-      arrow(svg, X0, Y0, X1 + 10, Y0);
-      arrow(svg, X0, Y0, X0, Y1 - 8);
-      (d.lines || "").split(";").filter(Boolean).forEach(function (l, i) {
+      // axes through the origin when 0 is in range, else along the low edges
+      var ax = xr[0] < 0 && xr[1] > 0 ? X(0) : X0, ay = yr[0] < 0 && yr[1] > 0 ? Y(0) : Y0;
+      arrow(svg, X0, ay, X1 + 10, ay);
+      arrow(svg, ax, Y0, ax, Y1 - 8);
+      (d.lines || "").split(";").forEach(function (l, i) {
+        if (!l.trim()) return; // an empty slot keeps the next line's style (blue, black, dashed by position)
         el("polyline", { points: pts(l), class: i === 0 ? "vz-seg thin" : i === 1 ? "vz-line thick" : "vz-dash" }, svg);
       });
       (d.marks || "").split(";").filter(Boolean).forEach(function (m) {
         var q = m.split(":"), xy = q[0].split(",");
         txt(svg, X(+xy[0]) + 6, Y(+xy[1]) - 6, q[1], "vz-small vz-acc", "start");
       });
-      txt(svg, X1 + 8, Y0 + 18, d.xlabel || "x", "vz-small vz-it", "end");
-      txt(svg, X0 - 8, Y1 - 2, d.ylabel != null ? d.ylabel : "y", "vz-small vz-it", "end");
+      txt(svg, X1 + 8, ay + 18, d.xlabel || "x", "vz-small vz-it", "end");
+      txt(svg, ax - 8, Y1 - 2, d.ylabel != null ? d.ylabel : "y", "vz-small vz-it", "end");
       (d.xticks || "").split(" ").filter(Boolean).forEach(function (t) {
         var q = t.split(":");
-        el("line", { x1: X(+q[0]), y1: Y0 - 4, x2: X(+q[0]), y2: Y0 + 4, class: "vz-line" }, svg);
-        txt(svg, X(+q[0]), Y0 + 18, q[1] || q[0], "vz-small");
+        el("line", { x1: X(+q[0]), y1: ay - 4, x2: X(+q[0]), y2: ay + 4, class: "vz-line" }, svg);
+        txt(svg, X(+q[0]), ay + 18, q[1] || q[0], "vz-small");
       });
       return [262, 170];
     },
@@ -484,6 +487,20 @@
       if (shade === "inter") {
         var g = el("g", { "clip-path": "url(#" + id + "-a)" }, svg);
         el("circle", { cx: B[0], cy: B[1], r: R, class: "vz-fill" }, g);
+      }
+      // nor: outside both; nand: all but the overlap; imp: all but A \ B (where A ⇒ B is false)
+      if (shade === "nor" || shade === "nand" || shade === "imp") el("rect", { x: 4, y: 4, width: 192, height: 122, class: "vz-fill" }, svg);
+      if (shade === "nor") {
+        el("circle", { cx: A[0], cy: A[1], r: R, class: "vz-bg" }, svg);
+        el("circle", { cx: B[0], cy: B[1], r: R, class: "vz-bg" }, svg);
+      }
+      if (shade === "nand") {
+        var g2 = el("g", { "clip-path": "url(#" + id + "-a)" }, svg);
+        el("circle", { cx: B[0], cy: B[1], r: R, class: "vz-bg" }, g2);
+      }
+      if (shade === "imp") {
+        el("circle", { cx: A[0], cy: A[1], r: R, class: "vz-bg" }, svg);
+        el("circle", { cx: B[0], cy: B[1], r: R, class: "vz-fill" }, svg);
       }
       el("rect", { x: 4, y: 4, width: 192, height: 122, class: "vz-line" }, svg);
       el("circle", { cx: A[0], cy: A[1], r: R, class: "vz-line" }, svg);
@@ -633,6 +650,42 @@
       el("circle", { cx: c, cy: c, r: 13, class: "vz-charge" }, svg);
       txt(svg, c, c + 5, neg ? "−" : "+", "vz-text vz-on");
       return [160, 160];
+    },
+    nest: function (svg, d) {
+      // nested sets, innermost first: "ℕ: 2|ℤ: −3|…"; each ring shows its name and one example that first appears there
+      var R = d.rings.split("|").map(function (r) { return r.split(":").map(function (x) { return x.trim(); }); });
+      for (var i = R.length - 1; i >= 0; i--) {
+        var w = 84 + i * 60, h = 44 + i * 40, x = 136 - w / 2, y = 94 - h / 2;
+        el("rect", { x: x, y: y, width: w, height: h, class: i === 0 ? "vz-cell hot" : "vz-cell" }, svg);
+        txt(svg, x + 8, y + 16, R[i][0], "vz-text", "start");
+        txt(svg, x + w - 8, y + 16, R[i][1] || "", "vz-small vz-acc", "end");
+      }
+      return [272, 190];
+    },
+    flow: function (svg, d) {
+      // boxes in a row with arrows; "line one / line two" breaks a box label
+      var S = d.steps.split("|"), n = S.length, BW = 108, G = 24, X = 4;
+      S.forEach(function (st, i) {
+        var lines = st.split(" / ");
+        el("rect", { x: X, y: 10, width: BW, height: 56, class: i === n - 1 ? "vz-cell hot" : "vz-cell" }, svg);
+        lines.forEach(function (l, k) { txt(svg, X + BW / 2, 34 + (k - (lines.length - 1) / 2) * 16, l, k === 0 ? "vz-text" : "vz-small"); });
+        if (i < n - 1) arrow(svg, X + BW + 2, 38, X + BW + G - 2, 38);
+        X += BW + G;
+      });
+      return [X - G + 4, 76];
+    },
+    pascal: function (svg, d) {
+      // rows 0..n of Pascal's triangle; data-sum="r:k" marks entries k and k+1 of row r and their sum below
+      var n = +d.rows || 5, sum = (d.sum || "").split(":"), sr = +sum[0], sk = +sum[1], C = [[1]];
+      for (var r = 1; r <= n; r++) { var row = [1]; for (var k = 1; k < r; k++) row.push(C[r - 1][k - 1] + C[r - 1][k]); row.push(1); C.push(row); }
+      C.forEach(function (row, r) {
+        row.forEach(function (v, k) {
+          var x = 130 + (k - r / 2) * 34, y = 20 + r * 24, hot = d.sum && ((r === sr && (k === sk || k === sk + 1)) || (r === sr + 1 && k === sk + 1));
+          if (hot) el("circle", { cx: x, cy: y - 5, r: 11, class: "vz-fill" }, svg);
+          txt(svg, x, y, String(v), hot ? "vz-text vz-acc" : "vz-text");
+        });
+      });
+      return [260, 20 + n * 24 + 14];
     },
     ladder: function (svg, d) {
       // labels above and below the stack, the arrow on the right, so nothing overlaps the level boxes

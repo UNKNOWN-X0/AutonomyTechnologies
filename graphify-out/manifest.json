@@ -72,15 +72,15 @@
     "semantic_hash": ""
   },
   "js/guide.js": {
-    "mtime": 1793823753.814704,
-    "seen": 1793824015.234593,
-    "ast_hash": "ce7aeb13bafd9e636431a55cd4f63dfe",
+    "mtime": 1793824343.0278134,
+    "seen": 1793825044.5312011,
+    "ast_hash": "0c684c9ee120ad0d2cc6daf6fb4b5d81",
     "semantic_hash": ""
   },
   "tools/guide-to-tex.py": {
-    "mtime": 1793823753.8152103,
-    "seen": 1793824015.234616,
-    "ast_hash": "2a288ec0338408f7ecc5505b06c27845",
+    "mtime": 1793824343.031505,
+    "seen": 1793825044.5312269,
+    "ast_hash": "8c9e07d89cd6a5517e5579d73f2ce676",
     "semantic_hash": ""
   },
   "eei/ch1-electrostatic-fields.html": {
@@ -156,9 +156,9 @@
     "semantic_hash": ""
   },
   "mei/ch1-statements-logic-sets.html": {
-    "mtime": 1793805393.0280697,
-    "seen": 1793805692.6387,
-    "ast_hash": "952b88de2505ed9ee465c1acc4cba477",
+    "mtime": 1793824225.0464077,
+    "seen": 1793825044.531256,
+    "ast_hash": "230c6ffd0088eeed9da30f5e3781ae81",
     "semantic_hash": ""
   },
   ".agents/skills/autonomy-course-site/SKILL.md": {
@@ -324,9 +324,9 @@
     "semantic_hash": ""
   },
   "mei/ch2-real-numbers.html": {
-    "mtime": 1793805393.0287342,
-    "seen": 1793805692.638701,
-    "ast_hash": "b559e31db98c6bd121bb165b8d728908",
+    "mtime": 1793824225.047341,
+    "seen": 1793825044.531258,
+    "ast_hash": "3c0bc990c3867ba6c25d6aa8cc113c69",
     "semantic_hash": ""
   },
   "js/mei/ch2-lab.js": {
@@ -408,15 +408,15 @@
     "semantic_hash": ""
   },
   "mei/ch3-mappings.html": {
-    "mtime": 1793805393.029363,
-    "seen": 1793805692.638703,
-    "ast_hash": "fb9d3d6ae6a7ea8482c59e1408ee62c2",
+    "mtime": 1793824225.0487874,
+    "seen": 1793825044.53126,
+    "ast_hash": "3c92e86fe58a4077e3256834b5650950",
     "semantic_hash": ""
   },
   "js/mei/ch3-lab.js": {
-    "mtime": 1793821858.1285744,
-    "seen": 1793822946.205333,
-    "ast_hash": "d77a56fbe480e10a8b76a0ed1728280f",
+    "mtime": 1793824696.0845387,
+    "seen": 1793825044.531209,
+    "ast_hash": "fa88a9ea3142d642fa1faf4ec71935de",
     "semantic_hash": ""
   },
   "js/mei/ch3-physics.js": {
@@ -432,9 +432,9 @@
     "semantic_hash": ""
   },
   "mei/ch3-mappings-lab.html": {
-    "mtime": 1793821858.1296928,
-    "seen": 1793822946.2053812,
-    "ast_hash": "378a93b2233b8deb5b8ead6b3ce1ee68",
+    "mtime": 1793824576.8209586,
+    "seen": 1793825044.5312588,
+    "ast_hash": "783df4ced16f7cd6b116fb1bb6b7a2e0",
     "semantic_hash": ""
   },
   "js/nav.js": {
@@ -462,15 +462,51 @@
     "semantic_hash": ""
   },
   "about/version-log.html": {
-    "mtime": 1793823852.4730284,
-    "seen": 1793824015.234624,
-    "ast_hash": "31502859aaf1395340a769d5bca46428",
+    "mtime": 1793824737.5077646,
+    "seen": 1793825044.5312362,
+    "ast_hash": "30c4d7935e4425106b37270e005754f8",
     "semantic_hash": ""
   },
   "docs/DIAGRAM-AND-LAB-PLAN.md": {
     "mtime": 1793821613.1503518,
     "seen": 1793822946.2053702,
     "ast_hash": "19025975c89617cf371e16c90bd28c38",
+    "semantic_hash": ""
+  },
+  "js/mei/expr.js": {
+    "mtime": 1793824483.1617262,
+    "seen": 1793825044.531211,
+    "ast_hash": "29da9760966a26bc1bf583161d86ee37",
+    "semantic_hash": ""
+  },
+  "tests/mei-expr.test.js": {
+    "mtime": 1793824484.0120683,
+    "seen": 1793825044.5312252,
+    "ast_hash": "219252cab3a2c314ca7bda88d2d90545",
+    "semantic_hash": ""
+  },
+  "m3-comp-chromium.png": {
+    "mtime": 1793824722.755131,
+    "seen": 1793825044.531261,
+    "ast_hash": "b6ffa10aaa1acd9799b88954911bb0a7",
+    "semantic_hash": ""
+  },
+  "m3-comp-webkit.png": {
+    "mtime": 1793824712.1800022,
+    "seen": 1793825044.531262,
+    "ast_hash": "37a110b1c871c678106cad2410f22cde",
+    "semantic_hash": ""
+  },
+  "m3-inv-chromium.png": {
+    "mtime": 1793824722.6674418,
+    "seen": 1793825044.5312629,
+    "ast_hash": "f30affb479f9b9391f7a17bb3eddb422",
+    "semantic_hash": ""
+  },
+  "m3-inv-webkit.png": {
+    "mtime": 1793824712.0108294,
+    "seen": 1793825044.531264,
+    "ast_hash": "7c8c684c34f2ef380b7a58239e79b3e7",
     "semantic_hash": ""
   }
 }

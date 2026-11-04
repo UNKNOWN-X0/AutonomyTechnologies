@@ -20,7 +20,7 @@
   function prediction(svg, said) { if (said) text(svg, "Your prediction: " + said, 280, 346, 13, tok("--muted"), "middle"); }
   function mappingDraw(svg, rule, phase, said) {
     reset(svg, "Finite mapping with arrows from domain inputs to codomain outputs");
-    var m = P.mapping(rule), yy = function (i, n) { return 76 + (n <= 1 ? 0 : i * 205 / (n - 1)); };
+    var m = typeof rule === "object" ? rule : P.mapping(rule), yy = function (i, n) { return 76 + (n <= 1 ? 0 : i * 205 / (n - 1)); };
     text(svg, "Domain X", 95, 40, 15, tok("--muted"), "middle", 700); text(svg, "Codomain Y", 457, 40, 15, tok("--muted"), "middle", 700);
     m.pairs.forEach(function (p, i) {
       var from = yy(i, m.domain.length), to = yy(m.codomain.indexOf(p[1]), m.codomain.length), x2 = 424;
@@ -33,7 +33,7 @@
       node("circle", { cx: 457, cy: yy(i, m.codomain.length), r: 18, fill: incoming ? tok("--course") : tok("--paper"), stroke: incoming ? tok("--fau-mark") : tok("--line"), "stroke-width": 2 }, svg);
       text(svg, String(v), 457, yy(i, m.codomain.length) + 5, 14, incoming ? tok("--paper") : tok("--muted"), "middle", 700);
     });
-    if (phase > .82) text(svg, "Injective: " + (m.injective ? "yes" : "no") + "     Surjective: " + (m.surjective ? "yes" : "no"), 280, 316, 16, tok("--act"), "middle", 800);
+    if (phase > .82) text(svg, m.note || "Injective: " + (m.injective ? "yes" : "no") + "     Surjective: " + (m.surjective ? "yes" : "no"), 280, 316, 16, tok("--act"), "middle", 800);
     prediction(svg, said);
   }
   function graphDraw(svg, kind, phase, said) {
@@ -219,23 +219,146 @@
       ch("polar-origin", "3.6", "The origin exception", "At the origin, is the polar angle uniquely determined?", [option("yes", "Yes; the angle is 0"), option("pi", "Only π is allowed"), option("no", "No; every angle gives the origin when r=0")], "no", "For r=0, x=r cosφ and y=r sinφ are both zero for every φ. The origin has no unique polar angle, even when one angle interval is chosen.", function (s, p, g) { polarDraw(s, Math.PI / 4, 0, p, g); }, function () { return P.cartesianToPolar(0, 0).phi === null ? "no" : "yes"; }),
     ],
   };
+  // ---- Your own rule (sandbox): typed with js/mei/expr.js ----
+  function fmt(v) { if (!isFinite(v)) return "undefined"; var r = Math.round(v * 1000) / 1000; return String(r).replace("-", "−"); }
+  function nums(text) { return String(text).split(/[,;\s]+/).filter(Boolean).map(function (t) { return Number(t.replace("−", "-")); }).filter(function (v) { return isFinite(v); }); }
+  function ownMapping(f, xs, ys) {
+    var pairs = xs.map(function (x) { return [x, Math.round(f(x) * 1000) / 1000]; }), image = [];
+    pairs.forEach(function (q) { if (isFinite(q[1]) && image.indexOf(q[1]) < 0) image.push(q[1]); });
+    var cod = ys.length ? ys.slice() : image.slice(), outside = pairs.filter(function (q) { return !isFinite(q[1]) || cod.indexOf(q[1]) < 0; });
+    outside.forEach(function (q) { if (isFinite(q[1]) && cod.indexOf(q[1]) < 0) cod.push(q[1]); });
+    cod.sort(function (a, b) { return a - b; });
+    var m = { domain: xs, codomain: cod, image: image, pairs: pairs.filter(function (q) { return isFinite(q[1]); }) };
+    m.injective = image.length === m.pairs.length;
+    m.surjective = cod.every(function (v) { return image.indexOf(v) >= 0; });
+    if (outside.length) m.note = "Not a mapping into Y: f(" + fmt(outside[0][0]) + ") = " + fmt(outside[0][1]) + " is not in Y";
+    return m;
+  }
+  function ownGraph(svg, f, a, b, c) {
+    // samples f on [a, b], scales to fit, and (with c) draws the horizontal line y = c and counts where it meets
+    reset(svg, "Graph of your rule on the chosen interval");
+    var L = 70, R = 520, T = 40, B = 290, n = 300, xs = [], ys = [], lo = Infinity, hi = -Infinity;
+    for (var i = 0; i <= n; i++) {
+      var x = a + (b - a) * i / n, y = f(x);
+      xs.push(x); ys.push(y);
+      if (isFinite(y) && Math.abs(y) < 1e6) { lo = Math.min(lo, y); hi = Math.max(hi, y); }
+    }
+    if (!isFinite(lo)) { text(svg, "Your rule is undefined everywhere on this interval.", 280, 170, 15, tok("--act"), "middle", 700); return null; }
+    if (hi - lo < 1e-9) { lo -= 1; hi += 1; }
+    var pad = (hi - lo) * 0.08; lo -= pad; hi += pad;
+    // the scale comes from the graph alone, so dragging the line cannot stretch it; the line stays inside
+    if (c != null) c = Math.max(lo, Math.min(hi, c));
+    function X(x) { return L + (x - a) / (b - a) * (R - L); }
+    function Y(y) { return B - (y - lo) / (hi - lo) * (B - T); }
+    var ay = lo < 0 && hi > 0 ? Y(0) : B, ax = a < 0 && b > 0 ? X(0) : L;
+    line(svg, L - 6, ay, R + 6, ay); line(svg, ax, B + 6, ax, T - 6);
+    text(svg, fmt(a), L, B + 22, 12, tok("--muted"), "middle"); text(svg, fmt(b), R, B + 22, 12, tok("--muted"), "middle");
+    text(svg, fmt(hi), L - 10, T + 4, 12, tok("--muted"), "end"); text(svg, fmt(lo), L - 10, B, 12, tok("--muted"), "end");
+    var d = [], pen = false;
+    for (var k = 0; k <= n; k++) {
+      var ok = isFinite(ys[k]) && Math.abs(ys[k]) < 1e6 && (!pen || Math.abs(ys[k] - ys[k - 1]) < (hi - lo));
+      if (!ok) { pen = false; continue; }
+      d.push((pen ? "L" : "M") + X(xs[k]).toFixed(1) + " " + Y(ys[k]).toFixed(1)); pen = true;
+    }
+    node("path", { d: d.join(" "), fill: "none", stroke: tok("--course"), "stroke-width": 3 }, svg);
+    var info = { Y: Y, lo: lo, hi: hi, T: T, B: B };
+    if (c != null) {
+      line(svg, L - 6, Y(c), R + 6, Y(c), tok("--act"), 2);
+      node("circle", { cx: R + 6, cy: Y(c), r: 8, fill: tok("--act"), stroke: tok("--paper"), "stroke-width": 2 }, svg);
+      var hits = 0;
+      for (var j = 1; j <= n; j++) {
+        var u = ys[j - 1] - c, v = ys[j] - c;
+        if (isFinite(u) && isFinite(v) && (u === 0 || u * v < 0)) hits++;
+      }
+      if (isFinite(ys[n]) && ys[n] === c) hits++;
+      var up = true, down = true, prev = null;
+      ys.forEach(function (y) { if (!isFinite(y)) return; if (prev != null) { if (y <= prev) up = false; if (y >= prev) down = false; } prev = y; });
+      text(svg, "y = " + fmt(c) + " meets the graph " + hits + (hits === 1 ? " time" : " times"), 280, 26, 14, tok("--ink"), "middle", 700);
+      text(svg, (up || down) ? "strictly " + (up ? "increasing" : "decreasing") + " on [" + fmt(a) + ", " + fmt(b) + "]: an inverse exists" : "not one-to-one on [" + fmt(a) + ", " + fmt(b) + "]: some output has two inputs", 280, 326, 15, tok("--act"), "middle", 800);
+    }
+    return info;
+  }
+  function ownChain(svg, fs, gs, f, g, x) {
+    reset(svg, "Your input passing through your two rules");
+    var mid = f(x), out = isFinite(mid) ? g(mid) : NaN, cols = [60, 160, 280, 400, 500];
+    text(svg, "input", cols[0], 84, 14, tok("--muted"), "middle"); text(svg, "f(x) = " + fs, cols[1], 84, 13, tok("--muted"), "middle");
+    text(svg, "f(x)", cols[2], 84, 14, tok("--muted"), "middle"); text(svg, "g(u) = " + gs, cols[3], 84, 13, tok("--muted"), "middle"); text(svg, "g(f(x))", cols[4], 84, 14, tok("--muted"), "middle");
+    var vals = [fmt(x), "f", fmt(mid), "g", fmt(out)];
+    cols.forEach(function (cx, i) {
+      if (i < cols.length - 1) line(svg, cx + 28, 176, cols[i + 1] - 28, 176, tok("--fau-mark"), 3, (i === 2 && !isFinite(mid)) || (i === 3 && !isFinite(out)) ? "6 5" : "");
+      var bad = (i === 2 && !isFinite(mid)) || (i === 4 && !isFinite(out));
+      node("circle", { cx: cx, cy: 176, r: 26, fill: bad ? tok("--paper") : tok("--course"), stroke: bad ? tok("--act") : tok("--line"), "stroke-width": 2 }, svg);
+      text(svg, vals[i], cx, 181, vals[i].length > 7 ? 10 : 13, bad ? tok("--act") : tok("--paper"), "middle", 700);
+    });
+    var msg = !isFinite(mid) ? "f is not defined at x = " + fmt(x) + ": the chain cannot start" : !isFinite(out) ? "The chain stops: f(x) = " + fmt(mid) + " is outside the domain of g" : "(g∘f)(" + fmt(x) + ") = " + fmt(out);
+    text(svg, msg, 280, 256, 15, tok("--act"), "middle", 800);
+    var gx = g(x), fg = isFinite(gx) ? f(gx) : NaN;
+    text(svg, "the other order: (f∘g)(" + fmt(x) + ") = " + fmt(fg), 280, 286, 14, tok("--muted"), "middle");
+  }
   function register(id, title) {
     var root = document.querySelector("[data-experiment='" + id + "']"), visual = stage(id), controls = Array.from(root.querySelectorAll("[data-control]"));
     function setup(c) { root.classList.remove("sandbox-open"); c.stage(); }
     function sandbox() {
       root.classList.add("sandbox-open"); // the labelled controls under the stage drive it; no duplicate slider strip on the stage
+      function own(name) { var el = root.querySelector("[data-own='" + name + "']"); return el ? el.value : ""; }
+      function say(msg) { var el = root.querySelector("[data-own-msg]"); if (el) el.textContent = msg || ""; }
+      function rule(name) { var r = Expr.compile(own(name)); if (r.error) say(name + ": " + r.error); return r.fn; }
       function update() {
         var values = {}; controls.forEach(function (c) { values[c.dataset.control] = c.value; });
+        say("");
+        if (root._own) {
+          var f = rule("f");
+          if (!f) return;
+          if (id === "mappings") {
+            var xs = nums(own("x"));
+            if (!xs.length) return say("X: list some numbers, for example −2, −1, 0, 1, 2");
+            mappingDraw(visual, ownMapping(f, xs.slice(0, 7), nums(own("y")).slice(0, 7)), 1);
+            if (xs.length > 7) say("Only the first 7 inputs are drawn.");
+          } else if (id === "inverse" || id === "elementary") {
+            var a = Number(own("a").replace("−", "-")), b = Number(own("b").replace("−", "-"));
+            if (!(isFinite(a) && isFinite(b) && b > a)) return say("Interval: “from” must be smaller than “to”.");
+            root._graph = ownGraph(visual, f, a, b, id === "inverse" ? (root._lineY != null ? root._lineY : f((a + b) / 2)) : null);
+          } else if (id === "composition") {
+            var g = rule("g"), x = Number(own("x").replace("−", "-"));
+            if (!g) return;
+            if (!isFinite(x)) return say("x: type a number");
+            ownChain(visual, own("f"), own("g"), f, g, x);
+          }
+          return;
+        }
         if (id === "mappings") mappingDraw(visual, values.rule, 1);
         else if (id === "inverse") graphDraw(visual, values.function, 1);
         else if (id === "composition") compositionDraw(visual, values.order, 1);
         else if (id === "elementary") elementaryDraw(visual, values.family, 1);
-        else polarDraw(visual, +values.angle, +values.radius, 1);
+        else if (root._polar && root._polarSet === values.angle + "|" + values.radius) polarDraw(visual, root._polar.angle, root._polar.radius, 1);
+        else { root._polar = null; root._polarSet = values.angle + "|" + values.radius; polarDraw(visual, +values.angle, +values.radius, 1); }
         var sliderControl = id === "polar" ? root.querySelector("[data-control='angle']") : controls[0];
       }
       if (!root._controlsBound) {
         root._controlsBound = true;
-        controls.forEach(function (c) { c.addEventListener("change", update); });
+        // a preset puts the stage back on the preset; typing in "Or try your own" switches it to your rule
+        controls.forEach(function (c) { c.addEventListener("change", function () { root._own = false; root._lineY = null; update(); }); });
+        root.querySelectorAll("[data-own]").forEach(function (el) { el.addEventListener("input", function () { root._own = true; if (el.dataset.own !== "y") root._lineY = null; update(); }); });
+        var host = root.querySelector(".stage"), drag = false;
+        function at(ev) { var q = visual.createSVGPoint(), m = visual.getScreenCTM(); q.x = ev.clientX; q.y = ev.clientY; return m ? q.matrixTransform(m.inverse()) : q; }
+        function move(ev) {
+          var q = at(ev);
+          if (id === "polar") {
+            var ang = Math.atan2(184 - q.y, q.x - 280); if (ang < 0) ang += 2 * Math.PI;
+            root._polar = { angle: ang, radius: Math.max(0.2, Math.min(4, Math.round(Math.hypot(q.x - 280, q.y - 184) / 48 * 10) / 10)) };
+            polarDraw(visual, root._polar.angle, root._polar.radius, 1);
+          } else if (id === "inverse" && root._own && root._graph) {
+            var gr = root._graph, yv = gr.lo + (gr.B - Math.max(gr.T, Math.min(gr.B, q.y))) / (gr.B - gr.T) * (gr.hi - gr.lo);
+            root._lineY = Math.round(yv * 100) / 100; update();
+          }
+        }
+        host.addEventListener("pointerdown", function (ev) {
+          if (!root.classList.contains("sandbox-open") || !(id === "polar" || (id === "inverse" && root._own))) return;
+          drag = true; host.classList.add("dragging"); if (ev.isTrusted && host.setPointerCapture) { try { host.setPointerCapture(ev.pointerId); } catch (_) {} }
+          move(ev); ev.preventDefault();
+        });
+        host.addEventListener("pointermove", function (ev) { if (drag) move(ev); });
+        ["pointerup", "pointercancel"].forEach(function (t) { host.addEventListener(t, function () { drag = false; host.classList.remove("dragging"); }); });
       }
       update();
     }

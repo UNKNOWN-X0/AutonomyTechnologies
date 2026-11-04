@@ -1962,8 +1962,8 @@ main li sup {
   fill: var(--act);
 }
 .vz-fill {
-  fill: var(--act);
-  fill-opacity: 0.28;
+  /* a solid tint, not transparency, so overlapping shaded regions keep one colour (the PDF uses a solid tint too) */
+  fill: color-mix(in srgb, var(--act) 28%, var(--surface));
 }
 .vz-bg {
   fill: var(--surface);
@@ -2028,4 +2028,10 @@ main li sup {
 polyline.vz-line,
 polyline.vz-dash {
   fill: none;
+}
+
+/* Wide diagrams (a chain of steps) take a full row, so their labels stay readable. */
+.figs > .viz[data-kind="flow"] {
+  flex: 1 1 100%;
+  max-width: 440px;
 }

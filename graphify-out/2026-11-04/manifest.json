@@ -72,21 +72,21 @@
     "semantic_hash": ""
   },
   "js/guide.js": {
-    "mtime": 1793805500.3020027,
-    "seen": 1793805692.6386502,
-    "ast_hash": "fd72b5621d00b4e50e28cf50d12df54e",
+    "mtime": 1793823753.814704,
+    "seen": 1793824015.234593,
+    "ast_hash": "ce7aeb13bafd9e636431a55cd4f63dfe",
     "semantic_hash": ""
   },
   "tools/guide-to-tex.py": {
-    "mtime": 1793805500.3022134,
-    "seen": 1793805692.6386728,
-    "ast_hash": "9a5eee9baa72e9417cd424771520a03b",
+    "mtime": 1793823753.8152103,
+    "seen": 1793824015.234616,
+    "ast_hash": "2a288ec0338408f7ecc5505b06c27845",
     "semantic_hash": ""
   },
   "eei/ch1-electrostatic-fields.html": {
-    "mtime": 1793805393.0346909,
-    "seen": 1793805692.638695,
-    "ast_hash": "9077c67c9bae7f48bd6cf127f9c0e97a",
+    "mtime": 1793823782.008561,
+    "seen": 1793824015.2346392,
+    "ast_hash": "8794a01ce472da3ea73ba0a273bda533",
     "semantic_hash": ""
   },
   "tools/check-guide.py": {
@@ -144,9 +144,9 @@
     "semantic_hash": ""
   },
   "docs/GUIDE-STANDARD.md": {
-    "mtime": 1793805645.2276218,
-    "seen": 1793805692.6386921,
-    "ast_hash": "313ee66bc6d8d7fe86e5bdc4c782aa09",
+    "mtime": 1793823852.4725444,
+    "seen": 1793824015.234637,
+    "ast_hash": "b254a871335391b64e491f62434c266b",
     "semantic_hash": ""
   },
   "docs/LAB-STANDARD.md": {
@@ -456,15 +456,15 @@
     "semantic_hash": ""
   },
   "about/how-to-use.html": {
-    "mtime": 1793805645.2284214,
-    "seen": 1793805692.63868,
-    "ast_hash": "fe91704074f6f5ec28162afdbb1eb1a8",
+    "mtime": 1793823863.3829277,
+    "seen": 1793824015.234623,
+    "ast_hash": "e5dbc017ee71ef4768ed2a1a3dc21089",
     "semantic_hash": ""
   },
   "about/version-log.html": {
-    "mtime": 1793805645.2279816,
-    "seen": 1793805692.6386812,
-    "ast_hash": "7fca3acf725b03e1756659effb98e90c",
+    "mtime": 1793823852.4730284,
+    "seen": 1793824015.234624,
+    "ast_hash": "31502859aaf1395340a769d5bca46428",
     "semantic_hash": ""
   },
   "docs/DIAGRAM-AND-LAB-PLAN.md": {
