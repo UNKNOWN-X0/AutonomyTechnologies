@@ -2033,5 +2033,10 @@ polyline.vz-dash {
 /* Wide diagrams (a chain of steps) take a full row, so their labels stay readable. */
 .figs > .viz[data-kind="flow"] {
   flex: 1 1 100%;
-  max-width: 440px;
+  max-width: 520px;
+}
+.vz-group {
+  fill: none;
+  stroke: var(--act);
+  stroke-width: 2.5;
 }

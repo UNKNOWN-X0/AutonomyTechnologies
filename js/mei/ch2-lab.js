@@ -226,6 +226,41 @@
     ],
   };
 
+  // Endless practice: fresh challenges with computed answers. Each returns the same shape as challenge(), with distinct
+  // options and exactly one correct; tests/lab-generators.test.js checks that against the physics module.
+  function pick(n) { return Math.floor(Math.random() * n); }
+  function shuffle(opts) { for (var i = opts.length - 1; i > 0; i--) { var j = pick(i + 1), t = opts[i]; opts[i] = opts[j]; opts[j] = t; } return opts; }
+  function distinct(right, wrongs) {
+    var seen = {}, out = [[String(right), String(right)]]; seen[right] = true;
+    wrongs.forEach(function (w) { if (!seen[w] && out.length < 3) { seen[w] = true; out.push([String(w), String(w)]); } });
+    for (var k = 1; out.length < 3; k++) if (!seen[right + k]) { seen[right + k] = true; out.push([String(right + k), String(right + k)]); }
+    return shuffle(out);
+  }
+  var generators = {
+    binary: function () {
+      var n = 5 + pick(3), bits = "1";
+      for (var i = 1; i < n; i++) bits += pick(2);
+      var v = P.binaryValue(bits), rev = P.binaryValue(bits.split("").reverse().join(""));
+      return challenge("gen-binary", "What integer is [" + bits + "]₂?", distinct(v, [rev, v + Math.pow(2, n - 1), v - 1]), String(v), "2.1", "Binary place values",
+        "Add the place values of the 1-bits: " + bits.split("").map(function (b, i) { return b === "1" ? Math.pow(2, n - 1 - i) : null; }).filter(function (x) { return x !== null; }).join(" + ") + " = " + v + ".",
+        function (s, p) { binaryDraw(s, bits, p); });
+    },
+    distance: function () {
+      var a = pick(5) - 2, r = 1 + pick(3), lo = a - r, hi = a + r, fmt = function (x, y) { return String(x).replace("-", "−") + "≤x≤" + String(y).replace("-", "−"); };
+      var opts = shuffle([[fmt(lo, hi), fmt(lo, hi)], [fmt(a, hi), fmt(a, hi)], [fmt(-r, r), fmt(-r, r)]]);
+      if (a === 0) opts = shuffle([[fmt(lo, hi), fmt(lo, hi)], [fmt(a, hi), fmt(a, hi)], [fmt(lo + 1, hi + 1), fmt(lo + 1, hi + 1)]]);
+      return challenge("gen-distance", "Solve |x−" + String(a).replace("-", "(−") + (a < 0 ? ")" : "") + "|≤" + r + " as an interval.", opts, fmt(lo, hi), "2.3", "Distance interval",
+        "Points within " + r + " of " + String(a).replace("-", "−") + " run from " + String(lo).replace("-", "−") + " to " + String(hi).replace("-", "−") + ", both included.",
+        function (s, p) { distanceDraw(s, a, r, p); });
+    },
+    binomial: function () {
+      var n = 4 + pick(4), k = 1 + pick(n - 1), v = P.choose(n, k);
+      return challenge("gen-binomial", "How many " + k + "-element subsets can be chosen from " + n + " distinct elements?", distinct(v, [n * k, P.choose(n, k) * 2, P.choose(n, k - 1)]), String(v), "2.4", "Choose k from n",
+        "C(" + n + ", " + k + ") = " + n + "!/(" + k + "!·" + (n - k) + "!) = " + v + "; order does not matter, so each selection counts once.",
+        function (s, p) { pascalDraw(s, n, p); });
+    },
+  };
+  if (typeof module !== "undefined" && module.exports) module.exports.generators = generators;
   var names = ["binary", "bounds", "distance", "binomial", "induction"];
   function register(id, title) {
     var root = document.querySelector("[data-experiment='" + id + "']"), visual = stage(id), control = root.querySelector("[data-control]");
@@ -270,7 +305,7 @@
       }
       update();
     }
-    Lab.experiment({ id: id, title: title, card: root.querySelector(".challenge"), lock: function () {}, setup: setup, sandbox: sandbox, challenges: data[id].map(function (ch) {
+    function wrap(ch) {
       var said = null;
       function draw(phase) { ch.draw(visual, phase, said); }
       return Object.assign({}, ch, {
@@ -278,7 +313,10 @@
         preview: function (choice) { said = ch.options.filter(function (o) { return o[0] === choice; })[0][1]; draw(0); },
         reveal: function () { return Lab.tween(1400, draw).then(function () { draw(1); }); },
       });
-    }) });
+    }
+    Lab.experiment({ id: id, title: title, card: root.querySelector(".challenge"), lock: function () {}, setup: setup, sandbox: sandbox,
+      generate: generators[id] ? function () { return wrap(generators[id]()); } : null,
+      challenges: data[id].map(wrap) });
   }
   register(names[0], "2.1 Number systems and binary");
   register(names[1], "2.2 Suprema and completeness");

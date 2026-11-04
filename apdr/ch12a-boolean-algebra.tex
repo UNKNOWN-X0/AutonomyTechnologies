@@ -505,6 +505,65 @@ For n variables, a map has 2\textsuperscript{n} cells in Gray-code order. A lega
 {\small \emph{Read it as: “a map for n variables has 2 to the n cells; a group of 2 to the k cells leaves n \ensuremath{-} k literals”.}\par Cover every required 1 at least once. Do not include a required 0. A don’t-care can be included or ignored.}
 \end{equationcard}
 
+\Needspace{14\baselineskip}
+\begin{center}
+\begin{minipage}[t]{0.465\linewidth}\centering
+\begin{tikzpicture}
+\node[font=\footnotesize] at (0.720,-0.432) {\textit{A} / \textit{BC}};
+\node[,inner sep=1pt,font=\footnotesize] at (1.620,-0.648) {00};
+\node[,inner sep=1pt,font=\footnotesize] at (2.340,-0.648) {01};
+\node[,inner sep=1pt,font=\footnotesize] at (3.060,-0.648) {11};
+\node[,inner sep=1pt,font=\footnotesize] at (3.780,-0.648) {10};
+\node[anchor=east,inner sep=1pt,font=\footnotesize] at (1.044,-1.188) {0};
+\draw[black!50,fill=Paperblue] (1.260,-0.828) rectangle (1.980,-1.548);
+\node[,inner sep=1pt,font=\small] at (1.620,-1.188) {0};
+\draw[black!50,fill=Paperblue] (1.980,-0.828) rectangle (2.700,-1.548);
+\node[,inner sep=1pt,font=\small] at (2.340,-1.188) {0};
+\draw[black!50,fill=Paperblue] (2.700,-0.828) rectangle (3.420,-1.548);
+\node[,inner sep=1pt,font=\small] at (3.060,-1.188) {1};
+\draw[black!50,fill=Paperblue] (3.420,-0.828) rectangle (4.140,-1.548);
+\node[,inner sep=1pt,font=\small] at (3.780,-1.188) {1};
+\node[anchor=east,inner sep=1pt,font=\footnotesize] at (1.044,-1.908) {1};
+\draw[black!50,fill=Paperblue] (1.260,-1.548) rectangle (1.980,-2.268);
+\node[,inner sep=1pt,font=\small] at (1.620,-1.908) {0};
+\draw[black!50,fill=Paperblue] (1.980,-1.548) rectangle (2.700,-2.268);
+\node[,inner sep=1pt,font=\small] at (2.340,-1.908) {0};
+\draw[black!50,fill=Paperblue] (2.700,-1.548) rectangle (3.420,-2.268);
+\node[,inner sep=1pt,font=\small] at (3.060,-1.908) {1};
+\draw[black!50,fill=Paperblue] (3.420,-1.548) rectangle (4.140,-2.268);
+\node[,inner sep=1pt,font=\small] at (3.780,-1.908) {1};
+\draw[FAUblue,line width=1.4pt] (2.772,-0.900) rectangle (4.068,-2.196);
+\end{tikzpicture}\par\smallskip{\small\raggedright \textbf{A group of four} 1s in the columns BC = 11 and 10: A and C change inside it and drop out, leaving the single literal B.\par}\end{minipage}\hfill
+\begin{minipage}[t]{0.465\linewidth}\centering
+\begin{tikzpicture}
+\node[font=\footnotesize] at (0.720,-0.432) {\textit{A} / \textit{BC}};
+\node[,inner sep=1pt,font=\footnotesize] at (1.620,-0.648) {00};
+\node[,inner sep=1pt,font=\footnotesize] at (2.340,-0.648) {01};
+\node[,inner sep=1pt,font=\footnotesize] at (3.060,-0.648) {11};
+\node[,inner sep=1pt,font=\footnotesize] at (3.780,-0.648) {10};
+\node[anchor=east,inner sep=1pt,font=\footnotesize] at (1.044,-1.188) {0};
+\draw[black!50,fill=Paperblue] (1.260,-0.828) rectangle (1.980,-1.548);
+\node[,inner sep=1pt,font=\small] at (1.620,-1.188) {1};
+\draw[black!50,fill=Paperblue] (1.980,-0.828) rectangle (2.700,-1.548);
+\node[,inner sep=1pt,font=\small] at (2.340,-1.188) {0};
+\draw[black!50,fill=Paperblue] (2.700,-0.828) rectangle (3.420,-1.548);
+\node[,inner sep=1pt,font=\small] at (3.060,-1.188) {0};
+\draw[black!50,fill=Paperblue] (3.420,-0.828) rectangle (4.140,-1.548);
+\node[,inner sep=1pt,font=\small] at (3.780,-1.188) {1};
+\node[anchor=east,inner sep=1pt,font=\footnotesize] at (1.044,-1.908) {1};
+\draw[black!50,fill=Paperblue] (1.260,-1.548) rectangle (1.980,-2.268);
+\node[,inner sep=1pt,font=\small] at (1.620,-1.908) {1};
+\draw[black!50,fill=Paperblue] (1.980,-1.548) rectangle (2.700,-2.268);
+\node[,inner sep=1pt,font=\small] at (2.340,-1.908) {0};
+\draw[black!50,fill=Paperblue] (2.700,-1.548) rectangle (3.420,-2.268);
+\node[,inner sep=1pt,font=\small] at (3.060,-1.908) {0};
+\draw[black!50,fill=Paperblue] (3.420,-1.548) rectangle (4.140,-2.268);
+\node[,inner sep=1pt,font=\small] at (3.780,-1.908) {1};
+\draw[FAUblue,line width=1.4pt] (3.492,-0.900) rectangle (4.068,-2.196);
+\draw[FAUblue,line width=1.4pt] (1.332,-0.900) rectangle (1.908,-2.196);
+\end{tikzpicture}\par\smallskip{\small\raggedright \textbf{Wrap-around}: the columns 10 and 00 are neighbours (only B differs), so these four 1s form one group, the literal C′.\par}\end{minipage}
+\end{center}
+
 \begin{workedbox}{Worked example \ensuremath{\cdot} simplify using an explicit bit order}
 Use variable order A,B,C with A as the most significant bit. Suppose f=1 for minterms 2, 3, 6, and 7.
 
@@ -629,6 +688,23 @@ Equivalent formulas can behave differently while a real circuit switches. Verifi
 \[ \begin{gathered} {x}{y}\, +\, {x}'{z}\, +\, {y}{z}\, =\, {x}{y}\, +\, {x}'{z} \end{gathered} \]
 {\small \emph{Read it as: “xy + x'z + yz equals xy + x'z”: the yz term never changes the value, but it covers the moment when x switches.}\par The term yz is logically redundant but can preserve coverage during a circuit transition.}
 \end{equationcard}
+
+\Needspace{14\baselineskip}
+\begin{center}
+\begin{minipage}[t]{0.950\linewidth}\centering
+\begin{tikzpicture}
+\fill[FAUblue!25] (2.880,-0.072) rectangle (3.312,-2.592);
+\node[anchor=east,inner sep=1pt,font=\footnotesize] at (0.972,-0.414) {\textit{x}};
+\draw[black!85,line width=1pt] (1.152,-0.216) -- (1.584,-0.216) -- (1.584,-0.216) -- (2.016,-0.216) -- (2.016,-0.216) -- (2.448,-0.216) -- (2.448,-0.216) -- (2.880,-0.216) -- (2.880,-0.576) -- (3.312,-0.576) -- (3.312,-0.576) -- (3.744,-0.576) -- (3.744,-0.576) -- (4.176,-0.576) -- (4.176,-0.576) -- (4.608,-0.576) -- (4.608,-0.576) -- (5.040,-0.576) -- (5.040,-0.576) -- (5.472,-0.576);
+\node[anchor=east,inner sep=1pt,font=\footnotesize] at (0.972,-1.026) {\textit{xy}};
+\draw[black!85,line width=1pt] (1.152,-0.828) -- (1.584,-0.828) -- (1.584,-0.828) -- (2.016,-0.828) -- (2.016,-0.828) -- (2.448,-0.828) -- (2.448,-0.828) -- (2.880,-0.828) -- (2.880,-1.188) -- (3.312,-1.188) -- (3.312,-1.188) -- (3.744,-1.188) -- (3.744,-1.188) -- (4.176,-1.188) -- (4.176,-1.188) -- (4.608,-1.188) -- (4.608,-1.188) -- (5.040,-1.188) -- (5.040,-1.188) -- (5.472,-1.188);
+\node[anchor=east,inner sep=1pt,font=\footnotesize] at (0.972,-1.638) {\textit{x′z}};
+\draw[black!85,line width=1pt] (1.152,-1.800) -- (1.584,-1.800) -- (1.584,-1.800) -- (2.016,-1.800) -- (2.016,-1.800) -- (2.448,-1.800) -- (2.448,-1.800) -- (2.880,-1.800) -- (2.880,-1.800) -- (3.312,-1.800) -- (3.312,-1.440) -- (3.744,-1.440) -- (3.744,-1.440) -- (4.176,-1.440) -- (4.176,-1.440) -- (4.608,-1.440) -- (4.608,-1.440) -- (5.040,-1.440) -- (5.040,-1.440) -- (5.472,-1.440);
+\node[anchor=east,inner sep=1pt,font=\footnotesize] at (0.972,-2.250) {\textit{out}};
+\draw[FAUblue,line width=1.6pt] (1.152,-2.052) -- (1.584,-2.052) -- (1.584,-2.052) -- (2.016,-2.052) -- (2.016,-2.052) -- (2.448,-2.052) -- (2.448,-2.052) -- (2.880,-2.052) -- (2.880,-2.412) -- (3.312,-2.412) -- (3.312,-2.052) -- (3.744,-2.052) -- (3.744,-2.052) -- (4.176,-2.052) -- (4.176,-2.052) -- (4.608,-2.052) -- (4.608,-2.052) -- (5.040,-2.052) -- (5.040,-2.052) -- (5.472,-2.052);
+\node[,inner sep=1pt,font=\footnotesize] at (3.312,-2.808) {the output dips while x falls};
+\end{tikzpicture}\par\smallskip{\small\raggedright \textbf{A static-1 hazard}: when x falls with y = z = 1, the term x′z switches on a moment after xy switches off, so the output dips to 0. The consensus term yz would hold it at 1.\par}\end{minipage}
+\end{center}
 
 \Needspace{12\baselineskip}
 A static-1 hazard occurs when the output should stay 1 for a small input change but a particular two-level sum-of-products implementation briefly drops to 0 because its paths have different delays. If two product terms hand off across one changing literal, their consensus term supplies overlapping coverage, for one input changing at a time. To form it, take terms xA and x'B: the consensus is AB.

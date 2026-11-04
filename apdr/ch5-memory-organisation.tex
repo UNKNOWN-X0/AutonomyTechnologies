@@ -286,6 +286,16 @@ A memory needs a way to identify locations and a unit that each address selects.
 {\small \emph{Read it as: “R rows times W bits per row is R \ensuremath{\times} W bits”.}\par Address count depends on address width and the addressable unit.}
 \end{equationcard}
 
+\Needspace{14\baselineskip}
+\begin{center}
+\begin{minipage}[t]{0.950\linewidth}\centering
+\begin{tikzpicture}
+\filldraw[draw=black!50,fill=Paperblue] (0.072,-0.360) rectangle (3.816,-0.900);
+\node[,inner sep=1pt,font=\small] at (1.944,-0.630) {a₁₅ … a₀};
+\node[,inner sep=1pt,font=\scriptsize] at (1.944,-1.188) {16 address bits};
+\end{tikzpicture}\par\smallskip{\small\raggedright \textbf{16 address bits} number 2\textsuperscript{16} = 65 536 rows: each extra bit doubles the count.\par}\end{minipage}
+\end{center}
+
 \Needspace{12\baselineskip}
 RAM can be modelled as R rows of W bits: total capacity is R\ensuremath{\times}W bits. Byte-addressable memory assigns one address to each byte; word-addressable memory assigns one address to each processor word. For n address bits there are 2\textsuperscript{n} distinct addresses. If each address selects one byte, capacity is 2\textsuperscript{n} bytes. The slides use binary capacity units: 1 KB=2\textsuperscript{10} bytes, 1 MB=2\textsuperscript{20}, 1 GB=2\textsuperscript{30}, 1 TB=2\textsuperscript{40}.
 

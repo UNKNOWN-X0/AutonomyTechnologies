@@ -807,3 +807,6 @@
   color: var(--muted);
   font-size: 0.85rem;
 }
+.ch-more {
+  margin: 0 10px 10px 0;
+}

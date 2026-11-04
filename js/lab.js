@@ -100,7 +100,9 @@
     for (var i = 0; i < cs.length; i++) if (!this.saved[cs[i].id]) return i;
     return -1;
   };
-  Experiment.prototype.show = function (i) {
+  // show(i): fixed challenge i. show(-2, gen): a generated practice challenge (from def.generate), which is never
+  // saved and never changes the skill tick.
+  Experiment.prototype.show = function (i, gen) {
     var self = this,
       def = this.def,
       card = this.card;
@@ -108,15 +110,15 @@
     // Only a user's step (Next, Replay) animates the new question in; page load stays still.
     card.classList.toggle("ch-enter", !!this.stepped);
     this.stepped = false;
-    if (i < 0) return this.done();
-    var c = def.challenges[i],
+    if (i < 0 && !gen) return this.done();
+    var c = gen || def.challenges[i],
       choice = null,
       conf = null;
     def.lock(true);
     card.closest(".experiment") && card.closest(".experiment").classList.add("in-challenge");
     runSetup(def, c);
 
-    var head = h("p", "ch-count", "Challenge " + (i + 1) + " of " + def.challenges.length);
+    var head = h("p", "ch-count", gen ? "Practice challenge · new numbers each time" : "Challenge " + (i + 1) + " of " + def.challenges.length);
     var prompt = h("h3", "ch-prompt", c.prompt);
     var opts = h("div", "ch-options");
     opts.setAttribute("role", "radiogroup");
@@ -171,11 +173,12 @@
     why.innerHTML = c.why;
     why.appendChild(document.createTextNode(" "));
     why.appendChild(guideLink(c.ref));
-    var last = i === def.challenges.length - 1,
-      nxt = h("button", "btn " + (last ? "primary" : ""), last ? "Open the sandbox" : "Next challenge");
+    var last = !gen && i === def.challenges.length - 1,
+      nxt = h("button", "btn " + (last ? "primary" : ""), gen ? "Another challenge" : last ? "Open the sandbox" : "Next challenge");
     nxt.type = "button";
     nxt.tabIndex = -1;
     nxt.addEventListener("click", function () {
+      if (gen) return self.practice();
       if (last) complete(def.id);
       self.stepped = !last;
       self.show(self.next());
@@ -200,8 +203,10 @@
       var stg = card.closest(".experiment") && card.closest(".experiment").querySelector(".stage");
       if (stg) stg.scrollIntoView({ block: "center", behavior: reduce ? "auto" : "smooth" });
       var correct = choice === c.answer;
-      self.saved[c.id] = { choice: choice, conf: conf, correct: correct };
-      write(STORE, results);
+      if (!gen) {
+        self.saved[c.id] = { choice: choice, conf: conf, correct: correct };
+        write(STORE, results);
+      }
       Promise.resolve(c.reveal(choice)).then(function () {
         var label = function (key) {
             for (var k = 0; k < c.options.length; k++) if (c.options[k][0] === key) return c.options[k][1];
@@ -241,10 +246,11 @@
     });
     // Explore freely (owner's request, 2026-11-04): the sandbox is available at any time. The challenge waits where
     // it was; finishing all of them still ticks the skill.
-    var ex = h("button", "btn ch-explore", "Explore freely");
+    var ex = h("button", "btn ch-explore", gen ? "Back to the sandbox" : "Explore freely");
     ex.type = "button";
     ex.addEventListener("click", function () {
-      self.explore(i);
+      if (gen) self.done();
+      else self.explore(i);
     });
     card.appendChild(ex);
   };
@@ -268,6 +274,12 @@
     def.sandbox();
     back.focus({ preventScroll: true });
   };
+  Experiment.prototype.practice = function () {
+    var g = this.def.generate();
+    this.card.classList.remove("finished");
+    this.stepped = true;
+    this.show(-2, g);
+  };
   Experiment.prototype.done = function () {
     var self = this,
       def = this.def,
@@ -275,6 +287,7 @@
     def.challenges.forEach(function (c) {
       if (self.saved[c.id] && self.saved[c.id].correct) score++;
     });
+    this.card.innerHTML = ""; // also reached straight from a practice challenge
     this.card.classList.add("finished");
     this.card.appendChild(h("p", "ch-count", "Challenges done · " + score + " of " + def.challenges.length + " predicted correctly"));
     this.card.appendChild(h("p", "ch-open", "The sandbox is open: change the controls below, and drag on the stage where it lets you. Predict before you change anything."));
@@ -289,6 +302,15 @@
       refresh();
     });
     this.card.appendChild(again);
+    // Endless practice: experiments that can generate a fresh challenge offer one after the fixed set.
+    if (typeof def.generate === "function") {
+      var more = h("button", "btn primary ch-more", "New challenge");
+      more.type = "button";
+      more.addEventListener("click", function () {
+        self.practice();
+      });
+      this.card.insertBefore(more, again);
+    }
     def.lock(false);
     this.card.closest(".experiment") && this.card.closest(".experiment").classList.remove("in-challenge");
     def.sandbox();

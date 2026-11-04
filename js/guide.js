@@ -518,7 +518,7 @@
       (d.ticks || "").split(" ").filter(Boolean).forEach(function (t) {
         var bits = t.split(":"), v = Number(bits[0]);
         el("line", { x1: x(v), y1: Y - 5, x2: x(v), y2: Y + 5, class: "vz-line" }, svg);
-        txt(svg, x(v), Y + 22, bits[1] || bits[0], "vz-small");
+        if (bits[1] !== "_") txt(svg, x(v), Y + 22, bits[1] || bits[0], "vz-small"); // "v:_" is an unlabelled tick
       });
       if (d.seg) {
         var g = d.seg.split(" "), a = g[0] === "-inf" ? X0 - 12 : x(Number(g[0])), b = g[1] === "inf" ? X1 + 12 : x(Number(g[1]));
@@ -686,6 +686,80 @@
         });
       });
       return [260, 20 + n * 24 + 14];
+    },
+    wave: function (svg, d) {
+      // signal timelines: "label:0011111;…", one character per time slot; data-mark="3" highlights slot 3 (from 0)
+      var S = d.signals.split(";").map(function (x) { var q = x.split(":"); return [q[0], q[1]]; }), slots = S[0][1].length, SW = 24, X0 = 64, mark = d.mark;
+      if (mark != null && mark !== "") el("rect", { x: X0 + +mark * SW, y: 4, width: SW, height: S.length * 34 + 4, class: "vz-fill" }, svg);
+      S.forEach(function (sg, r) {
+        var y0 = 12 + r * 34, hi = y0, lo = y0 + 20, pts = [];
+        txt(svg, X0 - 10, y0 + 15, sg[0], "vz-small vz-it", "end");
+        sg[1].split("").forEach(function (b, i) {
+          var y = b === "1" ? hi : lo;
+          pts.push((X0 + i * SW) + "," + y, (X0 + (i + 1) * SW) + "," + y);
+        });
+        el("polyline", { points: pts.join(" "), class: r === S.length - 1 ? "vz-seg thin" : "vz-line thick" }, svg);
+      });
+      txt(svg, X0 + (slots * SW) / 2, S.length * 34 + 22, d.label || "time →", "vz-small");
+      return [X0 + slots * SW + 8, S.length * 34 + 30];
+    },
+    kmap: function (svg, d) {
+      // a Karnaugh map: rows and columns in Gray-code order; data-groups="r0-0,c2-3;…" (a column range may wrap, c3-0)
+      var rows = d.cells.split("/").map(function (r) { return r.trim().split(/\s+/); }), R = rows.length, C = rows[0].length, cw = 40, X0 = 70, Y0 = 46,
+        rl = (d.rows || "0 1").split(" "), cl = (d.cols || "00 01 11 10").split(" "), vars = (d.vars || "A|BC").split("|");
+      txt(svg, X0 - 30, Y0 - 20, vars[0] + " / " + vars[1], "vz-small vz-it", "middle");
+      cl.forEach(function (c, j) { txt(svg, X0 + j * cw + cw / 2, Y0 - 8, c, "vz-small"); });
+      rows.forEach(function (row, i) {
+        txt(svg, X0 - 12, Y0 + i * cw + cw / 2 + 5, rl[i], "vz-small", "end");
+        row.forEach(function (v, j) {
+          el("rect", { x: X0 + j * cw, y: Y0 + i * cw, width: cw, height: cw, class: "vz-cell" }, svg);
+          txt(svg, X0 + j * cw + cw / 2, Y0 + i * cw + cw / 2 + 5, v, "vz-text");
+        });
+      });
+      (d.groups || "").split(";").filter(Boolean).forEach(function (g) {
+        var m = /r(\d)-(\d),c(\d)-(\d)/.exec(g); if (!m) return;
+        var r0 = +m[1], r1 = +m[2], c0 = +m[3], c1 = +m[4], spans = c1 >= c0 ? [[c0, c1]] : [[c0, C - 1], [0, c1]];
+        spans.forEach(function (sp) {
+          el("rect", { x: X0 + sp[0] * cw + 4, y: Y0 + r0 * cw + 4, width: (sp[1] - sp[0] + 1) * cw - 8, height: (r1 - r0 + 1) * cw - 8, class: "vz-group" }, svg);
+        });
+      });
+      return [X0 + C * cw + 12, Y0 + R * cw + 10];
+    },
+    wheel: function (svg, d) {
+      // the 2^n patterns of an n-bit number round a circle, with their two's-complement values; data-from/data-to draw a step
+      var n = +d.bits || 4, N = Math.pow(2, n), c = 120, R = 92, from = d.from, to = d.to;
+      el("circle", { cx: c, cy: c, r: R - 22, class: "vz-line" }, svg);
+      for (var k = 0; k < N; k++) {
+        var t = (k / N) * 2 * Math.PI - Math.PI / 2, pat = k.toString(2).padStart(n, "0"), val = k >= N / 2 ? k - N : k,
+          hot = pat === from || pat === to, x = c + R * Math.cos(t), y = c + R * Math.sin(t);
+        txt(svg, x, y + 4, pat, hot ? "vz-small vz-acc" : "vz-small");
+        txt(svg, c + (R - 40) * Math.cos(t), c + (R - 40) * Math.sin(t) + 4, String(val).replace("-", "−"), hot ? "vz-text vz-acc" : "vz-small");
+      }
+      if (from && to) {
+        var k1 = parseInt(from, 2), k2 = parseInt(to, 2), t1 = (k1 / N) * 2 * Math.PI - Math.PI / 2, t2 = (k2 / N) * 2 * Math.PI - Math.PI / 2, rr = R - 22;
+        el("path", { d: "M" + (c + rr * Math.cos(t1)) + " " + (c + rr * Math.sin(t1)) + "A" + rr + " " + rr + " 0 0 1 " + (c + rr * Math.cos(t2)) + " " + (c + rr * Math.sin(t2)), class: "vz-seg thin" }, svg);
+      }
+      txt(svg, c, 2 * c + 12, d.label || "+1 steps clockwise", "vz-small");
+      return [240, 256];
+    },
+    cells: function (svg, d) {
+      // memory boxes: "name|address|value;…" in a column, and pointer arrows "p>x" drawn round the right side
+      // names and addresses on the left, so the pointer arrows on the right cross nothing
+      var C = d.cells.split(";").map(function (x) { return x.split("|"); }), H = 40, X = 110, W = 96, at = {};
+      C.forEach(function (c, i) {
+        var y = 10 + i * (H + 10); at[c[0]] = y + H / 2;
+        txt(svg, X - 10, y + H / 2 - 2, c[0], "vz-text vz-it", "end");
+        if (c[1]) txt(svg, X - 10, y + H / 2 + 14, c[1], "vz-small", "end");
+        el("rect", { x: X, y: y, width: W, height: H, class: "vz-cell" }, svg);
+        txt(svg, X + W / 2, y + H / 2 + 5, c[2] || "", "vz-text vz-num");
+      });
+      (d.arrows || "").split(";").filter(Boolean).forEach(function (a, k) {
+        var q = a.split(">"), y1 = at[q[0]], y2 = at[q[1]], bx = X + W + 30 + k * 14;
+        if (y1 == null || y2 == null) return;
+        el("polyline", { points: (X + W) + "," + y1 + " " + bx + "," + y1 + " " + bx + "," + y2, class: "vz-line thick" }, svg);
+        arrow(svg, bx, y2, X + W + 2, y2, "vz-seg");
+      });
+      return [X + W + 60, 10 + C.length * (H + 10)];
     },
     ladder: function (svg, d) {
       // labels above and below the stack, the arrow on the right, so nothing overlaps the level boxes

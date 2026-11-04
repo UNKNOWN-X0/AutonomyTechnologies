@@ -448,6 +448,37 @@ ASCII uses seven bits, giving 128 code values. The lecture describes eight-bit e
 {\small \emph{Read it as: “7-bit ASCII has 2\textsuperscript{7} = 128 code values, numbered 0 to 127”.}\par The first 128 Unicode code points correspond to ASCII. Byte encodings represent code points as bytes by their own rules.}
 \end{equationcard}
 
+\Needspace{14\baselineskip}
+\begin{center}
+\begin{minipage}[t]{0.950\linewidth}\centering
+\begin{tikzpicture}
+\node[,inner sep=1pt,font=\scriptsize] at (0.306,-0.252) {128};
+\filldraw[draw=black!50,fill=Paperblue] (0.072,-0.360) rectangle (0.540,-0.900);
+\node[,inner sep=1pt,font=\small] at (0.306,-0.630) {0};
+\node[,inner sep=1pt,font=\scriptsize] at (0.774,-0.252) {64};
+\filldraw[draw=black!50,fill=FAUblue!25] (0.540,-0.360) rectangle (1.008,-0.900);
+\node[,inner sep=1pt,font=\small] at (0.774,-0.630) {1};
+\node[,inner sep=1pt,font=\scriptsize] at (1.242,-0.252) {32};
+\filldraw[draw=black!50,fill=Paperblue] (1.008,-0.360) rectangle (1.476,-0.900);
+\node[,inner sep=1pt,font=\small] at (1.242,-0.630) {0};
+\node[,inner sep=1pt,font=\scriptsize] at (1.710,-0.252) {16};
+\filldraw[draw=black!50,fill=Paperblue] (1.476,-0.360) rectangle (1.944,-0.900);
+\node[,inner sep=1pt,font=\small] at (1.710,-0.630) {0};
+\node[,inner sep=1pt,font=\scriptsize] at (2.178,-0.252) {8};
+\filldraw[draw=black!50,fill=Paperblue] (1.944,-0.360) rectangle (2.412,-0.900);
+\node[,inner sep=1pt,font=\small] at (2.178,-0.630) {0};
+\node[,inner sep=1pt,font=\scriptsize] at (2.646,-0.252) {4};
+\filldraw[draw=black!50,fill=Paperblue] (2.412,-0.360) rectangle (2.880,-0.900);
+\node[,inner sep=1pt,font=\small] at (2.646,-0.630) {0};
+\node[,inner sep=1pt,font=\scriptsize] at (3.114,-0.252) {2};
+\filldraw[draw=black!50,fill=Paperblue] (2.880,-0.360) rectangle (3.348,-0.900);
+\node[,inner sep=1pt,font=\small] at (3.114,-0.630) {0};
+\node[,inner sep=1pt,font=\scriptsize] at (3.582,-0.252) {1};
+\filldraw[draw=black!50,fill=FAUblue!25] (3.348,-0.360) rectangle (3.816,-0.900);
+\node[,inner sep=1pt,font=\small] at (3.582,-0.630) {1};
+\end{tikzpicture}\par\smallskip{\small\raggedright \textbf{'A' in ASCII}: 0100 0001 = 64 + 1 = 65.\par}\end{minipage}
+\end{center}
+
 \begin{workedbox}{Worked encoding \ensuremath{\cdot} read a short ASCII string}
 The lecture’s example encodes “Fred” in hexadecimal as 46 72 65 64.
 
@@ -593,6 +624,48 @@ Add the bit patterns and discard any carry beyond the most significant bit. For 
 {\small \emph{Read it as: “A minus B is A plus the negation of B”; overflow on addition means two operands of the same sign gave a result of the other sign.}\par Discarding carry-out is part of fixed-width addition. Carry-out alone does not signal signed overflow.}
 \end{equationcard}
 
+\Needspace{14\baselineskip}
+\begin{center}
+\begin{minipage}[t]{0.950\linewidth}\centering
+\begin{tikzpicture}
+\draw[black!70] (2.160,-2.160) circle (1.260);
+\node[,inner sep=1pt,font=\scriptsize] at (2.160,-0.504) {0000};
+\node[,inner sep=1pt,font=\footnotesize] at (2.160,-1.224) {0};
+\node[,inner sep=1pt,font=\scriptsize] at (2.794,-0.630) {0001};
+\node[,inner sep=1pt,font=\footnotesize] at (2.518,-1.295) {1};
+\node[,inner sep=1pt,font=\scriptsize] at (3.331,-0.989) {0010};
+\node[,inner sep=1pt,font=\footnotesize] at (2.822,-1.498) {2};
+\node[,inner sep=1pt,font=\scriptsize] at (3.690,-1.526) {0011};
+\node[,inner sep=1pt,font=\footnotesize] at (3.025,-1.802) {3};
+\node[,inner sep=1pt,font=\scriptsize] at (3.816,-2.160) {0100};
+\node[,inner sep=1pt,font=\footnotesize] at (3.096,-2.160) {4};
+\node[,inner sep=1pt,font=\scriptsize] at (3.690,-2.794) {0101};
+\node[,inner sep=1pt,font=\footnotesize] at (3.025,-2.518) {5};
+\node[,inner sep=1pt,font=\scriptsize] at (3.331,-3.331) {0110};
+\node[,inner sep=1pt,font=\footnotesize] at (2.822,-2.822) {6};
+\node[text=FAUblue,inner sep=1pt,font=\scriptsize] at (2.794,-3.690) {0111};
+\node[text=FAUblue,inner sep=1pt,font=\footnotesize] at (2.518,-3.025) {7};
+\node[text=FAUblue,inner sep=1pt,font=\scriptsize] at (2.160,-3.816) {1000};
+\node[text=FAUblue,inner sep=1pt,font=\footnotesize] at (2.160,-3.096) {\ensuremath{-}8};
+\node[,inner sep=1pt,font=\scriptsize] at (1.526,-3.690) {1001};
+\node[,inner sep=1pt,font=\footnotesize] at (1.802,-3.025) {\ensuremath{-}7};
+\node[,inner sep=1pt,font=\scriptsize] at (0.989,-3.331) {1010};
+\node[,inner sep=1pt,font=\footnotesize] at (1.498,-2.822) {\ensuremath{-}6};
+\node[,inner sep=1pt,font=\scriptsize] at (0.630,-2.794) {1011};
+\node[,inner sep=1pt,font=\footnotesize] at (1.295,-2.518) {\ensuremath{-}5};
+\node[,inner sep=1pt,font=\scriptsize] at (0.504,-2.160) {1100};
+\node[,inner sep=1pt,font=\footnotesize] at (1.224,-2.160) {\ensuremath{-}4};
+\node[,inner sep=1pt,font=\scriptsize] at (0.630,-1.526) {1101};
+\node[,inner sep=1pt,font=\footnotesize] at (1.295,-1.802) {\ensuremath{-}3};
+\node[,inner sep=1pt,font=\scriptsize] at (0.989,-0.989) {1110};
+\node[,inner sep=1pt,font=\footnotesize] at (1.498,-1.498) {\ensuremath{-}2};
+\node[,inner sep=1pt,font=\scriptsize] at (1.526,-0.630) {1111};
+\node[,inner sep=1pt,font=\footnotesize] at (1.802,-1.295) {\ensuremath{-}1};
+\draw[FAUblue,line width=1.6pt] ([shift={(-67.50:1.260)}]2.160,-2.160) arc (-67.50:-90.00:1.260);
+\node[,inner sep=1pt,font=\scriptsize] at (2.160,-4.500) {+1 steps clockwise};
+\end{tikzpicture}\par\smallskip{\small\raggedright \textbf{The 4-bit two’s-complement wheel}: adding 1 to 0111 (7) steps clockwise to 1000, which reads as \ensuremath{-}8. That jump at the bottom of the wheel is overflow.\par}\end{minipage}
+\end{center}
+
 \begin{workedbox}{Worked example \ensuremath{\cdot} detect overflow}
 Use four-bit two’s complement to calculate \ensuremath{-}7+(\ensuremath{-}6).
 
@@ -670,6 +743,28 @@ Floating-point values are finite in number, and their spacing changes with magni
 \[ \begin{gathered} {x}\, =\, {s}\, \times \, {M}\, \times \, β^{{E}} \end{gathered} \]
 {\small \emph{Read it as: “x is s times M times β to the E”: the sign s, the significand M with the digits, and the exponent E that says where the point goes.}\par s is the sign, M is the significand, β is the base or radix, and E is the exponent. In binary floating point, β=2.}
 \end{equationcard}
+
+\Needspace{14\baselineskip}
+\begin{center}
+\begin{minipage}[t]{0.950\linewidth}\centering
+\begin{tikzpicture}
+\draw[-{Stealth[length=4pt]},black!80] (0.180,-0.612) -- (4.896,-0.612);
+\draw[black!80] (0.918,-0.522) -- (0.918,-0.702);
+\node[,inner sep=1pt,font=\footnotesize] at (0.918,-1.008) {1};
+\draw[black!80] (1.160,-0.522) -- (1.160,-0.702);
+\draw[black!80] (1.403,-0.522) -- (1.403,-0.702);
+\node[,inner sep=1pt,font=\footnotesize] at (1.403,-1.008) {2};
+\draw[black!80] (1.889,-0.522) -- (1.889,-0.702);
+\draw[black!80] (2.374,-0.522) -- (2.374,-0.702);
+\node[,inner sep=1pt,font=\footnotesize] at (2.374,-1.008) {4};
+\draw[black!80] (3.345,-0.522) -- (3.345,-0.702);
+\draw[black!80] (4.317,-0.522) -- (4.317,-0.702);
+\node[,inner sep=1pt,font=\footnotesize] at (4.317,-1.008) {8};
+\node[text=FAUblue,inner sep=1pt,font=\footnotesize] at (1.160,-0.396) {0.5};
+\node[text=FAUblue,inner sep=1pt,font=\footnotesize] at (1.889,-0.396) {1};
+\node[text=FAUblue,inner sep=1pt,font=\footnotesize] at (3.345,-0.396) {2};
+\end{tikzpicture}\par\smallskip{\small\raggedright \textbf{Gaps double} with 2 significant bits: the values 1, 1.5, then 2, 3, then 4, 6, 8 lie 0.5, then 1, then 2 apart (the numbers above each zone).\par}\end{minipage}
+\end{center}
 
 \begin{equationcard}{Local gap between neighbours}
 \[ \begin{gathered} \text{gap}\, \text{within}\, [2^{{E}},\, 2^{{E}+1})\, =\, 2^{{E}-{p}+1} \end{gathered} \]
@@ -1021,11 +1116,51 @@ The exponent field stores a biased exponent rather than a two’s-complement exp
 \end{keepsection}
 
 \begin{keepsection}
-\Needspace{9\baselineskip}
+\Needspace{10\baselineskip}
 \section{4.5 Zero, subnormal numbers, infinity, and NaN}
 
-\Needspace{6\baselineskip}
+\Needspace{7\baselineskip}
 Reserved exponent patterns extend useful behaviour beyond normalised values.
+
+\Needspace{14\baselineskip}
+\begin{center}
+\begin{minipage}[t]{0.303\linewidth}\centering
+\begin{tikzpicture}
+\filldraw[draw=black!50,fill=Paperblue] (0.072,-0.360) rectangle (0.540,-0.900);
+\node[,inner sep=1pt,font=\small] at (0.306,-0.630) {0};
+\node[,inner sep=1pt,font=\scriptsize] at (0.306,-1.188) {sign};
+\filldraw[draw=black!50,fill=Paperblue] (0.540,-0.360) rectangle (2.412,-0.900);
+\node[,inner sep=1pt,font=\small] at (1.476,-0.630) {0000 0000};
+\node[,inner sep=1pt,font=\scriptsize] at (1.476,-1.188) {exponent};
+\filldraw[draw=black!50,fill=Paperblue] (2.412,-0.360) rectangle (4.284,-0.900);
+\node[,inner sep=1pt,font=\small] at (3.348,-0.630) {000…000};
+\node[,inner sep=1pt,font=\scriptsize] at (3.348,-1.188) {fraction};
+\end{tikzpicture}\par\smallskip{\small\raggedright \textbf{+0}: every bit is 0.\par}\end{minipage}\hfill
+\begin{minipage}[t]{0.303\linewidth}\centering
+\begin{tikzpicture}
+\filldraw[draw=black!50,fill=Paperblue] (0.072,-0.360) rectangle (0.540,-0.900);
+\node[,inner sep=1pt,font=\small] at (0.306,-0.630) {0};
+\node[,inner sep=1pt,font=\scriptsize] at (0.306,-1.188) {sign};
+\filldraw[draw=black!50,fill=FAUblue!25] (0.540,-0.360) rectangle (2.412,-0.900);
+\node[,inner sep=1pt,font=\small] at (1.476,-0.630) {1111 1111};
+\node[,inner sep=1pt,font=\scriptsize] at (1.476,-1.188) {exponent};
+\filldraw[draw=black!50,fill=Paperblue] (2.412,-0.360) rectangle (4.284,-0.900);
+\node[,inner sep=1pt,font=\small] at (3.348,-0.630) {000…000};
+\node[,inner sep=1pt,font=\scriptsize] at (3.348,-1.188) {fraction};
+\end{tikzpicture}\par\smallskip{\small\raggedright \textbf{+\ensuremath{\infty}}: exponent all 1s, fraction 0.\par}\end{minipage}\hfill
+\begin{minipage}[t]{0.303\linewidth}\centering
+\begin{tikzpicture}
+\filldraw[draw=black!50,fill=Paperblue] (0.072,-0.360) rectangle (0.540,-0.900);
+\node[,inner sep=1pt,font=\small] at (0.306,-0.630) {0};
+\node[,inner sep=1pt,font=\scriptsize] at (0.306,-1.188) {sign};
+\filldraw[draw=black!50,fill=FAUblue!25] (0.540,-0.360) rectangle (2.412,-0.900);
+\node[,inner sep=1pt,font=\small] at (1.476,-0.630) {1111 1111};
+\node[,inner sep=1pt,font=\scriptsize] at (1.476,-1.188) {exponent};
+\filldraw[draw=black!50,fill=FAUblue!25] (2.412,-0.360) rectangle (4.284,-0.900);
+\node[,inner sep=1pt,font=\small] at (3.348,-0.630) {100…000};
+\node[,inner sep=1pt,font=\scriptsize] at (3.348,-1.188) {fraction};
+\end{tikzpicture}\par\smallskip{\small\raggedright \textbf{NaN}: exponent all 1s, fraction not 0.\par}\end{minipage}
+\end{center}
 
 \Needspace{7\baselineskip}
 \begin{plainbox}\textbf{In plain words:} some exponent patterns are kept for special cases. An exponent of all zeros means zero or a tiny \textbf{subnormal} number that fills the gap just above zero; an exponent of all ones means infinity when the fraction is zero, and NaN, “not a number”, for results such as 0/0.\end{plainbox}
@@ -1222,6 +1357,23 @@ C treats memory as a contiguous line of bytes, each with a numerical address, us
 \[ \begin{gathered} \text{int}\, *\mathrm{p};\, \text{declares}\, \mathrm{a}\, \text{pointer}\, \text{to}\, \text{int} \\ \text{int}\, \mathrm{x}\, =\, 10;\, \mathrm{p}\, =\, \&\mathrm{x};\, \mathrm{p}\, \text{now}\, \text{holds}\, \text{the}\, \text{address}\, \text{of}\, \mathrm{x} \\ *{p}\, =\, 20 \\ \text{writes}\, \text{through}\, {p},\, \text{so}\, {x}\, \text{becomes}\, 20 \end{gathered} \]
 {\small \emph{Read it as: “int *p declares p as a pointer to an int”; “p = \&x puts the address of x into p”; “*p = 20 writes 20 wherever p points”.}\par In a declaration, * builds a pointer type. In an expression, * dereferences.}
 \end{equationcard}
+
+\Needspace{14\baselineskip}
+\begin{center}
+\begin{minipage}[t]{0.950\linewidth}\centering
+\begin{tikzpicture}
+\node[anchor=east,inner sep=1pt,font=\small] at (1.800,-0.432) {\textit{x}};
+\node[anchor=east,inner sep=1pt,font=\scriptsize] at (1.800,-0.720) {0x1000};
+\draw[black!50,fill=Paperblue] (1.980,-0.180) rectangle (3.708,-0.900);
+\node[,inner sep=1pt,font=\small] at (2.844,-0.540) {20};
+\node[anchor=east,inner sep=1pt,font=\small] at (1.800,-1.332) {\textit{p}};
+\node[anchor=east,inner sep=1pt,font=\scriptsize] at (1.800,-1.620) {0x1008};
+\draw[black!50,fill=Paperblue] (1.980,-1.080) rectangle (3.708,-1.800);
+\node[,inner sep=1pt,font=\small] at (2.844,-1.440) {0x1000};
+\draw[black!85,line width=1pt] (3.708,-1.440) -- (4.248,-1.440) -- (4.248,-0.540);
+\draw[-{Stealth[length=4pt]},FAUblue,line width=1.6pt] (4.248,-0.540) -- (3.744,-0.540);
+\end{tikzpicture}\par\smallskip{\small\raggedright \textbf{A pointer}: p stores the address of x, so *p = 20 writes into x. The addresses are illustrative.\par}\end{minipage}
+\end{center}
 \end{keepsection}
 
 \begin{keepsection}
@@ -1301,11 +1453,32 @@ Dangling pointer & The pointer still holds the address of freed memory, which ma
 \end{keepsection}
 
 \begin{keepsection}
-\Needspace{11\baselineskip}
+\Needspace{12\baselineskip}
 \section{5.2 The Python memory model}
 
-\Needspace{8\baselineskip}
+\Needspace{9\baselineskip}
 Python keeps the reference idea from §5.1 but hides the addresses and the freeing. Knowing the model tells you when a change through one name shows up through another.
+
+\Needspace{14\baselineskip}
+\begin{center}
+\begin{minipage}[t]{0.950\linewidth}\centering
+\begin{tikzpicture}
+\node[anchor=east,inner sep=1pt,font=\small] at (1.800,-0.432) {\textit{a}};
+\draw[black!50,fill=Paperblue] (1.980,-0.180) rectangle (3.708,-0.900);
+\node[,inner sep=1pt,font=\small] at (2.844,-0.540) {};
+\node[anchor=east,inner sep=1pt,font=\small] at (1.800,-1.332) {\textit{b}};
+\draw[black!50,fill=Paperblue] (1.980,-1.080) rectangle (3.708,-1.800);
+\node[,inner sep=1pt,font=\small] at (2.844,-1.440) {};
+\node[anchor=east,inner sep=1pt,font=\small] at (1.800,-2.232) {\textit{list}};
+\node[anchor=east,inner sep=1pt,font=\scriptsize] at (1.800,-2.520) {0x2000};
+\draw[black!50,fill=Paperblue] (1.980,-1.980) rectangle (3.708,-2.700);
+\node[,inner sep=1pt,font=\small] at (2.844,-2.340) {[1, 2, 3]};
+\draw[black!85,line width=1pt] (3.708,-0.540) -- (4.248,-0.540) -- (4.248,-2.340);
+\draw[-{Stealth[length=4pt]},FAUblue,line width=1.6pt] (4.248,-2.340) -- (3.744,-2.340);
+\draw[black!85,line width=1pt] (3.708,-1.440) -- (4.500,-1.440) -- (4.500,-2.340);
+\draw[-{Stealth[length=4pt]},FAUblue,line width=1.6pt] (4.500,-2.340) -- (3.744,-2.340);
+\end{tikzpicture}\par\smallskip{\small\raggedright \textbf{Two names, one list}: after b = a, both names refer to the same object, so a += [3] changes what b sees too. The address is illustrative.\par}\end{minipage}
+\end{center}
 
 \begin{plainbox}\textbf{In plain words:} in Python a variable is a name tag tied to an object, not a box that holds a value. b = a ties a second tag to the same object. If the object can change, as a list can, a change made through one name shows up through the other; if it cannot, as a number or a string cannot, “changing” it really ties the name to a new object.\end{plainbox}
 

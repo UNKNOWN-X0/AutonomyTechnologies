@@ -250,6 +250,28 @@ An algorithm turns a problem into steps that a person or machine can carry out. 
 {\small \emph{Read it as: “input goes through clearly defined instructions to output”, and the four checks: the text is finite, each step can be carried out, memory use stays finite, and it stops after finitely many steps.}\par The slides call finite memory use dynamic finiteness and a finite number of steps halting. A procedure that never stops does not deliver its required result.}
 \end{equationcard}
 
+\Needspace{14\baselineskip}
+\begin{center}
+\begin{minipage}[t]{0.950\linewidth}\centering
+\begin{tikzpicture}
+\filldraw[draw=black!50,fill=Paperblue] (0.072,-0.180) rectangle (2.016,-1.188);
+\node[,inner sep=1pt,font=\small] at (1.044,-0.540) {Start};
+\node[,inner sep=1pt,font=\scriptsize] at (1.044,-0.828) {a first guess};
+\draw[-{Stealth[length=4pt]},black!80] (2.052,-0.684) -- (2.412,-0.684);
+\filldraw[draw=black!50,fill=Paperblue] (2.448,-0.180) rectangle (4.392,-1.188);
+\node[,inner sep=1pt,font=\small] at (3.420,-0.540) {Improve};
+\node[,inner sep=1pt,font=\scriptsize] at (3.420,-0.828) {a new guess};
+\draw[-{Stealth[length=4pt]},black!80] (4.428,-0.684) -- (4.788,-0.684);
+\filldraw[draw=black!50,fill=Paperblue] (4.824,-0.180) rectangle (6.768,-1.188);
+\node[,inner sep=1pt,font=\small] at (5.796,-0.540) {Test};
+\node[,inner sep=1pt,font=\scriptsize] at (5.796,-0.828) {close enough?};
+\draw[-{Stealth[length=4pt]},black!80] (6.804,-0.684) -- (7.164,-0.684);
+\filldraw[draw=black!50,fill=FAUblue!25] (7.200,-0.180) rectangle (9.144,-1.188);
+\node[,inner sep=1pt,font=\small] at (8.172,-0.540) {Stop};
+\node[,inner sep=1pt,font=\scriptsize] at (8.172,-0.828) {output the guess};
+\end{tikzpicture}\par\smallskip{\small\raggedright \textbf{An iteration as an algorithm}: improve the guess, test it, and repeat until the test passes; then output the guess.\par}\end{minipage}
+\end{center}
+
 \Needspace{7\baselineskip}
 The slides give a tiny example: even “1 + 2 + 3 =” is an algorithm, because it fixes the steps, their order and when you are finished.
 
@@ -309,6 +331,28 @@ A \textbf{fixed-program computer}, such as a calculator, does one built-in job. 
 {\small \emph{Read it as: “the program sits in memory, the processor executes its instructions one after another, and that turns the input into the output”.}\par The slide's diagram: the CPU holds a control unit and a processor; the processor holds registers and combinational logic. Main memory, input and output sit outside the CPU, and instructions pass from memory to the control unit. It is a simplified model, not a particular modern computer.}
 \end{equationcard}
 
+\Needspace{14\baselineskip}
+\begin{center}
+\begin{minipage}[t]{0.950\linewidth}\centering
+\begin{tikzpicture}
+\filldraw[draw=black!50,fill=Paperblue] (0.072,-0.180) rectangle (2.016,-1.188);
+\node[,inner sep=1pt,font=\small] at (1.044,-0.540) {Memory};
+\node[,inner sep=1pt,font=\scriptsize] at (1.044,-0.828) {program and data};
+\draw[-{Stealth[length=4pt]},black!80] (2.052,-0.684) -- (2.412,-0.684);
+\filldraw[draw=black!50,fill=Paperblue] (2.448,-0.180) rectangle (4.392,-1.188);
+\node[,inner sep=1pt,font=\small] at (3.420,-0.540) {Control unit};
+\node[,inner sep=1pt,font=\scriptsize] at (3.420,-0.828) {reads instructions};
+\draw[-{Stealth[length=4pt]},black!80] (4.428,-0.684) -- (4.788,-0.684);
+\filldraw[draw=black!50,fill=Paperblue] (4.824,-0.180) rectangle (6.768,-1.188);
+\node[,inner sep=1pt,font=\small] at (5.796,-0.540) {Processor};
+\node[,inner sep=1pt,font=\scriptsize] at (5.796,-0.828) {registers, logic};
+\draw[-{Stealth[length=4pt]},black!80] (6.804,-0.684) -- (7.164,-0.684);
+\filldraw[draw=black!50,fill=FAUblue!25] (7.200,-0.180) rectangle (9.144,-1.188);
+\node[,inner sep=1pt,font=\small] at (8.172,-0.540) {Output};
+\node[,inner sep=1pt,font=\scriptsize] at (8.172,-0.828) {the result};
+\end{tikzpicture}\par\smallskip{\small\raggedright \textbf{A stored-program machine}: instructions come from memory to the control unit, which has the processor carry them out on the data.\par}\end{minipage}
+\end{center}
+
 \Needspace{10\baselineskip}
 The lecture lists six abstract Turing-machine primitives: move right, move left, print a symbol, scan the current symbol, erase it, and do nothing (halt). Modern programming languages package low-level actions into more convenient operations, and you can use abstract methods to create new primitives. A language gives you primitives; expressions are legal combinations of them; expressions and computations have values and meanings. A computable procedure can be expressed in different general-purpose languages, even though syntax and tools differ.
 
@@ -351,6 +395,24 @@ A computer needs instructions that are legal in its language and have a defined 
 \[ \begin{gathered} "\text{hi}"5\, \to \, \text{not}\, \text{syntactically}\, \text{valid} \\ 3.2\, *\, 5\, \to \, \text{syntactically}\, \text{valid}\, \text{and}\, \text{meaningful} \\ 3\, +\, "\text{hi}"\, \to \, \text{syntactically}\, \text{valid},\, \text{but}\, \mathrm{a}\, \text{static}\, \text{semantic}\, \text{error} \end{gathered} \]
 {\small English shows the same split: “cat dog boy” is not syntactically valid, and “I are hungry” is valid syntax with a static semantic error. The exact type rules depend on the language.}
 \end{equationcard}
+
+\Needspace{14\baselineskip}
+\begin{center}
+\begin{minipage}[t]{0.950\linewidth}\centering
+\begin{tikzpicture}
+\filldraw[draw=black!50,fill=Paperblue] (0.072,-0.180) rectangle (2.016,-1.188);
+\node[,inner sep=1pt,font=\small] at (1.044,-0.540) {Syntax};
+\node[,inner sep=1pt,font=\scriptsize] at (1.044,-0.828) {legal symbols?};
+\draw[-{Stealth[length=4pt]},black!80] (2.052,-0.684) -- (2.412,-0.684);
+\filldraw[draw=black!50,fill=Paperblue] (2.448,-0.180) rectangle (4.392,-1.188);
+\node[,inner sep=1pt,font=\small] at (3.420,-0.540) {Static semantics};
+\node[,inner sep=1pt,font=\scriptsize] at (3.420,-0.828) {meaningful?};
+\draw[-{Stealth[length=4pt]},black!80] (4.428,-0.684) -- (4.788,-0.684);
+\filldraw[draw=black!50,fill=FAUblue!25] (4.824,-0.180) rectangle (6.768,-1.188);
+\node[,inner sep=1pt,font=\small] at (5.796,-0.540) {Semantics};
+\node[,inner sep=1pt,font=\scriptsize] at (5.796,-0.828) {intended result?};
+\end{tikzpicture}\par\smallskip{\small\raggedright \textbf{Three checks, in order}: a program can pass the first two and still fail the third.\par}\end{minipage}
+\end{center}
 
 \Needspace{10\baselineskip}
 A syntactic error is common and easily caught. Only some languages check for static semantic errors before running, and these errors can cause unpredictable behaviour. A semantic error can be harder: the program may stop, run forever, or return an answer different from the programmer's intention. English can be ambiguous: “Flying planes can be dangerous” has two meanings. A program statement has exactly one meaning, but it may not be the one its author intended.
@@ -582,6 +644,31 @@ Negating a compound expression changes its operation and negates each input: NOT
 {\small \emph{Read it as: “not (A or B) equals not A and not B”, and “not (A and B) equals not A or not B”.}\par The rules hold for any number of inputs.}
 \end{equationcard}
 
+\Needspace{14\baselineskip}
+\begin{center}
+\begin{minipage}[t]{0.465\linewidth}\centering
+\begin{tikzpicture}
+\fill[FAUblue!25] (0.072,-0.072) rectangle (3.528,-2.268);
+\fill[white] (1.404,-1.224) circle (0.792);
+\fill[white] (2.196,-1.224) circle (0.792);
+\draw[black!70] (0.072,-0.072) rectangle (3.528,-2.268);
+\draw[black!80] (1.404,-1.224) circle (0.792);
+\draw[black!80] (2.196,-1.224) circle (0.792);
+\node[,inner sep=1pt,font=\small] at (0.504,-0.576) {\textit{A}};
+\node[,inner sep=1pt,font=\small] at (3.096,-0.576) {\textit{B}};
+\end{tikzpicture}\par\smallskip{\small\raggedright \textbf{(\textit{A} + \textit{B})′ = \textit{A}′ \ensuremath{\cdot} \textit{B}′}: outside both circles.\par}\end{minipage}\hfill
+\begin{minipage}[t]{0.465\linewidth}\centering
+\begin{tikzpicture}
+\fill[FAUblue!25] (0.072,-0.072) rectangle (3.528,-2.268);
+\begin{scope}\clip (1.404,-1.224) circle (0.792); \fill[white] (2.196,-1.224) circle (0.792); \end{scope}
+\draw[black!70] (0.072,-0.072) rectangle (3.528,-2.268);
+\draw[black!80] (1.404,-1.224) circle (0.792);
+\draw[black!80] (2.196,-1.224) circle (0.792);
+\node[,inner sep=1pt,font=\small] at (0.504,-0.576) {\textit{A}};
+\node[,inner sep=1pt,font=\small] at (3.096,-0.576) {\textit{B}};
+\end{tikzpicture}\par\smallskip{\small\raggedright \textbf{(\textit{A} \ensuremath{\cdot} \textit{B})′ = \textit{A}′ + \textit{B}′}: everything except the overlap.\par}\end{minipage}
+\end{center}
+
 \begin{workedbox}{Worked example \ensuremath{\cdot} simplify a negated expression}
 Rewrite (A + B)' using De Morgan's law, then evaluate it when A = 0 and B = 1.
 
@@ -726,6 +813,18 @@ The final slides contrast an ideal, instantaneous gate with real switching. They
 \[ \begin{gathered} \text{Boolean}\, \text{model}\, \to \, \text{which}\, \text{stable}\, \text{output}\, \text{follows}\, \text{each}\, \text{input}? \\ \text{Physical}\, \text{model}\, \to \, \text{how}\, \text{long}\, \text{does}\, \text{the}\, \text{output}\, \text{take}\, \text{to}\, \text{reach}\, \text{its}\, \text{new}\, \text{state}? \end{gathered} \]
 {\small \emph{Read it as: the Boolean model answers “which output?”; the physical model answers “how long until the output gets there?”.}\par The supplied slides introduce the distinction but do not provide numerical delay values or a timing-analysis procedure.}
 \end{equationcard}
+
+\Needspace{14\baselineskip}
+\begin{center}
+\begin{minipage}[t]{0.950\linewidth}\centering
+\begin{tikzpicture}
+\node[anchor=east,inner sep=1pt,font=\footnotesize] at (0.972,-0.414) {\textit{A}};
+\draw[black!85,line width=1pt] (1.152,-0.576) -- (1.584,-0.576) -- (1.584,-0.576) -- (2.016,-0.576) -- (2.016,-0.576) -- (2.448,-0.576) -- (2.448,-0.216) -- (2.880,-0.216) -- (2.880,-0.216) -- (3.312,-0.216) -- (3.312,-0.216) -- (3.744,-0.216) -- (3.744,-0.216) -- (4.176,-0.216) -- (4.176,-0.216) -- (4.608,-0.216) -- (4.608,-0.216) -- (5.040,-0.216) -- (5.040,-0.216) -- (5.472,-0.216);
+\node[anchor=east,inner sep=1pt,font=\footnotesize] at (0.972,-1.026) {\textit{out}};
+\draw[FAUblue,line width=1.6pt] (1.152,-1.188) -- (1.584,-1.188) -- (1.584,-1.188) -- (2.016,-1.188) -- (2.016,-1.188) -- (2.448,-1.188) -- (2.448,-1.188) -- (2.880,-1.188) -- (2.880,-1.188) -- (3.312,-1.188) -- (3.312,-0.828) -- (3.744,-0.828) -- (3.744,-0.828) -- (4.176,-0.828) -- (4.176,-0.828) -- (4.608,-0.828) -- (4.608,-0.828) -- (5.040,-0.828) -- (5.040,-0.828) -- (5.472,-0.828);
+\node[,inner sep=1pt,font=\footnotesize] at (3.312,-1.584) {the output follows after a delay};
+\end{tikzpicture}\par\smallskip{\small\raggedright \textbf{Gate delay}: the input changes at one moment and the output follows a little later.\par}\end{minipage}
+\end{center}
 
 \Needspace{8\baselineskip}
 \begin{notebox}\textbf{Trap:} do not claim that a real gate changes output at exactly the same instant as its input. The lecture explicitly notes switching delay.\end{notebox}

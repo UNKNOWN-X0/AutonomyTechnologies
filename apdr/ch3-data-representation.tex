@@ -427,6 +427,37 @@ The 128 ASCII patterns divide into 52 letters (26 lowercase and 26 uppercase), 1
 {\small \emph{Read it as: “7-bit ASCII has 2\textsuperscript{7} = 128 code values, numbered 0 to 127”.}\par The first 128 Unicode code points correspond to ASCII. Byte encodings represent code points as bytes by their own rules.}
 \end{equationcard}
 
+\Needspace{14\baselineskip}
+\begin{center}
+\begin{minipage}[t]{0.950\linewidth}\centering
+\begin{tikzpicture}
+\node[,inner sep=1pt,font=\scriptsize] at (0.306,-0.252) {128};
+\filldraw[draw=black!50,fill=Paperblue] (0.072,-0.360) rectangle (0.540,-0.900);
+\node[,inner sep=1pt,font=\small] at (0.306,-0.630) {0};
+\node[,inner sep=1pt,font=\scriptsize] at (0.774,-0.252) {64};
+\filldraw[draw=black!50,fill=FAUblue!25] (0.540,-0.360) rectangle (1.008,-0.900);
+\node[,inner sep=1pt,font=\small] at (0.774,-0.630) {1};
+\node[,inner sep=1pt,font=\scriptsize] at (1.242,-0.252) {32};
+\filldraw[draw=black!50,fill=Paperblue] (1.008,-0.360) rectangle (1.476,-0.900);
+\node[,inner sep=1pt,font=\small] at (1.242,-0.630) {0};
+\node[,inner sep=1pt,font=\scriptsize] at (1.710,-0.252) {16};
+\filldraw[draw=black!50,fill=Paperblue] (1.476,-0.360) rectangle (1.944,-0.900);
+\node[,inner sep=1pt,font=\small] at (1.710,-0.630) {0};
+\node[,inner sep=1pt,font=\scriptsize] at (2.178,-0.252) {8};
+\filldraw[draw=black!50,fill=Paperblue] (1.944,-0.360) rectangle (2.412,-0.900);
+\node[,inner sep=1pt,font=\small] at (2.178,-0.630) {0};
+\node[,inner sep=1pt,font=\scriptsize] at (2.646,-0.252) {4};
+\filldraw[draw=black!50,fill=Paperblue] (2.412,-0.360) rectangle (2.880,-0.900);
+\node[,inner sep=1pt,font=\small] at (2.646,-0.630) {0};
+\node[,inner sep=1pt,font=\scriptsize] at (3.114,-0.252) {2};
+\filldraw[draw=black!50,fill=Paperblue] (2.880,-0.360) rectangle (3.348,-0.900);
+\node[,inner sep=1pt,font=\small] at (3.114,-0.630) {0};
+\node[,inner sep=1pt,font=\scriptsize] at (3.582,-0.252) {1};
+\filldraw[draw=black!50,fill=FAUblue!25] (3.348,-0.360) rectangle (3.816,-0.900);
+\node[,inner sep=1pt,font=\small] at (3.582,-0.630) {1};
+\end{tikzpicture}\par\smallskip{\small\raggedright \textbf{'A' in ASCII}: 0100 0001 = 64 + 1 = 65.\par}\end{minipage}
+\end{center}
+
 \begin{workedbox}{Worked encoding \ensuremath{\cdot} read a short ASCII string}
 The lecture’s example encodes “Fred” in hexadecimal as 46 72 65 64.
 
@@ -579,6 +610,48 @@ Add the bit patterns and discard any carry beyond the most significant bit. For 
 \[ \begin{gathered} \text{Range}:\, -2^{{n}-1}\, …\, 2^{{n}-1}-1 \\ {A}\, -\, {B}\, =\, {A}\, +\, (\text{two}’\mathrm{s}-\text{complement}\, \text{negation}\, \text{of}\, {B}) \\ \text{Addition}\, \text{overflow}:\, \text{same}-\text{sign}\, \text{operands},\, \text{opposite}-\text{sign}\, \text{result} \\ \text{Subtraction}\, \text{overflow}:\, \text{operand}\, \text{signs}\, \text{differ},\, \text{result}\, \text{has}\, \text{the}\, \text{subtrahend}’\mathrm{s}\, \text{sign} \end{gathered} \]
 {\small \emph{Read it as: “A minus B is A plus the negation of B”; overflow on addition means two operands of the same sign gave a result of the other sign.}\par Discarding carry-out is part of fixed-width addition. Carry-out alone does not signal signed overflow.}
 \end{equationcard}
+
+\Needspace{14\baselineskip}
+\begin{center}
+\begin{minipage}[t]{0.950\linewidth}\centering
+\begin{tikzpicture}
+\draw[black!70] (2.160,-2.160) circle (1.260);
+\node[,inner sep=1pt,font=\scriptsize] at (2.160,-0.504) {0000};
+\node[,inner sep=1pt,font=\footnotesize] at (2.160,-1.224) {0};
+\node[,inner sep=1pt,font=\scriptsize] at (2.794,-0.630) {0001};
+\node[,inner sep=1pt,font=\footnotesize] at (2.518,-1.295) {1};
+\node[,inner sep=1pt,font=\scriptsize] at (3.331,-0.989) {0010};
+\node[,inner sep=1pt,font=\footnotesize] at (2.822,-1.498) {2};
+\node[,inner sep=1pt,font=\scriptsize] at (3.690,-1.526) {0011};
+\node[,inner sep=1pt,font=\footnotesize] at (3.025,-1.802) {3};
+\node[,inner sep=1pt,font=\scriptsize] at (3.816,-2.160) {0100};
+\node[,inner sep=1pt,font=\footnotesize] at (3.096,-2.160) {4};
+\node[,inner sep=1pt,font=\scriptsize] at (3.690,-2.794) {0101};
+\node[,inner sep=1pt,font=\footnotesize] at (3.025,-2.518) {5};
+\node[,inner sep=1pt,font=\scriptsize] at (3.331,-3.331) {0110};
+\node[,inner sep=1pt,font=\footnotesize] at (2.822,-2.822) {6};
+\node[text=FAUblue,inner sep=1pt,font=\scriptsize] at (2.794,-3.690) {0111};
+\node[text=FAUblue,inner sep=1pt,font=\footnotesize] at (2.518,-3.025) {7};
+\node[text=FAUblue,inner sep=1pt,font=\scriptsize] at (2.160,-3.816) {1000};
+\node[text=FAUblue,inner sep=1pt,font=\footnotesize] at (2.160,-3.096) {\ensuremath{-}8};
+\node[,inner sep=1pt,font=\scriptsize] at (1.526,-3.690) {1001};
+\node[,inner sep=1pt,font=\footnotesize] at (1.802,-3.025) {\ensuremath{-}7};
+\node[,inner sep=1pt,font=\scriptsize] at (0.989,-3.331) {1010};
+\node[,inner sep=1pt,font=\footnotesize] at (1.498,-2.822) {\ensuremath{-}6};
+\node[,inner sep=1pt,font=\scriptsize] at (0.630,-2.794) {1011};
+\node[,inner sep=1pt,font=\footnotesize] at (1.295,-2.518) {\ensuremath{-}5};
+\node[,inner sep=1pt,font=\scriptsize] at (0.504,-2.160) {1100};
+\node[,inner sep=1pt,font=\footnotesize] at (1.224,-2.160) {\ensuremath{-}4};
+\node[,inner sep=1pt,font=\scriptsize] at (0.630,-1.526) {1101};
+\node[,inner sep=1pt,font=\footnotesize] at (1.295,-1.802) {\ensuremath{-}3};
+\node[,inner sep=1pt,font=\scriptsize] at (0.989,-0.989) {1110};
+\node[,inner sep=1pt,font=\footnotesize] at (1.498,-1.498) {\ensuremath{-}2};
+\node[,inner sep=1pt,font=\scriptsize] at (1.526,-0.630) {1111};
+\node[,inner sep=1pt,font=\footnotesize] at (1.802,-1.295) {\ensuremath{-}1};
+\draw[FAUblue,line width=1.6pt] ([shift={(-67.50:1.260)}]2.160,-2.160) arc (-67.50:-90.00:1.260);
+\node[,inner sep=1pt,font=\scriptsize] at (2.160,-4.500) {+1 steps clockwise};
+\end{tikzpicture}\par\smallskip{\small\raggedright \textbf{The 4-bit two’s-complement wheel}: adding 1 to 0111 (7) steps clockwise to 1000, which reads as \ensuremath{-}8. That jump at the bottom of the wheel is overflow.\par}\end{minipage}
+\end{center}
 
 \begin{workedbox}{Worked example \ensuremath{\cdot} detect overflow}
 Use four-bit two’s complement to calculate \ensuremath{-}7+(\ensuremath{-}6).

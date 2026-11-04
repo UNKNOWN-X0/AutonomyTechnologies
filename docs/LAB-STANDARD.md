@@ -44,7 +44,7 @@ Chapter numbers may include a lowercase letter suffix (for example, `12a` or `34
 - **Order:** follow the chapter.
 - **Title:** the section numbers, the topic, then what it shows, e.g. "1.10 Gauss’s law: a charged cylinder". The contents rail and results use the short form ("1.10 Gauss’s law").
 - **Markup:** `<section class="experiment" id="exp-<name>" data-experiment="<name>">` containing an `h2`, an intro paragraph, an optional analogy card, and a `.bench` with `.stage`, `.side > .challenge` and `.side > form.controls`.
-- **Engine id:** `Lab.experiment({ id, title, card, lock, setup, sandbox, challenges })`. The `id` becomes the hub skill `lab-<id>`; never rename it once published, because saved progress uses it.
+- **Engine id:** `Lab.experiment({ id, title, card, lock, setup, sandbox, challenges, generate })`. The optional `generate()` returns a fresh challenge in the same shape, with its answer computed from the chapter’s physics module; once the fixed challenges are done, the card offers **New challenge**. Generated challenges are never saved and never change the skill tick, and `tests/lab-generators.test.js` checks 300 of each for one correct option among distinct ones. The `id` becomes the hub skill `lab-<id>`; never rename it once published, because saved progress uses it.
 - **Analogy card (optional):** a `<details class="analogy">` under the intro with a picture, a two-column mapping table, and "Holds:" and "Breaks:" lines. Add one only when an honest analogy exists; leave it out where none holds (capacitors in series have none).
 
 ## Challenges

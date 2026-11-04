@@ -257,6 +257,28 @@ Floating-point values are finite in number, and their spacing changes with magni
 \[ \begin{gathered} {x}\, =\, \pm {M}\, \times \, {R}^{{E}} \end{gathered} \]
 {\small \emph{Read it as: “x is plus or minus M times R to the E”: the significand M carries the digits, and the exponent E says where the point goes.}\par M is the coefficient (also called the significand or mantissa), R is the base or radix, and E is the exponent. In binary floating point, R=2.}
 \end{equationcard}
+
+\Needspace{14\baselineskip}
+\begin{center}
+\begin{minipage}[t]{0.950\linewidth}\centering
+\begin{tikzpicture}
+\draw[-{Stealth[length=4pt]},black!80] (0.180,-0.612) -- (4.896,-0.612);
+\draw[black!80] (0.918,-0.522) -- (0.918,-0.702);
+\node[,inner sep=1pt,font=\footnotesize] at (0.918,-1.008) {1};
+\draw[black!80] (1.160,-0.522) -- (1.160,-0.702);
+\draw[black!80] (1.403,-0.522) -- (1.403,-0.702);
+\node[,inner sep=1pt,font=\footnotesize] at (1.403,-1.008) {2};
+\draw[black!80] (1.889,-0.522) -- (1.889,-0.702);
+\draw[black!80] (2.374,-0.522) -- (2.374,-0.702);
+\node[,inner sep=1pt,font=\footnotesize] at (2.374,-1.008) {4};
+\draw[black!80] (3.345,-0.522) -- (3.345,-0.702);
+\draw[black!80] (4.317,-0.522) -- (4.317,-0.702);
+\node[,inner sep=1pt,font=\footnotesize] at (4.317,-1.008) {8};
+\node[text=FAUblue,inner sep=1pt,font=\footnotesize] at (1.160,-0.396) {0.5};
+\node[text=FAUblue,inner sep=1pt,font=\footnotesize] at (1.889,-0.396) {1};
+\node[text=FAUblue,inner sep=1pt,font=\footnotesize] at (3.345,-0.396) {2};
+\end{tikzpicture}\par\smallskip{\small\raggedright \textbf{Gaps double} with 2 significant bits: the values 1, 1.5, then 2, 3, then 4, 6, 8 lie 0.5, then 1, then 2 apart (the numbers above each zone).\par}\end{minipage}
+\end{center}
 \end{keepsection}
 
 \begin{keepsection}
@@ -675,11 +697,51 @@ The exponent field stores an excess (biased) value rather than a two’s-complem
 \end{keepsection}
 
 \begin{keepsection}
-\Needspace{9\baselineskip}
+\Needspace{10\baselineskip}
 \section{4.5 Zero, denormalised numbers, infinity, and NaN}
 
-\Needspace{6\baselineskip}
+\Needspace{7\baselineskip}
 Reserved exponent patterns extend useful behaviour beyond normalised values.
+
+\Needspace{14\baselineskip}
+\begin{center}
+\begin{minipage}[t]{0.303\linewidth}\centering
+\begin{tikzpicture}
+\filldraw[draw=black!50,fill=Paperblue] (0.072,-0.360) rectangle (0.540,-0.900);
+\node[,inner sep=1pt,font=\small] at (0.306,-0.630) {0};
+\node[,inner sep=1pt,font=\scriptsize] at (0.306,-1.188) {sign};
+\filldraw[draw=black!50,fill=Paperblue] (0.540,-0.360) rectangle (2.412,-0.900);
+\node[,inner sep=1pt,font=\small] at (1.476,-0.630) {0000 0000};
+\node[,inner sep=1pt,font=\scriptsize] at (1.476,-1.188) {exponent};
+\filldraw[draw=black!50,fill=Paperblue] (2.412,-0.360) rectangle (4.284,-0.900);
+\node[,inner sep=1pt,font=\small] at (3.348,-0.630) {000…000};
+\node[,inner sep=1pt,font=\scriptsize] at (3.348,-1.188) {fraction};
+\end{tikzpicture}\par\smallskip{\small\raggedright \textbf{+0}: every bit is 0.\par}\end{minipage}\hfill
+\begin{minipage}[t]{0.303\linewidth}\centering
+\begin{tikzpicture}
+\filldraw[draw=black!50,fill=Paperblue] (0.072,-0.360) rectangle (0.540,-0.900);
+\node[,inner sep=1pt,font=\small] at (0.306,-0.630) {0};
+\node[,inner sep=1pt,font=\scriptsize] at (0.306,-1.188) {sign};
+\filldraw[draw=black!50,fill=FAUblue!25] (0.540,-0.360) rectangle (2.412,-0.900);
+\node[,inner sep=1pt,font=\small] at (1.476,-0.630) {1111 1111};
+\node[,inner sep=1pt,font=\scriptsize] at (1.476,-1.188) {exponent};
+\filldraw[draw=black!50,fill=Paperblue] (2.412,-0.360) rectangle (4.284,-0.900);
+\node[,inner sep=1pt,font=\small] at (3.348,-0.630) {000…000};
+\node[,inner sep=1pt,font=\scriptsize] at (3.348,-1.188) {fraction};
+\end{tikzpicture}\par\smallskip{\small\raggedright \textbf{+\ensuremath{\infty}}: exponent all 1s, fraction 0.\par}\end{minipage}\hfill
+\begin{minipage}[t]{0.303\linewidth}\centering
+\begin{tikzpicture}
+\filldraw[draw=black!50,fill=Paperblue] (0.072,-0.360) rectangle (0.540,-0.900);
+\node[,inner sep=1pt,font=\small] at (0.306,-0.630) {0};
+\node[,inner sep=1pt,font=\scriptsize] at (0.306,-1.188) {sign};
+\filldraw[draw=black!50,fill=FAUblue!25] (0.540,-0.360) rectangle (2.412,-0.900);
+\node[,inner sep=1pt,font=\small] at (1.476,-0.630) {1111 1111};
+\node[,inner sep=1pt,font=\scriptsize] at (1.476,-1.188) {exponent};
+\filldraw[draw=black!50,fill=FAUblue!25] (2.412,-0.360) rectangle (4.284,-0.900);
+\node[,inner sep=1pt,font=\small] at (3.348,-0.630) {100…000};
+\node[,inner sep=1pt,font=\scriptsize] at (3.348,-1.188) {fraction};
+\end{tikzpicture}\par\smallskip{\small\raggedright \textbf{NaN}: exponent all 1s, fraction not 0.\par}\end{minipage}
+\end{center}
 
 \Needspace{8\baselineskip}
 \begin{plainbox}\textbf{In plain words:} some exponent patterns are kept for special cases. An exponent of all zeros means zero or a tiny \textbf{subnormal} number that fills the gap just above zero; an exponent of all ones means infinity when the fraction is zero, and NaN, “not a number”, for results such as 0/0.\end{plainbox}

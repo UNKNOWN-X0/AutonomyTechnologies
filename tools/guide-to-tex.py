@@ -345,7 +345,8 @@ def viz_tikz(f):
         for t in (a.get("data-ticks") or "").split():
             v, _, lab = t.partition(":")
             out.append(r"\draw[black!80] %s -- %s;" % (P(x(float(v)), Y - 5), P(x(float(v)), Y + 5)))
-            out.append(T(x(float(v)), Y + 22, lab or v, r"\footnotesize"))
+            if lab != "_":  # "v:_" is an unlabelled tick
+                out.append(T(x(float(v)), Y + 22, lab or v, r"\footnotesize"))
         if a.get("data-seg"):
             g = a["data-seg"].split()
             pa = X0 - 12 if g[0] == "-inf" else x(float(g[0]))
@@ -516,6 +517,77 @@ def viz_tikz(f):
                 if hot:
                     out.append(r"\fill[FAUblue!25] %s circle (%.3f);" % (P(x, y - 2), 11 * VS))
                 out.append(T(x, y - 2, str(val), r"\small", "", False, "FAUblue" if hot else ""))
+    elif kind == "wave":
+        S = [x.split(":") for x in a["data-signals"].split(";")]
+        SW, X0, mark = 24, 64, a.get("data-mark")
+        if mark not in (None, ""):
+            out.append(r"\fill[FAUblue!25] %s rectangle %s;" % (P(X0 + int(mark) * SW, 4), P(X0 + (int(mark) + 1) * SW, len(S) * 34 + 8)))
+        for r_, (lab, lv) in enumerate(S):
+            y0 = 12 + r_ * 34
+            out.append(T(X0 - 10, y0 + 11, lab, r"\footnotesize", "anchor=east", True))
+            pts_ = []
+            for i, b in enumerate(lv):
+                y = y0 if b == "1" else y0 + 20
+                pts_ += [P(X0 + i * SW, y), P(X0 + (i + 1) * SW, y)]
+            out.append(r"\draw[%s] %s;" % ("FAUblue,line width=1.6pt" if r_ == len(S) - 1 else "black!85,line width=1pt", " -- ".join(pts_)))
+        out.append(T(X0 + len(S[0][1]) * SW / 2, len(S) * 34 + 20, a.get("data-label") or "time →", r"\footnotesize"))
+    elif kind == "kmap":
+        rows = [r.split() for r in a["data-cells"].split("/")]
+        C_, cw, X0, Y0 = len(rows[0]), 40, 70, 46
+        rl = (a.get("data-rows") or "0 1").split()
+        cl = (a.get("data-cols") or "00 01 11 10").split()
+        vs = (a.get("data-vars") or "A|BC").split("|")
+        out.append(r"\node[font=\footnotesize] at %s {\textit{%s} / \textit{%s}};" % (P(X0 - 30, Y0 - 22), tex_text(vs[0]), tex_text(vs[1])))
+        for j, c_ in enumerate(cl):
+            out.append(T(X0 + j * cw + cw / 2, Y0 - 10, c_, r"\footnotesize"))
+        for i, row in enumerate(rows):
+            out.append(T(X0 - 12, Y0 + i * cw + cw / 2, rl[i], r"\footnotesize", "anchor=east"))
+            for j, v_ in enumerate(row):
+                out.append(r"\draw[black!50,fill=Paperblue] %s rectangle %s;" % (P(X0 + j * cw, Y0 + i * cw), P(X0 + (j + 1) * cw, Y0 + (i + 1) * cw)))
+                out.append(T(X0 + j * cw + cw / 2, Y0 + i * cw + cw / 2, v_))
+        for g in (a.get("data-groups") or "").split(";"):
+            m = re.match(r"r(\d)-(\d),c(\d)-(\d)", g.strip())
+            if not m:
+                continue
+            r0, r1, c0, c1 = map(int, m.groups())
+            for sp in ([(c0, c1)] if c1 >= c0 else [(c0, C_ - 1), (0, c1)]):
+                out.append(r"\draw[FAUblue,line width=1.4pt] %s rectangle %s;" % (P(X0 + sp[0] * cw + 4, Y0 + r0 * cw + 4), P(X0 + (sp[1] + 1) * cw - 4, Y0 + (r1 + 1) * cw - 4)))
+    elif kind == "wheel":
+        import math
+        n = int(a.get("data-bits") or 4)
+        N, c, R = 2 ** n, 120, 92
+        fr, to = a.get("data-from"), a.get("data-to")
+        out.append(r"\draw[black!70] %s circle (%.3f);" % (P(c, c), (R - 22) * VS))
+        for k_ in range(N):
+            t = k_ / N * 2 * math.pi - math.pi / 2
+            pat, val = format(k_, "0%db" % n), (k_ - N if k_ >= N // 2 else k_)
+            hot = pat in (fr, to)
+            out.append(T(c + R * math.cos(t), c + R * math.sin(t), pat, r"\scriptsize", "", False, "FAUblue" if hot else ""))
+            out.append(T(c + (R - 40) * math.cos(t), c + (R - 40) * math.sin(t), str(val).replace("-", "−"), r"\footnotesize", "", False, "FAUblue" if hot else ""))
+        if fr and to:
+            t1 = int(fr, 2) / N * 360 - 90
+            t2 = int(to, 2) / N * 360 - 90
+            rr = (R - 22) * VS
+            # page y runs down, TikZ y up: angles flip sign; draw the short clockwise step
+            out.append(r"\draw[FAUblue,line width=1.6pt] ([shift={(%.2f:%.3f)}]%s) arc (%.2f:%.2f:%.3f);" % (-t1, rr, P(c, c)[1:-1], -t1, -t2, rr))
+        out.append(T(c, 2 * c + 10, a.get("data-label") or "+1 steps clockwise", r"\scriptsize"))
+    elif kind == "cells":
+        C_ = [x.split("|") for x in a["data-cells"].split(";")]
+        H, X, W, at = 40, 110, 96, {}
+        for i, c_ in enumerate(C_):
+            y = 10 + i * (H + 10)
+            at[c_[0]] = y + H / 2
+            out.append(T(X - 10, y + H / 2 - 6, c_[0], r"\small", "anchor=east", True))
+            if len(c_) > 1 and c_[1]:
+                out.append(T(X - 10, y + H / 2 + 10, c_[1], r"\scriptsize", "anchor=east"))
+            out.append(r"\draw[black!50,fill=Paperblue] %s rectangle %s;" % (P(X, y), P(X + W, y + H)))
+            out.append(T(X + W / 2, y + H / 2, c_[2] if len(c_) > 2 else ""))
+        for k_, ar in enumerate(x for x in (a.get("data-arrows") or "").split(";") if x):
+            q = ar.split(">")
+            if q[0] in at and q[1] in at:
+                bx = X + W + 30 + k_ * 14
+                out.append(r"\draw[black!85,line width=1pt] %s -- %s -- %s;" % (P(X + W, at[q[0]]), P(bx, at[q[0]]), P(bx, at[q[1]])))
+                out.append(arrow_t(bx, at[q[1]], X + W + 2, at[q[1]], "FAUblue,line width=1.6pt"))
     elif kind == "ladder":
         L = a["data-levels"].split(";")
         n, H, top = len(L), 30, 24
