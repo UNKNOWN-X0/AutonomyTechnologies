@@ -601,6 +601,9 @@
       },
       sandbox: function () {
         st.ghost = st.marker = null;
+        // Opened straight from a finished lab, no challenge has placed charges yet: start from one charge, not an
+        // empty field.
+        if (!st.charges || !st.charges.length) setLayout("single");
         if (!st.probe) st.probe = { x: 0, y: 0.08, q: 1 * nC };
         draw();
       },

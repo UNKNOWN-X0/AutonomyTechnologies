@@ -239,6 +239,34 @@
     [head, prompt, swap].forEach(function (n) {
       card.appendChild(n);
     });
+    // Explore freely (owner's request, 2026-11-04): the sandbox is available at any time. The challenge waits where
+    // it was; finishing all of them still ticks the skill.
+    var ex = h("button", "btn ch-explore", "Explore freely");
+    ex.type = "button";
+    ex.addEventListener("click", function () {
+      self.explore(i);
+    });
+    card.appendChild(ex);
+  };
+  Experiment.prototype.explore = function (i) {
+    var self = this,
+      def = this.def,
+      card = this.card;
+    card.innerHTML = "";
+    card.classList.remove("ch-enter");
+    card.appendChild(h("p", "ch-count", "Exploring · challenge " + (i + 1) + " of " + def.challenges.length + " is waiting"));
+    card.appendChild(h("p", "ch-open", "The sandbox is open: change the controls below, and drag on the stage where it lets you. Your place in the challenges is kept."));
+    var back = h("button", "btn", "Back to challenge " + (i + 1));
+    back.type = "button";
+    back.addEventListener("click", function () {
+      self.stepped = true;
+      self.show(i);
+    });
+    card.appendChild(back);
+    def.lock(false);
+    card.closest(".experiment") && card.closest(".experiment").classList.remove("in-challenge");
+    def.sandbox();
+    back.focus({ preventScroll: true });
   };
   Experiment.prototype.done = function () {
     var self = this,
@@ -249,7 +277,7 @@
     });
     this.card.classList.add("finished");
     this.card.appendChild(h("p", "ch-count", "Challenges done · " + score + " of " + def.challenges.length + " predicted correctly"));
-    this.card.appendChild(h("p", "ch-open", "The sandbox is open: drag, change and explore. Predict before you move something."));
+    this.card.appendChild(h("p", "ch-open", "The sandbox is open: change the controls below, and drag on the stage where it lets you. Predict before you change anything."));
     var again = h("button", "btn", "Replay the challenges");
     again.type = "button";
     again.addEventListener("click", function () {

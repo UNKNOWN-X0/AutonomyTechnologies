@@ -14,7 +14,7 @@ What "done" means for a chapter lab: a page of predict-then-reveal experiments b
 | Calibration | Every prediction carries a confidence (sure / think so / guessing). "Sure but wrong" answers are collected in the results as the ideas to revisit first. |
 | Show the mechanism | The reveal animates what causes the result (components at a boundary, charge flowing in wires, enclosed charge), not just the final number. |
 | One idea per challenge | Each challenge isolates one misconception that a student is likely to hold. |
-| Explore after testing | The sandbox opens only once the challenges are done, so free play follows the prediction work instead of replacing it. |
+| Explore any time | Every challenge card has an **Explore freely** button that opens the sandbox straight away; **Back to challenge N** returns to the waiting challenge, and finishing all challenges still ticks the skill. (Changed 2026-11-04 at the owner’s request; the sandbox used to open only after the challenges.) |
 
 ## Files
 
@@ -77,7 +77,7 @@ Chapter numbers may include a lowercase letter suffix (for example, `12a` or `34
   - The question block and the verdict share one grid cell; the verdict is laid out with its longest wording, so revealing never changes the height.
   - Stages have a minimum height (about 336 px, or 448 px for stages with gauges or plots) and grow to the card.
 - **The compact card:** options as a list, the confidence switch and Reveal on one row. After the reveal, a "You said … (confidence). Answer …" line and the explanation replace the question block.
-- **Sandbox controls** are hidden until the challenges are done, then appear under the stage in columns.
+- **Sandbox controls** are hidden during a challenge and appear under the stage in columns once the challenges are done or Explore freely is pressed.
 
 ## Motion
 

@@ -16,7 +16,9 @@
       canvas.width = Math.round(r.width * dpr); canvas.height = Math.round(r.height * dpr);
       ctx.setTransform(dpr, 0, 0, dpr, 0, 0); ctx.clearRect(0, 0, r.width, r.height);
       ctx.fillStyle = c.paper; ctx.fillRect(0, 0, r.width, r.height); ctx.lineJoin = "round"; ctx.lineCap = "round";
-      ({ identity: drawIdentity, nand: drawNand, kmap: drawKmap, shannon: drawShannon, anf: drawAnf, hazard: drawHazard })[state.kind](ctx, r.width, r.height - 28, c, state);
+      // laid out for about 360 px; centre that layout in a taller stage (the note stays at the bottom)
+      var H = Math.min(r.height, 360); ctx.translate(0, Math.round((r.height - H) / 2));
+      ({ identity: drawIdentity, nand: drawNand, kmap: drawKmap, shannon: drawShannon, anf: drawAnf, hazard: drawHazard })[state.kind](ctx, r.width, H - 28, c, state);
     });
   }
   function text(ctx, value, x, y, c, size, colour) {

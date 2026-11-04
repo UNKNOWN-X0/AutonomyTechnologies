@@ -47,7 +47,7 @@
     if (members.indexOf(4) >= 0) html += '<g mask="url(#mei-na)"><rect ' + box + fill + ' mask="url(#mei-nb)"/></g>';
     html += "<circle " + circA + ' fill="none" stroke="' + ink + '" stroke-width="2"/><circle ' + circB + ' fill="none" stroke="' + ink + '" stroke-width="2"/>';
     el.innerHTML = html;
-    label(el, "A", 165, 78, 18); label(el, "B", 305, 78, 18); label(el, "X = {1,2,3,4}", 38, 232, 14);
+    label(el, "A", 112, 76, 18); label(el, "B", 360, 76, 18); // outside the circles, clear of the outlines label(el, "X = {1,2,3,4}", 38, 232, 14);
     var at = { 1: [155, 142], 2: [238, 142], 3: [322, 142], 4: [56, 64] };
     X.forEach(function (x) { label(el, String(x), at[x][0], at[x][1], 18, ink, x === focus ? "800" : null); });
     if (focus) {

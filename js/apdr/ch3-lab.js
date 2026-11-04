@@ -24,11 +24,15 @@
       canvas.width = Math.round(r.width * dpr); canvas.height = Math.round(r.height * dpr);
       ctx.setTransform(dpr, 0, 0, dpr, 0, 0); ctx.clearRect(0, 0, r.width, r.height);
       ctx.fillStyle = c.paper; ctx.fillRect(0, 0, r.width, r.height); ctx.lineJoin = "round"; ctx.lineCap = "round";
-      if (state.kind === "bases") drawBases(ctx, r.width, r.height, c, state);
-      if (state.kind === "encodings") drawEncoding(ctx, r.width, r.height, c, state);
-      if (state.kind === "characters") drawCharacters(ctx, r.width, r.height, c, state);
-      if (state.kind === "unsigned") drawUnsigned(ctx, r.width, r.height, c, state);
-      if (state.kind === "signed") drawSigned(ctx, r.width, r.height, c, state);
+      // The drawings are laid out for a stage about 360 px tall; a taller stage (grown to match the card) centres
+      // that layout instead of leaving its lower half empty.
+      var H = Math.min(r.height, 360);
+      ctx.translate(0, Math.round((r.height - H) / 2));
+      if (state.kind === "bases") drawBases(ctx, r.width, H, c, state);
+      if (state.kind === "encodings") drawEncoding(ctx, r.width, H, c, state);
+      if (state.kind === "characters") drawCharacters(ctx, r.width, H, c, state);
+      if (state.kind === "unsigned") drawUnsigned(ctx, r.width, H, c, state);
+      if (state.kind === "signed") drawSigned(ctx, r.width, H, c, state);
     });
   }
 

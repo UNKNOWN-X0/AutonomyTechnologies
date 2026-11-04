@@ -237,9 +237,9 @@
         else if (id === "distance") distanceDraw(visual, +root.querySelector("[data-control='center']").value, +root.querySelector("[data-control='radius']").value, 1);
         else if (id === "binomial") pascalDraw(visual, +control.value, 1);
         else inductionDraw(visual, +control.value, 1);
-        sliderDraw(root, visual, control, update);
       }
-      bindSlider(root, visual, control, update);
+      // The sandbox is driven by the labelled controls under the stage; the unlabelled slider strip that used to sit
+      // on top of the drawing duplicated them and covered the Pascal caption, so it is no longer drawn.
       if (!root._sandboxBound) { root._sandboxBound = true; root.querySelectorAll("[data-control]").forEach(function (el) { el.addEventListener("change", update); }); }
       update();
     }

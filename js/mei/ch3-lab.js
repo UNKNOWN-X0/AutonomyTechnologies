@@ -223,7 +223,7 @@
     var root = document.querySelector("[data-experiment='" + id + "']"), visual = stage(id), controls = Array.from(root.querySelectorAll("[data-control]"));
     function setup(c) { root.classList.remove("sandbox-open"); c.stage(); }
     function sandbox() {
-      root.classList.add("sandbox-open"); root.querySelector(".stage").classList.add("can-grab"); bindSlider(root);
+      root.classList.add("sandbox-open"); // the labelled controls under the stage drive it; no duplicate slider strip on the stage
       function update() {
         var values = {}; controls.forEach(function (c) { values[c.dataset.control] = c.value; });
         if (id === "mappings") mappingDraw(visual, values.rule, 1);
@@ -232,7 +232,6 @@
         else if (id === "elementary") elementaryDraw(visual, values.family, 1);
         else polarDraw(visual, +values.angle, +values.radius, 1);
         var sliderControl = id === "polar" ? root.querySelector("[data-control='angle']") : controls[0];
-        slider(root, visual, sliderControl, update);
       }
       if (!root._controlsBound) {
         root._controlsBound = true;

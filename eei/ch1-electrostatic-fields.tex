@@ -331,6 +331,30 @@ For two point charges (bodies much smaller than their distance), the force grows
 {\small \emph{Read it as: “the force on charge 2 is Q\textsubscript{1}Q\textsubscript{2} over 4π ε\textsubscript{0} r\textsuperscript{2}, in the direction e\textsubscript{r} from charge 1 to charge 2”.}\par ε\textsubscript{0} = 8.854 \ensuremath{\times} 10\textsuperscript{\ensuremath{-}12} A s/(V m); 1/(4π ε\textsubscript{0}) \ensuremath{\approx} 8.988 \ensuremath{\times} 10\textsuperscript{9} V m/(A s). \textit{e}\textsubscript{r} points from the charge that causes the force to the charge that feels it.}
 \end{equationcard}
 
+\Needspace{14\baselineskip}
+\begin{center}
+\begin{minipage}[t]{0.465\linewidth}\centering
+\begin{tikzpicture}
+\filldraw[draw=FAUblue,fill=FAUblue] (1.260,-1.080) circle (0.216);
+\node[text=white,font=\small\bfseries] at (1.260,-1.080) {+};
+\filldraw[draw=FAUblue,fill=FAUblue] (3.060,-1.080) circle (0.216);
+\node[text=white,font=\small\bfseries] at (3.060,-1.080) {+};
+\draw[-{Stealth[length=4pt]},FAUblue,line width=1.6pt] (1.008,-1.080) -- (0.396,-1.080);
+\draw[-{Stealth[length=4pt]},FAUblue,line width=1.6pt] (3.312,-1.080) -- (3.924,-1.080);
+\node[,inner sep=1pt,font=\footnotesize] at (2.160,-1.836) {like charges repel};
+\end{tikzpicture}\par\smallskip{\small\raggedright \textbf{Like charges} push each other apart: the force on each points away from the other.\par}\end{minipage}\hfill
+\begin{minipage}[t]{0.465\linewidth}\centering
+\begin{tikzpicture}
+\filldraw[draw=FAUblue,fill=FAUblue] (1.260,-1.080) circle (0.216);
+\node[text=white,font=\small\bfseries] at (1.260,-1.080) {+};
+\filldraw[draw=FAUblue,fill=FAUblue] (3.060,-1.080) circle (0.216);
+\node[text=white,font=\small\bfseries] at (3.060,-1.080) {−};
+\draw[-{Stealth[length=4pt]},FAUblue,line width=1.6pt] (1.512,-1.080) -- (2.016,-1.080);
+\draw[-{Stealth[length=4pt]},FAUblue,line width=1.6pt] (2.808,-1.080) -- (2.304,-1.080);
+\node[,inner sep=1pt,font=\footnotesize] at (2.160,-1.836) {unlike charges attract};
+\end{tikzpicture}\par\smallskip{\small\raggedright \textbf{Unlike charges} pull together, with equal and opposite forces along the line joining them.\par}\end{minipage}
+\end{center}
+
 \Needspace{5\baselineskip}
 \begin{itemize}
 \item \textbf{Signs are built in.} If \textit{Q}\textsubscript{1}\textit{Q}\textsubscript{2} \ensuremath{>} 0 the force points along \textit{e}\textsubscript{r} (repulsion); if \ensuremath{<} 0 it points against it (attraction). Put the signed charges in and the direction comes out right.
@@ -446,6 +470,25 @@ Experiments show that the forces of several charges on one probe add as vectors.
 \[ \begin{gathered} {E}({r}_{\mathrm{P}})\, =\, \dfrac{1}{4π\, ε_{0}}\, \sum_{\mathrm{i}=1}^{\mathrm{N}} \, {Q}_{\mathrm{i}}\, \dfrac{{r}_{\mathrm{i}}}{{r}_{\mathrm{i}}^{3}} \\ {r}_{\mathrm{i}}\, =\, {r}_{\mathrm{P}}\, -\, {r}_{\text{Qi}} \end{gathered} \]
 {\small \emph{Read it as: “the field at P is the sum over every charge of Q\textsubscript{i} r\textsubscript{i} over 4π ε\textsubscript{0} r\textsubscript{i}\textsuperscript{3}”: one term per charge.}\par The force on a further charge \textit{Q}\textsubscript{4} at P is \textit{Q}\textsubscript{4} \textit{E}(\textit{r}\textsubscript{P}), where the sum leaves out \textit{Q}\textsubscript{4} itself: a charge does not push on itself.}
 \end{equationcard}
+
+\Needspace{14\baselineskip}
+\begin{center}
+\begin{minipage}[t]{0.950\linewidth}\centering
+\begin{tikzpicture}
+\filldraw[draw=FAUblue,fill=FAUblue] (0.720,-2.664) circle (0.216);
+\node[text=white,font=\small\bfseries] at (0.720,-2.664) {+};
+\filldraw[draw=FAUblue,fill=FAUblue] (3.600,-2.664) circle (0.216);
+\node[text=white,font=\small\bfseries] at (3.600,-2.664) {+};
+\fill[FAUblue] (2.160,-1.512) circle (0.063);
+\node[anchor=east,font=\small] at (1.980,-1.512) {\textit{P}};
+\draw[-{Stealth[length=4pt]},black!80] (2.160,-1.512) -- (2.880,-0.936);
+\draw[-{Stealth[length=4pt]},black!80] (2.160,-1.512) -- (1.440,-0.936);
+\draw[-{Stealth[length=4pt]},FAUblue,line width=1.6pt] (2.160,-1.512) -- (2.160,-0.576);
+\node[anchor=west,font=\footnotesize] at (2.988,-0.972) {$E_1$};
+\node[anchor=east,font=\footnotesize] at (1.332,-0.972) {$E_2$};
+\node[anchor=west,font=\footnotesize,text=FAUblue] at (2.268,-0.540) {$E = E_1 + E_2$};
+\end{tikzpicture}\par\smallskip{\small\raggedright \textbf{Superposition}: at P the fields of the two charges add as arrows. Here their sideways parts cancel and the sum points straight up.\par}\end{minipage}
+\end{center}
 
 \Needspace{7\baselineskip}
 \begin{enumerate}
@@ -566,11 +609,46 @@ A sphere of radius \textit{R} has ϱ(\textit{r}) = ϱ\textsubscript{0}(1 \ensure
 \end{keepsection}
 
 \begin{keepsection}
-\Needspace{11\baselineskip}
+\Needspace{13\baselineskip}
 \section{1.7 Field lines}
 
-\Needspace{8\baselineskip}
+\Needspace{10\baselineskip}
 A field line is a curve whose tangent at every point has the direction of \textit{E}. Arrows on the line show the direction. In vector plots the arrow length shows the field strength; in line plots the density of lines does.
+
+\Needspace{14\baselineskip}
+\begin{center}
+\begin{minipage}[t]{0.950\linewidth}\centering
+\begin{tikzpicture}
+\draw[black!80] (1.683,-1.685) -- (1.788,-1.712) -- (1.893,-1.737) -- (1.999,-1.760) -- (2.105,-1.778) -- (2.212,-1.791) -- (2.320,-1.798) -- (2.428,-1.798) -- (2.536,-1.790) -- (2.643,-1.775) -- (2.749,-1.755) -- (2.854,-1.731) -- (2.958,-1.703) -- (3.062,-1.673) -- (3.062,-1.673);
+\draw[-{Stealth[length=4pt]},black!80] (2.320,-1.798) -- (2.374,-1.799);
+\draw[black!80] (1.618,-1.798) -- (1.696,-1.873) -- (1.777,-1.944) -- (1.862,-2.012) -- (1.951,-2.073) -- (2.045,-2.125) -- (2.145,-2.166) -- (2.249,-2.193) -- (2.357,-2.203) -- (2.465,-2.196) -- (2.570,-2.172) -- (2.670,-2.132) -- (2.764,-2.080) -- (2.853,-2.018) -- (2.935,-1.948) -- (3.013,-1.873) -- (3.087,-1.795) -- (3.087,-1.795);
+\draw[-{Stealth[length=4pt]},black!80] (2.303,-2.200) -- (2.357,-2.203);
+\draw[black!80] (1.505,-1.863) -- (1.536,-1.967) -- (1.570,-2.069) -- (1.609,-2.170) -- (1.654,-2.268) -- (1.705,-2.363) -- (1.764,-2.454) -- (1.832,-2.538) -- (1.908,-2.614) -- (1.994,-2.680) -- (2.087,-2.734) -- (2.188,-2.772) -- (2.294,-2.794) -- (2.402,-2.797) -- (2.508,-2.782) -- (2.611,-2.749) -- (2.707,-2.700) -- (2.795,-2.637) -- (2.874,-2.563) -- (2.943,-2.480) -- (3.002,-2.390) -- (3.053,-2.295) -- (3.097,-2.196) -- (3.133,-2.094) -- (3.163,-1.991) -- (3.189,-1.886) -- (3.200,-1.833);
+\draw[-{Stealth[length=4pt]},black!80] (2.348,-2.798) -- (2.402,-2.797);
+\draw[black!80] (1.375,-1.863) -- (1.349,-1.968) -- (1.326,-2.074) -- (1.306,-2.180) -- (1.290,-2.287) -- (1.277,-2.394) -- (1.270,-2.502) -- (1.268,-2.610) -- (1.271,-2.718) -- (1.279,-2.825) -- (1.294,-2.932) -- (1.316,-3.038) -- (1.344,-3.142) -- (1.361,-3.194);
+\draw[-{Stealth[length=4pt]},black!80] (1.270,-2.502) -- (1.268,-2.556);
+\draw[black!80] (1.262,-1.798) -- (1.186,-1.876) -- (1.112,-1.954) -- (1.039,-2.034) -- (0.968,-2.114) -- (0.898,-2.197) -- (0.829,-2.280) -- (0.763,-2.365) -- (0.698,-2.452) -- (0.635,-2.539) -- (0.574,-2.629) -- (0.515,-2.719) -- (0.459,-2.811) -- (0.404,-2.904) -- (0.352,-2.999) -- (0.302,-3.095) -- (0.254,-3.192) -- (0.254,-3.192);
+\draw[-{Stealth[length=4pt]},black!80] (0.730,-2.408) -- (0.698,-2.452);
+\draw[black!80] (1.197,-1.685) -- (1.092,-1.714) -- (0.988,-1.743) -- (0.884,-1.772) -- (0.781,-1.802) -- (0.677,-1.832) -- (0.574,-1.864) -- (0.470,-1.895) -- (0.367,-1.928) -- (0.265,-1.961) -- (0.162,-1.994) -- (0.060,-2.029) -- (0.060,-2.029);
+\draw[-{Stealth[length=4pt]},black!80] (0.677,-1.832) -- (0.625,-1.848);
+\draw[black!80] (1.197,-1.555) -- (1.092,-1.526) -- (0.988,-1.497) -- (0.884,-1.468) -- (0.781,-1.438) -- (0.677,-1.408) -- (0.574,-1.376) -- (0.470,-1.345) -- (0.367,-1.312) -- (0.265,-1.279) -- (0.162,-1.246) -- (0.060,-1.211) -- (0.060,-1.211);
+\draw[-{Stealth[length=4pt]},black!80] (0.677,-1.408) -- (0.625,-1.392);
+\draw[black!80] (1.262,-1.442) -- (1.186,-1.364) -- (1.112,-1.286) -- (1.039,-1.206) -- (0.968,-1.126) -- (0.898,-1.043) -- (0.829,-0.960) -- (0.763,-0.875) -- (0.698,-0.788) -- (0.635,-0.701) -- (0.574,-0.611) -- (0.515,-0.521) -- (0.459,-0.429) -- (0.404,-0.336) -- (0.352,-0.241) -- (0.302,-0.145) -- (0.254,-0.048) -- (0.254,-0.048);
+\draw[-{Stealth[length=4pt]},black!80] (0.730,-0.832) -- (0.698,-0.788);
+\draw[black!80] (1.375,-1.377) -- (1.349,-1.272) -- (1.326,-1.166) -- (1.306,-1.060) -- (1.290,-0.953) -- (1.277,-0.846) -- (1.270,-0.738) -- (1.268,-0.630) -- (1.271,-0.522) -- (1.279,-0.415) -- (1.294,-0.308) -- (1.316,-0.202) -- (1.344,-0.098) -- (1.361,-0.046);
+\draw[-{Stealth[length=4pt]},black!80] (1.270,-0.738) -- (1.268,-0.684);
+\draw[black!80] (1.505,-1.377) -- (1.536,-1.273) -- (1.570,-1.171) -- (1.609,-1.070) -- (1.654,-0.972) -- (1.705,-0.877) -- (1.764,-0.786) -- (1.832,-0.702) -- (1.908,-0.626) -- (1.994,-0.560) -- (2.087,-0.506) -- (2.188,-0.468) -- (2.294,-0.446) -- (2.402,-0.443) -- (2.508,-0.458) -- (2.611,-0.491) -- (2.707,-0.540) -- (2.795,-0.603) -- (2.874,-0.677) -- (2.943,-0.760) -- (3.002,-0.850) -- (3.053,-0.945) -- (3.097,-1.044) -- (3.133,-1.146) -- (3.163,-1.249) -- (3.189,-1.354) -- (3.200,-1.407);
+\draw[-{Stealth[length=4pt]},black!80] (2.348,-0.442) -- (2.402,-0.443);
+\draw[black!80] (1.618,-1.442) -- (1.696,-1.367) -- (1.777,-1.296) -- (1.862,-1.228) -- (1.951,-1.167) -- (2.045,-1.115) -- (2.145,-1.074) -- (2.249,-1.047) -- (2.357,-1.037) -- (2.465,-1.044) -- (2.570,-1.068) -- (2.670,-1.108) -- (2.764,-1.160) -- (2.853,-1.222) -- (2.935,-1.292) -- (3.013,-1.367) -- (3.087,-1.445) -- (3.087,-1.445);
+\draw[-{Stealth[length=4pt]},black!80] (2.303,-1.040) -- (2.357,-1.037);
+\draw[black!80] (1.683,-1.555) -- (1.788,-1.528) -- (1.893,-1.503) -- (1.999,-1.480) -- (2.105,-1.462) -- (2.212,-1.449) -- (2.320,-1.442) -- (2.428,-1.442) -- (2.536,-1.450) -- (2.643,-1.465) -- (2.749,-1.485) -- (2.854,-1.509) -- (2.958,-1.537) -- (3.062,-1.567) -- (3.062,-1.567);
+\draw[-{Stealth[length=4pt]},black!80] (2.320,-1.442) -- (2.374,-1.441);
+\filldraw[draw=FAUblue,fill=FAUblue] (1.440,-1.620) circle (0.216);
+\node[text=white,font=\small\bfseries] at (1.440,-1.620) {+};
+\filldraw[draw=FAUblue,fill=FAUblue] (3.240,-1.620) circle (0.216);
+\node[text=white,font=\small\bfseries] at (3.240,-1.620) {−};
+\end{tikzpicture}\par\smallskip{\small\raggedright \textbf{A dipole}: field lines start on +\textit{q} and end on \ensuremath{-}\textit{q}. They never cross, and they crowd together where the field is strong.\par}\end{minipage}
+\end{center}
 
 \Needspace{9\baselineskip}
 \begin{plainbox}\textbf{In plain words:} field lines are a picture of \textit{E}: at every point the line runs in the direction of the field, starting on positive charges and ending on negative ones. Where the lines crowd together the field is strong; where they spread out it is weak.\end{plainbox}
@@ -644,6 +722,44 @@ A field line is a curve whose tangent at every point has the direction of \texti
 \[ \begin{gathered} {W}_{\mathrm{e}}\, =\, \dfrac{{Q\,Q}_{0}}{4π\, ε_{0}}\, (\dfrac{1}{{r}_{2}}\, -\, \dfrac{1}{{r}_{1}})\, \quad \, (\text{from}\, {r}_{1}\, \text{to}\, {r}_{2}) \\ φ_{\mathrm{e}}({r})\, =\, \dfrac{{Q}_{0}}{4π\, ε_{0}{r}} \end{gathered} \]
 {\small \emph{Read it as: “φ\textsubscript{e} at distance r is Q\textsubscript{0} over 4π ε\textsubscript{0} r”: it falls as 1/r, more slowly than the field.}\par Potential is a scalar: for several charges add the signed potentials, no components needed. \textit{E} \ensuremath{\propto} 1/\textit{r}\textsuperscript{2}, \textit{D} \ensuremath{\propto} 1/\textit{r}\textsuperscript{2}, φ \ensuremath{\propto} 1/\textit{r}.}
 \end{equationcard}
+
+\Needspace{14\baselineskip}
+\begin{center}
+\begin{minipage}[t]{0.465\linewidth}\centering
+\begin{tikzpicture}
+\draw[black!55,dashed] (1.440,-1.440) circle (0.612);
+\draw[black!55,dashed] (1.440,-1.440) circle (0.972);
+\draw[-{Stealth[length=4pt]},black!80] (1.800,-1.440) -- (2.628,-1.440);
+\draw[-{Stealth[length=4pt]},black!80] (1.695,-1.185) -- (2.280,-0.600);
+\draw[-{Stealth[length=4pt]},black!80] (1.440,-1.080) -- (1.440,-0.252);
+\draw[-{Stealth[length=4pt]},black!80] (1.185,-1.185) -- (0.600,-0.600);
+\draw[-{Stealth[length=4pt]},black!80] (1.080,-1.440) -- (0.252,-1.440);
+\draw[-{Stealth[length=4pt]},black!80] (1.185,-1.695) -- (0.600,-2.280);
+\draw[-{Stealth[length=4pt]},black!80] (1.440,-1.800) -- (1.440,-2.628);
+\draw[-{Stealth[length=4pt]},black!80] (1.695,-1.695) -- (2.280,-2.280);
+\filldraw[draw=FAUblue,fill=FAUblue] (1.440,-1.440) circle (0.234);
+\node[text=white,font=\small\bfseries] at (1.440,-1.440) {+};
+\end{tikzpicture}\par\smallskip{\small\raggedright \textbf{Equipotentials} (dashed) of a point charge are spheres round it, and they cross every field line at a right angle.\par}\end{minipage}\hfill
+\begin{minipage}[t]{0.465\linewidth}\centering
+\begin{tikzpicture}
+\draw[-{Stealth[length=4pt]},black!80] (0.720,-2.628) -- (4.572,-2.628);
+\draw[-{Stealth[length=4pt]},black!80] (0.720,-2.628) -- (0.720,-0.180);
+\draw[FAUblue,line width=1.6pt] (1.157,-0.533) -- (1.376,-1.232) -- (1.594,-1.581) -- (1.813,-1.790) -- (2.031,-1.930) -- (2.469,-2.104) -- (2.906,-2.209) -- (3.343,-2.279) -- (3.780,-2.329) -- (4.217,-2.366);
+\draw[black!85,line width=1pt] (1.157,-0.533) -- (1.376,-1.697) -- (1.594,-2.104) -- (1.813,-2.293) -- (2.031,-2.395) -- (2.469,-2.497) -- (2.906,-2.544) -- (3.343,-2.570) -- (3.780,-2.585) -- (4.217,-2.595);
+\node[anchor=west,text=FAUblue,inner sep=1pt,font=\footnotesize] at (1.965,-1.473) {φ};
+\node[anchor=west,text=FAUblue,inner sep=1pt,font=\footnotesize] at (3.189,-2.457) {E};
+\node[anchor=east,inner sep=1pt,font=\footnotesize] at (4.536,-2.916) {\textit{r}};
+\node[anchor=east,inner sep=1pt,font=\footnotesize] at (0.576,-0.288) {\textit{}};
+\draw[black!80] (1.594,-2.556) -- (1.594,-2.700);
+\node[,inner sep=1pt,font=\footnotesize] at (1.594,-2.916) {1};
+\draw[black!80] (2.469,-2.556) -- (2.469,-2.700);
+\node[,inner sep=1pt,font=\footnotesize] at (2.469,-2.916) {2};
+\draw[black!80] (3.343,-2.556) -- (3.343,-2.700);
+\node[,inner sep=1pt,font=\footnotesize] at (3.343,-2.916) {3};
+\draw[black!80] (4.217,-2.556) -- (4.217,-2.700);
+\node[,inner sep=1pt,font=\footnotesize] at (4.217,-2.916) {4};
+\end{tikzpicture}\par\smallskip{\small\raggedright \textbf{Potential and field}, scaled to meet at the smallest \textit{r}: φ\textsubscript{e} (blue) falls as 1/\textit{r}, \textit{E} (black) as 1/\textit{r}\textsuperscript{2}, so the field dies away faster.\par}\end{minipage}
+\end{center}
 
 \Needspace{10\baselineskip}
 \begin{center}\small\begin{tabularx}{\linewidth}{>{\raggedright\arraybackslash}X>{\raggedright\arraybackslash}X>{\raggedright\arraybackslash}X}\toprule
@@ -762,6 +878,25 @@ Around a point charge in vacuum, \textit{D} = \textit{Q}/(4π\textit{r}\textsupe
 \[ \begin{gathered} Ψ\, =\, \oiint_{\mathrm{A}} \, {D}\, \cdot \, \mathrm{d}{A}\, =\, {Q}_{\text{enclosed}}\, =\, ∭_{\mathrm{V}}\, ϱ_{\mathrm{V}}\, \mathrm{d}{V} \end{gathered} \]
 {\small \emph{Read it as: “the flux of D out of the closed surface A equals the charge enclosed”.}\par Valid always, not only in electrostatics. In this course the material is described by ε, so \textit{Q} means the charges you place (on electrodes or given as densities). The material’s own polarisation charges are already included through ε.}
 \end{equationcard}
+
+\Needspace{14\baselineskip}
+\begin{center}
+\begin{minipage}[t]{0.950\linewidth}\centering
+\begin{tikzpicture}
+\draw[black!65,dashed,line width=1pt] (1.440,-1.440) circle (0.828);
+\node[anchor=west,text=FAUblue,inner sep=1pt,font=\footnotesize] at (2.088,-0.720) {\textit{A}};
+\draw[-{Stealth[length=4pt]},black!80] (1.800,-1.440) -- (2.628,-1.440);
+\draw[-{Stealth[length=4pt]},black!80] (1.695,-1.185) -- (2.280,-0.600);
+\draw[-{Stealth[length=4pt]},black!80] (1.440,-1.080) -- (1.440,-0.252);
+\draw[-{Stealth[length=4pt]},black!80] (1.185,-1.185) -- (0.600,-0.600);
+\draw[-{Stealth[length=4pt]},black!80] (1.080,-1.440) -- (0.252,-1.440);
+\draw[-{Stealth[length=4pt]},black!80] (1.185,-1.695) -- (0.600,-2.280);
+\draw[-{Stealth[length=4pt]},black!80] (1.440,-1.800) -- (1.440,-2.628);
+\draw[-{Stealth[length=4pt]},black!80] (1.695,-1.695) -- (2.280,-2.280);
+\filldraw[draw=FAUblue,fill=FAUblue] (1.440,-1.440) circle (0.234);
+\node[text=white,font=\small\bfseries] at (1.440,-1.440) {+};
+\end{tikzpicture}\par\smallskip{\small\raggedright \textbf{A Gaussian surface} A (dashed) round a charge: every field line leaving the charge crosses A once, so the flux through A equals the enclosed charge, whatever the shape of A.\par}\end{minipage}
+\end{center}
 
 \Needspace{13\baselineskip}
 Gauss’s law always holds, but it only gives you the field when symmetry tells you the direction of \textit{D} and that its size is constant on the surface. In practice that means three shapes: sphere (point charge, charged shell or ball), infinitely long cylinder (line charge, coax) and infinite plane (plate capacitor).
@@ -949,6 +1084,34 @@ An insulator has no free charge carriers, but its bound charges can shift or tur
 \end{equationcard}
 
 \Needspace{14\baselineskip}
+\begin{center}
+\begin{minipage}[t]{0.950\linewidth}\centering
+\begin{tikzpicture}
+\fill[FAUblue!25] (1.512,-0.324) rectangle (2.088,-2.016);
+\draw[black!85,line width=2.5pt] (0.828,-0.324) -- (0.828,-2.016);
+\draw[black!85,line width=2.5pt] (2.772,-0.324) -- (2.772,-2.016);
+\node[,inner sep=1pt,font=\small] at (0.828,-0.180) {+};
+\node[,inner sep=1pt,font=\small] at (2.772,-0.180) {\ensuremath{-}};
+\draw[black!80] (0.972,-0.540) -- (1.476,-0.540);
+\draw[-{Stealth[length=4pt]},black!80] (2.124,-0.540) -- (2.628,-0.540);
+\draw[black!80] (1.476,-0.540) -- (2.124,-0.540);
+\draw[black!80] (0.972,-0.864) -- (1.476,-0.864);
+\draw[-{Stealth[length=4pt]},black!80] (2.124,-0.864) -- (2.628,-0.864);
+\draw[black!80] (0.972,-1.188) -- (1.476,-1.188);
+\draw[-{Stealth[length=4pt]},black!80] (2.124,-1.188) -- (2.628,-1.188);
+\draw[black!80] (1.476,-1.188) -- (2.124,-1.188);
+\draw[black!80] (0.972,-1.512) -- (1.476,-1.512);
+\draw[-{Stealth[length=4pt]},black!80] (2.124,-1.512) -- (2.628,-1.512);
+\draw[black!80] (0.972,-1.836) -- (1.476,-1.836);
+\draw[-{Stealth[length=4pt]},black!80] (2.124,-1.836) -- (2.628,-1.836);
+\draw[black!80] (1.476,-1.836) -- (2.124,-1.836);
+\node[,inner sep=1pt,font=\footnotesize] at (1.800,-0.720) {\ensuremath{-}+};
+\node[,inner sep=1pt,font=\footnotesize] at (1.800,-1.368) {\ensuremath{-}+};
+\node[,inner sep=1pt,font=\footnotesize] at (1.800,-2.268) {fewer E lines inside the slab};
+\end{tikzpicture}\par\smallskip{\small\raggedright \textbf{A dielectric slab} in a charged capacitor: its molecules line up as small dipoles, and \textit{E} inside is weaker by the factor ε\textsubscript{r}, shown by fewer field lines. \textit{D} is unchanged.\par}\end{minipage}
+\end{center}
+
+\Needspace{14\baselineskip}
 The aligned dipoles leave a thin layer of bound charge on each face of the slab, opposite in sign to the neighbouring plate. These polarisation charges weaken the field inside. Read ε\textsubscript{r} two ways: at the same \textit{D}, \textit{E} in the dielectric is ε\textsubscript{r} times smaller; at the same \textit{E}, \textit{D} is ε\textsubscript{r} times larger.
 
 \begin{workedbox}{Worked example}
@@ -1079,6 +1242,22 @@ Charge a capacitor step by step. When it already holds \ensuremath{\pm}\textit{q
 \[ \begin{gathered} {W}_{\mathrm{e}}\, =\, \dfrac{1}{{C}}\, \int_{0}^{\mathrm{Q}} \, {q}\, \mathrm{d}{q}\, =\, \dfrac{{Q}^{2}}{2{C}}\, =\, \tfrac{1}{2}\, {C\,U}^{2}\, =\, \tfrac{1}{2}\, {Q\,U} \end{gathered} \]
 {\small \emph{Read it as: “W\textsubscript{e} is Q\textsuperscript{2} over 2C, which equals \ensuremath{\tfrac12} C U\textsuperscript{2} and \ensuremath{\tfrac12} Q U”.}\par Not \textit{Q U}: the voltage grows from 0 to \textit{U} during charging, so on average each bit of charge is lifted through only \textit{U}/2.}
 \end{equationcard}
+
+\Needspace{14\baselineskip}
+\begin{center}
+\begin{minipage}[t]{0.950\linewidth}\centering
+\begin{tikzpicture}
+\fill[FAUblue!25] (0.720,-2.628) -- (3.913,-2.628) -- (3.913,-0.625) -- cycle;
+\draw[-{Stealth[length=4pt]},black!80] (0.720,-2.628) -- (4.572,-2.628);
+\draw[-{Stealth[length=4pt]},black!80] (0.720,-2.628) -- (0.720,-0.180);
+\draw[FAUblue,line width=1.6pt] (0.720,-2.628) -- (3.913,-0.625);
+\node[anchor=west,text=FAUblue,inner sep=1pt,font=\footnotesize] at (4.021,-0.517) {(Q, U)};
+\node[anchor=east,inner sep=1pt,font=\footnotesize] at (4.536,-2.916) {\textit{q}};
+\node[anchor=east,inner sep=1pt,font=\footnotesize] at (0.576,-0.288) {\textit{u}};
+\draw[black!80] (3.913,-2.556) -- (3.913,-2.700);
+\node[,inner sep=1pt,font=\footnotesize] at (3.913,-2.916) {Q};
+\end{tikzpicture}\par\smallskip{\small\raggedright \textbf{Charging}: the voltage \textit{u} = \textit{q}/\textit{C} grows from 0 to \textit{U} as charge goes on, so the work is the triangle under the line: \ensuremath{\tfrac12} \textit{Q} \textit{U}.\par}\end{minipage}
+\end{center}
 
 \Needspace{10\baselineskip}
 \textbf{Where is the energy?} In the field. For a plate capacitor, \ensuremath{\tfrac12}\textit{C U}\textsuperscript{2} = \ensuremath{\tfrac12}(ε\textit{A}/\textit{d})(\textit{E d})\textsuperscript{2} = \ensuremath{\tfrac12}ε\textit{E}\textsuperscript{2} \ensuremath{\times} \textit{A d}, and \textit{A d} is the volume of the field region. Dividing by the volume gives an energy density that also holds for non-uniform fields:

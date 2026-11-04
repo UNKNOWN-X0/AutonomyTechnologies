@@ -364,6 +364,9 @@
 .range-row input[type="range"] {
   grid-column: 1 / -1;
   width: 100%;
+  /* WebKit gives range inputs a 2px side margin, which pushed a full-width slider past its column */
+  margin: 0;
+  box-sizing: border-box;
   min-height: 28px;
   accent-color: var(--act);
 }
@@ -756,3 +759,25 @@
   }
 }
 
+
+/* A row that holds a control keeps the label next to it: on wide screens space-between pushed the label to one edge
+   and its control to the other. Readout rows (a label and a value) keep their right-aligned value. */
+@container (min-width: 640px) {
+  .controls .field-row:has(> select, > input:not([type="checkbox"]):not([type="radio"])) {
+    display: grid;
+    grid-template-columns: minmax(7em, 13em) minmax(0, auto);
+    justify-content: start;
+    column-gap: 14px;
+  }
+}
+
+/* Explore freely: a quiet button under the challenge that opens the sandbox at any time. */
+.ch-explore {
+  margin-top: 16px;
+  border-color: var(--line);
+  color: var(--muted);
+}
+.ch-explore:hover {
+  border-color: var(--act);
+  color: var(--act);
+}

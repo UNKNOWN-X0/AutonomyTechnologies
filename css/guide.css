@@ -2017,3 +2017,15 @@ main li sup {
   font-size: 17px;
   font-weight: 800;
 }
+.vz-seg.thin {
+  stroke-width: 3;
+  fill: none;
+}
+.vz-line.thick,
+.vz-dash.thick {
+  stroke-width: 2;
+}
+polyline.vz-line,
+polyline.vz-dash {
+  fill: none;
+}

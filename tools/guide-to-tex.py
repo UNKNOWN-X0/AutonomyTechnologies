@@ -282,6 +282,28 @@ def arrow_t(x1, y1, x2, y2, style="black!80"):
     return r"\draw[-{Stealth[length=4pt]},%s] %s -- %s;" % (style, P(x1, y1), P(x2, y2))
 
 
+def dipole_lines(A, B):
+    """Same tracing as DIPOLE_LINES in js/guide.js: 12 lines from +q, unit steps of 3 along E."""
+    import math
+    out = []
+    for k in range(12):
+        t = k * math.pi * 2 / 12 + math.pi / 12
+        x, y = A[0] + 14 * math.cos(t), A[1] + 14 * math.sin(t)
+        pts = [(x, y)]
+        for _ in range(220):
+            ax, ay, bx, by = x - A[0], y - A[1], x - B[0], y - B[1]
+            ra, rb = (ax * ax + ay * ay) ** 1.5, (bx * bx + by * by) ** 1.5
+            ex, ey = ax / ra - bx / rb, ay / ra - by / rb
+            L = math.hypot(ex, ey)
+            x += 3 * ex / L
+            y += 3 * ey / L
+            pts.append((x, y))
+            if math.hypot(x - B[0], y - B[1]) < 13 or x < 4 or x > 256 or y < 4 or y > 176:
+                break
+        out.append(pts)
+    return out
+
+
 def viz_tikz(f):
     import math
     a = f.attrs
@@ -361,8 +383,75 @@ def viz_tikz(f):
                 T(px + 8, (cy + py) / 2, L[1], r"\footnotesize", "anchor=west"),
                 T((cx + px) / 2 - 10, (cy + py) / 2 - 8, L[2], r"\footnotesize", "anchor=east", True),
                 T(px + 8, py - 8, "P", r"\small", "anchor=west", True)]
+    elif kind == "plot":
+        xr = [float(v) for v in (a.get("data-xr") or "0 1").split()]
+        yr = [float(v) for v in (a.get("data-yr") or "0 1").split()]
+        X0, X1, Y0, Y1 = 40, 244, 146, 18
+        X = lambda v: X0 + (v - xr[0]) / (xr[1] - xr[0]) * (X1 - X0)
+        Y = lambda v: Y0 - (v - yr[0]) / (yr[1] - yr[0]) * (Y0 - Y1)
+        pts = lambda t: " -- ".join(P(X(float(p.split(",")[0])), Y(float(p.split(",")[1]))) for p in t.split())
+        if a.get("data-shade"):
+            out.append(r"\fill[FAUblue!25] %s -- cycle;" % pts(a["data-shade"]))
+        out += [arrow_t(X0, Y0, X1 + 10, Y0), arrow_t(X0, Y0, X0, Y1 - 8)]
+        for i, l in enumerate(l for l in (a.get("data-lines") or "").split(";") if l.strip()):
+            style = ["FAUblue,line width=1.6pt", "black!85,line width=1pt", "black!55,dashed"][min(i, 2)]
+            out.append(r"\draw[%s] %s;" % (style, pts(l)))
+        for m in (a.get("data-marks") or "").split(";"):
+            if m:
+                xy, _, lab = m.partition(":")
+                x_, y_ = [float(v) for v in xy.split(",")]
+                out.append(T(X(x_) + 6, Y(y_) - 6, lab, r"\footnotesize", "anchor=west", False, "FAUblue"))
+        out += [T(X1 + 8, Y0 + 16, a.get("data-xlabel") or "x", r"\footnotesize", "anchor=east", True),
+                T(X0 - 8, Y1 - 2, a.get("data-ylabel") if a.get("data-ylabel") is not None else "y", r"\footnotesize", "anchor=east", True)]
+        for t in (a.get("data-xticks") or "").split():
+            v, _, lab = t.partition(":")
+            out.append(r"\draw[black!80] %s -- %s;" % (P(X(float(v)), Y0 - 4), P(X(float(v)), Y0 + 4)))
+            out.append(T(X(float(v)), Y0 + 16, lab or v, r"\footnotesize"))
     elif kind == "field":
-        if sub == "plates":
+        def charge(x, y, sign):
+            out.append(r"\filldraw[draw=FAUblue,fill=FAUblue] %s circle (%.3f);" % (P(x, y), 12 * VS))
+            out.append(r"\node[text=white,font=\small\bfseries] at %s {%s};" % (P(x, y), "−" if sign == "-" else "+"))
+        if sub == "pair":
+            sg = (a.get("data-signs") or "+ +").split()
+            like = sg[0] == sg[1]
+            charge(70, 60, sg[0]); charge(170, 60, sg[1])
+            seg = "FAUblue,line width=1.6pt"
+            if like:
+                out += [arrow_t(56, 60, 22, 60, seg), arrow_t(184, 60, 218, 60, seg)]
+            else:
+                out += [arrow_t(84, 60, 112, 60, seg), arrow_t(156, 60, 128, 60, seg)]
+            out.append(T(120, 102, a.get("data-label") or ("like charges repel" if like else "unlike charges attract"), r"\footnotesize"))
+        elif sub == "vectors":
+            charge(40, 148, "+"); charge(200, 148, "+")
+            Px, Py = 120, 84
+            out += [r"\fill[FAUblue] %s circle (%.3f);" % (P(Px, Py), 3.5 * VS),
+                    r"\node[anchor=east,font=\small] at %s {\textit{P}};" % P(Px - 10, Py),
+                    arrow_t(Px, Py, Px + 40, Py - 32), arrow_t(Px, Py, Px - 40, Py - 32),
+                    arrow_t(Px, Py, Px, Py - 52, "FAUblue,line width=1.6pt"),
+                    r"\node[anchor=west,font=\footnotesize] at %s {$E_1$};" % P(Px + 46, Py - 30),
+                    r"\node[anchor=east,font=\footnotesize] at %s {$E_2$};" % P(Px - 46, Py - 30),
+                    r"\node[anchor=west,font=\footnotesize,text=FAUblue] at %s {$E = E_1 + E_2$};" % P(Px + 6, Py - 54)]
+        elif sub == "dipole":
+            A, B = (80, 90), (180, 90)
+            for pts_ in dipole_lines(A, B):
+                out.append(r"\draw[black!80] %s;" % " -- ".join(P(x, y) for x, y in pts_[::2] + [pts_[-1]]))
+                m = len(pts_) // 2
+                if len(pts_) > 4:
+                    out.append(arrow_t(pts_[m - 1][0], pts_[m - 1][1], pts_[m][0], pts_[m][1]))
+            charge(A[0], A[1], "+"); charge(B[0], B[1], "-")
+        elif sub == "slab":
+            out += [r"\fill[FAUblue!25] %s rectangle %s;" % (P(84, 18), P(116, 112)),
+                    r"\draw[black!85,line width=2.5pt] %s -- %s;" % (P(46, 18), P(46, 112)),
+                    r"\draw[black!85,line width=2.5pt] %s -- %s;" % (P(154, 18), P(154, 112)),
+                    T(46, 10, "+"), T(154, 10, "−")]
+            for k_, y in enumerate((30, 48, 66, 84, 102)):
+                out.append(r"\draw[black!80] %s -- %s;" % (P(54, y), P(82, y)))
+                out.append(arrow_t(118, y, 146, y))
+                if k_ % 2 == 0:
+                    out.append(r"\draw[black!80] %s -- %s;" % (P(82, y), P(118, y)))
+            out += [T(100, 40, "−+", r"\footnotesize"), T(100, 76, "−+", r"\footnotesize"),
+                    T(100, 126, a.get("data-label") or "fewer E lines inside the slab", r"\footnotesize")]
+        elif sub == "plates":
             out += [r"\draw[black!85,line width=2.5pt] %s -- %s;" % (P(46, 18), P(46, 112)),
                     r"\draw[black!85,line width=2.5pt] %s -- %s;" % (P(154, 18), P(154, 112)),
                     T(46, 10, "+"), T(154, 10, "−")]
@@ -370,6 +459,11 @@ def viz_tikz(f):
             out.append(T(100, 126, a.get("data-label") or "uniform E between the plates", r"\footnotesize"))
         else:
             c, neg = 80, sub == "point-"
+            if a.get("data-extra") == "equipot":
+                out += [r"\draw[black!55,dashed] %s circle (%.3f);" % (P(c, c), r_ * VS) for r_ in (34, 54)]
+            if a.get("data-extra") == "surface":
+                out += [r"\draw[black!65,dashed,line width=1pt] %s circle (%.3f);" % (P(c, c), 46 * VS),
+                        T(c + 36, c - 40, "A", r"\footnotesize", "anchor=west", True, "FAUblue")]
             for k in range(8):
                 t = k * math.pi / 4
                 p1 = (c + 20 * math.cos(t), c - 20 * math.sin(t))

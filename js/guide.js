@@ -424,7 +424,51 @@
     el("line", { x1: x1, y1: y1, x2: x2, y2: y2, class: cls || "vz-line" }, svg);
     head(svg, null, x1, y1, x2, y2, cls === "vz-seg" ? "vz-head hot" : "vz-head");
   }
+  // Dipole field lines: start 12 lines on a small circle round +q and step along E (unit steps of 3) until they reach
+  // −q or leave the frame. tools/guide-to-tex.py traces the same lines with the same numbers.
+  function DIPOLE_LINES(A, B) {
+    var out = [];
+    for (var k = 0; k < 12; k++) {
+      var t = (k * Math.PI * 2) / 12 + Math.PI / 12, x = A[0] + 14 * Math.cos(t), y = A[1] + 14 * Math.sin(t), pts = [[x, y]];
+      for (var n = 0; n < 220; n++) {
+        var ax = x - A[0], ay = y - A[1], bx = x - B[0], by = y - B[1], ra = Math.pow(ax * ax + ay * ay, 1.5), rb = Math.pow(bx * bx + by * by, 1.5),
+          ex = ax / ra - bx / rb, ey = ay / ra - by / rb, L = Math.sqrt(ex * ex + ey * ey);
+        x += (3 * ex) / L;
+        y += (3 * ey) / L;
+        pts.push([x, y]);
+        if (Math.hypot(x - B[0], y - B[1]) < 13 || x < 4 || x > 256 || y < 4 || y > 176) break;
+      }
+      out.push(pts);
+    }
+    return out;
+  }
   var VIZ = {
+    plot: function (svg, d) {
+      // axes from data ranges; lines as data points; an optional shaded polygon and labelled marks
+      var xr = (d.xr || "0 1").split(" ").map(Number), yr = (d.yr || "0 1").split(" ").map(Number),
+        X0 = 40, X1 = 244, Y0 = 146, Y1 = 18,
+        X = function (v) { return X0 + ((v - xr[0]) / (xr[1] - xr[0])) * (X1 - X0); },
+        Y = function (v) { return Y0 - ((v - yr[0]) / (yr[1] - yr[0])) * (Y0 - Y1); },
+        pts = function (s) { return s.trim().split(" ").map(function (p) { var q = p.split(","); return X(+q[0]).toFixed(1) + "," + Y(+q[1]).toFixed(1); }).join(" "); };
+      if (d.shade) el("polygon", { points: pts(d.shade), class: "vz-fill" }, svg);
+      arrow(svg, X0, Y0, X1 + 10, Y0);
+      arrow(svg, X0, Y0, X0, Y1 - 8);
+      (d.lines || "").split(";").filter(Boolean).forEach(function (l, i) {
+        el("polyline", { points: pts(l), class: i === 0 ? "vz-seg thin" : i === 1 ? "vz-line thick" : "vz-dash" }, svg);
+      });
+      (d.marks || "").split(";").filter(Boolean).forEach(function (m) {
+        var q = m.split(":"), xy = q[0].split(",");
+        txt(svg, X(+xy[0]) + 6, Y(+xy[1]) - 6, q[1], "vz-small vz-acc", "start");
+      });
+      txt(svg, X1 + 8, Y0 + 18, d.xlabel || "x", "vz-small vz-it", "end");
+      txt(svg, X0 - 8, Y1 - 2, d.ylabel != null ? d.ylabel : "y", "vz-small vz-it", "end");
+      (d.xticks || "").split(" ").filter(Boolean).forEach(function (t) {
+        var q = t.split(":");
+        el("line", { x1: X(+q[0]), y1: Y0 - 4, x2: X(+q[0]), y2: Y0 + 4, class: "vz-line" }, svg);
+        txt(svg, X(+q[0]), Y0 + 18, q[1] || q[0], "vz-small");
+      });
+      return [262, 170];
+    },
     venn: function (svg, d, id) {
       var A = [78, 68], B = [122, 68], R = 44, shade = d.shade || "inter";
       var defs = el("defs", {}, svg),
@@ -504,6 +548,69 @@
       return [200, 168];
     },
     field: function (svg, d) {
+      var sub = d.kind2;
+      function charge(x, y, sign) {
+        el("circle", { cx: x, cy: y, r: 12, class: "vz-charge" }, svg);
+        txt(svg, x, y + 5, sign === "-" ? "−" : "+", "vz-text vz-on");
+      }
+      if (sub === "pair") {
+        // two charges and the force on each: apart for like signs, together for unlike
+        var sg = (d.signs || "+ +").split(" "), like = sg[0] === sg[1];
+        charge(70, 60, sg[0]);
+        charge(170, 60, sg[1]);
+        if (like) {
+          arrow(svg, 56, 60, 22, 60, "vz-seg");
+          arrow(svg, 184, 60, 218, 60, "vz-seg");
+        } else {
+          arrow(svg, 84, 60, 112, 60, "vz-seg");
+          arrow(svg, 156, 60, 128, 60, "vz-seg");
+        }
+        txt(svg, 120, 104, d.label || (like ? "like charges repel" : "unlike charges attract"), "vz-small");
+        return [240, 114];
+      }
+      if (sub === "vectors") {
+        // field vectors from two charges at a point P and their sum
+        charge(40, 148, "+");
+        charge(200, 148, "+");
+        var P = [120, 84];
+        el("circle", { cx: P[0], cy: P[1], r: 3.5, class: "vz-dot" }, svg);
+        txt(svg, P[0] - 10, P[1] + 4, "P", "vz-text vz-it", "end");
+        arrow(svg, P[0], P[1], P[0] + 40, P[1] - 32);
+        arrow(svg, P[0], P[1], P[0] - 40, P[1] - 32);
+        arrow(svg, P[0], P[1], P[0], P[1] - 52, "vz-seg");
+        txt(svg, P[0] + 46, P[1] - 30, "E₁", "vz-small vz-it", "start");
+        txt(svg, P[0] - 46, P[1] - 30, "E₂", "vz-small vz-it", "end");
+        txt(svg, P[0] + 6, P[1] - 54, "E = E₁ + E₂", "vz-small vz-acc", "start");
+        return [240, 168];
+      }
+      if (sub === "dipole") {
+        // field lines traced from the field of +q and −q (same steps as the PDF renderer)
+        var A = [80, 90], B = [180, 90];
+        DIPOLE_LINES(A, B).forEach(function (pts) {
+          el("polyline", { points: pts.map(function (p) { return p[0].toFixed(1) + "," + p[1].toFixed(1); }).join(" "), class: "vz-line" }, svg);
+          var m = Math.floor(pts.length / 2);
+          if (pts.length > 4) head(svg, null, pts[m - 1][0], pts[m - 1][1], pts[m][0], pts[m][1]);
+        });
+        charge(A[0], A[1], "+");
+        charge(B[0], B[1], "-");
+        return [260, 180];
+      }
+      if (sub === "slab") {
+        // a dielectric slab between charged plates: fewer E lines inside, aligned dipoles
+        el("rect", { x: 84, y: 18, width: 32, height: 94, class: "vz-fill" }, svg);
+        el("line", { x1: 46, y1: 18, x2: 46, y2: 112, class: "vz-plate" }, svg);
+        el("line", { x1: 154, y1: 18, x2: 154, y2: 112, class: "vz-plate" }, svg);
+        txt(svg, 46, 12, "+", "vz-text");
+        txt(svg, 154, 12, "−", "vz-text");
+        [30, 48, 66, 84, 102].forEach(function (y, k) {
+          el("line", { x1: 54, y1: y, x2: 82, y2: y, class: "vz-line" }, svg);
+          arrow(svg, 118, y, 146, y);
+          if (k % 2 === 0) el("line", { x1: 82, y1: y, x2: 118, y2: y, class: "vz-line" }, svg);
+        });
+        [38, 74].forEach(function (y) { txt(svg, 100, y + 4, "−+", "vz-small"); });
+        txt(svg, 100, 126, d.label || "fewer E lines inside the slab", "vz-small");
+        return [200, 134];
+      }
       if (d.kind2 === "plates") {
         el("line", { x1: 46, y1: 18, x2: 46, y2: 112, class: "vz-plate" }, svg);
         el("line", { x1: 154, y1: 18, x2: 154, y2: 112, class: "vz-plate" }, svg);
@@ -514,6 +621,11 @@
         return [200, 134];
       }
       var c = 80, neg = d.kind2 === "point-";
+      if (d.extra === "equipot") [34, 54].forEach(function (r) { el("circle", { cx: c, cy: c, r: r, class: "vz-dash" }, svg); });
+      if (d.extra === "surface") {
+        el("circle", { cx: c, cy: c, r: 46, class: "vz-dash thick" }, svg);
+        txt(svg, c + 36, c - 40, "A", "vz-small vz-it vz-acc", "start");
+      }
       for (var k = 0; k < 8; k++) {
         var t = (k * Math.PI) / 4, x1 = c + 20 * Math.cos(t), y1 = c - 20 * Math.sin(t), x2 = c + 66 * Math.cos(t), y2 = c - 66 * Math.sin(t);
         if (neg) arrow(svg, x2, y2, x1, y1); else arrow(svg, x1, y1, x2, y2);

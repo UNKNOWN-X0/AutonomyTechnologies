@@ -1,17 +1,17 @@
 # Graph Report - AutonomyTechnologies  (2026-11-04)
 
 ## Corpus Check
-- 54 files · ~176,898 words
+- 55 files · ~190,039 words
 - Verdict: corpus is large enough that graph structure adds value.
 - Unclassified: 6 file(s) not represented in the graph (top: .css 4, (none) 2)
 
 ## Summary
-- 829 nodes · 1533 edges · 44 communities (34 shown, 10 thin omitted)
-- Extraction: 87% EXTRACTED · 13% INFERRED · 0% AMBIGUOUS · INFERRED: 199 edges (avg confidence: 0.85)
+- 848 nodes · 1571 edges · 38 communities (34 shown, 4 thin omitted)
+- Extraction: 87% EXTRACTED · 13% INFERRED · 0% AMBIGUOUS · INFERRED: 208 edges (avg confidence: 0.86)
 - Token cost: 0 input · 0 output
 
 ## Graph Freshness
-- Built from commit: `e2a614fb`
+- Built from commit: `cc085709`
 - Run `git rev-parse HEAD` and compare to check if the graph is stale.
 - Run `graphify update .` after code changes (no API cost).
 
@@ -47,18 +47,13 @@
 - ch34-lab.js
 - mei/ch2-lab.js
 - nav.js
-- ref_node_assert
+- lab-challenges.test.js
 - ch5-lab.js
 - settings.js
 - mei/ch1-physics.js
 - mei/ch3-lab.js
 - hud.js
-- mei-ch1-physics.test.js
-- mei/ch2-physics.js
 - mei/ch3-physics.js
-- lab-challenges.test.js
-- ch5-physics.js
-- eei-ch1-physics.test.js
 
 ## God Nodes (most connected - your core abstractions)
 1. `fieldPlayground()` - 28 edges
@@ -73,21 +68,21 @@
 10. `css()` - 14 edges
 
 ## Surprising Connections (you probably didn't know these)
-- `Stage and interaction` --references--> `fmt()`  [INFERRED]
-  docs/LAB-STANDARD.md → js/eei/ch1-physics.js
-- `Page structure` --references--> `route()`  [INFERRED]
-  docs/GUIDE-STANDARD.md → js/index.js
-- `draw()` --indirect_call--> `guess()`  [INFERRED]
-  js/mei/ch1-lab.js → js/mei/ch2-lab.js
-- `answers_of()` --calls--> `find()`  [INFERRED]
-  tools/check-guide.py → tools/guide-to-tex.py
-- `check()` --calls--> `find()`  [INFERRED]
-  tools/check-guide.py → tools/guide-to-tex.py
+- `Markup` --references--> `bits()`  [INFERRED]
+  docs/GUIDE-STANDARD.md → js/apdr/ch2-lab.js
+- `New kinds needed` --references--> `venn()`  [INFERRED]
+  docs/DIAGRAM-AND-LAB-PLAN.md → js/mei/ch1-lab.js
+- `Part A: diagrams by chapter` --references--> `venn()`  [INFERRED]
+  docs/DIAGRAM-AND-LAB-PLAN.md → js/mei/ch1-lab.js
+- `Markup` --references--> `venn()`  [INFERRED]
+  docs/GUIDE-STANDARD.md → js/mei/ch1-lab.js
+- `Part A: diagrams by chapter` --references--> `bits()`  [INFERRED]
+  docs/DIAGRAM-AND-LAB-PLAN.md → js/apdr/ch2-lab.js
 
 ## Import Cycles
 - None detected.
 
-## Communities (44 total, 10 thin omitted)
+## Communities (38 total, 4 thin omitted)
 
 ### Community 0 - "capacitorBench() / paint()"
 Cohesion: 0.05
@@ -98,8 +93,8 @@ Cohesion: 0.04
 Nodes (45): Answer key, Buttons, Chapter switcher and tick groups, Colors, Components, Course code square, Course-part chips, Dark mode (+37 more)
 
 ### Community 2 - "guide-to-tex.py / Conv"
-Cohesion: 0.07
-Nodes (24): all_nodes(), answers_of(), check(), check_lab(), direct(), items(), main(), Report (+16 more)
+Cohesion: 0.06
+Nodes (28): all_nodes(), answers_of(), check(), check_lab(), direct(), items(), main(), Report (+20 more)
 
 ### Community 3 - "ch3-lab.js"
 Cohesion: 0.11
@@ -126,12 +121,12 @@ Cohesion: 0.14
 Nodes (13): runs-on, steps, jobs, build, name, branches, branches, name (+5 more)
 
 ### Community 9 - "lab.js / .show()"
-Cohesion: 0.32
+Cohesion: 0.31
 Nodes (11): complete(), Experiment(), guideLink(), h(), read(), refresh(), runSetup(), stamp() (+3 more)
 
 ### Community 10 - "ch2-lab.js"
-Cohesion: 0.21
-Nodes (24): bits(), box(), colours(), drawAlgorithm(), drawEquivalent(), drawLogic(), drawNand(), drawTiming() (+16 more)
+Cohesion: 0.22
+Nodes (23): box(), colours(), drawAlgorithm(), drawEquivalent(), drawLogic(), drawNand(), drawTiming(), experimentAlgorithm() (+15 more)
 
 ### Community 11 - "Computers, Algorithms, and Boolean Logic · APDR Chapter 2"
 Cohesion: 0.67
@@ -143,15 +138,15 @@ Nodes (11): Algorithm, Boolean expressions, Boolean laws, De Morgan's laws, Logi
 
 ### Community 13 - "index.js"
 Cohesion: 0.07
-Nodes (24): Acceptance, Content rules, Files, Labs, Markup, Page structure, PDF, Practice and testing (+16 more)
+Nodes (25): Acceptance, Content rules, Files, Labs, Markup, Page structure, PDF, Practice and testing (+17 more)
 
 ### Community 14 - "ch4-lab.js"
 Cohesion: 0.14
 Nodes (26): animate(), arithmeticResult(), arrow(), box(), challenge(), colours(), drawArithmetic(), drawFraction() (+18 more)
 
 ### Community 15 - "apdr/ch2-physics.js"
-Cohesion: 0.36
-Nodes (4): nand(), nandAnd(), nandCircuit(), nandOr()
+Cohesion: 0.13
+Nodes (15): Bugs found (Playwright WebKit, 1288 px, sandboxes opened), New kinds needed, Order and checks, Part A: diagrams by chapter, Part B: labs, Plan: more diagrams, freer labs, Proposed changes, What a lab is today (+7 more)
 
 ### Community 16 - "Autonomy Course Site / SKILL.md"
 Cohesion: 0.33
@@ -166,8 +161,8 @@ Cohesion: 0.40
 Nodes (4): Answer, Outcome, Q: Does the graph cover the learner journey from the course home through the electrostatics and mathematics guides and labs, including local progress state and external assets?, Source Nodes
 
 ### Community 19 - "guide.js"
-Cohesion: 0.24
-Nodes (6): label(), logToday(), paint(), render(), show(), stamp()
+Cohesion: 0.22
+Nodes (10): arrow(), el(), head(), label(), logToday(), paint(), render(), show() (+2 more)
 
 ### Community 22 - "concept-map.js"
 Cohesion: 0.46
@@ -186,7 +181,7 @@ Cohesion: 0.26
 Nodes (10): columnSubtract(), convert(), decodeInteger(), decodeTwos(), negatePattern(), parseBase(), parseBits(), toBase() (+2 more)
 
 ### Community 28 - "ch34-lab.js"
-Cohesion: 0.19
+Cohesion: 0.20
 Nodes (12): challenge(), colors(), draw(), drawColumns(), drawFields(), drawLine(), x(), mount() (+4 more)
 
 ### Community 29 - "mei/ch2-lab.js"
@@ -196,6 +191,10 @@ Nodes (20): binaryDraw(), bindSlider(), boundsDraw(), box(), distanceDraw(), gue
 ### Community 30 - "nav.js"
 Cohesion: 0.22
 Nodes (9): fold(), follow(), groupOf(), idOf(), lit(), show(), build(), href() (+1 more)
+
+### Community 31 - "lab-challenges.test.js"
+Cohesion: 0.05
+Nodes (13): moduleConfiguration(), rowsToBytes(), choose(), pascalRow(), row(), rows(), src2, context() (+5 more)
 
 ### Community 32 - "ch5-lab.js"
 Cohesion: 0.38
@@ -210,7 +209,7 @@ Cohesion: 0.18
 Nodes (6): complement(), formatInterval(), intersect(), interval(), member(), setOp()
 
 ### Community 35 - "mei/ch3-lab.js"
-Cohesion: 0.21
+Cohesion: 0.20
 Nodes (21): bindSlider(), compositionDraw(), elementaryDraw(), X(), Y(), graphDraw(), line(), mappingDraw() (+13 more)
 
 ### Community 36 - "hud.js"
@@ -221,14 +220,10 @@ Nodes (14): decode(), frame(), decodeAll(), fit(), fitAll(), fitFormulas(), glyp
 Cohesion: 0.14
 Nodes (4): discriminant(), relationValues(), roots(), squarePreimages()
 
-### Community 40 - "lab-challenges.test.js"
-Cohesion: 0.39
-Nodes (5): context(), fake(), loadExperiments(), ROOT, runEngine()
-
 ## Knowledge Gaps
 - **10 isolated node(s):** `Study Pages preview showing Electrical Engineering 1 and Mathematics for Engineers I course cards`, `Active-recall study workflow`, `Jekyll site CI`, `LaTeX, Pandoc, and KaTeX publishing pipeline`, `Bernhard Kainz` (+5 more)
-  These have ≤1 connection - possible missing edges or undocumented components. (Counts symbols only; 266 node(s) total have ≤1 connection when file, concept and rationale nodes are included.)
-- **10 thin communities (<3 nodes) omitted from report** — run `graphify query` to explore isolated nodes.
+  These have ≤1 connection - possible missing edges or undocumented components. (Counts symbols only; 269 node(s) total have ≤1 connection when file, concept and rationale nodes are included.)
+- **4 thin communities (<3 nodes) omitted from report** — run `graphify query` to explore isolated nodes.
 
 ## Work-memory lessons
 
@@ -238,17 +233,17 @@ Nodes (5): context(), fake(), loadExperiments(), ROOT, runEngine()
 ## Suggested Questions
 _Questions this graph is uniquely positioned to answer:_
 
-- **Why does `Lab standard` connect `Lab standard` to `Study Pages project guide`?**
-  _High betweenness centrality (0.059) - this node is a cross-community bridge._
+- **Why does `venn()` connect `mei/ch1-lab.js` to `index.js`, `apdr/ch2-physics.js`?**
+  _High betweenness centrality (0.078) - this node is a cross-community bridge._
 - **Are the 3 inferred relationships involving `fieldPlayground()` (e.g. with `eei/ch1-lab.js` and `endDrag()`) actually correct?**
   _`fieldPlayground()` has 3 INFERRED edges - model-reasoned connections that need verification._
 - **What connects `Study Pages preview showing Electrical Engineering 1 and Mathematics for Engineers I course cards`, `Active-recall study workflow`, `Jekyll site CI` to the rest of the system?**
   _10 weakly-connected nodes found - possible documentation gaps or missing edges._
 - **Should `capacitorBench() / paint()` be split into smaller, more focused modules?**
   _Cohesion score 0.05471956224350205 - nodes in this community are weakly interconnected._
+- **Why does `Markup` connect `index.js` to `mei/ch1-lab.js`, `apdr/ch2-physics.js`?**
+  _High betweenness centrality (0.075) - this node is a cross-community bridge._
 - **Are the 2 inferred relationships involving `capacitorBench()` (e.g. with `eei/ch1-lab.js` and `resize()`) actually correct?**
   _`capacitorBench()` has 2 INFERRED edges - model-reasoned connections that need verification._
 - **Should `Components / Design System: From Fundamentals to AI Apocalypse` be split into smaller, more focused modules?**
   _Cohesion score 0.044444444444444446 - nodes in this community are weakly interconnected._
-- **Are the 5 inferred relationships involving `paint()` (e.g. with `draw()` and `draw()`) actually correct?**
-  _`paint()` has 5 INFERRED edges - model-reasoned connections that need verification._
