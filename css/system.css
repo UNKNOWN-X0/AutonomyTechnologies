@@ -53,6 +53,9 @@
   --signal-a: #80ecf1;
   --signal-b: #9be34a;
   --signal: linear-gradient(90deg, var(--signal-a), var(--signal-b));
+  /* Soft glow for signal lines and HUD marks; brackets and rulers use --hud-c. */
+  --glow: 0 0 6px rgb(128 236 241 / 0.55);
+  --hud-c: var(--fau-mark);
   color-scheme: light;
 }
 /* Subject classes: set on a page's <body> or on a code square */
@@ -88,6 +91,8 @@
     --accent: #a9c4ec;
     --link: #a9c4ec;
     color-scheme: dark;
+    --hud-c: var(--signal-a);
+    --glow: 0 0 8px rgb(128 236 241 / 0.7);
   }
 }
 :root[data-theme="dark"] {
@@ -108,6 +113,8 @@
   --accent: #a9c4ec;
   --link: #a9c4ec;
   color-scheme: dark;
+  --hud-c: var(--signal-a);
+  --glow: 0 0 8px rgb(128 236 241 / 0.7);
 }
 
 /* Browser surfaces */
@@ -220,7 +227,7 @@ a:hover {
   color: var(--on-fau);
   padding: 28px 32px 30px;
   display: grid;
-  grid-template-columns: auto 1fr;
+  grid-template-columns: auto minmax(0, 1fr);
   column-gap: 18px;
   row-gap: 10px;
   align-items: start;
@@ -246,6 +253,9 @@ a:hover {
   font: 800 clamp(1.9rem, 1.2rem + 2.6vw, 3rem)/1.05 var(--f-display);
   letter-spacing: -0.025em;
   text-wrap: balance;
+  /* A long word ("Representation") breaks with a hyphen on a phone instead of pushing the page sideways. */
+  hyphens: auto;
+  overflow-wrap: break-word;
 }
 .sign .meta {
   grid-column: 2;
@@ -322,7 +332,9 @@ a:hover {
   align-items: center;
 }
 .ticks i {
-  width: 7px;
+  /* Shrinks toward 3px when a long skill list meets a narrow screen, so the bar never widens the page. */
+  flex: 0 1 7px;
+  min-width: 3px;
   height: 22px;
   background: currentColor;
   opacity: 0.16;
@@ -774,5 +786,59 @@ html::before {
   from {
     opacity: 0;
     transform: translateX(-14px);
+  }
+}
+
+/* Soft glow on the signal lines (owner's request, 2026-11-04: lines may now glow). */
+html::before,
+.sweep-line,
+.subjects::after,
+.route-pulse::before,
+.chapter.here::after,
+nav.toc > ol::after,
+nav.toc > ol li a[aria-current]::before,
+nav.toc > ol li a[aria-current]::after,
+body:has(nav.toc)::after,
+.tick-dot {
+  box-shadow: var(--glow);
+}
+@media print {
+  html::before,
+  nav.toc > ol::after,
+  .tick-dot {
+    box-shadow: none;
+  }
+}
+
+/* Heading decode (js/hud.js): the 2px signal line that sweeps across a heading while its letters settle. */
+.decode-line {
+  position: absolute;
+  z-index: 5;
+  width: 2px;
+  margin-left: -1px;
+  background: linear-gradient(to bottom, var(--signal-a), var(--signal-b));
+  box-shadow: var(--glow);
+  pointer-events: none;
+}
+/* Site pages (How to use, Version log) take the signal green as their tile colour. */
+.s-site {
+  --course: var(--signal-b);
+}
+.sign .code:empty {
+  display: none;
+}
+/* Links to How to use and the Version log, under the settings choices. */
+.settings-links {
+  display: flex;
+  gap: 18px;
+  margin: 12px 0 0;
+  font-weight: 600;
+}
+.settings-links a {
+  color: var(--link);
+}
+@media print {
+  .decode-line {
+    display: none;
   }
 }

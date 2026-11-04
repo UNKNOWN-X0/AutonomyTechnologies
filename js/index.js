@@ -178,6 +178,7 @@
   var started = chapters.some(function (c) {
     return c.state !== "new";
   });
+  radar(); // drawn for everyone; with nothing started it is an empty sweep
   if (!started) {
     rows.hidden = true;
     tips();
@@ -361,6 +362,62 @@
     setTimeout(function () {
       b.textContent = "in " + to + " d";
     }, 450);
+  }
+
+  // Radar behind the sign field: a sweep turns over a range grid and each started chapter is a contact on it. The angle
+  // is the subject (one sector each, in hub order) and the range is how far into that subject the chapter sits, so the
+  // contacts spread outward as you work through a subject. A contact flares as the sweep passes over it.
+  function radar() {
+    var field = document.querySelector("header.field");
+    if (!field) return;
+    var SPIN = 6,
+      box = document.createElement("div"),
+      sweep = document.createElement("div"),
+      subjects = Array.prototype.slice.call(document.querySelectorAll("li.subject"));
+    box.className = "radar";
+    box.setAttribute("aria-hidden", "true");
+    sweep.className = "radar-sweep";
+    // The grid is inline SVG (rings, crosshairs, bearing ticks), which every engine paints the same way.
+    var NS = "http://www.w3.org/2000/svg",
+      svg = document.createElementNS(NS, "svg"),
+      grid = "";
+    svg.setAttribute("viewBox", "0 0 200 200");
+    svg.setAttribute("class", "radar-grid");
+    [25, 50, 75, 99].forEach(function (r) {
+      grid += '<circle cx="100" cy="100" r="' + r + '"/>';
+    });
+    grid += '<path d="M100 1V199M1 100H199"/>';
+    for (var deg = 0; deg < 360; deg += 10) {
+      var rr = (deg * Math.PI) / 180,
+        inner = deg % 30 ? 95 : 91;
+      grid +=
+        '<line class="tick" x1="' + (100 + Math.sin(rr) * inner).toFixed(2) + '" y1="' + (100 - Math.cos(rr) * inner).toFixed(2) +
+        '" x2="' + (100 + Math.sin(rr) * 99).toFixed(2) + '" y2="' + (100 - Math.cos(rr) * 99).toFixed(2) + '"/>';
+    }
+    svg.innerHTML = grid;
+    box.appendChild(svg);
+    box.appendChild(sweep);
+    var furthest = [];
+    document.querySelectorAll(".subjects").forEach(function (ul) {
+      var all = ul.querySelectorAll("li.chapter.started");
+      if (all.length) furthest.push(all[all.length - 1]);
+    });
+    subjects.forEach(function (sub, si) {
+      var chaps = sub.querySelectorAll("li.chapter");
+      chaps.forEach(function (li, ci) {
+        if (!li.classList.contains("started")) return;
+        var a = ((si + 0.2 + (0.6 * (ci + 1)) / (chaps.length + 1)) / subjects.length) * 360,
+          r = 0.22 + (0.7 * (ci + 1)) / (chaps.length + 1),
+          rad = (a * Math.PI) / 180,
+          blip = document.createElement("span");
+        blip.className = "blip" + (furthest.indexOf(li) > -1 ? " here" : "");
+        blip.style.left = 50 + Math.sin(rad) * r * 50 + "%";
+        blip.style.top = 50 - Math.cos(rad) * r * 50 + "%";
+        blip.style.animationDelay = ((a / 360) * SPIN).toFixed(2) + "s";
+        box.appendChild(blip);
+      });
+    });
+    field.insertBefore(box, field.firstChild);
   }
 
   // Tooltips (shown by js/tooltip.js). Runs whether or not any chapter has been started.

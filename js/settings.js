@@ -16,6 +16,12 @@
     else delete root.dataset.text;
   }
   apply();
+  // The HUD layer (js/hud.js) rides along with this file, so pages need no extra script tag.
+  if (document.currentScript) {
+    var hud = document.createElement("script");
+    hud.src = document.currentScript.src.replace(/settings\.js(\?.*)?$/, "hud.js");
+    document.head.appendChild(hud);
+  }
   // Every script asks this instead of the media query, so the site setting and the system setting both count.
   window.siteReduceMotion = function () {
     return root.dataset.motion === "reduced" || window.matchMedia("(prefers-reduced-motion: reduce)").matches;
@@ -35,17 +41,24 @@
     svg.setAttribute("width", "20");
     svg.setAttribute("height", "20");
     svg.setAttribute("aria-hidden", "true");
-    p.setAttribute(
-      "d",
-      "M10.3 2h3.4l.5 2.6 1.8.8 2.2-1.5 2.4 2.4-1.5 2.2.8 1.8 2.6.5v3.4l-2.6.5-.8 1.8 1.5 2.2-2.4 2.4-2.2-1.5-1.8.8-.5 2.6h-3.4l-.5-2.6-1.8-.8-2.2 1.5-2.4-2.4 1.5-2.2-.8-1.8L2 13.7v-3.4l2.6-.5.8-1.8-1.5-2.2 2.4-2.4 2.2 1.5 1.8-.8z"
-    );
+    // Eight identical teeth computed around the centre, so the outline is exactly symmetric.
+    var d = "",
+      pt = function (r, deg) {
+        var a = ((deg - 90) * Math.PI) / 180;
+        return (12 + r * Math.cos(a)).toFixed(2) + " " + (12 + r * Math.sin(a)).toFixed(2);
+      };
+    for (var t = 0; t < 8; t++) {
+      var a = t * 45;
+      d += (t ? "L" : "M") + pt(7.3, a - 13) + "L" + pt(10, a - 8) + "L" + pt(10, a + 8) + "L" + pt(7.3, a + 13);
+    }
+    p.setAttribute("d", d + "Z");
     c.setAttribute("cx", "12");
     c.setAttribute("cy", "12");
-    c.setAttribute("r", "3.2");
+    c.setAttribute("r", "3");
     [p, c].forEach(function (el) {
       el.setAttribute("fill", "none");
       el.setAttribute("stroke", "currentColor");
-      el.setAttribute("stroke-width", "2");
+      el.setAttribute("stroke-width", "1.8");
       el.setAttribute("stroke-linejoin", "miter");
       svg.appendChild(el);
     });
@@ -97,6 +110,19 @@
     note.className = "settings-note";
     note.textContent = "Saved in this browser. System follows your device's own setting.";
     form.appendChild(note);
+    // How to use and the Version log, linked from the folder this script was loaded from.
+    var base = (document.currentScript || {}).src || (document.querySelector('script[src$="settings.js"]') || {}).src;
+    if (base) {
+      var links = document.createElement("p");
+      links.className = "settings-links";
+      [["about/how-to-use.html", "How to use"], ["about/version-log.html", "Version log"]].forEach(function (l) {
+        var a = document.createElement("a");
+        a.href = new URL("../" + l[0], base).href;
+        a.textContent = l[1];
+        links.appendChild(a);
+      });
+      form.appendChild(links);
+    }
     close.className = "btn primary";
     close.value = "close";
     close.textContent = "Done";

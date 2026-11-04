@@ -6,15 +6,15 @@
     "semantic_hash": "29fe146da84567bcc68665ce404ff135"
   },
   "README.md": {
-    "mtime": 1793747367.2842941,
-    "seen": 1793747372.339005,
-    "ast_hash": "74c85bdbfcaf10d8388b736984ebadb0",
+    "mtime": 1793775573.4316878,
+    "seen": 1793775602.4862459,
+    "ast_hash": "1069399473ae25aff630a884071d0ec5",
     "semantic_hash": ""
   },
   "index.html": {
-    "mtime": 1793747209.9937348,
-    "seen": 1793747372.339023,
-    "ast_hash": "cbcab0e50e7c94477986614492e4e88b",
+    "mtime": 1793775492.142326,
+    "seen": 1793775602.4862669,
+    "ast_hash": "23c79b2cc8399016322e10b8835cc9d3",
     "semantic_hash": ""
   },
   "assets/preview.png": {
@@ -48,9 +48,9 @@
     "semantic_hash": ""
   },
   "js/index.js": {
-    "mtime": 1793747265.4912708,
-    "seen": 1793747372.338975,
-    "ast_hash": "637ea60896b62154f30861513eb22519",
+    "mtime": 1793775443.6319628,
+    "seen": 1793775602.486218,
+    "ast_hash": "70a8d88bf90049c1f6c12a2092123ec8",
     "semantic_hash": ""
   },
   ".impeccable/surfaces/index-html.md": {
@@ -60,9 +60,9 @@
     "semantic_hash": ""
   },
   "DESIGN.md": {
-    "mtime": 1793773692.0148132,
-    "seen": 1793773701.1876879,
-    "ast_hash": "5fd7613961d2993a745a3e7f0a0fadcf",
+    "mtime": 1793775573.4307811,
+    "seen": 1793775602.4862442,
+    "ast_hash": "9d584c9a75cd39f61c75d4100d5c4c73",
     "semantic_hash": ""
   },
   "PRODUCT.md": {
@@ -450,15 +450,33 @@
     "semantic_hash": ""
   },
   "js/nav.js": {
-    "mtime": 1793747219.7917714,
-    "seen": 1793747372.3389828,
-    "ast_hash": "dab8d5583e48a6c5422f3246c46f0f92",
+    "mtime": 1793775010.766951,
+    "seen": 1793775049.441183,
+    "ast_hash": "4eea22b9fa4fa41e6603f00d5e623f71",
     "semantic_hash": ""
   },
   "js/settings.js": {
-    "mtime": 1793747209.8767548,
-    "seen": 1793747372.338984,
-    "ast_hash": "d7e83442fb3a03cf2d27b00dba7c9bd9",
+    "mtime": 1793775492.1429033,
+    "seen": 1793775602.486227,
+    "ast_hash": "4811fa38d291f7c33554ab55f9d94913",
+    "semantic_hash": ""
+  },
+  "js/hud.js": {
+    "mtime": 1793775479.1877716,
+    "seen": 1793775602.486217,
+    "ast_hash": "4c1832f1ee2e64a3a77c51b35573696b",
+    "semantic_hash": ""
+  },
+  "about/how-to-use.html": {
+    "mtime": 1793775402.6490035,
+    "seen": 1793775602.4862468,
+    "ast_hash": "147ba76a1e610106d453eded27e072e4",
+    "semantic_hash": ""
+  },
+  "about/version-log.html": {
+    "mtime": 1793775430.0520222,
+    "seen": 1793775602.486248,
+    "ast_hash": "961593ef3cc4218d7fc513e3a0795a0e",
     "semantic_hash": ""
   }
 }

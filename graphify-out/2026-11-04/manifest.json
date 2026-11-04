@@ -6,9 +6,9 @@
     "semantic_hash": "29fe146da84567bcc68665ce404ff135"
   },
   "README.md": {
-    "mtime": 1793747367.2842941,
-    "seen": 1793747372.339005,
-    "ast_hash": "74c85bdbfcaf10d8388b736984ebadb0",
+    "mtime": 1793774169.5493033,
+    "seen": 1793774358.050039,
+    "ast_hash": "70f2a636664f2b1057f90c2196ea45d6",
     "semantic_hash": ""
   },
   "index.html": {
@@ -48,9 +48,9 @@
     "semantic_hash": ""
   },
   "js/index.js": {
-    "mtime": 1793747265.4912708,
-    "seen": 1793747372.338975,
-    "ast_hash": "637ea60896b62154f30861513eb22519",
+    "mtime": 1793774473.8622422,
+    "seen": 1793775049.441175,
+    "ast_hash": "a7b0a9a3b7c31173c704026ba560c07a",
     "semantic_hash": ""
   },
   ".impeccable/surfaces/index-html.md": {
@@ -60,9 +60,9 @@
     "semantic_hash": ""
   },
   "DESIGN.md": {
-    "mtime": 1793747367.2839975,
-    "seen": 1793747372.3390028,
-    "ast_hash": "c6c89e43d61496a41a78c74dbb9c2f10",
+    "mtime": 1793775026.7727957,
+    "seen": 1793775049.441202,
+    "ast_hash": "fa8b1e59f28bbfcaedbf8b0acf6b5f40",
     "semantic_hash": ""
   },
   "PRODUCT.md": {
@@ -144,9 +144,9 @@
     "semantic_hash": ""
   },
   "docs/GUIDE-STANDARD.md": {
-    "mtime": 1793692986.1517055,
-    "seen": 1793693069.046699,
-    "ast_hash": "3bb0801414b96c002daff03924faa467",
+    "mtime": 1793773692.0136352,
+    "seen": 1793773701.1877031,
+    "ast_hash": "718da739c6633460fa0367da2d6514c2",
     "semantic_hash": ""
   },
   "docs/LAB-STANDARD.md": {
@@ -450,15 +450,21 @@
     "semantic_hash": ""
   },
   "js/nav.js": {
-    "mtime": 1793747219.7917714,
-    "seen": 1793747372.3389828,
-    "ast_hash": "dab8d5583e48a6c5422f3246c46f0f92",
+    "mtime": 1793775010.766951,
+    "seen": 1793775049.441183,
+    "ast_hash": "4eea22b9fa4fa41e6603f00d5e623f71",
     "semantic_hash": ""
   },
   "js/settings.js": {
-    "mtime": 1793747209.8767548,
-    "seen": 1793747372.338984,
-    "ast_hash": "d7e83442fb3a03cf2d27b00dba7c9bd9",
+    "mtime": 1793774677.5417402,
+    "seen": 1793775049.441184,
+    "ast_hash": "7822067378c3569fdb18babf80044a8d",
+    "semantic_hash": ""
+  },
+  "js/hud.js": {
+    "mtime": 1793774688.001006,
+    "seen": 1793775049.441174,
+    "ast_hash": "781e08572c85264a1769e66198dca30c",
     "semantic_hash": ""
   }
 }

@@ -254,6 +254,8 @@
       return d;
     }
     var anchor = toc.querySelector(".chapter-switch") || toc.querySelector("a.home");
+    // settings.js may already have wrapped "All semesters" in a row with the gear; the list goes after that row.
+    if (anchor) anchor = anchor.closest(".home-row") || anchor;
     if (anchor && !toc.querySelector(".chapter-fold")) anchor.parentNode.insertBefore(build(), anchor.nextSibling);
     if (sheet && !sheet.querySelector(".chapter-fold")) sheet.insertBefore(build(), sheet.firstChild);
     // Pager: neighbours within the same subject.
