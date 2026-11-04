@@ -13,6 +13,13 @@
     };
   }
 
+  function rnd(n) { return Math.floor(Math.random() * n); }
+  function mix(a) { for (var i = a.length - 1; i > 0; i--) { var j = rnd(i + 1), t = a[i]; a[i] = a[j]; a[j] = t; } return a; }
+  function three(right, wrongs, more) {
+    var out = [right];
+    wrongs.concat(more || []).forEach(function (w) { if (out.length < 3 && out.indexOf(w) < 0) out.push(w); });
+    return mix(out);
+  }
   function queue(canvas, state) {
     canvas._labState = state;
     if (canvas._paint) cancelAnimationFrame(canvas._paint);
@@ -277,6 +284,12 @@
       lock: function (on) { lock(form, section, on); },
       setup: function (c) { state.challenge = true; state.progress = 0; state.revealing = false; state.result = null; c.stage(); },
       sandbox: function () { state.challenge = false; state.revealing = false; state.guess = ""; readForm(); show(); },
+      // Endless practice (tests/lab-generators.test.js checks one correct option, every time)
+      generate: function () {
+        var v = 20 + rnd(100), bin = v.toString(2), rev = bin.split("").reverse().join(""), flip = bin.slice(0, -2) + (bin.slice(-2, -1) === "1" ? "0" : "1") + bin.slice(-1);
+        return challenge("gen-bases", "decimal to binary", "Convert decimal " + v + " to binary.", String(v), 10, 2, three(bin, [rev, flip], [(v + 1).toString(2), (v - 1).toString(2)]), bin,
+          "Repeated division by 2 gives the bits from the right; reading the remainders from last to first gives " + bin + "₂. Check with place values: " + bin.split("").map(function (b, i) { return b === "1" ? Math.pow(2, bin.length - 1 - i) : null; }).filter(function (x) { return x !== null; }).join(" + ") + " = " + v + ".");
+      },
       challenges: [
         challenge("decimal-binary", "decimal to binary", "Convert decimal 46 to binary.", "46", 10, 2, ["011101", "101110", "101100"], "101110", "Repeated division by 2 gives the remainders 0, 1, 1, 1, 0, 1, and you read them from last to first: 101110₂. Reading them in the order found gives 011101, the common slip. Check: 32+8+4+2=46."),
         challenge("binary-decimal", "binary place values", "What decimal value does 1100010₂ represent?", "1100010", 2, 10, ["98", "35", "196"], "98", "The 1 bits mark 2⁶, 2⁵, and 2¹. Their place values add to 64+32+2=98."),
@@ -304,6 +317,12 @@
       lock: function (on) { lock(form, section, on); },
       setup: function (c) { state.challenge = true; state.progress = 0; state.revealing = false; state.result = null; c.stage(); },
       sandbox: function () { state.challenge = false; state.revealing = false; state.result = null; state.guess = ""; readForm(); show(); },
+      // Endless practice (tests/lab-generators.test.js checks one correct option, every time)
+      generate: function () {
+        var u = 9 + rnd(7), bits = u.toString(2), val = u - 16, sm = -(u - 8), lab = function (x) { return String(x).replace("-", "−"); };
+        return challenge("gen-encodings", "four-bit two’s complement", "Decode " + bits + " as a four-bit two’s-complement value.", "decode", bits, "twos-complement", 8, three(lab(val), [String(u), lab(sm)], [lab(val + 1)]), lab(val),
+          "The top bit weighs −8 in two’s complement: " + bits + " = −8 + " + (u - 8) + " = " + lab(val) + ". Read as unsigned it would be " + u + ", and as sign and magnitude " + lab(sm) + ".");
+      },
       challenges: [
         challenge("unsigned-pattern", "excess-8 pattern", "Decode 0111 as a four-bit excess-8 value.", "decode", "0111", "excess", 8, ["7", "1", "−1"], "−1", "In excess-B, the value is the stored number minus B. Here 7−8=−1, so a leading 0 does not mean positive. Slide 24 prints 1 here, which is a slip."),
         challenge("sign-magnitude", "sign and magnitude", "Decode 1101 using four-bit sign-and-magnitude.", "decode", "1101", "sign-magnitude", 8, ["−3", "−5", "13"], "−5", "The first bit is the negative sign. The remaining bits 101 are magnitude 5, so the value is −5."),
@@ -329,6 +348,12 @@
       lock: function (on) { lock(form, section, on); },
       setup: function (c) { state.challenge = true; state.progress = 0; state.revealing = false; state.result = null; c.stage(); },
       sandbox: function () { state.challenge = false; state.revealing = false; state.result = null; state.guess = ""; state.hex = form.querySelector("[data-hex]").value; show(); },
+      // Endless practice (tests/lab-generators.test.js checks one correct option, every time)
+      generate: function () {
+        var c = 65 + rnd(26), ch = String.fromCharCode(c), hex = c.toString(16).toUpperCase();
+        return challenge("gen-characters", "ASCII letter", "Which character has the ASCII code " + hex + " (hexadecimal)?", hex, three(ch, [String.fromCharCode(c === 90 ? 89 : c + 1), String.fromCharCode(c + 32)]), ch,
+          hex + "₁₆ = " + c + ", and ASCII " + c + " is " + ch + ". Capital letters run from 41₁₆ (A, 65) to 5A₁₆ (Z, 90); lower case starts 32 higher.");
+      },
       challenges: [
         challenge("ascii-f", "ASCII hexadecimal code", "The hexadecimal ASCII byte 46 represents which character?", "46", [".", "F", "f"], "F", "Hex 46 is decimal 70. In the ASCII mapping, code 70 represents the uppercase letter F. Reading 46 as decimal would give the full stop."),
         challenge("ascii-d", "read the final byte", "The final byte in the lecture’s word example is 64₁₆. Which ASCII character is it?", "64", ["D", "@", "d"], "d", "Hex 64 is decimal 100, the lowercase ASCII letter d. Character codes identify symbols through a named encoding."),
@@ -359,6 +384,12 @@
       lock: function (on) { lock(form, section, on); },
       setup: function (c) { state.challenge = true; state.progress = 0; state.revealing = false; state.result = null; c.stage(); },
       sandbox: function () { state.challenge = false; state.revealing = false; state.result = null; state.guess = ""; readForm(); show(); },
+      // Endless practice (tests/lab-generators.test.js checks one correct option, every time)
+      generate: function () {
+        var x = 8 + rnd(24), y = 8 + rnd(24), a = x.toString(2), b = y.toString(2), sum = (x + y).toString(2), xor = (x ^ y).toString(2);
+        return challenge("gen-unsigned", "binary addition", "Add " + a + "₂ and " + b + "₂.", a, b, "add", three(sum, [xor, (x + y + 1).toString(2)], [(x + y - 1).toString(2)]), sum,
+          a + "₂ = " + x + " and " + b + "₂ = " + y + ", so the sum is " + (x + y) + " = " + sum + "₂. Forgetting the carries gives " + xor + "₂ instead.");
+      },
       challenges: [
         challenge("binary-add", "add with carries", "Add 111011₂ and 101010₂. Write the result in binary.", "111011", "101010", "add", ["100101", "1100101", "10001"], "1100101", "The operands are 59 and 42 in decimal, which sum to 101. That is 1100101₂; the leftmost carry becomes an additional result bit."),
         challenge("binary-multiply", "multiply partial products", "Multiply 101₂ by 11₂. Write the result in binary.", "101", "11", "multiply", ["1010", "1000", "1111"], "1111", "101₂ is 5 and 11₂ is 3, so the product is 15. Fifteen is 1111₂."),
@@ -387,6 +418,13 @@
       lock: function (on) { lock(form, section, on); },
       setup: function (c) { state.challenge = true; state.progress = 0; state.revealing = false; state.result = null; c.stage(); },
       sandbox: function () { state.challenge = false; state.revealing = false; state.result = null; state.guess = ""; readForm(); show(); },
+      // Endless practice: does a random four-bit two’s-complement addition overflow?
+      generate: function () {
+        var a = rnd(16), b = rnd(16), sv = function (u) { return u >= 8 ? u - 16 : u; }, exact = sv(a) + sv(b), over = exact < -8 || exact > 7,
+          pa = a.toString(2).padStart(4, "0"), pb = b.toString(2).padStart(4, "0"), lab = function (x) { return String(x).replace("-", "−"); };
+        return challenge("gen-signed", "four-bit addition", "In four-bit two’s complement, add " + pa + " and " + pb + ". Does it overflow?", pa, pb, "add", rnd(2) ? YES_FIRST : NO_FIRST, over ? "yes" : "no",
+          pa + " is " + lab(sv(a)) + " and " + pb + " is " + lab(sv(b)) + ", so the exact sum is " + lab(exact) + (over ? ", outside the range −8 … 7: overflow." : ", inside the range −8 … 7: no overflow, whatever the carry out."));
+      },
       challenges: [
         challenge("positive-overflow", "positive sum outside range", "In four-bit two’s complement, add 0101 and 0011. Does it overflow?", "0101", "0011", "add", YES_FIRST, "yes", "The exact sum is +8, outside the four-bit range −8 to +7. The stored pattern is 1000, so two positive operands produced a negative-sign pattern."),
         challenge("negative-overflow", "negative sum outside range", "In four-bit two’s complement, add 1001 and 1010. Does it overflow?", "1001", "1010", "add", NO_FIRST, "yes", "The patterns represent −7 and −6, whose exact sum is −13. The four-bit result wraps to 0011, which decodes as +3, so signed overflow occurred."),

@@ -68,3 +68,22 @@ test("MEI 2 binary practice answers are the place-value sums", () => {
     assert.strictEqual(c.answer, String(parseInt(bits, 2)), c.prompt);
   }
 });
+
+test("APDR 3 practice answers are computed correctly", () => {
+  const defs = defsOf("apdr/ch3-data-representation-lab.html"), by = (id) => defs.find((x) => x.id === id);
+  for (let n = 0; n < 200; n++) {
+    let c = by("bases").generate();
+    assert.strictEqual(parseInt(c.answer, 2), Number(/decimal (\d+)/.exec(c.prompt)[1]), c.prompt);
+    c = by("encodings").generate();
+    const bits = /Decode (\d+)/.exec(c.prompt)[1];
+    assert.strictEqual(c.answer.replace("−", "-"), String(parseInt(bits, 2) - 16), c.prompt);
+    c = by("characters").generate();
+    assert.strictEqual(c.answer, String.fromCharCode(parseInt(/code ([0-9A-F]+)/.exec(c.prompt)[1], 16)), c.prompt);
+    c = by("unsigned").generate();
+    const [x, y] = [...c.prompt.matchAll(/([01]+)₂/g)].map((m) => parseInt(m[1], 2));
+    assert.strictEqual(parseInt(c.answer, 2), x + y, c.prompt);
+    c = by("signed").generate();
+    const [p, q] = [...c.prompt.matchAll(/([01]{4})/g)].map((m) => parseInt(m[1], 2)).map((u) => (u >= 8 ? u - 16 : u));
+    assert.strictEqual(c.answer, p + q < -8 || p + q > 7 ? "yes" : "no", c.prompt);
+  }
+});

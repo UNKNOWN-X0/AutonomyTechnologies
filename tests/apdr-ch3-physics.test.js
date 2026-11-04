@@ -12,7 +12,8 @@ test("the five Chapter 3 experiments each have four challenges", () => {
     const end = source.indexOf("\n      ] });", start);
     assert.notEqual(start, -1, `${id} experiment is registered`);
     assert.notEqual(end, -1, `${id} challenge list is closed`);
-    assert.equal([...source.slice(start, end).matchAll(/\bchallenge\(/g)].length, 4, `${id} has four challenges`);
+    // generated practice challenges (ids "gen-…") are extra and not counted
+    assert.equal([...source.slice(start, end).matchAll(/\bchallenge\((?!"gen-)/g)].length, 4, `${id} has four challenges`);
   }
 });
 
@@ -90,7 +91,7 @@ test("every lab challenge: the keyed answer follows from the calculations", () =
     assert.equal(got, want, id);
     assert.ok(source.includes(`challenge("${id}"`), `${id} is a lab challenge`);
   }
-  assert.equal([...source.matchAll(/Does it overflow\?/g)].length, 4);
+  assert.equal([...source.matchAll(/challenge\("(?!gen-)[^\n]*Does it overflow\?/g)].length, 4); // fixed challenges only
 });
 
 test("lab challenge mixed-sign: carry out without overflow", () => {
