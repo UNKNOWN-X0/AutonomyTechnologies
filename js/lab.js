@@ -7,7 +7,7 @@
     CHECKS = PREFIX + "-checks",
     LOG = PREFIX + "-log",
     GUIDE = document.body.dataset.guide || "",
-    reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches,
+    reduce = window.siteReduceMotion ? window.siteReduceMotion() : window.matchMedia("(prefers-reduced-motion: reduce)").matches,
     results = read(STORE, {}),
     experiments = [],
     CONF = [

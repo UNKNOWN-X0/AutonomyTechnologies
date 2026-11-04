@@ -464,6 +464,152 @@ button[data-tip] {
   }
 }
 
+/* A ring that widens and fades from a point that is "here": the furthest chapter on the hub, the section in the rail. */
+@keyframes beacon {
+  0% {
+    transform: scale(1);
+    opacity: 0.9;
+  }
+  70%,
+  100% {
+    transform: scale(2.6);
+    opacity: 0;
+  }
+}
+/* Site settings (js/settings.js). Motion "Reduced" stops every animation and transition, whatever the device says;
+   "Large" text scales the whole rem scale up one step. */
+:root[data-motion="reduced"] *,
+:root[data-motion="reduced"] *::before,
+:root[data-motion="reduced"] *::after {
+  animation: none !important;
+  transition: none !important;
+}
+:root[data-motion="reduced"] {
+  scroll-behavior: auto !important;
+}
+:root[data-motion="reduced"]::view-transition-group(*),
+:root[data-motion="reduced"]::view-transition-old(*),
+:root[data-motion="reduced"]::view-transition-new(*) {
+  animation: none !important;
+}
+:root[data-text="large"] {
+  font-size: 112.5%;
+}
+.settings-btn {
+  display: grid;
+  place-items: center;
+  flex: none;
+  width: 44px;
+  min-height: 40px;
+  padding: 0;
+  border: 2px solid var(--act);
+  background: transparent;
+  color: var(--act);
+  cursor: pointer;
+  transition: background-color 150ms var(--ease);
+}
+.settings-btn:hover {
+  background: var(--fau-tint);
+}
+@media (prefers-reduced-motion: no-preference) {
+  .settings-btn svg {
+    transition: transform 400ms var(--ease);
+  }
+  .settings-btn:hover svg {
+    transform: rotate(60deg);
+  }
+}
+dialog.settings {
+  width: min(420px, calc(100vw - 32px));
+  max-height: calc(100vh - 32px);
+  padding: 24px;
+  border: 0;
+  border-top: 4px solid var(--fau-mark);
+  background: var(--surface);
+  color: var(--ink);
+}
+dialog.settings::backdrop {
+  background: rgb(2 16 36 / 0.55);
+}
+dialog.settings h2 {
+  margin: 0 0 12px;
+  font: 800 1.35rem/1.2 var(--f-display);
+}
+dialog.settings fieldset {
+  margin: 0 0 16px;
+  padding: 0;
+  border: 0;
+}
+dialog.settings legend {
+  margin-bottom: 8px;
+  padding: 0;
+  font: 700 0.95rem/1.2 var(--f-display);
+}
+dialog.settings .seg {
+  display: flex;
+  border: 2px solid var(--act);
+}
+dialog.settings .seg label {
+  flex: 1;
+  position: relative;
+}
+dialog.settings .seg input {
+  position: absolute;
+  opacity: 0;
+  inset: 0;
+  margin: 0;
+  cursor: pointer;
+}
+dialog.settings .seg span {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 44px;
+  padding: 0 8px;
+  color: var(--act);
+  font: 700 0.95rem/1.2 var(--f-display);
+  transition: background-color 150ms var(--ease), color 150ms var(--ease);
+}
+dialog.settings .seg label + label span {
+  border-left: 2px solid var(--act);
+}
+dialog.settings .seg input:checked + span {
+  background: var(--act);
+  color: var(--act-ink);
+}
+dialog.settings .seg input:focus-visible + span {
+  outline: 3px solid var(--fau-mark);
+  outline-offset: -6px;
+}
+dialog.settings .seg label:hover input:not(:checked) + span {
+  background: var(--fau-tint);
+}
+.settings-note {
+  margin: 0 0 16px;
+  color: var(--muted);
+  font-size: 0.9rem;
+}
+dialog.settings .btn {
+  width: 100%;
+}
+@media (prefers-reduced-motion: no-preference) {
+  dialog.settings[open] {
+    animation: settings-in 220ms var(--ease) both;
+  }
+}
+@keyframes settings-in {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+}
+@media print {
+  .settings-btn,
+  dialog.settings {
+    display: none !important;
+  }
+}
+
 /* Reduced motion: no movement and no smooth scrolling; colour and state changes stay. */
 @media (prefers-reduced-motion: reduce) {
   html {

@@ -37,7 +37,7 @@
   // Lines: the selected node is joined to each idea it directly rests on, in the signal colours. One SVG layer over the
   // map, redrawn when the layout moves. Narrow screens stack the columns, so there the highlights alone carry the map.
   var NS = "http://www.w3.org/2000/svg",
-    reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches,
+    reduce = window.siteReduceMotion ? window.siteReduceMotion() : window.matchMedia("(prefers-reduced-motion: reduce)").matches,
     narrow = window.matchMedia("(max-width: 760px)"),
     svg = document.createElementNS(NS, "svg");
   svg.setAttribute("class", "cm-links");

@@ -5,7 +5,7 @@
   if (!toc) return;
   var rail = toc.querySelector(":scope > ol"),
     links = Array.prototype.slice.call(toc.querySelectorAll("ol a")),
-    reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    reduce = window.siteReduceMotion ? window.siteReduceMotion() : window.matchMedia("(prefers-reduced-motion: reduce)").matches;
   function idOf(a) {
     return decodeURIComponent(a.hash.slice(1));
   }

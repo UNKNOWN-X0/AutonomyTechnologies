@@ -25,7 +25,7 @@
   }
 
   var boxes = document.querySelectorAll("li.check input"),
-    reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches,
+    reduce = window.siteReduceMotion ? window.siteReduceMotion() : window.matchMedia("(prefers-reduced-motion: reduce)").matches,
     bars = [],
     hold = -1; // segment kept empty while a ticked skill travels to it
   boxes.forEach(function (cb) {

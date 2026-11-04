@@ -48,6 +48,15 @@ a.brand .mark {
 a.brand .mark rect {
   rx: 0;
 }
+.home-row {
+  display: flex;
+  gap: 6px;
+  margin: 0 0 6px;
+}
+.home-row a.home {
+  flex: 1;
+  margin: 0 !important;
+}
 nav.toc a.home {
   display: flex;
   align-items: center;
@@ -285,6 +294,34 @@ nav.toc > ol::after {
   background: linear-gradient(to bottom, var(--signal-a), var(--signal-b));
   pointer-events: none;
 }
+/* The end of the route line carries a beacon on the section being read. */
+nav.toc > ol li a[aria-current] {
+  position: relative;
+}
+nav.toc > ol li a[aria-current]::before,
+nav.toc > ol li a[aria-current]::after {
+  content: "";
+  position: absolute;
+  left: -2px;
+  top: 50%;
+  width: 7px;
+  height: 7px;
+  margin-top: -3.5px;
+  box-sizing: border-box;
+  pointer-events: none;
+}
+nav.toc > ol li a[aria-current]::before {
+  background: var(--signal-b);
+}
+nav.toc > ol li a[aria-current]::after {
+  border: 2px solid var(--signal-b);
+  opacity: 0;
+}
+@media (prefers-reduced-motion: no-preference) {
+  nav.toc > ol li a[aria-current]::after {
+    animation: beacon 2.4s var(--ease) infinite;
+  }
+}
 @media (prefers-reduced-motion: no-preference) {
   nav.toc > ol::after {
     transition: height 260ms var(--ease);
@@ -508,7 +545,8 @@ li.check label:has(input:checked) {
     margin: 0 auto 0 0;
   }
   nav.toc a.home,
-  .chapter-switch {
+  .chapter-switch,
+  .home-row {
     margin: 0;
   }
   /* Chapter links get their own full row so their labels never wrap. */

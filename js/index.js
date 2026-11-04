@@ -104,6 +104,16 @@
       });
       // a folded subject hides its chapters, so the route then stops at the subject's tile
       var at = last && !last.offsetParent ? last.closest("li.subject").querySelector(".code") : last;
+      ul.querySelectorAll("li.chapter.here").forEach(function (li) {
+        li.classList.remove("here");
+      });
+      if (last && last.offsetParent) last.classList.add("here");
+      if (!ul.querySelector(".route-pulse")) {
+        var pulse = document.createElement("li");
+        pulse.className = "route-pulse";
+        pulse.setAttribute("aria-hidden", "true");
+        ul.appendChild(pulse);
+      }
       ul.style.setProperty("--route-lit", at ? topIn(at, ul) + at.offsetHeight / 2 + "px" : "0px");
     });
   }
@@ -180,7 +190,7 @@
   (function sweep() {
     var SPAN = 600;
     if (window.scrollY > 0) return;
-    if (window.matchMedia && matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+    if (window.siteReduceMotion ? window.siteReduceMotion() : window.matchMedia && matchMedia("(prefers-reduced-motion: reduce)").matches) return;
     if (!document.documentElement.animate) return;
     try {
       if (sessionStorage.getItem("hub-swept")) return;
@@ -308,7 +318,7 @@
       sessionStorage.setItem("board-last", JSON.stringify(now));
     } catch (e) {}
     if (!prev || !prev.order || !prev.state) return;
-    if (window.matchMedia && matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+    if (window.siteReduceMotion ? window.siteReduceMotion() : window.matchMedia && matchMedia("(prefers-reduced-motion: reduce)").matches) return;
     if (!rows.animate) return;
     var els = {},
       heights = {};

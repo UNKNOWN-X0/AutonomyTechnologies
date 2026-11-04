@@ -49,6 +49,20 @@ footer {
   font-size: clamp(1.05rem, 1rem + 0.3vw, 1.2rem);
   color: var(--on-fau-soft);
 }
+.field-tools {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+}
+.field-tools .settings-btn {
+  min-height: 52px;
+  width: 52px;
+  border-color: var(--on-fau);
+  color: var(--on-fau);
+}
+.field-tools .settings-btn:hover {
+  background: rgb(255 255 255 / 0.12);
+}
 .semesters {
   display: grid;
   gap: 10px;
@@ -332,6 +346,70 @@ html.sweeping .chapter.started:not(.lit)::before {
   }
 }
 
+/* Perpetual signals (stopped under reduced motion). A ring keeps widening from the furthest chapter reached ("you are
+   here"), and a small square keeps travelling down the unlit route ahead of it, toward "Continue on the route". */
+.chapter.here::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: calc(var(--route-x) - var(--chap-x) - 5px);
+  width: 10px;
+  height: 10px;
+  margin-top: -5px;
+  border: 2px solid var(--signal-b);
+  box-sizing: border-box;
+  pointer-events: none;
+  opacity: 0;
+}
+.route-pulse {
+  position: absolute;
+  left: calc(var(--route-x) - 3px);
+  top: var(--route-lit, 0px);
+  bottom: 0;
+  width: 6px;
+  margin: 0;
+  list-style: none;
+  pointer-events: none;
+}
+.route-pulse::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 6px;
+  height: 6px;
+  background: var(--signal);
+  opacity: 0;
+}
+@media (prefers-reduced-motion: no-preference) {
+  .chapter.here::after {
+    animation: beacon 2.4s var(--ease) infinite;
+  }
+  .route-pulse::before {
+    animation: route-ahead 4.8s ease-in-out infinite;
+  }
+}
+@keyframes route-ahead {
+  0% {
+    top: 0;
+    opacity: 0;
+  }
+  12%,
+  80% {
+    opacity: 1;
+  }
+  100% {
+    top: calc(100% - 6px);
+    opacity: 0;
+  }
+}
+@media print {
+  .route-pulse,
+  .chapter.here::after {
+    display: none;
+  }
+}
+
 /* Folding: a subject's chapter list and the board's not-yet-due rows (js/index.js). */
 .subject-fold,
 .board-more {
@@ -541,8 +619,11 @@ footer p {
   .field-in {
     grid-template-columns: auto minmax(0, 1fr);
   }
-  .semesters {
+  .field-tools {
     grid-column: 1 / -1;
+  }
+  .semesters {
+    flex: 1;
   }
   .subject {
     grid-template-columns: 5.5rem minmax(0, 1fr);
