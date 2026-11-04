@@ -108,9 +108,61 @@
       f.appendChild(span);
     });
   }
+  // Spacing the browser does not do: TeX spaces x∈A and X×Y by itself, HTML sets the glyphs flush. Inside formulas, a set
+  // or relation sign written without spaces (∈ ⊂ ⊆ × ∘ ∪ ∩ → = ≤ and a set-builder colon) gets a thin margin either side, a
+  // comma gets one after it, and an italic letter gets room before a bracket or an exponent. Indices and stacked limits
+  // (sub, sup, .op) stay tight, and anything already written with spaces is left alone.
+  var OPS = "∈∉∋⊂⊃⊆⊇⊊⊋×∘∪∩∖∣:→↦⇒⇔=≠≤≥≈";
+  function spaceFormula(f, prose) {
+    if (f.dataset.spaced) return;
+    f.dataset.spaced = "1";
+    var walk = document.createTreeWalker(f, NodeFilter.SHOW_TEXT, {
+        acceptNode: function (n) {
+          return n.parentNode.closest("sub, sup, .op, code") ? NodeFilter.FILTER_REJECT : NodeFilter.FILTER_ACCEPT;
+        },
+      }),
+      nodes = [],
+      n;
+    while ((n = walk.nextNode())) nodes.push(n);
+    nodes.forEach(function (t) {
+      var s = t.data;
+      if (!/[∈∉∋⊂⊃⊆⊇⊊⊋×∘∪∩∖∣:→↦⇒⇔=≠≤≥≈,]/.test(s)) return;
+      var frag = document.createDocumentFragment(),
+        buf = "";
+      for (var k = 0; k < s.length; k++) {
+        var ch = s[k],
+          before = k ? s[k - 1] : "x",
+          after = k + 1 < s.length ? s[k + 1] : "x",
+          tight = !/\s/.test(before) && !/\s/.test(after);
+        if (prose && (ch === ":" || ch === ",")) buf += ch;
+        else if ((OPS.indexOf(ch) > -1 && tight) || (ch === "," && !/\s/.test(after))) {
+          if (buf) frag.appendChild(document.createTextNode(buf));
+          buf = "";
+          var sp = document.createElement("span");
+          sp.className = ch === "," ? "mp" : "mo";
+          sp.textContent = ch;
+          frag.appendChild(sp);
+        } else buf += ch;
+      }
+      if (buf) frag.appendChild(document.createTextNode(buf));
+      t.parentNode.replaceChild(frag, t);
+    });
+    f.querySelectorAll("var").forEach(function (v) {
+      var next = v.nextSibling;
+      if (next && next.nodeType === 3 && /^[(\[{|]/.test(next.data)) v.classList.add("ic");
+    });
+  }
   function fitFormulas() {
+    document.querySelectorAll(".cm-formula").forEach(function (f) {
+      spaceFormula(f);
+    });
+    // notes under formulas are prose: only their set and relation signs are spaced, not colons or commas
+    document.querySelectorAll(".eq-note").forEach(function (f) {
+      spaceFormula(f, true);
+    });
     document.querySelectorAll(".formula").forEach(function (f) {
       segmentFormula(f);
+      spaceFormula(f);
       var room = f.clientWidth;
       f.querySelectorAll(":scope > .f-seg").forEach(function (seg) {
         seg.classList.remove("f-free");

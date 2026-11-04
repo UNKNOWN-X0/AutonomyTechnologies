@@ -60,9 +60,9 @@
     "semantic_hash": ""
   },
   "DESIGN.md": {
-    "mtime": 1793801351.92781,
-    "seen": 1793802214.553867,
-    "ast_hash": "b553e8abeb14fc68e9cebf7aad5959b9",
+    "mtime": 1793802602.314882,
+    "seen": 1793802644.468215,
+    "ast_hash": "c84ad6f0daf16bf02567d57db2fc2843",
     "semantic_hash": ""
   },
   "PRODUCT.md": {
@@ -450,9 +450,9 @@
     "semantic_hash": ""
   },
   "js/hud.js": {
-    "mtime": 1793800663.403937,
-    "seen": 1793800762.147357,
-    "ast_hash": "1b56f91d98815aa56115fdb5fa75a5a2",
+    "mtime": 1793802379.0469172,
+    "seen": 1793802479.7221708,
+    "ast_hash": "e77485c3da0326f01c13874d7006ec8d",
     "semantic_hash": ""
   },
   "about/how-to-use.html": {
@@ -462,9 +462,9 @@
     "semantic_hash": ""
   },
   "about/version-log.html": {
-    "mtime": 1793800512.7355447,
-    "seen": 1793800533.219213,
-    "ast_hash": "df8bb1a82fc34d990c83e0bbaddd7d3b",
+    "mtime": 1793802602.3152578,
+    "seen": 1793802644.4682188,
+    "ast_hash": "9ed9afc903fb7280c46f2e51e5c2cfbd",
     "semantic_hash": ""
   }
 }

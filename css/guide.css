@@ -1528,16 +1528,13 @@ main > section:first-of-type > h2 {
   line-height: 1.55;
 }
 
-/* HUD frame (owner's request, 2026-11-04). Section headings hang a ruler under their rule: a fine tick every 8px and a
-   major tick every 64px. The section being read shows a live readout above the rule's right end (js/hud.js).
+/* HUD frame (owner's request, 2026-11-04). The tick ruler under section headings was removed at the owner's request
+   (it carried no information); the reading chip (js/hud.js) shows where you are instead.
    Formula cards carry four corner brackets; worked examples and recall checks, which already have a top rule, carry
    the two bottom ones. Colour is --hud-c: FAU blue on light paper, signal cyan in dark mode. */
 main h2 {
   position: relative;
   max-width: var(--measure);
-  background:
-    repeating-linear-gradient(90deg, var(--hud-c) 0 1px, transparent 1px 64px) 0 0 / 100% 7px no-repeat,
-    repeating-linear-gradient(90deg, var(--line) 0 1px, transparent 1px 8px) 0 0 / 100% 4px no-repeat;
 }
 /* Reading chip (js/hud.js): fixed under the reading-progress bar, right-aligned to the column's edge, wide screens only. */
 .hud-chip {
@@ -1611,9 +1608,6 @@ main h2 {
   background-color: transparent;
 }
 @media print {
-  main h2 {
-    background: none;
-  }
   .hud-chip {
     display: none !important;
   }
@@ -1797,4 +1791,24 @@ main li sup {
 .op > sup {
   font-size: 0.72em;
   line-height: 1.1;
+}
+/* Formula spacing added by js/hud.js where the source sets signs flush: x ∈ A, X × Y, (x, y), f (x). */
+.formula .mo,
+.cm-formula .mo {
+  margin-inline: 0.22em;
+}
+.formula .mp,
+.cm-formula .mp {
+  margin-right: 0.22em;
+}
+.formula var.ic,
+.cm-formula var.ic {
+  margin-right: 0.08em;
+}
+.formula var + sup,
+.cm-formula var + sup {
+  margin-left: 0.06em;
+}
+.eq-note .mo {
+  margin-inline: 0.18em;
 }
