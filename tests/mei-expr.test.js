@@ -42,3 +42,22 @@ test("bad input gives a readable message", () => {
   assert.match(E.compile("").error, /type a rule/);
   assert.match(E.compile("x $ 2").error, /unexpected/);
 });
+
+test("logic formulas", () => {
+  const L = (s, v) => E.logic(s).fn(v);
+  assert.strictEqual(L("A ⇒ B", { A: true, B: false }), false);
+  assert.strictEqual(L("A -> B", { A: false, B: false }), true);
+  assert.strictEqual(L("not (A and B) <-> !A | !B", { A: true, B: true }), true); // De Morgan, as one formula
+  assert.strictEqual(L("A ⇒ B ⇒ C", { A: true, B: false, C: false }), true); // right to left: A ⇒ (B ⇒ C)
+  assert.strictEqual(L("A ⊕ B", { A: true, B: true }), false);
+  assert.deepStrictEqual(E.logic("A ∧ C").vars, ["A", "C"]);
+  assert.match(E.logic("A ∧").error, /ends too early/);
+  assert.match(E.logic("A ? B").error, /unexpected/);
+});
+
+test("set expressions read as membership logic", () => {
+  const S = (s, v) => E.logic(s).fn(v);
+  assert.strictEqual(S("(A ∪ B)ᶜ", { A: false, B: false }), true);
+  assert.strictEqual(S("A \\ B", { A: true, B: true }), false);
+  assert.strictEqual(S("A ∩ B'", { A: true, B: false }), true);
+});

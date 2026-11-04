@@ -174,9 +174,9 @@
     "semantic_hash": ""
   },
   "js/mei/ch1-lab.js": {
-    "mtime": 1793821885.4928524,
-    "seen": 1793822946.205329,
-    "ast_hash": "ceb294bfd52b79dc82b5f7327ed08cac",
+    "mtime": 1793826008.0429354,
+    "seen": 1793826671.494315,
+    "ast_hash": "a24881103fc679cc7c3163be13ab5926",
     "semantic_hash": ""
   },
   "js/mei/ch1-physics.js": {
@@ -192,9 +192,9 @@
     "semantic_hash": ""
   },
   "mei/ch1-statements-logic-sets-lab.html": {
-    "mtime": 1793747210.3645868,
-    "seen": 1793747372.3390238,
-    "ast_hash": "fa9f796741cf53775cb52f968c1dcbcf",
+    "mtime": 1793826008.0433478,
+    "seen": 1793826671.494366,
+    "ast_hash": "60d512e5a0c28cb73ea4be300609e9e9",
     "semantic_hash": ""
   },
   "apdr/ch3-data-representation.html": {
@@ -330,9 +330,9 @@
     "semantic_hash": ""
   },
   "js/mei/ch2-lab.js": {
-    "mtime": 1793821858.1275973,
-    "seen": 1793822946.2053308,
-    "ast_hash": "ffc70a052621594c818c21eeef4518dd",
+    "mtime": 1793826288.3053448,
+    "seen": 1793826671.494317,
+    "ast_hash": "a8344010fb737d24549be48768571772",
     "semantic_hash": ""
   },
   "js/mei/ch2-physics.js": {
@@ -348,9 +348,9 @@
     "semantic_hash": ""
   },
   "mei/ch2-real-numbers-lab.html": {
-    "mtime": 1793821858.1293814,
-    "seen": 1793822946.205379,
-    "ast_hash": "58c29ce4cf89f62aa758570b5d98d6e9",
+    "mtime": 1793826288.30589,
+    "seen": 1793826671.494368,
+    "ast_hash": "2c5121d2b1b982ef16a2c19b3a17099e",
     "semantic_hash": ""
   },
   "apdr/ch5-memory-organisation.html": {
@@ -462,9 +462,9 @@
     "semantic_hash": ""
   },
   "about/version-log.html": {
-    "mtime": 1793824737.5077646,
-    "seen": 1793825044.5312362,
-    "ast_hash": "30c4d7935e4425106b37270e005754f8",
+    "mtime": 1793826347.689011,
+    "seen": 1793826671.494346,
+    "ast_hash": "45d001e806b4b29b0ec173467b178b31",
     "semantic_hash": ""
   },
   "docs/DIAGRAM-AND-LAB-PLAN.md": {
@@ -474,39 +474,15 @@
     "semantic_hash": ""
   },
   "js/mei/expr.js": {
-    "mtime": 1793824483.1617262,
-    "seen": 1793825044.531211,
-    "ast_hash": "29da9760966a26bc1bf583161d86ee37",
+    "mtime": 1793825938.5012405,
+    "seen": 1793826671.4943209,
+    "ast_hash": "3ba885e8035239068f819ffd18b37f31",
     "semantic_hash": ""
   },
   "tests/mei-expr.test.js": {
-    "mtime": 1793824484.0120683,
-    "seen": 1793825044.5312252,
-    "ast_hash": "219252cab3a2c314ca7bda88d2d90545",
-    "semantic_hash": ""
-  },
-  "m3-comp-chromium.png": {
-    "mtime": 1793824722.755131,
-    "seen": 1793825044.531261,
-    "ast_hash": "b6ffa10aaa1acd9799b88954911bb0a7",
-    "semantic_hash": ""
-  },
-  "m3-comp-webkit.png": {
-    "mtime": 1793824712.1800022,
-    "seen": 1793825044.531262,
-    "ast_hash": "37a110b1c871c678106cad2410f22cde",
-    "semantic_hash": ""
-  },
-  "m3-inv-chromium.png": {
-    "mtime": 1793824722.6674418,
-    "seen": 1793825044.5312629,
-    "ast_hash": "f30affb479f9b9391f7a17bb3eddb422",
-    "semantic_hash": ""
-  },
-  "m3-inv-webkit.png": {
-    "mtime": 1793824712.0108294,
-    "seen": 1793825044.531264,
-    "ast_hash": "7c8c684c34f2ef380b7a58239e79b3e7",
+    "mtime": 1793825938.506064,
+    "seen": 1793826671.494335,
+    "ast_hash": "aade943ec9de22e6dce2771e76d525ad",
     "semantic_hash": ""
   }
 }

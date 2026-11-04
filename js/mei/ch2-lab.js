@@ -27,15 +27,16 @@
   function stage(id) { return document.querySelector("[data-visual='" + id + "']"); }
   function binaryDraw(svg, bits, phase, said) {
     reset(svg, "Binary digits aligned with powers of two, then added to form an integer");
-    var course = tok("--course"), mark = tok("--fau-mark"), start = 34, gap = 68;
+    // spacing scales with the pattern, so up to 10 typed bits fit the stage
+    var course = tok("--course"), mark = tok("--fau-mark"), gap = Math.min(68, 420 / bits.length), bw = Math.min(52, gap - 8), start = 240 - (gap * (bits.length - 1) + bw) / 2;
     text(svg, "Bit position", 24, 42, 14, tok("--muted"));
     bits.split("").forEach(function (b, i) {
       var x = start + i * gap, power = bits.length - 1 - i, active = b === "1" && phase > i / bits.length;
-      box(svg, x, 62, 52, 52, active ? course : tok("--paper"), active ? mark : tok("--line"), 10);
-      text(svg, b, x + 26, 96, 25, active ? tok("--paper") : tok("--ink"), "middle", 800);
-      text(svg, "2" + (power ? "^" + power : "^0"), x + 26, 142, 14, tok("--muted"), "middle");
-      text(svg, String(Math.pow(2, power)), x + 26, 165, 14, tok("--ink"), "middle");
-      if (active) text(svg, String(Math.pow(2, power)), x + 26, 198, 14, mark, "middle", 700);
+      box(svg, x, 62, bw, 52, active ? course : tok("--paper"), active ? mark : tok("--line"), 10);
+      text(svg, b, x + bw / 2, 96, 25, active ? tok("--paper") : tok("--ink"), "middle", 800);
+      text(svg, "2" + (power ? "^" + power : "^0"), x + bw / 2, 142, 14, tok("--muted"), "middle");
+      text(svg, String(Math.pow(2, power)), x + bw / 2, 165, bits.length > 8 ? 12 : 14, tok("--ink"), "middle");
+      if (active) text(svg, String(Math.pow(2, power)), x + bw / 2, 198, bits.length > 8 ? 12 : 14, mark, "middle", 700);
     });
     line(svg, 24, 218, 456, 218, tok("--line"), 1);
     if (phase > 0.72) text(svg, bits.split("").map(function (b, i) { return b === "1" ? Math.pow(2, bits.length - 1 - i) : null; }).filter(function (v) { return v !== null; }).join(" + ") + " = " + P.binaryValue(bits), 240, 258, 23, tok("--act"), "middle", 800);
@@ -231,7 +232,29 @@
     function setup(c) { root.classList.remove("sandbox-open"); c.stage(); }
     function sandbox() {
       root.classList.add("sandbox-open");
+      function own(name) { var e = root.querySelector("[data-own='" + name + "']"); return e ? e.value.trim().replace("−", "-") : ""; }
+      function say(m) { var e = root.querySelector("[data-own-msg]"); if (e) e.textContent = m || ""; }
       function update() {
+        say("");
+        if (root._own) {
+          if (id === "binary") {
+            var bits = own("bits");
+            if (!/^[01]{1,10}$/.test(bits)) return say("Bits: type 1 to 10 digits, each 0 or 1.");
+            return binaryDraw(visual, bits, 1);
+          }
+          if (id === "distance") {
+            var a = Number(own("a")), r = Number(own("r"));
+            if (!isFinite(a) || !isFinite(r)) return say("Type a number for a and for r.");
+            if (r < 0) return say("r is a distance, so it cannot be negative.");
+            if (a - r < -5 || a + r > 5) return say("The number line shows −5 to 5: keep a − r and a + r inside it.");
+            return distanceDraw(visual, a, r, 1);
+          }
+          if (id === "binomial") {
+            var n = Number(own("n"));
+            if (!(Number.isInteger(n) && n >= 0 && n <= 12)) return say("n: a whole number from 0 to 12.");
+            return pascalDraw(visual, n, 1);
+          }
+        }
         if (id === "binary") binaryDraw(visual, control.value, 1);
         else if (id === "bounds") boundsDraw(visual, +control.value, 1);
         else if (id === "distance") distanceDraw(visual, +root.querySelector("[data-control='center']").value, +root.querySelector("[data-control='radius']").value, 1);
@@ -240,7 +263,11 @@
       }
       // The sandbox is driven by the labelled controls under the stage; the unlabelled slider strip that used to sit
       // on top of the drawing duplicated them and covered the Pascal caption, so it is no longer drawn.
-      if (!root._sandboxBound) { root._sandboxBound = true; root.querySelectorAll("[data-control]").forEach(function (el) { el.addEventListener("change", update); }); }
+      if (!root._sandboxBound) {
+        root._sandboxBound = true;
+        root.querySelectorAll("[data-control]").forEach(function (el) { el.addEventListener("change", function () { root._own = false; update(); }); });
+        root.querySelectorAll("[data-own]").forEach(function (el) { el.addEventListener("input", function () { root._own = true; update(); }); });
+      }
       update();
     }
     Lab.experiment({ id: id, title: title, card: root.querySelector(".challenge"), lock: function () {}, setup: setup, sandbox: sandbox, challenges: data[id].map(function (ch) {

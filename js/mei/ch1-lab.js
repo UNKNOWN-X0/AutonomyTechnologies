@@ -33,7 +33,7 @@
   }
   function guessLine(el, guess) { if (guess) label(el, "You said: " + guess, 24, 308, 14, tok("--muted")); }
   // The only shaded regions are the elements of `members`, which sit one in each region of the diagram.
-  function venn(el, members, focus) {
+  function venn(el, members, focus, bare) {
     var paper = tok("--paper"), ink = tok("--ink"), course = tok("--course");
     var circA = 'cx="195" cy="138" r="68"', circB = 'cx="285" cy="138" r="68"', box = 'x="20" y="20" width="440" height="224"';
     var fill = ' fill="' + course + '" fill-opacity=".42"', html = "<defs>";
@@ -47,7 +47,9 @@
     if (members.indexOf(4) >= 0) html += '<g mask="url(#mei-na)"><rect ' + box + fill + ' mask="url(#mei-nb)"/></g>';
     html += "<circle " + circA + ' fill="none" stroke="' + ink + '" stroke-width="2"/><circle ' + circB + ' fill="none" stroke="' + ink + '" stroke-width="2"/>';
     el.innerHTML = html;
-    label(el, "A", 112, 76, 18); label(el, "B", 360, 76, 18); // outside the circles, clear of the outlines label(el, "X = {1,2,3,4}", 38, 232, 14);
+    label(el, "A", 112, 76, 18); label(el, "B", 360, 76, 18); // outside the circles, clear of the outlines
+    if (bare) return;
+    label(el, "X = {1,2,3,4}", 38, 232, 14);
     var at = { 1: [155, 142], 2: [238, 142], 3: [322, 142], 4: [56, 64] };
     X.forEach(function (x) { label(el, String(x), at[x][0], at[x][1], 18, ink, x === focus ? "800" : null); });
     if (focus) {
@@ -335,6 +337,42 @@
   ];
   var ends = { "(−1,3)": [false, false], "[−1,3)": [true, false], "(−1,3]": [false, true], "[−1,3]": [true, true] };
   var predicates ={ even: ["x is even", even], positive: ["x>0", function (x) { return x > 0; }], large: ["x>3", function (x) { return x > 3; }] };
+  // ---- Your own formula or set expression (sandbox), compiled by js/mei/expr.js ----
+  function ownTruth(el, text, r) {
+    el.innerHTML = "";
+    var vars = r.vars.length ? r.vars : ["A"], n = vars.length, rows = [], ink = tok("--ink"), course = tok("--course");
+    for (var k = 0; k < Math.pow(2, n); k++) {
+      var v = {};
+      vars.forEach(function (name, i) { v[name] = !!(k & (1 << (n - 1 - i))); });
+      rows.push({ v: v, out: !!r.fn(v) });
+    }
+    rows.reverse(); // 1…1 first, as the notes write truth tables
+    var xs = vars.map(function (_, i) { return 48 + i * 52; }), xo = 48 + n * 52 + 40, rh = n === 3 ? 26 : 36;
+    vars.forEach(function (name, i) { label(el, name, xs[i], 36, 16, ink, "700"); });
+    label(el, text.length > 26 ? text.slice(0, 25) + "…" : text, xo, 36, 15, ink, "700");
+    rows.forEach(function (row, i) {
+      var y = 64 + i * rh;
+      if (row.out) { var bg = document.createElementNS(ns, "rect"); bg.setAttribute("x", "24"); bg.setAttribute("y", String(y - rh + 12)); bg.setAttribute("width", "430"); bg.setAttribute("height", String(rh - 2)); bg.setAttribute("fill", course); bg.setAttribute("fill-opacity", ".22"); el.appendChild(bg); }
+      vars.forEach(function (name, j) { label(el, bit(row.v[name]), xs[j], y, 16, ink); });
+      label(el, bit(row.out), xo, y, 16, ink, row.out ? "700" : null);
+    });
+    var t = rows.filter(function (x) { return x.out; }).length, all = rows.length;
+    label(el, t === all ? "A tautology: true in every row." : t === 0 ? "A contradiction: false in every row." : "True in " + t + " of " + all + " rows (shaded).", 24, 64 + all * rh + 4, 15, tok("--act"), "700");
+    el.setAttribute("aria-label", "Truth table of " + text + ": true in " + t + " of " + all + " rows");
+  }
+  function ownSets(el, r, X, A, B) {
+    var inA = function (x) { return A.indexOf(x) >= 0; }, inB = function (x) { return B.indexOf(x) >= 0; },
+      region = function (a, b) { return a && !b ? 1 : a && b ? 2 : b ? 3 : 4; }, regions = [], result = [];
+    [[true, false], [true, true], [false, true], [false, false]].forEach(function (ab) { if (r.fn({ A: ab[0], B: ab[1] })) regions.push(region(ab[0], ab[1])); });
+    X.forEach(function (x) { if (r.fn({ A: inA(x), B: inB(x) })) result.push(x); });
+    venn(el, regions, null, true);
+    var at = { 1: [155, 142], 2: [238, 142], 3: [322, 142], 4: [60, 64] }, groups = { 1: [], 2: [], 3: [], 4: [] };
+    X.forEach(function (x) { groups[region(inA(x), inB(x))].push(x); });
+    Object.keys(groups).forEach(function (k) { if (groups[k].length) label(el, groups[k].slice(0, 4).join(",") + (groups[k].length > 4 ? "…" : ""), at[k][0], at[k][1], 15, tok("--ink"), "700", "middle"); });
+    label(el, "X = " + set(X), 38, 232, 14);
+    setCaption(el, "Result = " + set(result));
+    el.setAttribute("aria-label", "Venn diagram of your set expression; result " + set(result));
+  }
   function register(id, title) {
     var root = document.querySelector("[data-experiment='" + id + "']"), card = root.querySelector(".challenge"), visual = stage(id);
     function setup(c) {
@@ -346,7 +384,25 @@
       root.classList.add("sandbox-open");
       if (root._sandboxUpdate) { root.querySelector(".stage").classList.add("can-grab"); root._sandboxUpdate(); return; }
       var c = root.querySelector("[data-control]");
+      function own(name) { var e = root.querySelector("[data-own='" + name + "']"); return e ? e.value : ""; }
+      function say(m) { var e = root.querySelector("[data-own-msg]"); if (e) e.textContent = m || ""; }
+      function list(t) { return String(t).split(/[,;\s]+/).filter(Boolean); }
       function update() {
+        say("");
+        if (root._own && (id === "logic" || id === "sets")) {
+          root._stageSlider = null; // the preset slider does not drive your own formula
+          var r = Expr.logic(own("f"));
+          if (r.error) return say(r.error);
+          if (id === "logic") ownTruth(visual, own("f"), r);
+          else {
+            var X = list(own("x")), A = list(own("a")), B = list(own("b"));
+            if (!X.length) return say("X: list some elements, for example 1, 2, 3, 4, 5");
+            var stray = A.concat(B).filter(function (x) { return X.indexOf(x) < 0; });
+            if (stray.length) say("Not in X, so left out: " + stray.join(", "));
+            ownSets(visual, r, X, A.filter(function (x) { return X.indexOf(x) >= 0; }), B.filter(function (x) { return X.indexOf(x) >= 0; }));
+          }
+          return;
+        }
         if (id === "logic") {
           var a = root.querySelector("[data-control='a']").value === "true", b = root.querySelector("[data-control='b']").value === "true";
           truthTable(visual, { selected: [a, b], cols: [imp, contra], shown: "all", caption: "The implication and its contrapositive match in every row." });
@@ -383,7 +439,8 @@
       }
       root._sandboxUpdate = update;
       bindStagePointer(root); root.querySelector(".stage").classList.add("can-grab");
-      root.querySelectorAll("[data-control]").forEach(function (control) { control.addEventListener("change", update); });
+      root.querySelectorAll("[data-control]").forEach(function (control) { control.addEventListener("change", function () { root._own = false; update(); }); });
+      root.querySelectorAll("[data-own]").forEach(function (input) { input.addEventListener("input", function () { root._own = true; update(); }); });
       update();
     }
     Lab.experiment({ id: id, title: title, card: card, lock: function () {}, setup: setup, sandbox: sandbox, challenges: data[id].map(function (ch) {

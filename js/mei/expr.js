@@ -109,7 +109,53 @@
       return { error: err.message };
     }
   }
-  var api = { compile: compile };
+  // Logic formulas over A, B, C: ¬ ! ~ not · ∧ & and · ∨ | or · ⇒ -> => implies · ⇔ <-> <=> iff · ⊕ xor, brackets and
+  // the constants 1/0 (T/F). For set expressions, ∪ ∩ ᶜ ' and \ read as ∨ ∧ ¬ ¬ and "and not". Precedence from tight
+  // to loose: ¬ (and postfix ᶜ), ∧, ⊕, ∨, ⇒ (right to left), ⇔.
+  function logic(text) {
+    var s = String(text).replace(/<=>|<->|⇔|\biff\b/gi, " ⇔ ").replace(/=>|->|⇒|\bimplies\b/gi, " ⇒ ").replace(/∪|\bor\b|\|\|?|∨|\+/gi, " ∨ ")
+      .replace(/∩|\band\b|&&?|∧|\*|·/gi, " ∧ ").replace(/⊕|\bxor\b/gi, " ⊕ ").replace(/\bnot\b|!|~|¬/gi, " ¬ ").replace(/ᶜ|'/g, " ᶜ ").replace(/\\/g, " \\ ");
+    var toks = s.match(/[ABC]|[01TF]|[()¬ᶜ∧∨⇒⇔⊕\\]|\S/gi) || [], p = 0, used = {};
+    if (!toks.length) return { error: "type a formula, for example A ⇒ B" };
+    function peek() { return toks[p]; }
+    function bin(next, ops) {
+      return function () {
+        var f = next();
+        while (ops.indexOf(peek()) >= 0) {
+          var op = toks[p++], g = next(), a = f;
+          f = op === "∧" ? (function (a, g) { return function (v) { return a(v) && g(v); }; })(a, g)
+            : op === "∨" ? (function (a, g) { return function (v) { return a(v) || g(v); }; })(a, g)
+            : op === "⊕" ? (function (a, g) { return function (v) { return a(v) !== g(v); }; })(a, g)
+            : op === "\\" ? (function (a, g) { return function (v) { return a(v) && !g(v); }; })(a, g)
+            : (function (a, g) { return function (v) { return a(v) === g(v); }; })(a, g);
+        }
+        return f;
+      };
+    }
+    function imp() { var f = or(); if (peek() === "⇒") { p++; var g = imp(), a = f; return function (v) { return !a(v) || g(v); }; } return f; }
+    function not() {
+      if (peek() === "¬") { p++; var f = not(); return function (v) { return !f(v); }; }
+      var k = toks[p++];
+      if (k === undefined) throw new Error("the formula ends too early");
+      var g;
+      if (k === "(") { g = iff(); if (toks[p++] !== ")") throw new Error("a bracket is not closed"); }
+      else if (/^[ABC]$/i.test(k)) { var n = k.toUpperCase(); used[n] = true; g = function (v) { return !!v[n]; }; }
+      else if (/^[1T]$/i.test(k)) g = function () { return true; };
+      else if (/^[0F]$/i.test(k)) g = function () { return false; };
+      else throw new Error("unexpected “" + k + "”: use A, B, C, ¬, ∧, ∨, ⇒, ⇔ and brackets");
+      while (peek() === "ᶜ") { p++; g = (function (h) { return function (v) { return !h(v); }; })(g); }
+      return g;
+    }
+    var and = bin(not, ["∧", "\\"]), xor = bin(and, ["⊕"]), or = bin(xor, ["∨"]), iff = bin(imp, ["⇔"]);
+    try {
+      var f = iff();
+      if (p < toks.length) throw new Error("unexpected “" + toks[p] + "”");
+      return { fn: f, vars: ["A", "B", "C"].filter(function (n) { return used[n]; }) };
+    } catch (err) {
+      return { error: err.message };
+    }
+  }
+  var api = { compile: compile, logic: logic };
   if (typeof module !== "undefined" && module.exports) module.exports = api;
   else root.Expr = api;
 })(this);
