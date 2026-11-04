@@ -398,6 +398,39 @@ A \textbf{proposition} is a statement that is either true or false. Compound pro
 {\small \emph{Read it as: “not A”, “A and B”, “A or B”; this OR includes the case where both are true.}\par The OR in this lecture is inclusive: it is also true when both inputs are true.}
 \end{equationcard}
 
+\Needspace{14\baselineskip}
+\begin{center}
+\begin{minipage}[t]{0.303\linewidth}\centering
+\begin{tikzpicture}
+\begin{scope}\clip (1.404,-1.224) circle (0.792); \fill[FAUblue!25] (2.196,-1.224) circle (0.792); \end{scope}
+\draw[black!70] (0.072,-0.072) rectangle (3.528,-2.268);
+\draw[black!80] (1.404,-1.224) circle (0.792);
+\draw[black!80] (2.196,-1.224) circle (0.792);
+\node[,inner sep=1pt,font=\small] at (0.504,-0.576) {\textit{A}};
+\node[,inner sep=1pt,font=\small] at (3.096,-0.576) {\textit{B}};
+\end{tikzpicture}\par\smallskip{\small\raggedright \textbf{A \ensuremath{\land} B} is true only where both are true.\par}\end{minipage}\hfill
+\begin{minipage}[t]{0.303\linewidth}\centering
+\begin{tikzpicture}
+\fill[FAUblue!25] (1.404,-1.224) circle (0.792);
+\fill[FAUblue!25] (2.196,-1.224) circle (0.792);
+\draw[black!70] (0.072,-0.072) rectangle (3.528,-2.268);
+\draw[black!80] (1.404,-1.224) circle (0.792);
+\draw[black!80] (2.196,-1.224) circle (0.792);
+\node[,inner sep=1pt,font=\small] at (0.504,-0.576) {\textit{A}};
+\node[,inner sep=1pt,font=\small] at (3.096,-0.576) {\textit{B}};
+\end{tikzpicture}\par\smallskip{\small\raggedright \textbf{A \ensuremath{\lor} B} is true where at least one is true, including both.\par}\end{minipage}\hfill
+\begin{minipage}[t]{0.303\linewidth}\centering
+\begin{tikzpicture}
+\fill[FAUblue!25] (0.072,-0.072) rectangle (3.528,-2.268);
+\fill[white] (1.404,-1.224) circle (0.792);
+\draw[black!70] (0.072,-0.072) rectangle (3.528,-2.268);
+\draw[black!80] (1.404,-1.224) circle (0.792);
+\draw[black!80] (2.196,-1.224) circle (0.792);
+\node[,inner sep=1pt,font=\small] at (0.504,-0.576) {\textit{A}};
+\node[,inner sep=1pt,font=\small] at (3.096,-0.576) {\textit{B}};
+\end{tikzpicture}\par\smallskip{\small\raggedright \textbf{\ensuremath{\neg}A} is true wherever A is not.\par}\end{minipage}
+\end{center}
+
 \Needspace{7\baselineskip}
 For example, let \textit{R} mean “it is raining” and \textit{W} mean “the weather forecast is bad”. The umbrella decision is \textit{U} = \textit{W} \ensuremath{\lor} \textit{R}. If \textit{W} = 0 and \textit{R} = 1, then \textit{U} = 1.
 

@@ -403,4 +403,151 @@
     svg.setAttribute("aria-label", sets.map(function (st) { return st.name; }).join(", ") + ": " + said.join(", "));
     fig.insertBefore(svg, fig.firstChild);
   });
+
+  // Picture diagrams (figure.viz, data-kind = venn | numline | bits | circle | field | ladder), drawn from data so the
+  // page and the PDF (tools/guide-to-tex.py, same coordinates) show the same picture. Shaded or thick parts use the
+  // action colour; the caption says what to look at. Each kind's attributes are described in docs/GUIDE-STANDARD.md.
+  function txt(svg, x, y, s, cls, anchor) {
+    var t = el("text", { x: x, y: y, class: cls || "vz-text", "text-anchor": anchor || "middle" }, svg);
+    t.textContent = s;
+    return t;
+  }
+  function head(svg, id, x1, y1, x2, y2, cls) {
+    // a filled triangle at (x2, y2) pointing along the segment
+    var a = Math.atan2(y2 - y1, x2 - x1),
+      L = 8,
+      W = 4,
+      p = [x2, y2, x2 - L * Math.cos(a) + W * Math.sin(a), y2 - L * Math.sin(a) - W * Math.cos(a), x2 - L * Math.cos(a) - W * Math.sin(a), y2 - L * Math.sin(a) + W * Math.cos(a)];
+    el("path", { d: "M" + p[0] + " " + p[1] + "L" + p[2] + " " + p[3] + "L" + p[4] + " " + p[5] + "z", class: cls || "vz-head" }, svg);
+  }
+  function arrow(svg, x1, y1, x2, y2, cls) {
+    el("line", { x1: x1, y1: y1, x2: x2, y2: y2, class: cls || "vz-line" }, svg);
+    head(svg, null, x1, y1, x2, y2, cls === "vz-seg" ? "vz-head hot" : "vz-head");
+  }
+  var VIZ = {
+    venn: function (svg, d, id) {
+      var A = [78, 68], B = [122, 68], R = 44, shade = d.shade || "inter";
+      var defs = el("defs", {}, svg),
+        clip = el("clipPath", { id: id + "-a" }, defs);
+      el("circle", { cx: A[0], cy: A[1], r: R }, clip);
+      if (shade === "comp") {
+        el("rect", { x: 4, y: 4, width: 192, height: 122, class: "vz-fill" }, svg);
+        el("circle", { cx: A[0], cy: A[1], r: R, class: "vz-bg" }, svg);
+      }
+      if (shade === "union" || shade === "a" || shade === "diff") el("circle", { cx: A[0], cy: A[1], r: R, class: "vz-fill" }, svg);
+      if (shade === "union" || shade === "b") el("circle", { cx: B[0], cy: B[1], r: R, class: "vz-fill" }, svg);
+      if (shade === "diff") el("circle", { cx: B[0], cy: B[1], r: R, class: "vz-bg" }, svg);
+      if (shade === "inter") {
+        var g = el("g", { "clip-path": "url(#" + id + "-a)" }, svg);
+        el("circle", { cx: B[0], cy: B[1], r: R, class: "vz-fill" }, g);
+      }
+      el("rect", { x: 4, y: 4, width: 192, height: 122, class: "vz-line" }, svg);
+      el("circle", { cx: A[0], cy: A[1], r: R, class: "vz-line" }, svg);
+      el("circle", { cx: B[0], cy: B[1], r: R, class: "vz-line" }, svg);
+      var L = (d.labels || "A B X").split(" ");
+      txt(svg, 28, 32, L[0], "vz-text vz-it");
+      txt(svg, 172, 32, L[1], "vz-text vz-it");
+      if (L[2]) txt(svg, 12, 118, L[2], "vz-small vz-it", "start");
+      return [200, 130];
+    },
+    numline: function (svg, d) {
+      var r = d.range.split(" ").map(Number), lo = r[0], hi = r[1], X0 = 24, X1 = 256, Y = 34;
+      var x = function (v) { return X0 + ((v - lo) / (hi - lo)) * (X1 - X0); };
+      arrow(svg, X0 - 14, Y, X1 + 16, Y);
+      (d.ticks || "").split(" ").filter(Boolean).forEach(function (t) {
+        var bits = t.split(":"), v = Number(bits[0]);
+        el("line", { x1: x(v), y1: Y - 5, x2: x(v), y2: Y + 5, class: "vz-line" }, svg);
+        txt(svg, x(v), Y + 22, bits[1] || bits[0], "vz-small");
+      });
+      if (d.seg) {
+        var g = d.seg.split(" "), a = g[0] === "-inf" ? X0 - 12 : x(Number(g[0])), b = g[1] === "inf" ? X1 + 12 : x(Number(g[1]));
+        el("line", { x1: a, y1: Y, x2: b, y2: Y, class: "vz-seg" }, svg);
+        [[g[0], a, g[2][0]], [g[1], b, g[2][1]]].forEach(function (e) {
+          if (/inf/.test(e[0])) return;
+          el("circle", { cx: e[1], cy: Y, r: 5, class: e[2] === "c" ? "vz-dot" : "vz-dot open" }, svg);
+        });
+      }
+      (d.marks || "").split(";").filter(Boolean).forEach(function (m) {
+        var bits = m.split(":");
+        txt(svg, x(Number(bits[0])), Y - 12, bits[1], "vz-small vz-acc");
+      });
+      return [280, 66];
+    },
+    bits: function (svg, d) {
+      var U = 26, X = 4, cells = d.cells.split(";").map(function (c) { return c.split("|"); });
+      cells.forEach(function (c) {
+        var w = (Number(c[2]) || 1) * U, hot = c[0].charAt(0) === "*", v = hot ? c[0].slice(1) : c[0];
+        if (c[3]) txt(svg, X + w / 2, 14, c[3], "vz-small");
+        el("rect", { x: X, y: 20, width: w, height: 30, class: hot ? "vz-cell hot" : "vz-cell" }, svg);
+        txt(svg, X + w / 2, 40, v, "vz-text vz-num");
+        if (c[1]) txt(svg, X + w / 2, 68, c[1], "vz-small");
+        X += w;
+      });
+      return [X + 4, 76];
+    },
+    circle: function (svg, d) {
+      var a = ((Number(d.angle) || 40) * Math.PI) / 180, R = 62, cx = 84, cy = 84,
+        px = cx + R * Math.cos(a), py = cy - R * Math.sin(a), L = (d.labels || "cos φ|sin φ|1").split("|");
+      arrow(svg, cx - 76, cy, cx + 82, cy);
+      arrow(svg, cx, cy + 74, cx, cy - 80);
+      el("circle", { cx: cx, cy: cy, r: R, class: "vz-line" }, svg);
+      el("line", { x1: px, y1: py, x2: px, y2: cy, class: "vz-dash" }, svg);
+      el("line", { x1: cx, y1: cy, x2: px, y2: cy, class: "vz-seg" }, svg);
+      el("line", { x1: cx, y1: cy, x2: px, y2: py, class: "vz-line thick" }, svg);
+      el("path", { d: "M" + (cx + 20) + " " + cy + "A20 20 0 0 0 " + (cx + 20 * Math.cos(a)) + " " + (cy - 20 * Math.sin(a)), class: "vz-line" }, svg);
+      el("circle", { cx: px, cy: py, r: 4, class: "vz-dot" }, svg);
+      txt(svg, cx + 28 * Math.cos(a / 2) + 6, cy - 28 * Math.sin(a / 2) + 4, L[3] || "φ", "vz-small vz-it");
+      txt(svg, cx + 4, cy + 18, L[0], "vz-small vz-acc", "start");
+      txt(svg, px + 8, (cy + py) / 2 + 4, L[1], "vz-small", "start");
+      txt(svg, (cx + px) / 2 - 10, (cy + py) / 2 - 6, L[2], "vz-small vz-it", "end");
+      txt(svg, px + 8, py - 6, "P", "vz-text vz-it", "start");
+      return [200, 168];
+    },
+    field: function (svg, d) {
+      if (d.kind2 === "plates") {
+        el("line", { x1: 46, y1: 18, x2: 46, y2: 112, class: "vz-plate" }, svg);
+        el("line", { x1: 154, y1: 18, x2: 154, y2: 112, class: "vz-plate" }, svg);
+        txt(svg, 46, 12, "+", "vz-text");
+        txt(svg, 154, 12, "−", "vz-text");
+        [30, 48, 66, 84, 102].forEach(function (y) { arrow(svg, 54, y, 146, y); });
+        txt(svg, 100, 126, d.label || "uniform E between the plates", "vz-small");
+        return [200, 134];
+      }
+      var c = 80, neg = d.kind2 === "point-";
+      for (var k = 0; k < 8; k++) {
+        var t = (k * Math.PI) / 4, x1 = c + 20 * Math.cos(t), y1 = c - 20 * Math.sin(t), x2 = c + 66 * Math.cos(t), y2 = c - 66 * Math.sin(t);
+        if (neg) arrow(svg, x2, y2, x1, y1); else arrow(svg, x1, y1, x2, y2);
+      }
+      el("circle", { cx: c, cy: c, r: 13, class: "vz-charge" }, svg);
+      txt(svg, c, c + 5, neg ? "−" : "+", "vz-text vz-on");
+      return [160, 160];
+    },
+    ladder: function (svg, d) {
+      // labels above and below the stack, the arrow on the right, so nothing overlaps the level boxes
+      var L = d.levels.split(";"), n = L.length, H = 30, top = 24;
+      txt(svg, 130, 14, d.top || "faster", "vz-small");
+      L.forEach(function (name, i) {
+        var w = 90 + (i * 120) / Math.max(1, n - 1), x = 130 - w / 2;
+        el("rect", { x: x, y: top + i * (H + 6), width: w, height: H, class: "vz-cell" }, svg);
+        txt(svg, 130, top + i * (H + 6) + 20, name, "vz-text");
+      });
+      var bottom = top + n * (H + 6) - 6;
+      arrow(svg, 252, bottom, 252, top);
+      txt(svg, 130, bottom + 18, d.bottom || "larger", "vz-small");
+      return [262, bottom + 26];
+    },
+  };
+  document.querySelectorAll("figure.viz").forEach(function (fig, fi) {
+    var d = Object.assign({}, fig.dataset), kind = d.kind.split(" ")[0];
+    d.kind2 = d.kind.split(" ")[1];
+    if (!VIZ[kind]) return;
+    var svg = el("svg", { role: "img" }),
+      wh = VIZ[kind](svg, d, "vz" + fi);
+    svg.setAttribute("viewBox", "0 0 " + wh[0] + " " + wh[1]);
+    svg.setAttribute("width", wh[0]);
+    svg.setAttribute("height", wh[1]);
+    var cap = fig.querySelector("figcaption");
+    svg.setAttribute("aria-label", cap ? cap.textContent : kind);
+    fig.insertBefore(svg, fig.firstChild);
+  });
 })();

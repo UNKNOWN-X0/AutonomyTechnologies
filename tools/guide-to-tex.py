@@ -261,6 +261,137 @@ def amap_tikz(f):
     return "\n".join(out)
 
 
+# ---------- picture diagrams (figure.viz) ----------
+# Same coordinates as the page renderer in js/guide.js (units of about 0.018 cm, y downwards there, upwards here).
+VS = 0.018
+
+
+def P(x, y):
+    return "(%.3f,%.3f)" % (x * VS, -y * VS)
+
+
+def T(x, y, s, size=r"\small", anchor="", italic=False, color=""):
+    body = tex_text(s)
+    if italic:
+        body = r"\textit{%s}" % body
+    opts = ",".join(o for o in (anchor, ("text=" + color) if color else "") if o)
+    return r"\node[%s,inner sep=1pt,font=%s] at %s {%s};" % (opts, size, P(x, y), body)
+
+
+def arrow_t(x1, y1, x2, y2, style="black!80"):
+    return r"\draw[-{Stealth[length=4pt]},%s] %s -- %s;" % (style, P(x1, y1), P(x2, y2))
+
+
+def viz_tikz(f):
+    import math
+    a = f.attrs
+    kind, _, sub = a.get("data-kind", "").partition(" ")
+    out = [r"\begin{tikzpicture}"]
+    if kind == "venn":
+        shade = a.get("data-shade", "inter")
+        A, B, R = (78, 68), (122, 68), 44
+        circ = lambda c: r"%s circle (%.3f)" % (P(*c), R * VS)
+        U = r"%s rectangle %s" % (P(4, 4), P(196, 126))
+        if shade == "comp":
+            out += [r"\fill[FAUblue!25] %s;" % U, r"\fill[white] %s;" % circ(A)]
+        if shade in ("union", "a", "diff"):
+            out.append(r"\fill[FAUblue!25] %s;" % circ(A))
+        if shade in ("union", "b"):
+            out.append(r"\fill[FAUblue!25] %s;" % circ(B))
+        if shade == "diff":
+            out.append(r"\fill[white] %s;" % circ(B))
+        if shade == "inter":
+            out.append(r"\begin{scope}\clip %s; \fill[FAUblue!25] %s; \end{scope}" % (circ(A), circ(B)))
+        out += [r"\draw[black!70] %s;" % U, r"\draw[black!80] %s;" % circ(A), r"\draw[black!80] %s;" % circ(B)]
+        L = (a.get("data-labels") or "A B X").split(" ")
+        out += [T(28, 32, L[0], italic=True), T(172, 32, L[1], italic=True)]
+        if len(L) > 2:
+            out.append(T(12, 116, L[2], r"\footnotesize", "anchor=west", True))
+    elif kind == "numline":
+        lo, hi = [float(v) for v in a["data-range"].split()]
+        X0, X1, Y = 24, 256, 34
+        x = lambda v: X0 + (v - lo) / (hi - lo) * (X1 - X0)
+        out.append(arrow_t(X0 - 14, Y, X1 + 16, Y))
+        for t in (a.get("data-ticks") or "").split():
+            v, _, lab = t.partition(":")
+            out.append(r"\draw[black!80] %s -- %s;" % (P(x(float(v)), Y - 5), P(x(float(v)), Y + 5)))
+            out.append(T(x(float(v)), Y + 22, lab or v, r"\footnotesize"))
+        if a.get("data-seg"):
+            g = a["data-seg"].split()
+            pa = X0 - 12 if g[0] == "-inf" else x(float(g[0]))
+            pb = X1 + 12 if g[1] == "inf" else x(float(g[1]))
+            out.append(r"\draw[FAUblue,line width=2.2pt] %s -- %s;" % (P(pa, Y), P(pb, Y)))
+            for val, px, end in ((g[0], pa, g[2][0]), (g[1], pb, g[2][1])):
+                if "inf" in val:
+                    continue
+                fill = "FAUblue" if end == "c" else "white"
+                out.append(r"\filldraw[draw=FAUblue,fill=%s,line width=1pt] %s circle (%.3f);" % (fill, P(px, Y), 5 * VS))
+        for m in (a.get("data-marks") or "").split(";"):
+            if m:
+                v, _, lab = m.partition(":")
+                out.append(T(x(float(v)), Y - 12, lab, r"\footnotesize", "", False, "FAUblue"))
+    elif kind == "bits":
+        U, X = 26, 4
+        for c in a["data-cells"].split(";"):
+            f4 = (c.split("|") + ["", "", "", ""])[:4]
+            w = (float(f4[2]) if f4[2] else 1) * U
+            hot = f4[0].startswith("*")
+            v = f4[0][1:] if hot else f4[0]
+            if f4[3]:
+                out.append(T(X + w / 2, 14, f4[3], r"\scriptsize"))
+            out.append(r"\filldraw[draw=black!50,fill=%s] %s rectangle %s;" % ("FAUblue!25" if hot else "Paperblue", P(X, 20), P(X + w, 50)))
+            out.append(T(X + w / 2, 35, v, r"\small"))
+            if f4[1]:
+                out.append(T(X + w / 2, 66, f4[1], r"\scriptsize"))
+            X += w
+    elif kind == "circle":
+        ang = math.radians(float(a.get("data-angle") or 40))
+        R, cx, cy = 62, 84, 84
+        px, py = cx + R * math.cos(ang), cy - R * math.sin(ang)
+        L = (a.get("data-labels") or "cos φ|sin φ|1").split("|")
+        out += [arrow_t(cx - 76, cy, cx + 82, cy), arrow_t(cx, cy + 74, cx, cy - 80),
+                r"\draw[black!80] %s circle (%.3f);" % (P(cx, cy), R * VS),
+                r"\draw[black!60,dashed] %s -- %s;" % (P(px, py), P(px, cy)),
+                r"\draw[FAUblue,line width=2pt] %s -- %s;" % (P(cx, cy), P(px, cy)),
+                r"\draw[black!85,line width=1pt] %s -- %s;" % (P(cx, cy), P(px, py)),
+                r"\draw[black!80] %s arc (0:%.1f:%.3f);" % (P(cx + 20, cy), math.degrees(ang), 20 * VS),
+                r"\fill[FAUblue] %s circle (%.3f);" % (P(px, py), 4 * VS),
+                T(cx + 28 * math.cos(ang / 2) + 6, cy - 28 * math.sin(ang / 2) + 2, L[3] if len(L) > 3 else "φ", r"\footnotesize", "", True),
+                T(cx + 4, cy + 18, L[0], r"\footnotesize", "anchor=west", False, "FAUblue"),
+                T(px + 8, (cy + py) / 2, L[1], r"\footnotesize", "anchor=west"),
+                T((cx + px) / 2 - 10, (cy + py) / 2 - 8, L[2], r"\footnotesize", "anchor=east", True),
+                T(px + 8, py - 8, "P", r"\small", "anchor=west", True)]
+    elif kind == "field":
+        if sub == "plates":
+            out += [r"\draw[black!85,line width=2.5pt] %s -- %s;" % (P(46, 18), P(46, 112)),
+                    r"\draw[black!85,line width=2.5pt] %s -- %s;" % (P(154, 18), P(154, 112)),
+                    T(46, 10, "+"), T(154, 10, "−")]
+            out += [arrow_t(54, y, 146, y) for y in (30, 48, 66, 84, 102)]
+            out.append(T(100, 126, a.get("data-label") or "uniform E between the plates", r"\footnotesize"))
+        else:
+            c, neg = 80, sub == "point-"
+            for k in range(8):
+                t = k * math.pi / 4
+                p1 = (c + 20 * math.cos(t), c - 20 * math.sin(t))
+                p2 = (c + 66 * math.cos(t), c - 66 * math.sin(t))
+                out.append(arrow_t(*(p2 + p1)) if neg else arrow_t(*(p1 + p2)))
+            out.append(r"\filldraw[draw=FAUblue,fill=FAUblue] %s circle (%.3f);" % (P(c, c), 13 * VS))
+            out.append(r"\node[text=white,font=\small\bfseries] at %s {%s};" % (P(c, c), "−" if neg else "+"))
+    elif kind == "ladder":
+        L = a["data-levels"].split(";")
+        n, H, top = len(L), 30, 24
+        out.append(T(130, 12, a.get("data-top") or "faster", r"\footnotesize"))
+        for i, name in enumerate(L):
+            w = 90 + i * 120 / max(1, n - 1)
+            x0, y0 = 130 - w / 2, top + i * (H + 6)
+            out.append(r"\filldraw[draw=black!50,fill=Paperblue] %s rectangle %s;" % (P(x0, y0), P(x0 + w, y0 + H)))
+            out.append(T(130, y0 + H / 2, name))
+        bottom = top + n * (H + 6) - 6
+        out += [arrow_t(252, bottom, 252, top), T(130, bottom + 14, a.get("data-bottom") or "larger", r"\footnotesize")]
+    out.append(r"\end{tikzpicture}")
+    return "\n".join(out)
+
+
 # ---------- blocks ----------
 def est(n):
     """Rough height of a block in lines, for keeping blocks together."""
@@ -381,14 +512,14 @@ class Conv:
             title = find(k, lambda n: n.tag == "p" and ("worked-title" in n.cls or "recall-title" in n.cls))
             rest = "".join(self.block(x) for x in k.kids if x is not title and (isinstance(x, Node) or x.strip()))
             return "\n\\begin{%s}{%s}%s\\end{%s}\n" % (env, inline(title) if title else "", rest, env)
-        if t == "div" and "arrows" in c:
-            figs = [n for n in k.kids if isinstance(n, Node) and n.tag == "figure" and "amap" in n.cls]
+        if t == "div" and ("arrows" in c or "figs" in c):
+            figs = [n for n in k.kids if isinstance(n, Node) and n.tag == "figure" and ("amap" in n.cls or "viz" in n.cls)]
             w = "%.3f" % (0.97 / max(1, min(len(figs), 4)) - 0.02)
             cells = []
             for f in figs:
                 cap = find(f, lambda n: n.tag == "figcaption")
                 cells.append("\\begin{minipage}[t]{%s\\linewidth}\\centering\n%s\\par\\smallskip{\\small\\raggedright %s\\par}\\end{minipage}"
-                             % (w, amap_tikz(f), inline(cap) if cap else ""))
+                             % (w, amap_tikz(f) if "amap" in f.cls else viz_tikz(f), inline(cap) if cap else ""))
             return "\n\\Needspace{14\\baselineskip}\n\\begin{center}\n" + "\\hfill\n".join(cells) + "\n\\end{center}\n"
         if t == "div" and "tw" in c:
             return "\n\\Needspace{10\\baselineskip}" + self.table(find(k, lambda n: n.tag == "table"))

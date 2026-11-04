@@ -380,6 +380,36 @@ Coulomb’s law describes a pair of charges but says nothing about the space aro
 {\small \emph{Read it as: “E at P is Q over 4π ε\textsubscript{0} r\textsuperscript{2} along e\textsubscript{r}, pointing away from Q”; for a negative Q it points towards Q.}\par Force on a probe: \textit{F} = \textit{Q}\textsubscript{probe} \textit{E}. Unit of \textit{E}: V/m (equivalent to N/C).}
 \end{equationcard}
 
+\Needspace{14\baselineskip}
+\begin{center}
+\begin{minipage}[t]{0.465\linewidth}\centering
+\begin{tikzpicture}
+\draw[-{Stealth[length=4pt]},black!80] (1.800,-1.440) -- (2.628,-1.440);
+\draw[-{Stealth[length=4pt]},black!80] (1.695,-1.185) -- (2.280,-0.600);
+\draw[-{Stealth[length=4pt]},black!80] (1.440,-1.080) -- (1.440,-0.252);
+\draw[-{Stealth[length=4pt]},black!80] (1.185,-1.185) -- (0.600,-0.600);
+\draw[-{Stealth[length=4pt]},black!80] (1.080,-1.440) -- (0.252,-1.440);
+\draw[-{Stealth[length=4pt]},black!80] (1.185,-1.695) -- (0.600,-2.280);
+\draw[-{Stealth[length=4pt]},black!80] (1.440,-1.800) -- (1.440,-2.628);
+\draw[-{Stealth[length=4pt]},black!80] (1.695,-1.695) -- (2.280,-2.280);
+\filldraw[draw=FAUblue,fill=FAUblue] (1.440,-1.440) circle (0.234);
+\node[text=white,font=\small\bfseries] at (1.440,-1.440) {+};
+\end{tikzpicture}\par\smallskip{\small\raggedright \textbf{Positive charge}: \textit{E} points away from it in every direction and weakens as 1/\textit{r}\textsuperscript{2}.\par}\end{minipage}\hfill
+\begin{minipage}[t]{0.465\linewidth}\centering
+\begin{tikzpicture}
+\draw[-{Stealth[length=4pt]},black!80] (2.628,-1.440) -- (1.800,-1.440);
+\draw[-{Stealth[length=4pt]},black!80] (2.280,-0.600) -- (1.695,-1.185);
+\draw[-{Stealth[length=4pt]},black!80] (1.440,-0.252) -- (1.440,-1.080);
+\draw[-{Stealth[length=4pt]},black!80] (0.600,-0.600) -- (1.185,-1.185);
+\draw[-{Stealth[length=4pt]},black!80] (0.252,-1.440) -- (1.080,-1.440);
+\draw[-{Stealth[length=4pt]},black!80] (0.600,-2.280) -- (1.185,-1.695);
+\draw[-{Stealth[length=4pt]},black!80] (1.440,-2.628) -- (1.440,-1.800);
+\draw[-{Stealth[length=4pt]},black!80] (2.280,-2.280) -- (1.695,-1.695);
+\filldraw[draw=FAUblue,fill=FAUblue] (1.440,-1.440) circle (0.234);
+\node[text=white,font=\small\bfseries] at (1.440,-1.440) {−};
+\end{tikzpicture}\par\smallskip{\small\raggedright \textbf{Negative charge}: \textit{E} points towards it.\par}\end{minipage}
+\end{center}
+
 \Needspace{8\baselineskip}
 \begin{itemize}
 \item \textit{E} does not depend on the probe: a bigger probe charge feels a bigger force, but \textit{F}/\textit{Q} stays the same.
@@ -830,6 +860,23 @@ A field of 100 V/m in vacuum hits a dielectric with ε\textsubscript{r} = 4 at 4
 \[ \begin{gathered} {D}\, =\, σ_{\mathrm{A}} \\ {E}\, =\, \dfrac{σ_{\mathrm{A}}}{ε} \\ {U}\, =\, {E\,d} \end{gathered} \]
 {\small \emph{Read it as: “D equals the surface charge density σ\textsubscript{A}; E is σ\textsubscript{A} over ε; U is E times d”.}\par Real plates have curved fringing fields at their edges. This course always neglects them.}
 \end{equationcard}
+
+\Needspace{14\baselineskip}
+\begin{center}
+\begin{minipage}[t]{0.950\linewidth}\centering
+\begin{tikzpicture}
+\draw[black!85,line width=2.5pt] (0.828,-0.324) -- (0.828,-2.016);
+\draw[black!85,line width=2.5pt] (2.772,-0.324) -- (2.772,-2.016);
+\node[,inner sep=1pt,font=\small] at (0.828,-0.180) {+};
+\node[,inner sep=1pt,font=\small] at (2.772,-0.180) {\ensuremath{-}};
+\draw[-{Stealth[length=4pt]},black!80] (0.972,-0.540) -- (2.628,-0.540);
+\draw[-{Stealth[length=4pt]},black!80] (0.972,-0.864) -- (2.628,-0.864);
+\draw[-{Stealth[length=4pt]},black!80] (0.972,-1.188) -- (2.628,-1.188);
+\draw[-{Stealth[length=4pt]},black!80] (0.972,-1.512) -- (2.628,-1.512);
+\draw[-{Stealth[length=4pt]},black!80] (0.972,-1.836) -- (2.628,-1.836);
+\node[,inner sep=1pt,font=\footnotesize] at (1.800,-2.268) {uniform E between the plates};
+\end{tikzpicture}\par\smallskip{\small\raggedright \textbf{Plate capacitor}: between the plates \textit{E} is uniform and runs from + to \ensuremath{-}; the curved fringing field at the edges is neglected.\par}\end{minipage}
+\end{center}
 
 \Needspace{7\baselineskip}
 \begin{notebox}\textbf{Near miss:} at a boundary between air and glass, \textit{E} might seem to keep its size across it, but only its part along the boundary does. Its part across the boundary drops by the factor ε\textsubscript{r} of the glass, because it is the part of \textit{D} across the boundary that stays equal.\end{notebox}

@@ -204,6 +204,7 @@
           <p>Each following bit has half the previous weight.</p>
           <h3>Convert binary fractions to decimal</h3>
           <div class="eq"><strong>Binary fractional place values</strong><span class="formula">0.<var>b</var><sub>1</sub><var>b</var><sub>2</sub>…<var>b</var><sub><var>k</var></sub> = <var>b</var><sub>1</sub>2<sup>−1</sup> + <var>b</var><sub>2</sub>2<sup>−2</sup> + … + <var>b</var><sub><var>k</var></sub>2<sup>−<var>k</var></sup></span><span class="eq-note"><span class="say">Read it as: “0.b<sub>1</sub>b<sub>2</sub>…b<sub>k</sub> is b<sub>1</sub> halves plus b<sub>2</sub> quarters plus …”: each bit times its power of one half.</span>Each b<sub>i</sub> is 0 or 1. A leading integer part is evaluated with non-negative powers of 2.</span></div>
+          <div class="figs"><figure class="viz" data-kind="bits" data-cells="0.||1|;*1||1|1/2;0||1|1/4;*1||1|1/8"><figcaption><strong>0.101<sub>2</sub></strong> = 1/2 + 1/8 = 0.625: each place after the point is worth half the one before.</figcaption></figure></div>
           <div class="worked"><p class="worked-title">Worked conversion · binary fraction to decimal</p><p>Convert 0.01101<sub>2</sub> to decimal.</p><ol>
             <li>Use the five place values: 1/2, 1/4, 1/8, 1/16, and 1/32.</li>
             <li>Keep the places where the bit is 1: 1/4 + 1/8 + 1/32.</li>
@@ -295,6 +296,7 @@
             <tr><td>−127</td><td>0000 0000</td></tr><tr><td>0</td><td>0111 1111</td></tr><tr><td>1</td><td>1000 0000</td></tr><tr><td>128</td><td>1111 1111</td></tr>
           </tbody></table></div>
           <div class="eq"><strong>Normalised value rule</strong><span class="formula">value = (−1)<sup><var>S</var></sup> × 1.<var>F</var> × 2<sup><var>E</var>−bias</sup></span><span class="formula">Single bias = 127</span><span class="formula">double bias = 1023</span><span class="eq-note"><span class="say">Read it as: “value is −1 to the S, times 1.F, times 2 to the (E minus bias)”: the sign, the stored fraction with its hidden 1, and the exponent once the bias is removed.</span>S is the sign bit, E is the unsigned exponent field, and F is the stored fraction interpreted after the binary point. This rule is for normalised values.</span></div>
+          <div class="figs"><figure class="viz" data-kind="bits" data-cells="S|sign|1|1 bit;E|exponent|3|8 bits;F|fraction|6|23 bits"><figcaption><strong>IEEE 754 single precision</strong>: 1 sign bit, 8 exponent bits stored with bias 127, and 23 fraction bits after the hidden 1, 32 bits in all.</figcaption></figure></div>
           <h3>Convert decimal to single precision</h3>
           <div class="worked"><p class="worked-title">Worked conversion · 42.6875</p><ol>
             <li>Convert to binary: 42.6875=101010.1011<sub>2</sub>.</li>

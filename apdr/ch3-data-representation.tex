@@ -214,6 +214,34 @@ In base b, each digit d\textsubscript{i} contributes d\textsubscript{i}b\textsup
 {\small \emph{Read it as: “the number with digits d\textsubscript{k} down to d\textsubscript{0} in base b is the sum of d\textsubscript{i} times b to the i”: each digit times its place value.}\par The worked binary number is 98 in decimal. Subscripts identify the base.}
 \end{equationcard}
 
+\Needspace{14\baselineskip}
+\begin{center}
+\begin{minipage}[t]{0.950\linewidth}\centering
+\begin{tikzpicture}
+\node[,inner sep=1pt,font=\scriptsize] at (0.306,-0.252) {64};
+\filldraw[draw=black!50,fill=FAUblue!25] (0.072,-0.360) rectangle (0.540,-0.900);
+\node[,inner sep=1pt,font=\small] at (0.306,-0.630) {1};
+\node[,inner sep=1pt,font=\scriptsize] at (0.774,-0.252) {32};
+\filldraw[draw=black!50,fill=FAUblue!25] (0.540,-0.360) rectangle (1.008,-0.900);
+\node[,inner sep=1pt,font=\small] at (0.774,-0.630) {1};
+\node[,inner sep=1pt,font=\scriptsize] at (1.242,-0.252) {16};
+\filldraw[draw=black!50,fill=Paperblue] (1.008,-0.360) rectangle (1.476,-0.900);
+\node[,inner sep=1pt,font=\small] at (1.242,-0.630) {0};
+\node[,inner sep=1pt,font=\scriptsize] at (1.710,-0.252) {8};
+\filldraw[draw=black!50,fill=Paperblue] (1.476,-0.360) rectangle (1.944,-0.900);
+\node[,inner sep=1pt,font=\small] at (1.710,-0.630) {0};
+\node[,inner sep=1pt,font=\scriptsize] at (2.178,-0.252) {4};
+\filldraw[draw=black!50,fill=Paperblue] (1.944,-0.360) rectangle (2.412,-0.900);
+\node[,inner sep=1pt,font=\small] at (2.178,-0.630) {0};
+\node[,inner sep=1pt,font=\scriptsize] at (2.646,-0.252) {2};
+\filldraw[draw=black!50,fill=FAUblue!25] (2.412,-0.360) rectangle (2.880,-0.900);
+\node[,inner sep=1pt,font=\small] at (2.646,-0.630) {1};
+\node[,inner sep=1pt,font=\scriptsize] at (3.114,-0.252) {1};
+\filldraw[draw=black!50,fill=Paperblue] (2.880,-0.360) rectangle (3.348,-0.900);
+\node[,inner sep=1pt,font=\small] at (3.114,-0.630) {0};
+\end{tikzpicture}\par\smallskip{\small\raggedright \textbf{(1100010)\textsubscript{2}}: add the place values above each 1: 64 + 32 + 2 = 98.\par}\end{minipage}
+\end{center}
+
 \begin{workedbox}{Worked conversion \ensuremath{\cdot} decimal to binary}
 Convert 45 to binary by repeated division.
 
@@ -322,6 +350,25 @@ Excess exists to keep numbers in order. In two’s complement a negative value s
 \[ \begin{gathered} \text{Two}’\mathrm{s}-\text{complement}\, \text{value}\, =\, \text{unsigned}(\text{pattern})\, -\, 2^{{n}}\, \text{when}\, \text{the}\, \text{top}\, \text{bit}\, \text{is}\, 1 \\ \text{Negate}\, {x}:\, \text{invert}\, {n}\, \text{bits},\, \text{then}\, \text{add}\, 1 \\ \text{Excess}-\mathrm{B}\, \text{value}\, =\, \text{stored}\, \text{value}\, -\, {B} \end{gathered} \]
 {\small \emph{Read it as: “when the top bit is 1, the two’s-complement value is the unsigned value minus 2\textsuperscript{n}”; to negate, flip every bit and add 1.}\par Keep the width fixed throughout. The same bit pattern has no signed meaning until an encoding is specified.}
 \end{equationcard}
+
+\Needspace{14\baselineskip}
+\begin{center}
+\begin{minipage}[t]{0.950\linewidth}\centering
+\begin{tikzpicture}
+\node[,inner sep=1pt,font=\scriptsize] at (0.306,-0.252) {\ensuremath{-}8};
+\filldraw[draw=black!50,fill=FAUblue!25] (0.072,-0.360) rectangle (0.540,-0.900);
+\node[,inner sep=1pt,font=\small] at (0.306,-0.630) {1};
+\node[,inner sep=1pt,font=\scriptsize] at (0.774,-0.252) {4};
+\filldraw[draw=black!50,fill=Paperblue] (0.540,-0.360) rectangle (1.008,-0.900);
+\node[,inner sep=1pt,font=\small] at (0.774,-0.630) {0};
+\node[,inner sep=1pt,font=\scriptsize] at (1.242,-0.252) {2};
+\filldraw[draw=black!50,fill=FAUblue!25] (1.008,-0.360) rectangle (1.476,-0.900);
+\node[,inner sep=1pt,font=\small] at (1.242,-0.630) {1};
+\node[,inner sep=1pt,font=\scriptsize] at (1.710,-0.252) {1};
+\filldraw[draw=black!50,fill=FAUblue!25] (1.476,-0.360) rectangle (1.944,-0.900);
+\node[,inner sep=1pt,font=\small] at (1.710,-0.630) {1};
+\end{tikzpicture}\par\smallskip{\small\raggedright \textbf{Four-bit two’s complement}: the top bit weighs \ensuremath{-}8, so 1011 = \ensuremath{-}8 + 2 + 1 = \ensuremath{-}5.\par}\end{minipage}
+\end{center}
 \end{keepsection}
 
 \begin{keepsection}

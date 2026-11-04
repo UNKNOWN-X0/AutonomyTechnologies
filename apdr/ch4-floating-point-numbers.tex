@@ -338,6 +338,24 @@ Each following bit has half the previous weight.
 {\small \emph{Read it as: “0.b\textsubscript{1}b\textsubscript{2}…b\textsubscript{k} is b\textsubscript{1} halves plus b\textsubscript{2} quarters plus …”: each bit times its power of one half.}\par Each b\textsubscript{i} is 0 or 1. A leading integer part is evaluated with non-negative powers of 2.}
 \end{equationcard}
 
+\Needspace{14\baselineskip}
+\begin{center}
+\begin{minipage}[t]{0.950\linewidth}\centering
+\begin{tikzpicture}
+\filldraw[draw=black!50,fill=Paperblue] (0.072,-0.360) rectangle (0.540,-0.900);
+\node[,inner sep=1pt,font=\small] at (0.306,-0.630) {0.};
+\node[,inner sep=1pt,font=\scriptsize] at (0.774,-0.252) {1/2};
+\filldraw[draw=black!50,fill=FAUblue!25] (0.540,-0.360) rectangle (1.008,-0.900);
+\node[,inner sep=1pt,font=\small] at (0.774,-0.630) {1};
+\node[,inner sep=1pt,font=\scriptsize] at (1.242,-0.252) {1/4};
+\filldraw[draw=black!50,fill=Paperblue] (1.008,-0.360) rectangle (1.476,-0.900);
+\node[,inner sep=1pt,font=\small] at (1.242,-0.630) {0};
+\node[,inner sep=1pt,font=\scriptsize] at (1.710,-0.252) {1/8};
+\filldraw[draw=black!50,fill=FAUblue!25] (1.476,-0.360) rectangle (1.944,-0.900);
+\node[,inner sep=1pt,font=\small] at (1.710,-0.630) {1};
+\end{tikzpicture}\par\smallskip{\small\raggedright \textbf{0.101\textsubscript{2}} = 1/2 + 1/8 = 0.625: each place after the point is worth half the one before.\par}\end{minipage}
+\end{center}
+
 \begin{workedbox}{Worked conversion \ensuremath{\cdot} binary fraction to decimal}
 Convert 0.01101\textsubscript{2} to decimal.
 
@@ -569,6 +587,25 @@ The exponent field stores an excess (biased) value rather than a two’s-complem
 \[ \begin{gathered} \text{value}\, =\, (-1)^{{S}}\, \times \, 1.{F}\, \times \, 2^{{E}-\text{bias}} \\ \text{Single}\, \text{bias}\, =\, 127 \\ \text{double}\, \text{bias}\, =\, 1023 \end{gathered} \]
 {\small \emph{Read it as: “value is \ensuremath{-}1 to the S, times 1.F, times 2 to the (E minus bias)”: the sign, the stored fraction with its hidden 1, and the exponent once the bias is removed.}\par S is the sign bit, E is the unsigned exponent field, and F is the stored fraction interpreted after the binary point. This rule is for normalised values.}
 \end{equationcard}
+
+\Needspace{14\baselineskip}
+\begin{center}
+\begin{minipage}[t]{0.950\linewidth}\centering
+\begin{tikzpicture}
+\node[,inner sep=1pt,font=\scriptsize] at (0.306,-0.252) {1 bit};
+\filldraw[draw=black!50,fill=Paperblue] (0.072,-0.360) rectangle (0.540,-0.900);
+\node[,inner sep=1pt,font=\small] at (0.306,-0.630) {S};
+\node[,inner sep=1pt,font=\scriptsize] at (0.306,-1.188) {sign};
+\node[,inner sep=1pt,font=\scriptsize] at (1.242,-0.252) {8 bits};
+\filldraw[draw=black!50,fill=Paperblue] (0.540,-0.360) rectangle (1.944,-0.900);
+\node[,inner sep=1pt,font=\small] at (1.242,-0.630) {E};
+\node[,inner sep=1pt,font=\scriptsize] at (1.242,-1.188) {exponent};
+\node[,inner sep=1pt,font=\scriptsize] at (3.348,-0.252) {23 bits};
+\filldraw[draw=black!50,fill=Paperblue] (1.944,-0.360) rectangle (4.752,-0.900);
+\node[,inner sep=1pt,font=\small] at (3.348,-0.630) {F};
+\node[,inner sep=1pt,font=\scriptsize] at (3.348,-1.188) {fraction};
+\end{tikzpicture}\par\smallskip{\small\raggedright \textbf{IEEE 754 single precision}: 1 sign bit, 8 exponent bits stored with bias 127, and 23 fraction bits after the hidden 1, 32 bits in all.\par}\end{minipage}
+\end{center}
 \end{keepsection}
 
 \begin{keepsection}

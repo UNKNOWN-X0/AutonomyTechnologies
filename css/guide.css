@@ -1897,3 +1897,123 @@ main li sup {
 .arrows:has(> .amap:nth-child(4)) > .amap {
   flex-basis: calc(50% - 16px);
 }
+
+/* Picture diagrams (figure.viz, drawn by js/guide.js; the PDF draws the same data in TikZ). A row of them sits in
+   div.figs, laid out like the arrow diagrams. Thick, shaded or filled parts are in the action colour. */
+.figs {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 18px 32px;
+  max-width: var(--measure);
+  margin: 20px auto;
+}
+.figs:has(> figure:nth-child(4)) > figure {
+  flex-basis: calc(50% - 16px);
+}
+.viz {
+  flex: 0 1 240px;
+  margin: 0;
+}
+.figs > .amap {
+  flex: 0 1 220px;
+}
+.viz svg {
+  display: block;
+  max-width: 100%;
+  height: auto;
+  margin: 0 auto 10px;
+  overflow: visible;
+}
+.viz figcaption {
+  font-size: 0.9rem;
+  line-height: 1.45;
+  color: var(--muted);
+}
+.viz figcaption strong {
+  color: var(--ink);
+}
+.vz-line {
+  fill: none;
+  stroke: var(--ink);
+  stroke-width: 1.4;
+}
+.vz-line.thick {
+  stroke-width: 2.2;
+}
+.vz-dash {
+  fill: none;
+  stroke: var(--muted);
+  stroke-width: 1.2;
+  stroke-dasharray: 4 3;
+}
+.vz-seg {
+  stroke: var(--act);
+  stroke-width: 4;
+}
+.vz-plate {
+  stroke: var(--ink);
+  stroke-width: 5;
+}
+.vz-head {
+  fill: var(--ink);
+}
+.vz-head.hot {
+  fill: var(--act);
+}
+.vz-fill {
+  fill: var(--act);
+  fill-opacity: 0.28;
+}
+.vz-bg {
+  fill: var(--surface);
+}
+.vz-dot {
+  fill: var(--act);
+  stroke: var(--act);
+  stroke-width: 2;
+}
+.vz-dot.open {
+  fill: var(--surface);
+}
+.vz-cell {
+  fill: var(--paper-2);
+  stroke: var(--line);
+  stroke-width: 1.5;
+}
+.vz-cell.hot {
+  fill: var(--act);
+  fill-opacity: 0.28;
+  stroke: var(--act);
+}
+.vz-charge {
+  fill: var(--act);
+}
+.vz-text {
+  fill: var(--ink);
+  font: 600 14px/1 var(--f-body);
+}
+.vz-small {
+  fill: var(--muted);
+  font: 500 12px/1 var(--f-body);
+}
+.vz-it {
+  font-family: "Cambria Math", "STIX Two Math", "Times New Roman", serif;
+  font-style: italic;
+  font-size: 15px;
+}
+.vz-num {
+  font-variant-numeric: tabular-nums;
+  letter-spacing: 0.06em;
+}
+.vz-acc {
+  fill: var(--act);
+  font-weight: 700;
+}
+.vz-on {
+  fill: var(--surface);
+}
+.vz-text.vz-on {
+  font-size: 17px;
+  font-weight: 800;
+}

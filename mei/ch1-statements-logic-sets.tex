@@ -440,6 +440,53 @@ Each operation is easiest to understand by asking when an arbitrary element x be
 {\small \emph{Read it as: “x is in A union B exactly when x is in A or x is in B”, and the same with “and” for the intersection.}\par Pairs are ordered: (a,b) is generally different from (b,a). A complement is defined for A \ensuremath{\subset} X, relative to X. The notes also write an overline, A̅, for A\ensuremath{^{c}}.}
 \end{equationcard}
 
+\Needspace{14\baselineskip}
+\begin{center}
+\begin{minipage}[t]{0.223\linewidth}\centering
+\begin{tikzpicture}
+\fill[FAUblue!25] (1.404,-1.224) circle (0.792);
+\fill[FAUblue!25] (2.196,-1.224) circle (0.792);
+\draw[black!70] (0.072,-0.072) rectangle (3.528,-2.268);
+\draw[black!80] (1.404,-1.224) circle (0.792);
+\draw[black!80] (2.196,-1.224) circle (0.792);
+\node[,inner sep=1pt,font=\small] at (0.504,-0.576) {\textit{A}};
+\node[,inner sep=1pt,font=\small] at (3.096,-0.576) {\textit{B}};
+\node[anchor=west,inner sep=1pt,font=\footnotesize] at (0.216,-2.088) {\textit{X}};
+\end{tikzpicture}\par\smallskip{\small\raggedright \textbf{A \ensuremath{\cup} B}: everything in A, in B, or in both.\par}\end{minipage}\hfill
+\begin{minipage}[t]{0.223\linewidth}\centering
+\begin{tikzpicture}
+\begin{scope}\clip (1.404,-1.224) circle (0.792); \fill[FAUblue!25] (2.196,-1.224) circle (0.792); \end{scope}
+\draw[black!70] (0.072,-0.072) rectangle (3.528,-2.268);
+\draw[black!80] (1.404,-1.224) circle (0.792);
+\draw[black!80] (2.196,-1.224) circle (0.792);
+\node[,inner sep=1pt,font=\small] at (0.504,-0.576) {\textit{A}};
+\node[,inner sep=1pt,font=\small] at (3.096,-0.576) {\textit{B}};
+\node[anchor=west,inner sep=1pt,font=\footnotesize] at (0.216,-2.088) {\textit{X}};
+\end{tikzpicture}\par\smallskip{\small\raggedright \textbf{A \ensuremath{\cap} B}: only what is in both.\par}\end{minipage}\hfill
+\begin{minipage}[t]{0.223\linewidth}\centering
+\begin{tikzpicture}
+\fill[FAUblue!25] (1.404,-1.224) circle (0.792);
+\fill[white] (2.196,-1.224) circle (0.792);
+\draw[black!70] (0.072,-0.072) rectangle (3.528,-2.268);
+\draw[black!80] (1.404,-1.224) circle (0.792);
+\draw[black!80] (2.196,-1.224) circle (0.792);
+\node[,inner sep=1pt,font=\small] at (0.504,-0.576) {\textit{A}};
+\node[,inner sep=1pt,font=\small] at (3.096,-0.576) {\textit{B}};
+\node[anchor=west,inner sep=1pt,font=\footnotesize] at (0.216,-2.088) {\textit{X}};
+\end{tikzpicture}\par\smallskip{\small\raggedright \textbf{A \textbackslash{} B}: what is in A but not in B.\par}\end{minipage}\hfill
+\begin{minipage}[t]{0.223\linewidth}\centering
+\begin{tikzpicture}
+\fill[FAUblue!25] (0.072,-0.072) rectangle (3.528,-2.268);
+\fill[white] (1.404,-1.224) circle (0.792);
+\draw[black!70] (0.072,-0.072) rectangle (3.528,-2.268);
+\draw[black!80] (1.404,-1.224) circle (0.792);
+\draw[black!80] (2.196,-1.224) circle (0.792);
+\node[,inner sep=1pt,font=\small] at (0.504,-0.576) {\textit{A}};
+\node[,inner sep=1pt,font=\small] at (3.096,-0.576) {\textit{B}};
+\node[anchor=west,inner sep=1pt,font=\footnotesize] at (0.216,-2.088) {\textit{X}};
+\end{tikzpicture}\par\smallskip{\small\raggedright \textbf{A\ensuremath{^{c}}}: everything in X that is not in A.\par}\end{minipage}
+\end{center}
+
 \Needspace{12\baselineskip}
 Union collects elements in either set; intersection keeps elements in both; difference keeps elements in A but removes those in B. The Cartesian product contains ordered pairs, not sets of the factors.
 

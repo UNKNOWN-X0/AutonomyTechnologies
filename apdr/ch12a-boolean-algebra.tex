@@ -224,6 +224,42 @@ Write the structure as (B, +, \ensuremath{\cdot}, ', 0, 1). Join (+) and meet (\
 \end{equationcard}
 
 \Needspace{14\baselineskip}
+\begin{center}
+\begin{minipage}[t]{0.303\linewidth}\centering
+\begin{tikzpicture}
+\begin{scope}\clip (1.404,-1.224) circle (0.792); \fill[FAUblue!25] (2.196,-1.224) circle (0.792); \end{scope}
+\draw[black!70] (0.072,-0.072) rectangle (3.528,-2.268);
+\draw[black!80] (1.404,-1.224) circle (0.792);
+\draw[black!80] (2.196,-1.224) circle (0.792);
+\node[,inner sep=1pt,font=\small] at (0.504,-0.576) {\textit{x}};
+\node[,inner sep=1pt,font=\small] at (3.096,-0.576) {\textit{y}};
+\node[anchor=west,inner sep=1pt,font=\footnotesize] at (0.216,-2.088) {\textit{1}};
+\end{tikzpicture}\par\smallskip{\small\raggedright \textbf{x \ensuremath{\cdot} y}: in the set view, meet is intersection.\par}\end{minipage}\hfill
+\begin{minipage}[t]{0.303\linewidth}\centering
+\begin{tikzpicture}
+\fill[FAUblue!25] (1.404,-1.224) circle (0.792);
+\fill[FAUblue!25] (2.196,-1.224) circle (0.792);
+\draw[black!70] (0.072,-0.072) rectangle (3.528,-2.268);
+\draw[black!80] (1.404,-1.224) circle (0.792);
+\draw[black!80] (2.196,-1.224) circle (0.792);
+\node[,inner sep=1pt,font=\small] at (0.504,-0.576) {\textit{x}};
+\node[,inner sep=1pt,font=\small] at (3.096,-0.576) {\textit{y}};
+\node[anchor=west,inner sep=1pt,font=\footnotesize] at (0.216,-2.088) {\textit{1}};
+\end{tikzpicture}\par\smallskip{\small\raggedright \textbf{x + y}: join is union.\par}\end{minipage}\hfill
+\begin{minipage}[t]{0.303\linewidth}\centering
+\begin{tikzpicture}
+\fill[FAUblue!25] (0.072,-0.072) rectangle (3.528,-2.268);
+\fill[white] (1.404,-1.224) circle (0.792);
+\draw[black!70] (0.072,-0.072) rectangle (3.528,-2.268);
+\draw[black!80] (1.404,-1.224) circle (0.792);
+\draw[black!80] (2.196,-1.224) circle (0.792);
+\node[,inner sep=1pt,font=\small] at (0.504,-0.576) {\textit{x}};
+\node[,inner sep=1pt,font=\small] at (3.096,-0.576) {\textit{y}};
+\node[anchor=west,inner sep=1pt,font=\footnotesize] at (0.216,-2.088) {\textit{1}};
+\end{tikzpicture}\par\smallskip{\small\raggedright \textbf{x′}: the complement is everything in 1 outside x.\par}\end{minipage}
+\end{center}
+
+\Needspace{14\baselineskip}
 \textbf{Duality} swaps + with \ensuremath{\cdot} and 0 with 1. The axiom list is self-dual, so every equation derivable from the axioms has a derivable dual. For example, x + x = (x + x)\ensuremath{\cdot}1 = (x + x)\ensuremath{\cdot}(x + x') = x + x\ensuremath{\cdot}x' = x uses the second distributive law, and its dual is x\ensuremath{\cdot}x = x. A \textbf{distributive complemented bounded lattice} is the same structure in order language: join and meet have bottom 0 and top 1, and each element has a complement.
 
 \begin{workedbox}{Worked proof \ensuremath{\cdot} complements are unique}

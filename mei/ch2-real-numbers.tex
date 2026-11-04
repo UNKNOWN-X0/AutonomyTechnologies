@@ -287,6 +287,25 @@ The field axioms encode commutativity, associativity, neutral elements, inverses
 {\small \emph{Read it as: “S is the supremum of M if no element of M is bigger than S, and S is no bigger than any other upper bound”: the smallest number that sits on or above the whole set.}\par The supremum is the least upper bound. It need not belong to M. An infimum is the greatest lower bound.}
 \end{equationcard}
 
+\Needspace{14\baselineskip}
+\begin{center}
+\begin{minipage}[t]{0.950\linewidth}\centering
+\begin{tikzpicture}
+\draw[-{Stealth[length=4pt]},black!80] (0.180,-0.612) -- (4.896,-0.612);
+\draw[black!80] (1.267,-0.522) -- (1.267,-0.702);
+\node[,inner sep=1pt,font=\footnotesize] at (1.267,-1.008) {-1};
+\draw[black!80] (2.102,-0.522) -- (2.102,-0.702);
+\node[,inner sep=1pt,font=\footnotesize] at (2.102,-1.008) {0};
+\draw[black!80] (2.938,-0.522) -- (2.938,-0.702);
+\node[,inner sep=1pt,font=\footnotesize] at (2.938,-1.008) {1};
+\draw[black!80] (3.773,-0.522) -- (3.773,-0.702);
+\node[,inner sep=1pt,font=\footnotesize] at (3.773,-1.008) {2};
+\draw[FAUblue,line width=2.2pt] (0.216,-0.612) -- (2.938,-0.612);
+\filldraw[draw=FAUblue,fill=white,line width=1pt] (2.938,-0.612) circle (0.090);
+\node[text=FAUblue,inner sep=1pt,font=\footnotesize] at (2.938,-0.396) {sup M};
+\end{tikzpicture}\par\smallskip{\small\raggedright \textbf{M = \{\textit{x} : \textit{x} \ensuremath{<} 1\}} runs up to 1 without reaching it. 1 is its supremum; the hollow end shows that 1 is not in M, so M has no maximum.\par}\end{minipage}
+\end{center}
+
 \Needspace{10\baselineskip}
 For M=\{1, 1/2, 1/3,…\}, sup(M)=1 and inf(M)=0. The maximum is 1 because 1\ensuremath{\in}M; there is no minimum because 0\ensuremath{\notin}M. The completeness axiom says every non-empty real subset bounded above has a supremum in \ensuremath{\mathbb{R}}. It is the property that fills the “gaps” missing in \ensuremath{\mathbb{Q}}.
 
@@ -331,6 +350,32 @@ Absolute value turns signs into distance, while the order axioms let you solve d
 \[ \begin{gathered} |{x}|\, =\, {x}\, \text{if}\, {x}\, \geq \, 0 \\ |{x}|\, =\, -{x}\, \text{if}\, {x}\, <\, 0 \end{gathered} \]
 {\small \emph{Read it as: “the absolute value of x is x when x is not negative, and minus x when x is negative”: either way the result is not negative.}\par |x| is distance from x to 0; |x\ensuremath{-}a| is distance from x to a. In particular, \ensuremath{\surd}(x\textsuperscript{2})=|x|.}
 \end{equationcard}
+
+\Needspace{14\baselineskip}
+\begin{center}
+\begin{minipage}[t]{0.950\linewidth}\centering
+\begin{tikzpicture}
+\draw[-{Stealth[length=4pt]},black!80] (0.180,-0.612) -- (4.896,-0.612);
+\draw[black!80] (0.954,-0.522) -- (0.954,-0.702);
+\node[,inner sep=1pt,font=\footnotesize] at (0.954,-1.008) {0};
+\draw[black!80] (1.476,-0.522) -- (1.476,-0.702);
+\node[,inner sep=1pt,font=\footnotesize] at (1.476,-1.008) {1};
+\draw[black!80] (1.998,-0.522) -- (1.998,-0.702);
+\node[,inner sep=1pt,font=\footnotesize] at (1.998,-1.008) {2};
+\draw[black!80] (2.520,-0.522) -- (2.520,-0.702);
+\node[,inner sep=1pt,font=\footnotesize] at (2.520,-1.008) {3};
+\draw[black!80] (3.042,-0.522) -- (3.042,-0.702);
+\node[,inner sep=1pt,font=\footnotesize] at (3.042,-1.008) {4};
+\draw[black!80] (3.564,-0.522) -- (3.564,-0.702);
+\node[,inner sep=1pt,font=\footnotesize] at (3.564,-1.008) {5};
+\draw[black!80] (4.086,-0.522) -- (4.086,-0.702);
+\node[,inner sep=1pt,font=\footnotesize] at (4.086,-1.008) {6};
+\draw[FAUblue,line width=2.2pt] (1.476,-0.612) -- (3.564,-0.612);
+\filldraw[draw=FAUblue,fill=white,line width=1pt] (1.476,-0.612) circle (0.090);
+\filldraw[draw=FAUblue,fill=white,line width=1pt] (3.564,-0.612) circle (0.090);
+\node[text=FAUblue,inner sep=1pt,font=\footnotesize] at (2.520,-0.396) {centre};
+\end{tikzpicture}\par\smallskip{\small\raggedright \textbf{|\textit{x} \ensuremath{-} 3| \ensuremath{<} 2} is every \textit{x} less than 2 away from 3: the open interval (1, 5). The ends are hollow because a distance of exactly 2 is not allowed.\par}\end{minipage}
+\end{center}
 
 \begin{equationcard}{Absolute-value laws}
 \[ \begin{gathered} |\text{xy}|\, =\, |{x}||{y}| \\ ||{x}|-|{y}||\, \leq \, |{x}+{y}|\, \leq \, |{x}|+|{y}| \end{gathered} \]
