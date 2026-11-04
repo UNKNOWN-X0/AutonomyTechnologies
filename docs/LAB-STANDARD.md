@@ -78,6 +78,7 @@ Chapter numbers may include a lowercase letter suffix (for example, `12a` or `34
   - Stages have a minimum height (about 336 px, or 448 px for stages with gauges or plots) and grow to the card.
 - **The compact card:** options as a list, the confidence switch and Reveal on one row. After the reveal, a "You said … (confidence). Answer …" line and the explanation replace the question block.
 - **Sandbox controls** are hidden during a challenge and appear under the stage in columns once the challenges are done or Explore freely is pressed.
+- **Control boxes:** dropdowns, text and number fields share one box (2 px ink border, 40 px tall, 15em wide at most) and sit in a label column on wide screens, so a column of controls lines up. `js/lab.js` replaces every `.controls select` with its own listbox dropdown (keyboard: arrows, Home, End, Enter, Escape, type to jump); the native select stays in the page, hidden, and keeps its `value` and `change` events, so lab code reads and sets it as before.
 
 ## Motion
 

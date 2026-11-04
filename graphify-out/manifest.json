@@ -102,9 +102,9 @@
     "semantic_hash": ""
   },
   "js/lab.js": {
-    "mtime": 1793827864.8092005,
-    "seen": 1793828253.872843,
-    "ast_hash": "fcfca43f968d0bfbac110729d6de8501",
+    "mtime": 1793831070.476928,
+    "seen": 1793831111.060597,
+    "ast_hash": "8bcc2c739db9db91c927edc1cc051139",
     "semantic_hash": ""
   },
   "tests/eei-ch1-physics.test.js": {
@@ -150,9 +150,9 @@
     "semantic_hash": ""
   },
   "docs/LAB-STANDARD.md": {
-    "mtime": 1793827981.6536355,
-    "seen": 1793828253.87291,
-    "ast_hash": "609fa1abf5c3855237c40358527ac779",
+    "mtime": 1793831089.605625,
+    "seen": 1793831111.06068,
+    "ast_hash": "1a27fc597edd11490b14cb423e2ba9b0",
     "semantic_hash": ""
   },
   "mei/ch1-statements-logic-sets.html": {
@@ -240,9 +240,9 @@
     "semantic_hash": ""
   },
   "tests/apdr-ch3-physics.test.js": {
-    "mtime": 1793613358.8136017,
-    "seen": 1793624688.337302,
-    "ast_hash": "9942fd92ebad1505660879ef2550d388",
+    "mtime": 1793829809.9129612,
+    "seen": 1793831111.06062,
+    "ast_hash": "1dca4a6d0bfe67a99f25ec39ac8e0386",
     "semantic_hash": ""
   },
   "apdr/ch3-data-representation-lab.html": {
@@ -462,9 +462,9 @@
     "semantic_hash": ""
   },
   "about/version-log.html": {
-    "mtime": 1793829558.3037236,
-    "seen": 1793829779.600789,
-    "ast_hash": "e3240ddbddc66675c068a6e7f844592d",
+    "mtime": 1793831089.606437,
+    "seen": 1793831111.0606568,
+    "ast_hash": "e7f38da6067aef394ab4950ba987d97b",
     "semantic_hash": ""
   },
   "docs/DIAGRAM-AND-LAB-PLAN.md": {

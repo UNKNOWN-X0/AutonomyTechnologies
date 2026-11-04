@@ -381,6 +381,119 @@
     }
   }
 
+  // Custom dropdowns (owner's request, 2026-11-04: no native popup menus). Each lab <select> gets a button and a listbox
+  // in the site's style; the native select stays in the page, hidden, as the single source of the value, so every lab
+  // script keeps reading and setting select.value as before. Setting the value in code or resetting the form redraws
+  // the button. Keyboard: Enter, Space or the arrows open it; the arrows move, Enter picks, Escape closes; typing a
+  // letter jumps to an option.
+  var uid = 0;
+  function chevron() {
+    var NS = "http://www.w3.org/2000/svg", svg = document.createElementNS(NS, "svg"), p = document.createElementNS(NS, "path");
+    svg.setAttribute("viewBox", "0 0 12 12"); svg.setAttribute("width", "12"); svg.setAttribute("height", "12"); svg.setAttribute("aria-hidden", "true"); svg.setAttribute("class", "cselect-chev");
+    p.setAttribute("d", "M2 4l4 4 4-4"); p.setAttribute("fill", "none"); p.setAttribute("stroke", "currentColor"); p.setAttribute("stroke-width", "2");
+    svg.appendChild(p);
+    return svg;
+  }
+  function enhanceSelect(sel) {
+    if (sel.dataset.enhanced) return;
+    sel.dataset.enhanced = "1";
+    var wrap = h("span", "cselect"), btn = h("button", "cselect-btn"), list = h("ul", "cselect-list"), label = sel.closest("label");
+    btn.type = "button";
+    btn.setAttribute("aria-haspopup", "listbox");
+    btn.setAttribute("aria-expanded", "false");
+    list.id = "cselect-" + ++uid;
+    list.setAttribute("role", "listbox");
+    list.hidden = true;
+    btn.setAttribute("aria-controls", list.id);
+    if (label) btn.setAttribute("aria-label", (label.firstChild && label.firstChild.textContent || "").trim() || "Choose");
+    sel.parentNode.insertBefore(wrap, sel);
+    // the button comes first, so a click on the label text opens the list rather than the hidden select
+    wrap.appendChild(btn);
+    wrap.appendChild(sel);
+    wrap.appendChild(list);
+    sel.classList.add("cselect-native");
+    sel.tabIndex = -1;
+    sel.setAttribute("aria-hidden", "true");
+    function render() {
+      var o = sel.options[sel.selectedIndex];
+      btn.textContent = "";
+      btn.appendChild(h("span", "cselect-text", o ? o.text : ""));
+      btn.appendChild(chevron());
+      btn.disabled = sel.disabled;
+      list.innerHTML = "";
+      Array.prototype.forEach.call(sel.options, function (opt, i) {
+        var li = h("li", "cselect-opt", opt.text);
+        li.setAttribute("role", "option");
+        li.tabIndex = -1;
+        li.setAttribute("aria-selected", String(i === sel.selectedIndex));
+        li.addEventListener("click", function () { choose(i); });
+        list.appendChild(li);
+      });
+    }
+    function open(focusIndex) {
+      if (btn.disabled) return;
+      list.hidden = false;
+      btn.setAttribute("aria-expanded", "true");
+      var r = btn.getBoundingClientRect();
+      wrap.classList.toggle("up", window.innerHeight - r.bottom < Math.min(280, list.scrollHeight + 12) && r.top > window.innerHeight - r.bottom);
+      var li = list.children[focusIndex != null ? focusIndex : Math.max(0, sel.selectedIndex)];
+      if (li) li.focus({ preventScroll: true }), li.scrollIntoView({ block: "nearest" });
+    }
+    function close(refocus) {
+      list.hidden = true;
+      btn.setAttribute("aria-expanded", "false");
+      if (refocus) btn.focus({ preventScroll: true });
+    }
+    function choose(i) {
+      var changed = i !== sel.selectedIndex;
+      sel.selectedIndex = i;
+      close(true);
+      if (changed) sel.dispatchEvent(new Event("change", { bubbles: true }));
+    }
+    btn.addEventListener("click", function () { if (list.hidden) open(); else close(true); });
+    btn.addEventListener("keydown", function (ev) {
+      if (["ArrowDown", "ArrowUp", "Enter", " "].indexOf(ev.key) >= 0) { ev.preventDefault(); open(); }
+    });
+    list.addEventListener("keydown", function (ev) {
+      var items = Array.prototype.slice.call(list.children), at = items.indexOf(document.activeElement);
+      if (ev.key === "ArrowDown" || ev.key === "ArrowUp") {
+        ev.preventDefault();
+        var n = Math.max(0, Math.min(items.length - 1, at + (ev.key === "ArrowDown" ? 1 : -1)));
+        items[n].focus(); items[n].scrollIntoView({ block: "nearest" });
+      } else if (ev.key === "Home" || ev.key === "End") {
+        ev.preventDefault(); items[ev.key === "Home" ? 0 : items.length - 1].focus();
+      } else if (ev.key === "Enter" || ev.key === " ") {
+        ev.preventDefault(); if (at >= 0) choose(at);
+      } else if (ev.key === "Escape") {
+        ev.preventDefault(); close(true);
+      } else if (ev.key === "Tab") {
+        close(false);
+      } else if (ev.key.length === 1) {
+        var k = ev.key.toLowerCase(), hit = items.findIndex(function (li, j) { return j > at && li.textContent.trim().toLowerCase().indexOf(k) === 0; });
+        if (hit < 0) hit = items.findIndex(function (li) { return li.textContent.trim().toLowerCase().indexOf(k) === 0; });
+        if (hit >= 0) items[hit].focus();
+      }
+    });
+    document.addEventListener("pointerdown", function (ev) { if (!list.hidden && !wrap.contains(ev.target)) close(false); });
+    // keep the button in step with code that sets the value directly, and with form resets
+    ["value", "selectedIndex"].forEach(function (prop) {
+      var d = Object.getOwnPropertyDescriptor(HTMLSelectElement.prototype, prop);
+      if (d && d.set) Object.defineProperty(sel, prop, { configurable: true, get: function () { return d.get.call(sel); }, set: function (v) { d.set.call(sel, v); render(); } });
+    });
+    sel.addEventListener("change", render);
+    if (sel.form) sel.form.addEventListener("reset", function () { setTimeout(render, 0); });
+    new MutationObserver(render).observe(sel, { attributes: true, attributeFilter: ["disabled"] });
+    var fs = sel.closest("fieldset");
+    if (fs) new MutationObserver(function () { btn.disabled = sel.disabled || fs.disabled; }).observe(fs, { attributes: true, attributeFilter: ["disabled"] });
+    render();
+  }
+  function enhanceAll() {
+    document.querySelectorAll(".controls select").forEach(enhanceSelect);
+  }
+  // Labs mount their experiments on DOMContentLoaded too; their own controls are in the page HTML, so order does not matter.
+  if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", enhanceAll);
+  else if (typeof setTimeout === "function") setTimeout(enhanceAll, 0);
+
   window.Lab = {
     experiment: function (def) {
       var x = new Experiment(def);
