@@ -1,17 +1,17 @@
 # Graph Report - AutonomyTechnologies  (2026-11-04)
 
 ## Corpus Check
-- 54 files · ~173,745 words
+- 54 files · ~174,131 words
 - Verdict: corpus is large enough that graph structure adds value.
 - Unclassified: 6 file(s) not represented in the graph (top: .css 4, (none) 2)
 
 ## Summary
-- 823 nodes · 1520 edges · 38 communities (34 shown, 4 thin omitted)
+- 824 nodes · 1522 edges · 38 communities (34 shown, 4 thin omitted)
 - Extraction: 87% EXTRACTED · 13% INFERRED · 0% AMBIGUOUS · INFERRED: 198 edges (avg confidence: 0.85)
 - Token cost: 0 input · 0 output
 
 ## Graph Freshness
-- Built from commit: `355f1687`
+- Built from commit: `fbad761c`
 - Run `git rev-parse HEAD` and compare to check if the graph is stale.
 - Run `graphify update .` after code changes (no API cost).
 
@@ -213,8 +213,8 @@ Cohesion: 0.21
 Nodes (21): bindSlider(), compositionDraw(), elementaryDraw(), X(), Y(), graphDraw(), line(), mappingDraw() (+13 more)
 
 ### Community 36 - "hud.js"
-Cohesion: 0.24
-Nodes (13): decode(), frame(), decodeAll(), fit(), fitAll(), fitFormulas(), glyph(), readout() (+5 more)
+Cohesion: 0.23
+Nodes (14): decode(), frame(), decodeAll(), fit(), fitAll(), fitFormulas(), glyph(), readout() (+6 more)
 
 ### Community 39 - "mei/ch3-physics.js"
 Cohesion: 0.14

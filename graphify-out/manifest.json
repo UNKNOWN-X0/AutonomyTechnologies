@@ -72,15 +72,15 @@
     "semantic_hash": ""
   },
   "js/guide.js": {
-    "mtime": 1793747219.7910202,
-    "seen": 1793747372.338974,
-    "ast_hash": "4bee73b91e4c5357d01b2ea477c8c820",
+    "mtime": 1793803241.317844,
+    "seen": 1793803471.116981,
+    "ast_hash": "a71ded5c14e45f29310665cc6fe6f0b9",
     "semantic_hash": ""
   },
   "tools/guide-to-tex.py": {
-    "mtime": 1793722229.1279216,
-    "seen": 1793722250.755195,
-    "ast_hash": "9f75d8657e33b7a978e015f071d5cfca",
+    "mtime": 1793803016.9156544,
+    "seen": 1793803471.1170182,
+    "ast_hash": "c953f4da5b25058a1e63ace2d1b656de",
     "semantic_hash": ""
   },
   "eei/ch1-electrostatic-fields.html": {
@@ -144,9 +144,9 @@
     "semantic_hash": ""
   },
   "docs/GUIDE-STANDARD.md": {
-    "mtime": 1793801351.9264944,
-    "seen": 1793802214.5538828,
-    "ast_hash": "dba09872a40f816a9939c6fa70c8f122",
+    "mtime": 1793803289.013412,
+    "seen": 1793803471.1170502,
+    "ast_hash": "04ecdc62f817a86c34d649a44986f07b",
     "semantic_hash": ""
   },
   "docs/LAB-STANDARD.md": {
@@ -408,9 +408,9 @@
     "semantic_hash": ""
   },
   "mei/ch3-mappings.html": {
-    "mtime": 1793801075.631596,
-    "seen": 1793801111.285107,
-    "ast_hash": "4979c5fb50667ff88e684532d6dbb4f2",
+    "mtime": 1793803241.318984,
+    "seen": 1793803471.117067,
+    "ast_hash": "f223b984f4ba6008ebb8fd54702e3c49",
     "semantic_hash": ""
   },
   "js/mei/ch3-lab.js": {
@@ -456,15 +456,15 @@
     "semantic_hash": ""
   },
   "about/how-to-use.html": {
-    "mtime": 1793800675.738338,
-    "seen": 1793800762.147386,
-    "ast_hash": "610b7688e33f668f6543583acc6365db",
+    "mtime": 1793803353.9479258,
+    "seen": 1793803471.11703,
+    "ast_hash": "7a2c3ad70e2d447aef76d6529a3b1574",
     "semantic_hash": ""
   },
   "about/version-log.html": {
-    "mtime": 1793802602.3152578,
-    "seen": 1793802644.4682188,
-    "ast_hash": "9ed9afc903fb7280c46f2e51e5c2cfbd",
+    "mtime": 1793803325.5042505,
+    "seen": 1793803471.1170309,
+    "ast_hash": "cb32fafd2ede634efc91b81cfd069288",
     "semantic_hash": ""
   }
 }

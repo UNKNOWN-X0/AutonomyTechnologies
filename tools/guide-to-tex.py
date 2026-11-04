@@ -114,6 +114,8 @@ def inline(node):
             out.append(r"(%s)/(%s)" % (inline(num), inline(den)))
         elif t == "span" and "sec-ref" in c:
             out.append(r"\hfill{\small\color{FAUblue}%s}" % inline(k))
+        elif t == "span" and "say" in c:
+            out.append(r"\emph{%s}\par " % inline(k))
         elif t == "input":
             out.append(r"$\mdlgwhtsquare$\ ")
         else:
@@ -204,6 +206,61 @@ def math_wrap(k):
     return math(tmp)
 
 
+# ---------- arrow diagrams (figure.amap) ----------
+def amap_data(f):
+    """Sets and arrows from data-sets="X: 1, 2 | Y: a, b" and data-map="1>a 2>b | …" (one group per gap)."""
+    sets = []
+    for part in f.attrs.get("data-sets", "").split("|"):
+        name, _, items = part.partition(":")
+        sets.append((name.strip(), [x.strip() for x in items.split(",") if x.strip()]))
+    maps = [[tuple(p.split(">", 1)) for p in g.split() if ">" in p] for g in f.attrs.get("data-map", "").split("|")]
+    return sets, maps
+
+
+def amap_label(s):
+    return "$%s$" % s if re.fullmatch(r"[A-Za-z0-9−+′'.]{1,4}", s) else tex_text(s)
+
+
+def amap_tikz(f):
+    sets, maps = amap_data(f)
+    rev = "data-rev" in f.attrs
+    ROW, BW, GAP = 0.5, 0.8, 1.3
+    out = [r"\begin{tikzpicture}[x=1cm,y=1cm,font=\small]"]
+    pos = {}
+    for si, (name, items) in enumerate(sets):
+        x0 = si * (BW + GAP)
+        hits = {}
+        if si > 0 and si - 1 < len(maps):
+            for a, b in maps[si - 1]:
+                hits[b] = hits.get(b, 0) + 1
+        outs = {}
+        if si < len(maps):
+            for a, b in maps[si]:
+                outs[a] = outs.get(a, 0) + 1
+        out.append(r"\draw[FAUblue!60] (%.2f,0.3) rectangle (%.2f,%.2f);" % (x0, x0 + BW, -(len(items) - 1) * ROW - 0.3))
+        out.append(r"\node[above] at (%.2f,0.3) {%s};" % (x0 + BW / 2, amap_label(name)))
+        for r_, it in enumerate(items):
+            y = -r_ * ROW
+            pos[(si, it)] = (x0, x0 + BW, y)
+            style = ""
+            if si > 0 and hits.get(it, 0) == 0:
+                style = "text=black!40"
+            elif hits.get(it, 0) > 1 or (si == 0 and si < len(maps) and outs.get(it, 0) != 1):
+                style = "text=FAUblue,font=\\small\\bfseries"
+            out.append(r"\node[%s] at (%.2f,%.2f) {%s};" % (style, x0 + BW / 2, y, amap_label(it)))
+    for gi, group in enumerate(maps):
+        for a, b in group:
+            if (gi, a) not in pos or (gi + 1, b) not in pos:
+                continue
+            ya, yb = pos[(gi, a)][2], pos[(gi + 1, b)][2]
+            x1, x2 = pos[(gi, a)][1] + 0.08, pos[(gi + 1, b)][0] - 0.08
+            if rev:
+                x1, x2, ya, yb = x2, x1, yb, ya
+            out.append(r"\draw[-{Stealth[length=4pt]},black!75] (%.2f,%.2f) -- (%.2f,%.2f);" % (x1, ya, x2, yb))
+    out.append(r"\end{tikzpicture}")
+    return "\n".join(out)
+
+
 # ---------- blocks ----------
 def est(n):
     """Rough height of a block in lines, for keeping blocks together."""
@@ -291,6 +348,8 @@ class Conv:
                 return ""
             if "method" in c:
                 return "\n\\begin{notebox}%s\\end{notebox}\n" % inline(k)
+            if "plain" in c:
+                return "\n\\begin{plainbox}%s\\end{plainbox}\n" % inline(k)
             if "source-note" in c:
                 return "\n\\vfill{\\small %s}\n" % inline(k)
             if "standfirst" in c:
@@ -322,6 +381,15 @@ class Conv:
             title = find(k, lambda n: n.tag == "p" and ("worked-title" in n.cls or "recall-title" in n.cls))
             rest = "".join(self.block(x) for x in k.kids if x is not title and (isinstance(x, Node) or x.strip()))
             return "\n\\begin{%s}{%s}%s\\end{%s}\n" % (env, inline(title) if title else "", rest, env)
+        if t == "div" and "arrows" in c:
+            figs = [n for n in k.kids if isinstance(n, Node) and n.tag == "figure" and "amap" in n.cls]
+            w = "%.3f" % (0.97 / max(1, min(len(figs), 4)) - 0.02)
+            cells = []
+            for f in figs:
+                cap = find(f, lambda n: n.tag == "figcaption")
+                cells.append("\\begin{minipage}[t]{%s\\linewidth}\\centering\n%s\\par\\smallskip{\\small\\raggedright %s\\par}\\end{minipage}"
+                             % (w, amap_tikz(f), inline(cap) if cap else ""))
+            return "\n\\Needspace{14\\baselineskip}\n\\begin{center}\n" + "\\hfill\n".join(cells) + "\n\\end{center}\n"
         if t == "div" and "tw" in c:
             return "\n\\Needspace{10\\baselineskip}" + self.table(find(k, lambda n: n.tag == "table"))
         return self.blocks(k)
@@ -417,6 +485,8 @@ PREAMBLE = r"""\documentclass[11pt]{article}
   \fi}
 \makeatother
 \newtcolorbox{notebox}{colback=Paperblue,colframe=Paperblue,boxrule=0pt,arc=0pt,left=8pt,right=8pt,top=4pt,bottom=4pt,before skip=6pt,after skip=6pt}
+\newtcolorbox{plainbox}{colback=white,colframe=FAUblue,boxrule=0pt,leftrule=3pt,arc=0pt,left=10pt,right=8pt,top=4pt,bottom=4pt,before skip=6pt,after skip=8pt}
+\usetikzlibrary{arrows.meta}
 \title{\sffamily\bfseries\color{FAUblue}@TITLE@}
 \author{@COURSE@\\[2pt]\small From Fundamentals to AI Apocalypse · personal study guide}
 \date{}

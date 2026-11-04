@@ -315,4 +315,92 @@
   var code = document.querySelector(".sign .code"),
     course = document.querySelector(".sign .course");
   if (code && course) code.dataset.tip = course.textContent.trim();
+
+  // Arrow diagrams (figure.amap): each set is a box with its elements, and each pair in data-map is an arrow.
+  // data-sets="X: 1, 2, 3 | Y: a, b, c", data-map="1>a 2>b | …" (one group per gap between sets), data-rev draws the
+  // arrows backwards (an inverse). An input without exactly one arrow and an output reached more than once are shown in
+  // action blue; an output never reached is greyed, so the property named in the caption can be seen. The PDF
+  // (tools/guide-to-tex.py) draws the same data with the same rules.
+  var NS = "http://www.w3.org/2000/svg";
+  function el(tag, attrs, parent) {
+    var n = document.createElementNS(NS, tag);
+    Object.keys(attrs).forEach(function (k) {
+      n.setAttribute(k, attrs[k]);
+    });
+    if (parent) parent.appendChild(n);
+    return n;
+  }
+  document.querySelectorAll("figure.amap").forEach(function (fig, fi) {
+    var sets = (fig.dataset.sets || "").split("|").map(function (part) {
+        var bits = part.split(":");
+        return {
+          name: bits[0].trim(),
+          items: (bits[1] || "").split(",").map(function (x) {
+            return x.trim();
+          }).filter(Boolean),
+        };
+      }),
+      maps = (fig.dataset.map || "").split("|").map(function (g) {
+        return g.trim().split(/\s+/).filter(function (p) {
+          return p.indexOf(">") > 0;
+        }).map(function (p) {
+          return p.split(">");
+        });
+      }),
+      rev = fig.hasAttribute("data-rev"),
+      ROW = 30,
+      BW = 48,
+      GAP = 72,
+      TOP = 36,
+      rows = Math.max.apply(null, sets.map(function (st) {
+        return st.items.length;
+      })),
+      W = sets.length * BW + (sets.length - 1) * GAP,
+      H = TOP + rows * ROW + 8,
+      svg = el("svg", { viewBox: "0 0 " + W + " " + H, width: W, height: H, role: "img" }),
+      pos = {},
+      said = [];
+    var defs = el("defs", {}, svg);
+    ["ink", "hot"].forEach(function (k) {
+      var m = el("marker", { id: "amap-" + fi + "-" + k, viewBox: "0 0 8 8", refX: "7", refY: "4", markerWidth: "7", markerHeight: "7", orient: "auto-start-reverse" }, defs);
+      el("path", { d: "M0 0 8 4 0 8z", class: "mk-" + k }, m);
+    });
+    sets.forEach(function (st, si) {
+      var x0 = si * (BW + GAP),
+        hits = {},
+        outs = {};
+      if (si > 0 && maps[si - 1]) maps[si - 1].forEach(function (p) { hits[p[1]] = (hits[p[1]] || 0) + 1; });
+      if (maps[si]) maps[si].forEach(function (p) { outs[p[0]] = (outs[p[0]] || 0) + 1; });
+      el("rect", { x: x0, y: TOP - 14, width: BW, height: st.items.length * ROW + 4, class: "set" }, svg);
+      el("text", { x: x0 + BW / 2, y: TOP - 20, class: "set-name" }, svg).textContent = st.name;
+      st.items.forEach(function (it, r) {
+        var y = TOP + r * ROW + 6,
+          cls = "item";
+        if (si > 0 && !hits[it]) cls += " off";
+        else if (hits[it] > 1 || (si === 0 && maps[0] && outs[it] !== 1)) cls += " hot";
+        pos[si + "|" + it] = { l: x0, r: x0 + BW, y: y - 4, hot: hits[it] > 1 };
+        el("text", { x: x0 + BW / 2, y: y, class: cls }, svg).textContent = it;
+      });
+    });
+    maps.forEach(function (g, gi) {
+      g.forEach(function (p) {
+        var a = pos[gi + "|" + p[0]],
+          b = pos[gi + 1 + "|" + p[1]];
+        if (!a || !b) return;
+        var hot = b.hot,
+          x1 = a.r + 4,
+          x2 = b.l - 4,
+          y1 = a.y,
+          y2 = b.y;
+        if (rev) {
+          var t = x1; x1 = x2; x2 = t;
+          t = y1; y1 = y2; y2 = t;
+        }
+        el("line", { x1: x1, y1: y1, x2: x2, y2: y2, class: hot ? "arrow hot" : "arrow", "marker-end": "url(#amap-" + fi + "-" + (hot ? "hot" : "ink") + ")" }, svg);
+        said.push(rev ? p[1] + " to " + p[0] : p[0] + " to " + p[1]);
+      });
+    });
+    svg.setAttribute("aria-label", sets.map(function (st) { return st.name; }).join(", ") + ": " + said.join(", "));
+    fig.insertBefore(svg, fig.firstChild);
+  });
 })();

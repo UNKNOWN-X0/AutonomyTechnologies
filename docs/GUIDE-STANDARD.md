@@ -62,11 +62,12 @@ Each topic section is self-contained, and its parts appear in this order:
 
 1. **`h2` with the notes' number and title**, for example `1.9 Voltage`.
 2. **Why it matters**, in one or two sentences, connecting to the previous section where possible.
-3. **Formula cards** (`div.eq`) for every relation the student must know, each with a bold title, the formula and an `eq-note` giving conditions, units or sign conventions. A table of relations also counts.
-4. **Explanation** in short paragraphs or lists. When the notes derive a result, show the derivation as numbered steps; it also appears in the derivation list.
-5. **At least one worked example** for any section with calculations: numbered steps, numbers carried with units, and a sanity check at the end.
-6. **Traps** (`p.method` starting **Trap:**, **Sign check:** or **Memory hook:**) for the mistakes students typically make in this section.
-7. **Recall check** (`div.recall`) as the last block: at least 2 questions about this section only, answered from memory, with one hidden answer per question.
+3. **In plain words** (`p.plain`, starting **In plain words:**): two to four sentences with an everyday picture of the idea, before any symbols. Name the new terms in bold here, in words only, so the formula cards that follow put symbols on ideas the student already holds. (Added 2026-11-04 after the owner found the guides hard to follow without another book.)
+4. **Formula cards** (`div.eq`) for every relation the student must know, each with a bold title, the formula and an `eq-note` giving conditions, units or sign conventions. The note of every card that introduces notation starts with a **Read it as** line (`span.say`), saying the formula aloud in words: “the image of f is the set of all f(x) as x runs through X”. A table of relations also counts.
+5. **Explanation** in short paragraphs or lists. Where the idea is about how elements of sets are paired (mappings, injective and surjective, inverses, composition), add arrow diagrams (`div.arrows`, one `figure.amap` per case) right after the cards: one case that has the property and one that just fails it, each with a caption naming what to look at. When the notes derive a result, show the derivation as numbered steps; it also appears in the derivation list.
+6. **At least one worked example** for any section with calculations: numbered steps, numbers carried with units, and a sanity check at the end.
+7. **Traps** (`p.method` starting **Trap:**, **Sign check:** or **Memory hook:**) for the mistakes students typically make in this section, and one **Near miss:** an example that almost satisfies the definition or rule and fails, with the reason and the fix.
+8. **Recall check** (`div.recall`) as the last block: at least 2 questions about this section only, answered from memory, with one hidden answer per question.
 
 Long sections split into subtopics with `h3`. In the PDF each subtopic moves to the next page whole if it does not fit, so keep each subtopic shorter than a page.
 
@@ -106,7 +107,10 @@ The PDF converter understands only this markup, so use it for all maths and stru
 | Formula card | `<div class="eq"><strong>Title</strong><span class="formula">…</span><span class="eq-note">…</span></div>`, with one `span.formula` per relation |
 | Worked example, recall check | `<div class="worked">` or `<div class="recall">`, first child `<p class="worked-title">` or `<p class="recall-title">` |
 | Hidden answers | `<details class="answers"><summary>…</summary><ol>…</ol></details>` |
-| Note, trap, hook | `<p class="method"><strong>Trap:</strong> …</p>` |
+| Note, trap, hook, near miss | `<p class="method"><strong>Trap:</strong> …</p>` (also **Near miss:**) |
+| In plain words | `<p class="plain"><strong>In plain words:</strong> …</p>` right after `p.why`; the PDF sets it in a ruled box |
+| Read it as | `<span class="eq-note"><span class="say">Read it as: “…”.</span> rest of the note</span>` |
+| Arrow diagram | `<div class="arrows"><figure class="amap" data-sets="X: 1, 2, 3 \| Y: a, b, c" data-map="1>a 2>b 3>c"><figcaption><strong>Bijective.</strong> …</figcaption></figure>…</div>`. `|` separates sets and the arrow groups between them (three sets for a composition); `data-rev` draws the arrows backwards for an inverse. `js/guide.js` draws it, `tools/guide-to-tex.py` draws the same data in TikZ; an input without exactly one arrow and an output reached twice are highlighted, an output never reached is greyed |
 | Table | `<div class="tw"><table>…</table></div>` with a `thead` row |
 | Section reference | `<span class="sec-ref">§1.4</span>` |
 

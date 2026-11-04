@@ -57,6 +57,8 @@
   \fi}
 \makeatother
 \newtcolorbox{notebox}{colback=Paperblue,colframe=Paperblue,boxrule=0pt,arc=0pt,left=8pt,right=8pt,top=4pt,bottom=4pt,before skip=6pt,after skip=6pt}
+\newtcolorbox{plainbox}{colback=white,colframe=FAUblue,boxrule=0pt,leftrule=3pt,arc=0pt,left=10pt,right=8pt,top=4pt,bottom=4pt,before skip=6pt,after skip=8pt}
+\usetikzlibrary{arrows.meta}
 \title{\sffamily\bfseries\color{FAUblue}Mappings and Elementary Functions}
 \author{Mathematics for Engineers I \ensuremath{\cdot} Module 62765 \ensuremath{\cdot} Chapter 3\\[2pt]\small From Fundamentals to AI Apocalypse · personal study guide}
 \date{}
@@ -224,21 +226,61 @@ Where is an angle or point? & Use the unit circle or quadrant-aware polar conver
 \end{keepsection}
 
 \begin{keepsection}
-\Needspace{12\baselineskip}
+\Needspace{11\baselineskip}
 \section{3.1 The Graph of a Mapping}
 
-\Needspace{9\baselineskip}
+\Needspace{8\baselineskip}
 A function is more than a formula: its domain and codomain are part of its definition. This lets you ask exactly which outputs occur and which inputs lead to a chosen set of outputs.
+
+\Needspace{12\baselineskip}
+\begin{plainbox}\textbf{In plain words:} think of a mapping as a machine with an input tray \textit{X} and an output tray \textit{Y}. Every input you drop in comes out as exactly one output. Two inputs may come out the same, and some outputs may never appear at all. The outputs that do appear form the \textbf{image}; the inputs whose output lands in a chosen set \textit{B} form the \textbf{preimage} of \textit{B}.\end{plainbox}
 
 \begin{equationcard}{Mapping and image}
 \[ \begin{gathered} {f}:{X}\to {Y} \\ \text{Im}({f})\, =\, \{{f}({x}):{x}\in {X}\}⊆{Y} \end{gathered} \]
-{\small X is the domain; Y is the codomain; Im(f) is the image or range. Every x\ensuremath{\in}X must be assigned exactly one value f(x)\ensuremath{\in}Y.}
+{\small \emph{Read it as: “f maps X to Y”, and “the image of f is the set of all f(x) as x runs through X; it lies inside Y”.}\par X is the domain; Y is the codomain; Im(f) is the image or range. Every x\ensuremath{\in}X must be assigned exactly one value f(x)\ensuremath{\in}Y.}
 \end{equationcard}
 
 \begin{equationcard}{Image, preimage and graph}
 \[ \begin{gathered} {f}({A})\, =\, \{{f}({x}):{x}\in {A}\} \\ {f}^{-1}({B})\, =\, \{{x}\in {X}:{f}({x})\in {B}\} \\ \text{Gr}({f})\, =\, \{({x},{y})\in {X}\times {Y}:{y}\, =\, {f}({x})\} \end{gathered} \]
-{\small A\ensuremath{\subseteq}X and B\ensuremath{\subseteq}Y. Preimage notation f\textsuperscript{\ensuremath{-}1}(B) is defined even when f has no inverse function.}
+{\small \emph{Read it as: “f of A is the set of outputs of the inputs in A”; “the preimage of B is the set of x in X whose output lies in B”; “the graph of f is the set of pairs (x, y) in X \ensuremath{\times} Y with y = f(x)”.}\par A\ensuremath{\subseteq}X and B\ensuremath{\subseteq}Y. Preimage notation f\textsuperscript{\ensuremath{-}1}(B) is defined even when f has no inverse function.}
 \end{equationcard}
+
+\Needspace{14\baselineskip}
+\begin{center}
+\begin{minipage}[t]{0.465\linewidth}\centering
+\begin{tikzpicture}[x=1cm,y=1cm,font=\small]
+\draw[FAUblue!60] (0.00,0.3) rectangle (0.80,-1.30);
+\node[above] at (0.40,0.3) {$X$};
+\node[] at (0.40,0.00) {$1$};
+\node[] at (0.40,-0.50) {$2$};
+\node[] at (0.40,-1.00) {$3$};
+\draw[FAUblue!60] (2.10,0.3) rectangle (2.90,-1.80);
+\node[above] at (2.50,0.3) {$Y$};
+\node[] at (2.50,0.00) {$a$};
+\node[text=FAUblue,font=\small\bfseries] at (2.50,-0.50) {$b$};
+\node[text=black!40] at (2.50,-1.00) {$c$};
+\node[text=black!40] at (2.50,-1.50) {$d$};
+\draw[-{Stealth[length=4pt]},black!75] (0.88,0.00) -- (2.02,0.00);
+\draw[-{Stealth[length=4pt]},black!75] (0.88,-0.50) -- (2.02,-0.50);
+\draw[-{Stealth[length=4pt]},black!75] (0.88,-1.00) -- (2.02,-0.50);
+\end{tikzpicture}\par\smallskip{\small\raggedright \textbf{A mapping.} Exactly one arrow leaves every input. b is reached twice, and c and d never, so the image \{a, b\} is smaller than the codomain Y.\par}\end{minipage}\hfill
+\begin{minipage}[t]{0.465\linewidth}\centering
+\begin{tikzpicture}[x=1cm,y=1cm,font=\small]
+\draw[FAUblue!60] (0.00,0.3) rectangle (0.80,-1.30);
+\node[above] at (0.40,0.3) {$X$};
+\node[text=FAUblue,font=\small\bfseries] at (0.40,0.00) {$1$};
+\node[] at (0.40,-0.50) {$2$};
+\node[text=FAUblue,font=\small\bfseries] at (0.40,-1.00) {$3$};
+\draw[FAUblue!60] (2.10,0.3) rectangle (2.90,-1.30);
+\node[above] at (2.50,0.3) {$Y$};
+\node[] at (2.50,0.00) {$a$};
+\node[] at (2.50,-0.50) {$b$};
+\node[] at (2.50,-1.00) {$c$};
+\draw[-{Stealth[length=4pt]},black!75] (0.88,0.00) -- (2.02,0.00);
+\draw[-{Stealth[length=4pt]},black!75] (0.88,0.00) -- (2.02,-0.50);
+\draw[-{Stealth[length=4pt]},black!75] (0.88,-0.50) -- (2.02,-1.00);
+\end{tikzpicture}\par\smallskip{\small\raggedright \textbf{Not a mapping.} 1 has two arrows and 3 has none; a mapping needs exactly one arrow from every input.\par}\end{minipage}
+\end{center}
 
 \Needspace{11\baselineskip}
 A real-valued function has a graph in the coordinate plane. Each vertical line must meet the graph at most once: two y-values for one x would violate the mapping rule. A horizontal line may meet it more than once; that tells you the function is not injective, not that it fails to be a function.
@@ -257,8 +299,11 @@ Let f:\ensuremath{\mathbb{R}}\ensuremath{\to}\ensuremath{\mathbb{R}} be f(x)=x\t
 \end{enumerate}
 \end{workedbox}
 
-\Needspace{5\baselineskip}
+\Needspace{7\baselineskip}
 \begin{notebox}\textbf{Trap:} f\textsuperscript{\ensuremath{-}1}(B) means “inputs that land in B”; it does not mean “apply the inverse function”. The inverse function exists only if f is injective.\end{notebox}
+
+\Needspace{6\baselineskip}
+\begin{notebox}\textbf{Near miss:} the rule “\textit{x} \ensuremath{\mapsto} \ensuremath{\pm}\ensuremath{\surd}\textit{x}” on [0, \ensuremath{\infty}) looks like a function, but it sends 4 to both 2 and \ensuremath{-}2. Two outputs for one input break the mapping rule; keeping only the positive root, \textit{x} \ensuremath{\mapsto} \ensuremath{\surd}\textit{x}, makes it a mapping.\end{notebox}
 
 \Needspace{9\baselineskip}
 \begin{recallbox}{Recall check \ensuremath{\cdot} answer before opening}
@@ -273,21 +318,89 @@ Let f:\ensuremath{\mathbb{R}}\ensuremath{\to}\ensuremath{\mathbb{R}} be f(x)=x\t
 \end{keepsection}
 
 \begin{keepsection}
-\Needspace{12\baselineskip}
+\Needspace{11\baselineskip}
 \section{3.2 Types of Mappings}
 
-\Needspace{9\baselineskip}
+\Needspace{8\baselineskip}
 Injectivity and surjectivity answer different questions. Together they determine whether every output has exactly one input.
+
+\Needspace{11\baselineskip}
+\begin{plainbox}\textbf{In plain words:} picture the arrows from \textit{X} to \textit{Y}. \textbf{Injective} means no point of \textit{Y} receives two arrows: different inputs never share an output. \textbf{Surjective} means every point of \textit{Y} receives at least one arrow: nothing in the codomain is left out. \textbf{Bijective} means both, so inputs and outputs pair up one to one.\end{plainbox}
 
 \begin{equationcard}{Injective}
 \[ \begin{gathered} {x}_{1}\, ≠\, {x}_{2}\, \Rightarrow \, {f}({x}_{1})\, ≠\, {f}({x}_{2}) \end{gathered} \]
-{\small Distinct inputs have distinct outputs; equivalently, f(x\textsubscript{1})=f(x\textsubscript{2}) implies x\textsubscript{1}=x\textsubscript{2}.}
+{\small \emph{Read it as: “if x\textsubscript{1} is not x\textsubscript{2}, then f(x\textsubscript{1}) is not f(x\textsubscript{2})”: different inputs always give different outputs.}\par Distinct inputs have distinct outputs; equivalently, f(x\textsubscript{1})=f(x\textsubscript{2}) implies x\textsubscript{1}=x\textsubscript{2}.}
 \end{equationcard}
 
 \begin{equationcard}{Surjective and bijective}
 \[ \begin{gathered} {f}\, \text{is}\, \text{onto}\, {Y}\, \text{iff}\, \text{Im}({f})\, =\, {Y} \\ \text{bijective}\, \text{iff}\, \text{injective}\, \text{and}\, \text{surjective} \end{gathered} \]
-{\small Surjectivity depends on the chosen codomain. A function is always surjective when its codomain is restricted to its image. Injectivity, in contrast, depends only on the graph \{(x,f(x)):x\ensuremath{\in}X\}: changing the codomain never changes it.}
+{\small \emph{Read it as: “f is onto Y if and only if its image is all of Y”, and “bijective means injective and surjective at once”.}\par Surjectivity depends on the chosen codomain. A function is always surjective when its codomain is restricted to its image. Injectivity, in contrast, depends only on the graph \{(x,f(x)):x\ensuremath{\in}X\}: changing the codomain never changes it.}
 \end{equationcard}
+
+\Needspace{14\baselineskip}
+\begin{center}
+\begin{minipage}[t]{0.223\linewidth}\centering
+\begin{tikzpicture}[x=1cm,y=1cm,font=\small]
+\draw[FAUblue!60] (0.00,0.3) rectangle (0.80,-0.80);
+\node[above] at (0.40,0.3) {$X$};
+\node[] at (0.40,0.00) {$1$};
+\node[] at (0.40,-0.50) {$2$};
+\draw[FAUblue!60] (2.10,0.3) rectangle (2.90,-1.30);
+\node[above] at (2.50,0.3) {$Y$};
+\node[] at (2.50,0.00) {$a$};
+\node[] at (2.50,-0.50) {$b$};
+\node[text=black!40] at (2.50,-1.00) {$c$};
+\draw[-{Stealth[length=4pt]},black!75] (0.88,0.00) -- (2.02,0.00);
+\draw[-{Stealth[length=4pt]},black!75] (0.88,-0.50) -- (2.02,-0.50);
+\end{tikzpicture}\par\smallskip{\small\raggedright \textbf{Injective, not surjective.} No output is shared, but c is never reached.\par}\end{minipage}\hfill
+\begin{minipage}[t]{0.223\linewidth}\centering
+\begin{tikzpicture}[x=1cm,y=1cm,font=\small]
+\draw[FAUblue!60] (0.00,0.3) rectangle (0.80,-1.30);
+\node[above] at (0.40,0.3) {$X$};
+\node[] at (0.40,0.00) {$1$};
+\node[] at (0.40,-0.50) {$2$};
+\node[] at (0.40,-1.00) {$3$};
+\draw[FAUblue!60] (2.10,0.3) rectangle (2.90,-0.80);
+\node[above] at (2.50,0.3) {$Y$};
+\node[text=FAUblue,font=\small\bfseries] at (2.50,0.00) {$a$};
+\node[] at (2.50,-0.50) {$b$};
+\draw[-{Stealth[length=4pt]},black!75] (0.88,0.00) -- (2.02,0.00);
+\draw[-{Stealth[length=4pt]},black!75] (0.88,-0.50) -- (2.02,0.00);
+\draw[-{Stealth[length=4pt]},black!75] (0.88,-1.00) -- (2.02,-0.50);
+\end{tikzpicture}\par\smallskip{\small\raggedright \textbf{Surjective, not injective.} Every output is reached, but a twice.\par}\end{minipage}\hfill
+\begin{minipage}[t]{0.223\linewidth}\centering
+\begin{tikzpicture}[x=1cm,y=1cm,font=\small]
+\draw[FAUblue!60] (0.00,0.3) rectangle (0.80,-1.30);
+\node[above] at (0.40,0.3) {$X$};
+\node[] at (0.40,0.00) {$1$};
+\node[] at (0.40,-0.50) {$2$};
+\node[] at (0.40,-1.00) {$3$};
+\draw[FAUblue!60] (2.10,0.3) rectangle (2.90,-1.30);
+\node[above] at (2.50,0.3) {$Y$};
+\node[] at (2.50,0.00) {$a$};
+\node[] at (2.50,-0.50) {$b$};
+\node[] at (2.50,-1.00) {$c$};
+\draw[-{Stealth[length=4pt]},black!75] (0.88,0.00) -- (2.02,0.00);
+\draw[-{Stealth[length=4pt]},black!75] (0.88,-0.50) -- (2.02,-0.50);
+\draw[-{Stealth[length=4pt]},black!75] (0.88,-1.00) -- (2.02,-1.00);
+\end{tikzpicture}\par\smallskip{\small\raggedright \textbf{Bijective.} Every output is reached exactly once.\par}\end{minipage}\hfill
+\begin{minipage}[t]{0.223\linewidth}\centering
+\begin{tikzpicture}[x=1cm,y=1cm,font=\small]
+\draw[FAUblue!60] (0.00,0.3) rectangle (0.80,-1.30);
+\node[above] at (0.40,0.3) {$X$};
+\node[] at (0.40,0.00) {$1$};
+\node[] at (0.40,-0.50) {$2$};
+\node[] at (0.40,-1.00) {$3$};
+\draw[FAUblue!60] (2.10,0.3) rectangle (2.90,-1.30);
+\node[above] at (2.50,0.3) {$Y$};
+\node[text=FAUblue,font=\small\bfseries] at (2.50,0.00) {$a$};
+\node[] at (2.50,-0.50) {$b$};
+\node[text=black!40] at (2.50,-1.00) {$c$};
+\draw[-{Stealth[length=4pt]},black!75] (0.88,0.00) -- (2.02,0.00);
+\draw[-{Stealth[length=4pt]},black!75] (0.88,-0.50) -- (2.02,0.00);
+\draw[-{Stealth[length=4pt]},black!75] (0.88,-1.00) -- (2.02,-0.50);
+\end{tikzpicture}\par\smallskip{\small\raggedright \textbf{Neither.} a is reached twice and c never.\par}\end{minipage}
+\end{center}
 
 \Needspace{12\baselineskip}
 For f:\ensuremath{\mathbb{R}}\ensuremath{\to}\ensuremath{\mathbb{R}}, f(x)=x\textsuperscript{3} is strictly increasing and reaches every real value, so it is bijective. In contrast, x\textsuperscript{2} maps 1 and \ensuremath{-}1 to the same output and never reaches negative values: it is neither injective nor surjective onto \ensuremath{\mathbb{R}}. Restricting it to f:[0,\ensuremath{\infty})\ensuremath{\to}[0,\ensuremath{\infty}) makes it bijective.
@@ -303,8 +416,11 @@ Consider f(x)=x\textsuperscript{2} with domain [0,\ensuremath{\infty}).
 \end{enumerate}
 \end{workedbox}
 
-\Needspace{5\baselineskip}
+\Needspace{6\baselineskip}
 \begin{notebox}\textbf{Memory hook:} injective asks “does any output have two inputs?”; surjective asks “does any codomain value have no input?”. State the codomain before answering.\end{notebox}
+
+\Needspace{5\baselineskip}
+\begin{notebox}\textbf{Near miss:} \textit{f}(\textit{x}) = \textit{x}\textsuperscript{2} on [\ensuremath{-}1, \ensuremath{\infty}) is almost injective. On [0, \ensuremath{\infty}) it is, but \ensuremath{-}1 and 1 both give 1, and one shared output is enough to fail.\end{notebox}
 
 \Needspace{10\baselineskip}
 \begin{recallbox}{Recall check \ensuremath{\cdot} answer before opening}
@@ -319,21 +435,58 @@ Consider f(x)=x\textsuperscript{2} with domain [0,\ensuremath{\infty}).
 \end{keepsection}
 
 \begin{keepsection}
-\Needspace{12\baselineskip}
+\Needspace{11\baselineskip}
 \section{3.3 Inverse Function}
 
-\Needspace{9\baselineskip}
+\Needspace{8\baselineskip}
 An inverse undoes a mapping. It can do that consistently only when an output identifies one input.
+
+\Needspace{12\baselineskip}
+\begin{plainbox}\textbf{In plain words:} the inverse runs the machine backwards: hand it an output and it returns the one input that produced it. That is only possible when no output came from two inputs (the mapping is injective), and it only accepts outputs that actually occur, which is why its domain is the image.\end{plainbox}
 
 \begin{equationcard}{Inverse function}
 \[ \begin{gathered} {f}:{X}\to {Y}\, \text{injective}\, \Rightarrow \, {f}^{-1}:\text{Im}({f})\to {X} \end{gathered} \]
-{\small For y\ensuremath{\in}Im(f), f\textsuperscript{\ensuremath{-}1}(y) is the unique x\ensuremath{\in}X satisfying f(x)=y. The inverse domain is Im(f), not necessarily all of Y.}
+{\small \emph{Read it as: “if f from X to Y is injective, then f inverse goes from the image of f back to X”.}\par For y\ensuremath{\in}Im(f), f\textsuperscript{\ensuremath{-}1}(y) is the unique x\ensuremath{\in}X satisfying f(x)=y. The inverse domain is Im(f), not necessarily all of Y.}
 \end{equationcard}
 
 \begin{equationcard}{Inverse identities}
 \[ \begin{gathered} {f}^{-1}\circ {f}\, =\, \text{id}_{{X}} \\ {f}\circ {f}^{-1}\, =\, \text{id}_{\text{Im}({f})} \end{gathered} \]
-{\small The domain and image switch. For real-valued functions, the two graphs reflect across y=x.}
+{\small \emph{Read it as: “f inverse after f is the identity on X”: doing f and then undoing it gives back every x. “f after f inverse is the identity on the image of f.”}\par The domain and image switch. For real-valued functions, the two graphs reflect across y=x.}
 \end{equationcard}
+
+\Needspace{14\baselineskip}
+\begin{center}
+\begin{minipage}[t]{0.465\linewidth}\centering
+\begin{tikzpicture}[x=1cm,y=1cm,font=\small]
+\draw[FAUblue!60] (0.00,0.3) rectangle (0.80,-1.30);
+\node[above] at (0.40,0.3) {$X$};
+\node[] at (0.40,0.00) {$1$};
+\node[] at (0.40,-0.50) {$2$};
+\node[] at (0.40,-1.00) {$3$};
+\draw[FAUblue!60] (2.10,0.3) rectangle (2.90,-1.80);
+\node[above] at (2.50,0.3) {$Y$};
+\node[] at (2.50,0.00) {$a$};
+\node[] at (2.50,-0.50) {$b$};
+\node[] at (2.50,-1.00) {$c$};
+\node[text=black!40] at (2.50,-1.50) {$d$};
+\draw[-{Stealth[length=4pt]},black!75] (2.02,0.00) -- (0.88,0.00);
+\draw[-{Stealth[length=4pt]},black!75] (2.02,-0.50) -- (0.88,-0.50);
+\draw[-{Stealth[length=4pt]},black!75] (2.02,-1.00) -- (0.88,-1.00);
+\end{tikzpicture}\par\smallskip{\small\raggedright \textbf{f\textsuperscript{\ensuremath{-}1} reverses every arrow.} It is defined on the image \{a, b, c\}; d is outside the image, so nothing leads back from it.\par}\end{minipage}\hfill
+\begin{minipage}[t]{0.465\linewidth}\centering
+\begin{tikzpicture}[x=1cm,y=1cm,font=\small]
+\draw[FAUblue!60] (0.00,0.3) rectangle (0.80,-0.80);
+\node[above] at (0.40,0.3) {$X$};
+\node[] at (0.40,0.00) {$1$};
+\node[] at (0.40,-0.50) {$2$};
+\draw[FAUblue!60] (2.10,0.3) rectangle (2.90,-0.80);
+\node[above] at (2.50,0.3) {$Y$};
+\node[text=FAUblue,font=\small\bfseries] at (2.50,0.00) {$a$};
+\node[text=black!40] at (2.50,-0.50) {$b$};
+\draw[-{Stealth[length=4pt]},black!75] (2.02,0.00) -- (0.88,0.00);
+\draw[-{Stealth[length=4pt]},black!75] (2.02,0.00) -- (0.88,-0.50);
+\end{tikzpicture}\par\smallskip{\small\raggedright \textbf{No inverse.} Reversing f would send a back to both 1 and 2, which is not a mapping.\par}\end{minipage}
+\end{center}
 
 \Needspace{10\baselineskip}
 To find an inverse, write y=f(x), solve for x, then rename the output variable. Keep the domain restrictions: the inverse is defined only for values in the original image. Check both compositions when the domains allow it.
@@ -349,8 +502,11 @@ Let f:\ensuremath{\mathbb{R}}\ensuremath{\to}\ensuremath{\mathbb{R}}, f(x)=2x+3.
 \end{enumerate}
 \end{workedbox}
 
-\Needspace{5\baselineskip}
+\Needspace{6\baselineskip}
 \begin{notebox}\textbf{Trap:} f\textsuperscript{\ensuremath{-}1}(x) is not 1/f(x). It means the inverse mapping. If f is not injective, solving y=f(x) may give multiple x-values and no inverse function.\end{notebox}
+
+\Needspace{5\baselineskip}
+\begin{notebox}\textbf{Near miss:} \textit{f}(\textit{x}) = \textit{x}\textsuperscript{2} on \ensuremath{\mathbb{R}} cannot be inverted: 2 and \ensuremath{-}2 both give 4, so “the input that gave 4” is not unique. Restrict the domain to [0, \ensuremath{\infty}) and it becomes injective, with \textit{f}\textsuperscript{\ensuremath{-}1}(\textit{y}) = \ensuremath{\surd}\textit{y}.\end{notebox}
 
 \Needspace{9\baselineskip}
 \begin{recallbox}{Recall check \ensuremath{\cdot} answer before opening}
@@ -365,20 +521,49 @@ Let f:\ensuremath{\mathbb{R}}\ensuremath{\to}\ensuremath{\mathbb{R}}, f(x)=2x+3.
 \end{keepsection}
 
 \begin{keepsection}
-\Needspace{12\baselineskip}
+\Needspace{10\baselineskip}
 \section{3.4 Composition}
 
-\Needspace{9\baselineskip}
+\Needspace{7\baselineskip}
 Composition chains mappings. The output of the first mapping must be a valid input to the next.
+
+\Needspace{11\baselineskip}
+\begin{plainbox}\textbf{In plain words:} composition is running one machine after another: \textit{f} first, then \textit{g} on whatever \textit{f} produced. The notation \textit{g} \ensuremath{\circ} \textit{f} is read from right to left, exactly like \textit{g}(\textit{f}(\textit{x})). It only works if every output of \textit{f} is something \textit{g} accepts.\end{plainbox}
 
 \begin{equationcard}{Composition}
 \[ \begin{gathered} \text{If}\, {f}:{X}\to {Y},\, {g}:{D}({g})⊆{Y}\to {Z},\, \text{and}\, \text{Im}({f})⊆{D}({g}),\, \text{then}\, ({g}\circ {f})({x})\, =\, {g}({f}({x})) \end{gathered} \]
-{\small Read right to left: apply f first, then g. The containment condition guarantees the second step is defined for every first-step output.}
+{\small \emph{Read it as: “g after f, applied to x, equals g of f of x”. The function written next to x acts first.}\par Read right to left: apply f first, then g. The containment condition guarantees the second step is defined for every first-step output.}
 \end{equationcard}
+
+\Needspace{14\baselineskip}
+\begin{center}
+\begin{minipage}[t]{0.950\linewidth}\centering
+\begin{tikzpicture}[x=1cm,y=1cm,font=\small]
+\draw[FAUblue!60] (0.00,0.3) rectangle (0.80,-0.80);
+\node[above] at (0.40,0.3) {$X$};
+\node[] at (0.40,0.00) {$1$};
+\node[] at (0.40,-0.50) {$2$};
+\draw[FAUblue!60] (2.10,0.3) rectangle (2.90,-1.30);
+\node[above] at (2.50,0.3) {$Y$};
+\node[] at (2.50,0.00) {$a$};
+\node[text=black!40] at (2.50,-0.50) {$b$};
+\node[] at (2.50,-1.00) {$c$};
+\draw[FAUblue!60] (4.20,0.3) rectangle (5.00,-1.30);
+\node[above] at (4.60,0.3) {$Z$};
+\node[] at (4.60,0.00) {$p$};
+\node[] at (4.60,-0.50) {$q$};
+\node[] at (4.60,-1.00) {$r$};
+\draw[-{Stealth[length=4pt]},black!75] (0.88,0.00) -- (2.02,0.00);
+\draw[-{Stealth[length=4pt]},black!75] (0.88,-0.50) -- (2.02,-1.00);
+\draw[-{Stealth[length=4pt]},black!75] (2.98,0.00) -- (4.12,0.00);
+\draw[-{Stealth[length=4pt]},black!75] (2.98,-0.50) -- (4.12,-0.50);
+\draw[-{Stealth[length=4pt]},black!75] (2.98,-1.00) -- (4.12,-1.00);
+\end{tikzpicture}\par\smallskip{\small\raggedright \textbf{g \ensuremath{\circ} f follows two arrows.} 1 \ensuremath{\to} a \ensuremath{\to} p and 2 \ensuremath{\to} c \ensuremath{\to} r, so (g \ensuremath{\circ} f)(1) = p and (g \ensuremath{\circ} f)(2) = r. f never reaches b, so its arrow plays no part.\par}\end{minipage}
+\end{center}
 
 \begin{equationcard}{Composition laws}
 \[ \begin{gathered} {h}\circ ({g}\circ {f})\, =\, ({h}\circ {g})\circ {f} \\ \text{in}\, \text{general}\, {g}\circ {f}\, ≠\, {f}\circ {g} \end{gathered} \]
-{\small Composition is associative when the domains fit, but order usually matters. For a bijection, f\textsuperscript{\ensuremath{-}1}\ensuremath{\circ}f=id\textsubscript{X}.}
+{\small \emph{Read it as: “h after (g after f) equals (h after g) after f”, but “g after f is in general not f after g”.}\par Composition is associative when the domains fit, but order usually matters. For a bijection, f\textsuperscript{\ensuremath{-}1}\ensuremath{\circ}f=id\textsubscript{X}.}
 \end{equationcard}
 
 \begin{workedbox}{Worked example \ensuremath{\cdot} order and domain}
@@ -392,8 +577,11 @@ Let f:\ensuremath{\mathbb{R}}\ensuremath{\to}\ensuremath{\mathbb{R}} be f(x)=2x+
 \end{enumerate}
 \end{workedbox}
 
-\Needspace{5\baselineskip}
+\Needspace{6\baselineskip}
 \begin{notebox}\textbf{Trap:} do not apply the left-hand function first. Write the nested expression g(f(x)) before simplifying, and check that f’s image lies in g’s domain.\end{notebox}
+
+\Needspace{5\baselineskip}
+\begin{notebox}\textbf{Near miss:} with \textit{f}(\textit{x}) = \textit{x} \ensuremath{-} 2 and \textit{g}(\textit{x}) = \ensuremath{\surd}\textit{x}, the composite \textit{g}(\textit{f}(\textit{x})) = \ensuremath{\surd}(\textit{x} \ensuremath{-} 2) is not defined on all of \ensuremath{\mathbb{R}}: \textit{f}(0) = \ensuremath{-}2 lies outside the domain [0, \ensuremath{\infty}) of \textit{g}. Restrict \textit{f} to [2, \ensuremath{\infty}) first.\end{notebox}
 
 \Needspace{9\baselineskip}
 \begin{recallbox}{Recall check \ensuremath{\cdot} answer before opening}
@@ -408,23 +596,26 @@ Let f:\ensuremath{\mathbb{R}}\ensuremath{\to}\ensuremath{\mathbb{R}} be f(x)=2x+
 \end{keepsection}
 
 \begin{keepsection}
-\Needspace{6\baselineskip}
+\Needspace{12\baselineskip}
 \section{3.5 Elementary Functions}
 
+\Needspace{9\baselineskip}
 This section collects important real-valued mappings. Their domain and range determine where inverse functions and formulas make sense.
 
+\begin{plainbox}\textbf{In plain words:} this section is a toolbox of the standard functions you will use all year: polynomials, the trigonometric functions, and the exponential and logarithm. For each one, learn three facts: where it is defined, which values it takes, and where it is injective. The last fact decides where it has an inverse: the logarithm undoes the exponential, and arcsin undoes sin on [\ensuremath{-}π/2, π/2].\end{plainbox}
+
 \begin{keepsection}
-\Needspace{9\baselineskip}
+\Needspace{10\baselineskip}
 \subsection{Real polynomials}
 
 \begin{equationcard}{Polynomial and roots}
 \[ \begin{gathered} {P}({x})\, =\, {a}_{{n}}{x}^{{n}}\, +\, …\, +\, {a}_{1}{x}\, +\, {a}_{0}, {a}_{{n}}\, ≠\, 0 \\ {P}({x}_{0})\, =\, 0\, \text{means}\, {x}_{0}\, \text{is}\, {a}\, \text{root} \end{gathered} \]
-{\small The degree is n and the domain is \ensuremath{\mathbb{R}}. A degree-n polynomial has at most n real roots.}
+{\small \emph{Read it as: “P of x is a sum of powers of x, from a\textsubscript{n} x to the n down to the constant a\textsubscript{0}, with a\textsubscript{n} not zero”.}\par The degree is n and the domain is \ensuremath{\mathbb{R}}. A degree-n polynomial has at most n real roots.}
 \end{equationcard}
 
 \begin{equationcard}{Quadratic formula and discriminant}
 \[ \begin{gathered} Δ\, =\, {b}^{2}-4\text{ac} \\ {x}\, =\, (-{b}\pm \sqrtΔ)/(2{a}), \text{ax}^{2}+\text{bx}+{c}\, =\, 0,\, {a}\, ≠\, 0 \end{gathered} \]
-{\small Δ\ensuremath{>}0 gives two distinct real roots; Δ=0 gives one repeated root; Δ\ensuremath{<}0 gives no real roots. When Δ\ensuremath{\geq}0, the roots factor the polynomial as a(x\ensuremath{-}x\textsubscript{1})(x\ensuremath{-}x\textsubscript{2}).}
+{\small \emph{Read it as: “delta is b squared minus four a c”: its sign tells you how many real roots there are before you solve anything.}\par Δ\ensuremath{>}0 gives two distinct real roots; Δ=0 gives one repeated root; Δ\ensuremath{<}0 gives no real roots. When Δ\ensuremath{\geq}0, the roots factor the polynomial as a(x\ensuremath{-}x\textsubscript{1})(x\ensuremath{-}x\textsubscript{2}).}
 \end{equationcard}
 
 \Needspace{9\baselineskip}
@@ -444,7 +635,10 @@ Solve x\textsuperscript{2}\ensuremath{-}5x+6=0.
 \Needspace{8\baselineskip}
 General root formulas exist for degrees 3 and 4. For degree 5 and above there is no general formula built from the coefficients using only +, \ensuremath{-}, \ensuremath{\times}, ÷ and roots (the Abel–Ruffini theorem); the notes say “no general formulas”, which is meant in this sense. This does not prevent a particular higher-degree polynomial from factoring or having roots found by another method.
 
+\Needspace{6\baselineskip}
 \begin{notebox}\textbf{Sign check:} for Δ\ensuremath{<}0 there are no real roots, but the polynomial still has a real graph. “No real roots” does not mean “no roots in every number system.”\end{notebox}
+
+\begin{notebox}\textbf{Near miss:} \textit{x}\textsuperscript{2} + 1 = 0 looks as if it should have the roots \ensuremath{\pm}1, but Δ = 0 \ensuremath{-} 4 = \ensuremath{-}4 \ensuremath{<} 0, so it has no real roots. It is \textit{x}\textsuperscript{2} \ensuremath{-} 1 = 0, with Δ = 4, that has the roots \ensuremath{\pm}1.\end{notebox}
 \end{keepsection}
 
 \begin{keepsection}
@@ -547,20 +741,23 @@ Solve 5\textsuperscript{x}=125.
 \end{keepsection}
 
 \begin{keepsection}
-\Needspace{12\baselineskip}
+\Needspace{11\baselineskip}
 \section{3.6 Polar Coordinates}
 
-\Needspace{9\baselineskip}
+\Needspace{8\baselineskip}
 Cartesian coordinates locate a point by horizontal and vertical displacement. Polar coordinates use distance from the origin and angle from the positive x-axis.
+
+\Needspace{12\baselineskip}
+\begin{plainbox}\textbf{In plain words:} polar coordinates describe a point the way you give directions: how far to walk from the origin (\textit{r}) and in which direction (the angle φ, measured from the positive \textit{x}-axis). Cartesian coordinates say how far right and how far up. A right triangle with hypotenuse \textit{r} links the two.\end{plainbox}
 
 \begin{equationcard}{Polar to Cartesian}
 \[ \begin{gathered} {x}\, =\, {r}\, \text{cos}\, φ \\ {y}\, =\, {r}\, \text{sin}\, φ \end{gathered} \]
-{\small Here r\ensuremath{\geq}0 and φ is measured in radians from the positive x-axis. The point is (x,y)=(r cos φ,r sin φ).}
+{\small \emph{Read it as: “x is r cos phi, y is r sin phi”: the horizontal and vertical sides of a right triangle with hypotenuse r and angle φ.}\par Here r\ensuremath{\geq}0 and φ is measured in radians from the positive x-axis. The point is (x,y)=(r cos φ,r sin φ).}
 \end{equationcard}
 
 \begin{equationcard}{Cartesian to polar}
 \[ \begin{gathered} {r}\, =\, \sqrt({x}^{2}+{y}^{2}) \\ \text{tan}\, φ\, =\, {y}/{x}\, \text{when}\, {x}\, ≠\, 0 \end{gathered} \]
-{\small Use the signs of x and y to select the quadrant. For 0\ensuremath{\leq}φ\ensuremath{<}2π: use arctan(y/x) when x\ensuremath{>}0,y\ensuremath{\geq}0; add 2π when x\ensuremath{>}0,y\ensuremath{<}0; add π when x\ensuremath{<}0; take π/2 when x=0,y\ensuremath{>}0 and 3π/2 when x=0,y\ensuremath{<}0. The origin has r=0 and no unique angle.}
+{\small \emph{Read it as: “r is the square root of x squared plus y squared” (Pythagoras), and “tan phi is y over x”, which fixes φ only up to the quadrant.}\par Use the signs of x and y to select the quadrant. For 0\ensuremath{\leq}φ\ensuremath{<}2π: use arctan(y/x) when x\ensuremath{>}0,y\ensuremath{\geq}0; add 2π when x\ensuremath{>}0,y\ensuremath{<}0; add π when x\ensuremath{<}0; take π/2 when x=0,y\ensuremath{>}0 and 3π/2 when x=0,y\ensuremath{<}0. The origin has r=0 and no unique angle.}
 \end{equationcard}
 
 \Needspace{12\baselineskip}
@@ -575,8 +772,11 @@ With r\ensuremath{\geq}0 and unrestricted angle, polar coordinates are not uniqu
 \end{enumerate}
 \end{workedbox}
 
-\Needspace{6\baselineskip}
+\Needspace{7\baselineskip}
 \begin{notebox}\textbf{Sign check:} arctan(y/x) alone returns an angle only in its principal range. Use the signs of both coordinates; when x=0, use the vertical-axis cases, and at the origin the angle is undefined.\end{notebox}
+
+\Needspace{5\baselineskip}
+\begin{notebox}\textbf{Near miss:} for (\textit{x}, \textit{y}) = (\ensuremath{-}1, \ensuremath{-}1), tan φ = 1 suggests φ = π/4, but that points into the first quadrant. Both coordinates are negative, so add π: φ = 5π/4.\end{notebox}
 
 \Needspace{9\baselineskip}
 \begin{recallbox}{Recall check \ensuremath{\cdot} answer before opening}

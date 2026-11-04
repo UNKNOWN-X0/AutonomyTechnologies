@@ -1812,3 +1812,88 @@ main li sup {
 .eq-note .mo {
   margin-inline: 0.18em;
 }
+
+/* Arrow diagrams (figure.amap, drawn by js/guide.js): sets as boxes, elements as labels, one arrow per pair. An input
+   without exactly one arrow and an output reached twice are action blue; an output never reached is grey. */
+.arrows {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 18px 32px;
+  max-width: var(--measure);
+  margin: 20px auto;
+}
+.amap {
+  flex: 0 1 220px;
+  margin: 0;
+}
+.amap svg {
+  display: block;
+  margin: 0 auto 10px;
+  overflow: visible;
+}
+.amap .set {
+  fill: none;
+  stroke: var(--line);
+  stroke-width: 1.5;
+}
+.amap .set-name {
+  fill: var(--muted);
+  font: 700 13px/1 var(--f-display);
+  text-anchor: middle;
+}
+.amap .item {
+  fill: var(--ink);
+  font: italic 15px/1 "Cambria Math", "STIX Two Math", "Times New Roman", serif;
+  text-anchor: middle;
+}
+.amap .item.hot {
+  fill: var(--act);
+  font-weight: 700;
+}
+.amap .item.off {
+  fill: var(--muted);
+  opacity: 0.6;
+}
+.amap .arrow {
+  stroke: var(--ink);
+  stroke-width: 1.4;
+}
+.amap .arrow.hot {
+  stroke: var(--act);
+  stroke-width: 2;
+}
+.amap .mk-ink {
+  fill: var(--ink);
+}
+.amap .mk-hot {
+  fill: var(--act);
+}
+.amap figcaption {
+  font-size: 0.9rem;
+  line-height: 1.45;
+  color: var(--muted);
+}
+.amap figcaption strong {
+  color: var(--ink);
+}
+/* "In plain words": the idea before the symbols, set apart by a rule in the subject colour. */
+.plain {
+  max-width: var(--measure);
+  margin: 0 auto 18px;
+  padding: 12px 18px;
+  border-left: 3px solid var(--fau-mark);
+  background: var(--surface);
+  font-size: 1.05rem;
+}
+/* "Read it as": how a formula card is said aloud, the first line of its note. */
+.eq-note .say {
+  display: block;
+  margin-bottom: 6px;
+  color: var(--ink);
+  font-style: italic;
+}
+/* Four diagrams sit two by two rather than three and a straggler. */
+.arrows:has(> .amap:nth-child(4)) > .amap {
+  flex-basis: calc(50% - 16px);
+}
