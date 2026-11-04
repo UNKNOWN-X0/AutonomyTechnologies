@@ -464,6 +464,12 @@ Each item is a full-width label row divided by hairlines. The box is a 22px squa
 - **Do** strip fills to ink text and rules in print.
 
 ### Don't:
+- **Don't** leave a measure-capped block left-aligned in a wider panel: everything capped at `--measure` is centred (`margin-left/right: auto`, or the `main > :not(.sign):not(section)` rule), so the space on each side is equal. A component rule must not reset that with a `margin: X 0` shorthand; set `margin-top` and `margin-bottom` instead. (Owner's feedback, 2026-11-04: "symmetrical of empty space is really bad".)
+- **Don't** give a box more space at one end than the other: padding is equal top and bottom (and left and right), and the last child's bottom margin is 0.
+- **Don't** make formula cards scroll sideways or set formulas `nowrap`; long formulas break before a relation sign (see Formula typography).
+- **Don't** put injected UI inside a heading (scripts read heading text), and don't hang live information on a heading, which scrolls away as soon as reading starts; pin it instead, as the reading chip does.
+- **Don't** use `box-shadow` for an accent line; use a border.
+- **Don't** position an element without checking what overlaps it: `position: relative` paints it over later non-positioned siblings, so the overlapping element (the hub's review board over the sign field) needs `position: relative` and a higher `z-index`.
 - **Don't** put a kicker or eyebrow label above a heading; context lines go under the heading.
 - **Don't** add rounded corners or shadows.
 - **Don't** signal state with a new hue: no red, amber or green for overdue, due or done.

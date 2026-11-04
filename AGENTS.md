@@ -12,3 +12,14 @@ not a separate workflow guide.
 - **Archify:** Diagrams for this repository belong in its `.archify/` folder. Follow the workspace [Archify diagram standard](../../STANDARDS.md#archify-diagram-standard); HTML diagrams are snapshots.
 - **Version log:** every release that changes what students see adds an entry at the top of `about/version-log.html`; `about/how-to-use.html` describes the current features.
 - **Study guides and labs:** every chapter guide follows [docs/GUIDE-STANDARD.md](docs/GUIDE-STANDARD.md) and every lab [docs/LAB-STANDARD.md](docs/LAB-STANDARD.md). The HTML is the single source; regenerate the `.tex` and `.pdf` with `tools/guide-to-tex.py` and check with `tools/check-guide.py`, which must exit 0.
+
+## Local workflow
+
+Lessons from earlier work; follow them so the same mistakes do not come back.
+
+- **Check both hub states.** Load the hub with empty storage (a first visit) and with seeded progress (`<key>-checks` in localStorage). `js/index.js` returns early when nothing is started, so a feature every visitor should see is called before that `if (!started)` return.
+- **Browser checks.** Chromium and WebKit (the owner uses Safari), at 1288px (the owner's laptop), 1440px and 390px, light and dark. Measure sideways overflow and the left and right gaps of measure-capped blocks, not only screenshots.
+- **Stale Safari cache.** When a change the owner reports as missing renders in Playwright WebKit, ask for a reload with ⌘⌥R before debugging further.
+- **Headings and scripts.** `js/hud.js` (loaded by `js/settings.js`) runs after DOMContentLoaded, after `guide.js` and `nav.js` have read heading text. Anything that changes headings or adds UI near them stays outside the `h2` element.
+- **Shared working tree.** Another agent session may be editing this repository at the same time. Before committing, read `git diff` hunk by hunk and stage only your own changes; never commit `.tex` or `.pdf` files you did not regenerate, and say what you left out.
+- **Probe files.** Playwright probe scripts and their screenshots go in the session scratchpad, with absolute output paths, so nothing lands in the repository.
