@@ -70,7 +70,8 @@ footer {
 .semesters a {
   display: flex;
   align-items: center;
-  gap: 14px;
+  /* the same 20px either side of the label */
+  gap: 20px;
   min-height: 52px;
   padding-right: 20px;
   background: var(--paper);

@@ -3,30 +3,119 @@
   // 0. Section headings that only just wrap are fitted onto one line.
   // 1. Headings decode once: the first time a heading comes into view a signal line sweeps across it and the letters
   //    it passes settle from random glyphs into the real words.
-  // 2. Reading readout: the guide section being read shows its number and how far through it you are, top right of
-  //    its heading. The readout sits on the section, not inside the h2, so heading text read by other scripts is clean.
+  // 2. Reading chip: pinned at the top of the screen while you read a section, with how far through it you are and the
+  //    minutes left. It lives outside the headings, so heading text read by other scripts stays clean.
   // Both wait for DOMContentLoaded, after guide.js and nav.js have read the headings.
   function start() {
     var reduce = window.siteReduceMotion
       ? window.siteReduceMotion()
       : window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    fitFormulas();
     fitAll();
     if (!reduce && "IntersectionObserver" in window) decodeAll();
     readout();
     // Web fonts can land after start; refit, then let the readouts re-pin.
     if (document.fonts && document.fonts.ready)
       document.fonts.ready.then(function () {
+        fitFormulas();
         fitAll();
         window.dispatchEvent(new Event("resize"));
       });
-    var t;
-    window.addEventListener("resize", function (e) {
-      if (!e.isTrusted) return;
+    // Refit when the reading panel changes width: a window resize, or the contents rail folding or opening.
+    var t,
+      main = document.querySelector("main"),
+      lastW = main ? main.clientWidth : 0;
+    function relayout() {
       clearTimeout(t);
       t = setTimeout(function () {
+        fitFormulas();
         fitAll();
         window.dispatchEvent(new Event("resize"));
       }, 150);
+    }
+    if (main && "ResizeObserver" in window)
+      new ResizeObserver(function () {
+        if (main.clientWidth !== lastW) {
+          lastW = main.clientWidth;
+          relayout();
+        }
+      }).observe(main);
+    else
+      window.addEventListener("resize", function (e) {
+        if (e.isTrusted) relayout();
+      });
+  }
+
+  // Formula lines wrap instead of scrolling. Each .formula is cut into segments at its top-level relations (= ≤ → ⇔ …,
+  // never inside brackets, fractions or stacked limits) and after list commas; a segment stays on one line, so a long
+  // formula breaks before a relation sign, the way it is set by hand. A segment wider than the card on its own (a long
+  // worded chain) may wrap at its spaces. Without this script, formulas wrap at any space.
+  var REL = /^(=|≠|≈|≡|≤|≥|<|>|→|←|↔|⇒|⇐|⇔|⟹|⟸|⟺|:=|≅|∼)$/;
+  function segmentFormula(f) {
+    if (f.dataset.seg) return;
+    f.dataset.seg = "1";
+    var segs = [[]],
+      depth = 0;
+    Array.prototype.slice.call(f.childNodes).forEach(function (node) {
+      if (node.nodeType !== 3) {
+        segs[segs.length - 1].push(node);
+        return;
+      }
+      // split this text node at top-level relations (break before) and list commas (break after)
+      var parts = node.data.split(/(\s+)/),
+        buf = "";
+      function flush() {
+        if (buf) segs[segs.length - 1].push(document.createTextNode(buf));
+        buf = "";
+      }
+      parts.forEach(function (tok, i) {
+        for (var k = 0; k < tok.length; k++) {
+          var ch = tok[k];
+          if ("([{⟨".indexOf(ch) > -1) depth++;
+          else if (")]}⟩".indexOf(ch) > -1) depth = Math.max(0, depth - 1);
+        }
+        if (depth === 0 && REL.test(tok) && segs[segs.length - 1].length + buf.length > 0) {
+          flush();
+          segs.push([]);
+        }
+        buf += tok;
+        if (depth === 0 && /,$/.test(tok) && /^\s+$/.test(parts[i + 1] || "")) {
+          flush();
+          segs.push([]);
+        }
+      });
+      flush();
+    });
+    segs = segs.filter(function (g) {
+      return g.some(function (n) {
+        return n.nodeType !== 3 || n.data.trim();
+      });
+    });
+    if (segs.length < 2 && !(segs[0] && segs[0].length)) return;
+    f.textContent = "";
+    segs.forEach(function (g, i) {
+      var span = document.createElement("span");
+      span.className = "f-seg";
+      // spaces between segments become the break opportunities
+      var first = g[0],
+        last = g[g.length - 1];
+      if (first && first.nodeType === 3) first.data = first.data.replace(/^\s+/, "");
+      if (last && last.nodeType === 3) last.data = last.data.replace(/\s+$/, "");
+      g.forEach(function (n) {
+        span.appendChild(n);
+      });
+      if (i) f.appendChild(document.createTextNode(" "));
+      f.appendChild(span);
+    });
+  }
+  function fitFormulas() {
+    document.querySelectorAll(".formula").forEach(function (f) {
+      segmentFormula(f);
+      var room = f.clientWidth;
+      f.querySelectorAll(":scope > .f-seg").forEach(function (seg) {
+        seg.classList.remove("f-free");
+        if (room && seg.getBoundingClientRect().width > room + 1) seg.classList.add("f-free");
+      });
     });
   }
 
@@ -144,48 +233,68 @@
     });
   }
 
+  // Reading chip: once a section's heading has scrolled away, a small chip pinned to the top of the screen, at the
+  // reading column's right edge, says which section you are in, how far through it you are, roughly how many minutes
+  // of it are left (200 words a minute over the words still ahead), and which section of how many it is.
   function readout() {
     var secs = Array.prototype.slice.call(document.querySelectorAll("main section[id]")).filter(function (s) {
       return s.querySelector(":scope > h2");
     });
     if (!secs.length || !document.querySelector("nav.toc")) return;
-    var items = secs.map(function (s) {
-      var span = document.createElement("span"),
-        m = /^\s*(\d+(?:\.\d+)*[a-z]?)\s/.exec(s.querySelector(":scope > h2").textContent);
-      span.className = "hud-read";
-      span.setAttribute("aria-hidden", "true");
-      s.classList.add("hud-sec");
-      s.insertBefore(span, s.firstChild);
-      return { sec: s, span: span, h: s.querySelector(":scope > h2"), num: m ? "§" + m[1] + "  " : "" };
+    var items = secs.map(function (s, n) {
+      var h = s.querySelector(":scope > h2"),
+        m = /^\s*(\d+(?:\.\d+)*[a-z]?)\s/.exec(h.textContent);
+      return {
+        sec: s,
+        h: h,
+        n: n + 1,
+        num: m ? "§" + m[1] : "",
+        words: (s.textContent.match(/\S+/g) || []).length,
+      };
     });
-    // Pin each readout to its heading's rule (the section is the positioned box).
-    function place() {
-      items.forEach(function (it) {
-        it.span.style.top = it.h.offsetTop - 17 + "px";
-        it.span.style.left = it.h.offsetLeft + it.h.offsetWidth + "px";
-      });
-    }
-    var cur = null,
-      queued = false;
+    var chip = document.createElement("div"),
+      secEl = document.createElement("span"),
+      bar = document.createElement("span"),
+      fill = document.createElement("i"),
+      time = document.createElement("span"),
+      pos = document.createElement("span");
+    chip.className = "hud-chip";
+    chip.setAttribute("aria-hidden", "true");
+    secEl.className = "hc-sec";
+    bar.className = "hc-bar";
+    time.className = "hc-time";
+    pos.className = "hc-pos";
+    bar.appendChild(fill);
+    [secEl, bar, time, pos].forEach(function (el) {
+      chip.appendChild(el);
+    });
+    document.body.appendChild(chip);
+    var queued = false;
     function update() {
       queued = false;
       var line = window.innerHeight * 0.3,
         found = null,
-        pct = 0;
+        p = 0;
       for (var i = 0; i < items.length; i++) {
         var r = items[i].sec.getBoundingClientRect();
         if (r.top <= line && r.bottom > line) {
           found = items[i];
-          pct = Math.round(Math.min(1, Math.max(0, (line - r.top) / r.height)) * 100);
+          p = Math.min(1, Math.max(0, (line - r.top) / r.height));
           break;
         }
       }
-      if (cur && cur !== found) cur.span.classList.remove("on");
-      if (found) {
-        found.span.textContent = found.num + ("00" + pct).slice(-3) + "%";
-        found.span.classList.add("on");
+      var hr = found && found.h.getBoundingClientRect();
+      if (!found || hr.bottom > 0) {
+        chip.classList.remove("on");
+        return;
       }
-      cur = found;
+      var left = Math.ceil((found.words * (1 - p)) / 200);
+      secEl.textContent = found.num;
+      fill.style.width = Math.round(p * 100) + "%";
+      time.textContent = p > 0.97 ? "section done" : left <= 1 ? "under 1 min left" : left + " min left";
+      pos.textContent = found.n + " of " + items.length;
+      chip.style.left = Math.round(hr.right) + "px";
+      chip.classList.add("on");
     }
     function queue() {
       if (!queued) {
@@ -194,13 +303,10 @@
       }
     }
     window.addEventListener("scroll", queue, { passive: true });
-    window.addEventListener("resize", function () {
-      place();
-      queue();
-    });
-    place();
+    window.addEventListener("resize", queue);
     update();
   }
+
 
   if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", start);
   else start();

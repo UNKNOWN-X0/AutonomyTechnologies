@@ -3,6 +3,32 @@
   // inside a long rail, and on phones adds a bar that names the section and opens the contents from anywhere.
   var toc = document.querySelector("nav.toc");
   if (!toc) return;
+
+  // Folding the whole rail (wide screens): the arrow at its top hides it to a slim strip and gives the page the width.
+  // The choice is saved as rail-folded and applied from js/settings.js in <head>, so a folded rail never flashes open.
+  (function railFold() {
+    var root = document.documentElement,
+      btn = document.createElement("button");
+    btn.type = "button";
+    btn.className = "rail-toggle";
+    btn.innerHTML =
+      '<svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path d="M15 5l-7 7 7 7" fill="none" stroke="currentColor" stroke-width="2"/></svg>';
+    function sync() {
+      var folded = root.classList.contains("rail-folded");
+      btn.setAttribute("aria-expanded", String(!folded));
+      btn.setAttribute("aria-label", folded ? "Show contents" : "Hide contents");
+      btn.dataset.tip = folded ? "Show contents" : "Hide contents";
+    }
+    btn.addEventListener("click", function () {
+      var folded = root.classList.toggle("rail-folded");
+      try {
+        localStorage.setItem("rail-folded", folded ? "1" : "0");
+      } catch (e) {}
+      sync();
+    });
+    toc.insertBefore(btn, toc.firstChild);
+    sync();
+  })();
   var rail = toc.querySelector(":scope > ol"),
     links = Array.prototype.slice.call(toc.querySelectorAll("ol a")),
     reduce = window.siteReduceMotion ? window.siteReduceMotion() : window.matchMedia("(prefers-reduced-motion: reduce)").matches;

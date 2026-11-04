@@ -16,6 +16,10 @@
     else delete root.dataset.text;
   }
   apply();
+  // A folded contents rail (js/nav.js) is applied here too, before the page paints.
+  try {
+    if (localStorage.getItem("rail-folded") === "1") root.classList.add("rail-folded");
+  } catch (e) {}
   // The HUD layer (js/hud.js) rides along with this file, so pages need no extra script tag.
   if (document.currentScript) {
     var hud = document.createElement("script");

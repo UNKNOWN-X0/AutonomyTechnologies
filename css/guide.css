@@ -811,7 +811,7 @@ main > section {
 .worked,
 .recall {
   margin: 18px 0;
-  padding: 14px 20px 8px;
+  padding: 18px 20px;
   border-top: 3px solid var(--course);
   background: var(--paper-2);
 }
@@ -1538,23 +1538,52 @@ main h2 {
     repeating-linear-gradient(90deg, var(--hud-c) 0 1px, transparent 1px 64px) 0 0 / 100% 7px no-repeat,
     repeating-linear-gradient(90deg, var(--line) 0 1px, transparent 1px 8px) 0 0 / 100% 4px no-repeat;
 }
-.hud-sec {
-  position: relative;
-}
-.hud-read {
-  position: absolute;
+/* Reading chip (js/hud.js): fixed under the reading-progress bar, right-aligned to the column's edge, wide screens only. */
+.hud-chip {
+  position: fixed;
+  top: 12px;
+  z-index: 40;
+  display: none;
+  align-items: center;
+  gap: 10px;
+  padding: 6px 10px;
   transform: translateX(-100%);
-  font: 600 0.75rem/1 var(--f-body);
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-left: 2px solid var(--hud-c);
+  color: var(--muted);
+  font: 600 0.78rem/1 var(--f-body);
   font-variant-numeric: tabular-nums;
-  letter-spacing: 0.04em;
-  white-space: pre;
-  color: var(--hud-c);
+  white-space: nowrap;
+  pointer-events: none;
   opacity: 0;
   transition: opacity 200ms var(--ease);
-  pointer-events: none;
 }
-.hud-read.on {
+.hud-chip.on {
   opacity: 1;
+}
+.hud-chip .hc-sec {
+  color: var(--hud-c);
+  font-weight: 700;
+}
+.hc-bar {
+  width: 48px;
+  height: 4px;
+  background: var(--line);
+}
+.hc-bar i {
+  display: block;
+  height: 100%;
+  background: var(--signal);
+  box-shadow: var(--glow);
+}
+.hud-chip .hc-time {
+  color: var(--ink);
+}
+@media (min-width: 901px) {
+  .hud-chip {
+    display: flex;
+  }
 }
 .eq {
   background:
@@ -1584,8 +1613,8 @@ main h2 {
   main h2 {
     background: none;
   }
-  .hud-read {
-    display: none;
+  .hud-chip {
+    display: none !important;
   }
   .eq,
   .worked {
@@ -1616,7 +1645,155 @@ main li {
   color: var(--hud-c);
 }
 .log-date {
-  margin: -6px 0 12px;
+  margin: -6px auto 12px;
   color: var(--muted);
   font-weight: 600;
+}
+
+/* One centred column. Everything capped at the measure sits in the middle of the reading panel, so the empty space on
+   its left and right is equal at every width; tables, the lab bench and the concept map still use the full panel. */
+main > :not(.sign):not(section) {
+  margin-left: max(clamp(18px, 4vw, 56px), calc((100% - var(--measure)) / 2));
+  margin-right: max(clamp(18px, 4vw, 56px), calc((100% - var(--measure)) / 2));
+}
+main section > p,
+main section > ul,
+main section > ol,
+main section > h2,
+main section > h3,
+main section > details,
+main section > .worked,
+main section > .recall,
+main section > .review,
+main section > .lab-link,
+main section > #lab-results,
+main section > .eq,
+main .cold-start > :not(h2),
+main section > .cm-detail,
+main section > .res-list {
+  margin-left: auto;
+  margin-right: auto;
+}
+/* The rail scrolls on short screens: a thin, pale scrollbar with room before it, so the rail's right edge is not a
+   heavy bar pressed against its buttons. */
+nav.toc {
+  padding-right: 10px;
+  scrollbar-width: thin;
+  scrollbar-color: var(--line) transparent;
+}
+@media (max-width: 900px) {
+  nav.toc {
+    padding-right: 0;
+  }
+}
+/* Cards keep the same space above their first line as below their last. */
+.worked > :last-child,
+.recall > :last-child,
+.challenge > :last-child {
+  margin-bottom: 0;
+}
+/* Pager cards share a row height; a short title sits in the middle instead of leaving a gap below it. */
+.chapter-pager > * {
+  justify-content: center;
+}
+
+/* Folding the contents rail (js/nav.js, wide screens only). The arrow sits at the rail's top right; folded, the rail
+   becomes a 36px strip holding only the arrow, and the reading panel takes the width. */
+.rail-toggle {
+  display: none;
+}
+@media (min-width: 901px) {
+  .rail-toggle {
+    position: absolute;
+    top: 24px;
+    right: 10px;
+    display: grid;
+    place-items: center;
+    width: 36px;
+    height: 36px;
+    padding: 0;
+    border: 2px solid var(--act);
+    background: transparent;
+    color: var(--act);
+    cursor: pointer;
+  }
+  .rail-toggle:hover {
+    background: var(--fau-tint);
+  }
+  .rail-toggle svg {
+    transition: transform 200ms var(--ease);
+  }
+  nav.toc a.brand {
+    padding-right: 46px;
+  }
+  .wrap {
+    transition: grid-template-columns 260ms var(--ease);
+  }
+  html.rail-folded .wrap {
+    grid-template-columns: 36px minmax(0, 1fr);
+  }
+  html.rail-folded nav.toc {
+    padding-right: 0;
+    overflow: visible;
+  }
+  html.rail-folded nav.toc > :not(.rail-toggle) {
+    display: none;
+  }
+  html.rail-folded .rail-toggle {
+    right: 0;
+  }
+  html.rail-folded .rail-toggle svg {
+    transform: scaleX(-1);
+  }
+}
+@media print {
+  .rail-toggle {
+    display: none;
+  }
+}
+
+/* Formula cards never scroll sideways: a formula line wraps, at relation signs when js/hud.js has segmented it
+   (each .f-seg stays whole), and balanced so the lines come out similar in length. Fractions and stacked limits are
+   inline grids, so they never split. */
+.eq {
+  overflow-x: visible;
+}
+.formula {
+  width: auto;
+  min-width: 0;
+  white-space: normal;
+  text-wrap: balance;
+  overflow-wrap: break-word;
+}
+.f-seg {
+  white-space: nowrap;
+}
+.f-seg.f-free {
+  white-space: normal;
+}
+
+/* Super- and subscripts at 80% of the surrounding size, without stretching the line: in formulas they were set
+   at the browser's "smaller" against a math serif and read too small. */
+.formula sub,
+.formula sup,
+main p sub,
+main p sup,
+main li sub,
+main li sup {
+  font-size: 0.8em;
+  line-height: 0;
+}
+.formula sup sup,
+.formula sub sub,
+.formula sup sub,
+.formula sub sup {
+  font-size: 0.85em;
+}
+/* Limits stacked on ∑ ∏ ∫ ⋃ keep their own grid line height, a little larger than before for legibility. */
+.formula .op > sub,
+.formula .op > sup,
+.op > sub,
+.op > sup {
+  font-size: 0.72em;
+  line-height: 1.1;
 }

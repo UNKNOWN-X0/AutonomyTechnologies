@@ -6,9 +6,9 @@
     "semantic_hash": "29fe146da84567bcc68665ce404ff135"
   },
   "README.md": {
-    "mtime": 1793775573.4316878,
-    "seen": 1793775602.4862459,
-    "ast_hash": "1069399473ae25aff630a884071d0ec5",
+    "mtime": 1793779130.1061318,
+    "seen": 1793799826.403559,
+    "ast_hash": "814a396b1c3f0ee9fc4bc3f539a39408",
     "semantic_hash": ""
   },
   "index.html": {
@@ -24,9 +24,9 @@
     "semantic_hash": ""
   },
   "AGENTS.md": {
-    "mtime": 1793284507.358685,
-    "seen": 1793287995.95937,
-    "ast_hash": "9489d063130304563346512088d50585",
+    "mtime": 1793779130.1064944,
+    "seen": 1793799826.403556,
+    "ast_hash": "980c5073eec01e52056e1edabed5fbf3",
     "semantic_hash": ""
   },
   "graphify-out/memory/query_20261024_200642_26a2d038_how_are_the_static_study_pages_hosted__and_what_gi.md": {
@@ -60,9 +60,9 @@
     "semantic_hash": ""
   },
   "DESIGN.md": {
-    "mtime": 1793775573.4307811,
-    "seen": 1793775602.4862442,
-    "ast_hash": "9d584c9a75cd39f61c75d4100d5c4c73",
+    "mtime": 1793800695.5690067,
+    "seen": 1793800762.147383,
+    "ast_hash": "df057691c16f517049f70e4a4d416a4a",
     "semantic_hash": ""
   },
   "PRODUCT.md": {
@@ -324,9 +324,9 @@
     "semantic_hash": ""
   },
   "mei/ch2-real-numbers.html": {
-    "mtime": 1793747210.4815035,
-    "seen": 1793747372.339026,
-    "ast_hash": "889321fad4cfc4ac99f286993ff5d59a",
+    "mtime": 1793801075.6309276,
+    "seen": 1793801111.285105,
+    "ast_hash": "f369d2e7c11c0b2a8fbc681daf29ba0c",
     "semantic_hash": ""
   },
   "js/mei/ch2-lab.js": {
@@ -408,9 +408,9 @@
     "semantic_hash": ""
   },
   "mei/ch3-mappings.html": {
-    "mtime": 1793747210.4583142,
-    "seen": 1793747372.339028,
-    "ast_hash": "60cfc702be63186d9c0b7e34f010fcfb",
+    "mtime": 1793801075.631596,
+    "seen": 1793801111.285107,
+    "ast_hash": "4979c5fb50667ff88e684532d6dbb4f2",
     "semantic_hash": ""
   },
   "js/mei/ch3-lab.js": {
@@ -437,46 +437,34 @@
     "ast_hash": "4e17ff49ee7efc6d5591dcf73e5da9f3",
     "semantic_hash": ""
   },
-  "docs/ROUTE-AHEAD-PLAN.md": {
-    "mtime": 1793727987.1443202,
-    "seen": 1793728140.2590468,
-    "ast_hash": "bed18fba974fd285a3b2fbfeba519731",
-    "semantic_hash": ""
-  },
-  "docs/SIGNAL-SWEEP-PLAN.md": {
-    "mtime": 1793739510.6342106,
-    "seen": 1793739883.509301,
-    "ast_hash": "88c3e1f279d506b695d05c5a48bfdaae",
-    "semantic_hash": ""
-  },
   "js/nav.js": {
-    "mtime": 1793775010.766951,
-    "seen": 1793775049.441183,
-    "ast_hash": "4eea22b9fa4fa41e6603f00d5e623f71",
+    "mtime": 1793799950.9330046,
+    "seen": 1793800017.648252,
+    "ast_hash": "e4e57dfb814647400518fd439a5853f9",
     "semantic_hash": ""
   },
   "js/settings.js": {
-    "mtime": 1793775492.1429033,
-    "seen": 1793775602.486227,
-    "ast_hash": "4811fa38d291f7c33554ab55f9d94913",
+    "mtime": 1793799950.9334366,
+    "seen": 1793800017.648253,
+    "ast_hash": "274f7ee5d9fe71d4f0a15dad458ec71d",
     "semantic_hash": ""
   },
   "js/hud.js": {
-    "mtime": 1793775479.1877716,
-    "seen": 1793775602.486217,
-    "ast_hash": "4c1832f1ee2e64a3a77c51b35573696b",
+    "mtime": 1793800663.403937,
+    "seen": 1793800762.147357,
+    "ast_hash": "1b56f91d98815aa56115fdb5fa75a5a2",
     "semantic_hash": ""
   },
   "about/how-to-use.html": {
-    "mtime": 1793775402.6490035,
-    "seen": 1793775602.4862468,
-    "ast_hash": "147ba76a1e610106d453eded27e072e4",
+    "mtime": 1793800675.738338,
+    "seen": 1793800762.147386,
+    "ast_hash": "610b7688e33f668f6543583acc6365db",
     "semantic_hash": ""
   },
   "about/version-log.html": {
-    "mtime": 1793775430.0520222,
-    "seen": 1793775602.486248,
-    "ast_hash": "961593ef3cc4218d7fc513e3a0795a0e",
+    "mtime": 1793800512.7355447,
+    "seen": 1793800533.219213,
+    "ast_hash": "df8bb1a82fc34d990c83e0bbaddd7d3b",
     "semantic_hash": ""
   }
 }

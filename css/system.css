@@ -831,7 +831,8 @@ body:has(nav.toc)::after,
 .settings-links {
   display: flex;
   gap: 18px;
-  margin: 12px 0 0;
+  /* Same space above (after the note's 16px) as below, before Done. */
+  margin: 0 0 16px;
   font-weight: 600;
 }
 .settings-links a {
@@ -841,4 +842,9 @@ body:has(nav.toc)::after,
   .decode-line {
     display: none;
   }
+}
+/* The settings heading sits under the panel's own 4px rule, so it drops the page headings' top rule. */
+dialog.settings h2 {
+  border-top: 0;
+  padding-top: 0;
 }
