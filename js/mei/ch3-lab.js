@@ -295,6 +295,48 @@
     var gx = g(x), fg = isFinite(gx) ? f(gx) : NaN;
     text(svg, "the other order: (f∘g)(" + fmt(x) + ") = " + fmt(fg), 280, 286, 14, tok("--muted"), "middle");
   }
+  // ---- Endless practice: fresh challenges with computed answers (checked by tests/lab-generators.test.js) ----
+  function pick(n) { return Math.floor(Math.random() * n); }
+  function shuffle(o) { for (var i = o.length - 1; i > 0; i--) { var j = pick(i + 1), t = o[i]; o[i] = o[j]; o[j] = t; } return o; }
+  function numOpts(right, wrongs) {
+    var seen = {}, out = [];
+    [right].concat(wrongs).forEach(function (v) { var k = fmt(v); if (!seen[k] && out.length < 3 && isFinite(v)) { seen[k] = true; out.push([k, k]); } });
+    for (var d = 1; out.length < 3; d++) { var k = fmt(right + d); if (!seen[k]) { seen[k] = true; out.push([k, k]); } }
+    return shuffle(out);
+  }
+  var RULES = [["x²", function (x) { return x * x; }], ["x+1", function (x) { return x + 1; }], ["|x|", Math.abs], ["2x", function (x) { return 2 * x; }], ["x³", function (x) { return x * x * x; }]];
+  var generators = {
+    mappings: function () {
+      var r = RULES[pick(RULES.length)], xs = [-2, -1, 0, 1, 2].slice(0, 3 + pick(3)), img = [];
+      xs.forEach(function (x) { var y = r[1](x); if (img.indexOf(y) < 0) img.push(y); });
+      var ys = img.slice(); if (pick(2)) ys.push(Math.max.apply(null, img) + 1 + pick(3));
+      var m = ownMapping(r[1], xs, ys), key = m.injective && m.surjective ? "both" : m.surjective ? "surj" : m.injective ? "inj" : "neither";
+      return ch("gen-mapping", "3.2", "Mapping type", "For f(x)=" + r[0] + " from {" + xs.join(",").replace(/-/g, "−") + "} to {" + ys.slice().sort(function (a, b) { return a - b; }).join(",").replace(/-/g, "−") + "}, which description fits?",
+        shuffle([option("both", "Bijective"), option("surj", "Surjective, not injective"), option("inj", "Injective, not surjective"), option("neither", "Neither")]), key,
+        (m.injective ? "No two inputs share an output, so it is injective. " : "Two inputs share an output, so it is not injective. ") + (m.surjective ? "Every value of Y is reached, so it is surjective." : "Some value of Y is never reached, so it is not surjective."),
+        function (sv, p, g) { mappingDraw(sv, m, p, g); });
+    },
+    inverse: function () {
+      var a = 2 + pick(4), b = pick(11) - 4, x = 1 + pick(5), y = a * x + b, f = function (t) { return a * t + b; };
+      return ch("gen-inverse", "3.3", "Reverse a linear map", "If f(x)=" + a + "x" + (b < 0 ? "−" + -b : "+" + b) + ", what input has output " + fmt(y) + "?", numOpts(x, [y - b, (y + b) / a, x + 1]), fmt(x),
+        "Solve " + a + "x" + (b < 0 ? "−" + -b : "+" + b) + "=" + fmt(y) + ": x=(" + fmt(y) + (b < 0 ? "+" + -b : "−" + b) + ")/" + a + "=" + fmt(x) + ". The inverse rule is f⁻¹(y)=(y" + (b < 0 ? "+" + -b : "−" + b) + ")/" + a + ".",
+        function (sv, p) { ownGraph(sv, f, -1, 6, p > 0.4 ? y : null); });
+    },
+    composition: function () {
+      var p1 = 1 + pick(3), q = pick(5) - 2, x = pick(5) - 1, f = function (t) { return p1 * t + q; }, g = function (t) { return t * t; },
+        fs = p1 + "x" + (q < 0 ? "−" + -q : "+" + q), right = g(f(x));
+      return ch("gen-composition", "3.4", "Compose in order", "With f(x)=" + fs + " and g(x)=x², what is (g∘f)(" + fmt(x) + ")?", numOpts(right, [f(g(x)), f(x) * g(x), f(x)]), fmt(right),
+        "Apply f first: f(" + fmt(x) + ")=" + fmt(f(x)) + ", then g: " + fmt(f(x)) + "²=" + fmt(right) + ". The other order gives f(g(" + fmt(x) + "))=" + fmt(f(g(x))) + ".",
+        function (sv, ph) { ownChain(sv, fs, "u²", f, g, x); });
+    },
+    polar: function () {
+      var angs = [[0, "0"], [Math.PI / 6, "π/6"], [Math.PI / 3, "π/3"], [Math.PI / 2, "π/2"], [2 * Math.PI / 3, "2π/3"], [Math.PI, "π"]], A = angs[pick(angs.length)], r = 1 + pick(4),
+        c = P.polarToCartesian(r, A[0]), right = Math.round(c.x * 100) / 100;
+      return ch("gen-polar", "3.6", "Polar to Cartesian", "For r=" + r + " and φ=" + A[1] + ", what is x = r cos φ?", numOpts(right, [Math.round(c.y * 100) / 100, r, -right]), fmt(right),
+        "x = r cos φ = " + r + " · cos(" + A[1] + ") = " + fmt(right) + "; the vertical part is y = r sin φ = " + fmt(Math.round(c.y * 100) / 100) + ".",
+        function (sv, p) { polarDraw(sv, A[0], r, p); });
+    },
+  };
   function register(id, title) {
     var root = document.querySelector("[data-experiment='" + id + "']"), visual = stage(id), controls = Array.from(root.querySelectorAll("[data-control]"));
     function setup(c) { root.classList.remove("sandbox-open"); c.stage(); }
@@ -362,16 +404,18 @@
       }
       update();
     }
+    function wrap(challenge) {
+      var said = null;
+      function draw(phase) { challenge.draw(visual, phase, said); }
+      return Object.assign({}, challenge, {
+        stage: function () { said = null; draw(0); },
+        preview: function (choice) { var selected = challenge.options.find(function (o) { return o[0] === choice; }); said = selected && selected[1]; draw(0); },
+        reveal: function () { return Lab.tween(1400, draw).then(function () { draw(1); }); },
+      });
+    }
     Lab.experiment({ id: id, title: title, card: root.querySelector(".challenge"), lock: function () {}, setup: setup, sandbox: sandbox,
-      challenges: data[id].map(function (challenge) {
-        var said = null;
-        function draw(phase) { challenge.draw(visual, phase, said); }
-        return Object.assign({}, challenge, {
-          stage: function () { said = null; draw(0); },
-          preview: function (choice) { var selected = challenge.options.find(function (o) { return o[0] === choice; }); said = selected && selected[1]; draw(0); },
-          reveal: function () { return Lab.tween(1400, draw).then(function () { draw(1); }); },
-        });
-      }) });
+      generate: generators[id] ? function () { return wrap(generators[id]()); } : null,
+      challenges: data[id].map(wrap) });
   }
   register("mappings", "3.1–3.2 Mapping types");
   register("inverse", "3.3 Inverse functions");

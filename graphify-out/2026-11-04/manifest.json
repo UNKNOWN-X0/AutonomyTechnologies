@@ -102,9 +102,9 @@
     "semantic_hash": ""
   },
   "js/lab.js": {
-    "mtime": 1793822981.2829602,
-    "seen": 1793823587.425163,
-    "ast_hash": "d387726e888996fec595a85870638584",
+    "mtime": 1793827864.8092005,
+    "seen": 1793828253.872843,
+    "ast_hash": "fcfca43f968d0bfbac110729d6de8501",
     "semantic_hash": ""
   },
   "tests/eei-ch1-physics.test.js": {
@@ -150,9 +150,9 @@
     "semantic_hash": ""
   },
   "docs/LAB-STANDARD.md": {
-    "mtime": 1793822991.8290167,
-    "seen": 1793823587.425205,
-    "ast_hash": "4a51606f92f9a7aff5afd67062ffc824",
+    "mtime": 1793827981.6536355,
+    "seen": 1793828253.87291,
+    "ast_hash": "609fa1abf5c3855237c40358527ac779",
     "semantic_hash": ""
   },
   "mei/ch1-statements-logic-sets.html": {
@@ -330,9 +330,9 @@
     "semantic_hash": ""
   },
   "js/mei/ch2-lab.js": {
-    "mtime": 1793826288.3053448,
-    "seen": 1793826671.494317,
-    "ast_hash": "a8344010fb737d24549be48768571772",
+    "mtime": 1793827896.0379343,
+    "seen": 1793828253.872847,
+    "ast_hash": "a98ab9167a2f30d9aafc73297144ef55",
     "semantic_hash": ""
   },
   "js/mei/ch2-physics.js": {
@@ -456,15 +456,15 @@
     "semantic_hash": ""
   },
   "about/how-to-use.html": {
-    "mtime": 1793823863.3829277,
-    "seen": 1793824015.234623,
-    "ast_hash": "e5dbc017ee71ef4768ed2a1a3dc21089",
+    "mtime": 1793827981.6548762,
+    "seen": 1793828253.872889,
+    "ast_hash": "0e5d22e40869faf67865cdcbfdb2887d",
     "semantic_hash": ""
   },
   "about/version-log.html": {
-    "mtime": 1793827724.1028085,
-    "seen": 1793827819.400867,
-    "ast_hash": "1771ef52353dc3f7d279916b8c3474b7",
+    "mtime": 1793827981.6542466,
+    "seen": 1793828253.87289,
+    "ast_hash": "4af426c2426fc7b34e20ca25330cc798",
     "semantic_hash": ""
   },
   "docs/DIAGRAM-AND-LAB-PLAN.md": {
@@ -483,6 +483,12 @@
     "mtime": 1793825938.506064,
     "seen": 1793826671.494335,
     "ast_hash": "aade943ec9de22e6dce2771e76d525ad",
+    "semantic_hash": ""
+  },
+  "tests/lab-generators.test.js": {
+    "mtime": 1793827929.562834,
+    "seen": 1793828253.87287,
+    "ast_hash": "03669bfaa32890d515022b21734fad71",
     "semantic_hash": ""
   }
 }
