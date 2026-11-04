@@ -1,12 +1,12 @@
 # Graph Report - AutonomyTechnologies  (2026-11-04)
 
 ## Corpus Check
-- 54 files · ~173,059 words
+- 54 files · ~173,260 words
 - Verdict: corpus is large enough that graph structure adds value.
 - Unclassified: 6 file(s) not represented in the graph (top: .css 4, (none) 2)
 
 ## Summary
-- 823 nodes · 1520 edges · 44 communities (34 shown, 10 thin omitted)
+- 822 nodes · 1519 edges · 38 communities (34 shown, 4 thin omitted)
 - Extraction: 87% EXTRACTED · 13% INFERRED · 0% AMBIGUOUS · INFERRED: 198 edges (avg confidence: 0.85)
 - Token cost: 0 input · 0 output
 
@@ -47,18 +47,13 @@
 - ch34-lab.js
 - mei/ch2-lab.js
 - nav.js
-- ref_node_assert
+- lab-challenges.test.js
 - ch5-lab.js
 - settings.js
 - mei/ch1-physics.js
 - mei/ch3-lab.js
 - hud.js
-- mei-ch1-physics.test.js
-- mei/ch2-physics.js
 - mei/ch3-physics.js
-- lab-challenges.test.js
-- ch5-physics.js
-- eei-ch1-physics.test.js
 
 ## God Nodes (most connected - your core abstractions)
 1. `fieldPlayground()` - 28 edges
@@ -87,7 +82,7 @@
 ## Import Cycles
 - None detected.
 
-## Communities (44 total, 10 thin omitted)
+## Communities (38 total, 4 thin omitted)
 
 ### Community 0 - "capacitorBench() / paint()"
 Cohesion: 0.05
@@ -197,6 +192,10 @@ Nodes (20): binaryDraw(), bindSlider(), boundsDraw(), box(), distanceDraw(), gue
 Cohesion: 0.22
 Nodes (9): fold(), follow(), groupOf(), idOf(), lit(), show(), build(), href() (+1 more)
 
+### Community 31 - "lab-challenges.test.js"
+Cohesion: 0.05
+Nodes (13): moduleConfiguration(), rowsToBytes(), choose(), pascalRow(), row(), rows(), src2, context() (+5 more)
+
 ### Community 32 - "ch5-lab.js"
 Cohesion: 0.38
 Nodes (9): box(), challenge(), colours(), draw(), fit(), label(), line(), mount() (+1 more)
@@ -214,21 +213,17 @@ Cohesion: 0.21
 Nodes (21): bindSlider(), compositionDraw(), elementaryDraw(), X(), Y(), graphDraw(), line(), mappingDraw() (+13 more)
 
 ### Community 36 - "hud.js"
-Cohesion: 0.22
+Cohesion: 0.24
 Nodes (13): decode(), frame(), decodeAll(), fit(), fitAll(), fitFormulas(), glyph(), readout() (+5 more)
 
 ### Community 39 - "mei/ch3-physics.js"
 Cohesion: 0.14
 Nodes (4): discriminant(), relationValues(), roots(), squarePreimages()
 
-### Community 40 - "lab-challenges.test.js"
-Cohesion: 0.39
-Nodes (5): context(), fake(), loadExperiments(), ROOT, runEngine()
-
 ## Knowledge Gaps
 - **10 isolated node(s):** `Study Pages preview showing Electrical Engineering 1 and Mathematics for Engineers I course cards`, `Active-recall study workflow`, `Jekyll site CI`, `LaTeX, Pandoc, and KaTeX publishing pipeline`, `Bernhard Kainz` (+5 more)
-  These have ≤1 connection - possible missing edges or undocumented components. (Counts symbols only; 264 node(s) total have ≤1 connection when file, concept and rationale nodes are included.)
-- **10 thin communities (<3 nodes) omitted from report** — run `graphify query` to explore isolated nodes.
+  These have ≤1 connection - possible missing edges or undocumented components. (Counts symbols only; 263 node(s) total have ≤1 connection when file, concept and rationale nodes are included.)
+- **4 thin communities (<3 nodes) omitted from report** — run `graphify query` to explore isolated nodes.
 
 ## Work-memory lessons
 
@@ -239,7 +234,7 @@ Nodes (5): context(), fake(), loadExperiments(), ROOT, runEngine()
 _Questions this graph is uniquely positioned to answer:_
 
 - **Why does `Lab standard` connect `Lab standard` to `Study Pages project guide`?**
-  _High betweenness centrality (0.059) - this node is a cross-community bridge._
+  _High betweenness centrality (0.060) - this node is a cross-community bridge._
 - **Are the 3 inferred relationships involving `fieldPlayground()` (e.g. with `eei/ch1-lab.js` and `endDrag()`) actually correct?**
   _`fieldPlayground()` has 3 INFERRED edges - model-reasoned connections that need verification._
 - **What connects `Study Pages preview showing Electrical Engineering 1 and Mathematics for Engineers I course cards`, `Active-recall study workflow`, `Jekyll site CI` to the rest of the system?**
