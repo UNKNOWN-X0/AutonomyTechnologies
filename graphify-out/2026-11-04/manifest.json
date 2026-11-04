@@ -6,15 +6,15 @@
     "semantic_hash": "29fe146da84567bcc68665ce404ff135"
   },
   "README.md": {
-    "mtime": 1793746413.21008,
-    "seen": 1793746420.9218528,
-    "ast_hash": "f671e6e4235889949036439c5613cc7b",
+    "mtime": 1793747367.2842941,
+    "seen": 1793747372.339005,
+    "ast_hash": "74c85bdbfcaf10d8388b736984ebadb0",
     "semantic_hash": ""
   },
   "index.html": {
-    "mtime": 1793728701.7411735,
-    "seen": 1793728932.05824,
-    "ast_hash": "cc16e0f6c06dae1520c9a87c8be48dc7",
+    "mtime": 1793747209.9937348,
+    "seen": 1793747372.339023,
+    "ast_hash": "cbcab0e50e7c94477986614492e4e88b",
     "semantic_hash": ""
   },
   "assets/preview.png": {
@@ -48,9 +48,9 @@
     "semantic_hash": ""
   },
   "js/index.js": {
-    "mtime": 1793747067.7633574,
-    "seen": 1793747103.864984,
-    "ast_hash": "7b631ec2c649c6f847885445ad1fa71c",
+    "mtime": 1793747265.4912708,
+    "seen": 1793747372.338975,
+    "ast_hash": "637ea60896b62154f30861513eb22519",
     "semantic_hash": ""
   },
   ".impeccable/surfaces/index-html.md": {
@@ -60,9 +60,9 @@
     "semantic_hash": ""
   },
   "DESIGN.md": {
-    "mtime": 1793747067.7637541,
-    "seen": 1793747103.865008,
-    "ast_hash": "0f213cc0650faab40d5bc6646dbde67d",
+    "mtime": 1793747367.2839975,
+    "seen": 1793747372.3390028,
+    "ast_hash": "c6c89e43d61496a41a78c74dbb9c2f10",
     "semantic_hash": ""
   },
   "PRODUCT.md": {
@@ -72,9 +72,9 @@
     "semantic_hash": ""
   },
   "js/guide.js": {
-    "mtime": 1793745975.682517,
-    "seen": 1793746152.661535,
-    "ast_hash": "3dcbfde22fed7586f8eeefdee68d38ca",
+    "mtime": 1793747219.7910202,
+    "seen": 1793747372.338974,
+    "ast_hash": "4bee73b91e4c5357d01b2ea477c8c820",
     "semantic_hash": ""
   },
   "tools/guide-to-tex.py": {
@@ -84,9 +84,9 @@
     "semantic_hash": ""
   },
   "eei/ch1-electrostatic-fields.html": {
-    "mtime": 1793745999.1169715,
-    "seen": 1793746152.661592,
-    "ast_hash": "616f0dae4c8447b664510658d2bee235",
+    "mtime": 1793747298.879093,
+    "seen": 1793747372.339021,
+    "ast_hash": "66329f54a2fe1a50b378a06ca0a48078",
     "semantic_hash": ""
   },
   "tools/check-guide.py": {
@@ -102,9 +102,9 @@
     "semantic_hash": ""
   },
   "js/lab.js": {
-    "mtime": 1793736154.857528,
-    "seen": 1793736159.8883982,
-    "ast_hash": "99cf302eb26099493d42bc5d3e428c70",
+    "mtime": 1793747219.7924912,
+    "seen": 1793747372.338976,
+    "ast_hash": "9ab0d3c6292dc0e231732a5aa1d9a1df",
     "semantic_hash": ""
   },
   "tests/eei-ch1-physics.test.js": {
@@ -120,15 +120,15 @@
     "semantic_hash": ""
   },
   "eei/ch1-electrostatic-fields-lab.html": {
-    "mtime": 1793745998.959809,
-    "seen": 1793746152.661591,
-    "ast_hash": "d1adb46f18b0c5f8b45afd34db1cb088",
+    "mtime": 1793747210.31782,
+    "seen": 1793747372.33902,
+    "ast_hash": "cf2293cd62e14e17b115c9a6eff21bac",
     "semantic_hash": ""
   },
   "js/concept-map.js": {
-    "mtime": 1793745599.008344,
-    "seen": 1793745667.633465,
-    "ast_hash": "6eea7caafe7a0543e2d6a410ef7914cc",
+    "mtime": 1793747219.7904577,
+    "seen": 1793747372.338971,
+    "ast_hash": "cdfccdc7aedd63cd4d1dbd1da0e99722",
     "semantic_hash": ""
   },
   "js/eei/ch1-lab.js": {
@@ -156,9 +156,9 @@
     "semantic_hash": ""
   },
   "mei/ch1-statements-logic-sets.html": {
-    "mtime": 1793745999.0512433,
-    "seen": 1793746152.661598,
-    "ast_hash": "67c2ec0424322f32d3ec067afe484abd",
+    "mtime": 1793747210.387025,
+    "seen": 1793747372.3390248,
+    "ast_hash": "2a0d2514a0968be6707e54269f222e1d",
     "semantic_hash": ""
   },
   ".agents/skills/autonomy-course-site/SKILL.md": {
@@ -168,9 +168,9 @@
     "semantic_hash": ""
   },
   "apdr/ch2-computers.html": {
-    "mtime": 1793745998.675202,
-    "seen": 1793746152.661577,
-    "ast_hash": "5668c515950819fecc4e0ff7818e5704",
+    "mtime": 1793747317.6035972,
+    "seen": 1793747372.339008,
+    "ast_hash": "df9d58274316e275cb8b278cacc454f9",
     "semantic_hash": ""
   },
   "js/mei/ch1-lab.js": {
@@ -192,15 +192,15 @@
     "semantic_hash": ""
   },
   "mei/ch1-statements-logic-sets-lab.html": {
-    "mtime": 1793745998.9897432,
-    "seen": 1793746152.661597,
-    "ast_hash": "a0f3388049e055a5d3a3dc5a219a5d21",
+    "mtime": 1793747210.3645868,
+    "seen": 1793747372.3390238,
+    "ast_hash": "fa9f796741cf53775cb52f968c1dcbcf",
     "semantic_hash": ""
   },
   "apdr/ch3-data-representation.html": {
-    "mtime": 1793745998.8690946,
-    "seen": 1793746152.661579,
-    "ast_hash": "074586075bc30ea68fcc5ecf5d1c9f89",
+    "mtime": 1793747298.848592,
+    "seen": 1793747372.33901,
+    "ast_hash": "8798f27a8f3110ad7821fc4f71bbd5b7",
     "semantic_hash": ""
   },
   "js/apdr/ch2-lab.js": {
@@ -222,9 +222,9 @@
     "semantic_hash": ""
   },
   "apdr/ch2-computers-lab.html": {
-    "mtime": 1793745998.6085432,
-    "seen": 1793746152.661576,
-    "ast_hash": "084d580a0b041044560a4782d72761e8",
+    "mtime": 1793747210.0188189,
+    "seen": 1793747372.339007,
+    "ast_hash": "7aa9d90c919f189cd77a48e2fa3e54ea",
     "semantic_hash": ""
   },
   "js/apdr/ch3-lab.js": {
@@ -246,9 +246,9 @@
     "semantic_hash": ""
   },
   "apdr/ch3-data-representation-lab.html": {
-    "mtime": 1793745998.8072,
-    "seen": 1793746152.661578,
-    "ast_hash": "061432eceaca3031b35ec20c4cf08846",
+    "mtime": 1793747210.1710486,
+    "seen": 1793747372.339009,
+    "ast_hash": "c8714fb57c9094965aa1cb3782fa4b10",
     "semantic_hash": ""
   },
   "js/apdr/ch12-lab.js": {
@@ -270,9 +270,9 @@
     "semantic_hash": ""
   },
   "apdr/ch4-floating-point-numbers.html": {
-    "mtime": 1793745999.0187886,
-    "seen": 1793746152.6615832,
-    "ast_hash": "84a6bc3fd655cd73ab07b8c527e88be3",
+    "mtime": 1793747298.851079,
+    "seen": 1793747372.339013,
+    "ast_hash": "718ecb8a1b422f2e86d830105bf2b435",
     "semantic_hash": ""
   },
   "js/apdr/ch4-lab.js": {
@@ -294,9 +294,9 @@
     "semantic_hash": ""
   },
   "apdr/ch4-floating-point-numbers-lab.html": {
-    "mtime": 1793745998.9002745,
-    "seen": 1793746152.661582,
-    "ast_hash": "60d74c8a27d9ab3bed778d56aaa68e43",
+    "mtime": 1793747210.2707078,
+    "seen": 1793747372.3390121,
+    "ast_hash": "62e98b51086f490d7bc3d8f8cf6b8d5f",
     "semantic_hash": ""
   },
   "js/apdr/ch34-lab.js": {
@@ -324,9 +324,9 @@
     "semantic_hash": ""
   },
   "mei/ch2-real-numbers.html": {
-    "mtime": 1793746340.656532,
-    "seen": 1793746420.92188,
-    "ast_hash": "100196d69d5b84ead7bc08fd22f3524e",
+    "mtime": 1793747210.4815035,
+    "seen": 1793747372.339026,
+    "ast_hash": "889321fad4cfc4ac99f286993ff5d59a",
     "semantic_hash": ""
   },
   "js/mei/ch2-lab.js": {
@@ -348,15 +348,15 @@
     "semantic_hash": ""
   },
   "mei/ch2-real-numbers-lab.html": {
-    "mtime": 1793745999.1836476,
-    "seen": 1793746152.661599,
-    "ast_hash": "3edea89751c8197555ef3050cfa23f17",
+    "mtime": 1793747210.4093435,
+    "seen": 1793747372.339026,
+    "ast_hash": "2db77e96377860908642a287473239a6",
     "semantic_hash": ""
   },
   "apdr/ch5-memory-organisation.html": {
-    "mtime": 1793745998.9316764,
-    "seen": 1793746152.6615849,
-    "ast_hash": "ca877ee7d1bbad205fae7435df65718a",
+    "mtime": 1793747298.85171,
+    "seen": 1793747372.339015,
+    "ast_hash": "3559d057f75ed88a086399a8c3be3501",
     "semantic_hash": ""
   },
   "js/apdr/ch5-lab.js": {
@@ -378,39 +378,39 @@
     "semantic_hash": ""
   },
   "apdr/ch5-memory-organisation-lab.html": {
-    "mtime": 1793745998.7739959,
-    "seen": 1793746152.661584,
-    "ast_hash": "7b0cb43a3d30c29d7135cf61ebcc092d",
+    "mtime": 1793747210.2191303,
+    "seen": 1793747372.3390138,
+    "ast_hash": "53605359828a7b23e3e70ee4d73db73c",
     "semantic_hash": ""
   },
   "apdr/ch12a-boolean-algebra-lab.html": {
-    "mtime": 1793745998.640093,
-    "seen": 1793746152.661574,
-    "ast_hash": "15ebd30cd066af6cd741557d83d511c7",
+    "mtime": 1793747210.0770986,
+    "seen": 1793747372.339006,
+    "ast_hash": "af5fbb858ef8140d1993b2604ccb6387",
     "semantic_hash": ""
   },
   "apdr/ch12a-boolean-algebra.html": {
-    "mtime": 1793745998.7417498,
-    "seen": 1793746152.6615748,
-    "ast_hash": "157ce22581f9e2c954d4a8faa339c457",
+    "mtime": 1793747317.6027822,
+    "seen": 1793747372.339006,
+    "ast_hash": "65bcef02b13defab0aa0425751e0be6c",
     "semantic_hash": ""
   },
   "apdr/ch34a-integer-and-floating-point-lab.html": {
-    "mtime": 1793745998.7072911,
-    "seen": 1793746152.66158,
-    "ast_hash": "f060288aeb620f71be02a387d4db3452",
+    "mtime": 1793747210.1234026,
+    "seen": 1793747372.339011,
+    "ast_hash": "efdffd66b329e8a1a0fed43343affc0d",
     "semantic_hash": ""
   },
   "apdr/ch34a-integer-and-floating-point.html": {
-    "mtime": 1793745998.837956,
-    "seen": 1793746152.661581,
-    "ast_hash": "b828e66e7bd3ea6b67f4f308dc7a6347",
+    "mtime": 1793747298.8501728,
+    "seen": 1793747372.3390121,
+    "ast_hash": "9b0df2eacd42178189093aaf0c175748",
     "semantic_hash": ""
   },
   "mei/ch3-mappings.html": {
-    "mtime": 1793746340.6560295,
-    "seen": 1793746420.9218822,
-    "ast_hash": "001c500348da4eaa703db73e6c162f5c",
+    "mtime": 1793747210.4583142,
+    "seen": 1793747372.339028,
+    "ast_hash": "60cfc702be63186d9c0b7e34f010fcfb",
     "semantic_hash": ""
   },
   "js/mei/ch3-lab.js": {
@@ -432,9 +432,9 @@
     "semantic_hash": ""
   },
   "mei/ch3-mappings-lab.html": {
-    "mtime": 1793745999.0853164,
-    "seen": 1793746152.661601,
-    "ast_hash": "8988b3c506301462761f7c59eb17c40d",
+    "mtime": 1793747210.4319465,
+    "seen": 1793747372.339027,
+    "ast_hash": "4e17ff49ee7efc6d5591dcf73e5da9f3",
     "semantic_hash": ""
   },
   "docs/ROUTE-AHEAD-PLAN.md": {
@@ -450,9 +450,15 @@
     "semantic_hash": ""
   },
   "js/nav.js": {
-    "mtime": 1793746682.5633738,
-    "seen": 1793746710.127879,
-    "ast_hash": "56037811c3dad75e7002cc26b69874b1",
+    "mtime": 1793747219.7917714,
+    "seen": 1793747372.3389828,
+    "ast_hash": "dab8d5583e48a6c5422f3246c46f0f92",
+    "semantic_hash": ""
+  },
+  "js/settings.js": {
+    "mtime": 1793747209.8767548,
+    "seen": 1793747372.338984,
+    "ast_hash": "d7e83442fb3a03cf2d27b00dba7c9bd9",
     "semantic_hash": ""
   }
 }

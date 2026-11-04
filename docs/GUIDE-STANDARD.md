@@ -101,12 +101,22 @@ The PDF converter understands only this markup, so use it for all maths and stru
 | Variable | `<var>E</var>`; vectors are plain variables in this course's HTML |
 | Index, power | `<sub>…</sub>`, `<sup>…</sup>` (no Unicode superscript digits) |
 | Fraction | `<span class="frac"><span>numerator</span><span>denominator</span></span>` |
-| Formula card | `<div class="eq"><strong>Title</strong><span class="formula">…</span><span class="eq-note">…</span></div>` |
+| Sum, product | `<span class="op op-sum"><span class="op-sym">∑</span><sub>k=1</sub><sup>n</sup></span>` (∏ for products). The site stacks the top limit, sign and bottom limit; the PDF typesets `\sum`/`\prod` |
+| Integral | `<span class="op op-int"><span class="op-sym">∫</span><sub>a</sub><sup>b</sup></span>` (also ∮, ∬, ∯). The limits sit on the sign's right, top over bottom; a closed-path or surface integral may carry only `<sub>` |
+| Formula card | `<div class="eq"><strong>Title</strong><span class="formula">…</span><span class="eq-note">…</span></div>`, with one `span.formula` per relation |
 | Worked example, recall check | `<div class="worked">` or `<div class="recall">`, first child `<p class="worked-title">` or `<p class="recall-title">` |
 | Hidden answers | `<details class="answers"><summary>…</summary><ol>…</ol></details>` |
 | Note, trap, hook | `<p class="method"><strong>Trap:</strong> …</p>` |
 | Table | `<div class="tw"><table>…</table></div>` with a `thead` row |
 | Section reference | `<span class="sec-ref">§1.4</span>` |
+
+Write formulas so they read as maths at a glance:
+
+- **One relation per line.** Give each relation its own `span.formula`; do not chain them with semicolons or `, &nbsp;`. A connected statement ("∮ <var>E</var> · d<var>s</var> = 0 and therefore …") stays on one line.
+- **Variables in `<var>`.** Mark every variable, including single letters in sub- and superscripts (<var>a</var><sub><var>k</var></sub>) and each letter of a product (<var>x</var><var>y</var>). Function names (sin, ln, log, Im), units (C, V, m, A s), roman numerals, words, hyphenated labels ("Excess-B") and code stay upright.
+- **Space the relations.** Put a space either side of =, ≠, ≈, ≤, ≥, <, >, ⇒ and ⇔ at the top level of a formula. Keep limits and indices tight: <sub>k=1</sub>.
+- **Every sum and integral states its limits** unless the range is genuinely implicit (a closed path ∮). Write ∑<sub>i=0</sub><sup>k</sup> <var>d</var><sub><var>i</var></sub><var>b</var><sup><var>i</var></sup>, never a bare Σ <var>d</var><sub><var>i</var></sub><var>b</var><sup><var>i</var></sup>. Use the n-ary signs ∑ and ∏ for operators, not the Greek letters Σ and Π. Minterm notation Σm(…) is a name, not an operator, and stays as written.
+- **Code is not a formula.** C or MATLAB lines in a card keep their own spelling and are never italicised or respaced.
 
 Use real Unicode symbols (−, ×, ·, ≈, ε, ∫, ∮, ∯) rather than ASCII stand-ins. Do not use KaTeX, MathJax, images of formulas or external scripts. Formulas must read correctly with JavaScript off and in print.
 

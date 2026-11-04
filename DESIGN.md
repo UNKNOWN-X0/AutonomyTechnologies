@@ -385,8 +385,9 @@ Four numbered blue squares (3rem, 800 numerals) each followed by one sentence of
 A 2px ink rule above, 18px top padding, then a 14px solid blue square before the heading in Title type.
 
 ### Formula panels and tables
-- **Formula panel:** Cool Paper fill, 16px by 20px padding, horizontal scroll for wide formulas, no border.
-- **Formula typography:** equations use a math-capable serif fallback (`Cambria Math`, `STIX Two Math`, `Times New Roman`, serif), centered on wide screens and allowed to wrap at spaces on narrow screens; key ratios use stacked fractions.
+- **Formula panel:** Cool Paper fill, 16px by 20px padding, horizontal scroll for wide formulas, no border. The bold title sits 8px above the formulas; each relation takes its own line (line-height 1.6, no gap between lines), and the `eq-note` is set apart 12px below by a 1px `--line` hairline with 10px above its text.
+- **Formula typography:** equations use a math-capable serif fallback (`Cambria Math`, `STIX Two Math`, `Times New Roman`, serif), centered on wide screens and allowed to wrap at spaces on narrow screens; key ratios use stacked fractions. Variables (`<var>`) are italic with a 0.04em trailing space so a following bracket does not collide; function names, units and numbers stay upright.
+- **Big operators:** sums and products stack top limit, sign (1.3em) and bottom limit, centered; integrals set a 1.7em sign with the top limit over the bottom one on its right. Limits are 0.64em. The PDF uses `\sum`, `\prod` and `\int`, which stack in display formulas and sit beside the sign in running text.
 - **Table:** full width, collapsed, 1px hairline under each row, 9px by 12px cells, tabular figures. The header row is an FAU-blue band with white 700 labels at 0.85rem.
 
 ### Motion
