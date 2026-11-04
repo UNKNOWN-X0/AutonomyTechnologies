@@ -1229,6 +1229,34 @@
         syncControls();
         draw();
       },
+      // Endless practice: change one thing, ask which way U, Q or W moves (tests/lab-generators.test.js checks it).
+      generate: function () {
+        var mode = Math.random() < 0.5 ? "isolated" : "connected", kind = ["double", "halve", "fill"][Math.floor(Math.random() * 3)],
+          er = [2, 3, 4, 6][Math.floor(Math.random() * 4)], key = ["U", "Q", "W"][Math.floor(Math.random() * 3)],
+          p0 = kind === "fill" ? { slab: "dielectric", t: 4 * mm, er: 1 } : {}, f = kind === "double" ? 0.5 : kind === "halve" ? 2 : er,
+          // C scales by f; held Q: U and W scale by 1/f; held U: Q and W scale by f.
+          scale = mode === "isolated" ? { Q: 1, U: 1 / f, W: 1 / f } : { U: 1, Q: f, W: f },
+          answer = scale[key] > 1 ? "up" : scale[key] < 1 ? "down" : "same",
+          name = { U: "the voltage U", Q: "the charge Q", W: "the stored energy W" }[key],
+          change = kind === "double" ? "You pull the plates apart to twice the gap." : kind === "halve" ? "You push the plates together to half the gap." : "A dielectric with εr = " + er + " fills the whole gap.",
+          held = mode === "isolated" ? "The capacitor was charged to 100 V and then disconnected, so Q cannot change." : "The battery stays connected at 100 V, so U cannot change.",
+          fx = function (v) { return v === 1 ? "stays the same" : (v > 1 ? "grows " : "shrinks ") + (v > 1 ? "×" + v : "to 1/" + (1 / v)); };
+        return {
+          id: "gen-capacitor", short: "which way " + key + " moves", ref: "1.13",
+          prompt: (mode === "isolated" ? "Charged to 100 V, then disconnected. " : "Battery connected at 100 V. ") + change + " What happens to " + name + "?",
+          options: DIRS, answer: answer,
+          stage: function () { startFrom(p0, mode); },
+          preview: guessOn(key),
+          reveal: function () {
+            return Lab.tween(1600, function (t) {
+              if (kind === "fill") st.p.er = 1 + (er - 1) * t;
+              else st.p.d = (4 + (kind === "double" ? 4 : -2) * t) * mm;
+              paint();
+            }).then(syncControls);
+          },
+          why: held + " C = ε<sub>0</sub>ε<sub>r</sub>A/d " + fx(f) + ". " + (mode === "isolated" ? "So U = Q/C " + fx(1 / f) + " and W = Q²/(2C) " + fx(1 / f) + "." : "So Q = CU " + fx(f) + " and W = CU²/2 " + fx(f) + "."),
+        };
+      },
       challenges: [
         {
           id: "gap-isolated",
@@ -1658,6 +1686,33 @@
         fixScale();
         syncControls();
         draw();
+      },
+      // Endless practice: new capacitors and source; ask a voltage (series) or a charge (parallel).
+      generate: function () {
+        var vals = [1, 2, 3, 4, 6, 8, 12], c1, c2, i = Math.floor(Math.random() * 7), j;
+        do { j = Math.floor(Math.random() * 7); } while (j === i);
+        c1 = vals[i]; c2 = vals[j];
+        var how = Math.random() < 0.5 ? "series" : "parallel", U = [6, 12, 18, 24][Math.floor(Math.random() * 4)],
+          tot = how === "series" ? (c1 * c2) / (c1 + c2) : c1 + c2, Q = tot * U, n = function (v) { return String(+v.toFixed(2)); },
+          right, wrongs, unit, ask, why;
+        if (how === "series") {
+          right = n(Q / c1); wrongs = [n(Q / c2), n(U / 2), n(U)]; unit = " V"; ask = "What is the voltage across C1?";
+          why = "In series both carry the same charge: C = C1C2/(C1+C2) = " + n(tot) + " μF, so Q = " + n(tot) + " μF × " + U + " V = " + n(Q) + " μC. Then U1 = Q/C1 = " + n(Q / c1) + " V and U2 = " + n(Q / c2) + " V; they add up to " + U + " V.";
+        } else {
+          right = n(c1 * U); wrongs = [n(c2 * U), n(Q), n(Q / 2)]; unit = " μC"; ask = "What charge does C1 hold?";
+          why = "In parallel each capacitor sees the full " + U + " V, so Q1 = C1U = " + c1 + " μF × " + U + " V = " + n(c1 * U) + " μC. The total C = " + n(tot) + " μF holds " + n(Q) + " μC.";
+        }
+        var out = [right];
+        wrongs.forEach(function (w) { if (out.length < 3 && out.indexOf(w) < 0) out.push(w); });
+        for (var k = out.length - 1; k > 0; k--) { var r = Math.floor(Math.random() * (k + 1)), t = out[k]; out[k] = out[r]; out[r] = t; }
+        return {
+          id: "gen-network", short: how + " capacitors", ref: "1.13",
+          prompt: "C1 = " + c1 + " μF and C2 = " + c2 + " μF in " + how + " across " + U + " V. " + ask,
+          options: out.map(function (v) { return [v, v + unit]; }), answer: right,
+          stage: function () { start([c1, c2], how); st.U = U; fixScale(); syncControls(); },
+          preview: function () { draw(); },
+          reveal: charge, why: why,
+        };
       },
       challenges: [
         {

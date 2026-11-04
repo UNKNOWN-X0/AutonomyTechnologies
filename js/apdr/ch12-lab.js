@@ -43,10 +43,15 @@
       preview: function (choice) { state.guess = label(values, choice); show(); },
       reveal: function () { var text = s.result || label(values, answer); return state.reveal ? state.reveal(show, text) : animate(state, show, function () { state.result = text; }); } };
   }
-  function register(id, title, section, form, state, challenges, sandbox) {
+  function rnd(n) { return Math.floor(Math.random() * n); }
+  function mix(a) { for (var i = a.length - 1; i > 0; i--) { var j = rnd(i + 1), t = a[i]; a[i] = a[j]; a[j] = t; } return a; }
+  // The right text and up to two distinct wrong ones, shuffled, as [key, label] pairs with key = label.
+  function pick(right, wrongs) { var out = [right]; wrongs.forEach(function (w) { if (out.length < 3 && out.indexOf(w) < 0) out.push(w); }); return mix(out).map(function (x) { return [x, x]; }); }
+  /* generate(show), when given, returns a fresh challenge built with standard() (tests/lab-generators.test.js checks it). */
+  function register(id, title, section, form, state, challenges, sandbox, generate) {
     var canvas = section.querySelector("canvas"), show = function () { queue(canvas, state); };
     Lab.experiment({ id: id, title: title, card: section.querySelector(".challenge"), lock: function (on) { lock(form, section, on); },
-      setup: function (c) { c.stage(); }, sandbox: function () { state.challenge = false; state.guess = ""; state.result = null; state.progress = 0; state.revealing = false; state.reveal = null; sandbox(); }, challenges: challenges(show) });
+      setup: function (c) { c.stage(); }, sandbox: function () { state.challenge = false; state.guess = ""; state.result = null; state.progress = 0; state.revealing = false; state.reveal = null; sandbox(); }, challenges: challenges(show), generate: generate && function () { return generate(show); } });
     canvases.push(canvas); if (typeof ResizeObserver !== "undefined") { if (!window._apdr12Resize) window._apdr12Resize = new ResizeObserver(function (entries) { entries.forEach(function (e) { var cv = e.target.querySelector("canvas"); if (cv && cv._labState) queue(cv, cv._labState); }); }); window._apdr12Resize.observe(canvas.parentElement); }
   }
   var LAWS = {
@@ -179,7 +184,23 @@
         standard({ id: "product-complement", setup: function () { state.law = "product"; } }, state, show, [["yes", "Yes · every row"], ["no", "No · a counterexample"]], "1.2", "For x,y in {0,1}, is (xy)' equal to x'y' on every row?", "no", "Row 01 gives (0·1)'=1 but 1·0=0, and row 10 fails the same way. One row is enough to disprove a law; De Morgan's correct form is (xy)'=x'+y'.", "complement of a product"),
         standard({ id: "dual", setup: function () { state.law = "duality"; } }, state, show, [["no", "No · not a dual"], ["yes", "Yes · a dual law"]], "1.1", "The identity x+x=x is proved. Is x·x=x its dual after swapping + with ·?", "yes", "Duality swaps join with meet, so the idempotence equation becomes x·x=x. It does not complement the variable.", "duality"),
       ];
-    }, function () { state.law = form.querySelector("[data-law]").value; queue(section.querySelector("canvas"), state); });
+    }, function () { state.law = form.querySelector("[data-law]").value; queue(section.querySelector("canvas"), state); }, function (show) {
+      var POOL = [
+        ["x + x′y = x + y", function (x, y) { return Number(x || (!x && y)); }, function (x, y) { return Number(x || y); }],
+        ["x(x + y) = x", function (x, y) { return Number(x && (x || y)); }, function (x) { return x; }],
+        ["(x + y)′ = x′ + y′", function (x, y) { return Number(!(x || y)); }, function (x, y) { return Number(!x || !y); }],
+        ["(xy)′ = x′ + y′", function (x, y) { return Number(!(x && y)); }, function (x, y) { return Number(!x || !y); }],
+        ["x + xy′ = x + y", function (x, y) { return Number(x || (x && !y)); }, function (x, y) { return Number(x || y); }],
+        ["xy + x′y = y", function (x, y) { return Number((x && y) || (!x && y)); }, function (x, y) { return y; }],
+        ["x ⊕ y = x′y + xy′", function (x, y) { return Number(x !== y); }, function (x, y) { return Number((!x && y) || (x && !y)); }],
+        ["x + y = x ⊕ y", function (x, y) { return Number(x || y); }, function (x, y) { return Number(x !== y); }],
+        ["(x′ + y)′ = xy′", function (x, y) { return Number(!(!x || y)); }, function (x, y) { return Number(x && !y); }],
+        ["x′y′ = (x + y)′", function (x, y) { return Number(!x && !y); }, function (x, y) { return Number(!(x || y)); }],
+      ], law = POOL[rnd(POOL.length)], bad = P.truthTable(2, law[1]).filter(function (r) { return law[1](r.bits[0], r.bits[1]) !== law[2](r.bits[0], r.bits[1]); }).map(function (r) { return r.bits.join(""); });
+      LAWS.gen = { title: law[0], left: law[1], right: law[2] };
+      return standard({ id: "gen-identity", setup: function () { state.law = "gen"; } }, state, show, mix([["yes", "Yes · every row"], ["no", "No · a counterexample"]]), "1.2", "For x,y in {0,1}, does " + law[0] + " hold on every row?", bad.length ? "no" : "yes",
+        bad.length ? "Row" + (bad.length > 1 ? "s " : " ") + bad.join(", ") + (bad.length > 1 ? " give" : " gives") + " different values on the two sides. One failing row is enough to disprove a law." : "Check the four rows 00, 01, 10, 11: both sides agree on every one, so the law holds.", "identity check");
+    });
   }
   function experimentNand() {
     var section = document.querySelector('[data-experiment="nand"]'), form = section.querySelector("form"), state = { kind: "nand", mode: "and", caption: "NAND output is ¬(A AND B)" };
@@ -217,7 +238,20 @@
         standard({ id: "dont-care", setup: function () { prepare([1,3,7], [5]); } }, state, show, [["A′C + BC", "A′C + BC"], ["BC", "BC"], ["C", "C"]], "1.4", "In A,B,C order, f=1 on minterms 1, 3, and 7, and minterm 5 is a don't-care. What is the smallest cover?", "C", "Treat 5 as a 1: the rows 001, 011, 101, 111 form a group of four with C fixed. Without the don't-care you would need two terms, A′C + BC.", "don't-care group"),
         standard({ id: "two-pairs", setup: function () { prepare([1,2,5,6]); } }, state, show, [["B′C + BC′", "B′C + BC′"], ["B + C", "B + C"], ["A", "A"]], "1.4", "For minterms 1, 2, 5, and 6 in A,B,C order, which expression covers the true rows with two groups?", "B′C + BC′", "Pair 1 with 5 to get B′C; pair 2 with 6 to get BC′. The two groups cover all four minterms without covering a zero.", "two-cell groups"),
       ];
-    }, chosen);
+    }, chosen, function (show) {
+      function cover(m) { return P.minimize(m, 3, []).map(function (c) { return cubeText(c.pattern); }).join(" + "); }
+      var m, right, i;
+      do { m = []; for (i = 0; i < 8; i++) if (rnd(2)) m.push(i); } while (m.length < 2 || m.length > 5);
+      right = cover(m);
+      var wrongs = [], others = [];
+      for (i = 0; i < 8; i++) { var f = m.indexOf(i) >= 0 ? m.filter(function (x) { return x !== i; }) : m.concat([i]).sort(); if (f.length && f.length < 8) others.push(cover(f)); }
+      mix(others).forEach(function (w) { wrongs.push(w); });
+      return standard({ id: "gen-kmap", setup: function () { prepare(m); } }, state, show, pick(right, wrongs), "1.4", "With A as the most significant bit, f=1 on minterms " + m.join(", ") + ". What is the smallest sum of products?", right,
+        "Group neighbouring 1s in blocks of 1, 2 or 4 (the map wraps at the edges) and keep the variables that stay fixed in each block: " + P.minimize(m, 3, []).map(function (c) {
+          var cells = []; for (var k = 0; k < 8; k++) if (c.pattern.split("").every(function (v, b) { return v === "-" || +v === ((k >> (2 - b)) & 1); })) cells.push(k);
+          return cubeText(c.pattern) + " covers " + cells.join(", ");
+        }).join("; ") + ". The other options describe a function that differs in one cell.", "minimal cover");
+    });
     form.querySelector('[data-act="reset"]').addEventListener("click", chosen);
   }
   function experimentShannon() {
@@ -251,7 +285,11 @@
         standard({ id: "or-anf", setup: function () { set(options[2]); } }, state, show, [["A ⊕ B", "A ⊕ B"], ["AB", "AB"], ["A ⊕ B ⊕ AB", "A ⊕ B ⊕ AB"]], "1.5", "The outputs for 00,01,10,11 are 0,1,1,1. Which ANF represents OR?", "A ⊕ B ⊕ AB", "The coefficient vector in order 1,B,A,AB is 0,1,1,1. Over F₂, XOR combines the three selected terms.", "OR normal form"),
         standard({ id: "unique", setup: function () { set(options[0]); }, result: "One coefficient list, one ANF" }, state, show, [["two", "Two ANFs"], ["one", "One ANF"], ["many", "Many ANFs"]], "1.5", "For one Boolean function of A and B, how many algebraic normal forms can it have?", "one", "The monomials form a basis for Boolean functions on these variables. Each function therefore has one unique coefficient list in ANF.", "ANF uniqueness"),
       ];
-    }, choose);
+    }, choose, function (show) {
+      var v = [rnd(2), rnd(2), rnd(2), rnd(2)], right = anfText(P.toAnf(v)), wrongs = [0, 1, 2, 3].map(function (k) { var w = v.slice(); w[k] ^= 1; return anfText(P.toAnf(w)); }), c = P.toAnf(v);
+      return standard({ id: "gen-anf", setup: function () { set(v); } }, state, show, pick(right, mix(wrongs)), "1.5", "The outputs for rows 00,01,10,11 (A,B) are " + v.join(",") + ". What is the ANF?", right,
+        "The Möbius transform gives coefficients " + c.join(",") + " for 1, B, A, AB, so the ANF is " + right + ". Check one row: A=1, B=1 gives " + v[3] + ".", "algebraic normal form");
+    });
   }
   function experimentHazard() {
     var section = document.querySelector('[data-experiment="hazard"]'), form = section.querySelector("form"), state = { kind: "hazard", y: 1, z: 1 };

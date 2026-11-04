@@ -128,7 +128,7 @@
     };
   }
 
-  function mount(id, title, card, form, canvas, specs, initial, run, showResult) {
+  function mount(id, title, card, form, canvas, specs, initial, run, showResult, generate) {
     var start = Object.assign({ guess: "", done: false, revealing: false, steps: [], viz: null, answer: "?", nodes: ["input", "rule", "?"] }, initial), state = Object.assign({}, start);
     canvas.parentElement.style.aspectRatio = "auto"; canvas.parentElement.style.minHeight = "448px"; // the standard height for stages with plots; the note overlays the bottom
     function paint() { queue(canvas, state); }
@@ -142,6 +142,8 @@
       setup: function (c) { c.stage(); },
       sandbox: function () { Object.assign(state, start, { nodes: start.nodes.slice(), steps: [] }); paint(); },
       challenges: specs.map(function (spec) { return challenge(state, canvas, spec); }),
+      // Endless practice: generate() returns a spec like the fixed ones (tests/lab-generators.test.js checks it).
+      generate: generate && function () { return challenge(state, canvas, generate()); },
     });
     form.querySelector('[data-act="run"]').addEventListener("click", function () {
       try {
@@ -170,6 +172,67 @@
   // Options are listed in display order, set by hand so the answer moves around; key and label are the same text.
   function o() { return Array.prototype.map.call(arguments, function (x) { return [x, x]; }); }
 
+  function rnd(n) { return Math.floor(Math.random() * n); }
+  function mix(a) { for (var i = a.length - 1; i > 0; i--) { var j = rnd(i + 1), t = a[i]; a[i] = a[j]; a[j] = t; } return a; }
+  // The right option and up to two distinct wrong ones, shuffled; key and label are the same text.
+  function pick(right, wrongs) {
+    var out = [right];
+    wrongs.forEach(function (w) { if (out.length < 3 && out.indexOf(w) < 0) out.push(w); });
+    return o.apply(null, mix(out));
+  }
+  function bitsOf(v, n) { return (v >>> 0).toString(2).padStart(n, "0").slice(-n); }
+  function sup(n) { return String(n).replace(/-/g, "⁻").replace(/\d/g, function (d) { return "⁰¹²³⁴⁵⁶⁷⁸⁹"[d]; }); }
+  function num(v) { return String(+v.toPrecision(10)); }
+  var GEN = {
+    integers: function () {
+      var k = rnd(3);
+      if (k === 0) {
+        var n = 4 + rnd(2), v = rnd(1 << n), b = bitsOf(v, n), t = v >= 1 << (n - 1) ? v - (1 << n) : v;
+        return spec("gen-twos", "decode two’s complement", "3.2", "What value does " + b + "₂ represent as a " + n + "-bit two’s-complement number?", signedText(t), pick(signedText(t), [String(v), signedText(0 - t), signedText(t - 1), signedText(t + 1)]),
+          "Two’s-complement decode", [b + "₂", v >= 1 << (n - 1) ? "subtract 2" + sup(n) : "top bit 0", "?"], [v >= 1 << (n - 1) ? "The top bit is 1, so subtract 2" + sup(n) + " = " + (1 << n) + "." : "The top bit is 0, so the value is the unsigned value.", v + (v >= 1 << (n - 1) ? "−" + (1 << n) : "") + " = " + signedText(t) + "."],
+          "Read the pattern as unsigned (" + v + "); if the top bit is 1, subtract 2" + sup(n) + ". That gives " + signedText(t) + ".");
+      }
+      if (k === 1) {
+        var bias = [4, 8, 16][rnd(3)], w = Math.log2(bias) + 1, u = rnd(2 * bias), bb = bitsOf(u, w), val = u - bias;
+        return spec("gen-excess", "decode Excess-" + bias, "3.2", "What value does " + bb + "₂ represent in " + w + "-bit Excess-" + bias + "?", signedText(val), pick(signedText(val), [String(u), signedText(-val), signedText(bias - u + bias), signedText(val + 1)]),
+          "Biased integer", [bb + "₂ = " + u, "bias " + bias, "?"], ["An Excess-" + bias + " value is the stored value minus " + bias + ".", u + "−" + bias + " = " + signedText(val) + "."], "Subtract the bias from the unsigned stored value: " + u + "−" + bias + " = " + signedText(val) + ".");
+      }
+      var d = 10 + rnd(90), bcd = String(d).split("").map(function (x) { return bitsOf(+x, 4); }).join(" "), plain = d.toString(2).padStart(8, "0"), sw = String(d).split("").reverse().map(function (x) { return bitsOf(+x, 4); }).join(" ");
+      return spec("gen-bcd", "encode decimal in BCD", "3.2", "Which pattern is BCD for decimal " + d + "?", bcd, pick(bcd, [plain.slice(0, 4) + " " + plain.slice(4), sw, bitsOf((d % 10) + 1, 4) + " " + bitsOf(Math.floor(d / 10), 4)]),
+        "Decimal digit groups", String(d).split("").concat(["?"]), ["Encode each decimal digit separately with four bits.", String(d).split("").map(function (x) { return x + " is " + bitsOf(+x, 4); }).join(" and ") + ", so BCD is " + bcd + "."],
+        "BCD keeps one four-bit group per decimal digit; the plain binary of " + d + " is " + plain + ", a different pattern.");
+    },
+    arithmetic: function () {
+      var a = 1 + rnd(15), b = 1 + rnd(15), A = bitsOf(a, 4), B = bitsOf(b, 4), sum = (a + b).toString(2) + "₂", wrap = bitsOf(a + b, 4) + "₂", orr = bitsOf(a | b, 4) + "₂";
+      return spec("gen-add", "add unsigned values", "3.4", "What is " + A + "₂ + " + B + "₂ as an unsigned binary sum?", sum, pick(sum, [wrap, orr, (a + b + 1).toString(2) + "₂", (a + b - 1).toString(2) + "₂"]),
+        "Unsigned addition", [A + "₂", "+ " + B + "₂", "?"], ["Add each column and carry into the next.", "The result is " + sum + ", which is " + (a + b) + " in decimal."],
+        a + " + " + b + " = " + (a + b) + " = " + sum + "." + (a + b > 15 ? " The carry beyond the four columns is part of the exact sum; keeping only four bits (" + wrap + ") drops it." : " There is no carry out of the top column."), { type: "columns", a: A, b: B });
+    },
+    spacing: function () {
+      var p = [24, 53][rnd(2)], E = rnd(12) - 4, g = E - p + 1, r = "2" + sup(g);
+      return spec("gen-gap", "spacing at a power of two", "4.1", "With " + p + "-bit precision, what is the spacing between 2" + sup(E) + " and 2" + sup(E + 1) + "?", r, pick(r, ["2" + sup(g + 1), "2" + sup(g - 1), "2" + sup(E - p)]),
+        "Spacing scales with exponent", ["2" + sup(E), "p=" + p, "local gap"], ["Within exponent E, spacing is 2ᴱ⁻ᵖ⁺¹.", "For E=" + signedText(E) + " and p=" + p + ", the gap is " + r + "."],
+        "Spacing is 2^(E−p+1) = 2^(" + signedText(E) + "−" + p + "+1) = " + r + ". Each step up in E doubles the gap.", { type: "line" });
+    },
+    fractions: function () {
+      var n = 3 + rnd(3), bits = "", i;
+      for (i = 0; i < n - 1; i++) bits += rnd(2);
+      bits += "1";
+      var val = function (b) { return b.split("").reduce(function (t, d, k) { return t + (d === "1" ? Math.pow(2, -(k + 1)) : 0); }, 0); }, v = num(val(bits)),
+        rev = num(val(bits.split("").reverse().join(""))), pw = bits.split("").map(function (d, k) { return d === "1" ? "2" + sup(-(k + 1)) : null; }).filter(Boolean);
+      return spec("gen-fraction", "decode binary fraction", "4.2", "Convert 0." + bits + "₂ to decimal.", v, pick(v, [rev, num(val(bits) + Math.pow(2, -n)), num(val(bits) - Math.pow(2, -n))]),
+        "Fractional place values", ["0." + bits + "₂", pw.join(" + "), "?"], ["The one-bits contribute " + pw.join(", ") + ".", "Their sum is " + v + "."], "Add the negative powers of two at the positions holding a 1: " + pw.join(" + ") + " = " + v + ".");
+    },
+    ieee: function () {
+      var m = [1, 1.25, 1.5, 1.75][rnd(4)], e = rnd(9) - 3, neg = rnd(2), v = (neg ? -1 : 1) * m * Math.pow(2, e), view = new DataView(new ArrayBuffer(4));
+      view.setFloat32(0, v);
+      var hex = view.getUint32(0).toString(16).toUpperCase().padStart(8, "0"), r = signedText(num(v)), mb = { 1: "1.0", 1.25: "1.01", 1.5: "1.1", 1.75: "1.11" }[m];
+      return spec("gen-decode", "decode a single", "4.4", "What value is encoded by " + hex + "₁₆ as IEEE single precision?", r, pick(r, [signedText(num(-v)), signedText(num(v * 2)), signedText(num(v / 2)), signedText(num((neg ? -1 : 1) * (m - 1) * Math.pow(2, e)))]),
+        "Sign, exponent, fraction", [hex + "₁₆", "S | E | F", "?"], ["The sign bit is " + neg + " and the exponent field is " + (e + 127) + ", so the exponent is " + signedText(e) + ".", "The significand is " + mb + "₂ = " + m + ", so the value is " + r + "."],
+        "Subtract the bias 127 from the exponent field (" + (e + 127) + " → " + signedText(e) + "), restore the hidden 1 (" + mb + "₂ = " + m + "), and apply the sign: " + r + ".", { type: "fields", hex: hex });
+    },
+  };
+
   function signedText(n) { return Object.is(n, -0) ? "−0" : String(n).replace("-", "−"); }
 
   (function () {
@@ -186,7 +249,7 @@
       else if (task === "bcd") { answer = P.encodeBcd(Number(value)); nodes = [value, "one group per digit", "BCD"]; steps = ["Encode every decimal digit in four bits.", "BCD pattern: " + answer + "."]; }
       else { answer = signedText(P.decodeInteger(value, form.querySelector("[data-encoding]").value, Number(form.querySelector("[data-bias]").value))); nodes = [value, form.querySelector("[data-encoding]").selectedOptions[0].textContent, "value"]; steps = ["Keep the stated bit width.", "Decoded value: " + answer + "."]; }
       return { heading: "Integer conversion", nodes: nodes, answer: answer, steps: steps };
-    }, function (r) { return r.answer; });
+    }, function (r) { return r.answer; }, GEN.integers);
   })();
 
   (function () {
@@ -201,7 +264,7 @@
       if (mode === "unsigned") { result = P.unsignedArithmetic(a, b, op); answer = op === "divide" ? "q=" + result.quotientBits + ", r=" + result.remainderBits : result.bits + "₂"; steps = op === "divide" ? ["Divide the unsigned values.", "Quotient " + result.quotientBits + "₂ and remainder " + result.remainderBits + "₂."] : ["Interpret both operands as unsigned values.", "Result: " + answer + "."]; if (op === "add" && a.length === b.length) viz = { type: "columns", a: a, b: b }; }
       else { if (op === "divide" || op === "multiply") throw new RangeError("choose add or subtract for two’s-complement mode"); result = P.twosArithmetic(a, b, op); answer = result.pattern + "₂ = " + signedText(result.decoded) + (result.overflow ? " · overflow" : " · no overflow"); steps = ["Exact signed result: " + signedText(result.exact) + ".", "Allowed range: " + signedText(result.min) + "…" + result.max + ".", "Stored " + answer + ".", op === "add" ? "Carry-out: " + (result.carryOut ? "yes, discarded." : "no.") : "Carry-out applies to addition; subtraction here adds the negated value."]; if (op === "add") viz = { type: "columns", a: a, b: b, signed: true }; }
       return { heading: "Binary arithmetic", nodes: [a, op, b], answer: answer, steps: steps, viz: viz };
-    }, function (r) { return r.answer; });
+    }, function (r) { return r.answer; }, GEN.arithmetic);
   })();
 
   (function () {
@@ -217,7 +280,7 @@
       gap = P.spacing(e, p);
       var power = "2^(" + signedText(e - p + 1) + ")", answerText = power + " ≈ " + gap.toPrecision(4);
       return { heading: "Local floating-point spacing", nodes: ["2^" + e, "p=" + p, "gap"], answer: answerText, viz: { type: "line" }, steps: ["For binary precision p, local spacing is 2^(E−p+1).", "At E=" + e + " and p=" + p + ", the gap is " + answerText + "."] };
-    }, function (r) { return r.answer; });
+    }, function (r) { return r.answer; }, GEN.spacing);
   })();
 
   (function () {
@@ -232,7 +295,7 @@
       if (form.querySelector("[data-task]").value === "decode") { answer = String(P.fractionValue(value)); steps = ["Add the powers of two for each 1 bit.", "Decimal value: " + answer + "."]; }
       else { var r = P.fractionBits(Number(value), lim); answer = "0." + (r.bits || "0") + (r.exact ? " exact" : "… truncated after " + lim + " bits"); steps = ["Multiply each fractional remainder by 2.", "Bits: " + (r.bits || "0") + ". " + (r.exact ? "The remainder reaches zero." : "The expansion continues beyond the selected limit." )]; }
       return { heading: "Binary fraction conversion", nodes: [value, "powers of 2", "result"], answer: answer, steps: steps };
-    }, function (r) { return r.answer; });
+    }, function (r) { return r.answer; }, GEN.fractions);
   })();
 
   (function () {
@@ -245,7 +308,7 @@
     ], { heading: "IEEE single precision", nodes: ["sign", "8-bit exponent", "23-bit fraction"] }, function (form) {
       var r = P.decodeSingle(form.querySelector("[data-hex]").value), exp = parseInt(r.exponent, 2), hasValue = r.classification === "normalised" || /subnormal|denormal/i.test(r.classification), detail = hasValue ? r.classification + " value " + r.value : r.classification, rule = /subnormal|denormal/i.test(r.classification) ? "Exponent field 0 and non-zero fraction: value = 0.F × 2⁻¹²⁶, hidden bit 0." : "The stored exponent is " + exp + "; normalised values subtract bias 127.";
       return { heading: "IEEE single-precision decode", nodes: ["S=" + r.sign, "E=" + r.exponent, "F=" + r.fraction], answer: detail, viz: { type: "fields", hex: r.hex }, steps: [rule, "Classification and decoded value: " + detail + "."] };
-    }, function (r) { return r.answer; });
+    }, function (r) { return r.answer; }, GEN.ieee);
   })();
 
   (function () {

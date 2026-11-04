@@ -217,6 +217,8 @@
     return v;
   }
 
+  function rnd(n) { return Math.floor(Math.random() * n); }
+  function mix(a) { for (var i = a.length - 1; i > 0; i--) { var j = rnd(i + 1), t = a[i]; a[i] = a[j]; a[j] = t; } return a; }
   function lock(form, section, on) {
     form.querySelectorAll("input, select, button").forEach(function (el) { el.disabled = on; });
     section.querySelector(".stage").classList.toggle("locked", on);
@@ -244,6 +246,18 @@
       lock: function (on) { lock(form, section, on); },
       setup: function (challenge) { state.guess = state.result = ""; state.progress = 0; state.revealing = false; challenge.stage(); },
       sandbox: function () { state.guess = state.result = ""; state.revealing = false; state.progress = 0; state.x = Number(xInput.value); state.g = Number(gInput.value); show(); },
+      // Endless practice: one update step with new x and g (tests/lab-generators.test.js checks one correct option).
+      generate: function () {
+        var x, g, r, right, avg, div;
+        do { x = 5 + rnd(60); g = 1 + rnd(8); r = P.squareRootStep(x, g); right = r.next.toFixed(3); avg = ((x + g) / 2).toFixed(3); div = (x / g).toFixed(3); }
+        while (g * g === x || right === avg || right === div || avg === div);
+        return { id: "gen-update", short: "one update step", ref: "2.1", prompt: "For x=" + x + " and guess g=" + g + ", what is the next guess (to three decimals)?",
+          options: mix([[right, right], [avg, avg], [div, div]]), answer: right,
+          stage: function () { state.x = x; state.g = g; state.result = ""; show(); },
+          preview: function (choice) { state.guess = choice; show(); },
+          reveal: function () { return Lab.tween(1400, function (t) { state.progress = t; state.revealing = true; state.g = g + (r.next - g) * t; show(); }).then(function () { state.revealing = false; state.g = r.next; state.result = right; show(); }); },
+          why: "The update is (g + x/g)/2 = (" + g + " + " + x + "/" + g + ")/2 = (" + g + " + " + div + ")/2 ≈ " + right + ". Averaging x with g (" + avg + ") is the common slip, and x/g alone (" + div + ") skips the averaging." };
+      },
       challenges: [
         { id: "first-update", short: "the first estimate", ref: "2.1", prompt: "For x=16 and guess g=3, what is the first updated guess (to three decimals)?", options: [["3.500", "3.500"], ["9.500", "9.500"], ["4.167", "4.167"]], answer: "4.167", stage: function () { state.x=16;state.g=3;show(); }, preview: function (choice) { state.guess=choice;show(); }, reveal: function () { var r=P.squareRootStep(16,3); return Lab.tween(1400,function(t){state.progress=t;state.revealing=true;state.g=3+(r.next-3)*t;show();}).then(function(){state.revealing=false;state.g=r.next;state.result=r.next.toFixed(3);show();}); }, why: "The update is (3+16/3)/2=25/6≈4.167. The new guess comes from the rule, not from averaging the target with the old guess." },
         { id: "test-first", short: "whether the first estimate passes", ref: "2.1", prompt: "At g=4.167 for x=16, is |g²−x| above or below the practice tolerance 0.01?", options: [["below", "Below 0.01"], ["above", "Above 0.01"]], answer: "above", stage: function () { state.x=16;state.g=25/6;state.result="";show(); }, preview: function (choice) { state.guess=choice==="above"?"Above 0.01":"Below 0.01";show(); }, reveal: function () { state.revealing=true;return Lab.tween(1200,function(t){state.progress=t;show();}).then(function(){state.revealing=false;state.result="residual ≈ 1.36 · continue";show();}); }, why: "The residual is |(25/6)²−16|=49/36≈1.36, which is greater than 0.01. The control flow therefore repeats the update instead of stopping." },
@@ -258,7 +272,10 @@
     function show() { queue(canvas,state); }
     form.querySelector('[data-act="evaluate"]').addEventListener("click",function(){state.bits=bits(form,["car","forecast","rain"]);state.result=P.umbrella(state.bits.car,state.bits.forecast,state.bits.rain);form.querySelector('[data-out="result"]').textContent=Number(state.result);show();});
     function challenge(id,short,car,forecast,rain,answer,prompt,why,note,flip){var zero=["0","U = 0 · no umbrella"],one=["1","U = 1 · take umbrella"];return {id:id,short:short,ref:note?"2.5":"2.4",prompt:prompt,options:flip?[zero,one]:[one,zero],answer:String(Number(answer)),stage:function(){state.bits={car:!!car,forecast:!!forecast,rain:!!rain};state.result=null;state.note="";show();},preview:function(choice){state.guess="U = "+choice;show();},reveal:function(){state.result=P.umbrella(!!car,!!forecast,!!rain);state.revealing=true;return Lab.tween(1300,function(t){state.progress=t;show();}).then(function(){state.revealing=false;state.note=note||"";show();});},why:why};}
-    Lab.experiment({id:"logic",title:"2.4 Boolean umbrella rule",card:section.querySelector(".challenge"),lock:function(on){lock(form,section,on);},setup:function(challenge){state.guess="";state.result=null;state.note="";state.progress=0;state.revealing=false;challenge.stage();},sandbox:function(){state.guess="";state.note="";state.bits=bits(form,["car","forecast","rain"]);state.result=null;show();},challenges:[
+    Lab.experiment({id:"logic",title:"2.4 Boolean umbrella rule",card:section.querySelector(".challenge"),lock:function(on){lock(form,section,on);},setup:function(challenge){state.guess="";state.result=null;state.note="";state.progress=0;state.revealing=false;challenge.stage();},sandbox:function(){state.guess="";state.note="";state.bits=bits(form,["car","forecast","rain"]);state.result=null;show();},
+      generate:function(){var c=rnd(2),w=rnd(2),r=rnd(2),u=P.umbrella(!!c,!!w,!!r);return challenge("gen-umbrella","the umbrella rule",c,w,r,u,"C="+c+", W="+w+", R="+r+". What is U = C'·(W+R)?",
+        "C'="+(1-c)+" and W+R="+(w||r?1:0)+", so U="+(1-c)+"·"+(w||r?1:0)+"="+(u?1:0)+". "+(c?"Taking the car makes C'=0, so the weather cannot matter.":u?"Without the car, one bad-weather input is enough.":"Without the car, U still needs W or R to be 1."),null,!!rnd(2));},
+      challenges:[
       challenge("clear-day", "grouping with parentheses",1,0,1,false,"C=1, W=0, R=1. Compare U=C'·(W+R) with C'·W+R (slide 31). What is U for the rule with parentheses?","C'·(W+R)=0·1=0, but C'·W+R=0+1=1. Parentheses change the result, because AND binds tighter than OR.","Without parentheses: C'·W+R = 1"),
       challenge("bad-forecast", "bad forecast",0,1,0,true,"You are not taking the car (C=0), and only the forecast is bad (W=1, R=0). What is U?","C'=1 and W+R=1, so U=1. Either weather condition is enough when you are not taking the car.",null,true),
       challenge("rain", "rain",0,0,1,true,"You are not taking the car (C=0), and it is raining (R=1) with a good forecast (W=0). What is U?","C'=1 and W+R=1 because R=1, so U=1. The OR is inclusive and either condition can make it true."),
@@ -271,7 +288,11 @@
     function show(){queue(canvas,state);}
     form.querySelector('[data-act="build"]').addEventListener("click",function(){state.fn=form.querySelector("[data-fn]").value;state.a=form.querySelector('[data-bit="a"]').value==="1";state.b=form.querySelector('[data-bit="b"]').value==="1";state.result=P.nandCircuit(state.fn,state.a,state.b);form.querySelector('[data-out="result"]').textContent=Number(state.result);show();});
     function challenge(id,short,fn,a,b,answer,prompt,why,flip){var zero=["0","Output 0"],one=["1","Output 1"];return {id:id,short:short,ref:"2.7",prompt:prompt,options:flip?[zero,one]:[one,zero],answer:String(Number(answer)),stage:function(){state.fn=fn;state.a=!!a;state.b=!!b;state.result=null;show();},preview:function(choice){state.guess="Output "+choice;show();},reveal:function(){state.result=P.nandCircuit(fn,!!a,!!b);state.revealing=true;return Lab.tween(1350,function(t){state.progress=t;show();}).then(function(){state.revealing=false;show();});},why:why};}
-    Lab.experiment({id:"nand",title:"2.7 Build functions with NAND",card:section.querySelector(".challenge"),lock:function(on){lock(form,section,on);},setup:function(challenge){state.guess="";state.result=null;state.progress=0;state.revealing=false;challenge.stage();},sandbox:function(){state.guess="";state.fn=form.querySelector("[data-fn]").value;state.a=form.querySelector('[data-bit="a"]').value==="1";state.b=form.querySelector('[data-bit="b"]').value==="1";state.result=null;show();},challenges:[
+    Lab.experiment({id:"nand",title:"2.7 Build functions with NAND",card:section.querySelector(".challenge"),lock:function(on){lock(form,section,on);},setup:function(challenge){state.guess="";state.result=null;state.progress=0;state.revealing=false;challenge.stage();},sandbox:function(){state.guess="";state.fn=form.querySelector("[data-fn]").value;state.a=form.querySelector('[data-bit="a"]').value==="1";state.b=form.querySelector('[data-bit="b"]').value==="1";state.result=null;show();},
+      generate:function(){var fns={nand:["one NAND gate","A NAND B"],not:["NOT built from one NAND with tied inputs","NOT A"],and:["the two-NAND AND construction","A AND B"],or:["the three-NAND OR construction","A OR B"]},keys=Object.keys(fns),fn=keys[rnd(4)],a=rnd(2),b=fn==="not"?a:rnd(2),out=P.nandCircuit(fn,!!a,!!b);
+        return challenge("gen-nand","NAND circuits",fn,a,b,out,(fn==="not"?"A="+a+" feeds ":"A="+a+" and B="+b+" feed ")+fns[fn][0]+". What is the output?",
+          "The circuit computes "+fns[fn][1]+(fn==="not"?" = NOT "+a:" with A="+a+", B="+b)+", which is "+(out?1:0)+". NAND(x,y) is 0 only when both inputs are 1; every construction here is built from that one rule.",!!rnd(2));},
+      challenges:[
       challenge("nand-one", "NAND of two 1s", "nand",1,1,0,"A single NAND gate receives A=1 and B=1. What is its output?","AND gives 1 for two true inputs, then NAND inverts it to 0. The output is low only for the 1,1 input pair."),
       challenge("not-tied", "NOT from tied inputs", "not",0,0,1,"Both inputs of one NAND gate are tied to A=0. What is the output?","NAND(A,A)=NOT A. With A=0, the AND is 0 and inversion gives 1."),
       challenge("and-build", "AND from NAND", "and",1,0,0,"A=1 and B=0 feed the two-NAND AND construction. What is the final output?","The first NAND gives 1 for inputs 1 and 0; the second NAND ties those outputs together and inverts 1 to 0. That reproduces A AND B."),
