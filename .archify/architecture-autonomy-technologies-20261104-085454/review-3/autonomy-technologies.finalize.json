@@ -5,16 +5,16 @@
   "status": "pass",
   "type": "architecture",
   "quality": "showcase",
-  "startedAt": "2026-10-24T20:15:12.568Z",
+  "startedAt": "2026-11-04T07:56:55.133Z",
   "specification": {
-    "path": "/Users/thanate/Developer/Education/AutonomyTechnologies/.archify/architecture-autonomy-technologies-20261024-184455/candidate.json",
-    "sha256": "fb6aa4859a360d22fbea1e687cbcf1240a051589818e9552db838179117a408a",
-    "bytes": 8782
+    "path": "/Users/thanate/Developer/Education/AutonomyTechnologies/.archify/architecture-autonomy-technologies-20261104-085454/candidate.json",
+    "sha256": "201e5aca121c61a897fb1d46696f81088297c8c24bfb262b59918ac771306433",
+    "bytes": 13486
   },
   "artifact": {
-    "path": "/Users/thanate/Developer/Education/AutonomyTechnologies/.archify/architecture-autonomy-technologies-20261024-184455/autonomy-technologies.html",
-    "sha256": "008afdab201420ccaf343c4e5a41019346a8f8a8abdf0bd9c32dc38a5d77d4be",
-    "bytes": 847502
+    "path": "/Users/thanate/Developer/Education/AutonomyTechnologies/.archify/architecture-autonomy-technologies-20261104-085454/autonomy-technologies.html",
+    "sha256": "7307eb704869342ad4d676d90f3054fe758223abe6235dd1928ed52efb933be9",
+    "bytes": 858090
   },
   "stages": {
     "validate": {
@@ -24,11 +24,11 @@
       "execution": "embedded-in-deliver",
       "command": [
         "/Users/thanate/.nvm/versions/node/v22.23.1/bin/node",
-        "/Users/thanate/.codex/skills/archify/bin/archify.mjs",
+        "/Users/thanate/.agents/skills/archify/bin/archify.mjs",
         "deliver",
         "architecture",
-        "/Users/thanate/Developer/Education/AutonomyTechnologies/.archify/architecture-autonomy-technologies-20261024-184455/candidate.json",
-        "/Users/thanate/Developer/Education/AutonomyTechnologies/.archify/architecture-autonomy-technologies-20261024-184455/autonomy-technologies.html",
+        "/Users/thanate/Developer/Education/AutonomyTechnologies/.archify/architecture-autonomy-technologies-20261104-085454/candidate.json",
+        "/Users/thanate/Developer/Education/AutonomyTechnologies/.archify/architecture-autonomy-technologies-20261104-085454/autonomy-technologies.html",
         "--quality",
         "showcase",
         "--repo-root",
@@ -40,8 +40,8 @@
         "ok": true,
         "command": "validate",
         "specification": {
-          "sha256": "fb6aa4859a360d22fbea1e687cbcf1240a051589818e9552db838179117a408a",
-          "bytes": 8782
+          "sha256": "201e5aca121c61a897fb1d46696f81088297c8c24bfb262b59918ac771306433",
+          "bytes": 13486
         },
         "validation": {
           "checksPassed": 9,
@@ -56,14 +56,14 @@
     "deliver": {
       "status": "pass",
       "exitCode": 0,
-      "durationMs": 924,
+      "durationMs": 567,
       "command": [
         "/Users/thanate/.nvm/versions/node/v22.23.1/bin/node",
-        "/Users/thanate/.codex/skills/archify/bin/archify.mjs",
+        "/Users/thanate/.agents/skills/archify/bin/archify.mjs",
         "deliver",
         "architecture",
-        "/Users/thanate/Developer/Education/AutonomyTechnologies/.archify/architecture-autonomy-technologies-20261024-184455/candidate.json",
-        "/Users/thanate/Developer/Education/AutonomyTechnologies/.archify/architecture-autonomy-technologies-20261024-184455/autonomy-technologies.html",
+        "/Users/thanate/Developer/Education/AutonomyTechnologies/.archify/architecture-autonomy-technologies-20261104-085454/candidate.json",
+        "/Users/thanate/Developer/Education/AutonomyTechnologies/.archify/architecture-autonomy-technologies-20261104-085454/autonomy-technologies.html",
         "--quality",
         "showcase",
         "--repo-root",
@@ -72,19 +72,19 @@
       ],
       "receipt": {
         "schemaVersion": 1,
-        "receiptId": "7a54b456-bc53-49de-bdbc-896f66c04ea2",
+        "receiptId": "c46fd0c3-f25b-48b5-ae8c-e992230939b5",
         "ok": true,
         "command": "deliver",
         "type": "architecture",
-        "input": "/Users/thanate/Developer/Education/AutonomyTechnologies/.archify/architecture-autonomy-technologies-20261024-184455/candidate.json",
-        "output": "/Users/thanate/Developer/Education/AutonomyTechnologies/.archify/architecture-autonomy-technologies-20261024-184455/autonomy-technologies.html",
+        "input": "/Users/thanate/Developer/Education/AutonomyTechnologies/.archify/architecture-autonomy-technologies-20261104-085454/candidate.json",
+        "output": "/Users/thanate/Developer/Education/AutonomyTechnologies/.archify/architecture-autonomy-technologies-20261104-085454/autonomy-technologies.html",
         "specification": {
-          "sha256": "fb6aa4859a360d22fbea1e687cbcf1240a051589818e9552db838179117a408a",
-          "bytes": 8782
+          "sha256": "201e5aca121c61a897fb1d46696f81088297c8c24bfb262b59918ac771306433",
+          "bytes": 13486
         },
         "artifact": {
-          "sha256": "008afdab201420ccaf343c4e5a41019346a8f8a8abdf0bd9c32dc38a5d77d4be",
-          "bytes": 847502
+          "sha256": "7307eb704869342ad4d676d90f3054fe758223abe6235dd1928ed52efb933be9",
+          "bytes": 858090
         },
         "validation": {
           "checksPassed": 9,
@@ -97,8 +97,8 @@
         "evidence": {
           "verified": true,
           "repository": "https://github.com/UNKNOWN-X0/AutonomyTechnologies",
-          "revision": "e4b3d1e44e52897c50b1cd06bf792321aba09291",
-          "references": 27
+          "revision": "9ad8de05d29325db28e8745b3a007ef8845704fd",
+          "references": 33
         },
         "update": {
           "status": "unavailable",
@@ -116,20 +116,20 @@
     "check": {
       "status": "pass",
       "exitCode": 0,
-      "durationMs": 143,
+      "durationMs": 149,
       "command": [
         "/Users/thanate/.nvm/versions/node/v22.23.1/bin/node",
-        "/Users/thanate/.codex/skills/archify/bin/archify.mjs",
+        "/Users/thanate/.agents/skills/archify/bin/archify.mjs",
         "check",
-        "/Users/thanate/Developer/Education/AutonomyTechnologies/.archify/architecture-autonomy-technologies-20261024-184455/autonomy-technologies.html",
+        "/Users/thanate/Developer/Education/AutonomyTechnologies/.archify/architecture-autonomy-technologies-20261104-085454/autonomy-technologies.html",
         "--require-provenance"
       ],
       "receipt": {
         "ok": true,
-        "file": "/Users/thanate/Developer/Education/AutonomyTechnologies/.archify/architecture-autonomy-technologies-20261024-184455/autonomy-technologies.html",
+        "file": "/Users/thanate/Developer/Education/AutonomyTechnologies/.archify/architecture-autonomy-technologies-20261104-085454/autonomy-technologies.html",
         "artifact": {
-          "sha256": "008afdab201420ccaf343c4e5a41019346a8f8a8abdf0bd9c32dc38a5d77d4be",
-          "bytes": 847502
+          "sha256": "7307eb704869342ad4d676d90f3054fe758223abe6235dd1928ed52efb933be9",
+          "bytes": 858090
         },
         "checks": [
           {
@@ -190,24 +190,24 @@
           },
           "metrics": {
             "properCrossings": 0,
-            "resolvedCrossovers": 8,
+            "resolvedCrossovers": 5,
             "ambiguousCorridors": 0,
             "arrowheadCollisions": 0,
             "containerBorderRuns": 0,
             "labelRouteClearanceIssues": 0,
             "labelCanvasOverflowIssues": 0,
-            "minLabelRouteClearance": 6.7,
+            "minLabelRouteClearance": 7.9,
             "desktopReadabilityIssues": 0,
             "viewportHeightIssues": 0,
-            "minProjectedNodeTextPx": 7.5,
+            "minProjectedNodeTextPx": 6.048780487804878,
             "maxBends": 4,
-            "routesOverSuggestedBends": 4,
-            "maxStretch": 1.247,
-            "routesOverSuggestedStretch": 0,
-            "minSegmentPx": 14,
-            "minInteriorSegmentPx": 16.7,
-            "shortSegmentCount": 1,
-            "shortEndpointSegmentCount": 1,
+            "routesOverSuggestedBends": 6,
+            "maxStretch": 1.444,
+            "routesOverSuggestedStretch": 2,
+            "minSegmentPx": 24,
+            "minInteriorSegmentPx": 60,
+            "shortSegmentCount": 0,
+            "shortEndpointSegmentCount": 0,
             "shortInteriorSegmentCount": 0,
             "microSegmentCount": 0
           },
@@ -221,296 +221,275 @@
             "crossings": [
               {
                 "left": {
-                  "id": "hub-to-eei-lab",
+                  "id": "hub-fonts",
                   "from": "hub",
-                  "to": "eei-lab",
-                  "label": "course card",
-                  "collectionIndex": 3,
-                  "artifactIndex": 4
-                },
-                "right": {
-                  "id": "hub-to-math1-guide",
-                  "from": "hub",
-                  "to": "math1-guide",
-                  "label": "course card",
+                  "to": "fonts",
+                  "label": "font CSS",
                   "collectionIndex": 4,
                   "artifactIndex": 5
                 },
+                "right": {
+                  "id": "hub-reads",
+                  "from": "hub",
+                  "to": "local-store",
+                  "label": "reads progress",
+                  "collectionIndex": 12,
+                  "artifactIndex": 13
+                },
                 "point": [
-                  776,
-                  264
+                  573,
+                  136
                 ],
                 "sharedNode": "hub"
               },
               {
                 "left": {
-                  "id": "eei-guide-to-lab",
-                  "from": "eei-guide",
-                  "to": "eei-lab",
-                  "label": "open lab",
+                  "id": "guide-loads-nav",
+                  "from": "guide",
+                  "to": "nav",
+                  "label": "rail",
                   "collectionIndex": 6,
                   "artifactIndex": 7
                 },
                 "right": {
-                  "id": "hub-to-fonts",
-                  "from": "hub",
-                  "to": "google-fonts",
-                  "label": "",
-                  "collectionIndex": 12,
-                  "artifactIndex": 13
+                  "id": "guide-offers",
+                  "from": "guide",
+                  "to": "downloads",
+                  "label": "Download PDF",
+                  "collectionIndex": 18,
+                  "artifactIndex": 19
                 },
                 "point": [
-                  888.5,
-                  169.33333333333334
-                ]
+                  865,
+                  227.00000000000006
+                ],
+                "sharedNode": "guide"
               },
               {
                 "left": {
-                  "id": "eei-lab-to-guide",
-                  "from": "eei-lab",
-                  "to": "eei-guide",
-                  "label": "",
-                  "collectionIndex": 7,
-                  "artifactIndex": 8
+                  "id": "nav-fetches-hub",
+                  "from": "nav",
+                  "to": "hub",
+                  "label": "fetch chapter list",
+                  "collectionIndex": 8,
+                  "artifactIndex": 9
                 },
                 "right": {
-                  "id": "hub-to-fonts",
-                  "from": "hub",
-                  "to": "google-fonts",
-                  "label": "",
-                  "collectionIndex": 12,
-                  "artifactIndex": 13
-                },
-                "point": [
-                  909.5,
-                  169.33333333333334
-                ]
-              },
-              {
-                "left": {
-                  "id": "eei-guide-to-checklist",
-                  "from": "eei-guide",
-                  "to": "checklist-store",
-                  "label": "read / write ee1-checks",
+                  "id": "guide-writes",
+                  "from": "guide",
+                  "to": "local-store",
+                  "label": "ticks, review days",
                   "collectionIndex": 10,
                   "artifactIndex": 11
                 },
-                "right": {
-                  "id": "math1-lab-to-fonts",
-                  "from": "math1-lab",
-                  "to": "google-fonts",
-                  "label": "",
-                  "collectionIndex": 16,
-                  "artifactIndex": 17
-                },
                 "point": [
-                  1284,
-                  501
+                  730,
+                  266
                 ]
               },
               {
                 "left": {
-                  "id": "hub-to-fonts",
-                  "from": "hub",
-                  "to": "google-fonts",
-                  "label": "",
-                  "collectionIndex": 12,
-                  "artifactIndex": 13
+                  "id": "nav-fetches-hub",
+                  "from": "nav",
+                  "to": "hub",
+                  "label": "fetch chapter list",
+                  "collectionIndex": 8,
+                  "artifactIndex": 9
                 },
                 "right": {
-                  "id": "eei-lab-to-fonts",
-                  "from": "eei-lab",
-                  "to": "google-fonts",
-                  "label": "",
-                  "collectionIndex": 14,
-                  "artifactIndex": 15
+                  "id": "guide-offers",
+                  "from": "guide",
+                  "to": "downloads",
+                  "label": "Download PDF",
+                  "collectionIndex": 18,
+                  "artifactIndex": 19
                 },
                 "point": [
-                  989,
-                  169.33333333333334
-                ],
-                "sharedNode": "google-fonts"
-              },
-              {
-                "left": {
-                  "id": "hub-to-fonts",
-                  "from": "hub",
-                  "to": "google-fonts",
-                  "label": "",
-                  "collectionIndex": 12,
-                  "artifactIndex": 13
-                },
-                "right": {
-                  "id": "eei-guide-to-katex",
-                  "from": "eei-guide",
-                  "to": "katex-cdn",
-                  "label": "KaTeX CSS",
-                  "collectionIndex": 17,
-                  "artifactIndex": 18
-                },
-                "point": [
-                  1056,
-                  169.33333333333334
+                  751.4,
+                  266
                 ]
               },
               {
                 "left": {
-                  "id": "eei-lab-to-fonts",
-                  "from": "eei-lab",
-                  "to": "google-fonts",
-                  "label": "",
-                  "collectionIndex": 14,
-                  "artifactIndex": 15
+                  "id": "lab-writes",
+                  "from": "lab",
+                  "to": "local-store",
+                  "label": "answers, lab ticks",
+                  "collectionIndex": 11,
+                  "artifactIndex": 12
                 },
                 "right": {
-                  "id": "eei-guide-to-katex",
-                  "from": "eei-guide",
-                  "to": "katex-cdn",
-                  "label": "KaTeX CSS",
-                  "collectionIndex": 17,
-                  "artifactIndex": 18
+                  "id": "guide-offers",
+                  "from": "guide",
+                  "to": "downloads",
+                  "label": "Download PDF",
+                  "collectionIndex": 18,
+                  "artifactIndex": 19
                 },
                 "point": [
-                  1056,
-                  146
+                  751.4,
+                  516
                 ]
-              },
-              {
-                "left": {
-                  "id": "math1-guide-to-fonts",
-                  "from": "math1-guide",
-                  "to": "google-fonts",
-                  "label": "",
-                  "collectionIndex": 15,
-                  "artifactIndex": 16
-                },
-                "right": {
-                  "id": "eei-guide-to-katex",
-                  "from": "eei-guide",
-                  "to": "katex-cdn",
-                  "label": "KaTeX CSS",
-                  "collectionIndex": 17,
-                  "artifactIndex": 18
-                },
-                "point": [
-                  1077,
-                  284
-                ]
-              }
-            ],
-            "crowdedSides": [
-              {
-                "node": "hub",
-                "label": "Study Pages hub",
-                "side": "right",
-                "relationships": 4,
-                "sidePx": 72,
-                "neededPx": 74
               }
             ],
             "detours": [
               {
                 "relationship": {
-                  "id": "eei-guide-to-checklist",
-                  "from": "eei-guide",
-                  "to": "checklist-store",
-                  "label": "read / write ee1-checks",
-                  "collectionIndex": 10,
-                  "artifactIndex": 11
+                  "id": "lab-writes",
+                  "from": "lab",
+                  "to": "local-store",
+                  "label": "answers, lab ticks",
+                  "collectionIndex": 11,
+                  "artifactIndex": 12
                 },
                 "bends": 3,
-                "stretch": 1.139
+                "stretch": 1.058
               },
               {
                 "relationship": {
-                  "id": "hub-to-fonts",
+                  "id": "hub-reads",
                   "from": "hub",
-                  "to": "google-fonts",
-                  "label": "",
+                  "to": "local-store",
+                  "label": "reads progress",
                   "collectionIndex": 12,
                   "artifactIndex": 13
                 },
                 "bends": 3,
-                "stretch": 1.073
+                "stretch": 1.112
               },
               {
                 "relationship": {
-                  "id": "math1-guide-to-fonts",
-                  "from": "math1-guide",
-                  "to": "google-fonts",
-                  "label": "",
+                  "id": "repo-deploys",
+                  "from": "repo",
+                  "to": "pages-host",
+                  "label": "push main",
+                  "collectionIndex": 14,
+                  "artifactIndex": 15
+                },
+                "bends": 4,
+                "stretch": 1.394,
+                "directCorridorBlockers": [
+                  {
+                    "id": "settings",
+                    "label": "Settings + HUD",
+                    "box": [
+                      250,
+                      230,
+                      180,
+                      72
+                    ]
+                  }
+                ]
+              },
+              {
+                "relationship": {
+                  "id": "repo-ci",
+                  "from": "repo",
+                  "to": "ci",
+                  "label": "push / PR",
                   "collectionIndex": 15,
                   "artifactIndex": 16
                 },
-                "bends": 4,
-                "stretch": 1
+                "bends": 3,
+                "stretch": 1.316
               },
               {
                 "relationship": {
-                  "id": "repository-to-ci",
-                  "from": "repository",
-                  "to": "ci",
-                  "label": "push / PR build check",
-                  "collectionIndex": 20,
-                  "artifactIndex": 21
+                  "id": "tex-writes",
+                  "from": "to-tex",
+                  "to": "downloads",
+                  "label": "writes .tex, PDF",
+                  "collectionIndex": 17,
+                  "artifactIndex": 18
                 },
                 "bends": 3,
-                "stretch": 1.247
+                "stretch": 1.257
+              },
+              {
+                "relationship": {
+                  "id": "guide-offers",
+                  "from": "guide",
+                  "to": "downloads",
+                  "label": "Download PDF",
+                  "collectionIndex": 18,
+                  "artifactIndex": 19
+                },
+                "bends": 4,
+                "stretch": 1.444,
+                "directCorridorBlockers": [
+                  {
+                    "id": "nav",
+                    "label": "Contents rail",
+                    "box": [
+                      760,
+                      230,
+                      210,
+                      72
+                    ]
+                  },
+                  {
+                    "id": "session-store",
+                    "label": "sessionStorage",
+                    "box": [
+                      760,
+                      420,
+                      210,
+                      72
+                    ]
+                  }
+                ]
               }
             ]
           },
           "leadingSpace": {
             "measured": true,
-            "emptyTopPx": 18,
-            "emptyTopRatio": 0.022,
-            "occupiedTop": 18,
+            "emptyTopPx": 40,
+            "emptyTopRatio": 0.043,
+            "occupiedTop": 40,
             "viewBoxTop": 0,
-            "canvasHeight": 820,
-            "typicalNodeHeight": 82,
+            "canvasHeight": 920,
+            "typicalNodeHeight": 72,
             "reviewSuggested": false
           },
           "desktopReadability": {
-            "budgetBasis": "recognized-declared-wide",
+            "budgetBasis": "legacy-930",
             "readerContract": "declared-wide-v1",
-            "availableDiagramWidth": 1250.625,
-            "actualBudgetPx": 1250.625,
-            "actualReaderWidth": 1280.625,
-            "desiredReaderWidth": 1280.625,
-            "viewportCap": 1376,
-            "limit": "source-size",
+            "availableDiagramWidth": 930,
+            "actualBudgetPx": 930,
+            "limit": "legacy",
             "requestedTargetPx": 7.5,
-            "requestedTargetMet": true,
+            "requestedTargetMet": false,
             "hardFloorPx": 6,
             "hardFloorMet": true,
             "minimumOwner": {
               "kind": "edge",
-              "id": "learner-to-pages",
+              "id": "learner-https",
               "from": "learner",
               "to": "pages-host"
             },
             "minimumSourceTextPx": 8,
-            "minimumProjectedTextPx": 7.5,
-            "semanticTextCount": 38
+            "minimumProjectedTextPx": 6.048780487804878,
+            "semanticTextCount": 55
           },
           "issues": []
         },
         "provenance": "current",
-        "deliveryReceiptId": "7a54b456-bc53-49de-bdbc-896f66c04ea2"
+        "deliveryReceiptId": "c46fd0c3-f25b-48b5-ae8c-e992230939b5"
       }
     },
     "browser-check": {
       "status": "pass",
       "exitCode": 0,
-      "durationMs": 2217,
+      "durationMs": 4044,
       "command": [
         "/Users/thanate/.nvm/versions/node/v22.23.1/bin/node",
-        "/Users/thanate/.codex/skills/archify/bin/archify.mjs",
+        "/Users/thanate/.agents/skills/archify/bin/archify.mjs",
         "browser-check",
-        "/Users/thanate/Developer/Education/AutonomyTechnologies/.archify/architecture-autonomy-technologies-20261024-184455/autonomy-technologies.html",
+        "/Users/thanate/Developer/Education/AutonomyTechnologies/.archify/architecture-autonomy-technologies-20261104-085454/autonomy-technologies.html",
         "--json",
         "--require-provenance",
         "--out-dir",
-        "/Users/thanate/Developer/Education/AutonomyTechnologies/.archify/architecture-autonomy-technologies-20261024-184455/review-8"
+        "/Users/thanate/Developer/Education/AutonomyTechnologies/.archify/architecture-autonomy-technologies-20261104-085454/review-3"
       ],
       "execution": "in-process",
       "receipt": {
@@ -521,11 +500,11 @@
         "status": "pass",
         "visualReview": "not-requested",
         "provenance": "current",
-        "deliveryReceiptId": "7a54b456-bc53-49de-bdbc-896f66c04ea2",
+        "deliveryReceiptId": "c46fd0c3-f25b-48b5-ae8c-e992230939b5",
         "artifact": {
-          "path": "/Users/thanate/Developer/Education/AutonomyTechnologies/.archify/architecture-autonomy-technologies-20261024-184455/autonomy-technologies.html",
-          "sha256": "008afdab201420ccaf343c4e5a41019346a8f8a8abdf0bd9c32dc38a5d77d4be",
-          "bytes": 847502
+          "path": "/Users/thanate/Developer/Education/AutonomyTechnologies/.archify/architecture-autonomy-technologies-20261104-085454/autonomy-technologies.html",
+          "sha256": "7307eb704869342ad4d676d90f3054fe758223abe6235dd1928ed52efb933be9",
+          "bytes": 858090
         },
         "state": {
           "detail": "read",
@@ -547,7 +526,7 @@
               "innerWidth": 1440,
               "innerHeight": 900,
               "scrollWidth": 1440,
-              "scrollHeight": 911,
+              "scrollHeight": 994,
               "overflowX": false,
               "overflowY": true,
               "verticalScrollAccepted": true,
@@ -556,25 +535,25 @@
               "readerOverflow": "authored",
               "readerFit": "intrinsic-height",
               "ok": true,
-              "readerWidth": 1281,
-              "diagramWidth": 1251,
+              "readerWidth": 1169,
+              "diagramWidth": 1139,
               "pageComposition": {
                 "bodyPaddingPx": 12,
                 "headerPx": 52,
                 "diagramChromePx": 78,
-                "svgPx": 769,
+                "svgPx": 852,
                 "cardsPx": 0,
-                "viewBoxHeight": 820
+                "viewBoxHeight": 920
               },
-              "viewBoxWidth": 1334,
-              "minimumProjectedNodeTextPx": 7.502248875562219,
-              "minimumProjectedNonEdgeTextPx": 8.440029985007497,
-              "minimumProjectedEdgeTextPx": 7.502248875562219,
+              "viewBoxWidth": 1230,
+              "minimumProjectedNodeTextPx": 7.408130081300813,
+              "minimumProjectedNonEdgeTextPx": 7.5007317073170725,
+              "minimumProjectedEdgeTextPx": 7.408130081300813,
               "minimumProjectedNodeText": "HTTPS",
               "minimumProjectedNodeTextDetail": "edge",
               "minimumProjectedNodeTextOwner": {
                 "kind": "edge",
-                "id": "learner-to-pages",
+                "id": "learner-https",
                 "from": "learner",
                 "to": "pages-host"
               },
@@ -599,34 +578,34 @@
               "innerWidth": 1600,
               "innerHeight": 1000,
               "scrollWidth": 1600,
-              "scrollHeight": 1000,
+              "scrollHeight": 1060,
               "overflowX": false,
-              "overflowY": false,
-              "verticalScrollAccepted": false,
-              "overflowDisposition": "contained",
+              "overflowY": true,
+              "verticalScrollAccepted": true,
+              "overflowDisposition": "readable-vertical-scroll",
               "readerLayout": "adaptive",
-              "readerOverflow": null,
+              "readerOverflow": "authored",
               "readerFit": "intrinsic-height",
               "ok": true,
-              "readerWidth": 1299,
-              "diagramWidth": 1269,
+              "readerWidth": 1169,
+              "diagramWidth": 1139,
               "pageComposition": {
                 "bodyPaddingPx": 64,
                 "headerPx": 60,
                 "diagramChromePx": 84,
-                "svgPx": 780,
+                "svgPx": 852,
                 "cardsPx": 0,
-                "viewBoxHeight": 820
+                "viewBoxHeight": 920
               },
-              "viewBoxWidth": 1334,
-              "minimumProjectedNodeTextPx": 7.610194902548725,
-              "minimumProjectedNonEdgeTextPx": 8.561469265367316,
-              "minimumProjectedEdgeTextPx": 7.610194902548725,
+              "viewBoxWidth": 1230,
+              "minimumProjectedNodeTextPx": 7.408130081300813,
+              "minimumProjectedNonEdgeTextPx": 7.5007317073170725,
+              "minimumProjectedEdgeTextPx": 7.408130081300813,
               "minimumProjectedNodeText": "HTTPS",
               "minimumProjectedNodeTextDetail": "edge",
               "minimumProjectedNodeTextOwner": {
                 "kind": "edge",
-                "id": "learner-to-pages",
+                "id": "learner-https",
                 "from": "learner",
                 "to": "pages-host"
               },
@@ -660,25 +639,25 @@
               "readerOverflow": null,
               "readerFit": "intrinsic-height",
               "ok": true,
-              "readerWidth": 1429,
-              "diagramWidth": 1399,
+              "readerWidth": 1180,
+              "diagramWidth": 1150,
               "pageComposition": {
                 "bodyPaddingPx": 64,
                 "headerPx": 60,
                 "diagramChromePx": 84,
                 "svgPx": 860,
                 "cardsPx": 0,
-                "viewBoxHeight": 820
+                "viewBoxHeight": 920
               },
-              "viewBoxWidth": 1334,
-              "minimumProjectedNodeTextPx": 8,
-              "minimumProjectedNonEdgeTextPx": 9,
-              "minimumProjectedEdgeTextPx": 8,
+              "viewBoxWidth": 1230,
+              "minimumProjectedNodeTextPx": 7.479674796747967,
+              "minimumProjectedNonEdgeTextPx": 7.573170731707316,
+              "minimumProjectedEdgeTextPx": 7.479674796747967,
               "minimumProjectedNodeText": "HTTPS",
               "minimumProjectedNodeTextDetail": "edge",
               "minimumProjectedNodeTextOwner": {
                 "kind": "edge",
-                "id": "learner-to-pages",
+                "id": "learner-https",
                 "from": "learner",
                 "to": "pages-host"
               },
@@ -712,25 +691,25 @@
               "readerOverflow": null,
               "readerFit": "intrinsic-height",
               "ok": true,
-              "readerWidth": 1810,
-              "diagramWidth": 1760,
+              "readerWidth": 1497,
+              "diagramWidth": 1447,
               "pageComposition": {
                 "bodyPaddingPx": 64,
                 "headerPx": 68,
                 "diagramChromePx": 94,
                 "svgPx": 1082,
                 "cardsPx": 0,
-                "viewBoxHeight": 820
+                "viewBoxHeight": 920
               },
-              "viewBoxWidth": 1334,
+              "viewBoxWidth": 1230,
               "minimumProjectedNodeTextPx": 8,
-              "minimumProjectedNonEdgeTextPx": 9,
+              "minimumProjectedNonEdgeTextPx": 8.1,
               "minimumProjectedEdgeTextPx": 8,
               "minimumProjectedNodeText": "HTTPS",
               "minimumProjectedNodeTextDetail": "edge",
               "minimumProjectedNodeTextOwner": {
                 "kind": "edge",
-                "id": "learner-to-pages",
+                "id": "learner-https",
                 "from": "learner",
                 "to": "pages-host"
               },
@@ -808,7 +787,7 @@
               "innerWidth": 1440,
               "innerHeight": 900,
               "scrollWidth": 1440,
-              "scrollHeight": 911,
+              "scrollHeight": 994,
               "overflowX": false,
               "overflowY": true,
               "verticalScrollAccepted": true,
@@ -817,25 +796,25 @@
               "readerOverflow": "authored",
               "readerFit": "intrinsic-height",
               "ok": true,
-              "readerWidth": 1281,
-              "diagramWidth": 1251,
+              "readerWidth": 1169,
+              "diagramWidth": 1139,
               "pageComposition": {
                 "bodyPaddingPx": 12,
                 "headerPx": 52,
                 "diagramChromePx": 78,
-                "svgPx": 769,
+                "svgPx": 852,
                 "cardsPx": 0,
-                "viewBoxHeight": 820
+                "viewBoxHeight": 920
               },
-              "viewBoxWidth": 1334,
-              "minimumProjectedNodeTextPx": 7.502248875562219,
-              "minimumProjectedNonEdgeTextPx": 8.440029985007497,
-              "minimumProjectedEdgeTextPx": 7.502248875562219,
+              "viewBoxWidth": 1230,
+              "minimumProjectedNodeTextPx": 7.408130081300813,
+              "minimumProjectedNonEdgeTextPx": 7.5007317073170725,
+              "minimumProjectedEdgeTextPx": 7.408130081300813,
               "minimumProjectedNodeText": "HTTPS",
               "minimumProjectedNodeTextDetail": "edge",
               "minimumProjectedNodeTextOwner": {
                 "kind": "edge",
-                "id": "learner-to-pages",
+                "id": "learner-https",
                 "from": "learner",
                 "to": "pages-host"
               },
@@ -860,34 +839,34 @@
               "innerWidth": 1600,
               "innerHeight": 1000,
               "scrollWidth": 1600,
-              "scrollHeight": 1000,
+              "scrollHeight": 1060,
               "overflowX": false,
-              "overflowY": false,
-              "verticalScrollAccepted": false,
-              "overflowDisposition": "contained",
+              "overflowY": true,
+              "verticalScrollAccepted": true,
+              "overflowDisposition": "readable-vertical-scroll",
               "readerLayout": "adaptive",
-              "readerOverflow": null,
+              "readerOverflow": "authored",
               "readerFit": "intrinsic-height",
               "ok": true,
-              "readerWidth": 1299,
-              "diagramWidth": 1269,
+              "readerWidth": 1169,
+              "diagramWidth": 1139,
               "pageComposition": {
                 "bodyPaddingPx": 64,
                 "headerPx": 60,
                 "diagramChromePx": 84,
-                "svgPx": 780,
+                "svgPx": 852,
                 "cardsPx": 0,
-                "viewBoxHeight": 820
+                "viewBoxHeight": 920
               },
-              "viewBoxWidth": 1334,
-              "minimumProjectedNodeTextPx": 7.610194902548725,
-              "minimumProjectedNonEdgeTextPx": 8.561469265367316,
-              "minimumProjectedEdgeTextPx": 7.610194902548725,
+              "viewBoxWidth": 1230,
+              "minimumProjectedNodeTextPx": 7.408130081300813,
+              "minimumProjectedNonEdgeTextPx": 7.5007317073170725,
+              "minimumProjectedEdgeTextPx": 7.408130081300813,
               "minimumProjectedNodeText": "HTTPS",
               "minimumProjectedNodeTextDetail": "edge",
               "minimumProjectedNodeTextOwner": {
                 "kind": "edge",
-                "id": "learner-to-pages",
+                "id": "learner-https",
                 "from": "learner",
                 "to": "pages-host"
               },
@@ -921,25 +900,25 @@
               "readerOverflow": null,
               "readerFit": "intrinsic-height",
               "ok": true,
-              "readerWidth": 1429,
-              "diagramWidth": 1399,
+              "readerWidth": 1180,
+              "diagramWidth": 1150,
               "pageComposition": {
                 "bodyPaddingPx": 64,
                 "headerPx": 60,
                 "diagramChromePx": 84,
                 "svgPx": 860,
                 "cardsPx": 0,
-                "viewBoxHeight": 820
+                "viewBoxHeight": 920
               },
-              "viewBoxWidth": 1334,
-              "minimumProjectedNodeTextPx": 8,
-              "minimumProjectedNonEdgeTextPx": 9,
-              "minimumProjectedEdgeTextPx": 8,
+              "viewBoxWidth": 1230,
+              "minimumProjectedNodeTextPx": 7.479674796747967,
+              "minimumProjectedNonEdgeTextPx": 7.573170731707316,
+              "minimumProjectedEdgeTextPx": 7.479674796747967,
               "minimumProjectedNodeText": "HTTPS",
               "minimumProjectedNodeTextDetail": "edge",
               "minimumProjectedNodeTextOwner": {
                 "kind": "edge",
-                "id": "learner-to-pages",
+                "id": "learner-https",
                 "from": "learner",
                 "to": "pages-host"
               },
@@ -973,25 +952,25 @@
               "readerOverflow": null,
               "readerFit": "intrinsic-height",
               "ok": true,
-              "readerWidth": 1810,
-              "diagramWidth": 1760,
+              "readerWidth": 1497,
+              "diagramWidth": 1447,
               "pageComposition": {
                 "bodyPaddingPx": 64,
                 "headerPx": 68,
                 "diagramChromePx": 94,
                 "svgPx": 1082,
                 "cardsPx": 0,
-                "viewBoxHeight": 820
+                "viewBoxHeight": 920
               },
-              "viewBoxWidth": 1334,
+              "viewBoxWidth": 1230,
               "minimumProjectedNodeTextPx": 8,
-              "minimumProjectedNonEdgeTextPx": 9,
+              "minimumProjectedNonEdgeTextPx": 8.1,
               "minimumProjectedEdgeTextPx": 8,
               "minimumProjectedNodeText": "HTTPS",
               "minimumProjectedNodeTextDetail": "edge",
               "minimumProjectedNodeTextOwner": {
                 "kind": "edge",
-                "id": "learner-to-pages",
+                "id": "learner-https",
                 "from": "learner",
                 "to": "pages-host"
               },
@@ -1021,7 +1000,7 @@
               "innerWidth": 1440,
               "innerHeight": 900,
               "scrollWidth": 1440,
-              "scrollHeight": 911,
+              "scrollHeight": 994,
               "overflowX": false,
               "overflowY": true,
               "verticalScrollAccepted": true,
@@ -1030,25 +1009,25 @@
               "readerOverflow": "authored",
               "readerFit": "intrinsic-height",
               "ok": true,
-              "readerWidth": 1281,
-              "diagramWidth": 1251,
+              "readerWidth": 1169,
+              "diagramWidth": 1139,
               "pageComposition": {
                 "bodyPaddingPx": 12,
                 "headerPx": 52,
                 "diagramChromePx": 78,
-                "svgPx": 769,
+                "svgPx": 852,
                 "cardsPx": 0,
-                "viewBoxHeight": 820
+                "viewBoxHeight": 920
               },
-              "viewBoxWidth": 1334,
-              "minimumProjectedNodeTextPx": 7.502248875562219,
-              "minimumProjectedNonEdgeTextPx": 8.440029985007497,
-              "minimumProjectedEdgeTextPx": 7.502248875562219,
+              "viewBoxWidth": 1230,
+              "minimumProjectedNodeTextPx": 7.408130081300813,
+              "minimumProjectedNonEdgeTextPx": 7.5007317073170725,
+              "minimumProjectedEdgeTextPx": 7.408130081300813,
               "minimumProjectedNodeText": "HTTPS",
               "minimumProjectedNodeTextDetail": "edge",
               "minimumProjectedNodeTextOwner": {
                 "kind": "edge",
-                "id": "learner-to-pages",
+                "id": "learner-https",
                 "from": "learner",
                 "to": "pages-host"
               },
@@ -1073,34 +1052,34 @@
               "innerWidth": 1600,
               "innerHeight": 1000,
               "scrollWidth": 1600,
-              "scrollHeight": 1000,
+              "scrollHeight": 1060,
               "overflowX": false,
-              "overflowY": false,
-              "verticalScrollAccepted": false,
-              "overflowDisposition": "contained",
+              "overflowY": true,
+              "verticalScrollAccepted": true,
+              "overflowDisposition": "readable-vertical-scroll",
               "readerLayout": "adaptive",
-              "readerOverflow": null,
+              "readerOverflow": "authored",
               "readerFit": "intrinsic-height",
               "ok": true,
-              "readerWidth": 1299,
-              "diagramWidth": 1269,
+              "readerWidth": 1169,
+              "diagramWidth": 1139,
               "pageComposition": {
                 "bodyPaddingPx": 64,
                 "headerPx": 60,
                 "diagramChromePx": 84,
-                "svgPx": 780,
+                "svgPx": 852,
                 "cardsPx": 0,
-                "viewBoxHeight": 820
+                "viewBoxHeight": 920
               },
-              "viewBoxWidth": 1334,
-              "minimumProjectedNodeTextPx": 7.610194902548725,
-              "minimumProjectedNonEdgeTextPx": 8.561469265367316,
-              "minimumProjectedEdgeTextPx": 7.610194902548725,
+              "viewBoxWidth": 1230,
+              "minimumProjectedNodeTextPx": 7.408130081300813,
+              "minimumProjectedNonEdgeTextPx": 7.5007317073170725,
+              "minimumProjectedEdgeTextPx": 7.408130081300813,
               "minimumProjectedNodeText": "HTTPS",
               "minimumProjectedNodeTextDetail": "edge",
               "minimumProjectedNodeTextOwner": {
                 "kind": "edge",
-                "id": "learner-to-pages",
+                "id": "learner-https",
                 "from": "learner",
                 "to": "pages-host"
               },
@@ -1134,25 +1113,25 @@
               "readerOverflow": null,
               "readerFit": "intrinsic-height",
               "ok": true,
-              "readerWidth": 1429,
-              "diagramWidth": 1399,
+              "readerWidth": 1180,
+              "diagramWidth": 1150,
               "pageComposition": {
                 "bodyPaddingPx": 64,
                 "headerPx": 60,
                 "diagramChromePx": 84,
                 "svgPx": 860,
                 "cardsPx": 0,
-                "viewBoxHeight": 820
+                "viewBoxHeight": 920
               },
-              "viewBoxWidth": 1334,
-              "minimumProjectedNodeTextPx": 8,
-              "minimumProjectedNonEdgeTextPx": 9,
-              "minimumProjectedEdgeTextPx": 8,
+              "viewBoxWidth": 1230,
+              "minimumProjectedNodeTextPx": 7.479674796747967,
+              "minimumProjectedNonEdgeTextPx": 7.573170731707316,
+              "minimumProjectedEdgeTextPx": 7.479674796747967,
               "minimumProjectedNodeText": "HTTPS",
               "minimumProjectedNodeTextDetail": "edge",
               "minimumProjectedNodeTextOwner": {
                 "kind": "edge",
-                "id": "learner-to-pages",
+                "id": "learner-https",
                 "from": "learner",
                 "to": "pages-host"
               },
@@ -1186,25 +1165,25 @@
               "readerOverflow": null,
               "readerFit": "intrinsic-height",
               "ok": true,
-              "readerWidth": 1810,
-              "diagramWidth": 1760,
+              "readerWidth": 1497,
+              "diagramWidth": 1447,
               "pageComposition": {
                 "bodyPaddingPx": 64,
                 "headerPx": 68,
                 "diagramChromePx": 94,
                 "svgPx": 1082,
                 "cardsPx": 0,
-                "viewBoxHeight": 820
+                "viewBoxHeight": 920
               },
-              "viewBoxWidth": 1334,
+              "viewBoxWidth": 1230,
               "minimumProjectedNodeTextPx": 8,
-              "minimumProjectedNonEdgeTextPx": 9,
+              "minimumProjectedNonEdgeTextPx": 8.1,
               "minimumProjectedEdgeTextPx": 8,
               "minimumProjectedNodeText": "HTTPS",
               "minimumProjectedNodeTextDetail": "edge",
               "minimumProjectedNodeTextOwner": {
                 "kind": "edge",
-                "id": "learner-to-pages",
+                "id": "learner-https",
                 "from": "learner",
                 "to": "pages-host"
               },
@@ -1230,7 +1209,7 @@
           "contactSheet": null
         },
         "sidecars": {
-          "directory": "/Users/thanate/Developer/Education/AutonomyTechnologies/.archify/architecture-autonomy-technologies-20261024-184455/review-8",
+          "directory": "/Users/thanate/Developer/Education/AutonomyTechnologies/.archify/architecture-autonomy-technologies-20261104-085454/review-3",
           "receipt": "autonomy-technologies.browser-check.json",
           "files": []
         }
@@ -1243,19 +1222,19 @@
   },
   "diagnostics": [],
   "evidence": {
-    "receipt": "/Users/thanate/Developer/Education/AutonomyTechnologies/.archify/architecture-autonomy-technologies-20261024-184455/review-8/autonomy-technologies.finalize.json",
-    "summaryReceipt": "/Users/thanate/Developer/Education/AutonomyTechnologies/.archify/architecture-autonomy-technologies-20261024-184455/review-8/autonomy-technologies.finalize-summary.json",
-    "browserCheckReceipt": "/Users/thanate/Developer/Education/AutonomyTechnologies/.archify/architecture-autonomy-technologies-20261024-184455/review-8/autonomy-technologies.browser-check.json"
+    "receipt": "/Users/thanate/Developer/Education/AutonomyTechnologies/.archify/architecture-autonomy-technologies-20261104-085454/review-3/autonomy-technologies.finalize.json",
+    "summaryReceipt": "/Users/thanate/Developer/Education/AutonomyTechnologies/.archify/architecture-autonomy-technologies-20261104-085454/review-3/autonomy-technologies.finalize-summary.json",
+    "browserCheckReceipt": "/Users/thanate/Developer/Education/AutonomyTechnologies/.archify/architecture-autonomy-technologies-20261104-085454/review-3/autonomy-technologies.browser-check.json"
   },
   "visualReview": "not-requested",
-  "finishedAt": "2026-10-24T20:15:16.028Z",
-  "durationMs": 3459,
+  "finishedAt": "2026-11-04T07:57:00.062Z",
+  "durationMs": 4930,
   "update": {
     "status": "current",
     "installedVersion": "3.2.0",
     "availableVersion": "3.2.0",
     "releaseNotes": null,
-    "checkedAt": "2026-10-24T15:48:29.002Z",
+    "checkedAt": "2026-11-04T07:55:36.528Z",
     "source": "cache",
     "noticeRequired": false,
     "noticeText": null

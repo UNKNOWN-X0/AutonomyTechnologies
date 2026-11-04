@@ -162,7 +162,7 @@ The pages follow one sign system, modelled on German systematic signage: solid c
 - **State is shown by line form:** dashed outline means not yet (an unticked skill, a course part with no material), solid means done or available.
 - **Font:** Hanken Grotesk (SIL Open Font License, via Google Fonts).
 - **Site mark:** an original animated icon, the Singularity: two orbits precess around a glowing core while a charge travels the outer orbit, from fundamentals to AI. Motion stops for visitors who prefer reduced motion, and the favicon is a still version. The FAU logo is not used; it is a protected university trademark.
-- **Light and dark** follow your system setting. Pages print without the colour fields.
+- **Theme, motion and text size** follow your device unless you choose otherwise under Settings (the gear beside **All semesters**). Pages print without the colour fields.
 
 ## Adding pages
 

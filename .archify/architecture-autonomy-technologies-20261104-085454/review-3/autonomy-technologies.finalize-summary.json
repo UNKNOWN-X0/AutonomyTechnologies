@@ -1,0 +1,296 @@
+{
+  "schemaVersion": 1,
+  "ok": true,
+  "command": "finalize",
+  "status": "pass",
+  "type": "architecture",
+  "quality": "showcase",
+  "specification": {
+    "path": "/Users/thanate/Developer/Education/AutonomyTechnologies/.archify/architecture-autonomy-technologies-20261104-085454/candidate.json",
+    "sha256": "201e5aca121c61a897fb1d46696f81088297c8c24bfb262b59918ac771306433",
+    "bytes": 13486
+  },
+  "artifact": {
+    "path": "/Users/thanate/Developer/Education/AutonomyTechnologies/.archify/architecture-autonomy-technologies-20261104-085454/autonomy-technologies.html",
+    "sha256": "7307eb704869342ad4d676d90f3054fe758223abe6235dd1928ed52efb933be9",
+    "bytes": 858090
+  },
+  "gates": {
+    "validate": "pass",
+    "deliver": "pass",
+    "check": "pass",
+    "browser-check": "pass"
+  },
+  "diagnostics": [],
+  "diagnosticSummary": {
+    "total": 0,
+    "shown": 0,
+    "truncated": false
+  },
+  "evidence": {
+    "receipt": "/Users/thanate/Developer/Education/AutonomyTechnologies/.archify/architecture-autonomy-technologies-20261104-085454/review-3/autonomy-technologies.finalize.json",
+    "summaryReceipt": "/Users/thanate/Developer/Education/AutonomyTechnologies/.archify/architecture-autonomy-technologies-20261104-085454/review-3/autonomy-technologies.finalize-summary.json",
+    "browserCheckReceipt": "/Users/thanate/Developer/Education/AutonomyTechnologies/.archify/architecture-autonomy-technologies-20261104-085454/review-3/autonomy-technologies.browser-check.json"
+  },
+  "update": {
+    "status": "current",
+    "installedVersion": "3.2.0",
+    "availableVersion": "3.2.0",
+    "releaseNotes": null,
+    "checkedAt": "2026-11-04T07:55:36.528Z",
+    "source": "cache",
+    "noticeRequired": false,
+    "noticeText": null
+  },
+  "visualReview": "not-requested",
+  "durationMs": 4930,
+  "browserCheck": {
+    "requested": true,
+    "ran": true
+  },
+  "visualReviewRecommendation": {
+    "action": "inspect-route-readability",
+    "signals": {
+      "resolvedCrossovers": 5,
+      "routesOverSuggestedBends": 6,
+      "routesOverSuggestedStretch": 2
+    },
+    "reason": "Automated gates passed, but crossings or detours still need perceptual review before claiming visual quality.",
+    "affectedRoutes": {
+      "crossings": [
+        {
+          "left": {
+            "id": "hub-fonts",
+            "from": "hub",
+            "to": "fonts",
+            "label": "font CSS",
+            "collectionIndex": 4,
+            "artifactIndex": 5
+          },
+          "right": {
+            "id": "hub-reads",
+            "from": "hub",
+            "to": "local-store",
+            "label": "reads progress",
+            "collectionIndex": 12,
+            "artifactIndex": 13
+          },
+          "point": [
+            573,
+            136
+          ],
+          "sharedNode": "hub"
+        },
+        {
+          "left": {
+            "id": "guide-loads-nav",
+            "from": "guide",
+            "to": "nav",
+            "label": "rail",
+            "collectionIndex": 6,
+            "artifactIndex": 7
+          },
+          "right": {
+            "id": "guide-offers",
+            "from": "guide",
+            "to": "downloads",
+            "label": "Download PDF",
+            "collectionIndex": 18,
+            "artifactIndex": 19
+          },
+          "point": [
+            865,
+            227.00000000000006
+          ],
+          "sharedNode": "guide"
+        },
+        {
+          "left": {
+            "id": "nav-fetches-hub",
+            "from": "nav",
+            "to": "hub",
+            "label": "fetch chapter list",
+            "collectionIndex": 8,
+            "artifactIndex": 9
+          },
+          "right": {
+            "id": "guide-writes",
+            "from": "guide",
+            "to": "local-store",
+            "label": "ticks, review days",
+            "collectionIndex": 10,
+            "artifactIndex": 11
+          },
+          "point": [
+            730,
+            266
+          ]
+        },
+        {
+          "left": {
+            "id": "nav-fetches-hub",
+            "from": "nav",
+            "to": "hub",
+            "label": "fetch chapter list",
+            "collectionIndex": 8,
+            "artifactIndex": 9
+          },
+          "right": {
+            "id": "guide-offers",
+            "from": "guide",
+            "to": "downloads",
+            "label": "Download PDF",
+            "collectionIndex": 18,
+            "artifactIndex": 19
+          },
+          "point": [
+            751.4,
+            266
+          ]
+        },
+        {
+          "left": {
+            "id": "lab-writes",
+            "from": "lab",
+            "to": "local-store",
+            "label": "answers, lab ticks",
+            "collectionIndex": 11,
+            "artifactIndex": 12
+          },
+          "right": {
+            "id": "guide-offers",
+            "from": "guide",
+            "to": "downloads",
+            "label": "Download PDF",
+            "collectionIndex": 18,
+            "artifactIndex": 19
+          },
+          "point": [
+            751.4,
+            516
+          ]
+        }
+      ],
+      "detours": [
+        {
+          "relationship": {
+            "id": "lab-writes",
+            "from": "lab",
+            "to": "local-store",
+            "label": "answers, lab ticks",
+            "collectionIndex": 11,
+            "artifactIndex": 12
+          },
+          "bends": 3,
+          "stretch": 1.058
+        },
+        {
+          "relationship": {
+            "id": "hub-reads",
+            "from": "hub",
+            "to": "local-store",
+            "label": "reads progress",
+            "collectionIndex": 12,
+            "artifactIndex": 13
+          },
+          "bends": 3,
+          "stretch": 1.112
+        },
+        {
+          "relationship": {
+            "id": "repo-deploys",
+            "from": "repo",
+            "to": "pages-host",
+            "label": "push main",
+            "collectionIndex": 14,
+            "artifactIndex": 15
+          },
+          "bends": 4,
+          "stretch": 1.394,
+          "directCorridorBlockers": [
+            {
+              "id": "settings",
+              "label": "Settings + HUD",
+              "box": [
+                250,
+                230,
+                180,
+                72
+              ]
+            }
+          ]
+        },
+        {
+          "relationship": {
+            "id": "repo-ci",
+            "from": "repo",
+            "to": "ci",
+            "label": "push / PR",
+            "collectionIndex": 15,
+            "artifactIndex": 16
+          },
+          "bends": 3,
+          "stretch": 1.316
+        },
+        {
+          "relationship": {
+            "id": "tex-writes",
+            "from": "to-tex",
+            "to": "downloads",
+            "label": "writes .tex, PDF",
+            "collectionIndex": 17,
+            "artifactIndex": 18
+          },
+          "bends": 3,
+          "stretch": 1.257
+        },
+        {
+          "relationship": {
+            "id": "guide-offers",
+            "from": "guide",
+            "to": "downloads",
+            "label": "Download PDF",
+            "collectionIndex": 18,
+            "artifactIndex": 19
+          },
+          "bends": 4,
+          "stretch": 1.444,
+          "directCorridorBlockers": [
+            {
+              "id": "nav",
+              "label": "Contents rail",
+              "box": [
+                760,
+                230,
+                210,
+                72
+              ]
+            },
+            {
+              "id": "session-store",
+              "label": "sessionStorage",
+              "box": [
+                760,
+                420,
+                210,
+                72
+              ]
+            }
+          ]
+        }
+      ],
+      "truncated": false
+    },
+    "hints": [
+      "hub → fonts and hub → local-store cross next to hub: move node fonts or local-store so the two reach hub from different sides (for example one level with it, one directly above or below it).",
+      "guide → nav and guide → downloads cross next to guide: move node nav or downloads so the two reach guide from different sides (for example one level with it, one directly above or below it).",
+      "nav → hub crosses guide → local-store: move the node of whichever is a branch, return, or second entrance to the other side of the main path, so that relationship runs through an empty corridor.",
+      "nav → hub crosses guide → downloads: move the node of whichever is a branch, return, or second entrance to the other side of the main path, so that relationship runs through an empty corridor.",
+      "lab → local-store crosses guide → downloads: move the node of whichever is a branch, return, or second entrance to the other side of the main path, so that relationship runs through an empty corridor.",
+      "lab → local-store needs 3 bends: move node lab or local-store so they share a row or column with matching centers, or sit diagonally with a clear corner.",
+      "hub → local-store needs 3 bends: move node hub or local-store so they share a row or column with matching centers, or sit diagonally with a clear corner.",
+      "repo → ci needs 3 bends: move node repo or ci so they share a row or column with matching centers, or sit diagonally with a clear corner."
+    ],
+    "repair": "Trace these relationships at the desktop viewport. For Architecture, use references/architecture-layout-repair.md: reflow a blocked main path or tangled connected scene, and repair an isolated defect locally only when the surrounding composition is accepted. Preserve all semantic content and user-fixed geometry. Rerun finalize once after the edit."
+  }
+}

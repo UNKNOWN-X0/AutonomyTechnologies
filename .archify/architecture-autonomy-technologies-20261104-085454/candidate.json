@@ -1,0 +1,618 @@
+{
+  "schema_version": 1,
+  "diagram_type": "architecture",
+  "meta": {
+    "title": "Study Site Architecture",
+    "output": ".archify/architecture-autonomy-technologies-20261104-085454/autonomy-technologies.html",
+    "quality_profile": "showcase",
+    "locale": "en",
+    "repository": {
+      "url": "https://github.com/UNKNOWN-X0/AutonomyTechnologies.git",
+      "provider": "github",
+      "link_mode": "web",
+      "revision": "9ad8de05d29325db28e8745b3a007ef8845704fd"
+    }
+  },
+  "components": [
+    {
+      "id": "learner",
+      "type": "external",
+      "label": "Learner",
+      "sublabel": "browser",
+      "pos": [
+        40,
+        40
+      ],
+      "size": [
+        150,
+        72
+      ],
+      "sources": [
+        {
+          "path": "about/how-to-use.html",
+          "line": 32,
+          "end_line": 34
+        }
+      ]
+    },
+    {
+      "id": "pages-host",
+      "type": "cloud",
+      "label": "GitHub Pages",
+      "sublabel": "Jekyll · main / root",
+      "pos": [
+        250,
+        40
+      ],
+      "size": [
+        180,
+        72
+      ],
+      "sources": [
+        {
+          "path": "README.md",
+          "line": 179,
+          "end_line": 185
+        }
+      ]
+    },
+    {
+      "id": "hub",
+      "type": "frontend",
+      "label": "Hub",
+      "sublabel": "index.html · js/index.js",
+      "pos": [
+        490,
+        40
+      ],
+      "size": [
+        180,
+        72
+      ],
+      "tag": "board · route · radar",
+      "sources": [
+        {
+          "path": "index.html",
+          "line": 50,
+          "end_line": 59
+        },
+        {
+          "path": "js/index.js",
+          "line": 46,
+          "end_line": 60
+        },
+        {
+          "path": "js/index.js",
+          "line": 370,
+          "end_line": 422
+        }
+      ]
+    },
+    {
+      "id": "guide",
+      "type": "frontend",
+      "label": "Study guides",
+      "sublabel": "<subject>/chN-*.html · guide.js",
+      "pos": [
+        760,
+        40
+      ],
+      "size": [
+        210,
+        72
+      ],
+      "tag": "ticks · review log",
+      "sources": [
+        {
+          "path": "eei/ch1-electrostatic-fields.html",
+          "line": 16
+        },
+        {
+          "path": "js/guide.js",
+          "line": 1,
+          "end_line": 25
+        },
+        {
+          "path": "eei/ch1-electrostatic-fields.html",
+          "line": 990,
+          "end_line": 992
+        }
+      ]
+    },
+    {
+      "id": "lab",
+      "type": "frontend",
+      "label": "Labs",
+      "sublabel": "*-lab.html · js/lab.js",
+      "pos": [
+        1020,
+        40
+      ],
+      "size": [
+        170,
+        72
+      ],
+      "tag": "predict · reveal",
+      "sources": [
+        {
+          "path": "js/lab.js",
+          "line": 1,
+          "end_line": 9
+        },
+        {
+          "path": "eei/ch1-electrostatic-fields-lab.html",
+          "line": 324,
+          "end_line": 327
+        }
+      ]
+    },
+    {
+      "id": "fonts",
+      "type": "cloud",
+      "label": "Google Fonts",
+      "sublabel": "Hanken Grotesk",
+      "pos": [
+        490,
+        230
+      ],
+      "size": [
+        190,
+        66
+      ],
+      "sources": [
+        {
+          "path": "index.html",
+          "line": 19
+        }
+      ]
+    },
+    {
+      "id": "settings",
+      "type": "frontend",
+      "label": "Settings + HUD",
+      "sublabel": "settings.js → hud.js",
+      "pos": [
+        250,
+        230
+      ],
+      "size": [
+        180,
+        72
+      ],
+      "tag": "every page",
+      "sources": [
+        {
+          "path": "js/settings.js",
+          "line": 1,
+          "end_line": 33
+        },
+        {
+          "path": "js/hud.js",
+          "line": 1,
+          "end_line": 50
+        },
+        {
+          "path": "index.html",
+          "line": 22
+        }
+      ]
+    },
+    {
+      "id": "nav",
+      "type": "frontend",
+      "label": "Contents rail",
+      "sublabel": "js/nav.js · chapters + pager",
+      "pos": [
+        760,
+        230
+      ],
+      "size": [
+        210,
+        72
+      ],
+      "sources": [
+        {
+          "path": "js/nav.js",
+          "line": 195,
+          "end_line": 216
+        },
+        {
+          "path": "js/nav.js",
+          "line": 288,
+          "end_line": 306
+        }
+      ]
+    },
+    {
+      "id": "experiments",
+      "type": "backend",
+      "label": "Chapter experiments",
+      "sublabel": "js/<subject>/chN-lab.js + physics",
+      "pos": [
+        1020,
+        230
+      ],
+      "size": [
+        170,
+        80
+      ],
+      "sources": [
+        {
+          "path": "js/eei/ch1-lab.js",
+          "line": 1,
+          "end_line": 3
+        },
+        {
+          "path": "js/eei/ch1-physics.js",
+          "line": 1,
+          "end_line": 3
+        },
+        {
+          "path": "js/lab.js",
+          "line": 334,
+          "end_line": 343
+        }
+      ]
+    },
+    {
+      "id": "local-store",
+      "type": "database",
+      "label": "localStorage",
+      "sublabel": "-checks · -log · -lab · site-settings",
+      "pos": [
+        490,
+        420
+      ],
+      "size": [
+        210,
+        72
+      ],
+      "sources": [
+        {
+          "path": "js/guide.js",
+          "line": 1,
+          "end_line": 12
+        },
+        {
+          "path": "js/lab.js",
+          "line": 1,
+          "end_line": 9
+        },
+        {
+          "path": "js/settings.js",
+          "line": 4,
+          "end_line": 9
+        }
+      ]
+    },
+    {
+      "id": "session-store",
+      "type": "database",
+      "label": "sessionStorage",
+      "sublabel": "nav-chapters · hub-swept",
+      "pos": [
+        760,
+        420
+      ],
+      "size": [
+        210,
+        72
+      ],
+      "sources": [
+        {
+          "path": "js/nav.js",
+          "line": 288,
+          "end_line": 303
+        },
+        {
+          "path": "js/index.js",
+          "line": 191,
+          "end_line": 198
+        }
+      ]
+    },
+    {
+      "id": "repo",
+      "type": "cloud",
+      "label": "GitHub repository",
+      "sublabel": "main · HTML is the source",
+      "pos": [
+        250,
+        610
+      ],
+      "size": [
+        180,
+        72
+      ],
+      "sources": [
+        {
+          "path": "README.md",
+          "line": 167,
+          "end_line": 175
+        }
+      ]
+    },
+    {
+      "id": "ci",
+      "type": "cloud",
+      "label": "Jekyll site CI",
+      "sublabel": "build check, no publish",
+      "pos": [
+        40,
+        610
+      ],
+      "size": [
+        170,
+        72
+      ],
+      "sources": [
+        {
+          "path": ".github/workflows/jekyll-docker.yml",
+          "line": 1,
+          "end_line": 19
+        }
+      ]
+    },
+    {
+      "id": "to-tex",
+      "type": "backend",
+      "label": "guide-to-tex.py",
+      "sublabel": "HTML → .tex → latexmk PDF",
+      "pos": [
+        490,
+        610
+      ],
+      "size": [
+        210,
+        72
+      ],
+      "sources": [
+        {
+          "path": "tools/guide-to-tex.py",
+          "line": 1,
+          "end_line": 6
+        },
+        {
+          "path": "tools/guide-to-tex.py",
+          "line": 430,
+          "end_line": 454
+        }
+      ]
+    },
+    {
+      "id": "downloads",
+      "type": "database",
+      "label": "Guide PDF + .tex",
+      "sublabel": "committed beside each guide",
+      "pos": [
+        760,
+        610
+      ],
+      "size": [
+        210,
+        72
+      ],
+      "sources": [
+        {
+          "path": "eei/ch1-electrostatic-fields.html",
+          "line": 111,
+          "end_line": 112
+        }
+      ]
+    },
+    {
+      "id": "check",
+      "type": "backend",
+      "label": "check-guide.py",
+      "sublabel": "standards + staleness",
+      "pos": [
+        760,
+        780
+      ],
+      "size": [
+        210,
+        72
+      ],
+      "sources": [
+        {
+          "path": "tools/check-guide.py",
+          "line": 1,
+          "end_line": 12
+        },
+        {
+          "path": "tools/check-guide.py",
+          "line": 280,
+          "end_line": 288
+        }
+      ]
+    },
+    {
+      "id": "tests",
+      "type": "backend",
+      "label": "node --test",
+      "sublabel": "tests/*.test.js",
+      "pos": [
+        1020,
+        610
+      ],
+      "size": [
+        170,
+        72
+      ],
+      "sources": [
+        {
+          "path": "tests/lab-challenges.test.js",
+          "line": 1,
+          "end_line": 5
+        },
+        {
+          "path": "tests/eei-ch1-physics.test.js",
+          "line": 1,
+          "end_line": 4
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "id": "learner-https",
+      "from": "learner",
+      "to": "pages-host",
+      "label": "HTTPS",
+      "variant": "emphasis"
+    },
+    {
+      "id": "pages-serves-hub",
+      "from": "pages-host",
+      "to": "hub",
+      "label": "serves",
+      "variant": "emphasis"
+    },
+    {
+      "id": "hub-opens-guide",
+      "from": "hub",
+      "to": "guide",
+      "label": "Study guide",
+      "variant": "emphasis"
+    },
+    {
+      "id": "guide-opens-lab",
+      "from": "guide",
+      "to": "lab",
+      "label": "Lab"
+    },
+    {
+      "id": "hub-fonts",
+      "from": "hub",
+      "to": "fonts",
+      "label": "font CSS"
+    },
+    {
+      "id": "hub-loads-settings",
+      "from": "hub",
+      "to": "settings",
+      "label": "loads in head"
+    },
+    {
+      "id": "guide-loads-nav",
+      "from": "guide",
+      "to": "nav",
+      "label": "rail"
+    },
+    {
+      "id": "lab-runs-experiments",
+      "from": "lab",
+      "to": "experiments",
+      "label": "window.Lab"
+    },
+    {
+      "id": "nav-fetches-hub",
+      "from": "nav",
+      "to": "hub",
+      "label": "fetch chapter list",
+      "variant": "dashed"
+    },
+    {
+      "id": "settings-writes",
+      "from": "settings",
+      "to": "local-store",
+      "label": "site-settings"
+    },
+    {
+      "id": "guide-writes",
+      "from": "guide",
+      "to": "local-store",
+      "label": "ticks, review days"
+    },
+    {
+      "id": "lab-writes",
+      "from": "lab",
+      "to": "local-store",
+      "label": "answers, lab ticks"
+    },
+    {
+      "id": "hub-reads",
+      "from": "hub",
+      "to": "local-store",
+      "label": "reads progress"
+    },
+    {
+      "id": "nav-caches",
+      "from": "nav",
+      "to": "session-store",
+      "label": "cache list"
+    },
+    {
+      "id": "repo-deploys",
+      "from": "repo",
+      "to": "pages-host",
+      "label": "push main"
+    },
+    {
+      "id": "repo-ci",
+      "from": "repo",
+      "to": "ci",
+      "label": "push / PR"
+    },
+    {
+      "id": "repo-to-tex",
+      "from": "repo",
+      "to": "to-tex",
+      "label": "guide HTML"
+    },
+    {
+      "id": "tex-writes",
+      "from": "to-tex",
+      "to": "downloads",
+      "label": "writes .tex, PDF"
+    },
+    {
+      "id": "guide-offers",
+      "from": "guide",
+      "to": "downloads",
+      "label": "Download PDF",
+      "variant": "dashed"
+    },
+    {
+      "id": "check-stale",
+      "from": "check",
+      "to": "downloads",
+      "label": "staleness"
+    },
+    {
+      "id": "tests-run",
+      "from": "tests",
+      "to": "experiments",
+      "label": "require + run"
+    }
+  ],
+  "cards": [
+    {
+      "dot": "cyan",
+      "title": "Pages and navigation",
+      "items": [
+        "The hub lists every semester, subject and chapter. Its review board ranks started chapters by due date from each chapter's -checks and -log keys, and it draws the route line and the radar from the same progress. (js/index.js:46–60, 99–119, 370–422)",
+        "Each guide links to its lab and back. The contents rail fetches the hub's index.html once per session, keeps the chapter list in sessionStorage, and adds a Chapters fold and a previous/next pager; opened as a file without the hub it adds nothing. (js/nav.js:195–216, 288–306)",
+        "How to use and the Version log live in about/ and are linked from the hub footer and the settings panel. (index.html:214; js/settings.js:118)"
+      ]
+    },
+    {
+      "dot": "emerald",
+      "title": "Progress stays in the browser",
+      "items": [
+        "There is no server or account. Guides save ticks as <key>-checks and review days as <key>-log; labs save answers as <key>-lab and tick lab-<id> in the same -checks key, so the hub counts both. (js/guide.js:1–25; js/lab.js:1–9)",
+        "Settings (theme, motion, text size) save as site-settings and apply from the <head> before the page paints; settings.js also loads the HUD layer, hud.js. Storage errors are swallowed, so nothing persists where storage is blocked. (js/settings.js:1–33)",
+        "Lab experiments are per-chapter scripts that register with window.Lab; their physics modules also load in node for the tests. (js/lab.js:334–343; js/eei/ch1-physics.js:1–3)"
+      ]
+    },
+    {
+      "dot": "rose",
+      "title": "Authoring and publishing",
+      "items": [
+        "Guide HTML is the single source: guide-to-tex.py writes the .tex and latexmk builds the PDF, both committed next to the guide; check-guide.py fails when they are stale. (tools/guide-to-tex.py:1–6; tools/check-guide.py:280–288)",
+        "GitHub Pages publishes main from the root on every push. The Jekyll site CI workflow only builds the site as a check; it does not publish. (README.md:179–185; .github/workflows/jekyll-docker.yml:1–19)",
+        "Google Fonts serves Hanken Grotesk to every page; the hub is shown as the representative caller. (index.html:19)"
+      ]
+    }
+  ]
+}

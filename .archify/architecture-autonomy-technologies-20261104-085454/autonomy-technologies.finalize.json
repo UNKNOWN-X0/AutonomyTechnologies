@@ -5,16 +5,16 @@
   "status": "pass",
   "type": "architecture",
   "quality": "showcase",
-  "startedAt": "2026-10-24T18:49:17.269Z",
+  "startedAt": "2026-11-04T07:55:49.524Z",
   "specification": {
-    "path": "/Users/thanate/Developer/Education/AutonomyTechnologies/.archify/architecture-autonomy-technologies-20261024-184455/candidate.json",
-    "sha256": "1a271b1856d014a586ae1615feb599a00eff473af7129292f0ae0d26cf136b0a",
-    "bytes": 6221
+    "path": "/Users/thanate/Developer/Education/AutonomyTechnologies/.archify/architecture-autonomy-technologies-20261104-085454/candidate.json",
+    "sha256": "201e5aca121c61a897fb1d46696f81088297c8c24bfb262b59918ac771306433",
+    "bytes": 13486
   },
   "artifact": {
-    "path": "/Users/thanate/Developer/Education/AutonomyTechnologies/.archify/architecture-autonomy-technologies-20261024-184455/autonomy-technologies.html",
-    "sha256": "2d409870b4b8b27c44a82f0c8638b1e148489e4c5fa02394733894bd70d98ddf",
-    "bytes": 828428
+    "path": "/Users/thanate/Developer/Education/AutonomyTechnologies/.archify/architecture-autonomy-technologies-20261104-085454/autonomy-technologies.html",
+    "sha256": "7307eb704869342ad4d676d90f3054fe758223abe6235dd1928ed52efb933be9",
+    "bytes": 858090
   },
   "stages": {
     "validate": {
@@ -24,11 +24,11 @@
       "execution": "embedded-in-deliver",
       "command": [
         "/Users/thanate/.nvm/versions/node/v22.23.1/bin/node",
-        "/Users/thanate/.codex/skills/archify/bin/archify.mjs",
+        "/Users/thanate/.agents/skills/archify/bin/archify.mjs",
         "deliver",
         "architecture",
-        "/Users/thanate/Developer/Education/AutonomyTechnologies/.archify/architecture-autonomy-technologies-20261024-184455/candidate.json",
-        "/Users/thanate/Developer/Education/AutonomyTechnologies/.archify/architecture-autonomy-technologies-20261024-184455/autonomy-technologies.html",
+        "/Users/thanate/Developer/Education/AutonomyTechnologies/.archify/architecture-autonomy-technologies-20261104-085454/candidate.json",
+        "/Users/thanate/Developer/Education/AutonomyTechnologies/.archify/architecture-autonomy-technologies-20261104-085454/autonomy-technologies.html",
         "--quality",
         "showcase",
         "--repo-root",
@@ -40,8 +40,8 @@
         "ok": true,
         "command": "validate",
         "specification": {
-          "sha256": "1a271b1856d014a586ae1615feb599a00eff473af7129292f0ae0d26cf136b0a",
-          "bytes": 6221
+          "sha256": "201e5aca121c61a897fb1d46696f81088297c8c24bfb262b59918ac771306433",
+          "bytes": 13486
         },
         "validation": {
           "checksPassed": 9,
@@ -56,14 +56,14 @@
     "deliver": {
       "status": "pass",
       "exitCode": 0,
-      "durationMs": 417,
+      "durationMs": 558,
       "command": [
         "/Users/thanate/.nvm/versions/node/v22.23.1/bin/node",
-        "/Users/thanate/.codex/skills/archify/bin/archify.mjs",
+        "/Users/thanate/.agents/skills/archify/bin/archify.mjs",
         "deliver",
         "architecture",
-        "/Users/thanate/Developer/Education/AutonomyTechnologies/.archify/architecture-autonomy-technologies-20261024-184455/candidate.json",
-        "/Users/thanate/Developer/Education/AutonomyTechnologies/.archify/architecture-autonomy-technologies-20261024-184455/autonomy-technologies.html",
+        "/Users/thanate/Developer/Education/AutonomyTechnologies/.archify/architecture-autonomy-technologies-20261104-085454/candidate.json",
+        "/Users/thanate/Developer/Education/AutonomyTechnologies/.archify/architecture-autonomy-technologies-20261104-085454/autonomy-technologies.html",
         "--quality",
         "showcase",
         "--repo-root",
@@ -72,19 +72,19 @@
       ],
       "receipt": {
         "schemaVersion": 1,
-        "receiptId": "a26275f8-0360-40f2-9d93-4c67bf7ff6b5",
+        "receiptId": "6c585ebb-1917-4f05-89ee-06d2f61f9b29",
         "ok": true,
         "command": "deliver",
         "type": "architecture",
-        "input": "/Users/thanate/Developer/Education/AutonomyTechnologies/.archify/architecture-autonomy-technologies-20261024-184455/candidate.json",
-        "output": "/Users/thanate/Developer/Education/AutonomyTechnologies/.archify/architecture-autonomy-technologies-20261024-184455/autonomy-technologies.html",
+        "input": "/Users/thanate/Developer/Education/AutonomyTechnologies/.archify/architecture-autonomy-technologies-20261104-085454/candidate.json",
+        "output": "/Users/thanate/Developer/Education/AutonomyTechnologies/.archify/architecture-autonomy-technologies-20261104-085454/autonomy-technologies.html",
         "specification": {
-          "sha256": "1a271b1856d014a586ae1615feb599a00eff473af7129292f0ae0d26cf136b0a",
-          "bytes": 6221
+          "sha256": "201e5aca121c61a897fb1d46696f81088297c8c24bfb262b59918ac771306433",
+          "bytes": 13486
         },
         "artifact": {
-          "sha256": "2d409870b4b8b27c44a82f0c8638b1e148489e4c5fa02394733894bd70d98ddf",
-          "bytes": 828428
+          "sha256": "7307eb704869342ad4d676d90f3054fe758223abe6235dd1928ed52efb933be9",
+          "bytes": 858090
         },
         "validation": {
           "checksPassed": 9,
@@ -97,8 +97,8 @@
         "evidence": {
           "verified": true,
           "repository": "https://github.com/UNKNOWN-X0/AutonomyTechnologies",
-          "revision": "a937859326f393537a578bc00204ad34e7460fa7",
-          "references": 15
+          "revision": "9ad8de05d29325db28e8745b3a007ef8845704fd",
+          "references": 33
         },
         "update": {
           "status": "unavailable",
@@ -116,20 +116,20 @@
     "check": {
       "status": "pass",
       "exitCode": 0,
-      "durationMs": 139,
+      "durationMs": 150,
       "command": [
         "/Users/thanate/.nvm/versions/node/v22.23.1/bin/node",
-        "/Users/thanate/.codex/skills/archify/bin/archify.mjs",
+        "/Users/thanate/.agents/skills/archify/bin/archify.mjs",
         "check",
-        "/Users/thanate/Developer/Education/AutonomyTechnologies/.archify/architecture-autonomy-technologies-20261024-184455/autonomy-technologies.html",
+        "/Users/thanate/Developer/Education/AutonomyTechnologies/.archify/architecture-autonomy-technologies-20261104-085454/autonomy-technologies.html",
         "--require-provenance"
       ],
       "receipt": {
         "ok": true,
-        "file": "/Users/thanate/Developer/Education/AutonomyTechnologies/.archify/architecture-autonomy-technologies-20261024-184455/autonomy-technologies.html",
+        "file": "/Users/thanate/Developer/Education/AutonomyTechnologies/.archify/architecture-autonomy-technologies-20261104-085454/autonomy-technologies.html",
         "artifact": {
-          "sha256": "2d409870b4b8b27c44a82f0c8638b1e148489e4c5fa02394733894bd70d98ddf",
-          "bytes": 828428
+          "sha256": "7307eb704869342ad4d676d90f3054fe758223abe6235dd1928ed52efb933be9",
+          "bytes": 858090
         },
         "checks": [
           {
@@ -190,22 +190,22 @@
           },
           "metrics": {
             "properCrossings": 0,
-            "resolvedCrossovers": 0,
+            "resolvedCrossovers": 5,
             "ambiguousCorridors": 0,
             "arrowheadCollisions": 0,
             "containerBorderRuns": 0,
             "labelRouteClearanceIssues": 0,
             "labelCanvasOverflowIssues": 0,
-            "minLabelRouteClearance": 24,
+            "minLabelRouteClearance": 7.9,
             "desktopReadabilityIssues": 0,
             "viewportHeightIssues": 0,
-            "minProjectedNodeTextPx": 6.9,
-            "maxBends": 3,
-            "routesOverSuggestedBends": 1,
-            "maxStretch": 1.253,
-            "routesOverSuggestedStretch": 0,
+            "minProjectedNodeTextPx": 6.048780487804878,
+            "maxBends": 4,
+            "routesOverSuggestedBends": 6,
+            "maxStretch": 1.444,
+            "routesOverSuggestedStretch": 2,
             "minSegmentPx": 24,
-            "minInteriorSegmentPx": 54,
+            "minInteriorSegmentPx": 60,
             "shortSegmentCount": 0,
             "shortEndpointSegmentCount": 0,
             "shortInteriorSegmentCount": 0,
@@ -218,72 +218,276 @@
             "microSegmentPx": 8
           },
           "routeReview": {
-            "crossings": [],
-            "detours": [
+            "crossings": [
               {
-                "relationship": {
-                  "id": "guides-to-checklist",
-                  "from": "guides",
-                  "to": "checklist-store",
-                  "label": "read / save ticks",
+                "left": {
+                  "id": "hub-fonts",
+                  "from": "hub",
+                  "to": "fonts",
+                  "label": "font CSS",
+                  "collectionIndex": 4,
+                  "artifactIndex": 5
+                },
+                "right": {
+                  "id": "hub-reads",
+                  "from": "hub",
+                  "to": "local-store",
+                  "label": "reads progress",
+                  "collectionIndex": 12,
+                  "artifactIndex": 13
+                },
+                "point": [
+                  573,
+                  136
+                ],
+                "sharedNode": "hub"
+              },
+              {
+                "left": {
+                  "id": "guide-loads-nav",
+                  "from": "guide",
+                  "to": "nav",
+                  "label": "rail",
                   "collectionIndex": 6,
                   "artifactIndex": 7
                 },
+                "right": {
+                  "id": "guide-offers",
+                  "from": "guide",
+                  "to": "downloads",
+                  "label": "Download PDF",
+                  "collectionIndex": 18,
+                  "artifactIndex": 19
+                },
+                "point": [
+                  865,
+                  227.00000000000006
+                ],
+                "sharedNode": "guide"
+              },
+              {
+                "left": {
+                  "id": "nav-fetches-hub",
+                  "from": "nav",
+                  "to": "hub",
+                  "label": "fetch chapter list",
+                  "collectionIndex": 8,
+                  "artifactIndex": 9
+                },
+                "right": {
+                  "id": "guide-writes",
+                  "from": "guide",
+                  "to": "local-store",
+                  "label": "ticks, review days",
+                  "collectionIndex": 10,
+                  "artifactIndex": 11
+                },
+                "point": [
+                  730,
+                  266
+                ]
+              },
+              {
+                "left": {
+                  "id": "nav-fetches-hub",
+                  "from": "nav",
+                  "to": "hub",
+                  "label": "fetch chapter list",
+                  "collectionIndex": 8,
+                  "artifactIndex": 9
+                },
+                "right": {
+                  "id": "guide-offers",
+                  "from": "guide",
+                  "to": "downloads",
+                  "label": "Download PDF",
+                  "collectionIndex": 18,
+                  "artifactIndex": 19
+                },
+                "point": [
+                  751.4,
+                  266
+                ]
+              },
+              {
+                "left": {
+                  "id": "lab-writes",
+                  "from": "lab",
+                  "to": "local-store",
+                  "label": "answers, lab ticks",
+                  "collectionIndex": 11,
+                  "artifactIndex": 12
+                },
+                "right": {
+                  "id": "guide-offers",
+                  "from": "guide",
+                  "to": "downloads",
+                  "label": "Download PDF",
+                  "collectionIndex": 18,
+                  "artifactIndex": 19
+                },
+                "point": [
+                  751.4,
+                  516
+                ]
+              }
+            ],
+            "detours": [
+              {
+                "relationship": {
+                  "id": "lab-writes",
+                  "from": "lab",
+                  "to": "local-store",
+                  "label": "answers, lab ticks",
+                  "collectionIndex": 11,
+                  "artifactIndex": 12
+                },
                 "bends": 3,
-                "stretch": 1.253
+                "stretch": 1.058
+              },
+              {
+                "relationship": {
+                  "id": "hub-reads",
+                  "from": "hub",
+                  "to": "local-store",
+                  "label": "reads progress",
+                  "collectionIndex": 12,
+                  "artifactIndex": 13
+                },
+                "bends": 3,
+                "stretch": 1.112
+              },
+              {
+                "relationship": {
+                  "id": "repo-deploys",
+                  "from": "repo",
+                  "to": "pages-host",
+                  "label": "push main",
+                  "collectionIndex": 14,
+                  "artifactIndex": 15
+                },
+                "bends": 4,
+                "stretch": 1.394,
+                "directCorridorBlockers": [
+                  {
+                    "id": "settings",
+                    "label": "Settings + HUD",
+                    "box": [
+                      250,
+                      230,
+                      180,
+                      72
+                    ]
+                  }
+                ]
+              },
+              {
+                "relationship": {
+                  "id": "repo-ci",
+                  "from": "repo",
+                  "to": "ci",
+                  "label": "push / PR",
+                  "collectionIndex": 15,
+                  "artifactIndex": 16
+                },
+                "bends": 3,
+                "stretch": 1.316
+              },
+              {
+                "relationship": {
+                  "id": "tex-writes",
+                  "from": "to-tex",
+                  "to": "downloads",
+                  "label": "writes .tex, PDF",
+                  "collectionIndex": 17,
+                  "artifactIndex": 18
+                },
+                "bends": 3,
+                "stretch": 1.257
+              },
+              {
+                "relationship": {
+                  "id": "guide-offers",
+                  "from": "guide",
+                  "to": "downloads",
+                  "label": "Download PDF",
+                  "collectionIndex": 18,
+                  "artifactIndex": 19
+                },
+                "bends": 4,
+                "stretch": 1.444,
+                "directCorridorBlockers": [
+                  {
+                    "id": "nav",
+                    "label": "Contents rail",
+                    "box": [
+                      760,
+                      230,
+                      210,
+                      72
+                    ]
+                  },
+                  {
+                    "id": "session-store",
+                    "label": "sessionStorage",
+                    "box": [
+                      760,
+                      420,
+                      210,
+                      72
+                    ]
+                  }
+                ]
               }
             ]
           },
           "leadingSpace": {
             "measured": true,
-            "emptyTopPx": 50,
-            "emptyTopRatio": 0.083,
-            "occupiedTop": 50,
+            "emptyTopPx": 40,
+            "emptyTopRatio": 0.043,
+            "occupiedTop": 40,
             "viewBoxTop": 0,
-            "canvasHeight": 602,
-            "typicalNodeHeight": 64,
+            "canvasHeight": 920,
+            "typicalNodeHeight": 72,
             "reviewSuggested": false
           },
           "desktopReadability": {
-            "budgetBasis": "recognized-declared-wide",
+            "budgetBasis": "legacy-930",
             "readerContract": "declared-wide-v1",
-            "availableDiagramWidth": 1160,
-            "actualBudgetPx": 1160,
-            "actualReaderWidth": 1190,
-            "desiredReaderWidth": 1190,
-            "viewportCap": 1376,
-            "limit": "source-size",
+            "availableDiagramWidth": 930,
+            "actualBudgetPx": 930,
+            "limit": "legacy",
             "requestedTargetPx": 7.5,
             "requestedTargetMet": false,
             "hardFloorPx": 6,
             "hardFloorMet": true,
             "minimumOwner": {
-              "kind": "node",
-              "id": "guides"
+              "kind": "edge",
+              "id": "learner-https",
+              "from": "learner",
+              "to": "pages-host"
             },
-            "minimumSourceTextPx": 6.9,
-            "minimumProjectedTextPx": 6.9,
-            "semanticTextCount": 27
+            "minimumSourceTextPx": 8,
+            "minimumProjectedTextPx": 6.048780487804878,
+            "semanticTextCount": 55
           },
           "issues": []
         },
         "provenance": "current",
-        "deliveryReceiptId": "a26275f8-0360-40f2-9d93-4c67bf7ff6b5"
+        "deliveryReceiptId": "6c585ebb-1917-4f05-89ee-06d2f61f9b29"
       }
     },
     "browser-check": {
       "status": "pass",
       "exitCode": 0,
-      "durationMs": 5573,
+      "durationMs": 11064,
       "command": [
         "/Users/thanate/.nvm/versions/node/v22.23.1/bin/node",
-        "/Users/thanate/.codex/skills/archify/bin/archify.mjs",
+        "/Users/thanate/.agents/skills/archify/bin/archify.mjs",
         "browser-check",
-        "/Users/thanate/Developer/Education/AutonomyTechnologies/.archify/architecture-autonomy-technologies-20261024-184455/autonomy-technologies.html",
+        "/Users/thanate/Developer/Education/AutonomyTechnologies/.archify/architecture-autonomy-technologies-20261104-085454/autonomy-technologies.html",
         "--json",
-        "--require-provenance",
-        "--out-dir",
-        "/Users/thanate/Developer/Education/AutonomyTechnologies/.archify/architecture-autonomy-technologies-20261024-184455/review-line-clamp"
+        "--require-provenance"
       ],
       "execution": "in-process",
       "receipt": {
@@ -294,11 +498,11 @@
         "status": "pass",
         "visualReview": "not-requested",
         "provenance": "current",
-        "deliveryReceiptId": "a26275f8-0360-40f2-9d93-4c67bf7ff6b5",
+        "deliveryReceiptId": "6c585ebb-1917-4f05-89ee-06d2f61f9b29",
         "artifact": {
-          "path": "/Users/thanate/Developer/Education/AutonomyTechnologies/.archify/architecture-autonomy-technologies-20261024-184455/autonomy-technologies.html",
-          "sha256": "2d409870b4b8b27c44a82f0c8638b1e148489e4c5fa02394733894bd70d98ddf",
-          "bytes": 828428
+          "path": "/Users/thanate/Developer/Education/AutonomyTechnologies/.archify/architecture-autonomy-technologies-20261104-085454/autonomy-technologies.html",
+          "sha256": "7307eb704869342ad4d676d90f3054fe758223abe6235dd1928ed52efb933be9",
+          "bytes": 858090
         },
         "state": {
           "detail": "read",
@@ -320,34 +524,36 @@
               "innerWidth": 1440,
               "innerHeight": 900,
               "scrollWidth": 1440,
-              "scrollHeight": 900,
+              "scrollHeight": 994,
               "overflowX": false,
-              "overflowY": false,
-              "verticalScrollAccepted": false,
-              "overflowDisposition": "contained",
+              "overflowY": true,
+              "verticalScrollAccepted": true,
+              "overflowDisposition": "readable-vertical-scroll",
               "readerLayout": "adaptive",
-              "readerOverflow": null,
+              "readerOverflow": "authored",
               "readerFit": "intrinsic-height",
               "ok": true,
-              "readerWidth": 1376,
-              "diagramWidth": 1346,
+              "readerWidth": 1169,
+              "diagramWidth": 1139,
               "pageComposition": {
                 "bodyPaddingPx": 12,
                 "headerPx": 52,
                 "diagramChromePx": 78,
-                "svgPx": 699,
+                "svgPx": 852,
                 "cardsPx": 0,
-                "viewBoxHeight": 602
+                "viewBoxHeight": 920
               },
-              "viewBoxWidth": 1160,
-              "minimumProjectedNodeTextPx": 6.9,
-              "minimumProjectedNonEdgeTextPx": 6.9,
-              "minimumProjectedEdgeTextPx": 8,
-              "minimumProjectedNodeText": "Electrical Engineering I · Mathematics I",
-              "minimumProjectedNodeTextDetail": "context",
+              "viewBoxWidth": 1230,
+              "minimumProjectedNodeTextPx": 7.408130081300813,
+              "minimumProjectedNonEdgeTextPx": 7.5007317073170725,
+              "minimumProjectedEdgeTextPx": 7.408130081300813,
+              "minimumProjectedNodeText": "HTTPS",
+              "minimumProjectedNodeTextDetail": "edge",
               "minimumProjectedNodeTextOwner": {
-                "kind": "node",
-                "id": "guides"
+                "kind": "edge",
+                "id": "learner-https",
+                "from": "learner",
+                "to": "pages-host"
               },
               "minimumRequiredNodeTextPx": 6,
               "readabilityOk": true,
@@ -370,34 +576,36 @@
               "innerWidth": 1600,
               "innerHeight": 1000,
               "scrollWidth": 1600,
-              "scrollHeight": 1000,
+              "scrollHeight": 1060,
               "overflowX": false,
-              "overflowY": false,
-              "verticalScrollAccepted": false,
-              "overflowDisposition": "contained",
+              "overflowY": true,
+              "verticalScrollAccepted": true,
+              "overflowDisposition": "readable-vertical-scroll",
               "readerLayout": "adaptive",
-              "readerOverflow": null,
+              "readerOverflow": "authored",
               "readerFit": "intrinsic-height",
               "ok": true,
-              "readerWidth": 1533,
-              "diagramWidth": 1503,
+              "readerWidth": 1169,
+              "diagramWidth": 1139,
               "pageComposition": {
                 "bodyPaddingPx": 64,
                 "headerPx": 60,
                 "diagramChromePx": 84,
-                "svgPx": 780,
+                "svgPx": 852,
                 "cardsPx": 0,
-                "viewBoxHeight": 602
+                "viewBoxHeight": 920
               },
-              "viewBoxWidth": 1160,
-              "minimumProjectedNodeTextPx": 6.9,
-              "minimumProjectedNonEdgeTextPx": 6.9,
-              "minimumProjectedEdgeTextPx": 8,
-              "minimumProjectedNodeText": "Electrical Engineering I · Mathematics I",
-              "minimumProjectedNodeTextDetail": "context",
+              "viewBoxWidth": 1230,
+              "minimumProjectedNodeTextPx": 7.408130081300813,
+              "minimumProjectedNonEdgeTextPx": 7.5007317073170725,
+              "minimumProjectedEdgeTextPx": 7.408130081300813,
+              "minimumProjectedNodeText": "HTTPS",
+              "minimumProjectedNodeTextDetail": "edge",
               "minimumProjectedNodeTextOwner": {
-                "kind": "node",
-                "id": "guides"
+                "kind": "edge",
+                "id": "learner-https",
+                "from": "learner",
+                "to": "pages-host"
               },
               "minimumRequiredNodeTextPx": 6,
               "readabilityOk": true,
@@ -429,25 +637,27 @@
               "readerOverflow": null,
               "readerFit": "intrinsic-height",
               "ok": true,
-              "readerWidth": 1687,
-              "diagramWidth": 1657,
+              "readerWidth": 1180,
+              "diagramWidth": 1150,
               "pageComposition": {
                 "bodyPaddingPx": 64,
                 "headerPx": 60,
                 "diagramChromePx": 84,
                 "svgPx": 860,
                 "cardsPx": 0,
-                "viewBoxHeight": 602
+                "viewBoxHeight": 920
               },
-              "viewBoxWidth": 1160,
-              "minimumProjectedNodeTextPx": 6.9,
-              "minimumProjectedNonEdgeTextPx": 6.9,
-              "minimumProjectedEdgeTextPx": 8,
-              "minimumProjectedNodeText": "Electrical Engineering I · Mathematics I",
-              "minimumProjectedNodeTextDetail": "context",
+              "viewBoxWidth": 1230,
+              "minimumProjectedNodeTextPx": 7.479674796747967,
+              "minimumProjectedNonEdgeTextPx": 7.573170731707316,
+              "minimumProjectedEdgeTextPx": 7.479674796747967,
+              "minimumProjectedNodeText": "HTTPS",
+              "minimumProjectedNodeTextDetail": "edge",
               "minimumProjectedNodeTextOwner": {
-                "kind": "node",
-                "id": "guides"
+                "kind": "edge",
+                "id": "learner-https",
+                "from": "learner",
+                "to": "pages-host"
               },
               "minimumRequiredNodeTextPx": 6,
               "readabilityOk": true,
@@ -479,25 +689,27 @@
               "readerOverflow": null,
               "readerFit": "intrinsic-height",
               "ok": true,
-              "readerWidth": 1920,
-              "diagramWidth": 1740,
+              "readerWidth": 1497,
+              "diagramWidth": 1447,
               "pageComposition": {
                 "bodyPaddingPx": 64,
                 "headerPx": 68,
-                "diagramChromePx": 273,
-                "svgPx": 903,
+                "diagramChromePx": 94,
+                "svgPx": 1082,
                 "cardsPx": 0,
-                "viewBoxHeight": 602
+                "viewBoxHeight": 920
               },
-              "viewBoxWidth": 1160,
-              "minimumProjectedNodeTextPx": 6.9,
-              "minimumProjectedNonEdgeTextPx": 6.9,
+              "viewBoxWidth": 1230,
+              "minimumProjectedNodeTextPx": 8,
+              "minimumProjectedNonEdgeTextPx": 8.1,
               "minimumProjectedEdgeTextPx": 8,
-              "minimumProjectedNodeText": "Electrical Engineering I · Mathematics I",
-              "minimumProjectedNodeTextDetail": "context",
+              "minimumProjectedNodeText": "HTTPS",
+              "minimumProjectedNodeTextDetail": "edge",
               "minimumProjectedNodeTextOwner": {
-                "kind": "node",
-                "id": "guides"
+                "kind": "edge",
+                "id": "learner-https",
+                "from": "learner",
+                "to": "pages-host"
               },
               "minimumRequiredNodeTextPx": 6,
               "readabilityOk": true,
@@ -505,11 +717,11 @@
               "hasNavigationDock": true,
               "legendDockIntersectionArea": 0,
               "dockStageIntersectionArea": 0,
-              "dockStageGap": 77.5,
+              "dockStageGap": 10,
               "requiredDockStageGap": 10,
               "viewerChromeStageOk": true,
-              "viewerChromeReserve": 0,
-              "viewerChromeActive": false,
+              "viewerChromeReserve": 44,
+              "viewerChromeActive": true,
               "viewerChromeOk": true,
               "resolvedTheme": "light"
             }
@@ -573,34 +785,36 @@
               "innerWidth": 1440,
               "innerHeight": 900,
               "scrollWidth": 1440,
-              "scrollHeight": 900,
+              "scrollHeight": 994,
               "overflowX": false,
-              "overflowY": false,
-              "verticalScrollAccepted": false,
-              "overflowDisposition": "contained",
+              "overflowY": true,
+              "verticalScrollAccepted": true,
+              "overflowDisposition": "readable-vertical-scroll",
               "readerLayout": "adaptive",
-              "readerOverflow": null,
+              "readerOverflow": "authored",
               "readerFit": "intrinsic-height",
               "ok": true,
-              "readerWidth": 1376,
-              "diagramWidth": 1346,
+              "readerWidth": 1169,
+              "diagramWidth": 1139,
               "pageComposition": {
                 "bodyPaddingPx": 12,
                 "headerPx": 52,
                 "diagramChromePx": 78,
-                "svgPx": 699,
+                "svgPx": 852,
                 "cardsPx": 0,
-                "viewBoxHeight": 602
+                "viewBoxHeight": 920
               },
-              "viewBoxWidth": 1160,
-              "minimumProjectedNodeTextPx": 6.9,
-              "minimumProjectedNonEdgeTextPx": 6.9,
-              "minimumProjectedEdgeTextPx": 8,
-              "minimumProjectedNodeText": "Electrical Engineering I · Mathematics I",
-              "minimumProjectedNodeTextDetail": "context",
+              "viewBoxWidth": 1230,
+              "minimumProjectedNodeTextPx": 7.408130081300813,
+              "minimumProjectedNonEdgeTextPx": 7.5007317073170725,
+              "minimumProjectedEdgeTextPx": 7.408130081300813,
+              "minimumProjectedNodeText": "HTTPS",
+              "minimumProjectedNodeTextDetail": "edge",
               "minimumProjectedNodeTextOwner": {
-                "kind": "node",
-                "id": "guides"
+                "kind": "edge",
+                "id": "learner-https",
+                "from": "learner",
+                "to": "pages-host"
               },
               "minimumRequiredNodeTextPx": 6,
               "readabilityOk": true,
@@ -623,34 +837,36 @@
               "innerWidth": 1600,
               "innerHeight": 1000,
               "scrollWidth": 1600,
-              "scrollHeight": 1000,
+              "scrollHeight": 1060,
               "overflowX": false,
-              "overflowY": false,
-              "verticalScrollAccepted": false,
-              "overflowDisposition": "contained",
+              "overflowY": true,
+              "verticalScrollAccepted": true,
+              "overflowDisposition": "readable-vertical-scroll",
               "readerLayout": "adaptive",
-              "readerOverflow": null,
+              "readerOverflow": "authored",
               "readerFit": "intrinsic-height",
               "ok": true,
-              "readerWidth": 1533,
-              "diagramWidth": 1503,
+              "readerWidth": 1169,
+              "diagramWidth": 1139,
               "pageComposition": {
                 "bodyPaddingPx": 64,
                 "headerPx": 60,
                 "diagramChromePx": 84,
-                "svgPx": 780,
+                "svgPx": 852,
                 "cardsPx": 0,
-                "viewBoxHeight": 602
+                "viewBoxHeight": 920
               },
-              "viewBoxWidth": 1160,
-              "minimumProjectedNodeTextPx": 6.9,
-              "minimumProjectedNonEdgeTextPx": 6.9,
-              "minimumProjectedEdgeTextPx": 8,
-              "minimumProjectedNodeText": "Electrical Engineering I · Mathematics I",
-              "minimumProjectedNodeTextDetail": "context",
+              "viewBoxWidth": 1230,
+              "minimumProjectedNodeTextPx": 7.408130081300813,
+              "minimumProjectedNonEdgeTextPx": 7.5007317073170725,
+              "minimumProjectedEdgeTextPx": 7.408130081300813,
+              "minimumProjectedNodeText": "HTTPS",
+              "minimumProjectedNodeTextDetail": "edge",
               "minimumProjectedNodeTextOwner": {
-                "kind": "node",
-                "id": "guides"
+                "kind": "edge",
+                "id": "learner-https",
+                "from": "learner",
+                "to": "pages-host"
               },
               "minimumRequiredNodeTextPx": 6,
               "readabilityOk": true,
@@ -682,25 +898,27 @@
               "readerOverflow": null,
               "readerFit": "intrinsic-height",
               "ok": true,
-              "readerWidth": 1687,
-              "diagramWidth": 1657,
+              "readerWidth": 1180,
+              "diagramWidth": 1150,
               "pageComposition": {
                 "bodyPaddingPx": 64,
                 "headerPx": 60,
                 "diagramChromePx": 84,
                 "svgPx": 860,
                 "cardsPx": 0,
-                "viewBoxHeight": 602
+                "viewBoxHeight": 920
               },
-              "viewBoxWidth": 1160,
-              "minimumProjectedNodeTextPx": 6.9,
-              "minimumProjectedNonEdgeTextPx": 6.9,
-              "minimumProjectedEdgeTextPx": 8,
-              "minimumProjectedNodeText": "Electrical Engineering I · Mathematics I",
-              "minimumProjectedNodeTextDetail": "context",
+              "viewBoxWidth": 1230,
+              "minimumProjectedNodeTextPx": 7.479674796747967,
+              "minimumProjectedNonEdgeTextPx": 7.573170731707316,
+              "minimumProjectedEdgeTextPx": 7.479674796747967,
+              "minimumProjectedNodeText": "HTTPS",
+              "minimumProjectedNodeTextDetail": "edge",
               "minimumProjectedNodeTextOwner": {
-                "kind": "node",
-                "id": "guides"
+                "kind": "edge",
+                "id": "learner-https",
+                "from": "learner",
+                "to": "pages-host"
               },
               "minimumRequiredNodeTextPx": 6,
               "readabilityOk": true,
@@ -732,25 +950,27 @@
               "readerOverflow": null,
               "readerFit": "intrinsic-height",
               "ok": true,
-              "readerWidth": 1920,
-              "diagramWidth": 1740,
+              "readerWidth": 1497,
+              "diagramWidth": 1447,
               "pageComposition": {
                 "bodyPaddingPx": 64,
                 "headerPx": 68,
-                "diagramChromePx": 273,
-                "svgPx": 903,
+                "diagramChromePx": 94,
+                "svgPx": 1082,
                 "cardsPx": 0,
-                "viewBoxHeight": 602
+                "viewBoxHeight": 920
               },
-              "viewBoxWidth": 1160,
-              "minimumProjectedNodeTextPx": 6.9,
-              "minimumProjectedNonEdgeTextPx": 6.9,
+              "viewBoxWidth": 1230,
+              "minimumProjectedNodeTextPx": 8,
+              "minimumProjectedNonEdgeTextPx": 8.1,
               "minimumProjectedEdgeTextPx": 8,
-              "minimumProjectedNodeText": "Electrical Engineering I · Mathematics I",
-              "minimumProjectedNodeTextDetail": "context",
+              "minimumProjectedNodeText": "HTTPS",
+              "minimumProjectedNodeTextDetail": "edge",
               "minimumProjectedNodeTextOwner": {
-                "kind": "node",
-                "id": "guides"
+                "kind": "edge",
+                "id": "learner-https",
+                "from": "learner",
+                "to": "pages-host"
               },
               "minimumRequiredNodeTextPx": 6,
               "readabilityOk": true,
@@ -758,11 +978,11 @@
               "hasNavigationDock": true,
               "legendDockIntersectionArea": 0,
               "dockStageIntersectionArea": 0,
-              "dockStageGap": 77.5,
+              "dockStageGap": 10,
               "requiredDockStageGap": 10,
               "viewerChromeStageOk": true,
-              "viewerChromeReserve": 0,
-              "viewerChromeActive": false,
+              "viewerChromeReserve": 44,
+              "viewerChromeActive": true,
               "viewerChromeOk": true,
               "resolvedTheme": "light"
             }
@@ -778,34 +998,36 @@
               "innerWidth": 1440,
               "innerHeight": 900,
               "scrollWidth": 1440,
-              "scrollHeight": 900,
+              "scrollHeight": 994,
               "overflowX": false,
-              "overflowY": false,
-              "verticalScrollAccepted": false,
-              "overflowDisposition": "contained",
+              "overflowY": true,
+              "verticalScrollAccepted": true,
+              "overflowDisposition": "readable-vertical-scroll",
               "readerLayout": "adaptive",
-              "readerOverflow": null,
+              "readerOverflow": "authored",
               "readerFit": "intrinsic-height",
               "ok": true,
-              "readerWidth": 1376,
-              "diagramWidth": 1346,
+              "readerWidth": 1169,
+              "diagramWidth": 1139,
               "pageComposition": {
                 "bodyPaddingPx": 12,
                 "headerPx": 52,
                 "diagramChromePx": 78,
-                "svgPx": 699,
+                "svgPx": 852,
                 "cardsPx": 0,
-                "viewBoxHeight": 602
+                "viewBoxHeight": 920
               },
-              "viewBoxWidth": 1160,
-              "minimumProjectedNodeTextPx": 6.9,
-              "minimumProjectedNonEdgeTextPx": 6.9,
-              "minimumProjectedEdgeTextPx": 8,
-              "minimumProjectedNodeText": "Electrical Engineering I · Mathematics I",
-              "minimumProjectedNodeTextDetail": "context",
+              "viewBoxWidth": 1230,
+              "minimumProjectedNodeTextPx": 7.408130081300813,
+              "minimumProjectedNonEdgeTextPx": 7.5007317073170725,
+              "minimumProjectedEdgeTextPx": 7.408130081300813,
+              "minimumProjectedNodeText": "HTTPS",
+              "minimumProjectedNodeTextDetail": "edge",
               "minimumProjectedNodeTextOwner": {
-                "kind": "node",
-                "id": "guides"
+                "kind": "edge",
+                "id": "learner-https",
+                "from": "learner",
+                "to": "pages-host"
               },
               "minimumRequiredNodeTextPx": 6,
               "readabilityOk": true,
@@ -828,34 +1050,36 @@
               "innerWidth": 1600,
               "innerHeight": 1000,
               "scrollWidth": 1600,
-              "scrollHeight": 1000,
+              "scrollHeight": 1060,
               "overflowX": false,
-              "overflowY": false,
-              "verticalScrollAccepted": false,
-              "overflowDisposition": "contained",
+              "overflowY": true,
+              "verticalScrollAccepted": true,
+              "overflowDisposition": "readable-vertical-scroll",
               "readerLayout": "adaptive",
-              "readerOverflow": null,
+              "readerOverflow": "authored",
               "readerFit": "intrinsic-height",
               "ok": true,
-              "readerWidth": 1533,
-              "diagramWidth": 1503,
+              "readerWidth": 1169,
+              "diagramWidth": 1139,
               "pageComposition": {
                 "bodyPaddingPx": 64,
                 "headerPx": 60,
                 "diagramChromePx": 84,
-                "svgPx": 780,
+                "svgPx": 852,
                 "cardsPx": 0,
-                "viewBoxHeight": 602
+                "viewBoxHeight": 920
               },
-              "viewBoxWidth": 1160,
-              "minimumProjectedNodeTextPx": 6.9,
-              "minimumProjectedNonEdgeTextPx": 6.9,
-              "minimumProjectedEdgeTextPx": 8,
-              "minimumProjectedNodeText": "Electrical Engineering I · Mathematics I",
-              "minimumProjectedNodeTextDetail": "context",
+              "viewBoxWidth": 1230,
+              "minimumProjectedNodeTextPx": 7.408130081300813,
+              "minimumProjectedNonEdgeTextPx": 7.5007317073170725,
+              "minimumProjectedEdgeTextPx": 7.408130081300813,
+              "minimumProjectedNodeText": "HTTPS",
+              "minimumProjectedNodeTextDetail": "edge",
               "minimumProjectedNodeTextOwner": {
-                "kind": "node",
-                "id": "guides"
+                "kind": "edge",
+                "id": "learner-https",
+                "from": "learner",
+                "to": "pages-host"
               },
               "minimumRequiredNodeTextPx": 6,
               "readabilityOk": true,
@@ -887,25 +1111,27 @@
               "readerOverflow": null,
               "readerFit": "intrinsic-height",
               "ok": true,
-              "readerWidth": 1687,
-              "diagramWidth": 1657,
+              "readerWidth": 1180,
+              "diagramWidth": 1150,
               "pageComposition": {
                 "bodyPaddingPx": 64,
                 "headerPx": 60,
                 "diagramChromePx": 84,
                 "svgPx": 860,
                 "cardsPx": 0,
-                "viewBoxHeight": 602
+                "viewBoxHeight": 920
               },
-              "viewBoxWidth": 1160,
-              "minimumProjectedNodeTextPx": 6.9,
-              "minimumProjectedNonEdgeTextPx": 6.9,
-              "minimumProjectedEdgeTextPx": 8,
-              "minimumProjectedNodeText": "Electrical Engineering I · Mathematics I",
-              "minimumProjectedNodeTextDetail": "context",
+              "viewBoxWidth": 1230,
+              "minimumProjectedNodeTextPx": 7.479674796747967,
+              "minimumProjectedNonEdgeTextPx": 7.573170731707316,
+              "minimumProjectedEdgeTextPx": 7.479674796747967,
+              "minimumProjectedNodeText": "HTTPS",
+              "minimumProjectedNodeTextDetail": "edge",
               "minimumProjectedNodeTextOwner": {
-                "kind": "node",
-                "id": "guides"
+                "kind": "edge",
+                "id": "learner-https",
+                "from": "learner",
+                "to": "pages-host"
               },
               "minimumRequiredNodeTextPx": 6,
               "readabilityOk": true,
@@ -937,25 +1163,27 @@
               "readerOverflow": null,
               "readerFit": "intrinsic-height",
               "ok": true,
-              "readerWidth": 1920,
-              "diagramWidth": 1740,
+              "readerWidth": 1497,
+              "diagramWidth": 1447,
               "pageComposition": {
                 "bodyPaddingPx": 64,
                 "headerPx": 68,
-                "diagramChromePx": 273,
-                "svgPx": 903,
+                "diagramChromePx": 94,
+                "svgPx": 1082,
                 "cardsPx": 0,
-                "viewBoxHeight": 602
+                "viewBoxHeight": 920
               },
-              "viewBoxWidth": 1160,
-              "minimumProjectedNodeTextPx": 6.9,
-              "minimumProjectedNonEdgeTextPx": 6.9,
+              "viewBoxWidth": 1230,
+              "minimumProjectedNodeTextPx": 8,
+              "minimumProjectedNonEdgeTextPx": 8.1,
               "minimumProjectedEdgeTextPx": 8,
-              "minimumProjectedNodeText": "Electrical Engineering I · Mathematics I",
-              "minimumProjectedNodeTextDetail": "context",
+              "minimumProjectedNodeText": "HTTPS",
+              "minimumProjectedNodeTextDetail": "edge",
               "minimumProjectedNodeTextOwner": {
-                "kind": "node",
-                "id": "guides"
+                "kind": "edge",
+                "id": "learner-https",
+                "from": "learner",
+                "to": "pages-host"
               },
               "minimumRequiredNodeTextPx": 6,
               "readabilityOk": true,
@@ -963,11 +1191,11 @@
               "hasNavigationDock": true,
               "legendDockIntersectionArea": 0,
               "dockStageIntersectionArea": 0,
-              "dockStageGap": 77.5,
+              "dockStageGap": 10,
               "requiredDockStageGap": 10,
               "viewerChromeStageOk": true,
-              "viewerChromeReserve": 0,
-              "viewerChromeActive": false,
+              "viewerChromeReserve": 44,
+              "viewerChromeActive": true,
               "viewerChromeOk": true,
               "resolvedTheme": "light"
             }
@@ -979,7 +1207,6 @@
           "contactSheet": null
         },
         "sidecars": {
-          "directory": "/Users/thanate/Developer/Education/AutonomyTechnologies/.archify/architecture-autonomy-technologies-20261024-184455/review-line-clamp",
           "receipt": "autonomy-technologies.browser-check.json",
           "files": []
         }
@@ -992,19 +1219,19 @@
   },
   "diagnostics": [],
   "evidence": {
-    "receipt": "/Users/thanate/Developer/Education/AutonomyTechnologies/.archify/architecture-autonomy-technologies-20261024-184455/review-line-clamp/autonomy-technologies.finalize.json",
-    "summaryReceipt": "/Users/thanate/Developer/Education/AutonomyTechnologies/.archify/architecture-autonomy-technologies-20261024-184455/review-line-clamp/autonomy-technologies.finalize-summary.json",
-    "browserCheckReceipt": "/Users/thanate/Developer/Education/AutonomyTechnologies/.archify/architecture-autonomy-technologies-20261024-184455/review-line-clamp/autonomy-technologies.browser-check.json"
+    "receipt": "/Users/thanate/Developer/Education/AutonomyTechnologies/.archify/architecture-autonomy-technologies-20261104-085454/autonomy-technologies.finalize.json",
+    "summaryReceipt": "/Users/thanate/Developer/Education/AutonomyTechnologies/.archify/architecture-autonomy-technologies-20261104-085454/autonomy-technologies.finalize-summary.json",
+    "browserCheckReceipt": "/Users/thanate/Developer/Education/AutonomyTechnologies/.archify/architecture-autonomy-technologies-20261104-085454/autonomy-technologies.browser-check.json"
   },
   "visualReview": "not-requested",
-  "finishedAt": "2026-10-24T18:49:23.717Z",
-  "durationMs": 6448,
+  "finishedAt": "2026-11-04T07:56:01.473Z",
+  "durationMs": 11952,
   "update": {
     "status": "current",
     "installedVersion": "3.2.0",
     "availableVersion": "3.2.0",
     "releaseNotes": null,
-    "checkedAt": "2026-10-24T15:48:29.002Z",
+    "checkedAt": "2026-11-04T07:55:36.528Z",
     "source": "cache",
     "noticeRequired": false,
     "noticeText": null
