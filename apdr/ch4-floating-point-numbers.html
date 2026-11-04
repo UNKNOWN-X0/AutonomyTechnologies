@@ -172,11 +172,11 @@
           <p>The exponent controls scale and therefore the approximate range.</p>
           <p>The number of significand bits controls precision, or how finely nearby values can be distinguished.</p>
           <p>Floating-point values are finite in number, and their spacing changes with magnitude.</p>
-          <div class="eq"><strong>Scientific notation model</strong><span class="formula">x = ±M × R<sup>E</sup></span><span class="eq-note">M is the coefficient (also called the significand or mantissa), R is the base or radix, and E is the exponent. In binary floating point, R=2.</span></div>
+          <div class="eq"><strong>Scientific notation model</strong><span class="formula"><var>x</var> = ±<var>M</var> × <var>R</var><sup><var>E</var></sup></span><span class="eq-note">M is the coefficient (also called the significand or mantissa), R is the base or radix, and E is the exponent. In binary floating point, R=2.</span></div>
           <h3>Zones of expressibility and gaps</h3>
           <p>Take a signed 3-digit coefficient and a signed 2-digit exponent. The positive expressible zone runs from +.001×10<sup>−99</sup> to +.999×10<sup>+99</sup>, and the negative zone mirrors it. Magnitudes above the top lie in the overflow zones. Non-zero magnitudes below the bottom lie in the underflow zones.</p>
           <p>The gap between neighbours varies. Next to .001×10<sup>−99</sup> the neighbours are 0 and .002×10<sup>−99</sup>, so the gap is 10<sup>−102</sup> each way. The same digits at exponent −50 are 10<sup>−53</sup>, and that value can also be written with a finer exponent. Its neighbours are .999×10<sup>−53</sup> (gap 10<sup>−56</sup>) and .101×10<sup>−52</sup> (gap 10<sup>−55</sup>).</p>
-          <div class="eq"><strong>Gap in one binary zone</strong><span class="formula">Gap in [2<sup>e</sup>, 2<sup>e+1</sup>) with p significant bits = 2<sup>e−p+1</sup></span><span class="eq-note">(This follows directly from the notes’ significand model; the notes only say the gap varies.) The last of the p bits has weight 2<sup>−(p−1)</sup>, and the exponent scales it by 2<sup>e</sup>.</span></div>
+          <div class="eq"><strong>Gap in one binary zone</strong><span class="formula">Gap in [2<sup><var>e</var></sup>, 2<sup><var>e</var>+1</sup>) with <var>p</var> significant bits = 2<sup><var>e</var>−<var>p</var>+1</sup></span><span class="eq-note">(This follows directly from the notes’ significand model; the notes only say the gap varies.) The last of the p bits has weight 2<sup>−(p−1)</sup>, and the exponent scales it by 2<sup>e</sup>.</span></div>
           <h3>Normalisation</h3>
           <p>One value has many forms: 0.023×10<sup>1</sup>=0.230×10<sup>0</sup>=2.3×10<sup>−1</sup>. Hardware needs each number to have one unique form, so the coefficient is normalised to the range [1, R). In binary that range is [1, 2), so the digit before the point is always 1. For example, 1010.11<sub>2</sub>×2<sup>2</sup>=1.01011<sub>2</sub>×2<sup>5</sup>: the point moves three places left, so the exponent rises by three.</p>
           <div class="worked"><p class="worked-title">Worked example · normalise a decimal value</p><p>Write 343000 × 10<sup>−4</sup> in normalised decimal form with 1≤M&lt;10.</p><ol>
@@ -200,7 +200,7 @@
           <p>The first bit after the binary point has weight 2<sup>−1</sup>.</p>
           <p>Each following bit has half the previous weight.</p>
           <h3>Convert binary fractions to decimal</h3>
-          <div class="eq"><strong>Binary fractional place values</strong><span class="formula">0.b<sub>1</sub>b<sub>2</sub>…b<sub>k</sub> = b<sub>1</sub>2<sup>−1</sup> + b<sub>2</sub>2<sup>−2</sup> + … + b<sub>k</sub>2<sup>−k</sup></span><span class="eq-note">Each b<sub>i</sub> is 0 or 1. A leading integer part is evaluated with non-negative powers of 2.</span></div>
+          <div class="eq"><strong>Binary fractional place values</strong><span class="formula">0.<var>b</var><sub>1</sub><var>b</var><sub>2</sub>…<var>b</var><sub><var>k</var></sub> = <var>b</var><sub>1</sub>2<sup>−1</sup> + <var>b</var><sub>2</sub>2<sup>−2</sup> + … + <var>b</var><sub><var>k</var></sub>2<sup>−<var>k</var></sup></span><span class="eq-note">Each b<sub>i</sub> is 0 or 1. A leading integer part is evaluated with non-negative powers of 2.</span></div>
           <div class="worked"><p class="worked-title">Worked conversion · binary fraction to decimal</p><p>Convert 0.01101<sub>2</sub> to decimal.</p><ol>
             <li>Use the five place values: 1/2, 1/4, 1/8, 1/16, and 1/32.</li>
             <li>Keep the places where the bit is 1: 1/4 + 1/8 + 1/32.</li>
@@ -232,7 +232,7 @@
           <p class="why">The exponent and significand must be managed during each operation.</p>
           <p>After the exact operation, the result may need normalisation and rounding to fit the available precision.</p>
           <h3>Multiplication</h3>
-          <div class="eq"><strong>Multiply normalised values</strong><span class="formula">(M<sub>1</sub> × R<sup>E<sub>1</sub></sup>)(M<sub>2</sub> × R<sup>E<sub>2</sub></sup>) = (M<sub>1</sub>M<sub>2</sub>) × R<sup>E<sub>1</sub>+E<sub>2</sub></sup></span><span class="eq-note">Multiply the significands and add the exponents. Then normalise and round if needed.</span></div>
+          <div class="eq"><strong>Multiply normalised values</strong><span class="formula">(<var>M</var><sub>1</sub> × <var>R</var><sup><var>E</var><sub>1</sub></sup>)(<var>M</var><sub>2</sub> × <var>R</var><sup><var>E</var><sub>2</sub></sup>) = (<var>M</var><sub>1</sub><var>M</var><sub>2</sub>) × <var>R</var><sup><var>E</var><sub>1</sub>+<var>E</var><sub>2</sub></sup></span><span class="eq-note">Multiply the significands and add the exponents. Then normalise and round if needed.</span></div>
           <div class="worked"><p class="worked-title">Worked multiplication · normalise the result</p><p>Calculate (2.6×10<sup>3</sup>)(5.4×10<sup>−2</sup>).</p><ol>
             <li>Multiply significands: 2.6×5.4=14.04.</li>
             <li>Add exponents: 3+(−2)=1, giving 14.04×10<sup>1</sup>.</li>
@@ -242,7 +242,7 @@
           <p>Before adding, express both numbers with the same exponent.</p>
           <p>Shift the significand of the value with the smaller exponent to the right by the exponent difference.</p>
           <p>This alignment can discard low-order digits before the addition is even performed.</p>
-          <div class="eq"><strong>Align, then add</strong><span class="formula">N<sub>1</sub>+N<sub>2</sub> = (M<sub>1</sub>+M<sub>2</sub>×10<sup>E<sub>2</sub>−E<sub>1</sub></sup>)×10<sup>E<sub>1</sub></sup></span><span class="eq-note">N<sub>2</sub> is the number with the smaller exponent, so E<sub>2</sub>−E<sub>1</sub> is negative and M<sub>2</sub> shifts right.</span></div>
+          <div class="eq"><strong>Align, then add</strong><span class="formula"><var>N</var><sub>1</sub>+<var>N</var><sub>2</sub> = (<var>M</var><sub>1</sub>+<var>M</var><sub>2</sub>×10<sup><var>E</var><sub>2</sub>−<var>E</var><sub>1</sub></sup>)×10<sup><var>E</var><sub>1</sub></sup></span><span class="eq-note">N<sub>2</sub> is the number with the smaller exponent, so E<sub>2</sub>−E<sub>1</sub> is negative and M<sub>2</sub> shifts right.</span></div>
           <div class="worked"><p class="worked-title">Worked addition · align exponents</p><p>Use two significant decimal digits to add 4.5×10<sup>3</sup> and 6.7×10<sup>2</sup>.</p><ol>
             <li>Rewrite the second value at exponent 3: 6.7×10<sup>2</sup>=0.67×10<sup>3</sup>.</li>
             <li>Add significands: (4.5+0.67)×10<sup>3</sup>=5.17×10<sup>3</sup>.</li>
@@ -261,7 +261,7 @@
           <p>The slides describe infinity or an exception for overflow, and zero or an exception for underflow in their simplified model.</p>
           <p>IEEE formats also provide denormalised numbers near zero.</p>
           <p>For approximate comparisons, choose a tolerance ε that fits the scale and precision of the problem.</p>
-          <div class="eq"><strong>Absolute tolerance example</strong><span class="formula">Treat a as close to b when |a−b|&lt;ε</span><span class="formula">For b=1 and ε=0.000005: 0.999995&lt;a&lt;1.000005</span><span class="eq-note">A fixed absolute tolerance may be unsuitable when magnitudes vary greatly. The slides also introduce relative closeness.</span></div>
+          <div class="eq"><strong>Absolute tolerance example</strong><span class="formula">Treat <var>a</var> as close to <var>b</var> when |<var>a</var>−<var>b</var>| &lt; ε</span><span class="formula">For <var>b</var> = 1 and ε = 0.000005: 0.999995 &lt; <var>a</var> &lt; 1.000005</span><span class="eq-note">A fixed absolute tolerance may be unsuitable when magnitudes vary greatly. The slides also introduce relative closeness.</span></div>
           <p class="method"><strong>Sign check:</strong> estimate the order of magnitude before accepting a rounded result.</p>
           <p class="lab-link"><a href="ch4-floating-point-numbers-lab.html#exp-arithmetic">Watch exponent alignment and rounding in the lab</a></p>
           <div class="recall"><p class="recall-title">Recall check · answer without looking</p><ol><li>What do you do to the exponents when multiplying?</li><li>Which operand’s significand is shifted to align an addition?</li><li>How do overflow and underflow differ?</li><li>Why can direct equality comparison be unreliable for computed floating-point values?</li></ol><details class="answers"><summary>Check these answers</summary><ol>
@@ -287,7 +287,7 @@
           <div class="tw"><table><thead><tr><th>Exponent</th><th>8-bit excess-127 pattern</th></tr></thead><tbody>
             <tr><td>−127</td><td>0000 0000</td></tr><tr><td>0</td><td>0111 1111</td></tr><tr><td>1</td><td>1000 0000</td></tr><tr><td>128</td><td>1111 1111</td></tr>
           </tbody></table></div>
-          <div class="eq"><strong>Normalised value rule</strong><span class="formula">value = (−1)<sup>S</sup> × 1.F × 2<sup>E−bias</sup></span><span class="formula">Single bias = 127; double bias = 1023</span><span class="eq-note">S is the sign bit, E is the unsigned exponent field, and F is the stored fraction interpreted after the binary point. This rule is for normalised values.</span></div>
+          <div class="eq"><strong>Normalised value rule</strong><span class="formula">value = (−1)<sup><var>S</var></sup> × 1.<var>F</var> × 2<sup><var>E</var>−bias</sup></span><span class="formula">Single bias = 127</span><span class="formula">double bias = 1023</span><span class="eq-note">S is the sign bit, E is the unsigned exponent field, and F is the stored fraction interpreted after the binary point. This rule is for normalised values.</span></div>
           <h3>Convert decimal to single precision</h3>
           <div class="worked"><p class="worked-title">Worked conversion · 42.6875</p><ol>
             <li>Convert to binary: 42.6875=101010.1011<sub>2</sub>.</li>

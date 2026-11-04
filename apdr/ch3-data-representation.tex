@@ -205,7 +205,7 @@ A numeral is a compact way to write a sum of place values. Binary, octal, decima
 In base b, each digit d\textsubscript{i} contributes d\textsubscript{i}b\textsuperscript{i}, where the rightmost digit has i=0. Binary digits are 0 or 1. Decimal-to-binary repeated division records remainders; read them from last to first.
 
 \begin{equationcard}{Positional value}
-\[ \begin{gathered} (\mathrm{d}_{\mathrm{k}}…\mathrm{d}_{1}\mathrm{d}_{0})_{\mathrm{b}}\, =\, \sum_{\mathrm{i}=0}^{\mathrm{k}} \, \mathrm{d}_{\mathrm{i}}\mathrm{b}^{\mathrm{i}} \\ (1100010)_{2}\, =\, 1\cdot 2^{6}\, +\, 1\cdot 2^{5}\, +\, 1\cdot 2^{1}\, =\, 98 \end{gathered} \]
+\[ \begin{gathered} ({d}_{{k}}…{d}_{1}{d}_{0})_{{b}}\, =\, \sum_{{i}=0}^{{k}} \, {d}_{{i}}{b}^{{i}} \\ (1100010)_{2}\, =\, 1\cdot 2^{6}\, +\, 1\cdot 2^{5}\, +\, 1\cdot 2^{1}\, =\, 98 \end{gathered} \]
 {\small The worked binary number is 98 in decimal. Subscripts identify the base.}
 \end{equationcard}
 
@@ -265,7 +265,7 @@ A computer stores a fixed number of bits, not a plus or minus sign unless the en
 An unsigned n-bit pattern represents 0 through 2\textsuperscript{n}\ensuremath{-}1. Signed encodings trade positive range for negative values. The source compares sign-and-magnitude, one’s complement, two’s complement, excess (biased) notation, and binary-coded decimal (BCD).
 
 \begin{equationcard}{Ranges for n bits}
-\[ \begin{gathered} \text{Unsigned}:\, 0\, …\, 2^{\mathrm{n}}-1 \\ \text{Sign}\, \text{and}\, \text{magnitude}:\, -(2^{\mathrm{n}-1}-1)\, …\, +(2^{\mathrm{n}-1}-1) \\ \text{One}’\mathrm{s}\, \text{complement}:\, -(2^{\mathrm{n}-1}-1)\, …\, +(2^{\mathrm{n}-1}-1) \\ \text{Two}’\mathrm{s}\, \text{complement}:\, -2^{\mathrm{n}-1}\, …\, 2^{\mathrm{n}-1}-1 \end{gathered} \]
+\[ \begin{gathered} \text{Unsigned}:\, 0\, …\, 2^{{n}}-1 \\ \text{Sign}\, \text{and}\, \text{magnitude}:\, -(2^{{n}-1}-1)\, …\, +(2^{{n}-1}-1) \\ \text{One}’\mathrm{s}\, \text{complement}:\, -(2^{{n}-1}-1)\, …\, +(2^{{n}-1}-1) \\ \text{Two}’\mathrm{s}\, \text{complement}:\, -2^{{n}-1}\, …\, 2^{{n}-1}-1 \end{gathered} \]
 {\small Sign-and-magnitude and one’s complement have two zero encodings. Two’s complement has one zero and one extra negative value.}
 \end{equationcard}
 
@@ -308,7 +308,7 @@ To form \ensuremath{-}x in n-bit two’s complement, invert all n bits of x and 
 Excess exists to keep numbers in order. In two’s complement a negative value starts with 1, so comparing patterns as unsigned numbers ranks every negative value above every positive one. In excess notation the all-zeros pattern is the smallest value and the all-ones pattern the largest, so the unsigned comparison gives the right order.
 
 \begin{equationcard}{Decode rules}
-\[ \begin{gathered} \text{Two}’\mathrm{s}-\text{complement}\, \text{value}\, =\, \text{unsigned}(\text{pattern})\, -\, 2^{\mathrm{n}}\, \text{when}\, \text{the}\, \text{top}\, \text{bit}\, \text{is}\, 1 \\ \text{Negate}\, \mathrm{x}:\, \text{invert}\, \mathrm{n}\, \text{bits},\, \text{then}\, \text{add}\, 1 \\ \text{Excess}-\mathrm{B}\, \text{value}\, =\, \text{stored}\, \text{value}\, -\, \mathrm{B} \end{gathered} \]
+\[ \begin{gathered} \text{Two}’\mathrm{s}-\text{complement}\, \text{value}\, =\, \text{unsigned}(\text{pattern})\, -\, 2^{{n}}\, \text{when}\, \text{the}\, \text{top}\, \text{bit}\, \text{is}\, 1 \\ \text{Negate}\, {x}:\, \text{invert}\, {n}\, \text{bits},\, \text{then}\, \text{add}\, 1 \\ \text{Excess}-\mathrm{B}\, \text{value}\, =\, \text{stored}\, \text{value}\, -\, {B} \end{gathered} \]
 {\small Keep the width fixed throughout. The same bit pattern has no signed meaning until an encoding is specified.}
 \end{equationcard}
 \end{keepsection}
@@ -500,7 +500,7 @@ Two’s complement lets the same adder perform signed addition and subtraction. 
 Add the bit patterns and discard any carry beyond the most significant bit. For subtraction, negate the subtrahend and add it to the minuend. Signed overflow occurs when the exact mathematical result lies outside the representation’s range. For addition, it occurs when two operands with the same sign produce a result with the opposite sign; operands of unlike signs cannot overflow.
 
 \begin{equationcard}{n-bit two’s-complement checks}
-\[ \begin{gathered} \text{Range}:\, -2^{\mathrm{n}-1}\, …\, 2^{\mathrm{n}-1}-1 \\ \mathrm{A}\, -\, \mathrm{B}\, =\, \mathrm{A}\, +\, (\text{two}’\mathrm{s}-\text{complement}\, \text{negation}\, \text{of}\, \mathrm{B}) \\ \text{Addition}\, \text{overflow}:\, \text{same}-\text{sign}\, \text{operands},\, \text{opposite}-\text{sign}\, \text{result} \\ \text{Subtraction}\, \text{overflow}:\, \text{operand}\, \text{signs}\, \text{differ},\, \text{result}\, \text{has}\, \text{the}\, \text{subtrahend}’\mathrm{s}\, \text{sign} \end{gathered} \]
+\[ \begin{gathered} \text{Range}:\, -2^{{n}-1}\, …\, 2^{{n}-1}-1 \\ {A}\, -\, {B}\, =\, {A}\, +\, (\text{two}’\mathrm{s}-\text{complement}\, \text{negation}\, \text{of}\, {B}) \\ \text{Addition}\, \text{overflow}:\, \text{same}-\text{sign}\, \text{operands},\, \text{opposite}-\text{sign}\, \text{result} \\ \text{Subtraction}\, \text{overflow}:\, \text{operand}\, \text{signs}\, \text{differ},\, \text{result}\, \text{has}\, \text{the}\, \text{subtrahend}’\mathrm{s}\, \text{sign} \end{gathered} \]
 {\small Discarding carry-out is part of fixed-width addition. Carry-out alone does not signal signed overflow.}
 \end{equationcard}
 

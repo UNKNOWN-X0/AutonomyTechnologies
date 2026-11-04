@@ -214,7 +214,7 @@ A Boolean algebra packages truth operations into a system of equations. The same
 Write the structure as (B, +, \ensuremath{\cdot}, ', 0, 1). Join (+) and meet (\ensuremath{\cdot}) are binary operations; complement (') is unary. The Huntington-style axioms used in the lecture state commutativity, associativity, distributivity, identities, and complements.
 
 \begin{equationcard}{Core axioms}
-\[ \begin{gathered} \mathrm{x}\, +\, \mathrm{y}\, =\, \mathrm{y}\, +\, \mathrm{x} \\ (\mathrm{x}\, +\, \mathrm{y})\, +\, \mathrm{z}\, =\, \mathrm{x}\, +\, (\mathrm{y}\, +\, \mathrm{z}) \\ \mathrm{x}\cdot (\mathrm{y}\, +\, \mathrm{z})\, =\, \mathrm{x}\cdot \mathrm{y}\, +\, \mathrm{x}\cdot \mathrm{z} \\ \mathrm{x}\, +\, \mathrm{y}\cdot \mathrm{z}\, =\, (\mathrm{x}\, +\, \mathrm{y})\cdot (\mathrm{x}\, +\, \mathrm{z}) \\ \mathrm{x}\, +\, 0\, =\, \mathrm{x} \\ \mathrm{x}\cdot 1\, =\, \mathrm{x} \\ \mathrm{x}\, +\, \mathrm{x}'\, =\, 1 \\ \mathrm{x}\cdot \mathrm{x}'\, =\, 0 \end{gathered} \]
+\[ \begin{gathered} {x}\, +\, {y}\, =\, {y}\, +\, {x} \\ ({x}\, +\, {y})\, +\, {z}\, =\, {x}\, +\, ({y}\, +\, {z}) \\ {x}\cdot ({y}\, +\, {z})\, =\, {x}\cdot {y}\, +\, {x}\cdot {z} \\ {x}\, +\, {y}\cdot {z}\, =\, ({x}\, +\, {y})\cdot ({x}\, +\, {z}) \\ {x}\, +\, 0\, =\, {x} \\ {x}\cdot 1\, =\, {x} \\ {x}\, +\, {x}'\, =\, 1 \\ {x}\cdot {x}'\, =\, 0 \end{gathered} \]
 {\small The lecture’s axiom list also states the dual commutative and associative laws for meet. It prints only the first distributive law; the second is needed, because XOR and AND on \{0,1\} satisfy the printed list but not x+x=x.}
 \end{equationcard}
 
@@ -243,7 +243,7 @@ The proof relies on the stated complement conditions; it does not assume uniquen
 The power set P(U), with union as +, intersection as \ensuremath{\cdot}, set complement as ', empty set as 0, and U as 1, is a Boolean algebra. There is also a ring view: XOR is addition, AND is multiplication, and every element is idempotent under multiplication. Formula cards use a circled plus for XOR, because slide 13 reuses + for it.
 
 \begin{equationcard}{Boolean ring translation}
-\[ \begin{gathered} \mathrm{x}\, ⊕\, \mathrm{y}\, =\, (\mathrm{x}\cdot \mathrm{y}')\, +\, (\mathrm{x}'\cdot \mathrm{y}) \\ \mathrm{x}\, ⊙\, \mathrm{y}\, =\, \mathrm{x}\cdot \mathrm{y} \\ \mathrm{x}\, \land \, \mathrm{y}\, =\, \text{xy} \\ \mathrm{x}\, \lor \, \mathrm{y}\, =\, \mathrm{x}\, ⊕\, \mathrm{y}\, ⊕\, \text{xy} \\ \neg \mathrm{x}\, =\, 1\, ⊕\, \mathrm{x} \\ \mathrm{x}^{2}\, =\, \mathrm{x} \\ \mathrm{x}\, ⊕\, \mathrm{x}\, =\, 0 \end{gathered} \]
+\[ \begin{gathered} {x}\, ⊕\, {y}\, =\, ({x}\cdot {y}')\, +\, ({x}'\cdot {y}) \\ {x}\, ⊙\, {y}\, =\, {x}\cdot {y} \\ {x}\, \land \, {y}\, =\, {x}{y} \\ {x}\, \lor \, {y}\, =\, {x}\, ⊕\, {y}\, ⊕\, {x}{y} \\ \neg {x}\, =\, 1\, ⊕\, {x} \\ {x}^{2}\, =\, {x} \\ {x}\, ⊕\, {x}\, =\, 0 \end{gathered} \]
 {\small Slide 13 reuses + for ring addition; here XOR keeps it apart from join. The power-set example uses symmetric difference for ring addition and intersection for multiplication.}
 \end{equationcard}
 
@@ -332,7 +332,7 @@ The cofactor f\textsubscript{x=1} fixes x to 1; f\textsubscript{x=0} fixes it to
 \end{workedbox}
 
 \begin{equationcard}{Difference and quantification}
-\[ \begin{gathered} ∂\mathrm{f}/∂\mathrm{x}\, =\, \mathrm{f}_{\mathrm{x}=1}\, ⊕\, \mathrm{f}_{\mathrm{x}=0} \\ ∂(\mathrm{f}\, ⊕\, \mathrm{g})/∂\mathrm{x}\, =\, ∂\mathrm{f}/∂\mathrm{x}\, ⊕\, ∂\mathrm{g}/∂\mathrm{x} \\ ∂(\text{fg})/∂\mathrm{x}\, =\, \mathrm{f}\cdot ∂\mathrm{g}/∂\mathrm{x}\, ⊕\, \mathrm{g}\cdot ∂\mathrm{f}/∂\mathrm{x}\, ⊕\, ∂\mathrm{f}/∂\mathrm{x}\cdot ∂\mathrm{g}/∂\mathrm{x} \\ (\exists \mathrm{x})\mathrm{f}\, =\, \mathrm{f}_{\mathrm{x}=1}\, +\, \mathrm{f}_{\mathrm{x}=0} \\ (\forall \mathrm{x})\mathrm{f}\, =\, \mathrm{f}_{\mathrm{x}=1}\cdot \mathrm{f}_{\mathrm{x}=0} \\ (\forall \mathrm{x})\mathrm{f}\, \leq \, \mathrm{f}\, \leq \, (\exists \mathrm{x})\mathrm{f} \end{gathered} \]
+\[ \begin{gathered} ∂{f}/∂{x}\, =\, {f}_{{x}=1}\, ⊕\, {f}_{{x}=0} \\ ∂({f}\, ⊕\, {g})/∂{x}\, =\, ∂{f}/∂{x}\, ⊕\, ∂{g}/∂{x} \\ ∂({f}{g})/∂{x}\, =\, {f}\cdot ∂{g}/∂{x}\, ⊕\, {g}\cdot ∂{f}/∂{x}\, ⊕\, ∂{f}/∂{x}\cdot ∂{g}/∂{x} \\ (\exists {x}){f}\, =\, {f}_{{x}=1}\, +\, {f}_{{x}=0} \\ (\forall {x}){f}\, =\, {f}_{{x}=1}\cdot {f}_{{x}=0} \\ (\forall {x}){f}\, \leq \, {f}\, \leq \, (\exists {x}){f} \end{gathered} \]
 {\small f does not depend on x exactly when its difference in x is 0. Existential quantification (smoothing) asks whether either case works; universal quantification (consensus) asks whether both cases work. Both remove dependence on x.}
 \end{equationcard}
 
@@ -377,7 +377,7 @@ A representation tells you how to build a function. Completeness says whether a 
 A connective set is functionally complete if it can express every Boolean function. NAND alone is complete because it can express NOT, AND, and OR. NOR alone is complete by the dual argument.
 
 \begin{equationcard}{NAND construction}
-\[ \begin{gathered} \mathrm{x}\, ↑\, \mathrm{y}\, =\, (\mathrm{x}\cdot \mathrm{y})' \\ \neg \mathrm{x}\, =\, \mathrm{x}\, ↑\, \mathrm{x} \\ \mathrm{x}\cdot \mathrm{y}\, =\, (\mathrm{x}\, ↑\, \mathrm{y})\, ↑\, (\mathrm{x}\, ↑\, \mathrm{y}) \\ \mathrm{x}+\mathrm{y}\, =\, (\mathrm{x}\, ↑\, \mathrm{x})\, ↑\, (\mathrm{y}\, ↑\, \mathrm{y}) \end{gathered} \]
+\[ \begin{gathered} {x}\, ↑\, {y}\, =\, ({x}\cdot {y})' \\ \neg {x}\, =\, {x}\, ↑\, {x} \\ {x}\cdot {y}\, =\, ({x}\, ↑\, {y})\, ↑\, ({x}\, ↑\, {y}) \\ {x}+{y}\, =\, ({x}\, ↑\, {x})\, ↑\, ({y}\, ↑\, {y}) \end{gathered} \]
 {\small Once NOT, AND, and OR are available, any formula built from those connectives can be expressed with NAND.}
 \end{equationcard}
 
@@ -442,7 +442,7 @@ A K-map lays truth-table rows out so neighbouring cells differ in one variable. 
 For n variables, a map has 2\textsuperscript{n} cells in Gray-code order. A legal group is a rectangle of 2\textsuperscript{k} cells (possibly wrapping), so that it contains every combination of k changing variables. Each variable that changes across the group is eliminated; the implicant keeps n\ensuremath{-}k literals. Use don’t-care rows as either 0 or 1 when that makes a useful group.
 
 \begin{equationcard}{K-map group rule}
-\[ \begin{gathered} \text{Map}\, \text{size}:\, 2^{\mathrm{n}}\, \text{cells} \\ \text{Group}\, \text{size}:\, 2^{\mathrm{k}}\, \text{cells} \\ \text{Remaining}\, \text{literals}:\, \mathrm{n}-\mathrm{k} \end{gathered} \]
+\[ \begin{gathered} \text{Map}\, \text{size}:\, 2^{{n}}\, \text{cells} \\ \text{Group}\, \text{size}:\, 2^{{k}}\, \text{cells} \\ \text{Remaining}\, \text{literals}:\, {n}-{k} \end{gathered} \]
 {\small Cover every required 1 at least once. Do not include a required 0. A don’t-care can be included or ignored.}
 \end{equationcard}
 
@@ -480,7 +480,7 @@ Use variable order A,B,C with A as the most significant bit. Suppose f=1 for min
 Shannon expansion recursively splits a function into simpler cases. Reusing the same split structure leads to decision diagrams; a different basis expresses the function as parity over F\textsubscript{2}.
 
 \begin{equationcard}{Shannon expansion}
-\[ \begin{gathered} \mathrm{f}\, =\, \mathrm{x}\cdot \mathrm{f}_{\mathrm{x}=1}\, +\, \mathrm{x}'\cdot \mathrm{f}_{\mathrm{x}=0} \end{gathered} \]
+\[ \begin{gathered} {f}\, =\, {x}\cdot {f}_{{x}=1}\, +\, {x}'\cdot {f}_{{x}=0} \end{gathered} \]
 {\small The selected input x chooses between the two cofactors, like a 2-to-1 multiplexer.}
 \end{equationcard}
 
@@ -524,7 +524,7 @@ Outputs for rows 00, 01, 10, 11 are 1,1,1,0, with A as the first bit.
 \end{workedbox}
 
 \begin{equationcard}{ANF shape}
-\[ \begin{gathered} \mathrm{f}\, \text{is}\, \text{the}\, \text{XOR}\, \text{of}\, \mathrm{a}_{\mathrm{S}}\cdot \prod_{\mathrm{i}\in \mathrm{S}} \mathrm{x}_{\mathrm{i}}\, \text{over}\, \mathrm{S}⊆[\mathrm{n}] \end{gathered} \]
+\[ \begin{gathered} {f}\, \text{is}\, \text{the}\, \text{XOR}\, \text{of}\, {a}_{{S}}\cdot \prod_{{i}\in {S}} {x}_{{i}}\, \text{over}\, {S}⊆[{n}] \end{gathered} \]
 {\small Each coefficient a\textsubscript{S} is 0 or 1. The empty product is 1; the XOR collects the selected monomials.}
 \end{equationcard}
 
@@ -555,7 +555,7 @@ Equivalent formulas can behave differently while a real circuit switches. Verifi
 \subsection{Static-1 hazards}
 
 \begin{equationcard}{Consensus relation}
-\[ \begin{gathered} \text{xy}\, +\, \mathrm{x}'\mathrm{z}\, +\, \text{yz}\, =\, \text{xy}\, +\, \mathrm{x}'\mathrm{z} \end{gathered} \]
+\[ \begin{gathered} {x}{y}\, +\, {x}'{z}\, +\, {y}{z}\, =\, {x}{y}\, +\, {x}'{z} \end{gathered} \]
 {\small The term yz is logically redundant but can preserve coverage during a circuit transition.}
 \end{equationcard}
 

@@ -236,7 +236,7 @@ A numeral is a compact way to write a sum of place values. Binary, octal, decima
 In base b, each digit d\textsubscript{i} contributes d\textsubscript{i}b\textsuperscript{i}, where the rightmost digit has i=0. Binary digits are 0 or 1. Decimal-to-binary repeated division records remainders; read them from last to first.
 
 \begin{equationcard}{Positional value}
-\[ \begin{gathered} (\mathrm{d}_{\mathrm{k}}…\mathrm{d}_{1}\mathrm{d}_{0})_{\mathrm{b}}\, =\, \sum_{\mathrm{i}=0}^{\mathrm{k}} \, \mathrm{d}_{\mathrm{i}}\mathrm{b}^{\mathrm{i}} \\ (1100010)_{2}\, =\, 1\cdot 2^{6}\, +\, 1\cdot 2^{5}\, +\, 1\cdot 2^{1}\, =\, 98 \end{gathered} \]
+\[ \begin{gathered} ({d}_{{k}}…{d}_{1}{d}_{0})_{{b}}\, =\, \sum_{{i}=0}^{{k}} \, {d}_{{i}}{b}^{{i}} \\ (1100010)_{2}\, =\, 1\cdot 2^{6}\, +\, 1\cdot 2^{5}\, +\, 1\cdot 2^{1}\, =\, 98 \end{gathered} \]
 {\small The worked binary number is 98 in decimal. Subscripts identify the base.}
 \end{equationcard}
 
@@ -307,7 +307,7 @@ A computer stores a fixed number of bits, not a plus or minus sign unless the en
 An unsigned n-bit pattern represents 0 through 2\textsuperscript{n}\ensuremath{-}1. Signed encodings trade positive range for negative values. The source compares sign-and-magnitude, one’s complement, two’s complement, excess (biased) notation, and binary-coded decimal (BCD). The lecture judges a signed encoding by four wishes: one zero, a balanced range, simple fast addition hardware, and no gaps in the number line.
 
 \begin{equationcard}{Ranges for n bits}
-\[ \begin{gathered} \text{Unsigned}:\, 0\, …\, 2^{\mathrm{n}}-1 \\ \text{Sign}\, \text{and}\, \text{magnitude}:\, -(2^{\mathrm{n}-1}-1)\, …\, +(2^{\mathrm{n}-1}-1) \\ \text{One}’\mathrm{s}\, \text{complement}:\, -(2^{\mathrm{n}-1}-1)\, …\, +(2^{\mathrm{n}-1}-1) \\ \text{Two}’\mathrm{s}\, \text{complement}:\, -2^{\mathrm{n}-1}\, …\, 2^{\mathrm{n}-1}-1 \end{gathered} \]
+\[ \begin{gathered} \text{Unsigned}:\, 0\, …\, 2^{{n}}-1 \\ \text{Sign}\, \text{and}\, \text{magnitude}:\, -(2^{{n}-1}-1)\, …\, +(2^{{n}-1}-1) \\ \text{One}’\mathrm{s}\, \text{complement}:\, -(2^{{n}-1}-1)\, …\, +(2^{{n}-1}-1) \\ \text{Two}’\mathrm{s}\, \text{complement}:\, -2^{{n}-1}\, …\, 2^{{n}-1}-1 \end{gathered} \]
 {\small Sign-and-magnitude and one’s complement have two zero encodings. Two’s complement has one zero and one extra negative value.}
 \end{equationcard}
 
@@ -337,7 +337,7 @@ Sign-and-magnitude has two zeros, and its adder must compare signs and then choo
 To form \ensuremath{-}x in n-bit two’s complement, invert all n bits of x and add 1; discard a carry beyond the width. The minimum value \ensuremath{-}2\textsuperscript{n\ensuremath{-}1} is the exception: its positive counterpart is outside the signed range, so fixed-width negation leaves the same pattern and overflows. Why inverting and adding one works: inverting x gives (2\textsuperscript{n}\ensuremath{-}1)\ensuremath{-}x, because each bit becomes 1 minus itself. Adding 1 gives 2\textsuperscript{n}\ensuremath{-}x, which is exactly the pattern for \ensuremath{-}x modulo 2\textsuperscript{n}. Equivalently, interpret a pattern with top bit 1 by subtracting 2\textsuperscript{n} from its unsigned value. In excess-B notation, actual value = stored unsigned value \ensuremath{-} B. The lecture’s three-bit excess-4 example therefore maps 000 to \ensuremath{-}4 and 111 to 3. Bias has a practical reason: the order of the true values matches the unsigned order of the stored patterns, so comparing two excess values is a plain unsigned comparison.
 
 \begin{equationcard}{Decode rules}
-\[ \begin{gathered} \text{Two}’\mathrm{s}-\text{complement}\, \text{value}\, =\, \text{unsigned}(\text{pattern})\, -\, 2^{\mathrm{n}}\, \text{when}\, \text{the}\, \text{top}\, \text{bit}\, \text{is}\, 1 \\ \text{Negate}\, \mathrm{x}:\, \text{invert}\, \mathrm{n}\, \text{bits},\, \text{then}\, \text{add}\, 1 \\ \text{Excess}-\mathrm{B}\, \text{value}\, =\, \text{stored}\, \text{value}\, -\, \mathrm{B} \end{gathered} \]
+\[ \begin{gathered} \text{Two}’\mathrm{s}-\text{complement}\, \text{value}\, =\, \text{unsigned}(\text{pattern})\, -\, 2^{{n}}\, \text{when}\, \text{the}\, \text{top}\, \text{bit}\, \text{is}\, 1 \\ \text{Negate}\, {x}:\, \text{invert}\, {n}\, \text{bits},\, \text{then}\, \text{add}\, 1 \\ \text{Excess}-\mathrm{B}\, \text{value}\, =\, \text{stored}\, \text{value}\, -\, {B} \end{gathered} \]
 {\small Keep the width fixed throughout. The same bit pattern has no signed meaning until an encoding is specified.}
 \end{equationcard}
 \end{keepsection}
@@ -513,7 +513,7 @@ Two’s complement lets the same adder perform signed addition and subtraction. 
 Add the bit patterns and discard any carry beyond the most significant bit. For subtraction, negate the subtrahend and add it to the minuend. Signed overflow occurs when the exact mathematical result lies outside the representation’s range. For addition, it occurs when two operands with the same sign produce a result with the opposite sign; operands of unlike signs cannot overflow.
 
 \begin{equationcard}{n-bit two’s-complement checks}
-\[ \begin{gathered} \text{Range}:\, -2^{\mathrm{n}-1}\, …\, 2^{\mathrm{n}-1}-1 \\ \mathrm{A}\, -\, \mathrm{B}\, =\, \mathrm{A}\, +\, (\text{two}’\mathrm{s}-\text{complement}\, \text{negation}\, \text{of}\, \mathrm{B}) \\ \text{Same}-\text{sign}\, \text{addition}\, \text{with}\, \text{opposite}-\text{sign}\, \text{result}\, \Rightarrow \, \text{overflow} \end{gathered} \]
+\[ \begin{gathered} \text{Range}:\, -2^{{n}-1}\, …\, 2^{{n}-1}-1 \\ {A}\, -\, {B}\, =\, {A}\, +\, (\text{two}’\mathrm{s}-\text{complement}\, \text{negation}\, \text{of}\, {B}) \\ \text{Same}-\text{sign}\, \text{addition}\, \text{with}\, \text{opposite}-\text{sign}\, \text{result}\, \Rightarrow \, \text{overflow} \end{gathered} \]
 {\small Discarding carry-out is part of fixed-width addition. Carry-out alone does not signal signed overflow.}
 \end{equationcard}
 
@@ -585,12 +585,12 @@ For base β, a normalised number has the form sign \ensuremath{\times} significa
 Floating-point values are finite in number, and their spacing changes with magnitude.
 
 \begin{equationcard}{Scientific notation model}
-\[ \begin{gathered} \mathrm{x}\, =\, \mathrm{s}\, \times \, \mathrm{M}\, \times \, β^{\mathrm{E}} \end{gathered} \]
+\[ \begin{gathered} {x}\, =\, {s}\, \times \, {M}\, \times \, β^{{E}} \end{gathered} \]
 {\small s is the sign, M is the significand, β is the base or radix, and E is the exponent. In binary floating point, β=2.}
 \end{equationcard}
 
 \begin{equationcard}{Local gap between neighbours}
-\[ \begin{gathered} \text{gap}\, \text{within}\, [2^{\mathrm{E}},\, 2^{\mathrm{E}+1})\, =\, 2^{\mathrm{E}-\mathrm{p}+1} \end{gathered} \]
+\[ \begin{gathered} \text{gap}\, \text{within}\, [2^{{E}},\, 2^{{E}+1})\, =\, 2^{{E}-{p}+1} \end{gathered} \]
 {\small p is the number of significand bits. (This follows directly from the notes’ model: the last of p bits has weight 2\textsuperscript{\ensuremath{-}(p\ensuremath{-}1)}, scaled by 2\textsuperscript{E}. The notes only say the gap grows.) Between 8 and 16, E=3, so p=24 gives 2\textsuperscript{\ensuremath{-}20}.}
 \end{equationcard}
 
@@ -636,7 +636,7 @@ The first bit after the binary point has weight 2\textsuperscript{\ensuremath{-}
 \subsection{Convert binary fractions to decimal}
 
 \begin{equationcard}{Binary fractional place values}
-\[ \begin{gathered} 0.\mathrm{b}_{1}\mathrm{b}_{2}…\mathrm{b}_{\mathrm{k}}\, =\, \mathrm{b}_{1}2^{-1}\, +\, \mathrm{b}_{2}2^{-2}\, +\, …\, +\, \mathrm{b}_{\mathrm{k}}2^{-\mathrm{k}} \end{gathered} \]
+\[ \begin{gathered} 0.{b}_{1}{b}_{2}…{b}_{{k}}\, =\, {b}_{1}2^{-1}\, +\, {b}_{2}2^{-2}\, +\, …\, +\, {b}_{{k}}2^{-{k}} \end{gathered} \]
 {\small Each b\textsubscript{i} is 0 or 1. A leading integer part is evaluated with non-negative powers of 2.}
 \end{equationcard}
 
@@ -712,7 +712,7 @@ After the exact operation, the result may need normalisation and rounding to fit
 \subsection{Multiplication}
 
 \begin{equationcard}{Multiply normalised values}
-\[ \begin{gathered} (\mathrm{M}_{1}\, \times \, β^{\mathrm{E}_{1}})(\mathrm{M}_{2}\, \times \, β^{\mathrm{E}_{2}})\, =\, (\mathrm{M}_{1}\mathrm{M}_{2})\, \times \, β^{\mathrm{E}_{1}+\mathrm{E}_{2}} \end{gathered} \]
+\[ \begin{gathered} ({M}_{1}\, \times \, β^{{E}_{1}})({M}_{2}\, \times \, β^{{E}_{2}})\, =\, ({M}_{1}{M}_{2})\, \times \, β^{{E}_{1}+{E}_{2}} \end{gathered} \]
 {\small Multiply the significands and add the exponents. Then normalise and round if needed.}
 \end{equationcard}
 
@@ -779,7 +779,7 @@ IEEE formats also provide subnormal numbers near zero.
 For approximate comparisons, choose a tolerance ε that fits the scale and precision of the problem.
 
 \begin{equationcard}{Absolute tolerance example}
-\[ \begin{gathered} \text{Treat}\, \mathrm{a}\, \text{as}\, \text{close}\, \text{to}\, \mathrm{b}\, \text{when}\, |\mathrm{a}-\mathrm{b}|<ε \\ \text{For}\, \mathrm{b}=1\, \text{and}\, ε=0.000005:\, 0.999995<\mathrm{a}<1.000005 \end{gathered} \]
+\[ \begin{gathered} \text{Treat}\, {a}\, \text{as}\, \text{close}\, \text{to}\, {b}\, \text{when}\, |{a}-{b}|\, <\, ε \\ \text{For}\, {b}\, =\, 1\, \text{and}\, ε\, =\, 0.000005:\, 0.999995\, <\, {a}\, <\, 1.000005 \end{gathered} \]
 {\small A fixed absolute tolerance may be unsuitable when magnitudes vary greatly. The slides also introduce relative closeness.}
 \end{equationcard}
 
@@ -828,7 +828,7 @@ For a normalised binary value, the leading significand bit is 1 and is omitted f
 The exponent field stores a biased exponent rather than a two’s-complement exponent. Stored order then matches true order, so hardware can compare two exponents as plain unsigned integers.
 
 \begin{equationcard}{Normalised value rule}
-\[ \begin{gathered} \text{value}\, =\, (-1)^{\mathrm{S}}\, \times \, 1.\mathrm{F}\, \times \, 2^{\mathrm{E}-\text{bias}} \\ \text{Single}\, \text{bias}\, =\, 127;\, \text{double}\, \text{bias}\, =\, 1023 \end{gathered} \]
+\[ \begin{gathered} \text{value}\, =\, (-1)^{{S}}\, \times \, 1.{F}\, \times \, 2^{{E}-\text{bias}} \\ \text{Single}\, \text{bias}\, =\, 127 \\ \text{double}\, \text{bias}\, =\, 1023 \end{gathered} \]
 {\small S is the sign bit, E is the unsigned exponent field, and F is the stored fraction interpreted after the binary point. This rule is for normalised values.}
 \end{equationcard}
 \end{keepsection}
@@ -901,7 +901,7 @@ All ones & Non-zero & NaN, or not-a-number \\
 \bottomrule\end{tabularx}\end{center}
 
 \begin{equationcard}{Subnormal value rule}
-\[ \begin{gathered} \text{value}\, =\, (-1)^{\mathrm{S}}\, \times \, 0.\mathrm{F}\, \times \, 2^{-126} \\ \text{Smallest}\, \text{normal}\, \text{single}:\, 2^{-126}\, \approx \, 1.175\times 10^{-38} \end{gathered} \]
+\[ \begin{gathered} \text{value}\, =\, (-1)^{{S}}\, \times \, 0.{F}\, \times \, 2^{-126} \\ \text{Smallest}\, \text{normal}\, \text{single}:\, 2^{-126}\, \approx \, 1.175\times 10^{-38} \end{gathered} \]
 {\small For a subnormal single-precision number, the hidden bit is 0 and the exponent is fixed at \ensuremath{-}126. Precision falls as the value nears zero.}
 \end{equationcard}
 
@@ -969,12 +969,12 @@ Cancellation occurs when subtracting close stored values. The subtraction may it
 Machine epsilon is the gap from 1 to the next larger representable value. For radix β and p significant digits, ε\textsubscript{mach}=β\textsuperscript{1\ensuremath{-}p}. Here p counts the full significand digits, including the hidden leading bit in a normalised IEEE value.
 
 \begin{equationcard}{Binary machine epsilon}
-\[ \begin{gathered} \text{Single}\, \text{precision}:\, \mathrm{p}=24,\, ε_{\text{mach}}=2^{-23}\approx 1.19\times 10^{-7} \\ \text{Double}\, \text{precision}:\, \mathrm{p}=53,\, ε_{\text{mach}}=2^{-52}\approx 2.22\times 10^{-16} \end{gathered} \]
+\[ \begin{gathered} \text{Single}\, \text{precision}:\, {p}\, =\, 24,\, ε_{\text{mach}}\, =\, 2^{-23}\, \approx \, 1.19\times 10^{-7} \\ \text{Double}\, \text{precision}:\, {p}\, =\, 53,\, ε_{\text{mach}}\, =\, 2^{-52}\, \approx \, 2.22\times 10^{-16} \end{gathered} \]
 {\small Under round-to-nearest, the unit roundoff u is ε\textsubscript{mach}/2 for normal results. “Unit roundoff” is not a term from the slides.}
 \end{equationcard}
 
 \begin{equationcard}{Relative rounding model}
-\[ \begin{gathered} \text{fl}(\mathrm{x})=\mathrm{x}(1+δ),\, \text{with}\, |δ|\leq \mathrm{u} \end{gathered} \]
+\[ \begin{gathered} \text{fl}({x})\, =\, {x}(1+δ),\, \text{with}\, |δ|\, \leq \, {u} \end{gathered} \]
 {\small For finite non-zero normal results, round-to-nearest, and no overflow. Relative error is measured against |x|, so the same absolute error matters more when the true answer is small.}
 \end{equationcard}
 
@@ -982,7 +982,7 @@ Machine epsilon is the gap from 1 to the next larger representable value. For ra
 The slides bound the error by ε; under round-to-nearest the tight bound is ε/2 (= u). Both statements are true; use the slide form if the exam asks for it.
 
 \begin{equationcard}{Error propagation in a difference}
-\[ \begin{gathered} \mathrm{x}′=\mathrm{x}(1+δ_{\mathrm{x}}),\, \mathrm{y}′=\mathrm{y}(1+δ_{\mathrm{y}}) \\ \text{relative}\, \text{error}\, =\, ((\mathrm{x}′-\mathrm{y}′)-(\mathrm{x}-\mathrm{y}))/(\mathrm{x}-\mathrm{y})\, =\, (\mathrm{x}δ_{\mathrm{x}}-\mathrm{y}δ_{\mathrm{y}})/(\mathrm{x}-\mathrm{y}) \end{gathered} \]
+\[ \begin{gathered} {x}′\, =\, {x}(1+δ_{{x}}),\, {y}′\, =\, {y}(1+δ_{{y}}) \\ \text{relative}\, \text{error}\, =\, (({x}′-{y}′)-({x}-{y}))/({x}-{y})\, =\, ({x}δ_{{x}}-{y}δ_{{y}})/({x}-{y}) \end{gathered} \]
 {\small The numerator stays about the size of the input errors. As x approaches y the denominator approaches zero, so the relative error can explode.}
 \end{equationcard}
 
@@ -1036,7 +1036,7 @@ The notes write the same method as x\textsubscript{1}=(\ensuremath{-}b\ensuremat
 A fused multiply-add evaluates a\ensuremath{\times}b+c with one final rounding. Separate multiplication and addition can round the product first, then round again after addition. FMA can therefore preserve more information; its speed benefit depends on hardware. The lecture names dot products, matrix multiplication and polynomial evaluation as algorithms that gain from it.
 
 \begin{equationcard}{Fused versus separate rounding}
-\[ \begin{gathered} \text{FMA}(\mathrm{a},\mathrm{b},\mathrm{c})=\text{round}(\mathrm{a}\times \mathrm{b}+\mathrm{c}) \\ \text{Separate}:\, \text{round}(\text{round}(\mathrm{a}\times \mathrm{b})+\mathrm{c}) \end{gathered} \]
+\[ \begin{gathered} \text{FMA}({a},{b},{c})\, =\, \text{round}({a}\times {b}+{c}) \\ \text{Separate}:\, \text{round}(\text{round}({a}\times {b})+{c}) \end{gathered} \]
 {\small The fused operation avoids the intermediate rounding step.}
 \end{equationcard}
 
@@ -1070,7 +1070,7 @@ Everything so far gave meaning to bit patterns. C also lets you handle where tho
 C treats memory as a contiguous line of bytes, each with a numerical address, usually written in hexadecimal. A pointer is a variable that stores an address. The operator \& gives the address of a variable, and * reads or writes the value at an address.
 
 \begin{equationcard}{Core syntax}
-\[ \begin{gathered} \text{int}\, *\mathrm{p};\, \text{declares}\, \mathrm{a}\, \text{pointer}\, \text{to}\, \text{int} \\ \text{int}\, \mathrm{x}\, =\, 10;\, \mathrm{p}\, =\, \&\mathrm{x};\, \mathrm{p}\, \text{now}\, \text{holds}\, \text{the}\, \text{address}\, \text{of}\, \mathrm{x} \\ *\mathrm{p}\, =\, 20;\, \text{writes}\, \text{through}\, \mathrm{p},\, \text{so}\, \mathrm{x}\, \text{becomes}\, 20 \end{gathered} \]
+\[ \begin{gathered} \text{int}\, *\mathrm{p};\, \text{declares}\, \mathrm{a}\, \text{pointer}\, \text{to}\, \text{int} \\ \text{int}\, \mathrm{x}\, =\, 10;\, \mathrm{p}\, =\, \&\mathrm{x};\, \mathrm{p}\, \text{now}\, \text{holds}\, \text{the}\, \text{address}\, \text{of}\, \mathrm{x} \\ *{p}\, =\, 20 \\ \text{writes}\, \text{through}\, {p},\, \text{so}\, {x}\, \text{becomes}\, 20 \end{gathered} \]
 {\small In a declaration, * builds a pointer type. In an expression, * dereferences.}
 \end{equationcard}
 \end{keepsection}
@@ -1083,7 +1083,7 @@ C treats memory as a contiguous line of bytes, each with a numerical address, us
 Adding n to a pointer moves n elements, not n bytes. In most expressions an array name decays to a pointer to its first element, and subscripting is defined through that pointer.
 
 \begin{equationcard}{Scaling and subscripts}
-\[ \begin{gathered} \text{new}\, \text{address}\, =\, \text{old}\, \text{address}\, +\, \mathrm{n}\, \times \, \text{sizeof}(\text{type}) \\ \mathrm{a}[\mathrm{i}]\, \text{means}\, *(\mathrm{a}\, +\, \mathrm{i}) \end{gathered} \]
+\[ \begin{gathered} \text{new}\, \text{address}\, =\, \text{old}\, \text{address}\, +\, \mathrm{n}\, \times \, \text{sizeof}(\text{type}) \\ {a}[{i}]\, \text{means}\, *({a}\, +\, {i}) \end{gathered} \]
 {\small Sizes depend on the platform; the lecture assumes 4 bytes for int and 8 for double.}
 \end{equationcard}
 

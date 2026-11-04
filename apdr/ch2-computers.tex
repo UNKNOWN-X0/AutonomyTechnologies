@@ -331,7 +331,7 @@ A computer needs instructions that are legal in its language and have a defined 
 \textbf{Syntax} asks whether the symbols form a legal expression. \textbf{Static semantics} asks whether a syntactically legal expression is meaningful under the language's rules, such as whether the operands have compatible types. \textbf{Semantics} is the meaning associated with an expression that passes those checks.
 
 \begin{equationcard}{Examples from the slides}
-\[ \begin{gathered} "\text{hi}"5\, \to \, \text{not}\, \text{syntactically}\, \text{valid} \\ 3.2\, *\, 5\, \to \, \text{syntactically}\, \text{valid}\, \text{and}\, \text{meaningful} \\ 3\, +\, "\text{hi}"\, \to \, \text{syntactically}\, \text{valid},\, \text{but}\, \mathrm{a}\, \text{static}\, \text{semantic}\, \text{error} \end{gathered} \]
+\[ \begin{gathered} "\text{hi}"5\, \to \, \text{not}\, \text{syntactically}\, \text{valid} \\ 3.2\, *\, 5\, \to \, \text{syntactically}\, \text{valid}\, \text{and}\, \text{meaningful} \\ 3\, +\, "\text{hi}"\, \to \, \text{syntactically}\, \text{valid},\, \text{but}\, {a}\, \text{static}\, \text{semantic}\, \text{error} \end{gathered} \]
 {\small English shows the same split: “cat dog boy” is not syntactically valid, and “I are hungry” is valid syntax with a static semantic error. The exact type rules depend on the language.}
 \end{equationcard}
 
@@ -371,7 +371,7 @@ Boolean circuits calculate with truth values. Propositional logic gives precise 
 A \textbf{proposition} is a statement that is either true or false. Compound propositions use \textbf{NOT}, \textbf{AND}, and \textbf{OR}. In the notes' example, the umbrella output is true when it is raining or the forecast is bad.
 
 \begin{equationcard}{Core connectives}
-\[ \begin{gathered} \neg \mathrm{A}\, \text{is}\, \text{true}\, \text{exactly}\, \text{when}\, \mathrm{A}\, \text{is}\, \text{false} \\ \mathrm{A}\, \land \, \mathrm{B}\, \text{is}\, \text{true}\, \text{exactly}\, \text{when}\, \text{both}\, \mathrm{A}\, \text{and}\, \mathrm{B}\, \text{are}\, \text{true} \\ \mathrm{A}\, \lor \, \mathrm{B}\, \text{is}\, \text{true}\, \text{when}\, \text{at}\, \text{least}\, \text{one}\, \text{of}\, \mathrm{A}\, \text{or}\, \mathrm{B}\, \text{is}\, \text{true} \end{gathered} \]
+\[ \begin{gathered} \neg {A}\, \text{is}\, \text{true}\, \text{exactly}\, \text{when}\, {A}\, \text{is}\, \text{false} \\ {A}\, \land \, {B}\, \text{is}\, \text{true}\, \text{exactly}\, \text{when}\, \text{both}\, {A}\, \text{and}\, {B}\, \text{are}\, \text{true} \\ {A}\, \lor \, {B}\, \text{is}\, \text{true}\, \text{when}\, \text{at}\, \text{least}\, \text{one}\, \text{of}\, {A}\, \text{or}\, {B}\, \text{is}\, \text{true} \end{gathered} \]
 {\small The OR in this lecture is inclusive: it is also true when both inputs are true.}
 \end{equationcard}
 
@@ -409,7 +409,7 @@ Boolean algebra replaces long verbal propositions with symbols and gives every o
 Boolean values use 1 for TRUE and 0 for FALSE. Variables stand for propositions. The supplied slides write NOT as a prime, OR as +, and AND as \ensuremath{\cdot}. Read the notation carefully: here + is logical OR, not ordinary arithmetic addition.
 
 \begin{equationcard}{Notation and precedence}
-\[ \begin{gathered} \mathrm{A}'\, =\, \text{NOT}\, \mathrm{A} \\ \mathrm{A}\, \cdot \, \mathrm{B}\, =\, \mathrm{A}\, \text{AND}\, \mathrm{B} \\ \mathrm{A}\, +\, \mathrm{B}\, =\, \mathrm{A}\, \text{OR}\, \mathrm{B} \\ \text{NOT}\, \text{first}\, \cdot \, \text{AND}\, \text{next}\, \cdot \, \text{OR}\, \text{last} \end{gathered} \]
+\[ \begin{gathered} {A}'\, =\, \text{NOT}\, {A} \\ {A}\, \cdot \, {B}\, =\, {A}\, \text{AND}\, {B} \\ {A}\, +\, {B}\, =\, {A}\, \text{OR}\, {B} \\ \text{NOT}\, \text{first}\, \cdot \, \text{AND}\, \text{next}\, \cdot \, \text{OR}\, \text{last} \end{gathered} \]
 {\small Use parentheses to make grouping explicit. For example, C' \ensuremath{\cdot} (W + R) is different from C' \ensuremath{\cdot} W + R. In C, logical operators are \&\&, ||, !; bitwise operators are \&, |, ~ (the slide labels these “Binary”; see Slips in the notes).}
 \end{equationcard}
 \end{keepsection}
@@ -492,12 +492,12 @@ Boolean laws let you transform an expression while preserving its output. Each i
 \subsection{Core identities}
 
 \begin{equationcard}{Negation, identity, and idempotence}
-\[ \begin{gathered} (\mathrm{A}')'\, =\, \mathrm{A} \\ \mathrm{A}\, \cdot \, \mathrm{A}'\, =\, 0 \\ \mathrm{A}\, +\, \mathrm{A}'\, =\, 1 \\ \mathrm{A}\, \cdot \, \mathrm{A}\, =\, \mathrm{A} \\ \mathrm{A}\, +\, \mathrm{A}\, =\, \mathrm{A} \\ \mathrm{A}\, \cdot \, 0\, =\, 0 \\ \mathrm{A}\, \cdot \, 1\, =\, \mathrm{A} \\ \mathrm{A}\, +\, 0\, =\, \mathrm{A} \\ \mathrm{A}\, +\, 1\, =\, 1 \end{gathered} \]
+\[ \begin{gathered} ({A}')'\, =\, {A} \\ {A}\, \cdot \, {A}'\, =\, 0 \\ {A}\, +\, {A}'\, =\, 1 \\ {A}\, \cdot \, {A}\, =\, {A} \\ {A}\, +\, {A}\, =\, {A} \\ {A}\, \cdot \, 0\, =\, 0 \\ {A}\, \cdot \, 1\, =\, {A} \\ {A}\, +\, 0\, =\, {A} \\ {A}\, +\, 1\, =\, 1 \end{gathered} \]
 {\small The slides use \ensuremath{\cdot} for AND and + for OR. A and B may themselves be compound Boolean expressions. (A')' = A is listed under “Negation”, and the NAND slides call it the Involution law.}
 \end{equationcard}
 
 \begin{equationcard}{Commutative, associative, and distributive}
-\[ \begin{gathered} \mathrm{A}\, \cdot \, \mathrm{B}\, =\, \mathrm{B}\, \cdot \, \mathrm{A} \\ \mathrm{A}\, +\, \mathrm{B}\, =\, \mathrm{B}\, +\, \mathrm{A} \\ (\mathrm{A}\, \cdot \, \mathrm{B})\, \cdot \, \mathrm{C}\, =\, \mathrm{A}\, \cdot \, (\mathrm{B}\, \cdot \, \mathrm{C}) \\ (\mathrm{A}\, +\, \mathrm{B})\, +\, \mathrm{C}\, =\, \mathrm{A}\, +\, (\mathrm{B}\, +\, \mathrm{C}) \\ \mathrm{A}\, \cdot \, (\mathrm{B}\, +\, \mathrm{C})\, =\, \mathrm{A}\, \cdot \, \mathrm{B}\, +\, \mathrm{A}\, \cdot \, \mathrm{C} \\ \mathrm{A}\, +\, (\mathrm{B}\, \cdot \, \mathrm{C})\, =\, (\mathrm{A}\, +\, \mathrm{B})\, \cdot \, (\mathrm{A}\, +\, \mathrm{C}) \end{gathered} \]
+\[ \begin{gathered} {A}\, \cdot \, {B}\, =\, {B}\, \cdot \, {A} \\ {A}\, +\, {B}\, =\, {B}\, +\, {A} \\ ({A}\, \cdot \, {B})\, \cdot \, {C}\, =\, {A}\, \cdot \, ({B}\, \cdot \, {C}) \\ ({A}\, +\, {B})\, +\, {C}\, =\, {A}\, +\, ({B}\, +\, {C}) \\ {A}\, \cdot \, ({B}\, +\, {C})\, =\, {A}\, \cdot \, {B}\, +\, {A}\, \cdot \, {C} \\ {A}\, +\, ({B}\, \cdot \, {C})\, =\, ({A}\, +\, {B})\, \cdot \, ({A}\, +\, {C}) \end{gathered} \]
 {\small Parentheses keep the grouping visible. The two distributive laws mirror each other with AND and OR exchanged.}
 \end{equationcard}
 \end{keepsection}
@@ -510,7 +510,7 @@ Boolean laws let you transform an expression while preserving its output. Each i
 Negating a compound expression changes its operation and negates each input: NOT of an OR becomes an AND of the negations, and NOT of an AND becomes an OR of the negations.
 
 \begin{equationcard}{De Morgan's laws}
-\[ \begin{gathered} (\mathrm{A}\, +\, \mathrm{B})'\, =\, \mathrm{A}'\, \cdot \, \mathrm{B}' \\ (\mathrm{A}\, \cdot \, \mathrm{B})'\, =\, \mathrm{A}'\, +\, \mathrm{B}' \\ (\mathrm{A}\, +\, \mathrm{B}\, +\, \mathrm{C}\, +\, …)'\, =\, \mathrm{A}'\, \cdot \, \mathrm{B}'\, \cdot \, \mathrm{C}'\, \cdot \, … \\ (\mathrm{A}\, \cdot \, \mathrm{B}\, \cdot \, \mathrm{C}\, \cdot \, …)'\, =\, \mathrm{A}'\, +\, \mathrm{B}'\, +\, \mathrm{C}'\, +\, … \end{gathered} \]
+\[ \begin{gathered} ({A}\, +\, {B})'\, =\, {A}'\, \cdot \, {B}' \\ ({A}\, \cdot \, {B})'\, =\, {A}'\, +\, {B}' \\ ({A}\, +\, {B}\, +\, {C}\, +\, …)'\, =\, {A}'\, \cdot \, {B}'\, \cdot \, {C}'\, \cdot \, … \\ ({A}\, \cdot \, {B}\, \cdot \, {C}\, \cdot \, …)'\, =\, {A}'\, +\, {B}'\, +\, {C}'\, +\, … \end{gathered} \]
 {\small The rules hold for any number of inputs.}
 \end{equationcard}
 
@@ -568,7 +568,7 @@ AND, OR, and NOT gates represent the corresponding operations. A small circle at
 \bottomrule\end{tabularx}\end{center}
 
 \begin{equationcard}{Inverted gates and exclusive gates}
-\[ \begin{gathered} \text{NAND}(\mathrm{A},\mathrm{B})\, =\, (\mathrm{A}\, \cdot \, \mathrm{B})' \\ \text{NOR}(\mathrm{A},\mathrm{B})\, =\, (\mathrm{A}\, +\, \mathrm{B})' \\ \text{XOR}(\mathrm{A},\mathrm{B})\, =\, \mathrm{A}'\, \cdot \, \mathrm{B}\, +\, \mathrm{A}\, \cdot \, \mathrm{B}' \\ \text{XNOR}(\mathrm{A},\mathrm{B})\, =\, \mathrm{A}'\, \cdot \, \mathrm{B}'\, +\, \mathrm{A}\, \cdot \, \mathrm{B} \end{gathered} \]
+\[ \begin{gathered} \text{NAND}({A},{B})\, =\, ({A}\, \cdot \, {B})' \\ \text{NOR}({A},{B})\, =\, ({A}\, +\, {B})' \\ \text{XOR}({A},{B})\, =\, {A}'\, \cdot \, {B}\, +\, {A}\, \cdot \, {B}' \\ \text{XNOR}({A},{B})\, =\, {A}'\, \cdot \, {B}'\, +\, {A}\, \cdot \, {B} \end{gathered} \]
 {\small XOR is true when exactly one input is true. XNOR is true when both inputs agree.}
 \end{equationcard}
 \end{keepsection}
@@ -581,7 +581,7 @@ AND, OR, and NOT gates represent the corresponding operations. A small circle at
 The lecture calls a set of functions complete when combinations of those functions can generate any Boolean function. NAND alone is complete, so it is also called a universal gate. NAND and NOR are the commonly used building blocks because they are easy to construct from transistors.
 
 \begin{equationcard}{Building gates from NAND}
-\[ \begin{gathered} \text{NOT}:\, (\mathrm{A}\, \cdot \, \mathrm{A})'\, =\, \mathrm{A}'\, (\text{idempotent}\, \text{law}) \\ \text{AND}:\, ((\mathrm{A}\, \cdot \, \mathrm{B})')'\, =\, \mathrm{A}\, \cdot \, \mathrm{B}\, (\text{involution}\, \text{law}) \\ \text{OR}:\, \mathrm{A}\, +\, \mathrm{B}\, =\, (\mathrm{A}'\, \cdot \, \mathrm{B}')'\, (\text{De}\, \text{Morgan}) \\ \text{NOR}:\, \text{invert}\, \text{the}\, \text{OR}\, \text{output} \end{gathered} \]
+\[ \begin{gathered} \text{NOT}:\, ({A}\, \cdot \, {A})'\, =\, {A}'\, (\text{idempotent}\, \text{law}) \\ \text{AND}:\, (({A}\, \cdot \, {B})')'\, =\, {A}\, \cdot \, {B}\, (\text{involution}\, \text{law}) \\ \text{OR}:\, {A}\, +\, {B}\, =\, ({A}'\, \cdot \, {B}')'\, (\text{De}\, \text{Morgan}) \\ \text{NOR}:\, \text{invert}\, \text{the}\, \text{OR}\, \text{output} \end{gathered} \]
 {\small NOT takes one NAND with tied inputs, AND takes two, and OR takes three: one to invert each input and one to combine them.}
 \end{equationcard}
 

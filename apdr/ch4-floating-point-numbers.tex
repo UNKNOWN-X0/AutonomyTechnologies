@@ -249,7 +249,7 @@ The number of significand bits controls precision, or how finely nearby values c
 Floating-point values are finite in number, and their spacing changes with magnitude.
 
 \begin{equationcard}{Scientific notation model}
-\[ \begin{gathered} \mathrm{x}\, =\, \pm \mathrm{M}\, \times \, \mathrm{R}^{\mathrm{E}} \end{gathered} \]
+\[ \begin{gathered} {x}\, =\, \pm {M}\, \times \, {R}^{{E}} \end{gathered} \]
 {\small M is the coefficient (also called the significand or mantissa), R is the base or radix, and E is the exponent. In binary floating point, R=2.}
 \end{equationcard}
 \end{keepsection}
@@ -265,7 +265,7 @@ Take a signed 3-digit coefficient and a signed 2-digit exponent. The positive ex
 The gap between neighbours varies. Next to .001\ensuremath{\times}10\textsuperscript{\ensuremath{-}99} the neighbours are 0 and .002\ensuremath{\times}10\textsuperscript{\ensuremath{-}99}, so the gap is 10\textsuperscript{\ensuremath{-}102} each way. The same digits at exponent \ensuremath{-}50 are 10\textsuperscript{\ensuremath{-}53}, and that value can also be written with a finer exponent. Its neighbours are .999\ensuremath{\times}10\textsuperscript{\ensuremath{-}53} (gap 10\textsuperscript{\ensuremath{-}56}) and .101\ensuremath{\times}10\textsuperscript{\ensuremath{-}52} (gap 10\textsuperscript{\ensuremath{-}55}).
 
 \begin{equationcard}{Gap in one binary zone}
-\[ \begin{gathered} \text{Gap}\, \text{in}\, [2^{\mathrm{e}},\, 2^{\mathrm{e}+1})\, \text{with}\, \mathrm{p}\, \text{significant}\, \text{bits}\, =\, 2^{\mathrm{e}-\mathrm{p}+1} \end{gathered} \]
+\[ \begin{gathered} \text{Gap}\, \text{in}\, [2^{{e}},\, 2^{{e}+1})\, \text{with}\, {p}\, \text{significant}\, \text{bits}\, =\, 2^{{e}-{p}+1} \end{gathered} \]
 {\small (This follows directly from the notes’ significand model; the notes only say the gap varies.) The last of the p bits has weight 2\textsuperscript{\ensuremath{-}(p\ensuremath{-}1)}, and the exponent scales it by 2\textsuperscript{e}.}
 \end{equationcard}
 \end{keepsection}
@@ -323,7 +323,7 @@ Each following bit has half the previous weight.
 \subsection{Convert binary fractions to decimal}
 
 \begin{equationcard}{Binary fractional place values}
-\[ \begin{gathered} 0.\mathrm{b}_{1}\mathrm{b}_{2}…\mathrm{b}_{\mathrm{k}}\, =\, \mathrm{b}_{1}2^{-1}\, +\, \mathrm{b}_{2}2^{-2}\, +\, …\, +\, \mathrm{b}_{\mathrm{k}}2^{-\mathrm{k}} \end{gathered} \]
+\[ \begin{gathered} 0.{b}_{1}{b}_{2}…{b}_{{k}}\, =\, {b}_{1}2^{-1}\, +\, {b}_{2}2^{-2}\, +\, …\, +\, {b}_{{k}}2^{-{k}} \end{gathered} \]
 {\small Each b\textsubscript{i} is 0 or 1. A leading integer part is evaluated with non-negative powers of 2.}
 \end{equationcard}
 
@@ -399,7 +399,7 @@ After the exact operation, the result may need normalisation and rounding to fit
 \subsection{Multiplication}
 
 \begin{equationcard}{Multiply normalised values}
-\[ \begin{gathered} (\mathrm{M}_{1}\, \times \, \mathrm{R}^{\mathrm{E}_{1}})(\mathrm{M}_{2}\, \times \, \mathrm{R}^{\mathrm{E}_{2}})\, =\, (\mathrm{M}_{1}\mathrm{M}_{2})\, \times \, \mathrm{R}^{\mathrm{E}_{1}+\mathrm{E}_{2}} \end{gathered} \]
+\[ \begin{gathered} ({M}_{1}\, \times \, {R}^{{E}_{1}})({M}_{2}\, \times \, {R}^{{E}_{2}})\, =\, ({M}_{1}{M}_{2})\, \times \, {R}^{{E}_{1}+{E}_{2}} \end{gathered} \]
 {\small Multiply the significands and add the exponents. Then normalise and round if needed.}
 \end{equationcard}
 
@@ -429,7 +429,7 @@ Shift the significand of the value with the smaller exponent to the right by the
 This alignment can discard low-order digits before the addition is even performed.
 
 \begin{equationcard}{Align, then add}
-\[ \begin{gathered} \mathrm{N}_{1}+\mathrm{N}_{2}\, =\, (\mathrm{M}_{1}+\mathrm{M}_{2}\times 10^{\mathrm{E}_{2}-\mathrm{E}_{1}})\times 10^{\mathrm{E}_{1}} \end{gathered} \]
+\[ \begin{gathered} {N}_{1}+{N}_{2}\, =\, ({M}_{1}+{M}_{2}\times 10^{{E}_{2}-{E}_{1}})\times 10^{{E}_{1}} \end{gathered} \]
 {\small N\textsubscript{2} is the number with the smaller exponent, so E\textsubscript{2}\ensuremath{-}E\textsubscript{1} is negative and M\textsubscript{2} shifts right.}
 \end{equationcard}
 
@@ -482,7 +482,7 @@ IEEE formats also provide denormalised numbers near zero.
 For approximate comparisons, choose a tolerance ε that fits the scale and precision of the problem.
 
 \begin{equationcard}{Absolute tolerance example}
-\[ \begin{gathered} \text{Treat}\, \mathrm{a}\, \text{as}\, \text{close}\, \text{to}\, \mathrm{b}\, \text{when}\, |\mathrm{a}-\mathrm{b}|<ε \\ \text{For}\, \mathrm{b}=1\, \text{and}\, ε=0.000005:\, 0.999995<\mathrm{a}<1.000005 \end{gathered} \]
+\[ \begin{gathered} \text{Treat}\, {a}\, \text{as}\, \text{close}\, \text{to}\, {b}\, \text{when}\, |{a}-{b}|\, <\, ε \\ \text{For}\, {b}\, =\, 1\, \text{and}\, ε\, =\, 0.000005:\, 0.999995\, <\, {a}\, <\, 1.000005 \end{gathered} \]
 {\small A fixed absolute tolerance may be unsuitable when magnitudes vary greatly. The slides also introduce relative closeness.}
 \end{equationcard}
 
@@ -543,7 +543,7 @@ The exponent field stores an excess (biased) value rather than a two’s-complem
 \bottomrule\end{tabularx}\end{center}
 
 \begin{equationcard}{Normalised value rule}
-\[ \begin{gathered} \text{value}\, =\, (-1)^{\mathrm{S}}\, \times \, 1.\mathrm{F}\, \times \, 2^{\mathrm{E}-\text{bias}} \\ \text{Single}\, \text{bias}\, =\, 127;\, \text{double}\, \text{bias}\, =\, 1023 \end{gathered} \]
+\[ \begin{gathered} \text{value}\, =\, (-1)^{{S}}\, \times \, 1.{F}\, \times \, 2^{{E}-\text{bias}} \\ \text{Single}\, \text{bias}\, =\, 127 \\ \text{double}\, \text{bias}\, =\, 1023 \end{gathered} \]
 {\small S is the sign bit, E is the unsigned exponent field, and F is the stored fraction interpreted after the binary point. This rule is for normalised values.}
 \end{equationcard}
 \end{keepsection}
