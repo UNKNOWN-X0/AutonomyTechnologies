@@ -724,6 +724,20 @@ main > section {
 .method-list > li {
   position: relative;
 }
+.worked .math-line {
+  display: table;
+  max-width: 100%;
+  margin: 10px auto 14px;
+  padding: 9px 14px;
+  border-left: 2px solid var(--course);
+  background: var(--paper);
+  color: var(--ink);
+  font: 400 1.12rem/1.65 "Cambria Math", "STIX Two Math", "Times New Roman", serif;
+  font-variant-numeric: lining-nums tabular-nums;
+  text-align: center;
+  text-wrap: balance;
+  overflow-wrap: anywhere;
+}
 @media (prefers-reduced-motion: no-preference) {
   .method-list > li.step-in {
     animation: step-reveal 260ms var(--ease) both;

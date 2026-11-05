@@ -235,15 +235,30 @@ Given \textit{H} = \textit{H}\textsubscript{0}(\textit{ρ}/\textit{a})\textit{e}
 \begin{workedbox}{1a \ensuremath{\cdot} Surface coordinates}
 \Needspace{13\baselineskip}
 \begin{enumerate}
-\item \Needspace{6\baselineskip}
-In cylindrical coordinates, \textit{ρ} measures distance from the axis, \textit{φ} gives the angle around it, and \textit{z} gives height. A point has position \textit{r} = \textit{ρ e}\textsubscript{ρ} + \textit{z e}\textsubscript{z}.
+\item \Needspace{5\baselineskip}
+In cylindrical coordinates, \textit{ρ} measures distance from the axis, \textit{φ} gives the angle around it, and \textit{z} gives height. A point has position:
+
+\Needspace{5\baselineskip}
+\begin{equation*}{r}\, =\, {ρ\,e}_{ρ}\, +\, {z\,e}_{\mathrm{z}}\end{equation*}
 
 To describe a surface, hold one coordinate fixed and let the other two run over the part of the surface we want.
-\item \textbf{Base:} every point is at height \textit{z} = 0. The disk reaches from the axis to the wall, so 0 \ensuremath{\leq} \textit{ρ} \ensuremath{\leq} \textit{a}, and it circles once with 0 \ensuremath{\leq} \textit{φ} \ensuremath{<} 2π.
-\item \textbf{Curved side:} every point is at radius \textit{ρ} = \textit{a}. Height runs from the base to the top, 0 \ensuremath{\leq} \textit{z} \ensuremath{\leq} \textit{h}, while 0 \ensuremath{\leq} \textit{φ} \ensuremath{<} 2π.
-\item \textbf{Top:} every point is at height \textit{z} = \textit{h}. It is another full disk, so 0 \ensuremath{\leq} \textit{ρ} \ensuremath{\leq} \textit{a} and 0 \ensuremath{\leq} \textit{φ} \ensuremath{<} 2π.
-\item \Needspace{5\baselineskip}
-\textbf{Result:} base (\textit{ρ}, \textit{φ}, 0); side (\textit{a}, \textit{φ}, \textit{z}); top (\textit{ρ}, \textit{φ}, \textit{h}), with the ranges above.
+\item \Needspace{4\baselineskip}
+\textbf{Base:} every point is at height \textit{z} = 0. The disk reaches from the axis to the wall, so:
+
+\begin{equation*}{z}\, =\, 0;\, 0\, \leq \, {ρ}\, \leq \, {a};\, 0\, \leq \, {φ}\, <\, 2π\end{equation*}
+\item \Needspace{4\baselineskip}
+\textbf{Curved side:} every point is at radius \textit{ρ} = \textit{a}. Height runs from the base to the top:
+
+\begin{equation*}{ρ}\, =\, {a};\, 0\, \leq \, {z}\, \leq \, {h};\, 0\, \leq \, {φ}\, <\, 2π\end{equation*}
+\item \Needspace{4\baselineskip}
+\textbf{Top:} every point is at height \textit{z} = \textit{h}. It is another full disk:
+
+\begin{equation*}{z}\, =\, {h};\, 0\, \leq \, {ρ}\, \leq \, {a};\, 0\, \leq \, {φ}\, <\, 2π\end{equation*}
+\item \Needspace{4\baselineskip}
+\textbf{Result:} the coordinate forms are:
+
+\Needspace{5\baselineskip}
+\begin{equation*}\text{base}\, ({ρ},\, {φ},\, 0);\, \text{side}\, ({a},\, {φ},\, {z});\, \text{top}\, ({ρ},\, {φ},\, {h})\end{equation*}
 
 \textbf{Check:} only the side fixes the radius. Each disk includes the centre and reaches all the way to \textit{a}.
 \end{enumerate}
@@ -253,14 +268,17 @@ To describe a surface, hold one coordinate fixed and let the other two run over 
 \begin{keepsection}\subsection{Task 1: Cylinder in cylindrical coordinates}
 
 \begin{workedbox}{1b \ensuremath{\cdot} Outward normals}
-\Needspace{13\baselineskip}
+\Needspace{14\baselineskip}
 \begin{enumerate}
 \item A surface normal is perpendicular to the surface. “Outward” chooses between the two perpendicular directions by pointing away from the solid. Cylindrical coordinate unit vectors already have length 1.
 \item At the base, the interior lies above the plane \textit{z} = 0. The outward direction is therefore downward: \textbf{\ensuremath{-}\textit{e}\textsubscript{z}}.
 \item At the top, the interior lies below \textit{z} = \textit{h}. The outward direction is upward: \textbf{+\textit{e}\textsubscript{z}}.
 \item On the curved side, the solid occupies ρ \ensuremath{<} \textit{a}. Increasing ρ moves away from the axis and out of the cylinder, so the outward normal is \textbf{+\textit{e}\textsubscript{ρ}}.
-\item \Needspace{5\baselineskip}
-\textbf{Result:} base \ensuremath{-}\textit{e}\textsubscript{z}; side +\textit{e}\textsubscript{ρ}; top +\textit{e}\textsubscript{z}.
+\item \Needspace{4\baselineskip}
+\textbf{Result:} the outward unit normals are:
+
+\Needspace{5\baselineskip}
+\begin{equation*}\text{base}\, -{e}_{\mathrm{z}};\, \text{side}\, +{e}_{ρ};\, \text{top}\, +{e}_{\mathrm{z}}\end{equation*}
 
 \textbf{Check:} at either sharp rim, the base/top normal and side normal disagree. The rim has no single smooth-face normal; normals are defined face by face.
 \end{enumerate}
@@ -273,11 +291,23 @@ To describe a surface, hold one coordinate fixed and let the other two run over 
 \Needspace{13\baselineskip}
 \begin{enumerate}
 \item Use spherical coordinates with polar angle \textit{θ} measured down from +\textit{z}. The curved hemisphere lies at \textit{r} = \textit{a}, with 0 \ensuremath{\leq} \textit{θ} \ensuremath{\leq} π/2 and 0 \ensuremath{\leq} \textit{φ} \ensuremath{<} 2π.
-\item A small surface patch grows with both directions around the sphere. A change d\textit{θ} has length \textit{a} d\textit{θ}; a change d\textit{φ} has length \textit{a} sin \textit{θ} d\textit{φ}. Thus d\textit{A} = \textit{a}\textsuperscript{2} sin \textit{θ} d\textit{θ} d\textit{φ}.
-\item Integrate over the curved part: \textit{A}\textsubscript{curve} = \ensuremath{\int}₀²π \ensuremath{\int}₀\textasciicircum{}(π/2) \textit{a}\textsuperscript{2} sin \textit{θ} d\textit{θ} d\textit{φ}.
-\item The angular integral is \ensuremath{\int}₀\textasciicircum{}(π/2) sin \textit{θ} d\textit{θ} = [\ensuremath{-}cos \textit{θ}]₀\textasciicircum{}(π/2) = 1. The azimuthal integral is 2π, so \textit{A}\textsubscript{curve} = 2π\textit{a}\textsuperscript{2}.
-\item \Needspace{6\baselineskip}
-The flat base is a disk of radius \textit{a}, with \textit{A}\textsubscript{base} = π\textit{a}\textsuperscript{2}. Add the boundary pieces: \textbf{\textit{A}\textsubscript{total} = 2π\textit{a}\textsuperscript{2} + π\textit{a}\textsuperscript{2} = 3π\textit{a}\textsuperscript{2}.}
+\item \Needspace{4\baselineskip}
+A small surface patch grows with both directions around the sphere. Its area element is:
+
+\begin{equation*}\mathrm{d}{A}\, =\, {a}^{2}\, \text{sin}\, {θ}\, \mathrm{d}{θ}\, \mathrm{d}{φ}\end{equation*}
+\item \Needspace{4\baselineskip}
+Integrate over the curved part:
+
+\begin{equation*}{A}_{\text{curve}}\, =\, ∫_{0}^{2π}\, ∫_{0}^{π/2}\, {a}^{2}\, \text{sin}\, {θ}\, \mathrm{d}{θ}\, \mathrm{d}{φ}\end{equation*}
+\item \Needspace{4\baselineskip}
+The angular integral gives 1 and the azimuthal integral gives 2π:
+
+\begin{equation*}∫_{0}^{π/2}\, \text{sin}\, {θ}\, \mathrm{d}{θ}\, =\, [-\text{cos}\, {θ}]_{0}^{π/2}\, =\, 1;\, \quad \, {A}_{\text{curve}}\, =\, 2π{a}^{2}\end{equation*}
+\item \Needspace{4\baselineskip}
+The flat base is a disk of radius \textit{a}. Add the boundary pieces:
+
+\Needspace{5\baselineskip}
+\begin{equation*}{A}_{\text{total}}\, =\, 2π{a}^{2}\, +\, π{a}^{2}\, =\, 3π{a}^{2}\end{equation*}
 
 \textbf{Check:} the curved half is half of 4π\textit{a}\textsuperscript{2}. The area has units of length squared. The shared circular edge has zero area, so it does not affect the sum.
 \end{enumerate}
@@ -290,11 +320,23 @@ The flat base is a disk of radius \textit{a}, with \textit{A}\textsubscript{base
 \Needspace{12\baselineskip}
 \begin{enumerate}
 \item Inside the hemisphere, radius runs from the centre to the surface: 0 \ensuremath{\leq} \textit{r} \ensuremath{\leq} \textit{a}. The angles cover 0 \ensuremath{\leq} \textit{θ} \ensuremath{\leq} π/2 and 0 \ensuremath{\leq} \textit{φ} \ensuremath{<} 2π.
-\item The spherical-coordinate volume element is d\textit{V} = \textit{r}\textsuperscript{2} sin \textit{θ} d\textit{r} d\textit{θ} d\textit{φ}. The factor \textit{r}\textsuperscript{2} sin \textit{θ} is the coordinate Jacobian: small angular patches widen as we move away from the origin.
-\item Set up the integral: \textit{V} = \ensuremath{\int}₀²π \ensuremath{\int}₀\textasciicircum{}(π/2) \ensuremath{\int}₀ᵃ \textit{r}\textsuperscript{2} sin \textit{θ} d\textit{r} d\textit{θ} d\textit{φ}. Since the factors depend on separate variables, evaluate them separately.
-\item \ensuremath{\int}₀ᵃ \textit{r}\textsuperscript{2} d\textit{r} = \textit{a}\textsuperscript{3}/3; \ensuremath{\int}₀\textasciicircum{}(π/2) sin \textit{θ} d\textit{θ} = 1; \ensuremath{\int}₀²π d\textit{φ} = 2π.
+\item \Needspace{5\baselineskip}
+The spherical-coordinate volume element includes the coordinate Jacobian, which accounts for angular patches widening away from the origin:
+
+\begin{equation*}\mathrm{d}{V}\, =\, {r}^{2}\, \text{sin}\, {θ}\, \mathrm{d}{r}\, \mathrm{d}{θ}\, \mathrm{d}{φ}\end{equation*}
 \item \Needspace{4\baselineskip}
-\textbf{Result: \textit{V} = (\textit{a}\textsuperscript{3}/3)(1)(2π) = 2π\textit{a}\textsuperscript{3}/3.}
+Set up the integral. The factors depend on separate variables:
+
+\begin{equation*}{V}\, =\, ∫_{0}^{2π}\, ∫_{0}^{π/2}\, ∫_{0}^{\mathrm{a}}\, {r}^{2}\, \text{sin}\, {θ}\, \mathrm{d}{r}\, \mathrm{d}{θ}\, \mathrm{d}{φ}\end{equation*}
+\item \Needspace{4\baselineskip}
+Evaluate each factor:
+
+\begin{equation*}∫_{0}^{\mathrm{a}}\, {r}^{2}\, \mathrm{d}{r}\, =\, {a}^{3}/3;\, \quad \, ∫_{0}^{π/2}\, \text{sin}\, {θ}\, \mathrm{d}{θ}\, =\, 1;\, \quad \, ∫_{0}^{2π}\, \mathrm{d}{φ}\, =\, 2π\end{equation*}
+\item \Needspace{4\baselineskip}
+\textbf{Result:}
+
+\Needspace{4\baselineskip}
+\begin{equation*}{V}\, =\, ({a}^{3}/3)(1)(2π)\, =\, 2π{a}^{3}/3\end{equation*}
 
 \textbf{Check:} it is half the full sphere’s 4π\textit{a}\textsuperscript{3}/3 volume, and its units are length cubed.
 \end{enumerate}
@@ -306,12 +348,30 @@ The flat base is a disk of radius \textit{a}, with \textit{A}\textsubscript{base
 \begin{workedbox}{3a \ensuremath{\cdot} Uniform field}
 \Needspace{11\baselineskip}
 \begin{enumerate}
-\item Parameterize the circle by its angle: \textit{r}(\textit{φ}) = \textit{b} cos \textit{φ e}\textsubscript{x} + \textit{b} sin \textit{φ e}\textsubscript{y}, with 0 \ensuremath{\leq} \textit{φ} \ensuremath{\leq} 2π.
-\item Differentiate with respect to the path parameter. The line element is d\textit{s} = (\ensuremath{-}\textit{b} sin \textit{φ e}\textsubscript{x} + \textit{b} cos \textit{φ e}\textsubscript{y}) d\textit{φ} = \textit{b e}\textsubscript{φ} d\textit{φ}.
-\item Take the dot product with the constant field: \textit{H} \ensuremath{\cdot} d\textit{s} = \textit{H}\textsubscript{0}\textit{e}\textsubscript{x} \ensuremath{\cdot} \textit{b e}\textsubscript{φ} d\textit{φ} = \ensuremath{-}\textit{b H}\textsubscript{0} sin \textit{φ} d\textit{φ}.
-\item Integrate over the whole circle: \ensuremath{\oint} \textit{H} \ensuremath{\cdot} d\textit{s} = \ensuremath{-}\textit{b H}\textsubscript{0} \ensuremath{\int}₀²π sin \textit{φ} d\textit{φ} = \textit{b H}\textsubscript{0}[cos \textit{φ}]₀²π.
-\item \Needspace{6\baselineskip}
-\textbf{Result: \ensuremath{\oint} \textit{H} \ensuremath{\cdot} d\textit{s} = 0.} The field has a tangential component on parts of the loop, but the positive and negative contributions cancel over one full turn.
+\item \Needspace{4\baselineskip}
+Parameterize the circle by its angle:
+
+\begin{equation*}{r}({φ})\, =\, {b}\, \text{cos}\, {φ\,e}_{\mathrm{x}}\, +\, {b}\, \text{sin}\, {φ\,e}_{\mathrm{y}},\, \quad \, 0\, \leq \, {φ}\, \leq \, 2π\end{equation*}
+\item \Needspace{4\baselineskip}
+Differentiate with respect to the path parameter to get the tangent line element:
+
+\begin{equation*}\mathrm{d}{s}\, =\, (-{b}\, \text{sin}\, {φ\,e}_{\mathrm{x}}\, +\, {b}\, \text{cos}\, {φ\,e}_{\mathrm{y}})\, \mathrm{d}{φ}\, =\, {b\,e}_{φ}\, \mathrm{d}{φ}\end{equation*}
+\item \Needspace{4\baselineskip}
+Take the dot product with the constant field:
+
+\begin{equation*}{H}\, \cdot \, \mathrm{d}{s}\, =\, -{b\,H}_{0}\, \text{sin}\, {φ}\, \mathrm{d}{φ}\end{equation*}
+\item \Needspace{4\baselineskip}
+Integrate over the whole circle:
+
+\begin{equation*}∮\, {H}\, \cdot \, \mathrm{d}{s}\, =\, -{b\,H}_{0}\, ∫_{0}^{2π}\, \text{sin}\, {φ}\, \mathrm{d}{φ}\, =\, {b\,H}_{0}[\text{cos}\, {φ}]_{0}^{2π}\end{equation*}
+\item \Needspace{4\baselineskip}
+\textbf{Result:}
+
+\Needspace{4\baselineskip}
+\begin{equation*}∮\, {H}\, \cdot \, \mathrm{d}{s}\, =\, 0\end{equation*}
+
+\Needspace{5\baselineskip}
+The positive and negative tangential contributions cancel over one full turn.
 
 \textbf{Check:} the zero is caused by cancellation around the loop, not by the field being perpendicular to the path at every point.
 \end{enumerate}
@@ -323,11 +383,20 @@ The flat base is a disk of radius \textit{a}, with \textit{A}\textsubscript{base
 \begin{workedbox}{3b \ensuremath{\cdot} Radial field}
 \Needspace{10\baselineskip}
 \begin{enumerate}
-\item Use the same circle parameterization. At radius \textit{b}, the line element is d\textit{s} = \textit{b e}\textsubscript{φ} d\textit{φ}, tangent to the circle.
+\item \Needspace{4\baselineskip}
+Use the same circle parameterization. At radius \textit{b}, the tangent line element is:
+
+\begin{equation*}\mathrm{d}{s}\, =\, {b\,e}_{φ}\, \mathrm{d}{φ}\end{equation*}
 \item The radial unit vector \textit{e}\textsubscript{ρ} points out from the origin, while \textit{e}\textsubscript{φ} follows the circle. In cylindrical coordinates these perpendicular directions satisfy \textit{e}\textsubscript{ρ} \ensuremath{\cdot} \textit{e}\textsubscript{φ} = 0.
-\item Therefore \textit{H} \ensuremath{\cdot} d\textit{s} = \textit{H}\textsubscript{0}\textit{e}\textsubscript{ρ} \ensuremath{\cdot} \textit{b e}\textsubscript{φ} d\textit{φ} = 0 at each point, so its integral is also zero.
-\item \Needspace{5\baselineskip}
-\textbf{Result: \ensuremath{\oint} \textit{H} \ensuremath{\cdot} d\textit{s} = 0.}
+\item \Needspace{4\baselineskip}
+The dot product is zero at each point because the directions are perpendicular:
+
+\begin{equation*}{H}\, \cdot \, \mathrm{d}{s}\, =\, {H}_{0}{e}_{ρ}\, \cdot \, {b\,e}_{φ}\, \mathrm{d}{φ}\, =\, 0\end{equation*}
+\item \Needspace{4\baselineskip}
+\textbf{Result:}
+
+\Needspace{5\baselineskip}
+\begin{equation*}∮\, {H}\, \cdot \, \mathrm{d}{s}\, =\, 0\end{equation*}
 
 \textbf{Check:} unlike 3a, the integrand is zero point by point. No cancellation between different parts of the circle is needed.
 \end{enumerate}
@@ -337,14 +406,32 @@ The flat base is a disk of radius \textit{a}, with \textit{A}\textsubscript{base
 \begin{keepsection}\subsection{Task 3: Field integral around a circle}
 
 \begin{workedbox}{3c \ensuremath{\cdot} Tangential field}
-\Needspace{12\baselineskip}
+\Needspace{10\baselineskip}
 \begin{enumerate}
-\item The path is still the circle ρ = \textit{b}, so d\textit{s} = \textit{b e}\textsubscript{φ} d\textit{φ}, with \textit{φ} increasing around the loop.
-\item Substitute ρ = \textit{b} into the field: \textit{H} = \textit{H}\textsubscript{0}(\textit{b}/\textit{a})\textit{e}\textsubscript{φ} on this path. The field strength is constant along this particular circle.
-\item Both vectors point along \textit{e}\textsubscript{φ}. Since this unit vector has dot product 1 with itself, \textit{H} \ensuremath{\cdot} d\textit{s} = \textit{H}\textsubscript{0}(\textit{b}\textsuperscript{2}/\textit{a}) d\textit{φ}.
-\item Integrate the constant around one revolution: \ensuremath{\oint} \textit{H} \ensuremath{\cdot} d\textit{s} = \ensuremath{\int}₀²π \textit{H}\textsubscript{0}(\textit{b}\textsuperscript{2}/\textit{a}) d\textit{φ} = 2π\textit{H}\textsubscript{0}\textit{b}\textsuperscript{2}/\textit{a}.
-\item \Needspace{5\baselineskip}
-\textbf{Result: \ensuremath{\oint} \textit{H} \ensuremath{\cdot} d\textit{s} = 2π\textit{H}\textsubscript{0}\textit{b}\textsuperscript{2}/\textit{a}.} It is positive for the assumed counterclockwise direction.
+\item \Needspace{4\baselineskip}
+The path is the circle ρ = \textit{b}, with φ increasing:
+
+\begin{equation*}\mathrm{d}{s}\, =\, {b\,e}_{φ}\, \mathrm{d}{φ}\end{equation*}
+\item \Needspace{4\baselineskip}
+Substitute ρ = \textit{b} into the field. Its magnitude is constant along this circle:
+
+\begin{equation*}{H}\, =\, {H}_{0}({b}/{a}){e}_{φ}\end{equation*}
+\item \Needspace{4\baselineskip}
+Both vectors point along \textit{e}\textsubscript{φ}, whose dot product with itself is 1:
+
+\begin{equation*}{H}\, \cdot \, \mathrm{d}{s}\, =\, {H}_{0}({b}^{2}/{a})\, \mathrm{d}{φ}\end{equation*}
+\item \Needspace{4\baselineskip}
+Integrate the constant around one revolution:
+
+\begin{equation*}∮\, {H}\, \cdot \, \mathrm{d}{s}\, =\, ∫_{0}^{2π}\, {H}_{0}({b}^{2}/{a})\, \mathrm{d}{φ}\, =\, 2π{H}_{0}{b}^{2}/{a}\end{equation*}
+\item \Needspace{4\baselineskip}
+\textbf{Result:}
+
+\Needspace{4\baselineskip}
+\begin{equation*}∮\, {H}\, \cdot \, \mathrm{d}{s}\, =\, 2π{H}_{0}{b}^{2}/{a}\end{equation*}
+
+\Needspace{5\baselineskip}
+It is positive for the assumed counterclockwise direction.
 
 \textbf{Check:} \textit{H}\textsubscript{0} has units A/m, and \textit{b}\textsuperscript{2}/\textit{a} has units m, so the integral has units A. Reversing the loop makes it negative.
 \end{enumerate}

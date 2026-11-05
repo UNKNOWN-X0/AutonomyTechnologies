@@ -35,11 +35,11 @@
       <h3>1a: Describe the three boundary surfaces</h3>
       <p>Try first: write the coordinate ranges for the base, curved side, and top.</p>
       <details class="answers"><summary>Attempted it? Open the worked steps</summary><div class="worked"><p class="worked-title">1a · Surface coordinates</p><ol class="method-list">
-        <li><p>In cylindrical coordinates, <var>ρ</var> measures distance from the axis, <var>φ</var> gives the angle around it, and <var>z</var> gives height. A point has position <var>r</var> = <var>ρ e</var><sub>ρ</sub> + <var>z e</var><sub>z</sub>.</p><p>To describe a surface, hold one coordinate fixed and let the other two run over the part of the surface we want.</p></li>
-        <li><p><strong>Base:</strong> every point is at height <var>z</var> = 0. The disk reaches from the axis to the wall, so 0 ≤ <var>ρ</var> ≤ <var>a</var>, and it circles once with 0 ≤ <var>φ</var> &lt; 2π.</p></li>
-        <li><p><strong>Curved side:</strong> every point is at radius <var>ρ</var> = <var>a</var>. Height runs from the base to the top, 0 ≤ <var>z</var> ≤ <var>h</var>, while 0 ≤ <var>φ</var> &lt; 2π.</p></li>
-        <li><p><strong>Top:</strong> every point is at height <var>z</var> = <var>h</var>. It is another full disk, so 0 ≤ <var>ρ</var> ≤ <var>a</var> and 0 ≤ <var>φ</var> &lt; 2π.</p></li>
-        <li><p><strong>Result:</strong> base (<var>ρ</var>, <var>φ</var>, 0); side (<var>a</var>, <var>φ</var>, <var>z</var>); top (<var>ρ</var>, <var>φ</var>, <var>h</var>), with the ranges above.</p><p><strong>Check:</strong> only the side fixes the radius. Each disk includes the centre and reaches all the way to <var>a</var>.</p></li>
+        <li><p>In cylindrical coordinates, <var>ρ</var> measures distance from the axis, <var>φ</var> gives the angle around it, and <var>z</var> gives height. A point has position:</p><p class="math-line"><var>r</var> = <var>ρ e</var><sub>ρ</sub> + <var>z e</var><sub>z</sub></p><p>To describe a surface, hold one coordinate fixed and let the other two run over the part of the surface we want.</p></li>
+        <li><p><strong>Base:</strong> every point is at height <var>z</var> = 0. The disk reaches from the axis to the wall, so:</p><p class="math-line"><var>z</var> = 0; 0 ≤ <var>ρ</var> ≤ <var>a</var>; 0 ≤ <var>φ</var> &lt; 2π</p></li>
+        <li><p><strong>Curved side:</strong> every point is at radius <var>ρ</var> = <var>a</var>. Height runs from the base to the top:</p><p class="math-line"><var>ρ</var> = <var>a</var>; 0 ≤ <var>z</var> ≤ <var>h</var>; 0 ≤ <var>φ</var> &lt; 2π</p></li>
+        <li><p><strong>Top:</strong> every point is at height <var>z</var> = <var>h</var>. It is another full disk:</p><p class="math-line"><var>z</var> = <var>h</var>; 0 ≤ <var>ρ</var> ≤ <var>a</var>; 0 ≤ <var>φ</var> &lt; 2π</p></li>
+        <li><p><strong>Result:</strong> the coordinate forms are:</p><p class="math-line">base (<var>ρ</var>, <var>φ</var>, 0); side (<var>a</var>, <var>φ</var>, <var>z</var>); top (<var>ρ</var>, <var>φ</var>, <var>h</var>)</p><p><strong>Check:</strong> only the side fixes the radius. Each disk includes the centre and reaches all the way to <var>a</var>.</p></li>
       </ol></div></details>
 
       <h3>1b: Give the outward unit normals</h3>
@@ -49,7 +49,7 @@
         <li><p>At the base, the interior lies above the plane <var>z</var> = 0. The outward direction is therefore downward: <strong>−<var>e</var><sub>z</sub></strong>.</p></li>
         <li><p>At the top, the interior lies below <var>z</var> = <var>h</var>. The outward direction is upward: <strong>+<var>e</var><sub>z</sub></strong>.</p></li>
         <li><p>On the curved side, the solid occupies ρ &lt; <var>a</var>. Increasing ρ moves away from the axis and out of the cylinder, so the outward normal is <strong>+<var>e</var><sub>ρ</sub></strong>.</p></li>
-        <li><p><strong>Result:</strong> base −<var>e</var><sub>z</sub>; side +<var>e</var><sub>ρ</sub>; top +<var>e</var><sub>z</sub>.</p><p><strong>Check:</strong> at either sharp rim, the base/top normal and side normal disagree. The rim has no single smooth-face normal; normals are defined face by face.</p></li>
+        <li><p><strong>Result:</strong> the outward unit normals are:</p><p class="math-line">base −<var>e</var><sub>z</sub>; side +<var>e</var><sub>ρ</sub>; top +<var>e</var><sub>z</sub></p><p><strong>Check:</strong> at either sharp rim, the base/top normal and side normal disagree. The rim has no single smooth-face normal; normals are defined face by face.</p></li>
       </ol></div></details>
     </section>
 
@@ -63,20 +63,20 @@
       <p>Try first: find the curved area and base area separately, then add the two pieces.</p>
       <details class="answers"><summary>Attempted it? Open the worked steps</summary><div class="worked"><p class="worked-title">2a · Curved surface plus base</p><ol class="method-list">
         <li><p>Use spherical coordinates with polar angle <var>θ</var> measured down from +<var>z</var>. The curved hemisphere lies at <var>r</var> = <var>a</var>, with 0 ≤ <var>θ</var> ≤ π/2 and 0 ≤ <var>φ</var> &lt; 2π.</p></li>
-        <li><p>A small surface patch grows with both directions around the sphere. A change d<var>θ</var> has length <var>a</var> d<var>θ</var>; a change d<var>φ</var> has length <var>a</var> sin <var>θ</var> d<var>φ</var>. Thus d<var>A</var> = <var>a</var><sup>2</sup> sin <var>θ</var> d<var>θ</var> d<var>φ</var>.</p></li>
-        <li><p>Integrate over the curved part: <var>A</var><sub>curve</sub> = ∫₀²π ∫₀^(π/2) <var>a</var><sup>2</sup> sin <var>θ</var> d<var>θ</var> d<var>φ</var>.</p></li>
-        <li><p>The angular integral is ∫₀^(π/2) sin <var>θ</var> d<var>θ</var> = [−cos <var>θ</var>]₀^(π/2) = 1. The azimuthal integral is 2π, so <var>A</var><sub>curve</sub> = 2π<var>a</var><sup>2</sup>.</p></li>
-        <li><p>The flat base is a disk of radius <var>a</var>, with <var>A</var><sub>base</sub> = π<var>a</var><sup>2</sup>. Add the boundary pieces: <strong><var>A</var><sub>total</sub> = 2π<var>a</var><sup>2</sup> + π<var>a</var><sup>2</sup> = 3π<var>a</var><sup>2</sup>.</strong></p><p><strong>Check:</strong> the curved half is half of 4π<var>a</var><sup>2</sup>. The area has units of length squared. The shared circular edge has zero area, so it does not affect the sum.</p></li>
+        <li><p>A small surface patch grows with both directions around the sphere. Its area element is:</p><p class="math-line">d<var>A</var> = <var>a</var><sup>2</sup> sin <var>θ</var> d<var>θ</var> d<var>φ</var></p></li>
+        <li><p>Integrate over the curved part:</p><p class="math-line"><var>A</var><sub>curve</sub> = ∫<sub>0</sub><sup>2π</sup> ∫<sub>0</sub><sup>π/2</sup> <var>a</var><sup>2</sup> sin <var>θ</var> d<var>θ</var> d<var>φ</var></p></li>
+        <li><p>The angular integral gives 1 and the azimuthal integral gives 2π:</p><p class="math-line">∫<sub>0</sub><sup>π/2</sup> sin <var>θ</var> d<var>θ</var> = [−cos <var>θ</var>]<sub>0</sub><sup>π/2</sup> = 1; &nbsp; <var>A</var><sub>curve</sub> = 2π<var>a</var><sup>2</sup></p></li>
+        <li><p>The flat base is a disk of radius <var>a</var>. Add the boundary pieces:</p><p class="math-line"><var>A</var><sub>total</sub> = 2π<var>a</var><sup>2</sup> + π<var>a</var><sup>2</sup> = 3π<var>a</var><sup>2</sup></p><p><strong>Check:</strong> the curved half is half of 4π<var>a</var><sup>2</sup>. The area has units of length squared. The shared circular edge has zero area, so it does not affect the sum.</p></li>
       </ol></div></details>
 
       <h3>2b: Volume</h3>
       <p>Try first: write the spherical volume element and integrate over the upper half-sphere.</p>
       <details class="answers"><summary>Attempted it? Open the worked steps</summary><div class="worked"><p class="worked-title">2b · Spherical volume integral</p><ol class="method-list">
         <li><p>Inside the hemisphere, radius runs from the centre to the surface: 0 ≤ <var>r</var> ≤ <var>a</var>. The angles cover 0 ≤ <var>θ</var> ≤ π/2 and 0 ≤ <var>φ</var> &lt; 2π.</p></li>
-        <li><p>The spherical-coordinate volume element is d<var>V</var> = <var>r</var><sup>2</sup> sin <var>θ</var> d<var>r</var> d<var>θ</var> d<var>φ</var>. The factor <var>r</var><sup>2</sup> sin <var>θ</var> is the coordinate Jacobian: small angular patches widen as we move away from the origin.</p></li>
-        <li><p>Set up the integral: <var>V</var> = ∫₀²π ∫₀^(π/2) ∫₀ᵃ <var>r</var><sup>2</sup> sin <var>θ</var> d<var>r</var> d<var>θ</var> d<var>φ</var>. Since the factors depend on separate variables, evaluate them separately.</p></li>
-        <li><p>∫₀ᵃ <var>r</var><sup>2</sup> d<var>r</var> = <var>a</var><sup>3</sup>/3; ∫₀^(π/2) sin <var>θ</var> d<var>θ</var> = 1; ∫₀²π d<var>φ</var> = 2π.</p></li>
-        <li><p><strong>Result: <var>V</var> = (<var>a</var><sup>3</sup>/3)(1)(2π) = 2π<var>a</var><sup>3</sup>/3.</strong></p><p><strong>Check:</strong> it is half the full sphere’s 4π<var>a</var><sup>3</sup>/3 volume, and its units are length cubed.</p></li>
+        <li><p>The spherical-coordinate volume element includes the coordinate Jacobian, which accounts for angular patches widening away from the origin:</p><p class="math-line">d<var>V</var> = <var>r</var><sup>2</sup> sin <var>θ</var> d<var>r</var> d<var>θ</var> d<var>φ</var></p></li>
+        <li><p>Set up the integral. The factors depend on separate variables:</p><p class="math-line"><var>V</var> = ∫<sub>0</sub><sup>2π</sup> ∫<sub>0</sub><sup>π/2</sup> ∫<sub>0</sub><sup>a</sup> <var>r</var><sup>2</sup> sin <var>θ</var> d<var>r</var> d<var>θ</var> d<var>φ</var></p></li>
+        <li><p>Evaluate each factor:</p><p class="math-line">∫<sub>0</sub><sup>a</sup> <var>r</var><sup>2</sup> d<var>r</var> = <var>a</var><sup>3</sup>/3; &nbsp; ∫<sub>0</sub><sup>π/2</sup> sin <var>θ</var> d<var>θ</var> = 1; &nbsp; ∫<sub>0</sub><sup>2π</sup> d<var>φ</var> = 2π</p></li>
+        <li><p><strong>Result:</strong></p><p class="math-line"><var>V</var> = (<var>a</var><sup>3</sup>/3)(1)(2π) = 2π<var>a</var><sup>3</sup>/3</p><p><strong>Check:</strong> it is half the full sphere’s 4π<var>a</var><sup>3</sup>/3 volume, and its units are length cubed.</p></li>
       </ol></div></details>
     </section>
 
@@ -89,30 +89,30 @@
       <h3>3a: Uniform x-directed field</h3>
       <p>Given <var>H</var> = <var>H</var><sub>0</sub><var>e</var><sub>x</sub>. Try first: parameterize the loop and express its tangent in Cartesian components.</p>
       <details class="answers"><summary>Attempted it? Open the worked steps</summary><div class="worked"><p class="worked-title">3a · Uniform field</p><ol class="method-list">
-        <li><p>Parameterize the circle by its angle: <var>r</var>(<var>φ</var>) = <var>b</var> cos <var>φ e</var><sub>x</sub> + <var>b</var> sin <var>φ e</var><sub>y</sub>, with 0 ≤ <var>φ</var> ≤ 2π.</p></li>
-        <li><p>Differentiate with respect to the path parameter. The line element is d<var>s</var> = (−<var>b</var> sin <var>φ e</var><sub>x</sub> + <var>b</var> cos <var>φ e</var><sub>y</sub>) d<var>φ</var> = <var>b e</var><sub>φ</sub> d<var>φ</var>.</p></li>
-        <li><p>Take the dot product with the constant field: <var>H</var> · d<var>s</var> = <var>H</var><sub>0</sub><var>e</var><sub>x</sub> · <var>b e</var><sub>φ</sub> d<var>φ</var> = −<var>b H</var><sub>0</sub> sin <var>φ</var> d<var>φ</var>.</p></li>
-        <li><p>Integrate over the whole circle: ∮ <var>H</var> · d<var>s</var> = −<var>b H</var><sub>0</sub> ∫₀²π sin <var>φ</var> d<var>φ</var> = <var>b H</var><sub>0</sub>[cos <var>φ</var>]₀²π.</p></li>
-        <li><p><strong>Result: ∮ <var>H</var> · d<var>s</var> = 0.</strong> The field has a tangential component on parts of the loop, but the positive and negative contributions cancel over one full turn.</p><p><strong>Check:</strong> the zero is caused by cancellation around the loop, not by the field being perpendicular to the path at every point.</p></li>
+        <li><p>Parameterize the circle by its angle:</p><p class="math-line"><var>r</var>(<var>φ</var>) = <var>b</var> cos <var>φ e</var><sub>x</sub> + <var>b</var> sin <var>φ e</var><sub>y</sub>, &nbsp; 0 ≤ <var>φ</var> ≤ 2π</p></li>
+        <li><p>Differentiate with respect to the path parameter to get the tangent line element:</p><p class="math-line">d<var>s</var> = (−<var>b</var> sin <var>φ e</var><sub>x</sub> + <var>b</var> cos <var>φ e</var><sub>y</sub>) d<var>φ</var> = <var>b e</var><sub>φ</sub> d<var>φ</var></p></li>
+        <li><p>Take the dot product with the constant field:</p><p class="math-line"><var>H</var> · d<var>s</var> = −<var>b H</var><sub>0</sub> sin <var>φ</var> d<var>φ</var></p></li>
+        <li><p>Integrate over the whole circle:</p><p class="math-line">∮ <var>H</var> · d<var>s</var> = −<var>b H</var><sub>0</sub> ∫<sub>0</sub><sup>2π</sup> sin <var>φ</var> d<var>φ</var> = <var>b H</var><sub>0</sub>[cos <var>φ</var>]<sub>0</sub><sup>2π</sup></p></li>
+        <li><p><strong>Result:</strong></p><p class="math-line">∮ <var>H</var> · d<var>s</var> = 0</p><p>The positive and negative tangential contributions cancel over one full turn.</p><p><strong>Check:</strong> the zero is caused by cancellation around the loop, not by the field being perpendicular to the path at every point.</p></li>
       </ol></div></details>
 
       <h3>3b: Radial field</h3>
       <p>Given <var>H</var> = <var>H</var><sub>0</sub><var>e</var><sub>ρ</sub>. Try first: compare the local field direction with the tangent at every point.</p>
       <details class="answers"><summary>Attempted it? Open the worked steps</summary><div class="worked"><p class="worked-title">3b · Radial field</p><ol class="method-list">
-        <li><p>Use the same circle parameterization. At radius <var>b</var>, the line element is d<var>s</var> = <var>b e</var><sub>φ</sub> d<var>φ</var>, tangent to the circle.</p></li>
+        <li><p>Use the same circle parameterization. At radius <var>b</var>, the tangent line element is:</p><p class="math-line">d<var>s</var> = <var>b e</var><sub>φ</sub> d<var>φ</var></p></li>
         <li><p>The radial unit vector <var>e</var><sub>ρ</sub> points out from the origin, while <var>e</var><sub>φ</sub> follows the circle. In cylindrical coordinates these perpendicular directions satisfy <var>e</var><sub>ρ</sub> · <var>e</var><sub>φ</sub> = 0.</p></li>
-        <li><p>Therefore <var>H</var> · d<var>s</var> = <var>H</var><sub>0</sub><var>e</var><sub>ρ</sub> · <var>b e</var><sub>φ</sub> d<var>φ</var> = 0 at each point, so its integral is also zero.</p></li>
-        <li><p><strong>Result: ∮ <var>H</var> · d<var>s</var> = 0.</strong></p><p><strong>Check:</strong> unlike 3a, the integrand is zero point by point. No cancellation between different parts of the circle is needed.</p></li>
+        <li><p>The dot product is zero at each point because the directions are perpendicular:</p><p class="math-line"><var>H</var> · d<var>s</var> = <var>H</var><sub>0</sub><var>e</var><sub>ρ</sub> · <var>b e</var><sub>φ</sub> d<var>φ</var> = 0</p></li>
+        <li><p><strong>Result:</strong></p><p class="math-line">∮ <var>H</var> · d<var>s</var> = 0</p><p><strong>Check:</strong> unlike 3a, the integrand is zero point by point. No cancellation between different parts of the circle is needed.</p></li>
       </ol></div></details>
 
       <h3>3c: Azimuthal field growing with radius</h3>
       <p>Given <var>H</var> = <var>H</var><sub>0</sub>(<var>ρ</var>/<var>a</var>)<var>e</var><sub>φ</sub>. Try first: evaluate this field on the circle and compare it with d<var>s</var>.</p>
       <details class="answers"><summary>Attempted it? Open the worked steps</summary><div class="worked"><p class="worked-title">3c · Tangential field</p><ol class="method-list">
-        <li><p>The path is still the circle ρ = <var>b</var>, so d<var>s</var> = <var>b e</var><sub>φ</sub> d<var>φ</var>, with <var>φ</var> increasing around the loop.</p></li>
-        <li><p>Substitute ρ = <var>b</var> into the field: <var>H</var> = <var>H</var><sub>0</sub>(<var>b</var>/<var>a</var>)<var>e</var><sub>φ</sub> on this path. The field strength is constant along this particular circle.</p></li>
-        <li><p>Both vectors point along <var>e</var><sub>φ</sub>. Since this unit vector has dot product 1 with itself, <var>H</var> · d<var>s</var> = <var>H</var><sub>0</sub>(<var>b</var><sup>2</sup>/<var>a</var>) d<var>φ</var>.</p></li>
-        <li><p>Integrate the constant around one revolution: ∮ <var>H</var> · d<var>s</var> = ∫₀²π <var>H</var><sub>0</sub>(<var>b</var><sup>2</sup>/<var>a</var>) d<var>φ</var> = 2π<var>H</var><sub>0</sub><var>b</var><sup>2</sup>/<var>a</var>.</p></li>
-        <li><p><strong>Result: ∮ <var>H</var> · d<var>s</var> = 2π<var>H</var><sub>0</sub><var>b</var><sup>2</sup>/<var>a</var>.</strong> It is positive for the assumed counterclockwise direction.</p><p><strong>Check:</strong> <var>H</var><sub>0</sub> has units A/m, and <var>b</var><sup>2</sup>/<var>a</var> has units m, so the integral has units A. Reversing the loop makes it negative.</p></li>
+        <li><p>The path is the circle ρ = <var>b</var>, with φ increasing:</p><p class="math-line">d<var>s</var> = <var>b e</var><sub>φ</sub> d<var>φ</var></p></li>
+        <li><p>Substitute ρ = <var>b</var> into the field. Its magnitude is constant along this circle:</p><p class="math-line"><var>H</var> = <var>H</var><sub>0</sub>(<var>b</var>/<var>a</var>)<var>e</var><sub>φ</sub></p></li>
+        <li><p>Both vectors point along <var>e</var><sub>φ</sub>, whose dot product with itself is 1:</p><p class="math-line"><var>H</var> · d<var>s</var> = <var>H</var><sub>0</sub>(<var>b</var><sup>2</sup>/<var>a</var>) d<var>φ</var></p></li>
+        <li><p>Integrate the constant around one revolution:</p><p class="math-line">∮ <var>H</var> · d<var>s</var> = ∫<sub>0</sub><sup>2π</sup> <var>H</var><sub>0</sub>(<var>b</var><sup>2</sup>/<var>a</var>) d<var>φ</var> = 2π<var>H</var><sub>0</sub><var>b</var><sup>2</sup>/<var>a</var></p></li>
+        <li><p><strong>Result:</strong></p><p class="math-line">∮ <var>H</var> · d<var>s</var> = 2π<var>H</var><sub>0</sub><var>b</var><sup>2</sup>/<var>a</var></p><p>It is positive for the assumed counterclockwise direction.</p><p><strong>Check:</strong> <var>H</var><sub>0</sub> has units A/m, and <var>b</var><sup>2</sup>/<var>a</var> has units m, so the integral has units A. Reversing the loop makes it negative.</p></li>
       </ol></div></details>
     </section>
 

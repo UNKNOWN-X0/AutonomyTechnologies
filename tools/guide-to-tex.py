@@ -730,6 +730,8 @@ class Conv:
         if t == "p":
             if "lab-link" in c:
                 return ""
+            if "math-line" in c:
+                return "\n\\begin{equation*}%s\\end{equation*}\n" % math(k)
             if "method" in c:
                 return "\n\\begin{notebox}%s\\end{notebox}\n" % inline(k)
             if "plain" in c:
