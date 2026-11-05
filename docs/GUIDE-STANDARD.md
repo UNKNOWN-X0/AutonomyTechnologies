@@ -30,7 +30,7 @@ Chapter numbers may include a lowercase letter suffix (for example, `12a` or `34
 | Subject class | `<body class="s-<subject>-<course number>">`, matching the hub entry. |
 | Shared assets | Load `../css/system.css`, `../css/guide.css`, `../js/guide.js` and `../js/tooltip.js`. Add a hover tooltip to any element with a `data-tip` attribute; keep it short and supplementary, never the only place information lives. Put chapter-specific styling into `css/guide.css` only if every guide can use it; there are no per-chapter stylesheets. |
 | Hub entry | One `<li class="chapter">` in the subject's list in `index.html`, with `data-key` equal to the guide's key, `data-total` equal to its number of checklist items plus the number of lab experiments, and a link to the guide (and the lab, when there is one). |
-| Generated files | The `.tex` and `.pdf` are generated from the HTML by `tools/guide-to-tex.py` and LaTeX. Never edit them by hand. |
+| Generated files | The `.tex` and `.pdf` are generated from the HTML by `tools/guide-to-tex.py` and LaTeX. Never edit them by hand. The converter adds a faint diagonal "Made by Thanate Amornjiraporn (Focus)" watermark to every PDF page. |
 | Browser test | Add the guide to `staticPages` in the workspace's `BrowserTests/tests/smoke.spec.js`. |
 
 ## Page structure
@@ -52,7 +52,7 @@ The page contains these blocks in this order. Ids are fixed because the contents
 | 11 | Exam-style problems | `exam` | At least 2 multi-part problems, each with its own hidden worked answer. |
 | 12 | Slips in the notes | `slips` | Only when verified slips exist, headed exactly "Slips in the notes". See [Content rules](#content-rules). |
 | 13 | Self-check | `checklist` | See [Practice and testing](#practice-and-testing). |
-| 14 | Source note | — | "Personal study guide based on … written in my own words; no lecture pages or figures are reproduced. Not an official FAU publication; check course details against the current notes." |
+| 14 | Source note | — | "Personal study guide based on … written in my own words; no lecture pages or figures are reproduced. Not an official FAU publication; check course details against the current notes. Made by <strong>Thanate Amornjiraporn (Focus)</strong>." The lab carries the same note. |
 
 The contents rail (`nav.toc`) lists blocks 4 and 6–13 in the same order, once in the desktop list and once in the mobile `details.mobile-toc`. The two lists must be identical.
 
@@ -102,7 +102,7 @@ The PDF converter understands only this markup, so use it for all maths and stru
 | Variable | `<var>E</var>`; vectors are plain variables in this course's HTML |
 | Index, power | `<sub>…</sub>`, `<sup>…</sup>` (no Unicode superscript digits) |
 | Fraction | `<span class="frac"><span>numerator</span><span>denominator</span></span>` |
-| Sum, product | `<span class="op op-sum"><span class="op-sym">∑</span><sub>k=1</sub><sup>n</sup></span>` (∏ for products). The site stacks the top limit, sign and bottom limit; the PDF typesets `\sum`/`\prod` |
+| Sum, product | `<span class="op op-sum"><span class="op-sym">∑</span><sub>k=1</sub><sup>n</sup></span>` (∏ for products, ⋃ and ⋂ for indexed unions and intersections). The site stacks the top limit, sign and bottom limit; the PDF typesets `\sum`/`\prod` |
 | Integral | `<span class="op op-int"><span class="op-sym">∫</span><sub>a</sub><sup>b</sup></span>` (also ∮, ∬, ∯). The limits sit on the sign's right, top over bottom; a closed-path or surface integral may carry only `<sub>` |
 | Formula card | `<div class="eq"><strong>Title</strong><span class="formula">…</span><span class="eq-note">…</span></div>`, with one `span.formula` per relation |
 | Worked example, recall check | `<div class="worked">` or `<div class="recall">`, first child `<p class="worked-title">` or `<p class="recall-title">` |

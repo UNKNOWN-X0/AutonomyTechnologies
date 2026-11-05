@@ -41,7 +41,8 @@ Personal study material written from the lecture notes. Each chapter has a retri
 
 ## Evidence on Hand
 
-- Real content: EEI Chapter 1, Electrostatic Fields (`eei/`), the reference guide for the standard. The first EE and Maths guides and labs were deleted on 2026-10-27. `assets/preview.png` is a screenshot of the hub.
+- Real content: EEI Chapter 1, Electrostatic Fields (`eei/`), the reference guide for the standard; MEI Chapters 1–3 (`mei/`); APDR Chapters 2, 3, 4, 5, 12a and 34a (`apdr/`). Every chapter has a guide, PDF and lab. The first EE and Maths guides and labs were deleted on 2026-10-27. `assets/preview.png` is a screenshot of the hub.
+- Attribution: every page and PDF says "Made by Thanate Amornjiraporn (Focus)": the hub footer, each guide and lab source note, and a faint watermark on every PDF page.
 - No testimonials, usage statistics or endorsements exist. Do not invent any.
 
 ## Product Principles

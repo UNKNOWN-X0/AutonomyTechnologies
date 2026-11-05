@@ -14,18 +14,18 @@ The home page has one section per semester. Each subject shows its module number
 
 | Semester | Code | Subject | Module | Course parts | Material |
 | --- | --- | --- | --- | --- | --- |
-| 1 | APDR | Algorithms, programming, and data representation | 92313 | Lecture, blackboard exercise, computer exercise | Lecture 1 welcome; Chapter 2 guide and lab; Chapter 12a guide and lab; Chapter 3 guide and lab; Chapter 4 guide and lab; Chapter 34a guide and lab; PDFs |
-| 1 | MEI | Mathematics for Engineers I | 62765 | Lecture, exercise | Chapter 1: Statements, Logic, and Sets study guide and PDF |
-| 1 | EEI | Electrical Engineering I | 92315 | Lecture, exercise, tutorial | Chapter 1: Electrostatic Fields guide, PDF and LaTeX source |
+| 1 | APDR | Algorithms, programming, and data representation | 92313 | Lecture, blackboard exercise, computer exercise | Lecture 1 welcome; Chapter 2 guide and lab; Chapter 12a guide and lab; Chapter 3 guide and lab; Chapter 4 guide and lab; Chapter 34a guide and lab; Chapter 5 guide and lab; PDFs |
+| 1 | MEI | Mathematics for Engineers I | 62765 | Lecture, exercise | Chapter 1: Statements, Logic, and Sets; Chapter 2: Real Numbers; Chapter 3: Mappings. Each has a guide, lab and PDF |
+| 1 | EEI | Electrical Engineering I | 92315 | Lecture, exercise, tutorial | Chapter 1: Electrostatic Fields guide, lab, PDF and LaTeX source |
 | 1 | MATLAB | Introduction to MATLAB | 92317 | Course (not started yet) | none yet |
 
-The earlier Electrical Engineering and Mathematics pages were removed on 2026-10-27. The MEI Chapter 1 guide is based on the supplied lecture notes. The current EEI Chapter 1 guide is a new summary based on the supplied WS 2026/27 lecture notes; the earlier guide and lab remain in git history.
+The earlier Electrical Engineering and Mathematics pages were removed on 2026-10-27. The MEI Chapter 1–3 guides are based on the supplied lecture notes (printed pages 1–35) and were reviewed against them; each guide lists the slips it found in the notes. The current EEI Chapter 1 guide is a new summary based on the supplied WS 2026/27 lecture notes; the earlier guide and lab remain in git history.
 
 ## How to study with it
 
 1. Read one section of a guide, then cover its formulas and write them out from memory.
 2. Do the matching practice problems, then open **Show answer key** to check.
-3. Try the same idea in the matching lab: change one input and predict the result before you look.
+3. Try the same idea in the matching lab: predict, say how sure you are, then reveal. After the four fixed challenges, **New challenge** keeps generating fresh ones in most experiments, and **Explore freely** opens the sandbox at any time, where you can type your own values, rules and bit patterns.
 4. Tick the exam checklist as each skill sticks, or press **Log today's review** under the checklist. Ticks and review days are saved in your browser.
 5. Start each session on the home page: **Review today** lists every chapter you have started, most overdue first. The gap before a chapter is due again grows with each review: 1 day, then 1 week, then 1 month.
 
@@ -42,6 +42,11 @@ eei/                    Electrical Engineering I chapter materials
 mei/                    Mathematics for Engineers I chapter materials
   ch1-statements-logic-sets.html     MEI Chapter 1 guide (the single source)
   ch1-statements-logic-sets.pdf/.tex Print version and generated LaTeX source
+  ch1-statements-logic-sets-lab.html Chapter 1 lab
+  ch2-real-numbers.html, .pdf/.tex   Chapter 2 guide and print version
+  ch2-real-numbers-lab.html          Chapter 2 lab
+  ch3-mappings.html, .pdf/.tex       Chapter 3 guide and print version
+  ch3-mappings-lab.html              Chapter 3 lab
 apdr/                   Algorithms, Programming, and Data Representation materials
   ch2-computers.html             Lecture 2 study guide (the single source)
   ch2-computers.pdf/.tex         Print version and generated LaTeX source
@@ -58,6 +63,11 @@ apdr/                   Algorithms, Programming, and Data Representation materia
   ch34a-integer-and-floating-point.html Chapter 34a combined study guide
   ch34a-integer-and-floating-point.pdf/.tex Print version and generated LaTeX source
   ch34a-integer-and-floating-point-lab.html Chapter 34a predict-then-reveal lab
+  ch5-memory-organisation.html, .pdf/.tex Chapter 5 guide and print version
+  ch5-memory-organisation-lab.html Chapter 5 predict-then-reveal lab
+about/
+  how-to-use.html       How to use the site
+  version-log.html      What changed in each release
 css/
   system.css            Shared sign system: tokens, subject colours, code squares, buttons, tooltip
   index.css             Home page layout
@@ -65,6 +75,10 @@ css/
   lab.css               Lab: challenge card, stage, controls, analogy cards
 js/
   index.js              Review today board
+  settings.js           Theme, motion and text size; loads js/hud.js
+  hud.js                HUD layer shared by every page
+  nav.js                Contents rail and chapter switcher
+  orb.js                The turning code-graph orb on the home page
   guide.js              Guide: saved ticks, review log, contents highlight, section links
   concept-map.js        Guide: the clickable "How the chapter fits together" map
   lab.js                Lab engine: challenges, confidence, verdict, results, progress
@@ -79,68 +93,45 @@ js/
   apdr/ch4-lab.js       APDR Chapter 4 experiments
   apdr/ch34-physics.js  Calculations shared by the combined Chapter 34a lab and tests
   apdr/ch34-lab.js      APDR Chapter 34a experiments
-tests/                  Physics tests: node --test
+  apdr/ch12-*.js, apdr/ch5-*.js  APDR Chapter 12a and 5 calculations and experiments
+  mei/ch<N>-physics.js  MEI Chapter 1–3 maths (answer keys and tests use it)
+  mei/ch<N>-lab.js      MEI Chapter 1–3 experiments
+  mei/expr.js           Safe parser for the f(x) students type in the MEI labs
+tests/                  Physics, lab-challenge and generator tests: node --test
 tools/
   guide-to-tex.py       Converts a guide page into its LaTeX file
   check-guide.py        Checks a guide and its lab against the standards
+  graph-describe.py     Plain-English notes for the Graphify page (run by the graph refresh)
+  graph-orb.py          3D layout of the graph for the home-page orb (run by the graph refresh)
 docs/
   GUIDE-STANDARD.md     What a finished study guide contains and how it is checked
   LAB-STANDARD.md       What a finished lab contains and how it is checked
 assets/preview.png      Screenshot used in this README
+assets/graph-orb.json   Orb layout written by tools/graph-orb.py
 ```
 
 No build step for the site. Fonts load from Google Fonts; formulas are plain HTML.
 
 ### Regenerating a guide's PDF
 
-The HTML guide is the single source. After editing it, regenerate the LaTeX and PDF (needs TeX Live with the New Computer Modern fonts):
+The HTML guide is the single source. After editing it, regenerate the LaTeX and PDF (needs TeX Live with the New Computer Modern fonts). For one guide:
 
 ```sh
-python3 -I tools/guide-to-tex.py eei/ch1-electrostatic-fields.html eei/ch1-electrostatic-fields.tex
-cd eei && latexmk -xelatex ch1-electrostatic-fields.tex && latexmk -c ch1-electrostatic-fields.tex
+python3 -I tools/guide-to-tex.py mei/ch3-mappings.html mei/ch3-mappings.tex
+cd mei && latexmk -xelatex ch3-mappings.tex && latexmk -c ch3-mappings.tex
 ```
 
-For the MEI Chapter 1 guide, run:
+For every guide:
 
 ```sh
-python3 -I tools/guide-to-tex.py mei/ch1-statements-logic-sets.html mei/ch1-statements-logic-sets.tex
-cd mei && latexmk -xelatex ch1-statements-logic-sets.tex && latexmk -c ch1-statements-logic-sets.tex
+for g in */ch*.html; do
+  case $g in *-lab.html|graphify-out/*) continue;; esac
+  python3 -I tools/guide-to-tex.py "$g" "${g%.html}.tex"
+  (cd "$(dirname "$g")" && latexmk -xelatex "$(basename "${g%.html}").tex" && latexmk -c "$(basename "${g%.html}").tex")
+done
 ```
 
-For the APDR Lecture 2 guide, run:
-
-```sh
-python3 -I tools/guide-to-tex.py apdr/ch2-computers.html apdr/ch2-computers.tex
-cd apdr && latexmk -xelatex ch2-computers.tex && latexmk -c ch2-computers.tex
-```
-
-For the APDR Chapter 12a Boolean algebra guide, run:
-
-```sh
-python3 -I tools/guide-to-tex.py apdr/ch12a-boolean-algebra.html apdr/ch12a-boolean-algebra.tex
-cd apdr && latexmk -xelatex ch12a-boolean-algebra.tex && latexmk -c ch12a-boolean-algebra.tex
-```
-
-For the APDR Chapter 3 number and data representation guide, run:
-
-```sh
-python3 -I tools/guide-to-tex.py apdr/ch3-data-representation.html apdr/ch3-data-representation.tex
-cd apdr && latexmk -xelatex ch3-data-representation.tex && latexmk -c ch3-data-representation.tex
-```
-
-For the APDR Chapter 4 floating-point numbers guide, run:
-
-\`\`\`sh
-python3 -I tools/guide-to-tex.py apdr/ch4-floating-point-numbers.html apdr/ch4-floating-point-numbers.tex
-cd apdr && latexmk -xelatex ch4-floating-point-numbers.tex && latexmk -c ch4-floating-point-numbers.tex
-\`\`\`
-
-For the APDR Chapter 34a guide, run:
-
-\`\`\`sh
-python3 -I tools/guide-to-tex.py apdr/ch34a-integer-and-floating-point.html apdr/ch34a-integer-and-floating-point.tex
-cd apdr && latexmk -xelatex ch34a-integer-and-floating-point.tex && latexmk -c ch34a-integer-and-floating-point.tex
-\`\`\`
+Then run `python3 -I tools/check-guide.py <guide>.html`; it flags a PDF older than its `.tex`. Every PDF carries a faint diagonal "Made by Thanate Amornjiraporn (Focus)" watermark, set in the converter's preamble.
 
 In the PDF, every answer block moves to an Answers section at the end, so the questions can be tried first.
 
