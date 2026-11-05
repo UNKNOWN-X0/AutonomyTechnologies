@@ -487,8 +487,68 @@
     if (fs) new MutationObserver(function () { btn.disabled = sel.disabled || fs.disabled; }).observe(fs, { attributes: true, attributeFilter: ["disabled"] });
     render();
   }
+  // Clickable bit cells under a bit-pattern field (input[data-bitcells]): one toggle per 0/1, other characters
+  // (a binary point, spaces) shown as they are. A click flips the bit and fires "input", so the lab updates as if
+  // typed. The row hides when the field holds something else, or when data-bitcells="task=decode" names a select
+  // ([data-task]) whose value must match. Setting .value from lab code redraws the row.
+  function bitCells(input) {
+    var label = input.closest("label") || input.parentNode, row = document.createElement("span"), form = input.form;
+    row.className = "bitcells";
+    row.setAttribute("role", "group");
+    row.setAttribute("aria-label", "Bits of " + (label.textContent || "the pattern").trim() + ": press a bit to flip it");
+    label.appendChild(row);
+    if (label.classList) label.classList.add("has-bits");
+    var proto = Object.getOwnPropertyDescriptor(HTMLInputElement.prototype, "value");
+    function wanted() {
+      var cond = input.getAttribute("data-bitcells"), m = cond && /^(\w+)=(.+)$/.exec(cond);
+      if (m && form) { var sel = form.querySelector("[data-" + m[1] + "]"); if (sel && sel.value !== m[2]) return false; }
+      return /^[01. ]+$/.test(proto.get.call(input)) && /[01]/.test(proto.get.call(input));
+    }
+    function render() {
+      var v = proto.get.call(input);
+      row.hidden = !wanted();
+      row.textContent = "";
+      if (row.hidden) return;
+      var bitsLeft = v.replace(/[^01]/g, "").length, afterPoint = v.indexOf(".") >= 0, seen = 0, group = null;
+      v.split("").forEach(function (ch, i) {
+        if (ch !== "0" && ch !== "1") { var t = document.createElement("span"); t.className = "bitcells-sep"; t.textContent = ch === " " ? "" : ch; row.appendChild(t); group = null; return; }
+        var b = document.createElement("button");
+        b.type = "button";
+        b.className = "bitcell";
+        b.textContent = ch;
+        b.disabled = input.disabled;
+        b.setAttribute("aria-pressed", ch === "1" ? "true" : "false");
+        b.setAttribute("aria-label", "bit " + (seen + 1) + " of " + bitsLeft + ", " + ch);
+        // a nibble gap: from the left after a binary point, from the right otherwise
+        var pos = afterPoint && i > v.indexOf(".") ? i - v.indexOf(".") - 1 : bitsLeft - seen;
+        // nibbles are groups that never split, so a long pattern wraps between groups
+        if (!group || pos % 4 === 0) { group = document.createElement("span"); group.className = "bitgroup"; row.appendChild(group); }
+        var k = seen;
+        b.addEventListener("click", function () {
+          var cur = proto.get.call(input);
+          proto.set.call(input, cur.slice(0, i) + (cur[i] === "1" ? "0" : "1") + cur.slice(i + 1));
+          input.dispatchEvent(new Event("input", { bubbles: true })); // redraws the row and updates the lab
+          var again = row.querySelectorAll(".bitcell")[k]; // keep focus on the same bit in the new row
+          if (again) again.focus();
+        });
+        group.appendChild(b);
+        seen++;
+      });
+    }
+    Object.defineProperty(input, "value", { configurable: true, get: function () { return proto.get.call(input); }, set: function (x) { proto.set.call(input, x); render(); } });
+    input.addEventListener("input", render);
+    if (form) {
+      form.addEventListener("change", render);
+      form.addEventListener("reset", function () { setTimeout(render, 0); });
+    }
+    new MutationObserver(render).observe(input, { attributes: true, attributeFilter: ["disabled"] });
+    var fs = input.closest("fieldset");
+    if (fs) new MutationObserver(render).observe(fs, { attributes: true, attributeFilter: ["disabled"] });
+    render();
+  }
   function enhanceAll() {
     document.querySelectorAll(".controls select").forEach(enhanceSelect);
+    document.querySelectorAll(".controls input[data-bitcells]").forEach(bitCells);
   }
   // Labs mount their experiments on DOMContentLoaded too; their own controls are in the page HTML, so order does not matter.
   if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", enhanceAll);
@@ -502,5 +562,7 @@
     },
     tween: tween,
     reduce: reduce,
+    // For dropdowns a lab creates after load (the EEI charge list): gives them the same custom list.
+    enhance: function (sel) { if (sel && !sel.classList.contains("cselect-native")) enhanceSelect(sel); },
   };
 })();

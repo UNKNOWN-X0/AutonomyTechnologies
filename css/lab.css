@@ -335,6 +335,11 @@
 .controls .field-row {
   justify-content: space-between;
 }
+/* A checkbox row reads as "[x] label", never with the label pushed to the far edge. */
+.controls .field-row:has(> input[type="checkbox"]),
+.controls .field-row:has(> input[type="radio"]) {
+  justify-content: flex-start;
+}
 .controls select {
   min-height: 36px;
   padding: 4px 8px;
@@ -405,14 +410,14 @@
   padding: 0;
   list-style: none;
 }
-.charge-list li {
+.charge-list > li {
   display: flex;
   align-items: center;
   justify-content: space-between;
   gap: 8px;
   padding: 4px 0;
 }
-.charge-list label {
+.charge-list > li > label {
   display: flex;
   align-items: center;
   gap: 8px;
@@ -763,7 +768,7 @@
 /* A row that holds a control keeps the label next to it: on wide screens space-between pushed the label to one edge
    and its control to the other. Readout rows (a label and a value) keep their right-aligned value. */
 @container (min-width: 640px) {
-  .controls .field-row:has(> select, > .cselect, > input:not([type="checkbox"]):not([type="radio"])) {
+  .controls .field-row:not(.wide):has(> select, > .cselect, > input:not([type="checkbox"]):not([type="radio"])) {
     display: grid;
     grid-template-columns: minmax(5em, 9em) minmax(0, 15em);
     justify-content: start;
@@ -839,6 +844,65 @@
 }
 .controls .field-row + .field-row {
   margin-top: 8px;
+}
+/* A long formula (a nested NAND circuit) takes the whole row: label above, box full width. */
+.controls .field-row.wide {
+  display: grid;
+  grid-template-columns: 1fr;
+  row-gap: 6px;
+}
+.controls .field-row.wide > input[type="text"] {
+  width: 100%;
+}
+/* Clickable bit cells under a bit-pattern field (js/lab.js bitCells). */
+.controls .field-row.has-bits {
+  flex-wrap: wrap;
+}
+.bitcells {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px 8px;
+  flex-basis: 100%;
+  grid-column: 2;
+  margin-top: 2px;
+}
+.bitcells[hidden] {
+  display: none;
+}
+.bitgroup {
+  display: inline-flex;
+  gap: 2px;
+}
+.bitcell {
+  box-sizing: border-box;
+  min-width: 24px;
+  height: 28px;
+  padding: 0 4px;
+  border: 2px solid var(--ink);
+  border-radius: 0;
+  background: var(--paper);
+  color: var(--ink);
+  font: 700 0.9rem/1 var(--f-display);
+  font-variant-numeric: tabular-nums;
+  cursor: pointer;
+}
+.bitcell[aria-pressed="true"] {
+  background: var(--act);
+  border-color: var(--act);
+  color: var(--paper);
+}
+.bitcell:focus-visible {
+  outline: 3px solid var(--act);
+  outline-offset: 2px;
+}
+.bitcell:disabled {
+  opacity: 0.55;
+  cursor: default;
+}
+.bitcells-sep {
+  align-self: flex-end;
+  padding: 0 2px;
+  font-weight: 800;
 }
 /* Custom dropdown (js/lab.js) */
 .cselect {

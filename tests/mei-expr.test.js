@@ -61,3 +61,14 @@ test("set expressions read as membership logic", () => {
   assert.strictEqual(S("A \\ B", { A: true, B: true }), false);
   assert.strictEqual(S("A ∩ B'", { A: true, B: false }), true);
 });
+
+test("APDR Boolean notation: juxtaposition, primes and own variable names", () => {
+  const B = (s, n, ...v) => E.bool(s, n).fn(...v);
+  assert.strictEqual(B("x + x′y", "xy", 0, 1), 1);
+  assert.strictEqual(B("(xy)'", "xy", 1, 1), 0);
+  assert.strictEqual(B("C'(W+R)", "cwr", 0, 1, 0), 1); // upper-case names work too
+  assert.strictEqual(B("C'(W+R)", "cwr", 1, 1, 1), 0);
+  assert.strictEqual(B("A ⊕ B ⊕ C", "abc", 1, 1, 1), 1);
+  assert.match(E.bool("x + z", "xy").error, /“z” is not allowed/);
+  assert.match(E.bool("", "xy").error, /type an expression/);
+});

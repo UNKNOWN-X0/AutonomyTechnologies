@@ -155,7 +155,24 @@
       return { error: err.message };
     }
   }
-  var api = { compile: compile, logic: logic };
+  // The APDR chapters' notation: up to three single-letter variables named by `names` (e.g. "xy", "abc", "cwr"),
+  // + for or, juxtaposition or · for and, ′ or ' for not, ⊕ (or ^) for xor, 0, 1 and brackets. Rewritten for logic().
+  // Returns { fn(a, b, c) → 0/1 } or { error }.
+  function bool(text, names) {
+    var t = String(text).replace(/[′’`]/g, "'").replace(/\s+/g, ""), list = names.split("").join(", ");
+    if (!t) return { error: "type an expression in " + list };
+    var bad = t.replace(new RegExp("[" + names + "01+*·'()¬!~⊕^]", "gi"), "");
+    if (bad) return { error: "“" + bad[0] + "” is not allowed: use " + list + ", 0, 1, +, ·, ′, ⊕ and brackets" };
+    t = t.replace(/\^/g, "⊕");
+    var low = t.toLowerCase(), u = "";
+    for (var k = 0; k < t.length; k++) { var j = names.toLowerCase().indexOf(low[k]); u += j >= 0 ? "ABC"[j] : t[k]; }
+    var out = "";
+    for (var i = 0; i < u.length; i++) { if (i && /[ABC01)']/.test(u[i - 1]) && /[ABC01(¬!~]/.test(u[i])) out += "*"; out += u[i]; }
+    var r = logic(out);
+    if (r.error) return { error: r.error.replace(/ ?: use A, B, C.*$/, "") };
+    return { fn: function (a, b, c) { return Number(!!r.fn({ A: !!a, B: !!b, C: !!c })); } };
+  }
+  var api = { compile: compile, logic: logic, bool: bool };
   if (typeof module !== "undefined" && module.exports) module.exports = api;
   else root.Expr = api;
 })(this);

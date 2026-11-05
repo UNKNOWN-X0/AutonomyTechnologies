@@ -123,7 +123,7 @@ No console errors on any lab.
 
 - **Phase 1:** done; all seven bugs fixed.
 - **Phase 2:** done. Explore freely is on every experiment, and APDR 2, 3, 4, 34a and 5 update results as you type (their Convert, Decode, Calculate and Evaluate buttons are gone; stepping buttons such as Run one step stay).
-- **Phase 3:** MEI 1, 2 and 3 done (typed formulas, sets, bits, rules, drag lines, polar drag). APDR 12a has typed identities, typed or clicked K-map cells and a typed or clicked ANF table; its Shannon/OBDD and hazard-delay inputs are still to do. APDR 3, 4, 34a and 5 already take typed values; clickable bit cells there, APDR 2’s typed expression and NAND builder, and the EEI layout save are still to do.
+- **Phase 3:** done. MEI 1, 2 and 3: typed formulas, sets, bits, rules, drag lines, polar drag. APDR 12a: typed identities, K-map and ANF cells, any function and order for the OBDD, hazard path delays. APDR 2: typed umbrella rule, NAND circuit builder. APDR 3, 4, 34a: clickable bit cells on every bit field. EEI 1: save and restore a charge layout.
 - **Phase 4:** done for 35 experiments (LAB-STANDARD §Generated challenges); the other 18 stay fixed by design.
 - **Controls:** every lab dropdown is the custom listbox from `js/lab.js`, and all control boxes share one style (LAB-STANDARD §Layout).
 

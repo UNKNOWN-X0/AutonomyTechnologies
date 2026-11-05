@@ -94,7 +94,7 @@
               <form class="controls" onsubmit="return false">
                 <fieldset>
                   <legend>Convert a binary fraction</legend>
-                  <label class="field-row">Binary value <input type="text" value="0.1011" data-bits /></label>
+                  <label class="field-row">Binary value <input type="text" value="0.1011" data-bits data-bitcells /></label>
                   <div class="row-btns"><button class="btn small" type="button" data-act="reset">Reset</button></div>
                   <p class="readout" aria-live="polite">Decimal value: <output data-out="result">—</output></p>
                 </fieldset>
@@ -163,8 +163,8 @@
                 <fieldset>
                   <legend>Classify single-precision fields</legend>
                   <label class="field-row">Sign bit <select data-sign><option value="0" selected>0</option><option value="1">1</option></select></label>
-                  <label class="field-row">Exponent (8 bits) <input type="text" value="11111111" maxlength="8" data-exponent /></label>
-                  <label class="field-row">Fraction (23 bits) <input type="text" value="00000000000000000000000" maxlength="23" data-fraction /></label>
+                  <label class="field-row">Exponent (8 bits) <input type="text" value="11111111" maxlength="8" data-exponent data-bitcells /></label>
+                  <label class="field-row">Fraction (23 bits) <input type="text" value="00000000000000000000000" maxlength="23" data-fraction data-bitcells /></label>
                   <div class="row-btns"><button class="btn small" type="button" data-act="reset">Reset</button></div>
                   <p class="readout" aria-live="polite">Classification: <output data-out="result">—</output></p>
                 </fieldset>

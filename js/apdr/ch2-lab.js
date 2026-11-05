@@ -229,6 +229,53 @@
       if (r) r.addEventListener("click", function () { if (typeof setTimeout === "function") setTimeout(fn, 0); });
     } };
   }
+  function ownMsg(form, m) { var e = form.querySelector("[data-own-msg]"); if (e) e.textContent = m || ""; }
+  function ownOut(form, m) { var e = form.querySelector("[data-own-out]"); if (e) e.textContent = m || ""; }
+  // "Or try your own" umbrella rule in C, W, R, compared with C′·(W+R) on all eight rows.
+  function ownUmbrella(form) {
+    var input = form.querySelector('[data-own="u"]');
+    if (!input) return;
+    var r = Expr.bool(input.value, "CWR");
+    if (r.error) { ownMsg(form, r.error + "."); ownOut(form, ""); return; }
+    ownMsg(form, "");
+    var b = bits(form, ["car", "forecast", "rain"]), diff = [];
+    for (var k = 0; k < 8; k++) { var c = k >> 2 & 1, w = k >> 1 & 1, rr = k & 1; if (r.fn(c, w, rr) !== Number(P.umbrella(!!c, !!w, !!rr))) diff.push("" + c + w + rr); }
+    ownOut(form, "Your rule gives U = " + r.fn(b.car, b.forecast, b.rain) + " here. " + (diff.length ? "It differs from C′·(W+R) on " + diff.length + " of 8 rows (CWR = " + diff.join(", ") + ")." : "It matches C′·(W+R) on all 8 rows, so it is the same rule."));
+  }
+  // A typed NAND-only circuit: NAND(x, y) nested, with A, B, 0 and 1. A repeated sub-circuit is one shared gate, so
+  // NAND(NAND(A, B), NAND(A, B)) counts 2. Returns { fn(a, b), gates } or { error }.
+  function nandCircuit(text) {
+    var toks = String(text).toUpperCase().match(/NAND|[AB01(),]|\S/g) || [], p = 0, seen = {};
+    if (!toks.length) return { error: "type a circuit, for example NAND(A, B)" };
+    function node() {
+      var t = toks[p++];
+      if (t === "A") return { key: "A", f: function (a) { return a; } };
+      if (t === "B") return { key: "B", f: function (a, b) { return b; } };
+      if (t === "0" || t === "1") { var v = +t; return { key: t, f: function () { return v; } }; }
+      if (t === "NAND") {
+        if (toks[p++] !== "(") throw new Error("write NAND(x, y) with brackets");
+        var x = node(); if (toks[p++] !== ",") throw new Error("NAND takes two inputs, separated by a comma");
+        var y = node(); if (toks[p++] !== ")") throw new Error("a bracket is not closed");
+        var key = "N(" + [x.key, y.key].sort().join(",") + ")";
+        seen[key] = true;
+        return { key: key, f: function (a, b) { return 1 - (x.f(a, b) & y.f(a, b)); } };
+      }
+      throw new Error(t === undefined ? "the circuit ends too early" : "“" + t + "” is not allowed: use NAND(x, y), A, B, 0 and 1");
+    }
+    try { var n = node(); if (p < toks.length) throw new Error("unexpected “" + toks[p] + "” after the circuit"); return { fn: n.f, gates: Object.keys(seen).length }; }
+    catch (e) { return { error: e.message }; }
+  }
+  var FUNCTIONS = { "0000": "constant 0", "0001": "A AND B", "0010": "A AND NOT B", "0011": "A", "0100": "NOT A AND B", "0101": "B", "0110": "A XOR B", "0111": "A OR B",
+    "1000": "A NOR B", "1001": "A XNOR B", "1010": "NOT B", "1011": "A OR NOT B", "1100": "NOT A", "1101": "NOT A OR B", "1110": "A NAND B", "1111": "constant 1" };
+  function ownNand(form) {
+    var input = form.querySelector('[data-own="circuit"]');
+    if (!input) return;
+    var r = nandCircuit(input.value);
+    if (r.error) { ownMsg(form, r.error + "."); ownOut(form, ""); return; }
+    ownMsg(form, "");
+    var rows = [[0, 0], [0, 1], [1, 0], [1, 1]].map(function (v) { return r.fn(v[0], v[1]); }), a = +form.querySelector('[data-bit="a"]').value, b = +form.querySelector('[data-bit="b"]').value;
+    ownOut(form, "Output " + r.fn(a, b) + " for A=" + a + ", B=" + b + " · " + r.gates + " NAND gate" + (r.gates === 1 ? "" : "s") + " · rows 00, 01, 10, 11 give " + rows.join(", ") + ": this is " + FUNCTIONS[rows.join("")] + ".");
+  }
   function lock(form, section, on) {
     form.querySelectorAll("input, select, button").forEach(function (el) { el.disabled = on; });
     section.querySelector(".stage").classList.toggle("locked", on);
@@ -280,6 +327,7 @@
   function experimentLogic() {
     var section = document.querySelector('[data-experiment="logic"]'), form = section.querySelector("form"), canvas = section.querySelector("canvas"), state = { kind: "logic" };
     function show() { queue(canvas,state); }
+    form.addEventListener("input",function(){ownUmbrella(form);});form.addEventListener("change",function(){ownUmbrella(form);});ownUmbrella(form);
     liveAction(form).addEventListener("live",function(){state.bits=bits(form,["car","forecast","rain"]);state.result=P.umbrella(state.bits.car,state.bits.forecast,state.bits.rain);form.querySelector('[data-out="result"]').textContent=Number(state.result);show();});
     function challenge(id,short,car,forecast,rain,answer,prompt,why,note,flip){var zero=["0","U = 0 · no umbrella"],one=["1","U = 1 · take umbrella"];return {id:id,short:short,ref:note?"2.5":"2.4",prompt:prompt,options:flip?[zero,one]:[one,zero],answer:String(Number(answer)),stage:function(){state.bits={car:!!car,forecast:!!forecast,rain:!!rain};state.result=null;state.note="";show();},preview:function(choice){state.guess="U = "+choice;show();},reveal:function(){state.result=P.umbrella(!!car,!!forecast,!!rain);state.revealing=true;return Lab.tween(1300,function(t){state.progress=t;show();}).then(function(){state.revealing=false;state.note=note||"";show();});},why:why};}
     Lab.experiment({id:"logic",title:"2.4 Boolean umbrella rule",card:section.querySelector(".challenge"),lock:function(on){lock(form,section,on);},setup:function(challenge){state.guess="";state.result=null;state.note="";state.progress=0;state.revealing=false;challenge.stage();},sandbox:function(){state.guess="";state.note="";state.bits=bits(form,["car","forecast","rain"]);state.result=null;show();if(form._live)form._live();},
@@ -296,6 +344,7 @@
     function experimentNand(){
     var section=document.querySelector('[data-experiment="nand"]'),form=section.querySelector("form"),canvas=section.querySelector("canvas"),state={kind:"nand"};
     function show(){queue(canvas,state);}
+    form.addEventListener("input",function(){ownNand(form);});form.addEventListener("change",function(){ownNand(form);});ownNand(form);
     liveAction(form).addEventListener("live",function(){state.fn=form.querySelector("[data-fn]").value;state.a=form.querySelector('[data-bit="a"]').value==="1";state.b=form.querySelector('[data-bit="b"]').value==="1";state.result=P.nandCircuit(state.fn,state.a,state.b);form.querySelector('[data-out="result"]').textContent=Number(state.result);show();});
     function challenge(id,short,fn,a,b,answer,prompt,why,flip){var zero=["0","Output 0"],one=["1","Output 1"];return {id:id,short:short,ref:"2.7",prompt:prompt,options:flip?[zero,one]:[one,zero],answer:String(Number(answer)),stage:function(){state.fn=fn;state.a=!!a;state.b=!!b;state.result=null;show();},preview:function(choice){state.guess="Output "+choice;show();},reveal:function(){state.result=P.nandCircuit(fn,!!a,!!b);state.revealing=true;return Lab.tween(1350,function(t){state.progress=t;show();}).then(function(){state.revealing=false;show();});},why:why};}
     Lab.experiment({id:"nand",title:"2.7 Build functions with NAND",card:section.querySelector(".challenge"),lock:function(on){lock(form,section,on);},setup:function(challenge){state.guess="";state.result=null;state.progress=0;state.revealing=false;challenge.stage();},sandbox:function(){state.guess="";state.fn=form.querySelector("[data-fn]").value;state.a=form.querySelector('[data-bit="a"]').value==="1";state.b=form.querySelector('[data-bit="b"]').value==="1";state.result=null;show();if(form._live)form._live();},

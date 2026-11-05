@@ -520,6 +520,7 @@
         });
         lab.appendChild(sel);
         li.appendChild(lab);
+        if (Lab.enhance) Lab.enhance(sel);
         var rm = document.createElement("button");
         rm.type = "button";
         rm.className = "btn small";
@@ -552,6 +553,32 @@
         setLayout(b.dataset.layout);
       });
     });
+    // Your own layout: charges and probe saved in this browser, restored on any later visit.
+    var layoutKey = (document.body.dataset.key || "eei-ch1") + "-layout";
+    function savedLayout() {
+      try { var v = JSON.parse(localStorage.getItem(layoutKey)); return v && v.charges && v.charges.length ? v : null; } catch (e) { return null; }
+    }
+    function syncSaved(note) {
+      var saved = savedLayout(), btn = form.querySelector("[data-act=restore]"), out = form.querySelector("[data-saved]");
+      if (btn) btn.disabled = !saved || st.locked;
+      if (out) out.textContent = note || (saved ? "Saved: " + saved.charges.length + " charge" + (saved.charges.length > 1 ? "s" : "") + "." : "Nothing saved yet.");
+    }
+    var saveBtn = form.querySelector("[data-act=save]"), restoreBtn = form.querySelector("[data-act=restore]");
+    if (saveBtn) saveBtn.addEventListener("click", function () {
+      try {
+        localStorage.setItem(layoutKey, JSON.stringify({ charges: st.charges.map(function (c) { return { x: c.x, y: c.y, q: c.q }; }), probe: st.probe ? { x: st.probe.x, y: st.probe.y } : null }));
+        syncSaved("Saved " + st.charges.length + " charge" + (st.charges.length > 1 ? "s" : "") + " and the probe.");
+      } catch (e) { syncSaved("This browser does not allow saving here."); }
+    });
+    if (restoreBtn) restoreBtn.addEventListener("click", function () {
+      var saved = savedLayout();
+      if (!saved) return syncSaved();
+      st.charges = saved.charges.slice(0, 4).map(function (c) { return { x: +c.x || 0, y: +c.y || 0, q: +c.q || nC }; });
+      if (saved.probe) st.probe = { x: +saved.probe.x || 0, y: +saved.probe.y || 0, q: st.probe ? st.probe.q : 1 * nC };
+      st.ghost = st.marker = null; st.trail = []; st.workFrom = null;
+      syncList(); draw(); syncSaved("Restored " + st.charges.length + " charge" + (st.charges.length > 1 ? "s" : "") + ".");
+    });
+    syncSaved();
     form.querySelector("[data-probe]").addEventListener("change", function (e) {
       if (st.probe) st.probe.q = +e.target.value * nC;
       st.workFrom = null;
@@ -582,6 +609,7 @@
         stage.classList.toggle("locked", on);
         if (!on) {
           syncList();
+          syncSaved();
           form.querySelectorAll("input[data-show]").forEach(function (box) {
             box.checked = st.show[box.dataset.show];
           });

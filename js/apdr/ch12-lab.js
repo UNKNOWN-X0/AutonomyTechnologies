@@ -107,7 +107,7 @@
     if (s.guess) text(ctx, "Your prediction: " + s.guess, w / 2, h - 27, c, 12);
   }
   function drawGraph(ctx, w, h, c, s) {
-    var names = "ABC", g = P.obdd(3, s.order, function (a, b, cc) { return a ? b : cc; }), top = 58, bottom = h - 84, step = (bottom - top) / 3, pos = {}, seen = s.challenge ? (s.result ? 4 : s.revealing ? Math.ceil(s.progress * 4) : 0) : 4;
+    var names = "ABC", g = P.obdd(3, s.order, s.fn || function (a, b, cc) { return a ? b : cc; }), top = 58, bottom = h - 106, step = (bottom - top) / 3, pos = {}, seen = s.challenge ? (s.result ? 4 : s.revealing ? Math.ceil(s.progress * 4) : 0) : 4;
     text(ctx, "Reduced OBDD · order " + s.order.map(function (v) { return names[v]; }).join(", "), w / 2, 25, c, 15);
     if (!seen) { text(ctx, "Build the tree, then merge and remove", w / 2, 110, c, 13, c.muted); if (s.guess) text(ctx, "Your prediction: " + s.guess, w / 2, h - 48, c, 11); return; }
     s.order.forEach(function (v, lvl) {
@@ -157,13 +157,14 @@
     if (s.guess) text(ctx, "Your prediction: " + s.guess, w / 2, h - 26, c, 12);
   }
   function drawHazard(ctx, w, h, c, s) {
-    var left = 52, right = w - 28, y0 = 62, row = 37, p = s.revealing ? s.progress : 1, x = left + (right - left) * p, both = s.y && s.z;
+    var left = 52, right = w - 28, y0 = 62, row = 37, p = s.revealing ? s.progress : 1, x = left + (right - left) * p, both = s.y && s.z,
+      d1 = s.d1 || 1, d2 = s.d2 || 3, L = Math.max(d1, d2) * 4 / 3, off = d1 / L, on = d2 / L, gap = on > off; // x falls at 0; xy ends after d1, x′z starts after d2
     text(ctx, "Signal handoff · x falls while y=" + s.y + ", z=" + s.z, w / 2, 25, c, 15);
     ["xy", "x′z", "xy+x′z", "with yz"].forEach(function (lab, i) {
       var y = y0 + i * row; text(ctx, lab, left - 24, y, c, 11);
       ctx.strokeStyle = c.line; ctx.lineWidth = 1; ctx.beginPath(); ctx.moveTo(left, y + 9); ctx.lineTo(right, y + 9); ctx.stroke();
-      var sum = both ? [[0,.25],[.75,1]] : s.y ? [[0,.25]] : s.z ? [[.75,1]] : [];
-      var intervals = i === 0 ? (s.y ? [[0,.25]] : []) : i === 1 ? (s.z ? [[.75,1]] : []) : i === 2 ? sum : (s.consensusEnabled && both ? [[0,1]] : sum);
+      var sum = both ? (gap ? [[0, off], [on, 1]] : [[0, 1]]) : s.y ? [[0, off]] : s.z ? [[on, 1]] : [];
+      var intervals = i === 0 ? (s.y ? [[0, off]] : []) : i === 1 ? (s.z ? [[on, 1]] : []) : i === 2 ? sum : (s.consensusEnabled && both ? [[0,1]] : sum);
       if (!s.challenge || s.revealing || s.result) intervals.forEach(function (range) {
         if (range[0] < p) line(ctx, left + (right-left)*range[0], y, left + (right-left)*Math.min(range[1], p), y, c, true);
       });
@@ -175,18 +176,11 @@
 
   // "Or try your own": a Boolean expression in x and y in the chapter's notation (+ or, juxtaposition or · and, ′ not, ⊕),
   // rewritten for js/mei/expr.js. Returns { fn(x, y) → 0/1 } or { error }.
-  function boolXY(text) {
-    var t = String(text).replace(/[′’`]/g, "'").replace(/\s+/g, "");
-    if (!t) return { error: "type an expression, for example x + x′y" };
-    var bad = t.replace(/[xy01+*·'()¬!~⊕^]/gi, "");
-    if (bad) return { error: "“" + bad[0] + "” is not allowed: use x, y, 0, 1, +, ·, ′, ⊕ and brackets" };
-    t = t.replace(/\^/g, "⊕").replace(/x/gi, "A").replace(/y/gi, "B");
-    var out = "";
-    for (var i = 0; i < t.length; i++) { if (i && /[AB01)']/.test(t[i - 1]) && /[AB01(¬!~]/.test(t[i])) out += "*"; out += t[i]; }
-    var r = Expr.logic(out);
-    if (r.error) return { error: r.error.replace(/ ?: use A, B, C.*$/, "") };
-    return { fn: function (x, y) { return Number(!!r.fn({ A: !!x, B: !!y })); } };
-  }
+  // The chapter's notation (+ or, juxtaposition or · and, ′ not, ⊕), rewritten for js/mei/expr.js. { fn } or { error }.
+  function boolXY(text) { return Expr.bool(text, "xy"); }
+  function boolABC(text) { return Expr.bool(text, "ABC"); }
+  // The refresh buttons went when the controls became live; this keeps the call sites working if one is added back.
+  function onReset(form, fn) { var b = form.querySelector('[data-act="reset"]'); if (b) b.addEventListener("click", fn); }
   function ownMsg(form, m) { var e = form.querySelector("[data-own-msg]"); if (e) e.textContent = m || ""; }
   // Canvas point in the 360 px layout that queue() centres in the stage.
   function stagePoint(canvas, ev) {
@@ -196,7 +190,7 @@
   function experimentIdentity() {
     var section = document.querySelector('[data-experiment="identity"]'), form = section.querySelector("form"), state = { kind: "identity", law: "absorption" };
     function setLaw() { state.law = form.querySelector("[data-law]").value; state.result = null; queue(section.querySelector("canvas"), state); }
-    form.querySelector("[data-law]").addEventListener("change", setLaw); form.querySelector('[data-act="reset"]').addEventListener("click", setLaw);
+    form.querySelector("[data-law]").addEventListener("change", setLaw); onReset(form, setLaw);
     function ownLaw() {
       var L = form.querySelector('[data-own="left"]'), R = form.querySelector('[data-own="right"]'), l = boolXY(L.value), r = boolXY(R.value);
       if (l.error || r.error) { ownMsg(form, (l.error ? "Left: " + l.error : "Right: " + r.error) + "."); return; }
@@ -233,7 +227,7 @@
   function experimentNand() {
     var section = document.querySelector('[data-experiment="nand"]'), form = section.querySelector("form"), state = { kind: "nand", mode: "and", caption: "NAND output is ¬(A AND B)" };
     function set() { state.mode = form.querySelector("[data-mode]").value; state.caption = form.querySelector("[data-mode] option:checked").textContent; queue(section.querySelector("canvas"), state); }
-    form.querySelector("[data-mode]").addEventListener("change", set); form.querySelector('[data-act="reset"]').addEventListener("click", set);
+    form.querySelector("[data-mode]").addEventListener("change", set); onReset(form, set);
     var gates = [["1", "1 gate"], ["2", "2 gates"], ["3", "3 gates"]];
     register("nand", "1.3 NAND completeness", section, form, state, function (show) {
       return [
@@ -311,15 +305,24 @@
           return cubeText(c.pattern) + " covers " + cells.join(", ");
         }).join("; ") + ". The other options describe a function that differs in one cell.", "minimal cover");
     });
-    form.querySelector('[data-act="reset"]').addEventListener("click", chosen);
+    onReset(form, chosen);
   }
   function experimentShannon() {
     var section = document.querySelector('[data-experiment="shannon"]'), form = section.querySelector("form"), state = { kind: "shannon", view: "split", order: [0,1,2] };
     var mux = function (a,b,c) { return a ? b : c; };
-    function set() { state.view = "graph"; state.order = form.querySelector("[data-order]").value === "abc" ? [0,1,2] : [1,2,0]; state.result = "Reduced OBDD nodes: " + P.obddNodeCount(3, state.order, mux); form.querySelector('[data-out="result"]').textContent = state.result; queue(section.querySelector("canvas"), state); }
-    form.querySelector("[data-order]").addEventListener("change", set); form.querySelector('[data-act="reset"]').addEventListener("click", set);
+    var fIn = form.querySelector('[data-own="f"]');
+    function set() {
+      state.view = "graph"; state.order = form.querySelector("[data-order]").value.split("").map(function (v) { return "abc".indexOf(v); });
+      var r = fIn ? boolABC(fIn.value) : { fn: mux };
+      if (r.error) { ownMsg(form, r.error + "."); return; }
+      ownMsg(form, ""); state.fn = r.fn;
+      var n = P.obddNodeCount(3, state.order, r.fn);
+      state.result = n ? "Reduced OBDD nodes: " + n : "No tests left: the function is constant " + r.fn(0, 0, 0);
+      form.querySelector('[data-out="result"]').textContent = state.result; queue(section.querySelector("canvas"), state);
+    }
+    form.querySelector("[data-order]").addEventListener("change", set); if (fIn) fIn.addEventListener("input", set); onReset(form, set);
     function split() { state.view = "split"; }
-    function graph() { state.view = "graph"; state.order = [0,1,2]; }
+    function graph() { state.view = "graph"; state.order = [0,1,2]; state.fn = mux; }
     register("shannon", "1.5 Shannon expansion and OBDDs", section, form, state, function (show) {
       return [
         standard({ id: "cofactor-one", setup: split }, state, show, [["C", "C"], ["1", "1"], ["B", "B"]], "1.5", "For f(A,B,C)=A·B+A'·C, what is the cofactor when A=1?", "B", "Set A to 1: the second term becomes 0 and the first becomes B.", "cofactor A=1"),
@@ -351,7 +354,7 @@
       var v = state.values.slice(); v[i] ^= 1; fIn.value = v.join(""); ownAnf();
     });
     state.coeff = P.toAnf(state.values); state.poly = anfText(state.coeff);
-    form.querySelector("[data-anf]").addEventListener("change", choose); form.querySelector('[data-act="reset"]').addEventListener("click", choose);
+    form.querySelector("[data-anf]").addEventListener("change", choose); onReset(form, choose);
     register("anf", "1.5 Algebraic normal form", section, form, state, function (show) {
       return [
         standard({ id: "xor-anf", setup: function () { set(options[0]); } }, state, show, [["AB", "AB"], ["A ⊕ B", "A ⊕ B"], ["A ⊕ B ⊕ AB", "A ⊕ B ⊕ AB"]], "1.5", "The truth-table outputs for rows 00,01,10,11 are 0,1,1,0. What is the ANF?", "A ⊕ B", "The Möbius transform gives coefficients 0,1,1,0 for 1,B,A,AB. Therefore the polynomial is B⊕A, equal to A⊕B.", "XOR normal form"),
@@ -367,11 +370,23 @@
   }
   function experimentHazard() {
     var section = document.querySelector('[data-experiment="hazard"]'), form = section.querySelector("form"), state = { kind: "hazard", y: 1, z: 1 };
-    function set(y,z) { state.y = y; state.z = z; var r = P.hazard(1,y,z,1,.5); state.result = !(y && z) ? "No static-1 handoff" : state.consensusEnabled && r.consensus ? "yz bridges the gap" : "Gap without consensus"; form.querySelector('[data-out="result"]').textContent = state.result; queue(section.querySelector("canvas"), state); }
-    function choose() { var v = form.querySelector("[data-inputs]").value.split("").map(Number); state.consensusEnabled = form.querySelector("[data-consensus]").checked; set(v[0],v[1]); }
+    function set(y,z) {
+      state.y = y; state.z = z;
+      var d1 = state.d1 || 1, d2 = state.d2 || 3;
+      state.result = !(y && z) ? "No static-1 handoff" : state.consensusEnabled ? "yz bridges the handoff" : d2 > d1 ? "Gap of " + +(d2 - d1).toFixed(2) + " ns: f drops to 0" : "The paths overlap: no glitch";
+      form.querySelector('[data-out="result"]').textContent = state.result; queue(section.querySelector("canvas"), state);
+    }
+    function delay(name) { var e = form.querySelector('[data-delay="' + name + '"]'); var v = e ? Number(e.value) : NaN; return v > 0 && v <= 10 ? v : null; }
+    function choose() {
+      var v = form.querySelector("[data-inputs]").value.split("").map(Number), d1 = delay("off"), d2 = delay("on");
+      state.consensusEnabled = form.querySelector("[data-consensus]").checked;
+      if (form.querySelector("[data-delay]")) { if (d1 === null || d2 === null) { ownMsg(form, "Use delays above 0 and up to 10 ns."); return; } ownMsg(form, ""); state.d1 = d1; state.d2 = d2; }
+      set(v[0],v[1]);
+    }
+    form.querySelectorAll("[data-delay]").forEach(function (e) { e.addEventListener("input", choose); });
     form.querySelector("[data-inputs]").addEventListener("change", choose);
     form.querySelector("[data-consensus]").addEventListener("change", choose);
-    function inputs(y, z, on) { return function () { state.y = y; state.z = z; state.consensusEnabled = on; }; }
+    function inputs(y, z, on) { return function () { state.y = y; state.z = z; state.consensusEnabled = on; state.d1 = 1; state.d2 = 3; }; }
     register("hazard", "1.6 Static-1 hazards", section, form, state, function (show) {
       return [
         standard({ id: "hazard-present", setup: inputs(1,1,false), result: "Both products are 0 in the gap" }, state, show, [["no", "No · stays at 1"], ["yes", "Yes · a brief drop"]], "1.6", "In f=xy+x'z, let y=z=1 while x changes. Can unequal path delays create a brief 1-to-0 glitch?", "yes", "The output should remain 1 at both endpoints. The xy path can turn off before x'z turns on, leaving a short gap.", "static-1 glitch"),
@@ -380,7 +395,7 @@
         standard({ id: "consensus-identity", setup: inputs(1,1,true), result: "Same stable outputs, safer transition" }, state, show, [["different", "Different truth function"], ["same", "Same truth function"]], "1.6", "Across all Boolean inputs, do xy+x'z+yz and xy+x'z have the same stable truth-table output?", "same", "The consensus theorem makes yz logically redundant. Its role here is to cover a physical transition, not to change the stable Boolean function.", "same logic, safer transition"),
       ];
     }, choose);
-    form.querySelector('[data-act="reset"]').addEventListener("click", choose);
+    onReset(form, choose);
   }
   experimentIdentity(); experimentNand(); experimentKmap(); experimentShannon(); experimentAnf(); experimentHazard();
   window.addEventListener("resize", function () { canvases.forEach(function (canvas) { if (canvas._labState) queue(canvas, canvas._labState); }); });
