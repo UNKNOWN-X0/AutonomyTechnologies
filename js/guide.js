@@ -31,6 +31,11 @@
   boxes.forEach(function (cb) {
     cb.checked = !!saved[cb.dataset.k];
     cb.addEventListener("change", function () {
+      // Re-read first: a lab in another tab may have ticked lab-<id> since this page loaded.
+      try {
+        var fresh = JSON.parse(localStorage.getItem(KEY) || "{}");
+        if (fresh && typeof fresh === "object") saved = fresh;
+      } catch (e) {}
       saved[cb.dataset.k] = cb.checked;
       try {
         localStorage.setItem(KEY, JSON.stringify(saved));

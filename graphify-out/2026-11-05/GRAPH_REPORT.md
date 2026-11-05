@@ -1,7 +1,9 @@
 # Graph Report - AutonomyTechnologies  (2026-11-05)
 
 ## Corpus Check
-- cluster-only mode — file stats not available
+- 62 files · ~220,097 words
+- Verdict: corpus is large enough that graph structure adds value.
+- Unclassified: 6 file(s) not represented in the graph (top: .css 4, (none) 2)
 
 ## Summary
 - 999 nodes · 1929 edges · 52 communities (40 shown, 12 thin omitted)
@@ -71,24 +73,24 @@
 2. `Components` - 25 edges
 3. `capacitorBench()` - 22 edges
 4. `paint()` - 21 edges
-5. `draw()` - 18 edges
+5. `queue()` - 18 edges
 6. `networks()` - 18 edges
-7. `queue()` - 18 edges
+7. `draw()` - 18 edges
 8. `update()` - 18 edges
 9. `interfaceBench()` - 17 edges
 10. `experimentKmap()` - 16 edges
 
 ## Surprising Connections (you probably didn't know these)
-- `Markup` --references--> `o()`  [INFERRED]
-  docs/GUIDE-STANDARD.md → js/apdr/ch34-lab.js
+- `Acceptance` --references--> `generate()`  [INFERRED]
+  docs/LAB-STANDARD.md → js/apdr/ch12-physics.js
+- `Experiments` --references--> `generate()`  [INFERRED]
+  docs/LAB-STANDARD.md → js/apdr/ch12-physics.js
 - `Generated challenges (New challenge)` --references--> `three()`  [INFERRED]
   docs/LAB-STANDARD.md → js/apdr/ch3-lab.js
+- `Markup` --references--> `o()`  [INFERRED]
+  docs/GUIDE-STANDARD.md → js/apdr/ch34-lab.js
 - `New kinds needed` --references--> `venn()`  [INFERRED]
   docs/DIAGRAM-AND-LAB-PLAN.md → js/mei/ch1-lab.js
-- `Part A: diagrams by chapter` --references--> `venn()`  [INFERRED]
-  docs/DIAGRAM-AND-LAB-PLAN.md → js/mei/ch1-lab.js
-- `Markup` --references--> `venn()`  [INFERRED]
-  docs/GUIDE-STANDARD.md → js/mei/ch1-lab.js
 
 ## Import Cycles
 - None detected.

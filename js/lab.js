@@ -287,6 +287,9 @@
     def.challenges.forEach(function (c) {
       if (self.saved[c.id] && self.saved[c.id].correct) score++;
     });
+    // Every fixed challenge is answered here, so tick the skill even if "Open the sandbox" was never clicked
+    // (a reload or "Explore freely" after the last answer used to leave it unticked on the hub).
+    if (this.next() < 0) complete(def.id);
     this.card.innerHTML = ""; // also reached straight from a practice challenge
     this.card.classList.add("finished");
     this.card.appendChild(h("p", "ch-count", "Challenges done · " + score + " of " + def.challenges.length + " predicted correctly"));

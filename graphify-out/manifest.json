@@ -72,9 +72,9 @@
     "semantic_hash": ""
   },
   "js/guide.js": {
-    "mtime": 1793827477.58624,
-    "seen": 1793827819.400819,
-    "ast_hash": "fecaee8d54b2c7a5a146f2623cd0ff2c",
+    "mtime": 1793874394.527237,
+    "seen": 1793874502.390851,
+    "ast_hash": "03b5e3fe4130ad5a01faa48222b1bd3d",
     "semantic_hash": ""
   },
   "tools/guide-to-tex.py": {
@@ -102,9 +102,9 @@
     "semantic_hash": ""
   },
   "js/lab.js": {
-    "mtime": 1793868640.1240766,
-    "seen": 1793869409.1316638,
-    "ast_hash": "e43706cd59463b7842c25b7068e2126b",
+    "mtime": 1793874478.162857,
+    "seen": 1793874502.3908532,
+    "ast_hash": "1c677d2e4cc9de6518c2fbf2cc5dc658",
     "semantic_hash": ""
   },
   "tests/eei-ch1-physics.test.js": {
@@ -462,9 +462,9 @@
     "semantic_hash": ""
   },
   "about/version-log.html": {
-    "mtime": 1793871914.7753162,
-    "seen": 1793871918.475759,
-    "ast_hash": "653a0f586f2636449980c165cc481b50",
+    "mtime": 1793874493.9044955,
+    "seen": 1793874502.39089,
+    "ast_hash": "8bb1801687502456db39f497f8780ed7",
     "semantic_hash": ""
   },
   "docs/DIAGRAM-AND-LAB-PLAN.md": {
@@ -498,8 +498,8 @@
     "semantic_hash": ""
   },
   "assets/graph-orb.json": {
-    "mtime": 1793871983.301242,
-    "seen": 1793872347.360519,
+    "mtime": 1793872357.7150145,
+    "seen": 1793874502.390833,
     "ast_hash": "a3ee670f680c325effab3592c2ee59cb",
     "semantic_hash": ""
   },
