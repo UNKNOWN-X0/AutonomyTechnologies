@@ -24,9 +24,9 @@
     "semantic_hash": ""
   },
   "AGENTS.md": {
-    "mtime": 1793833724.8016284,
-    "seen": 1793867989.990297,
-    "ast_hash": "a232820c6068faeba146d29a08a9dbe2",
+    "mtime": 1793871532.078391,
+    "seen": 1793871575.116333,
+    "ast_hash": "d29eeb07db1ba29e7d5eced17c16eefa",
     "semantic_hash": ""
   },
   "graphify-out/memory/query_20261024_200642_26a2d038_how_are_the_static_study_pages_hosted__and_what_gi.md": {
@@ -489,6 +489,12 @@
     "mtime": 1793829217.0661952,
     "seen": 1793829779.600775,
     "ast_hash": "c09fd94f781c14a4063a7021026a9777",
+    "semantic_hash": ""
+  },
+  "tools/graph-describe.py": {
+    "mtime": 1793871511.5321178,
+    "seen": 1793871524.277628,
+    "ast_hash": "50e802b98e3fa4aeb0e886efdd1ce931",
     "semantic_hash": ""
   }
 }
