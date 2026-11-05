@@ -191,6 +191,12 @@
     gap: 0 24px;
   }
 }
+@container (max-width: 639px) {
+  .lab-ch2 .experiment[data-experiment] .bench > .stage {
+    min-height: 340px;
+    aspect-ratio: auto;
+  }
+}
 
 .stage {
   position: relative;

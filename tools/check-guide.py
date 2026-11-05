@@ -139,7 +139,7 @@ def check(path):
     for s in topic:
         h2 = find(s, lambda n: n.tag == "h2")
         title = h2.text().strip() if h2 else s.attrs.get("id")
-        mnum = re.match(r"(\d+\.\d+)\s", title)
+        mnum = re.match(r"(\d+\.\d+)(?:\.\d+)*\s", title)
         if not mnum:
             rep.err("topic heading must start with its number: %r" % title)
         else:

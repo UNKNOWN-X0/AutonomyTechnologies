@@ -41,7 +41,7 @@
   }
   function guideLink(ref) {
     var a = h("a", "sec-link", "Guide §" + ref);
-    a.href = GUIDE + "#sec-" + ref.split(/[–,]/)[0].trim().replace(".", "");
+    a.href = GUIDE + "#sec-" + ref.split(/[–,]/)[0].trim().replace(/\./g, "");
     return a;
   }
 

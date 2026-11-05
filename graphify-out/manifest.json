@@ -6,21 +6,21 @@
     "semantic_hash": "29fe146da84567bcc68665ce404ff135"
   },
   "README.md": {
-    "mtime": 1793779130.1061318,
-    "seen": 1793799826.403559,
-    "ast_hash": "814a396b1c3f0ee9fc4bc3f539a39408",
+    "mtime": 1793875614.0962431,
+    "seen": 1793877610.481329,
+    "ast_hash": "4724a548f6b9bdcf734b17ffc7b971d6",
     "semantic_hash": ""
   },
   "index.html": {
-    "mtime": 1793872294.765661,
-    "seen": 1793872347.3606,
-    "ast_hash": "f700b32756a8192544bc24c283d77116",
+    "mtime": 1793878693.3122098,
+    "seen": 1793880066.3406951,
+    "ast_hash": "c075a516957b40d65ab32c9cd3d73c1a",
     "semantic_hash": ""
   },
   "assets/preview.png": {
-    "mtime": 1793284507.3665988,
-    "seen": 1793287995.959389,
-    "ast_hash": "ab2ed9178a2b3366c26b08608e3b24d3",
+    "mtime": 1793875768.6807728,
+    "seen": 1793877610.481355,
+    "ast_hash": "7886a231216f006247654f049339b859",
     "semantic_hash": ""
   },
   "AGENTS.md": {
@@ -60,15 +60,15 @@
     "semantic_hash": ""
   },
   "DESIGN.md": {
-    "mtime": 1793833724.8012466,
-    "seen": 1793867989.990298,
-    "ast_hash": "f6c52eef68ba3854c51c3a0a09b9d4d5",
+    "mtime": 1793875525.6181674,
+    "seen": 1793877610.481327,
+    "ast_hash": "bb58328ea7feec180cb321c283572fc9",
     "semantic_hash": ""
   },
   "PRODUCT.md": {
-    "mtime": 1793284507.35938,
-    "seen": 1793287995.959371,
-    "ast_hash": "853c96216556859573bf8f5e71dc10e8",
+    "mtime": 1793875421.6902924,
+    "seen": 1793877610.481328,
+    "ast_hash": "763bbc588e7b7ee0194595f25ca916e9",
     "semantic_hash": ""
   },
   "js/guide.js": {
@@ -90,9 +90,9 @@
     "semantic_hash": ""
   },
   "tools/check-guide.py": {
-    "mtime": 1793692986.101066,
-    "seen": 1793693069.04668,
-    "ast_hash": "9039eac90abf7d66c4a864d2671e12a8",
+    "mtime": 1793876751.870646,
+    "seen": 1793877610.48132,
+    "ast_hash": "e768ad129ed17c6125afb8ca9ade9b15",
     "semantic_hash": ""
   },
   "js/tooltip.js": {
@@ -102,9 +102,9 @@
     "semantic_hash": ""
   },
   "js/lab.js": {
-    "mtime": 1793874478.162857,
-    "seen": 1793874502.3908532,
-    "ast_hash": "1c677d2e4cc9de6518c2fbf2cc5dc658",
+    "mtime": 1793878934.007126,
+    "seen": 1793880066.34064,
+    "ast_hash": "01545641052f99bdfbc9b2336b752dc1",
     "semantic_hash": ""
   },
   "tests/eei-ch1-physics.test.js": {
@@ -144,15 +144,15 @@
     "semantic_hash": ""
   },
   "docs/GUIDE-STANDARD.md": {
-    "mtime": 1793827724.1412098,
-    "seen": 1793827819.400884,
-    "ast_hash": "782a7cd0b92c61d1272e9b4b09a6aec0",
+    "mtime": 1793875525.6170504,
+    "seen": 1793877610.4813418,
+    "ast_hash": "feee24f1424c691e8d200f69b42214f0",
     "semantic_hash": ""
   },
   "docs/LAB-STANDARD.md": {
-    "mtime": 1793868689.8678808,
-    "seen": 1793869409.1317089,
-    "ast_hash": "360fe94f42604398c1ef4b200774c9bc",
+    "mtime": 1793875608.5740232,
+    "seen": 1793877610.481343,
+    "ast_hash": "d79cb4fb94e942406c100386769fc01d",
     "semantic_hash": ""
   },
   "mei/ch1-statements-logic-sets.html": {
@@ -462,9 +462,9 @@
     "semantic_hash": ""
   },
   "about/version-log.html": {
-    "mtime": 1793874493.9044955,
-    "seen": 1793874502.39089,
-    "ast_hash": "8bb1801687502456db39f497f8780ed7",
+    "mtime": 1793879033.0857582,
+    "seen": 1793880066.340675,
+    "ast_hash": "03ee7429852ab48066e1e1e69401da71",
     "semantic_hash": ""
   },
   "docs/DIAGRAM-AND-LAB-PLAN.md": {
@@ -498,9 +498,9 @@
     "semantic_hash": ""
   },
   "assets/graph-orb.json": {
-    "mtime": 1793872357.7150145,
-    "seen": 1793874502.390833,
-    "ast_hash": "a3ee670f680c325effab3592c2ee59cb",
+    "mtime": 1793880076.8979127,
+    "seen": 1793880366.64384,
+    "ast_hash": "ef45746e171a3a492081c5452cdd33a5",
     "semantic_hash": ""
   },
   "js/orb.js": {
@@ -513,6 +513,42 @@
     "mtime": 1793871806.605467,
     "seen": 1793871918.475748,
     "ast_hash": "8b0622eedca6c3b22fbdf0998d60cd70",
+    "semantic_hash": ""
+  },
+  "eei/ch2-stationary-currents.html": {
+    "mtime": 1793878622.7127883,
+    "seen": 1793880066.340692,
+    "ast_hash": "f02534ebaf5619698e89ed363f3eb9df",
+    "semantic_hash": ""
+  },
+  "js/eei/ch2-lab.js": {
+    "mtime": 1793880241.998148,
+    "seen": 1793880366.643857,
+    "ast_hash": "b0f4754f900a0bb4c245eef0497a8f29",
+    "semantic_hash": ""
+  },
+  "js/eei/ch2-physics.js": {
+    "mtime": 1793878030.461598,
+    "seen": 1793880066.340636,
+    "ast_hash": "33196ff4807f7f33c0c2afcdad97d164",
+    "semantic_hash": ""
+  },
+  "tests/eei-ch2-physics.test.js": {
+    "mtime": 1793878961.958082,
+    "seen": 1793880066.340657,
+    "ast_hash": "2ae0bc581417ad18ebdee93437afc21d",
+    "semantic_hash": ""
+  },
+  ".impeccable/surfaces/eei-ch2-lab.md": {
+    "mtime": 1793879033.109973,
+    "seen": 1793880066.340669,
+    "ast_hash": "3a6c1dfacfb64766e42691ba29a4e82c",
+    "semantic_hash": ""
+  },
+  "eei/ch2-stationary-currents-lab.html": {
+    "mtime": 1793880241.9490328,
+    "seen": 1793880366.643913,
+    "ast_hash": "210a9fc9c75392e48600df58cc1cf309",
     "semantic_hash": ""
   }
 }

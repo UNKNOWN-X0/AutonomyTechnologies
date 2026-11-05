@@ -1,0 +1,1020 @@
+\documentclass[11pt]{article}
+\usepackage[margin=18mm,headheight=22pt]{geometry}
+\usepackage{amsmath}
+\usepackage{fontspec}
+\usepackage{unicode-math}
+\setmainfont{NewCM10}[Extension=.otf,UprightFont=*-Book,BoldFont=*-Bold,ItalicFont=*-BookItalic,BoldItalicFont=*-BoldItalic]
+\setsansfont{NewCMSans10}[Extension=.otf,UprightFont=*-Book,BoldFont=*-Bold,ItalicFont=*-BookOblique,BoldItalicFont=*-BoldOblique]
+\setmathfont{NewCMMath-Book.otf}
+\usepackage{xcolor}
+\definecolor{FAUblue}{HTML}{04316A}
+\definecolor{Paperblue}{HTML}{EEF2F7}
+\definecolor{EEIgold}{HTML}{CC9C42}
+\usepackage{etoolbox,enumitem,booktabs,tabularx,array,needspace,microtype}
+\usepackage[most]{tcolorbox}
+\usepackage{titlesec,fancyhdr}
+\usepackage[hidelinks]{hyperref}
+\usepackage{draftwatermark}
+\SetWatermarkText{Made by Thanate Amornjiraporn (Focus)}
+\SetWatermarkColor{black!7}\SetWatermarkFontSize{30pt}\SetWatermarkAngle{45}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{5pt}
+\setlist{itemsep=2pt,topsep=3pt,leftmargin=1.6em,beginpenalty=10000,endpenalty=10000}
+\raggedbottom
+\clubpenalty=10000 \widowpenalty=10000 \displaywidowpenalty=10000 \interlinepenalty=10000
+\setcounter{secnumdepth}{0}
+\setcounter{tocdepth}{1}
+\pagestyle{fancy}\fancyhf{}
+\fancyhead[L]{\small\sffamily\color{FAUblue} From Fundamentals to AI Apocalypse · EEI · Chapter 2}
+\fancyhead[R]{\small\sffamily Stationary Currents}
+\fancyfoot[C]{\small\thepage}
+\titleformat{\section}{\Large\bfseries\sffamily\color{FAUblue}}{}{0pt}{}
+\titleformat{\subsection}{\large\bfseries\sffamily\color{FAUblue}}{}{0pt}{}
+\titlespacing*{\section}{0pt}{16pt}{6pt}
+\preto\section{\Needspace{8\baselineskip}}
+\preto\subsection{\Needspace{6\baselineskip}}
+\newtcolorbox{equationcard}[1]{colback=Paperblue,colframe=Paperblue,boxrule=0pt,arc=0pt,left=10pt,right=10pt,top=6pt,bottom=6pt,title={#1},fonttitle=\small\bfseries\sffamily,coltitle=FAUblue,before skip=8pt,after skip=8pt}
+\newtcolorbox{workedbox}[1]{colback=white,colframe=EEIgold,boxrule=0pt,leftrule=3pt,arc=0pt,left=10pt,top=4pt,bottom=4pt,title={#1},fonttitle=\small\bfseries\sffamily,coltitle=FAUblue,attach title to upper={\par},before skip=8pt,after skip=8pt}
+\newtcolorbox{recallbox}[1]{colback=white,colframe=FAUblue,boxrule=0pt,leftrule=3pt,arc=0pt,left=10pt,top=4pt,bottom=4pt,title={#1},fonttitle=\small\bfseries\sffamily,coltitle=FAUblue,attach title to upper={\par},before skip=8pt,after skip=8pt}
+\usepackage{environ}
+\newsavebox\measurebox
+% Typeset the section once invisibly to measure it; start a new page if it will not fit in what is left.
+\makeatletter
+\newif\ifkeep@measuring
+\NewEnviron{keepsection}{%
+  \ifkeep@measuring \BODY \else
+    \edef\keep@sec{\the\value{section}}\edef\keep@sub{\the\value{subsection}}%
+    \setbox\measurebox\vbox{\hsize\linewidth\keep@measuringtrue\def\Needspace##1{}\BODY}%
+    \setcounter{section}{\keep@sec}\setcounter{subsection}{\keep@sub}%
+    \dimen2=\ht\measurebox \advance\dimen2\dp\measurebox
+    \dimen@=\textheight
+    \ifdim\pagegoal<\maxdimen
+      \dimen@=\pagegoal \advance\dimen@-\pagetotal
+      \ifdim\dimen2>\dimen@ \clearpage \dimen@=\textheight \fi
+    \fi
+    % if it fits, nothing inside may force an early break
+    \ifdim\dimen2>\dimen@ \BODY \else \begingroup\def\Needspace##1{}\BODY\endgroup \fi
+  \fi}
+\makeatother
+\newtcolorbox{notebox}{colback=Paperblue,colframe=Paperblue,boxrule=0pt,arc=0pt,left=8pt,right=8pt,top=4pt,bottom=4pt,before skip=6pt,after skip=6pt}
+\newtcolorbox{plainbox}{colback=white,colframe=FAUblue,boxrule=0pt,leftrule=3pt,arc=0pt,left=10pt,right=8pt,top=4pt,bottom=4pt,before skip=6pt,after skip=8pt}
+\usetikzlibrary{arrows.meta}
+\title{\sffamily\bfseries\color{FAUblue}Stationary Currents}
+\author{Electrical Engineering I \ensuremath{\cdot} Module 92315 \ensuremath{\cdot} Chapter 2\\[2pt]\small From Fundamentals to AI Apocalypse · personal study guide}
+\date{}
+\begin{document}
+\maketitle
+\begingroup\footnotesize\setlength{\parskip}{0pt}\tableofcontents\endgroup
+\clearpage
+
+\Needspace{9\baselineskip}
+{\large A potential difference drives charge through a conductor. This chapter connects that motion to current density, material conductivity, interfaces, resistance, and the energy that becomes heat.}
+
+
+\begin{keepsection}
+\Needspace{16\baselineskip}
+\section{Start from memory}
+
+\Needspace{13\baselineskip}
+Try these six prompts before you read. The aim is to find gaps, not to get them all right.
+
+\Needspace{11\baselineskip}
+\begin{enumerate}
+\item What does electric current measure, and what is its SI unit?
+\item How are current density, charge density, and carrier velocity related?
+\item What must the net current through a closed surface be in a stationary situation?
+\item Why do electrons drift opposite to the electric field while conventional current points with it?
+\item At an interface between conductors, which components of \textit{J} and \textit{E} stay continuous?
+\item How are electrical power and energy related for a resistor?
+\end{enumerate}
+
+\nopagebreak[4]{\small\itshape Answers: see “Start from memory” under Answers at the end.}
+\end{keepsection}
+
+\begin{keepsection}
+\Needspace{19\baselineskip}
+\section{How to use this guide}
+
+\Needspace{16\baselineskip}
+Answer each section's recall check with the guide closed. Mark misses and use the section reference in the answer to choose what to revisit.
+
+\Needspace{13\baselineskip}
+\begin{enumerate}
+\item \textbf{Day 0:} do the memory prompts, then study sections 2.1.1–2.2.4. Work each example on paper before reading its steps; finish sections 2.3–2.4 in a second block.
+\item \textbf{Day 1:} derive current density, the wire resistance formula, and the interface conditions from a blank page.
+\item \textbf{Day 3:} do mixed practice 1–12 without notes. Check each answer, mark the ideas that failed, and redo the marked problems later in the session.
+\item \textbf{Day 7:} do problems 13–24, then explain the questions aloud. Rebuild the chapter map from memory.
+\item \textbf{About two weeks later and before the exam:} attempt both timed problems without notes. Tick a self-check item only after you have shown the skill cold on a later day.
+\end{enumerate}
+
+\begin{notebox}\textbf{When stuck:} pause after ten focused minutes. Reveal only the next answer step, then close it and continue. Later, redo the full problem from a blank page.\end{notebox}
+\end{keepsection}
+
+\begin{keepsection}
+\Needspace{23\baselineskip}
+\section{How the chapter fits together}
+
+\Needspace{20\baselineskip}
+The chapter starts with measured charge flow, defines its spatial distribution, then uses carrier motion and material response to predict fields, currents, and losses.
+
+\Needspace{10\baselineskip}
+\textbf{Measured} \ensuremath{\cdot} starting quantities
+
+\Needspace{8\baselineskip}
+\begin{itemize}
+\item
+\Needspace{4\baselineskip}
+\textbf{Charge flow} \hfill{\small\color{FAUblue}§2.1.1}
+
+\Needspace{4\baselineskip}
+\textit{I} = d\textit{Q}/d\textit{t}
+
+\emph{Rests on:} the measured charge crossing a chosen conductor section and the time taken.
+
+\item
+\Needspace{4\baselineskip}
+\textbf{Carrier motion} \hfill{\small\color{FAUblue}§2.2.1}
+
+\Needspace{5\baselineskip}
+\textit{v}\textsubscript{e} = \ensuremath{-}μ\textsubscript{e}\textit{E}
+
+\emph{Rests on:} the average drift measured for electrons in a conductor; the minus sign records their negative charge.
+
+\item
+\Needspace{4\baselineskip}
+\textbf{Material and geometry} \hfill{\small\color{FAUblue}§2.2.4}
+
+\Needspace{4\baselineskip}
+conductivity κ, length \textit{l}, area \textit{A}
+
+\emph{Rests on:} measured material properties and the shape of the conducting path.
+
+\end{itemize}
+
+\Needspace{10\baselineskip}
+\textbf{Defined} \ensuremath{\cdot} local quantities
+
+\Needspace{8\baselineskip}
+\begin{itemize}
+\item
+\Needspace{4\baselineskip}
+\textbf{Current density} \hfill{\small\color{FAUblue}§2.1.2}
+
+\Needspace{5\baselineskip}
+\textit{J} = ϱ\textsubscript{V}\textit{v}
+
+\emph{Rests on:} charge flow and carrier velocity; it says how much directed current passes through each area.
+
+\item
+\Needspace{4\baselineskip}
+\textbf{Conductivity} \hfill{\small\color{FAUblue}§2.2.2}
+
+\Needspace{5\baselineskip}
+\textit{J} = κ\textit{E}
+
+\emph{Rests on:} the drift response of charge carriers; κ describes how strongly the material conducts.
+
+\item
+\Needspace{4\baselineskip}
+\textbf{Stationary flow} \hfill{\small\color{FAUblue}§2.1.3}
+
+\Needspace{4\baselineskip}
+\ensuremath{\partial}\textit{J}/\ensuremath{\partial}\textit{t} = 0
+
+\emph{Rests on:} charge conservation; no net charge builds up inside a closed surface.
+
+\end{itemize}
+
+\Needspace{10\baselineskip}
+\textbf{Derived} \ensuremath{\cdot} useful predictions
+
+\Needspace{8\baselineskip}
+\begin{itemize}
+\item
+\Needspace{4\baselineskip}
+\textbf{Resistance} \hfill{\small\color{FAUblue}§2.2.3}
+
+\Needspace{5\baselineskip}
+\textit{R} = ρ\textsubscript{R}\textit{l}/\textit{A}
+
+\emph{Rests on:} the material law integrated along a uniform conductor; longer paths resist more and wider paths less.
+
+\item
+\Needspace{4\baselineskip}
+\textbf{Interface conditions} \hfill{\small\color{FAUblue}§2.3}
+
+\Needspace{4\baselineskip}
+\textit{J}\textsubscript{n1} = \textit{J}\textsubscript{n2}, \textit{E}\textsubscript{t1} = \textit{E}\textsubscript{t2}
+
+\emph{Rests on:} charge continuity and the closed-loop integral of the electric field.
+
+\item
+\Needspace{4\baselineskip}
+\textbf{Power and heat} \hfill{\small\color{FAUblue}§2.4}
+
+\Needspace{4\baselineskip}
+\textit{P} = \textit{U I} = \textit{I}\textsuperscript{2}\textit{R}
+
+\emph{Rests on:} work per unit time and Ohm's law; electrical energy is transferred to the material.
+
+\end{itemize}
+
+\Needspace{10\baselineskip}
+\begin{center}\small\begin{tabularx}{\linewidth}{>{\raggedright\arraybackslash}X>{\raggedright\arraybackslash}X}\toprule
+\textbf{Question} & \textbf{Use} \\ \midrule
+How much charge crosses a section each second? & Current \textit{I} \\
+Where in the cross-section does it flow? & Current density \textit{J} and a surface integral \\
+How do material and shape set the voltage drop? & Differential Ohm's law, then \textit{R} = ρ\textsubscript{R}\textit{l}/\textit{A} \\
+What changes across a boundary? & Resolve fields into normal and tangential parts \\
+How quickly is energy transferred? & \textit{P} = \textit{U I}; integrate power over time for energy \\
+\bottomrule\end{tabularx}\end{center}
+\end{keepsection}
+
+\begin{keepsection}
+\Needspace{10\baselineskip}
+\section{2.1.1 Electric current}
+
+\Needspace{7\baselineskip}
+Current gives one number for the total charge flow across a chosen section. It is the circuit quantity that links a moving charge to measurable transport.
+
+\Needspace{11\baselineskip}
+\begin{plainbox}\textbf{In plain words:} imagine counting the net charge that passes a cut through a wire. Current is how quickly that count changes. Opposite-moving charges subtract from one another in the net flow.\end{plainbox}
+
+\begin{equationcard}{Instantaneous current}
+\[ \begin{gathered} {I}\, =\, \dfrac{\mathrm{d}{Q}}{\mathrm{d}{t}} \end{gathered} \]
+{\small \emph{Read it as: “current is the rate at which charge crosses the section”.}\par For a short interval, \textit{I} \ensuremath{\approx} Δ\textit{Q}/Δ\textit{t}. Unit: A = C/s. Positive direction is conventional current, the direction positive charge would move.}
+\end{equationcard}
+
+\Needspace{12\baselineskip}
+When a conducting path joins two electrodes at different potentials, the field drives carriers. The flow continues while the source maintains that potential difference; without a source, the finite charge separation relaxes and the electrode potentials approach one another. In a metal, electrons move opposite the conventional current direction.
+
+\begin{workedbox}{Worked example}
+A net charge of 3.6 C crosses a wire section in 9.0 s at a steady rate. Find the current.
+
+\Needspace{5\baselineskip}
+\begin{enumerate}
+\item Use \textit{I} = Δ\textit{Q}/Δ\textit{t} because the rate is steady.
+\item \textit{I} = 3.6 C / 9.0 s = 0.40 A.
+\item Check: 0.40 C passes each second, so 9.0 s carries 3.6 C.
+\end{enumerate}
+\end{workedbox}
+
+\Needspace{6\baselineskip}
+\begin{notebox}\textbf{Trap:} current is not the amount of charge stored in the wire. It is the rate of net charge crossing a section.\end{notebox}
+
+\Needspace{5\baselineskip}
+\begin{notebox}\textbf{Near miss:} 2 C moving right and 2 C moving left in the same interval do not give 4 C of net transport through a cut; their signed contributions cancel.\end{notebox}
+
+\Needspace{9\baselineskip}
+\begin{recallbox}{Recall check}
+\Needspace{4\baselineskip}
+\begin{enumerate}
+\item What is the SI unit of current in base units?
+\item Which way does conventional current point relative to electron drift in a metal?
+\end{enumerate}
+
+\nopagebreak[4]{\small\itshape Answers: see “2.1.1 Electric current” under Answers at the end.}
+\end{recallbox}
+\end{keepsection}
+
+\begin{keepsection}
+\Needspace{10\baselineskip}
+\section{2.1.2 Electric current density}
+
+\Needspace{7\baselineskip}
+Total current hides where carriers move and how they cross a surface. Current density keeps the local direction and concentration of the flow.
+
+\Needspace{11\baselineskip}
+\begin{plainbox}\textbf{In plain words:} current density is a map of charge flow. Its arrow points along conventional current, and its size tells you the current passing through each unit of area perpendicular to that arrow.\end{plainbox}
+
+\begin{equationcard}{Current density from moving charge}
+\[ \begin{gathered} {J}({P})\, =\, ϱ_{\mathrm{V}}({P})\, {v}({P}) \end{gathered} \]
+{\small \emph{Read it as: “at P, current density equals volume charge density times carrier velocity”.}\par ϱ\textsubscript{V} is signed charge per volume in C/m\textsuperscript{3}; \textit{v} is the velocity of that signed charge, so \textit{J} points with conventional current. Unit: A/m\textsuperscript{2}.}
+\end{equationcard}
+
+\begin{equationcard}{Current through a surface}
+\[ \begin{gathered} {I}\, =\, ∬_{{A}}\, {J}\, \cdot \, \mathrm{d}{A} \end{gathered} \]
+{\small \emph{Read it as: “current through A is the surface integral of current density dotted with the oriented area element”.}\par The area vector points along the chosen surface normal. For uniform \textit{J} meeting a flat surface at angle α to its normal, \textit{I} = |\textit{J}|\textit{A} cos α. Unit: A.}
+\end{equationcard}
+
+\Needspace{14\baselineskip}
+The notes define the microscopic current density using the signed volume charge density. For electrons, both ϱ\textsubscript{V} and their drift velocity are negative relative to conventional current, so their product points in the conventional current direction. For a uniform perpendicular flow, the surface integral reduces to \textit{I} = \textit{J A}.
+
+\begin{workedbox}{Worked example}
+A cylindrical wire of diameter 1.0 mm carries 5.0 A uniformly. Find its current density and the electron drift speed if the free-electron density is 8.5 \ensuremath{\times} 10\textsuperscript{28} m\textsuperscript{\ensuremath{-}3}.
+
+\Needspace{8\baselineskip}
+\begin{enumerate}
+\item \textit{A} = π(0.50 mm)\textsuperscript{2} = 0.785 mm\textsuperscript{2} = 7.85 \ensuremath{\times} 10\textsuperscript{\ensuremath{-}7} m\textsuperscript{2}.
+\item \textit{J} = \textit{I}/\textit{A} = 5.0 / (7.85 \ensuremath{\times} 10\textsuperscript{\ensuremath{-}7}) = 6.37 \ensuremath{\times} 10\textsuperscript{6} A/m\textsuperscript{2}.
+\item For electron carriers, |\textit{J}| = \textit{n}\textsubscript{e}\textit{e}|\textit{v}\textsubscript{e}|. Thus |\textit{v}\textsubscript{e}| = 6.37 \ensuremath{\times} 10\textsuperscript{6} / (8.5 \ensuremath{\times} 10\textsuperscript{28} \ensuremath{\times} 1.602 \ensuremath{\times} 10\textsuperscript{\ensuremath{-}19}) = 4.68 \ensuremath{\times} 10\textsuperscript{\ensuremath{-}4} m/s, opposite \textit{J}.
+\item Check: the drift speed is small because an enormous number of electrons share the current.
+\end{enumerate}
+\end{workedbox}
+
+\Needspace{6\baselineskip}
+\begin{notebox}\textbf{Trap:} use the area perpendicular to the current for \textit{I} = \textit{J A}. For an oblique surface, the dot product supplies the cosine.\end{notebox}
+
+\Needspace{5\baselineskip}
+\begin{notebox}\textbf{Near miss:} the speed of an individual electron is not the drift speed. Thermal motion is rapid in random directions; drift is the much smaller average velocity.\end{notebox}
+
+\Needspace{9\baselineskip}
+\begin{recallbox}{Recall check}
+\Needspace{4\baselineskip}
+\begin{enumerate}
+\item What does the dot product with d\textit{A} select?
+\item Why does electron current density point opposite the electron velocity?
+\end{enumerate}
+
+\nopagebreak[4]{\small\itshape Answers: see “2.1.2 Electric current density” under Answers at the end.}
+\end{recallbox}
+\end{keepsection}
+
+\begin{keepsection}
+\Needspace{9\baselineskip}
+\section{2.1.3 Definition of stationary currents}
+
+\Needspace{6\baselineskip}
+A stationary current does not pile charge up at any point. That conservation condition is what makes currents match across a conducting path and at an interface.
+
+\Needspace{9\baselineskip}
+\begin{plainbox}\textbf{In plain words:} “stationary” means the flow pattern at each place stays the same over time. Charge can keep moving, but the amount inside any closed boundary does not grow or shrink.\end{plainbox}
+
+\begin{equationcard}{Stationary current}
+\[ \begin{gathered} \dfrac{∂{I}}{∂{t}}\, =\, 0,\, \quad \, \dfrac{∂{J}}{∂{t}}\, =\, 0 \end{gathered} \]
+{\small \emph{Read it as: “current and current density have no time change”.}\par The current and current density are constant in time. They may still vary from place to place.}
+\end{equationcard}
+
+\begin{equationcard}{Zero net current through a closed surface}
+\[ \begin{gathered} ∯_{{A}}\, {J}\, \cdot \, \mathrm{d}{A}\, =\, 0 \end{gathered} \]
+{\small \emph{Read it as: “the outward current integrated over a closed surface is zero”.}\par Use the outward normal. Inflow and outflow have opposite signs. Unit: A.}
+\end{equationcard}
+
+\Needspace{8\baselineskip}
+The second relation expresses the continuity principle for the stationary case: carriers are not created or destroyed inside the surface, and the enclosed charge stays constant. It does not say that the current through every open surface is zero; an open cross-section can carry a nonzero current.
+
+\Needspace{6\baselineskip}
+\begin{notebox}\textbf{Trap:} zero net current through a closed surface does not mean zero current everywhere. A wire can pass through the surface: current enters on one side and leaves on the other.\end{notebox}
+
+\Needspace{5\baselineskip}
+\begin{notebox}\textbf{Near miss:} constant current through a wire is stationary even though carriers move. Stationary describes time dependence, not whether the charges are motionless.\end{notebox}
+
+\Needspace{9\baselineskip}
+\begin{recallbox}{Recall check}
+\Needspace{4\baselineskip}
+\begin{enumerate}
+\item Can stationary \textit{J} vary with position?
+\item What does the closed-surface integral say about inward and outward current?
+\end{enumerate}
+
+\nopagebreak[4]{\small\itshape Answers: see “2.1.3 Definition of stationary currents” under Answers at the end.}
+\end{recallbox}
+\end{keepsection}
+
+\begin{keepsection}
+\Needspace{10\baselineskip}
+\section{2.2.1 Charge movements in conductors}
+
+\Needspace{7\baselineskip}
+The motion of carriers explains why a field inside a current-carrying wire is nonzero and how material properties enter Ohm’s law.
+
+\Needspace{11\baselineskip}
+\begin{plainbox}\textbf{In plain words:} in a metal, some outer electrons can move through the lattice. Without an applied field, their random thermal motion averages to no current. A field adds a small preferred drift to that random motion.\end{plainbox}
+
+\begin{equationcard}{Electron drift velocity}
+\[ \begin{gathered} {v}_{\mathrm{e}}\, =\, -μ_{\mathrm{e}}{E} \end{gathered} \]
+{\small \emph{Read it as: “electron drift velocity is minus the mobility times electric field”.}\par μ\textsubscript{e} \ensuremath{>} 0 is electron mobility, dependent on material and temperature. Unit: m\textsuperscript{2}/(V s). The minus sign means electron drift is opposite \textit{E}.}
+\end{equationcard}
+
+\Needspace{12\baselineskip}
+Electrons repeatedly collide with the lattice. The field accelerates them between collisions, while scattering prevents their speed from increasing without bound. The resulting average drift speed is proportional to field strength in the model used by these notes. Conventional current still points along \textit{E}.
+
+\begin{workedbox}{Worked example}
+For μ\textsubscript{e} = 4.12 \ensuremath{\times} 10\textsuperscript{\ensuremath{-}3} m\textsuperscript{2}/(V s) and \textit{E} = 0.20 V/m, find the electron drift velocity.
+
+\Needspace{6\baselineskip}
+\begin{enumerate}
+\item Keep the direction in the signed relation: \textit{v}\textsubscript{e} = \ensuremath{-}μ\textsubscript{e}\textit{E}.
+\item \textit{v}\textsubscript{e} = \ensuremath{-}(4.12 \ensuremath{\times} 10\textsuperscript{\ensuremath{-}3})(0.20) = \ensuremath{-}8.24 \ensuremath{\times} 10\textsuperscript{\ensuremath{-}4} m/s along the field axis.
+\item Check: increasing positive field makes the electron drift more negative; the direction matches a negative carrier.
+\end{enumerate}
+\end{workedbox}
+
+\Needspace{6\baselineskip}
+\begin{notebox}\textbf{Trap:} do not give electron drift and conventional current the same direction. The signed carrier density in \textit{J} = ϱ\textsubscript{V}\textit{v} accounts for the reversal.\end{notebox}
+
+\Needspace{5\baselineskip}
+\begin{notebox}\textbf{Near miss:} random thermal motion by itself is not a directed current: its average velocity is zero. The field creates the nonzero drift average.\end{notebox}
+
+\Needspace{9\baselineskip}
+\begin{recallbox}{Recall check}
+\Needspace{4\baselineskip}
+\begin{enumerate}
+\item What sets the sign between \textit{v}\textsubscript{e} and \textit{E}?
+\item Why is the average electron velocity zero before a field is applied?
+\end{enumerate}
+
+\nopagebreak[4]{\small\itshape Answers: see “2.2.1 Charge movements in conductors” under Answers at the end.}
+\end{recallbox}
+\end{keepsection}
+
+\begin{keepsection}
+\Needspace{8\baselineskip}
+\section{2.2.2 Ohm’s law in differential form}
+
+\Needspace{5\baselineskip}
+Local Ohm’s law describes how current density responds to electric field in a material.
+
+\Needspace{9\baselineskip}
+\begin{plainbox}\textbf{In plain words:} conductivity tells how much current a material carries for a given field; high κ needs less \textit{E} for the same \textit{J}.\end{plainbox}
+
+\begin{equationcard}{Local Ohm’s law}
+\[ \begin{gathered} {J}({P})\, =\, κ{E}({P})\, =\, \dfrac{{E}({P})}{ρ_{\mathrm{R}}} \end{gathered} \]
+{\small \emph{Read it as: “at P, current density is conductivity times electric field, or field divided by resistivity”.}\par κ = 1/ρ\textsubscript{R}; units: S/m, Ω m, A/m\textsuperscript{2}, V/m respectively.}
+\end{equationcard}
+
+\begin{equationcard}{Conductivity from carrier motion}
+\[ \begin{gathered} κ\, =\, {n}_{\mathrm{e}}{e}μ_{\mathrm{e}} \end{gathered} \]
+{\small \emph{Read it as: “conductivity equals free-electron density times charge magnitude times mobility”.}\par \textit{n}\textsubscript{e} is in m\textsuperscript{\ensuremath{-}3}; \textit{e} is in C.}
+\end{equationcard}
+
+\begin{equationcard}{Linear temperature approximation}
+\[ \begin{gathered} ρ_{\mathrm{R}}({T})\, =\, ρ_{\mathrm{R},293\, \mathrm{K}}[1\, +\, α({T}\, -\, 293\, \mathrm{K})] \\ κ({T})\, =\, \dfrac{κ_{293\, \mathrm{K}}}{1\, +\, α({T}\, -\, 293\, \mathrm{K})} \end{gathered} \]
+{\small \emph{Read it as: “resistivity changes linearly from its 293 kelvin value; conductivity is its reciprocal”.}\par α is in K\textsuperscript{\ensuremath{-}1}; this approximation is near 293 K. Δ\textit{T} may be in K or °C. α depends on the material.}
+\end{equationcard}
+
+\begin{workedbox}{Worked example}
+Given κ = 4.0 \ensuremath{\times} 10\textsuperscript{7} S/m and \textit{J} = 8.0 \ensuremath{\times} 10\textsuperscript{5} A/m\textsuperscript{2}, find \textit{E} and ρ\textsubscript{R}.
+
+\Needspace{5\baselineskip}
+\begin{enumerate}
+\item Rearrange local Ohm’s law: \textit{E} = \textit{J}/κ = (8.0 \ensuremath{\times} 10\textsuperscript{5})/(4.0 \ensuremath{\times} 10\textsuperscript{7}) = 2.0 \ensuremath{\times} 10\textsuperscript{\ensuremath{-}2} V/m.
+\item ρ\textsubscript{R} = 1/κ = 2.5 \ensuremath{\times} 10\textsuperscript{\ensuremath{-}8} Ω m.
+\item Check: κ\textit{E} = 4.0 \ensuremath{\times} 10\textsuperscript{7} \ensuremath{\times} 2.0 \ensuremath{\times} 10\textsuperscript{\ensuremath{-}2} = 8.0 \ensuremath{\times} 10\textsuperscript{5} A/m\textsuperscript{2}.
+\end{enumerate}
+\end{workedbox}
+
+\Needspace{6\baselineskip}
+\begin{notebox}\textbf{Trap:} resistivity ρ\textsubscript{R} and volume charge density ϱ\textsubscript{V} are different quantities with different units.\end{notebox}
+
+\Needspace{5\baselineskip}
+\begin{notebox}\textbf{Near miss:} if current density doubles in the same ohmic material at the same temperature, the field doubles too; the relation is linear, not inverse.\end{notebox}
+
+\Needspace{8\baselineskip}
+\begin{recallbox}{Recall check}
+\Needspace{4\baselineskip}
+\begin{enumerate}
+\item How are κ and ρ\textsubscript{R} related?
+\item For a fixed metal, what does positive α predict when temperature rises?
+\end{enumerate}
+
+\nopagebreak[4]{\small\itshape Answers: see “2.2.2 Ohm’s law in differential form” under Answers at the end.}
+\end{recallbox}
+\end{keepsection}
+
+\begin{keepsection}
+\Needspace{9\baselineskip}
+\section{2.2.3 Ohm’s law in integral form}
+
+\Needspace{6\baselineskip}
+Most wire problems need only one voltage, one current, and a resistance. Integrating the local relation gives that simpler model when the conductor is uniform.
+
+\Needspace{10\baselineskip}
+\begin{plainbox}\textbf{In plain words:} resistance combines a material’s opposition to current with the path’s shape. A long, thin wire has more resistance; a short, thick wire made of the same material has less.\end{plainbox}
+
+\begin{equationcard}{Resistance of a uniform cylindrical conductor}
+\[ \begin{gathered} {R}\, =\, ρ_{\mathrm{R}}\dfrac{{l}}{{A}}\, =\, \dfrac{{l}}{κ{A}} \end{gathered} \]
+{\small \emph{Read it as: “resistance is resistivity times length divided by cross-sectional area”.}\par Assumes a homogeneous material and uniform current over the cross-section. Unit: Ω.}
+\end{equationcard}
+
+\begin{equationcard}{Integral Ohm’s law}
+\[ \begin{gathered} {U}\, =\, {R\,I},\, \quad \, {I}\, =\, \dfrac{{U}}{{R}}\, =\, {G\,U},\, \quad \, {G}\, =\, \dfrac{1}{{R}} \end{gathered} \]
+{\small Voltage \textit{U} and current \textit{I} use the same positive direction convention here. Units: \textit{U} in V, \textit{I} in A, \textit{R} in Ω, conductance \textit{G} in S = 1/Ω.}
+\end{equationcard}
+
+\Needspace{11\baselineskip}
+The derivation uses \textit{J} = \textit{I}/\textit{A} and \textit{E} = \textit{J}/κ along a uniform length \textit{l}. The line integral of \textit{E} gives the voltage drop, so \textit{U} = \textit{I l}/(κ\textit{A}) and the coefficient of \textit{I} is the resistance. For temperature-dependent resistivity, use the value at the conductor’s operating temperature.
+
+\begin{workedbox}{Worked example}
+A copper wire is 10 m long, has area 0.78 mm\textsuperscript{2}, and uses ρ\textsubscript{R,293 K} = 0.0178 Ω mm\textsuperscript{2}/m. Find its resistance and voltage drop at 5.0 A, ignoring heating.
+
+\Needspace{6\baselineskip}
+\begin{enumerate}
+\item \textit{R} = 0.0178 \ensuremath{\times} 10 / 0.78 = 0.228 Ω.
+\item \textit{U} = \textit{R I} = 0.228 \ensuremath{\times} 5.0 = 1.14 V.
+\item Check: increasing the wire length or current increases the drop; using Ω mm\textsuperscript{2}/m with area in mm\textsuperscript{2} gives Ω.
+\end{enumerate}
+\end{workedbox}
+
+\Needspace{6\baselineskip}
+\begin{notebox}\textbf{Trap:} keep area units consistent with resistivity. If ρ is in Ω m, put area in m\textsuperscript{2}; if ρ is in Ω mm\textsuperscript{2}/m, put area in mm\textsuperscript{2}.\end{notebox}
+
+\Needspace{5\baselineskip}
+\begin{notebox}\textbf{Near miss:} \textit{R} = ρ\textit{l}/\textit{A} does not apply unchanged to a varying cross-section or material. Divide the path into pieces or return to the field relation.\end{notebox}
+
+\Needspace{9\baselineskip}
+\begin{recallbox}{Recall check}
+\Needspace{4\baselineskip}
+\begin{enumerate}
+\item How does doubling length affect resistance if everything else stays fixed?
+\item What assumptions let the field relation reduce to a single scalar resistance?
+\end{enumerate}
+
+\nopagebreak[4]{\small\itshape Answers: see “2.2.3 Ohm’s law in integral form” under Answers at the end.}
+\end{recallbox}
+\end{keepsection}
+
+\begin{keepsection}
+\Needspace{10\baselineskip}
+\section{2.2.4 Overview of resistors}
+
+\Needspace{7\baselineskip}
+A resistor is a physical component designed to provide a useful, specified resistance. Its nominal value and tolerance communicate how closely a manufactured part should match that value.
+
+\Needspace{11\baselineskip}
+\begin{plainbox}\textbf{In plain words:} real resistors come in different constructions and sizes. The colour bands or printed code identify a nominal resistance; a tolerance tells you how far the actual value may lie from it.\end{plainbox}
+
+\begin{equationcard}{Allowed range from nominal value}
+\[ \begin{gathered} {R}_{\text{actual}}\, \in \, [{R}_{\text{nom}}(1\, -\, τ),\, {R}_{\text{nom}}(1\, +\, τ)] \end{gathered} \]
+{\small \emph{Read it as: “actual resistance lies within the nominal value plus or minus its fractional tolerance”.}\par τ is a fraction, for example 0.05 for \ensuremath{\pm}5\%. Unit: Ω. The notes show E6 \ensuremath{\pm}20\%, E12 \ensuremath{\pm}10\%, and E24 \ensuremath{\pm}5\% preferred-value series.}
+\end{equationcard}
+
+\Needspace{12\baselineskip}
+The lecture shows layer resistors, wire-wound resistors, and examples of fixed resistors. Construction affects practical properties, but the circuit model uses the component’s resistance. The E6, E12, and E24 series offer progressively more nominal values per decade; they are selected-value series, not extra physical laws.
+
+\begin{workedbox}{Worked example}
+A fixed resistor is labelled 1.8 kΩ \ensuremath{\pm}5\%. Find its allowed range.
+
+\Needspace{5\baselineskip}
+\begin{enumerate}
+\item Convert the tolerance to a fraction: τ = 0.05.
+\item Lower limit: 1.8 kΩ \ensuremath{\times} 0.95 = 1.71 kΩ. Upper limit: 1.8 kΩ \ensuremath{\times} 1.05 = 1.89 kΩ.
+\item Check: the range is centred on 1.8 kΩ and extends 0.09 kΩ either way.
+\end{enumerate}
+\end{workedbox}
+
+\Needspace{6\baselineskip}
+\begin{notebox}\textbf{Trap:} tolerance is a range around a nominal value; it is not an extra resistance to add in series.\end{notebox}
+
+\Needspace{5\baselineskip}
+\begin{notebox}\textbf{Near miss:} a 1 kΩ \ensuremath{\pm}10\% part is not guaranteed to equal exactly 1.0 kΩ. Its permitted range is 0.90–1.10 kΩ.\end{notebox}
+
+\Needspace{9\baselineskip}
+\begin{recallbox}{Recall check}
+\Needspace{4\baselineskip}
+\begin{enumerate}
+\item What does \ensuremath{\pm}5\% mean for a 200 Ω nominal resistor?
+\item What is the distinction between a preferred-value series and a resistor construction?
+\end{enumerate}
+
+\nopagebreak[4]{\small\itshape Answers: see “2.2.4 Overview of resistors” under Answers at the end.}
+\end{recallbox}
+\end{keepsection}
+
+\begin{keepsection}
+\Needspace{8\baselineskip}
+\section{2.3 Behaviour at interfaces}
+
+\Needspace{5\baselineskip}
+At a conductivity boundary, the field and current can change size and direction.
+
+\Needspace{9\baselineskip}
+\begin{plainbox}\textbf{In plain words:} split each vector into parts normal to and along the boundary. Charge conservation preserves normal current; the field integral preserves tangential field.\end{plainbox}
+
+\begin{equationcard}{Continuous components}
+\[ \begin{gathered} {J}_{\mathrm{n}1}\, =\, {J}_{\mathrm{n}2},\, \quad \, {E}_{\mathrm{t}1}\, =\, {E}_{\mathrm{t}2} \end{gathered} \]
+{\small \emph{Read it as: “normal current density and tangential electric field are continuous across the interface”.}\par n is normal; t is tangential. Subscripts 1 and 2 name the materials.}
+\end{equationcard}
+
+\begin{equationcard}{Components that change with conductivity}
+\[ \begin{gathered} \dfrac{{E}_{\mathrm{n}1}}{{E}_{\mathrm{n}2}}\, =\, \dfrac{κ_{2}}{κ_{1}},\, \quad \, \dfrac{{J}_{\mathrm{t}1}}{{J}_{\mathrm{t}2}}\, =\, \dfrac{κ_{1}}{κ_{2}} \end{gathered} \]
+{\small \emph{Read it as: “the normal electric field and tangential current density change inversely with conductivity”.}\par These ratios follow from local \textit{J} = κ\textit{E}.}
+\end{equationcard}
+
+\begin{equationcard}{Refraction of the current direction}
+\[ \begin{gathered} \dfrac{\text{tan}\, α_{1}}{\text{tan}\, α_{2}}\, =\, \dfrac{κ_{1}}{κ_{2}} \end{gathered} \]
+{\small \emph{Read it as: “the tangent of the current angle changes in the ratio of the conductivities”.}\par α is measured from the normal; tan α = \textit{J}\textsubscript{t}/\textit{J}\textsubscript{n}.}
+\end{equationcard}
+
+\Needspace{10\baselineskip}
+At an insulator, no current crosses, so \textit{J} is tangential on the conducting side. At a perfect conductor, the outside field and current are normal to its surface.
+
+\begin{workedbox}{Worked example}
+For κ\textsubscript{1} = 2 S/m, κ\textsubscript{2} = 8 S/m, \textit{J}\textsubscript{n} = 4 A/m\textsuperscript{2} and \textit{E}\textsubscript{t} = 3 V/m, find the remaining components.
+
+\Needspace{5\baselineskip}
+\begin{enumerate}
+\item \textit{E}\textsubscript{n1} = 4/2 = 2 V/m; \textit{E}\textsubscript{n2} = 4/8 = 0.50 V/m.
+\item \textit{J}\textsubscript{t1} = 2 \ensuremath{\times} 3 = 6 A/m\textsuperscript{2}; \textit{J}\textsubscript{t2} = 8 \ensuremath{\times} 3 = 24 A/m\textsuperscript{2}.
+\item Check: \textit{J}\textsubscript{n} and \textit{E}\textsubscript{t} match across the boundary.
+\end{enumerate}
+\end{workedbox}
+
+\Needspace{5\baselineskip}
+\begin{notebox}\textbf{Trap:} keep \textit{J}\textsubscript{n} and \textit{E}\textsubscript{t} continuous; use Ohm’s law for the other components.\end{notebox}
+
+\Needspace{5\baselineskip}
+\begin{notebox}\textbf{Near miss:} equal κ makes all components continuous; unequal κ guarantees continuity only for the named components.\end{notebox}
+
+\Needspace{10\baselineskip}
+\begin{recallbox}{Recall check}
+\Needspace{4\baselineskip}
+\begin{enumerate}
+\item Which boundary conditions come from charge continuity and which from the field integral?
+\item At an insulating interface, can current have a normal component?
+\end{enumerate}
+
+\nopagebreak[4]{\small\itshape Answers: see “2.3 Behaviour at interfaces” under Answers at the end.}
+\end{recallbox}
+\end{keepsection}
+
+\begin{keepsection}
+\Needspace{8\baselineskip}
+\section{2.4 Energy and power}
+
+\Needspace{5\baselineskip}
+Power is energy transfer per time; a resistor converts electrical energy to heat.
+
+\Needspace{9\baselineskip}
+\begin{plainbox}\textbf{In plain words:} voltage is energy per charge and current is charge per time, so their product is power.\end{plainbox}
+
+\begin{equationcard}{Electric power in a resistor}
+\[ \begin{gathered} {P}\, =\, {U\,I}\, =\, \dfrac{{U}^{2}}{{R}}\, =\, {I}^{2}{R} \end{gathered} \]
+{\small \emph{Read it as: “power is voltage times current, or voltage squared over resistance, or current squared times resistance”.}\par For fixed \textit{R}, use \textit{U} = \textit{R I}. Unit: W = V A = J/s.}
+\end{equationcard}
+
+\begin{equationcard}{Power density and energy}
+\[ \begin{gathered} {p}_{\mathrm{V}}\, =\, {E}\, \cdot \, {J} \\ {W}\, =\, ∫_{{t}_{0}}^{{t}_{0}+{T}}\, {P}({t})\, \mathrm{d}{t} \end{gathered} \]
+{\small \emph{Read it as: “power density is field dotted with current density; energy is power integrated over time”.}\par \textit{p}\textsubscript{V} is W/m\textsuperscript{3} and integrates to power. Energy is in J; 1 kWh = 3.6 \ensuremath{\times} 10\textsuperscript{6} J. At constant power, \textit{W} = \textit{P T}.}
+\end{equationcard}
+
+\Needspace{10\baselineskip}
+From \textit{J} = κ\textit{E}, \textit{p}\textsubscript{V} = κ|\textit{E}|\textsuperscript{2} = |\textit{J}|\textsuperscript{2}/κ. For time-varying values, instantaneous power is \textit{u}(\textit{t})\textit{i}(\textit{t}); integrate it over time.
+
+\begin{workedbox}{Worked example}
+A 24 Ω resistor runs at 12 V DC for 3.0 minutes. Find current, power, and energy.
+
+\Needspace{7\baselineskip}
+\begin{enumerate}
+\item \textit{I} = \textit{U}/\textit{R} = 12/24 = 0.50 A.
+\item \textit{P} = \textit{U I} = 12 \ensuremath{\times} 0.50 = 6.0 W.
+\item \textit{T} = 3.0 min = 180 s, so \textit{W} = \textit{P T} = 6.0 \ensuremath{\times} 180 = 1080 J.
+\item Check: 6 W \ensuremath{\times} 180 s = 1080 J.
+\end{enumerate}
+\end{workedbox}
+
+\Needspace{4\baselineskip}
+\begin{notebox}\textbf{Trap:} watts measure power; joules measure energy. A watt-hour is power multiplied by time.\end{notebox}
+
+\Needspace{4\baselineskip}
+\begin{notebox}\textbf{Near miss:} the two resistor power forms agree only when \textit{U}, \textit{I}, and \textit{R} obey Ohm’s law.\end{notebox}
+
+\Needspace{8\baselineskip}
+\begin{recallbox}{Recall check}
+\Needspace{4\baselineskip}
+\begin{enumerate}
+\item How do you obtain energy from a time-varying power?
+\item How many joules are in 1 kWh?
+\end{enumerate}
+
+\nopagebreak[4]{\small\itshape Answers: see “2.4 Energy and power” under Answers at the end.}
+\end{recallbox}
+\end{keepsection}
+
+\begin{keepsection}
+\Needspace{21\baselineskip}
+\section{Formula map and units}
+
+\Needspace{10\baselineskip}
+\begin{center}\small\begin{tabularx}{\linewidth}{>{\raggedright\arraybackslash}X>{\raggedright\arraybackslash}X>{\raggedright\arraybackslash}X}\toprule
+\textbf{Quantity or relation} & \textbf{Use} & \textbf{SI unit} \\ \midrule
+\textit{I} = d\textit{Q}/d\textit{t} & Net charge flow rate & A = C/s \\
+\textit{J} = ϱ\textsubscript{V}\textit{v} & Local current density & A/m\textsuperscript{2} \\
+\textit{I} = \ensuremath{\iint}\textsubscript{\textit{A}} \textit{J} \ensuremath{\cdot} d\textit{A} & Current through oriented surface & A \\
+\ensuremath{\partial}\textit{J}/\ensuremath{\partial}\textit{t} = 0; \ensuremath{\oiint}\textsubscript{\textit{A}}\textit{J} \ensuremath{\cdot} d\textit{A} = 0 & Stationary current & A/m\textsuperscript{2}/s; A \\
+\textit{v}\textsubscript{e} = \ensuremath{-}μ\textsubscript{e}\textit{E} & Electron drift model & m/s \\
+\textit{J} = κ\textit{E} = \textit{E}/ρ\textsubscript{R} & Local Ohm’s law & A/m\textsuperscript{2} \\
+κ = \textit{n}\textsubscript{e}\textit{e}μ\textsubscript{e}; ρ\textsubscript{R} = 1/κ & Conductivity and resistivity & S/m; Ω m \\
+\textit{R} = ρ\textsubscript{R}\textit{l}/\textit{A}; \textit{U} = \textit{R I}; \textit{G} = 1/\textit{R} & Uniform conductor & Ω; V; S \\
+\textit{J}\textsubscript{n1} = \textit{J}\textsubscript{n2}; \textit{E}\textsubscript{t1} = \textit{E}\textsubscript{t2} & Interface continuity & A/m\textsuperscript{2}; V/m \\
+\textit{P} = \textit{U I}; \textit{p}\textsubscript{V} = \textit{E} \ensuremath{\cdot} \textit{J}; \textit{P} = \ensuremath{\iiint}\textsubscript{V}\textit{p}\textsubscript{V}dV; \textit{W} = \ensuremath{\int}\textit{P}d\textit{t} & Power and energy & W; J \\
+\bottomrule\end{tabularx}\end{center}
+
+\begin{notebox}\textbf{Check every answer:} convert area and resistivity units before substituting; check current direction and the sign of the normal; test whether higher resistance should raise or lower current; and confirm that power has units of watts while energy has units of joules.\end{notebox}
+\end{keepsection}
+
+\begin{keepsection}
+\Needspace{21\baselineskip}
+\section{Derive it cold}
+
+\Needspace{18\baselineskip}
+Rebuild each chain on blank paper, without looking at the formula map.
+
+\Needspace{16\baselineskip}
+\begin{enumerate}
+\item From charge crossing a section in a time interval, take the limit to define \textit{I} = d\textit{Q}/d\textit{t}. \hfill{\small\color{FAUblue}§2.1.1}
+\item Count the signed charge in a thin slab moving at velocity \textit{v}; divide by area and time to obtain \textit{J} = ϱ\textsubscript{V}\textit{v}. \hfill{\small\color{FAUblue}§2.1.2}
+\item Use electron charge density and drift velocity to obtain κ = \textit{n}\textsubscript{e}\textit{e}μ\textsubscript{e} and \textit{J} = κ\textit{E}. \hfill{\small\color{FAUblue}§2.2.1–2.2.2}
+\item For a uniform cylindrical wire, substitute \textit{J} = \textit{I}/\textit{A} into \textit{E} = \textit{J}/κ, integrate over length, and identify \textit{R} = ρ\textsubscript{R}\textit{l}/\textit{A}. \hfill{\small\color{FAUblue}§2.2.3}
+\item Use a shrinking pillbox and a shrinking loop at a material boundary to derive continuity of \textit{J}\textsubscript{n} and \textit{E}\textsubscript{t}. \hfill{\small\color{FAUblue}§2.3}
+\item Start with work per charge and charge per time to derive \textit{P} = \textit{U I}; substitute Ohm’s law for the two resistor forms. \hfill{\small\color{FAUblue}§2.4}
+\item Integrate the instantaneous rate of energy transfer to get \textit{W} = \ensuremath{\int}\textit{P}(\textit{t})d\textit{t}; reduce it to \textit{P T} for constant power. \hfill{\small\color{FAUblue}§2.4}
+\end{enumerate}
+\end{keepsection}
+
+\begin{keepsection}
+\Needspace{19\baselineskip}
+\section{Explain it}
+
+\Needspace{16\baselineskip}
+Answer each in two or three sentences without writing a formula first.
+
+\Needspace{14\baselineskip}
+\begin{enumerate}
+\item Why can a wire carry a stationary current while its charge carriers keep moving?
+\item Why does electron drift point opposite conventional current in a metal?
+\item Why does doubling a wire’s diameter reduce its resistance by a factor of four, if length and material stay fixed?
+\item Why are only the normal current density and tangential field guaranteed continuous across a conductivity boundary?
+\item When does a resistor’s power increase if its resistance increases: at fixed voltage or at fixed current?
+\item Why is a current-density field more informative than a single current value for a spatially varying conductor?
+\end{enumerate}
+
+\nopagebreak[4]{\small\itshape Answers: see “Explain it” under Answers at the end.}
+\end{keepsection}
+
+\clearpage
+
+\begin{keepsection}
+\Needspace{10\baselineskip}
+\section{Mixed practice}
+
+\Needspace{7\baselineskip}
+There are 24 problems, interleaved across all four topics. Use SI units unless a problem gives a compatible engineering unit. Show the direction or sign as well as the number.
+
+\begin{enumerate}
+\item A net charge of 4.8 C crosses a wire section in 12 s at a constant rate. Find \textit{I}.
+\item For μ\textsubscript{e} = 4.0 \ensuremath{\times} 10\textsuperscript{\ensuremath{-}3} m\textsuperscript{2}/(V s), find electron drift velocity when \textit{E} = 0.30 V/m.
+\item A resistor of 8.0 Ω carries 3.0 A. Find its voltage and power.
+\item A uniform current density of 20 A/m\textsuperscript{2} crosses a flat area of 0.030 m\textsuperscript{2} at 60° to its normal. Find the current.
+\item A material has κ = 5.0 \ensuremath{\times} 10\textsuperscript{7} S/m and \textit{J} = 1.5 \ensuremath{\times} 10\textsuperscript{6} A/m\textsuperscript{2}. Find \textit{E}.
+\item At an interface κ\textsubscript{1} = 2 S/m, κ\textsubscript{2} = 8 S/m, and \textit{J}\textsubscript{n} = 4 A/m\textsuperscript{2}. Find \textit{E}\textsubscript{n1} and \textit{E}\textsubscript{n2}.
+\item A closed surface has 1.2 A entering through one opening. What total current must leave it in a stationary state?
+\item At fixed temperature, a wire’s current density triples. What happens to its electric field in the same ohmic material?
+\item A 12 V source is across a 24 Ω resistor for 5 minutes. Find energy delivered.
+\item A resistor is rated 1.8 kΩ \ensuremath{\pm}5\%. Find the minimum and maximum permitted values.
+\item At an interface, \textit{E}\textsubscript{t} = 3 V/m and κ\textsubscript{1} = 2 S/m, κ\textsubscript{2} = 8 S/m. Find \textit{J}\textsubscript{t1} and \textit{J}\textsubscript{t2}.
+\item Convert 2.0 kWh to joules.
+\item Why is the net current through a closed surface zero in a stationary state even if current passes through it?
+\item A 20 m conductor has ρ\textsubscript{R} = 0.0175 Ω mm\textsuperscript{2}/m and area 2.0 mm\textsuperscript{2}. Find \textit{R}.
+\item A metal has ρ\textsubscript{293 K} = 1.7 \ensuremath{\times} 10\textsuperscript{\ensuremath{-}8} Ω m and α = 3.9 \ensuremath{\times} 10\textsuperscript{\ensuremath{-}3} K\textsuperscript{\ensuremath{-}1}. Estimate ρ at 393 K.
+\item What is the direction of current at the surface of a perfect conductor in the limit described by the notes?
+\item A cylindrical wire has diameter 2.0 mm and carries 1.5 A uniformly. Find its area and current density.
+\item If the voltage across a fixed resistor doubles, what happens to current and power?
+\item A 4.0 Ω resistor carries 2.0 A for 3.0 s. Find the heat energy converted.
+\item A uniform conductor has κ = 4.0 \ensuremath{\times} 10\textsuperscript{7} S/m, length 5.0 m, and area 1.0 mm\textsuperscript{2}. Find its resistance.
+\item For a surface whose normal is perpendicular to uniform \textit{J}, what current crosses the surface?
+\item A 200 Ω resistor has a \ensuremath{\pm}10\% tolerance. Give its permitted range.
+\item Material 2 has four times the conductivity of material 1. For equal tangential electric field, compare their tangential current densities.
+\item A device draws constant 0.50 A at 6.0 V for 2.0 minutes. Find power and energy.
+\end{enumerate}
+
+\nopagebreak[4]{\small\itshape Answers: see “Mixed practice” under Answers at the end.}
+\end{keepsection}
+
+\begin{keepsection}
+\Needspace{6\baselineskip}
+\section{Exam-style problems}
+
+Allow about 20 minutes per problem. Attempt each part in order; later parts use earlier results.
+
+\begin{keepsection}
+\Needspace{13\baselineskip}
+\subsection{1 \ensuremath{\cdot} A copper lead}
+
+\Needspace{10\baselineskip}
+A uniform copper lead has length 8.0 m, diameter 2.0 mm, and conductivity 56 \ensuremath{\times} 10\textsuperscript{6} S/m at its operating temperature. It carries 1.5 A.
+
+\Needspace{7\baselineskip}
+\begin{enumerate}
+\item Find its cross-sectional area and current density.
+\item Find the electric field in the lead and state its direction relative to conventional current.
+\item Find its resistance and voltage drop.
+\item Find the power dissipated and the energy converted in 10 minutes.
+\end{enumerate}
+
+\nopagebreak[4]{\small\itshape Answers: see “Exam-style problems” under Answers at the end.}
+\end{keepsection}
+
+\begin{keepsection}
+\Needspace{15\baselineskip}
+\subsection{2 \ensuremath{\cdot} Current crossing a material boundary}
+
+\Needspace{12\baselineskip}
+Two conducting materials meet at a flat interface. Their conductivities are κ\textsubscript{1} = 2 S/m and κ\textsubscript{2} = 8 S/m. In material 1, \textit{J}\textsubscript{n1} = 4 A/m\textsuperscript{2} and \textit{E}\textsubscript{t1} = 3 V/m. A uniform region of volume 0.010 m\textsuperscript{3} in material 2 carries these local fields.
+
+\Needspace{8\baselineskip}
+\begin{enumerate}
+\item Find \textit{J}\textsubscript{n2}, \textit{E}\textsubscript{n1}, and \textit{E}\textsubscript{n2}.
+\item Find \textit{E}\textsubscript{t2} and the two tangential current densities.
+\item Find the current-density direction angle in each material relative to the normal, then compare the angles.
+\item Find the power density and total power dissipated in the stated volume in material 2.
+\end{enumerate}
+
+\nopagebreak[4]{\small\itshape Answers: see “Exam-style problems” under Answers at the end.}
+\end{keepsection}
+\end{keepsection}
+
+\Needspace{42\baselineskip}
+\begin{keepsection}
+\Needspace{10\baselineskip}
+\section{Self-check}
+
+\Needspace{7\baselineskip}
+Tick a skill only after doing its evidence problems without notes on a later day. These are learning goals, not an official exam specification.
+
+\begin{itemize}[label={}]
+\item $\mdlgwhtsquare$\ Define current from charge flow, with sign and units. (1)
+\item $\mdlgwhtsquare$\ Compute current density and integrate it through an oriented surface. (4, 17, 21)
+\item $\mdlgwhtsquare$\ Apply the stationary closed-surface condition. (7, 13)
+\item $\mdlgwhtsquare$\ Relate electron drift to conventional current direction. (2)
+\item $\mdlgwhtsquare$\ Use local Ohm’s law and conductivity units. (5, 8, 15)
+\item $\mdlgwhtsquare$\ Estimate resistivity at a changed temperature. (15)
+\item $\mdlgwhtsquare$\ Find a uniform wire’s resistance and voltage drop. (14, 20)
+\item $\mdlgwhtsquare$\ Interpret nominal resistance and tolerance. (10, 22)
+\item $\mdlgwhtsquare$\ Apply normal current continuity at an interface. (6)
+\item $\mdlgwhtsquare$\ Apply tangential field continuity and find the current ratio. (11, 23)
+\item $\mdlgwhtsquare$\ Find the direction change at a conductivity boundary. (23)
+\item $\mdlgwhtsquare$\ Calculate resistor power from different equivalent forms. (3, 18, 19)
+\item $\mdlgwhtsquare$\ Convert between power, time and electrical energy. (9, 12, 24)
+\item $\mdlgwhtsquare$\ Answer all six Explain it questions aloud.
+\item $\mdlgwhtsquare$\ Rebuild the derivations above from a blank page.
+\item $\mdlgwhtsquare$\ Solve both linked problems against the clock.
+\end{itemize}
+\end{keepsection}
+
+
+\clearpage
+\section{Answers}
+\begin{keepsection}\subsection{Start from memory}
+
+\Needspace{12\baselineskip}
+\begin{enumerate}
+\item Current is charge crossing a conductor section per unit time; its SI unit is the ampere (A).
+\item \textit{J} = ϱ\textsubscript{V}\textit{v}, where ϱ\textsubscript{V} is volume charge density and \textit{v} is carrier velocity.
+\item Zero: as much charge enters the closed surface as leaves it, so \ensuremath{\oint}\textsubscript{A} \textit{J} \ensuremath{\cdot} d\textit{A} = 0.
+\item Electrons are negative, so the electric force is opposite \textit{E}; conventional current is defined in the direction positive charge would move.
+\item The normal component \textit{J}\textsubscript{n} and tangential component \textit{E}\textsubscript{t} are continuous.
+\item Power is energy transferred per time; for constant DC values in a resistor, \textit{P} = \textit{U I} and \textit{W} = \textit{P T}.
+\end{enumerate}
+
+\end{keepsection}
+\begin{keepsection}\subsection{2.1.1 Electric current}
+
+\Needspace{5\baselineskip}
+\begin{enumerate}
+\item A = C/s.
+\item Opposite the electron drift: conventional current points in the direction a positive carrier would move.
+\end{enumerate}
+
+\end{keepsection}
+\begin{keepsection}\subsection{2.1.2 Electric current density}
+
+\Needspace{4\baselineskip}
+\begin{enumerate}
+\item The component of \textit{J} normal to the oriented surface; tangential flow does not cross it.
+\item Electron charge density is negative, so ϱ\textsubscript{V}\textit{v} points opposite the electron velocity.
+\end{enumerate}
+
+\end{keepsection}
+\begin{keepsection}\subsection{2.1.3 Definition of stationary currents}
+
+\Needspace{4\baselineskip}
+\begin{enumerate}
+\item Yes. It is constant in time at each position, but its value can differ from place to place.
+\item The signed total is zero: total inflow equals total outflow.
+\end{enumerate}
+
+\end{keepsection}
+\begin{keepsection}\subsection{2.2.1 Charge movements in conductors}
+
+\Needspace{5\baselineskip}
+\begin{enumerate}
+\item Electrons are negatively charged, so their electric force and drift are opposite the field.
+\item The thermal motion is disordered with equal likelihood in every direction, so the macroscopic mean cancels.
+\end{enumerate}
+
+\end{keepsection}
+\begin{keepsection}\subsection{2.2.2 Ohm’s law in differential form}
+
+\Needspace{4\baselineskip}
+\begin{enumerate}
+\item They are reciprocals: κ = 1/ρ\textsubscript{R}.
+\item Resistivity rises and conductivity falls in the linear approximation.
+\end{enumerate}
+
+\end{keepsection}
+\begin{keepsection}\subsection{2.2.3 Ohm’s law in integral form}
+
+\Needspace{5\baselineskip}
+\begin{enumerate}
+\item It doubles resistance.
+\item Uniform material and geometry, with uniform current over the cross-section so a single length and area describe the path.
+\end{enumerate}
+
+\end{keepsection}
+\begin{keepsection}\subsection{2.2.4 Overview of resistors}
+
+\Needspace{5\baselineskip}
+\begin{enumerate}
+\item The allowed range is 190–210 Ω.
+\item A preferred-value series gives nominal values and tolerances; construction describes how the component is made, such as layer or wire-wound.
+\end{enumerate}
+
+\end{keepsection}
+\begin{keepsection}\subsection{2.3 Behaviour at interfaces}
+
+\Needspace{6\baselineskip}
+\begin{enumerate}
+\item \textit{J}\textsubscript{n} continuity follows from charge continuity; \textit{E}\textsubscript{t} continuity follows from the vanishing loop integral as the loop height shrinks.
+\item No. The normal current must be zero on the insulating side and therefore on the conducting side too.
+\end{enumerate}
+
+\end{keepsection}
+\begin{keepsection}\subsection{2.4 Energy and power}
+
+\Needspace{4\baselineskip}
+\begin{enumerate}
+\item Integrate instantaneous power over the time interval: \textit{W} = \ensuremath{\int}\textit{P}(\textit{t})d\textit{t}.
+\item 3.6 \ensuremath{\times} 10\textsuperscript{6} J.
+\end{enumerate}
+
+\end{keepsection}
+\begin{keepsection}\subsection{Explain it}
+
+\Needspace{18\baselineskip}
+\begin{enumerate}
+\item Stationary means the flow at each point does not change with time; it does not mean the carriers are at rest. Charge entering each closed region is balanced by charge leaving it.
+\item Electrons carry negative charge, so the electric force on them is opposite the field. Conventional current is defined in the direction positive charge would travel.
+\item Area is proportional to diameter squared. Since resistance is inversely proportional to area, four times the area gives one quarter the resistance.
+\item Charge conservation through a thin pillbox preserves normal current; the vanishing electric-field integral around a shrinking loop preserves the tangential field. Local Ohm’s law then determines the other components.
+\item At fixed current, \textit{P} = \textit{I}\textsuperscript{2}\textit{R} rises with resistance. At fixed voltage, \textit{P} = \textit{U}\textsuperscript{2}/\textit{R} falls with resistance.
+\item A single total hides how current is distributed and in which direction it crosses each surface. The vector field gives both local direction and density, so it can be integrated over any chosen surface.
+\end{enumerate}
+
+\end{keepsection}
+\begin{keepsection}\subsection{Mixed practice}
+
+\begin{enumerate}
+\item \textit{I} = 4.8/12 = 0.40 A. \hfill{\small\color{FAUblue}§2.1.1}
+\item \textit{v}\textsubscript{e} = \ensuremath{-}μ\textsubscript{e}\textit{E} = \ensuremath{-}1.2 \ensuremath{\times} 10\textsuperscript{\ensuremath{-}3} m/s along the field axis. \hfill{\small\color{FAUblue}§2.2.1}
+\item \textit{U} = \textit{I R} = 24 V; \textit{P} = \textit{I}\textsuperscript{2}\textit{R} = 72 W. \hfill{\small\color{FAUblue}§2.4}
+\item \textit{I} = \textit{J A} cos 60° = 20 \ensuremath{\times} 0.030 \ensuremath{\times} 0.5 = 0.30 A. \hfill{\small\color{FAUblue}§2.1.2}
+\item \textit{E} = \textit{J}/κ = 1.5 \ensuremath{\times} 10\textsuperscript{6}/5.0 \ensuremath{\times} 10\textsuperscript{7} = 0.030 V/m. \hfill{\small\color{FAUblue}§2.2.2}
+\item \textit{E}\textsubscript{n1} = 4/2 = 2.0 V/m; \textit{E}\textsubscript{n2} = 4/8 = 0.50 V/m. \hfill{\small\color{FAUblue}§2.3}
+\item 1.2 A leaves; signed inflow and outflow must sum to zero. \hfill{\small\color{FAUblue}§2.1.3}
+\item The field triples because \textit{J} = κ\textit{E} at fixed κ. \hfill{\small\color{FAUblue}§2.2.2}
+\item \textit{P} = 12\textsuperscript{2}/24 = 6.0 W; \textit{W} = \textit{P T} = 6.0 \ensuremath{\times} 300 = 1.80 \ensuremath{\times} 10\textsuperscript{3} J. \hfill{\small\color{FAUblue}§2.4}
+\item 1.8 kΩ \ensuremath{\times} (1 \ensuremath{\pm} 0.05) = 1.71–1.89 kΩ. \hfill{\small\color{FAUblue}§2.2.4}
+\item \textit{J}\textsubscript{t1} = 2 \ensuremath{\times} 3 = 6 A/m\textsuperscript{2}; \textit{J}\textsubscript{t2} = 8 \ensuremath{\times} 3 = 24 A/m\textsuperscript{2}. \hfill{\small\color{FAUblue}§2.3}
+\item 2.0 \ensuremath{\times} 3.6 \ensuremath{\times} 10\textsuperscript{6} = 7.2 \ensuremath{\times} 10\textsuperscript{6} J. \hfill{\small\color{FAUblue}§2.4}
+\item Current may enter and leave, but conservation makes their signed sum zero; no charge accumulates inside the stationary surface. \hfill{\small\color{FAUblue}§2.1.3}
+\item \textit{R} = 0.0175 \ensuremath{\times} 20/2.0 = 0.175 Ω. \hfill{\small\color{FAUblue}§2.2.3}
+\item Δ\textit{T} = 100 K, so ρ = 1.7 \ensuremath{\times} 10\textsuperscript{\ensuremath{-}8}(1 + 0.0039 \ensuremath{\times} 100) = 2.36 \ensuremath{\times} 10\textsuperscript{\ensuremath{-}8} Ω m. \hfill{\small\color{FAUblue}§2.2.2}
+\item Perpendicular to the surface, because the tangential field and current vanish at the ideal perfect-conductor boundary. \hfill{\small\color{FAUblue}§2.3}
+\item \textit{A} = π(1.0 mm)\textsuperscript{2} = 3.14 mm\textsuperscript{2} = 3.14 \ensuremath{\times} 10\textsuperscript{\ensuremath{-}6} m\textsuperscript{2}; \textit{J} = 1.5/\textit{A} = 4.77 \ensuremath{\times} 10\textsuperscript{5} A/m\textsuperscript{2}. \hfill{\small\color{FAUblue}§2.1.2}
+\item Current doubles by Ohm’s law; power becomes four times larger because \textit{P} = \textit{U}\textsuperscript{2}/\textit{R}. \hfill{\small\color{FAUblue}§2.2.3, §2.4}
+\item \textit{P} = \textit{I}\textsuperscript{2}\textit{R} = 16 W; \textit{W} = 16 \ensuremath{\times} 3 = 48 J. \hfill{\small\color{FAUblue}§2.4}
+\item \textit{R} = \textit{l}/(κ\textit{A}) = 5/(4.0 \ensuremath{\times} 10\textsuperscript{7} \ensuremath{\times} 1.0 \ensuremath{\times} 10\textsuperscript{\ensuremath{-}6}) = 0.125 Ω. \hfill{\small\color{FAUblue}§2.2.3}
+\item Zero, because \textit{J} has no normal component and so none crosses the surface. \hfill{\small\color{FAUblue}§2.1.2}
+\item 10\% of 200 Ω is 20 Ω, so the range is 180–220 Ω. \hfill{\small\color{FAUblue}§2.2.4}
+\item \textit{J}\textsubscript{t2} = 4\textit{J}\textsubscript{t1}, because \textit{J}\textsubscript{t} = κ\textit{E}\textsubscript{t} and \textit{E}\textsubscript{t} is continuous. \hfill{\small\color{FAUblue}§2.3}
+\item \textit{P} = 6.0 \ensuremath{\times} 0.50 = 3.0 W; \textit{W} = 3.0 \ensuremath{\times} 120 = 360 J. \hfill{\small\color{FAUblue}§2.4}
+\end{enumerate}
+
+\end{keepsection}
+\begin{keepsection}\subsection{Exam-style problems}
+
+\Needspace{7\baselineskip}
+\begin{enumerate}
+\item Radius = 1.0 \ensuremath{\times} 10\textsuperscript{\ensuremath{-}3} m, so \textit{A} = πr\textsuperscript{2} = 3.14 \ensuremath{\times} 10\textsuperscript{\ensuremath{-}6} m\textsuperscript{2}. \textit{J} = \textit{I}/\textit{A} = 4.77 \ensuremath{\times} 10\textsuperscript{5} A/m\textsuperscript{2}. \hfill{\small\color{FAUblue}§2.1.2, §2.2.1}
+\item \textit{E} = \textit{J}/κ = 8.53 \ensuremath{\times} 10\textsuperscript{\ensuremath{-}3} V/m. It points with conventional current. \hfill{\small\color{FAUblue}§2.1.2, §2.2.2}
+\item \textit{R} = \textit{l}/(κ\textit{A}) = 0.0455 Ω; \textit{U} = \textit{R I} = 0.0682 V. \hfill{\small\color{FAUblue}§2.2.2, §2.2.3}
+\item \textit{P} = \textit{I}\textsuperscript{2}\textit{R} = 0.102 W. For 600 s, \textit{W} = \textit{P T} = 61.4 J. Check \textit{U I} gives the same power. \hfill{\small\color{FAUblue}§2.2.3, §2.4}
+\end{enumerate}
+
+\end{keepsection}
+\begin{keepsection}\subsection{Exam-style problems}
+
+\Needspace{11\baselineskip}
+\begin{enumerate}
+\item Normal current is continuous: \textit{J}\textsubscript{n2} = 4 A/m\textsuperscript{2}. Local Ohm’s law gives \textit{E}\textsubscript{n1} = 4/2 = 2 V/m and \textit{E}\textsubscript{n2} = 4/8 = 0.50 V/m. \hfill{\small\color{FAUblue}§2.2.2, §2.3}
+\item Tangential field is continuous, so \textit{E}\textsubscript{t2} = 3 V/m. Then \textit{J}\textsubscript{t1} = 2 \ensuremath{\times} 3 = 6 A/m\textsuperscript{2} and \textit{J}\textsubscript{t2} = 8 \ensuremath{\times} 3 = 24 A/m\textsuperscript{2}. \hfill{\small\color{FAUblue}§2.2.2, §2.3}
+\item tan α\textsubscript{1} = 6/4 = 1.5, so α\textsubscript{1} \ensuremath{\approx} 56.3°. tan α\textsubscript{2} = 24/4 = 6, so α\textsubscript{2} \ensuremath{\approx} 80.5°. Thus tan α\textsubscript{1}/tan α\textsubscript{2} = 1/4 = κ\textsubscript{1}/κ\textsubscript{2}, as required. \hfill{\small\color{FAUblue}§2.3}
+\item \textit{p}\textsubscript{V2} = \textit{E}\textsubscript{n2}\textit{J}\textsubscript{n2} + \textit{E}\textsubscript{t2}\textit{J}\textsubscript{t2} = 0.5 \ensuremath{\times} 4 + 3 \ensuremath{\times} 24 = 74 W/m\textsuperscript{3}. Total \textit{P} = 74 \ensuremath{\times} 0.010 = 0.74 W. \hfill{\small\color{FAUblue}§2.2.2, §2.3, §2.4}
+\end{enumerate}
+
+\end{keepsection}
+
+\vfill{\small Personal study guide based on the supplied Electrical Engineering I Chapter 2 lecture notes (WS 2026/27), written in my own words; no lecture pages or figures are reproduced. Not an official FAU publication; check course details against the current notes. Made by \textbf{Thanate Amornjiraporn (Focus)}.}
+
+\end{document}

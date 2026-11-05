@@ -6,21 +6,21 @@
     "semantic_hash": "29fe146da84567bcc68665ce404ff135"
   },
   "README.md": {
-    "mtime": 1793779130.1061318,
-    "seen": 1793799826.403559,
-    "ast_hash": "814a396b1c3f0ee9fc4bc3f539a39408",
+    "mtime": 1793875614.0962431,
+    "seen": 1793877610.481329,
+    "ast_hash": "4724a548f6b9bdcf734b17ffc7b971d6",
     "semantic_hash": ""
   },
   "index.html": {
-    "mtime": 1793872294.765661,
-    "seen": 1793872347.3606,
-    "ast_hash": "f700b32756a8192544bc24c283d77116",
+    "mtime": 1793876659.1590757,
+    "seen": 1793877610.4813492,
+    "ast_hash": "3cdf074aea43323af240c1b4d89c1620",
     "semantic_hash": ""
   },
   "assets/preview.png": {
-    "mtime": 1793284507.3665988,
-    "seen": 1793287995.959389,
-    "ast_hash": "ab2ed9178a2b3366c26b08608e3b24d3",
+    "mtime": 1793875768.6807728,
+    "seen": 1793877610.481355,
+    "ast_hash": "7886a231216f006247654f049339b859",
     "semantic_hash": ""
   },
   "AGENTS.md": {
@@ -60,21 +60,21 @@
     "semantic_hash": ""
   },
   "DESIGN.md": {
-    "mtime": 1793833724.8012466,
-    "seen": 1793867989.990298,
-    "ast_hash": "f6c52eef68ba3854c51c3a0a09b9d4d5",
+    "mtime": 1793875525.6181674,
+    "seen": 1793877610.481327,
+    "ast_hash": "bb58328ea7feec180cb321c283572fc9",
     "semantic_hash": ""
   },
   "PRODUCT.md": {
-    "mtime": 1793284507.35938,
-    "seen": 1793287995.959371,
-    "ast_hash": "853c96216556859573bf8f5e71dc10e8",
+    "mtime": 1793875421.6902924,
+    "seen": 1793877610.481328,
+    "ast_hash": "763bbc588e7b7ee0194595f25ca916e9",
     "semantic_hash": ""
   },
   "js/guide.js": {
-    "mtime": 1793827477.58624,
-    "seen": 1793827819.400819,
-    "ast_hash": "fecaee8d54b2c7a5a146f2623cd0ff2c",
+    "mtime": 1793874394.527237,
+    "seen": 1793874502.390851,
+    "ast_hash": "03b5e3fe4130ad5a01faa48222b1bd3d",
     "semantic_hash": ""
   },
   "tools/guide-to-tex.py": {
@@ -90,9 +90,9 @@
     "semantic_hash": ""
   },
   "tools/check-guide.py": {
-    "mtime": 1793692986.101066,
-    "seen": 1793693069.04668,
-    "ast_hash": "9039eac90abf7d66c4a864d2671e12a8",
+    "mtime": 1793876751.870646,
+    "seen": 1793877610.48132,
+    "ast_hash": "e768ad129ed17c6125afb8ca9ade9b15",
     "semantic_hash": ""
   },
   "js/tooltip.js": {
@@ -102,9 +102,9 @@
     "semantic_hash": ""
   },
   "js/lab.js": {
-    "mtime": 1793868640.1240766,
-    "seen": 1793869409.1316638,
-    "ast_hash": "e43706cd59463b7842c25b7068e2126b",
+    "mtime": 1793874478.162857,
+    "seen": 1793874502.3908532,
+    "ast_hash": "1c677d2e4cc9de6518c2fbf2cc5dc658",
     "semantic_hash": ""
   },
   "tests/eei-ch1-physics.test.js": {
@@ -144,15 +144,15 @@
     "semantic_hash": ""
   },
   "docs/GUIDE-STANDARD.md": {
-    "mtime": 1793827724.1412098,
-    "seen": 1793827819.400884,
-    "ast_hash": "782a7cd0b92c61d1272e9b4b09a6aec0",
+    "mtime": 1793875525.6170504,
+    "seen": 1793877610.4813418,
+    "ast_hash": "feee24f1424c691e8d200f69b42214f0",
     "semantic_hash": ""
   },
   "docs/LAB-STANDARD.md": {
-    "mtime": 1793868689.8678808,
-    "seen": 1793869409.1317089,
-    "ast_hash": "360fe94f42604398c1ef4b200774c9bc",
+    "mtime": 1793875608.5740232,
+    "seen": 1793877610.481343,
+    "ast_hash": "d79cb4fb94e942406c100386769fc01d",
     "semantic_hash": ""
   },
   "mei/ch1-statements-logic-sets.html": {
@@ -462,9 +462,9 @@
     "semantic_hash": ""
   },
   "about/version-log.html": {
-    "mtime": 1793871914.7753162,
-    "seen": 1793871918.475759,
-    "ast_hash": "653a0f586f2636449980c165cc481b50",
+    "mtime": 1793876683.0732193,
+    "seen": 1793877610.48133,
+    "ast_hash": "0ab25b4e2cf2ae9d6c1936dc3e7b088d",
     "semantic_hash": ""
   },
   "docs/DIAGRAM-AND-LAB-PLAN.md": {
@@ -498,9 +498,9 @@
     "semantic_hash": ""
   },
   "assets/graph-orb.json": {
-    "mtime": 1793871983.301242,
-    "seen": 1793872347.360519,
-    "ast_hash": "a3ee670f680c325effab3592c2ee59cb",
+    "mtime": 1793874515.2603102,
+    "seen": 1793877610.481279,
+    "ast_hash": "9502379b9f3fc30c39982879b1f97093",
     "semantic_hash": ""
   },
   "js/orb.js": {
@@ -513,6 +513,12 @@
     "mtime": 1793871806.605467,
     "seen": 1793871918.475748,
     "ast_hash": "8b0622eedca6c3b22fbdf0998d60cd70",
+    "semantic_hash": ""
+  },
+  "eei/ch2-stationary-currents.html": {
+    "mtime": 1793877539.8428085,
+    "seen": 1793877610.4813461,
+    "ast_hash": "c7c30e2f402c2a5f1bb13598696bbee8",
     "semantic_hash": ""
   }
 }
