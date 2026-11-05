@@ -84,9 +84,9 @@
     "semantic_hash": ""
   },
   "eei/ch1-electrostatic-fields.html": {
-    "mtime": 1793823782.008561,
-    "seen": 1793824015.2346392,
-    "ast_hash": "8794a01ce472da3ea73ba0a273bda533",
+    "mtime": 1793870430.2400796,
+    "seen": 1793870461.136329,
+    "ast_hash": "512a1cf2b6ed6f23aa09497407110185",
     "semantic_hash": ""
   },
   "tools/check-guide.py": {
@@ -462,9 +462,9 @@
     "semantic_hash": ""
   },
   "about/version-log.html": {
-    "mtime": 1793868689.8667383,
-    "seen": 1793869409.131695,
-    "ast_hash": "db938dc125e82bd9bef9d5293e732567",
+    "mtime": 1793870457.7816217,
+    "seen": 1793870461.1363132,
+    "ast_hash": "dad6942d89c5726b0426df993169e619",
     "semantic_hash": ""
   },
   "docs/DIAGRAM-AND-LAB-PLAN.md": {
