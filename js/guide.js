@@ -569,6 +569,50 @@
       txt(svg, px + 8, py - 6, "P", "vz-text vz-it", "start");
       return [200, 168];
     },
+    shape: function (svg, d) {
+      if (d.kind2 === "cylinder") {
+        el("path", { d: "M48 34L48 112A42 14 0 0 0 132 112L132 34Z", class: "vz-cell" }, svg);
+        el("path", { d: "M48 112A42 14 0 0 1 132 112", class: "vz-dash" }, svg);
+        el("path", { d: "M48 112A42 14 0 0 0 132 112", class: "vz-line" }, svg);
+        el("ellipse", { cx: 90, cy: 34, rx: 42, ry: 14, class: "vz-fill vz-line" }, svg);
+        arrow(svg, 90, 24, 90, 5, "vz-seg");
+        arrow(svg, 132, 68, 160, 68, "vz-seg");
+        arrow(svg, 90, 126, 90, 151, "vz-seg");
+        txt(svg, 118, 14, "+e_z", "vz-small vz-acc", "start");
+        txt(svg, 168, 72, "+e_ρ", "vz-small vz-acc", "start");
+        txt(svg, 112, 158, "−e_z", "vz-small vz-acc", "start");
+        return [232, 170];
+      }
+      if (d.kind2 === "hemisphere") {
+        el("ellipse", { cx: 120, cy: 108, rx: 56, ry: 15, class: "vz-bg vz-line" }, svg);
+        el("path", { d: "M64 108A56 60 0 0 1 176 108L64 108Z", class: "vz-fill vz-line" }, svg);
+        el("path", { d: "M64 108A56 60 0 0 1 176 108", class: "vz-line thick" }, svg);
+        el("line", { x1: 120, y1: 108, x2: 120, y2: 51, class: "vz-dash" }, svg);
+        el("circle", { cx: 120, cy: 108, r: 3, class: "vz-dot" }, svg);
+        txt(svg, 120, 77, "a", "vz-text vz-it vz-acc", "start");
+        el("line", { x1: 36, y1: 49, x2: 73, y2: 69, class: "vz-line" }, svg);
+        txt(svg, 5, 38, "curved surface", "vz-small", "start");
+        el("line", { x1: 174, y1: 124, x2: 198, y2: 139, class: "vz-line" }, svg);
+        txt(svg, 202, 144, "base disk", "vz-small", "start");
+        return [268, 158];
+      }
+      if (d.kind2 === "loop") {
+        var cx = 78, cy = 92, r = 48, px = cx + r;
+        arrow(svg, 99, 48, 73, 48, "vz-seg");
+        txt(svg, 80, 22, "increasing φ", "vz-small vz-acc");
+        el("circle", { cx: cx, cy: cy, r: r, class: "vz-line" }, svg);
+        el("line", { x1: cx, y1: cy, x2: px, y2: cy, class: "vz-line thick" }, svg);
+        txt(svg, (cx + px) / 2, cy - 7, "b", "vz-small vz-it");
+        el("circle", { cx: px, cy: cy, r: 4, class: "vz-dot" }, svg);
+        arrow(svg, px, cy - 7, px, cy - 35, "vz-seg");
+        arrow(svg, px + 5, cy, px + 34, cy, "vz-line");
+        txt(svg, 169, cy - 25, "eφ, ds", "vz-small vz-acc", "start");
+        txt(svg, 169, cy + 17, "eρ = ex", "vz-small", "start");
+        txt(svg, px + 6, cy + 5, "P", "vz-small vz-it", "start");
+        return [236, 154];
+      }
+      return [1, 1];
+    },
     field: function (svg, d) {
       var sub = d.kind2;
       function charge(x, y, sign) {

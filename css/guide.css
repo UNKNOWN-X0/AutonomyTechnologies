@@ -1277,6 +1277,17 @@ section:target > h2::after {
 .lab-link a {
   font-weight: 700;
 }
+.topic-link {
+  max-width: 68ch;
+  padding: 10px 14px;
+  border: 1px solid var(--line);
+  font-size: 0.95rem;
+}
+.topic-link a {
+  color: var(--act);
+  font-weight: 700;
+  text-underline-offset: 3px;
+}
 @media print {
   .lab-link {
     display: none;

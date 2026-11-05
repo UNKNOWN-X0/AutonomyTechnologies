@@ -21,7 +21,7 @@ Each solution should:
 4. State the result with units and direction/sign where relevant.
 5. Close with a quick independent check or likely mistake.
 
-Separate geometric pieces or physical cases before combining them. State any assumption missing from the source, especially orientation or boundary conventions. Never imply a unique smooth normal at a sharp edge.
+Link each problem to the nearest relevant course topic. Where geometry or direction is hard to picture, add an annotated `<figure class="viz">` immediately after the setup and use a supported picture kind that also renders in the PDF. Separate geometric pieces or physical cases before combining them. State any assumption missing from the source, especially orientation or boundary conventions. Never imply a unique smooth normal at a sharp edge.
 
 ## Acceptance
 

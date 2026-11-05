@@ -131,6 +131,99 @@
   window.addEventListener("load", reroute);
   if (document.fonts && document.fonts.ready) document.fonts.ready.then(reroute);
 
+  // Course parts act as tabs; Lecture keeps the chapter route, while other tabs show their linked resources or an honest empty state.
+  document.querySelectorAll("li.subject").forEach(function (sub, si) {
+    var parts = sub.querySelector("ul.parts"),
+      chapters = sub.querySelector("ol.chapters");
+    if (!parts || !chapters || !parts.children.length) return;
+
+    var subjectCode = (sub.querySelector(".code") || {}).textContent || "course",
+      panels = document.createElement("div"),
+      tabItems = Array.prototype.slice.call(parts.children),
+      tabs = [],
+      views = [];
+    parts.setAttribute("role", "tablist");
+    parts.setAttribute("aria-label", subjectCode.trim() + " course parts");
+    panels.className = "part-panels";
+    parts.parentNode.insertBefore(panels, parts.nextSibling);
+
+    tabItems.forEach(function (item, pi) {
+      var sourceLink = item.querySelector("a[href]"),
+        label = item.dataset.tab || (sourceLink ? sourceLink.textContent.trim() : item.textContent.trim()),
+        key = "part-" + si + "-" + pi,
+        tab = document.createElement("button"),
+        panel = document.createElement("div");
+      tab.type = "button";
+      tab.className = "part-tab";
+      tab.id = key + "-tab";
+      tab.setAttribute("role", "tab");
+      tab.setAttribute("aria-controls", key + "-panel");
+      tab.setAttribute("aria-selected", "false");
+      tab.tabIndex = -1;
+      tab.textContent = label;
+      item.setAttribute("role", "presentation");
+      item.replaceChildren(tab);
+
+      panel.className = "part-panel";
+      panel.id = key + "-panel";
+      panel.setAttribute("role", "tabpanel");
+      panel.setAttribute("aria-labelledby", tab.id);
+      panel.tabIndex = 0;
+      panel.hidden = true;
+      if (label.toLowerCase() === "lecture") {
+        chapters.id = key + "-chapters";
+        panel.appendChild(chapters);
+      } else if (sourceLink) {
+        var resource = document.createElement("div"),
+          heading = document.createElement("h4"),
+          link = sourceLink.cloneNode(true),
+          note = document.createElement("p");
+        resource.className = "part-resource";
+        heading.appendChild(link);
+        note.textContent = tabItems[pi].dataset.note || "Open the linked " + label.toLowerCase() + " material.";
+        resource.appendChild(heading);
+        resource.appendChild(note);
+        panel.appendChild(resource);
+      } else {
+        var empty = document.createElement("p");
+        empty.className = "part-empty";
+        empty.textContent = "No " + label.toLowerCase() + " material is posted here yet.";
+        panel.appendChild(empty);
+      }
+      panels.appendChild(panel);
+      tabs.push(tab);
+      views.push(panel);
+
+      function select(index, focus) {
+        tabs.forEach(function (other, i) {
+          var selected = i === index;
+          other.setAttribute("aria-selected", String(selected));
+          other.tabIndex = selected ? 0 : -1;
+          views[i].hidden = !selected;
+        });
+        if (focus) tabs[index].focus();
+        reroute();
+      }
+      tab.addEventListener("click", function () { select(pi, false); });
+      tab.addEventListener("keydown", function (event) {
+        var next = pi;
+        if (event.key === "ArrowRight") next = (pi + 1) % tabs.length;
+        else if (event.key === "ArrowLeft") next = (pi + tabs.length - 1) % tabs.length;
+        else if (event.key === "Home") next = 0;
+        else if (event.key === "End") next = tabs.length - 1;
+        else return;
+        event.preventDefault();
+        select(next, true);
+      });
+    });
+    if (tabs.length) {
+      tabs[0].setAttribute("aria-selected", "true");
+      tabs[0].tabIndex = 0;
+      views[0].hidden = false;
+    }
+  });
+  reroute();
+
   // Subjects fold their chapter lists. Until any chapter is started everything is open; after that a subject you have
   // started opens by default and the rest start folded. A subject you open or fold yourself stays that way (saved here).
   var folds = read("hub-folds", {}),

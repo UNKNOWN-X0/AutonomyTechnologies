@@ -544,10 +544,31 @@ html.sweeping .chapter.started:not(.lit)::before {
   align-items: center;
   gap: 8px;
   min-height: 36px;
-  padding: 0 12px;
+  padding: 0;
   border: 2px dashed var(--line);
   color: var(--muted);
   font: 600 0.9rem/1 var(--f-display);
+}
+.parts .part-tab {
+  display: inline-flex;
+  align-items: center;
+  min-height: 32px;
+  padding: 0 12px;
+  border: 0;
+  background: transparent;
+  color: inherit;
+  font: inherit;
+  cursor: pointer;
+}
+.parts .part-tab:focus-visible {
+  outline: 3px solid var(--act);
+  outline-offset: 3px;
+}
+.parts li:has(> .part-tab[aria-selected="true"]) {
+  border-style: solid;
+  border-color: var(--course);
+  background: var(--course);
+  color: var(--ink);
 }
 .parts li::before {
   content: "";
@@ -559,6 +580,31 @@ html.sweeping .chapter.started:not(.lit)::before {
   border-style: solid;
   border-color: var(--ink);
   color: var(--ink);
+}
+.part-panels {
+  grid-column: 2 / -1;
+  min-width: 0;
+}
+.part-panel[hidden] {
+  display: none;
+}
+.part-resource,
+.part-empty {
+  padding: 14px 0;
+  border-top: 1px solid var(--line);
+}
+.part-resource h4 {
+  font: 700 1rem/1.3 var(--f-display);
+}
+.part-resource a {
+  color: var(--act);
+  text-underline-offset: 3px;
+}
+.part-resource p,
+.part-empty {
+  margin-top: 4px;
+  color: var(--muted);
+  font-size: 0.95rem;
 }
 .chapters {
   grid-column: 2 / -1;
@@ -634,6 +680,7 @@ footer {
     grid-column: 1 / -1;
     justify-content: flex-start;
   }
+  .part-panels,
   .chapters {
     grid-column: 1 / -1;
   }

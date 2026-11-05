@@ -392,6 +392,43 @@ def viz_tikz(f):
                 T(px + 8, (cy + py) / 2, L[1], r"\footnotesize", "anchor=west"),
                 T((cx + px) / 2 - 10, (cy + py) / 2 - 8, L[2], r"\footnotesize", "anchor=east", True),
                 T(px + 8, py - 8, "P", r"\small", "anchor=west", True)]
+    elif kind == "shape":
+        if sub == "cylinder":
+            out += [r"\filldraw[draw=black!50,fill=Paperblue] %s rectangle %s;" % (P(48, 34), P(132, 112)),
+                    r"\draw[black!80] %s ellipse [x radius=%.3f,y radius=%.3f];" % (P(90, 34), 42 * VS, 14 * VS),
+                    r"\draw[black!80] %s ellipse [x radius=%.3f,y radius=%.3f];" % (P(90, 112), 42 * VS, 14 * VS),
+                    r"\draw[black!80] %s -- %s;" % (P(48, 34), P(48, 112)),
+                    r"\draw[black!80] %s -- %s;" % (P(132, 34), P(132, 112)),
+                    arrow_t(90, 24, 90, 5, "FAUblue,line width=1.5pt"),
+                    arrow_t(132, 68, 160, 68, "FAUblue,line width=1.5pt"),
+                    arrow_t(90, 126, 90, 151, "FAUblue,line width=1.5pt"),
+                    T(118, 14, "+ez", r"\footnotesize", "anchor=west", False, "FAUblue"),
+                    T(168, 72, "+eρ", r"\footnotesize", "anchor=west", False, "FAUblue"),
+                    T(112, 158, "−ez", r"\footnotesize", "anchor=west", False, "FAUblue")]
+        elif sub == "hemisphere":
+            out += [r"\filldraw[draw=black!70,fill=Paperblue] %s ellipse [x radius=%.3f,y radius=%.3f];" % (P(120, 108), 56 * VS, 15 * VS),
+                    r"\filldraw[draw=black!80,fill=FAUblue!25] %s .. controls %s and %s .. %s -- cycle;" % (P(64, 108), P(64, 42), P(176, 42), P(176, 108)),
+                    r"\draw[black!80,line width=1.2pt] %s .. controls %s and %s .. %s;" % (P(64, 108), P(64, 42), P(176, 42), P(176, 108)),
+                    r"\draw[black!55,dashed] %s -- %s;" % (P(120, 108), P(120, 51)),
+                    r"\fill[FAUblue] %s circle (%.3f);" % (P(120, 108), 3 * VS),
+                    T(120, 77, "a", r"\small", "anchor=west", True, "FAUblue"),
+                    r"\draw[black!80] %s -- %s;" % (P(36, 49), P(73, 69)),
+                    T(5, 38, "curved surface", r"\footnotesize", "anchor=west"),
+                    r"\draw[black!80] %s -- %s;" % (P(174, 124), P(198, 139)),
+                    T(202, 144, "base disk", r"\footnotesize", "anchor=west")]
+        elif sub == "loop":
+            cx, cy, rad = 78, 92, 48
+            out += [r"\draw[black!80] %s circle (%.3f);" % (P(cx, cy), rad * VS),
+                    arrow_t(99, 48, 73, 48, "FAUblue,line width=1.5pt"),
+                    T(80, 22, "increasing φ", r"\footnotesize", "", False, "FAUblue"),
+                    r"\draw[black!85,line width=1pt] %s -- %s;" % (P(cx, cy), P(cx + rad, cy)),
+                    T((cx + cx + rad) / 2, cy - 7, "b", r"\footnotesize", "", True),
+                    r"\fill[FAUblue] %s circle (%.3f);" % (P(cx + rad, cy), 4 * VS),
+                    arrow_t(cx + rad, cy - 7, cx + rad, cy - 35, "FAUblue,line width=1.5pt"),
+                    arrow_t(cx + rad + 5, cy, cx + rad + 34, cy),
+                    T(169, cy - 25, "eφ, ds", r"\footnotesize", "anchor=west", False, "FAUblue"),
+                    T(169, cy + 17, "eρ = ex", r"\footnotesize", "anchor=west"),
+                    T(cx + rad + 6, cy + 5, "P", r"\footnotesize", "anchor=west", True)]
     elif kind == "plot":
         xr = [float(v) for v in (a.get("data-xr") or "0 1").split()]
         yr = [float(v) for v in (a.get("data-yr") or "0 1").split()]

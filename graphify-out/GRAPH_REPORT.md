@@ -1,17 +1,17 @@
 # Graph Report - AutonomyTechnologies  (2026-11-05)
 
 ## Corpus Check
-- 67 files · ~236,389 words
+- 67 files · ~238,284 words
 - Verdict: corpus is large enough that graph structure adds value.
 - Unclassified: 6 file(s) not represented in the graph (top: .css 4, (none) 2)
 
 ## Summary
-- 1046 nodes · 2003 edges · 55 communities (42 shown, 13 thin omitted)
+- 1047 nodes · 2005 edges · 55 communities (42 shown, 13 thin omitted)
 - Extraction: 88% EXTRACTED · 12% INFERRED · 0% AMBIGUOUS · INFERRED: 246 edges (avg confidence: 0.86)
 - Token cost: 0 input · 0 output
 
 ## Graph Freshness
-- Built from commit: `9e139d1a`
+- Built from commit: `64d7c97e`
 - Run `git rev-parse HEAD` and compare to check if the graph is stale.
 - Run `graphify update .` after code changes (no API cost).
 
@@ -154,7 +154,7 @@ Nodes (11): Algorithm, Boolean expressions, Boolean laws, De Morgan's laws, Logi
 
 ### Community 13 - "Home page and guide rules"
 Cohesion: 0.07
-Nodes (23): Acceptance, Content rules, Files, Labs, Page structure, PDF, Practice and testing, Principles (+15 more)
+Nodes (24): Acceptance, Content rules, Files, Labs, Page structure, PDF, Practice and testing, Principles (+16 more)
 
 ### Community 14 - "APDR 4 lab: floating point"
 Cohesion: 0.11
@@ -282,7 +282,7 @@ Nodes (5): Acceptance, EEI Chapter 2 lab: Stationary Currents, Experiments (in c
 _Questions this graph is uniquely positioned to answer:_
 
 - **Why does `Markup` connect `compile` to `Home page and guide rules`, `MEI 1 lab: logic and sets`?**
-  _High betweenness centrality (0.177) - this node is a cross-community bridge._
+  _High betweenness centrality (0.178) - this node is a cross-community bridge._
 - **Are the 3 inferred relationships involving `fieldPlayground()` (e.g. with `eei/ch1-lab.js` and `endDrag()`) actually correct?**
   _`fieldPlayground()` has 3 INFERRED edges - model-reasoned connections that need verification._
 - **What connects `Study Pages preview showing Electrical Engineering 1 and Mathematics for Engineers I course cards`, `Active-recall study workflow`, `Jekyll site CI` to the rest of the system?**
@@ -290,7 +290,7 @@ _Questions this graph is uniquely positioned to answer:_
 - **Should `EEI 1 lab: fields and capacitors` be split into smaller, more focused modules?**
   _Cohesion score 0.05303030303030303 - nodes in this community are weakly interconnected._
 - **Why does `Study guide standard` connect `Home page and guide rules` to `Project overview documents`, `compile`?**
-  _High betweenness centrality (0.110) - this node is a cross-community bridge._
+  _High betweenness centrality (0.111) - this node is a cross-community bridge._
 - **Are the 2 inferred relationships involving `capacitorBench()` (e.g. with `eei/ch1-lab.js` and `resize()`) actually correct?**
   _`capacitorBench()` has 2 INFERRED edges - model-reasoned connections that need verification._
 - **Should `Site look: design rules` be split into smaller, more focused modules?**

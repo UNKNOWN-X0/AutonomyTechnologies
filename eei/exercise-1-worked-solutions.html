@@ -4,7 +4,7 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="theme-color" content="#04316A" />
-  <meta name="description" content="Step-by-step worked solutions for EEI Exercise 1: cylindrical surfaces, a hemisphere, and magnetic-field line integrals." />
+  <meta name="description" content="Detailed, diagram-supported step-by-step solutions for EEI Exercise 1." />
   <title>Exercise 1 · Worked solutions · EEI</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -17,27 +17,105 @@
   <nav class="toc" aria-label="Page contents">
     <a class="brand" href="../index.html"><span>From Fundamentals to AI Apocalypse</span></a>
     <a class="home" href="../index.html">All semesters</a>
-    <nav class="chapter-switch" aria-label="EEI resources"><a href="ch2-stationary-currents.html">Chapter 2 guide</a><a aria-current="page" href="exercise-1-worked-solutions.html">Exercise 1</a></nav>
-    <details class="mobile-toc"><summary>Jump to a task</summary><ol><li><a href="#task-1">Task 1: Cylinder</a></li><li><a href="#task-2">Task 2: Hemisphere</a></li><li><a href="#task-3">Task 3 · Line integrals</a></li></ol></details>
-    <ol><li class="toc-group" aria-hidden="true">Exercise 1</li><li><a href="#task-1">Task 1: Cylinder</a></li><li><a href="#task-2">Task 2: Hemisphere</a></li><li><a href="#task-3">Task 3 · Line integrals</a></li></ol>
+    <nav class="chapter-switch" aria-label="EEI resources"><a href="ch1-electrostatic-fields.html">Chapter 1</a><a href="ch2-stationary-currents.html">Chapter 2</a><a aria-current="page" href="exercise-1-worked-solutions.html">Exercise 1</a></nav>
+    <details class="mobile-toc"><summary>Jump to a task</summary><ol><li><a href="#task-1">Task 1 · Cylinder</a></li><li><a href="#task-2">Task 2 · Hemisphere</a></li><li><a href="#task-3">Task 3 · Line integrals</a></li></ol></details>
+    <ol><li class="toc-group" aria-hidden="true">Exercise 1</li><li><a href="#task-1">Task 1 · Cylinder</a></li><li><a href="#task-2">Task 2 · Hemisphere</a></li><li><a href="#task-3">Task 3 · Line integrals</a></li></ol>
   </nav>
   <main>
     <header class="sign"><span class="code">EEI</span><h1>Exercise 1: Worked solutions</h1><p class="course">Electrical Engineering I · Module 92315 · Exercise 1</p><p class="meta"></p></header>
-    <p class="standfirst">Work each part on paper before opening its solution. Each answer builds from the geometry or field definition, then checks the result.</p>
+    <p class="standfirst">Try every subpart before opening its answer. The steps show how the geometry determines the coordinates, how each integral is assembled, and how to check the result.</p>
     <div class="downloads" aria-label="Download exercise solution files"><p>Take the solutions offline</p><a class="btn primary" href="exercise-1-worked-solutions.pdf" download>Download clean PDF</a><a class="btn" href="exercise-1-worked-solutions.tex" download>Download LaTeX source (.tex)</a></div>
-    <section id="task-1" aria-labelledby="task-1-title"><h2 id="task-1-title">Task 1: Cylinder in cylindrical coordinates</h2><p>A right circular cylinder has radius <var>a</var>, height <var>h</var>, and its axis lies along <var>z</var>. The origin is at the centre of the base; <var>z</var> points upward.</p>
-      <h3>1a: Describe the three boundary surfaces</h3><p>Try first: write the coordinate ranges for the base, curved side, and top.</p><details class="answers"><summary>Attempted it? Open the worked steps</summary><div class="worked"><p class="worked-title">1a · Surface coordinates</p><ol class="method-list"><li><p>In cylindrical coordinates a point is <var>r</var> = ρ <var>e</var><sub>ρ</sub> + <var>z e</var><sub>z</sub>. A disk varies in ρ and φ while holding <var>z</var> fixed; the side holds ρ fixed.</p></li><li><p>For the base, set <var>z</var> = 0: 0 ≤ ρ ≤ <var>a</var>, 0 ≤ φ &lt; 2π. For the top, set <var>z</var> = <var>h</var> with the same disk ranges.</p></li><li><p>For the lateral surface, set ρ = <var>a</var>, with 0 ≤ φ &lt; 2π and 0 ≤ <var>z</var> ≤ <var>h</var>.</p><p><strong>Result:</strong> base: (ρ, φ, 0); side: (<var>a</var>, φ, <var>z</var>); top: (ρ, φ, <var>h</var>), over the ranges above.</p><p><strong>Check:</strong> the curved side has no radial thickness; each disk spans the full radius.</p></li></ol></div></details>
-      <h3>1b: Give the outward unit normals</h3><p>Try first: identify which coordinate direction points out of each smooth face.</p><details class="answers"><summary>Attempted it? Open the worked steps</summary><div class="worked"><p class="worked-title">1b · Outward normals</p><ol class="method-list"><li><p>The bottom face lies at <var>z</var> = 0. The cylinder occupies larger <var>z</var>, so outward points downward: −<var>e</var><sub>z</sub>.</p></li><li><p>The side is at fixed ρ = <var>a</var>; increasing ρ leaves the cylinder, so its normal is +<var>e</var><sub>ρ</sub>.</p></li><li><p>The top is at <var>z</var> = <var>h</var>, so outward is +<var>e</var><sub>z</sub>. Thus the normals are base −<var>e</var><sub>z</sub>, side +<var>e</var><sub>ρ</sub>, top +<var>e</var><sub>z</sub>. At the sharp circular rims, the adjacent face normals differ, so there is no single smooth-face normal.</p><p><strong>Check:</strong> each normal points away from the cylinder's interior.</p></li></ol></div></details>
+
+    <section id="task-1" aria-labelledby="task-1-title">
+      <h2 id="task-1-title">Task 1: Cylinder in cylindrical coordinates</h2>
+      <p>A right circular cylinder has radius <var>a</var> and height <var>h</var>. Its axis is the <var>z</var>-axis, the origin is at the centre of the base, and positive <var>z</var> points upward.</p>
+      <p class="topic-link"><strong>Connected topic:</strong> <a href="ch1-electrostatic-fields.html#sec-110">Flux and Gauss’s law (§1.10)</a> use closed surfaces and their outward normals to describe which way flux crosses a boundary.</p>
+      <div class="figs"><figure class="viz" data-kind="shape cylinder"><figcaption><strong>Three faces, three outward directions.</strong> The disks have normals along the axis; the curved wall points radially outward. At the rims, two faces meet.</figcaption></figure></div>
+
+      <h3>1a: Describe the three boundary surfaces</h3>
+      <p>Try first: write the coordinate ranges for the base, curved side, and top.</p>
+      <details class="answers"><summary>Attempted it? Open the worked steps</summary><div class="worked"><p class="worked-title">1a · Surface coordinates</p><ol class="method-list">
+        <li><p>In cylindrical coordinates, <var>ρ</var> measures distance from the axis, <var>φ</var> gives the angle around it, and <var>z</var> gives height. A point has position <var>r</var> = <var>ρ e</var><sub>ρ</sub> + <var>z e</var><sub>z</sub>.</p><p>To describe a surface, hold one coordinate fixed and let the other two run over the part of the surface we want.</p></li>
+        <li><p><strong>Base:</strong> every point is at height <var>z</var> = 0. The disk reaches from the axis to the wall, so 0 ≤ <var>ρ</var> ≤ <var>a</var>, and it circles once with 0 ≤ <var>φ</var> &lt; 2π.</p></li>
+        <li><p><strong>Curved side:</strong> every point is at radius <var>ρ</var> = <var>a</var>. Height runs from the base to the top, 0 ≤ <var>z</var> ≤ <var>h</var>, while 0 ≤ <var>φ</var> &lt; 2π.</p></li>
+        <li><p><strong>Top:</strong> every point is at height <var>z</var> = <var>h</var>. It is another full disk, so 0 ≤ <var>ρ</var> ≤ <var>a</var> and 0 ≤ <var>φ</var> &lt; 2π.</p></li>
+        <li><p><strong>Result:</strong> base (<var>ρ</var>, <var>φ</var>, 0); side (<var>a</var>, <var>φ</var>, <var>z</var>); top (<var>ρ</var>, <var>φ</var>, <var>h</var>), with the ranges above.</p><p><strong>Check:</strong> only the side fixes the radius. Each disk includes the centre and reaches all the way to <var>a</var>.</p></li>
+      </ol></div></details>
+
+      <h3>1b: Give the outward unit normals</h3>
+      <p>Try first: at each smooth face, which way points from the cylinder’s interior into the surrounding space?</p>
+      <details class="answers"><summary>Attempted it? Open the worked steps</summary><div class="worked"><p class="worked-title">1b · Outward normals</p><ol class="method-list">
+        <li><p>A surface normal is perpendicular to the surface. “Outward” chooses between the two perpendicular directions by pointing away from the solid. Cylindrical coordinate unit vectors already have length 1.</p></li>
+        <li><p>At the base, the interior lies above the plane <var>z</var> = 0. The outward direction is therefore downward: <strong>−<var>e</var><sub>z</sub></strong>.</p></li>
+        <li><p>At the top, the interior lies below <var>z</var> = <var>h</var>. The outward direction is upward: <strong>+<var>e</var><sub>z</sub></strong>.</p></li>
+        <li><p>On the curved side, the solid occupies ρ &lt; <var>a</var>. Increasing ρ moves away from the axis and out of the cylinder, so the outward normal is <strong>+<var>e</var><sub>ρ</sub></strong>.</p></li>
+        <li><p><strong>Result:</strong> base −<var>e</var><sub>z</sub>; side +<var>e</var><sub>ρ</sub>; top +<var>e</var><sub>z</sub>.</p><p><strong>Check:</strong> at either sharp rim, the base/top normal and side normal disagree. The rim has no single smooth-face normal; normals are defined face by face.</p></li>
+      </ol></div></details>
     </section>
-    <section id="task-2" aria-labelledby="task-2-title"><h2 id="task-2-title">Task 2: Hemisphere of radius <var>a</var></h2><p>Include both the curved half-sphere and its flat base when finding total surface area.</p>
-      <h3>2a: Total surface area</h3><p>Try first: calculate the curved part and disk separately, then add them.</p><details class="answers"><summary>Attempted it? Open the worked steps</summary><div class="worked"><p class="worked-title">2a · Curved surface plus base</p><ol class="method-list"><li><p>Use spherical coordinates with polar angle θ measured down from +<var>z</var>. On the curved hemisphere, r = <var>a</var>, 0 ≤ θ ≤ π/2, 0 ≤ φ &lt; 2π, and dA = <var>a</var>² sin θ dθ dφ.</p></li><li><p>Integrate the curved part: A<sub>curve</sub> = ∫₀²π ∫₀^(π/2) <var>a</var>² sin θ dθ dφ = 2π<var>a</var>².</p></li><li><p>The base disk has area A<sub>base</sub> = π<var>a</var>². Add the two pieces: <strong>A<sub>total</sub> = 2π<var>a</var>² + π<var>a</var>² = 3π<var>a</var>².</strong></p><p><strong>Check:</strong> the curved half is half the sphere's 4π<var>a</var>² area; remember to include the base.</p></li></ol></div></details>
-      <h3>2b: Volume</h3><p>Try first: set the spherical radial limit to <var>a</var> and the polar angle to the upper half.</p><details class="answers"><summary>Attempted it? Open the worked steps</summary><div class="worked"><p class="worked-title">2b · Spherical volume integral</p><ol class="method-list"><li><p>For the hemisphere, 0 ≤ r ≤ <var>a</var>, 0 ≤ θ ≤ π/2, and 0 ≤ φ &lt; 2π. The volume element is dV = r² sin θ dr dθ dφ.</p></li><li><p>Separate the factors: V = (∫₀ᵃ r² dr)(∫₀^(π/2) sin θ dθ)(∫₀²π dφ) = (<var>a</var>³/3)(1)(2π).</p></li><li><p><strong>Result: V = 2π<var>a</var>³/3.</strong></p><p><strong>Check:</strong> it is half the full sphere's 4π<var>a</var>³/3 volume.</p></li></ol></div></details>
+
+    <section id="task-2" aria-labelledby="task-2-title">
+      <h2 id="task-2-title">Task 2: Hemisphere of radius <var>a</var></h2>
+      <p>Take the upper half of a sphere and include its flat circular base in the total boundary area.</p>
+      <p class="topic-link"><strong>Connected topic:</strong> <a href="ch1-electrostatic-fields.html#sec-113">Spherical capacitors (§1.13)</a> use spherical geometry. The guide’s sphere illustrations help distinguish curved spherical surfaces from flat circular ones.</p>
+      <div class="figs"><figure class="viz" data-kind="shape hemisphere"><figcaption><strong>Keep the boundary pieces separate.</strong> The curved hemisphere contributes 2π<var>a</var><sup>2</sup>; the flat base disk contributes π<var>a</var><sup>2</sup>.</figcaption></figure></div>
+
+      <h3>2a: Total surface area</h3>
+      <p>Try first: find the curved area and base area separately, then add the two pieces.</p>
+      <details class="answers"><summary>Attempted it? Open the worked steps</summary><div class="worked"><p class="worked-title">2a · Curved surface plus base</p><ol class="method-list">
+        <li><p>Use spherical coordinates with polar angle <var>θ</var> measured down from +<var>z</var>. The curved hemisphere lies at <var>r</var> = <var>a</var>, with 0 ≤ <var>θ</var> ≤ π/2 and 0 ≤ <var>φ</var> &lt; 2π.</p></li>
+        <li><p>A small surface patch grows with both directions around the sphere. A change d<var>θ</var> has length <var>a</var> d<var>θ</var>; a change d<var>φ</var> has length <var>a</var> sin <var>θ</var> d<var>φ</var>. Thus d<var>A</var> = <var>a</var><sup>2</sup> sin <var>θ</var> d<var>θ</var> d<var>φ</var>.</p></li>
+        <li><p>Integrate over the curved part: <var>A</var><sub>curve</sub> = ∫₀²π ∫₀^(π/2) <var>a</var><sup>2</sup> sin <var>θ</var> d<var>θ</var> d<var>φ</var>.</p></li>
+        <li><p>The angular integral is ∫₀^(π/2) sin <var>θ</var> d<var>θ</var> = [−cos <var>θ</var>]₀^(π/2) = 1. The azimuthal integral is 2π, so <var>A</var><sub>curve</sub> = 2π<var>a</var><sup>2</sup>.</p></li>
+        <li><p>The flat base is a disk of radius <var>a</var>, with <var>A</var><sub>base</sub> = π<var>a</var><sup>2</sup>. Add the boundary pieces: <strong><var>A</var><sub>total</sub> = 2π<var>a</var><sup>2</sup> + π<var>a</var><sup>2</sup> = 3π<var>a</var><sup>2</sup>.</strong></p><p><strong>Check:</strong> the curved half is half of 4π<var>a</var><sup>2</sup>. The area has units of length squared. The shared circular edge has zero area, so it does not affect the sum.</p></li>
+      </ol></div></details>
+
+      <h3>2b: Volume</h3>
+      <p>Try first: write the spherical volume element and integrate over the upper half-sphere.</p>
+      <details class="answers"><summary>Attempted it? Open the worked steps</summary><div class="worked"><p class="worked-title">2b · Spherical volume integral</p><ol class="method-list">
+        <li><p>Inside the hemisphere, radius runs from the centre to the surface: 0 ≤ <var>r</var> ≤ <var>a</var>. The angles cover 0 ≤ <var>θ</var> ≤ π/2 and 0 ≤ <var>φ</var> &lt; 2π.</p></li>
+        <li><p>The spherical-coordinate volume element is d<var>V</var> = <var>r</var><sup>2</sup> sin <var>θ</var> d<var>r</var> d<var>θ</var> d<var>φ</var>. The factor <var>r</var><sup>2</sup> sin <var>θ</var> is the coordinate Jacobian: small angular patches widen as we move away from the origin.</p></li>
+        <li><p>Set up the integral: <var>V</var> = ∫₀²π ∫₀^(π/2) ∫₀ᵃ <var>r</var><sup>2</sup> sin <var>θ</var> d<var>r</var> d<var>θ</var> d<var>φ</var>. Since the factors depend on separate variables, evaluate them separately.</p></li>
+        <li><p>∫₀ᵃ <var>r</var><sup>2</sup> d<var>r</var> = <var>a</var><sup>3</sup>/3; ∫₀^(π/2) sin <var>θ</var> d<var>θ</var> = 1; ∫₀²π d<var>φ</var> = 2π.</p></li>
+        <li><p><strong>Result: <var>V</var> = (<var>a</var><sup>3</sup>/3)(1)(2π) = 2π<var>a</var><sup>3</sup>/3.</strong></p><p><strong>Check:</strong> it is half the full sphere’s 4π<var>a</var><sup>3</sup>/3 volume, and its units are length cubed.</p></li>
+      </ol></div></details>
     </section>
-    <section id="task-3" aria-labelledby="task-3-title"><h2 id="task-3-title">Task 3: Field integral around a circle</h2><p>Integrate each field around a circle of radius ρ = <var>b</var> centred at the origin. Assume φ increases from 0 to 2π, counterclockwise when viewed from +<var>z</var>. Reversing this path reverses any nonzero result.</p>
-      <h3>3a: Uniform x-directed field</h3><p>Given <var>H</var> = <var>H</var><sub>0</sub><var>e</var><sub>x</sub>. Try first: parameterize the circle and evaluate the dot product.</p><details class="answers"><summary>Attempted it? Open the worked steps</summary><div class="worked"><p class="worked-title">3a: Uniform field</p><ol class="method-list"><li><p>On the circle, d<var>s</var> = <var>b e</var><sub>φ</sub> dφ, where <var>e</var><sub>φ</sub> = −sin φ <var>e</var><sub>x</sub> + cos φ <var>e</var><sub>y</sub>.</p></li><li><p>Then <var>H</var> · d<var>s</var> = −<var>b H</var><sub>0</sub> sin φ dφ. Integrate around the full loop: ∮ <var>H</var> · d<var>s</var> = −<var>b H</var><sub>0</sub> ∫₀²π sin φ dφ.</p></li><li><p><strong>Result: ∮ <var>H</var> · d<var>s</var> = 0.</strong> The positive and negative tangential contributions cancel over a full turn.</p><p><strong>Check:</strong> the field is not perpendicular everywhere; zero comes from cancellation, not pointwise orthogonality.</p></li></ol></div></details>
-      <h3>3b: Radial field</h3><p>Given <var>H</var> = <var>H</var><sub>0</sub><var>e</var><sub>ρ</sub>. Try first: compare the field direction with the path tangent.</p><details class="answers"><summary>Attempted it? Open the worked steps</summary><div class="worked"><p class="worked-title">3b: Radial field</p><ol class="method-list"><li><p>The circle's line element is tangential: d<var>s</var> = <var>b e</var><sub>φ</sub> dφ. The field points radially along <var>e</var><sub>ρ</sub>.</p></li><li><p>Radial and azimuthal unit vectors are perpendicular, so <var>e</var><sub>ρ</sub> · <var>e</var><sub>φ</sub> = 0 at every point. Hence <var>H</var> · d<var>s</var> = 0 everywhere on the path.</p></li><li><p><strong>Result: ∮ <var>H</var> · d<var>s</var> = 0.</strong></p><p><strong>Check:</strong> unlike 3a, this integrand vanishes point by point, so no cancellation argument is needed.</p></li></ol></div></details>
-      <h3>3c: Azimuthal field growing with radius</h3><p>Given <var>H</var> = <var>H</var><sub>0</sub>(ρ/<var>a</var>)<var>e</var><sub>φ</sub>. Try first: evaluate the field on ρ = <var>b</var> and use the circle's tangent element.</p><details class="answers"><summary>Attempted it? Open the worked steps</summary><div class="worked"><p class="worked-title">3c · Tangential field</p><ol class="method-list"><li><p>On ρ = <var>b</var>, the field is <var>H</var> = (<var>b</var>/<var>a</var>)<var>H</var><sub>0</sub><var>e</var><sub>φ</sub>; the path element is d<var>s</var> = <var>b e</var><sub>φ</sub> dφ.</p></li><li><p>The directions agree, so <var>H</var> · d<var>s</var> = (<var>H</var><sub>0</sub><var>b</var>²/<var>a</var>)dφ. Integrating through 2π gives 2π<var>H</var><sub>0</sub><var>b</var>²/<var>a</var>.</p></li><li><p><strong>Result: ∮ <var>H</var> · d<var>s</var> = 2π<var>H</var><sub>0</sub><var>b</var>²/<var>a</var>.</strong> The assumed counterclockwise direction makes it positive.</p><p><strong>Check:</strong> H has units A/m, so H times path length has units A. Clockwise traversal changes the sign.</p></li></ol></div></details>
+
+    <section id="task-3" aria-labelledby="task-3-title">
+      <h2 id="task-3-title">Task 3: Field integral around a circle</h2>
+      <p>For each supplied field, evaluate ∮ <var>H</var> · d<var>s</var> around a circle of radius <var>b</var> centred at the origin. The exercise does not specify which way to traverse the loop, so assume increasing <var>φ</var> from 0 to 2π (counterclockwise viewed from +<var>z</var>). Reversing the direction changes the sign of any nonzero answer.</p>
+      <p class="topic-link"><strong>Connected topic:</strong> <a href="ch1-electrostatic-fields.html#sec-18">Electrostatic line integrals (§1.8)</a> use the same path-vector and dot-product steps. Here <var>H</var> is a different supplied field; the connection is the integration method, not an identification of <var>H</var> with <var>E</var>.</p>
+      <div class="figs"><figure class="viz" data-kind="shape loop"><figcaption><strong>At the right-hand point, the path tangent points up.</strong> A radial or x-directed field points sideways there; an azimuthal field follows the tangent. Around the full loop, the x-directed contributions cancel.</figcaption></figure></div>
+
+      <h3>3a: Uniform x-directed field</h3>
+      <p>Given <var>H</var> = <var>H</var><sub>0</sub><var>e</var><sub>x</sub>. Try first: parameterize the loop and express its tangent in Cartesian components.</p>
+      <details class="answers"><summary>Attempted it? Open the worked steps</summary><div class="worked"><p class="worked-title">3a · Uniform field</p><ol class="method-list">
+        <li><p>Parameterize the circle by its angle: <var>r</var>(<var>φ</var>) = <var>b</var> cos <var>φ e</var><sub>x</sub> + <var>b</var> sin <var>φ e</var><sub>y</sub>, with 0 ≤ <var>φ</var> ≤ 2π.</p></li>
+        <li><p>Differentiate with respect to the path parameter. The line element is d<var>s</var> = (−<var>b</var> sin <var>φ e</var><sub>x</sub> + <var>b</var> cos <var>φ e</var><sub>y</sub>) d<var>φ</var> = <var>b e</var><sub>φ</sub> d<var>φ</var>.</p></li>
+        <li><p>Take the dot product with the constant field: <var>H</var> · d<var>s</var> = <var>H</var><sub>0</sub><var>e</var><sub>x</sub> · <var>b e</var><sub>φ</sub> d<var>φ</var> = −<var>b H</var><sub>0</sub> sin <var>φ</var> d<var>φ</var>.</p></li>
+        <li><p>Integrate over the whole circle: ∮ <var>H</var> · d<var>s</var> = −<var>b H</var><sub>0</sub> ∫₀²π sin <var>φ</var> d<var>φ</var> = <var>b H</var><sub>0</sub>[cos <var>φ</var>]₀²π.</p></li>
+        <li><p><strong>Result: ∮ <var>H</var> · d<var>s</var> = 0.</strong> The field has a tangential component on parts of the loop, but the positive and negative contributions cancel over one full turn.</p><p><strong>Check:</strong> the zero is caused by cancellation around the loop, not by the field being perpendicular to the path at every point.</p></li>
+      </ol></div></details>
+
+      <h3>3b: Radial field</h3>
+      <p>Given <var>H</var> = <var>H</var><sub>0</sub><var>e</var><sub>ρ</sub>. Try first: compare the local field direction with the tangent at every point.</p>
+      <details class="answers"><summary>Attempted it? Open the worked steps</summary><div class="worked"><p class="worked-title">3b · Radial field</p><ol class="method-list">
+        <li><p>Use the same circle parameterization. At radius <var>b</var>, the line element is d<var>s</var> = <var>b e</var><sub>φ</sub> d<var>φ</var>, tangent to the circle.</p></li>
+        <li><p>The radial unit vector <var>e</var><sub>ρ</sub> points out from the origin, while <var>e</var><sub>φ</sub> follows the circle. In cylindrical coordinates these perpendicular directions satisfy <var>e</var><sub>ρ</sub> · <var>e</var><sub>φ</sub> = 0.</p></li>
+        <li><p>Therefore <var>H</var> · d<var>s</var> = <var>H</var><sub>0</sub><var>e</var><sub>ρ</sub> · <var>b e</var><sub>φ</sub> d<var>φ</var> = 0 at each point, so its integral is also zero.</p></li>
+        <li><p><strong>Result: ∮ <var>H</var> · d<var>s</var> = 0.</strong></p><p><strong>Check:</strong> unlike 3a, the integrand is zero point by point. No cancellation between different parts of the circle is needed.</p></li>
+      </ol></div></details>
+
+      <h3>3c: Azimuthal field growing with radius</h3>
+      <p>Given <var>H</var> = <var>H</var><sub>0</sub>(<var>ρ</var>/<var>a</var>)<var>e</var><sub>φ</sub>. Try first: evaluate this field on the circle and compare it with d<var>s</var>.</p>
+      <details class="answers"><summary>Attempted it? Open the worked steps</summary><div class="worked"><p class="worked-title">3c · Tangential field</p><ol class="method-list">
+        <li><p>The path is still the circle ρ = <var>b</var>, so d<var>s</var> = <var>b e</var><sub>φ</sub> d<var>φ</var>, with <var>φ</var> increasing around the loop.</p></li>
+        <li><p>Substitute ρ = <var>b</var> into the field: <var>H</var> = <var>H</var><sub>0</sub>(<var>b</var>/<var>a</var>)<var>e</var><sub>φ</sub> on this path. The field strength is constant along this particular circle.</p></li>
+        <li><p>Both vectors point along <var>e</var><sub>φ</sub>. Since this unit vector has dot product 1 with itself, <var>H</var> · d<var>s</var> = <var>H</var><sub>0</sub>(<var>b</var><sup>2</sup>/<var>a</var>) d<var>φ</var>.</p></li>
+        <li><p>Integrate the constant around one revolution: ∮ <var>H</var> · d<var>s</var> = ∫₀²π <var>H</var><sub>0</sub>(<var>b</var><sup>2</sup>/<var>a</var>) d<var>φ</var> = 2π<var>H</var><sub>0</sub><var>b</var><sup>2</sup>/<var>a</var>.</p></li>
+        <li><p><strong>Result: ∮ <var>H</var> · d<var>s</var> = 2π<var>H</var><sub>0</sub><var>b</var><sup>2</sup>/<var>a</var>.</strong> It is positive for the assumed counterclockwise direction.</p><p><strong>Check:</strong> <var>H</var><sub>0</sub> has units A/m, and <var>b</var><sup>2</sup>/<var>a</var> has units m, so the integral has units A. Reversing the loop makes it negative.</p></li>
+      </ol></div></details>
     </section>
+
     <p class="source-note">Personal worked-solution guide based on the supplied EEI Exercise 1 sheet, written in my own words; no exercise text or figures are reproduced. Not an official FAU publication; check course details against the current material. Made by <strong>Thanate Amornjiraporn (Focus)</strong>.</p>
   </main>
 </div>
