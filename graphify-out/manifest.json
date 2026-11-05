@@ -12,9 +12,9 @@
     "semantic_hash": ""
   },
   "index.html": {
-    "mtime": 1793775492.142326,
-    "seen": 1793775602.4862669,
-    "ast_hash": "23c79b2cc8399016322e10b8835cc9d3",
+    "mtime": 1793872294.765661,
+    "seen": 1793872347.3606,
+    "ast_hash": "f700b32756a8192544bc24c283d77116",
     "semantic_hash": ""
   },
   "assets/preview.png": {
@@ -462,9 +462,9 @@
     "semantic_hash": ""
   },
   "about/version-log.html": {
-    "mtime": 1793870457.7816217,
-    "seen": 1793870461.1363132,
-    "ast_hash": "dad6942d89c5726b0426df993169e619",
+    "mtime": 1793871914.7753162,
+    "seen": 1793871918.475759,
+    "ast_hash": "653a0f586f2636449980c165cc481b50",
     "semantic_hash": ""
   },
   "docs/DIAGRAM-AND-LAB-PLAN.md": {
@@ -492,9 +492,27 @@
     "semantic_hash": ""
   },
   "tools/graph-describe.py": {
-    "mtime": 1793871511.5321178,
-    "seen": 1793871524.277628,
-    "ast_hash": "50e802b98e3fa4aeb0e886efdd1ce931",
+    "mtime": 1793871971.4022284,
+    "seen": 1793872347.3605702,
+    "ast_hash": "71b00abb3dacdf08979ef781d8668582",
+    "semantic_hash": ""
+  },
+  "assets/graph-orb.json": {
+    "mtime": 1793871983.301242,
+    "seen": 1793872347.360519,
+    "ast_hash": "a3ee670f680c325effab3592c2ee59cb",
+    "semantic_hash": ""
+  },
+  "js/orb.js": {
+    "mtime": 1793871914.7731445,
+    "seen": 1793871918.47573,
+    "ast_hash": "871ac1dce62bd801fda3aab538a93314",
+    "semantic_hash": ""
+  },
+  "tools/graph-orb.py": {
+    "mtime": 1793871806.605467,
+    "seen": 1793871918.475748,
+    "ast_hash": "8b0622eedca6c3b22fbdf0998d60cd70",
     "semantic_hash": ""
   }
 }

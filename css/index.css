@@ -591,10 +591,6 @@ footer {
   color: var(--muted);
   font-size: 0.9rem;
 }
-footer p {
-  padding: 28px max(0px, calc(100% - 70ch)) 0 0;
-  border-top: 1px solid var(--line);
-}
 
 @media (max-width: 1080px) {
   .row {
@@ -841,12 +837,80 @@ footer p {
   }
 }
 
-/* Footer links to the site pages. */
-footer p.about-links {
+/* Footer: one rule, the notice beside the About links, the credit underneath. */
+footer .foot {
+  display: grid;
+  grid-template-columns: minmax(0, 62ch) auto;
+  justify-content: space-between;
+  gap: 16px 48px;
+  padding-top: 28px;
+  border-top: 1px solid var(--line);
+}
+footer .foot p {
+  margin: 0;
+}
+footer .notice {
+  line-height: 1.55;
+}
+footer .about-links {
   display: flex;
-  gap: 24px;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 8px;
   font-weight: 700;
 }
 footer .about-links a {
   color: var(--link);
+}
+footer .credit {
+  grid-column: 1 / -1;
+  font-size: 0.85rem;
+}
+@media (max-width: 640px) {
+  footer .foot {
+    grid-template-columns: 1fr;
+  }
+  footer .about-links {
+    flex-direction: row;
+    align-items: center;
+    gap: 24px;
+  }
+}
+
+/* The orb (js/orb.js): the site's own code graph turning slowly at the very bottom of the home page. */
+footer .orb {
+  margin: 40px auto 0;
+  max-width: 420px;
+  text-align: center;
+  opacity: 0;
+  transition: opacity 600ms var(--ease, ease-out);
+}
+footer .orb.ready {
+  opacity: 1;
+}
+footer .orb canvas {
+  display: block;
+  width: 100%;
+  aspect-ratio: 1;
+  cursor: grab;
+  touch-action: none;
+}
+footer .orb canvas:active {
+  cursor: grabbing;
+}
+footer .orb canvas:focus-visible {
+  outline: 3px solid var(--act);
+  outline-offset: 4px;
+}
+footer .orb figcaption {
+  margin: 10px auto 0;
+  max-width: 44ch;
+  font-size: 0.8rem;
+  line-height: 1.5;
+  color: var(--muted);
+}
+@media (prefers-reduced-motion: reduce) {
+  footer .orb {
+    transition: none;
+  }
 }

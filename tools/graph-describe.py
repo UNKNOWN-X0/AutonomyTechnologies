@@ -52,6 +52,8 @@ FILES = {
     "tools/guide-to-tex.py": "the tool that turns a guide page into LaTeX and PDF",
     "tools/check-guide.py": "the tool that checks a guide and its lab against the standards",
     "tools/graph-describe.py": "this script, which writes these notes",
+    "tools/graph-orb.py": "the script that lays this graph out in 3D for the home page orb",
+    "js/orb.js": "the turning orb at the bottom of the home page (this graph in 3D)",
     "tests/lab-challenges.test.js": "the tests that load every lab and check its challenges",
     "tests/lab-generators.test.js": "the tests that check every New challenge generator",
     "tests/mei-expr.test.js": "the tests for the typed-formula reader",

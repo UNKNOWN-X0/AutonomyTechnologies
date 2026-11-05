@@ -207,14 +207,21 @@
     </main>
 
     <footer>
-      <p>
-        Personal study material written from the lecture notes. Not an official FAU publication: check anything
-        exam-relevant against your course materials. Progress is saved only in this browser.
-      </p>
-      <p class="about-links"><a href="about/how-to-use.html">How to use</a><a href="about/version-log.html">Version log</a></p>
-      <p class="credit">Made by <strong>Thanate Amornjiraporn (Focus)</strong>.</p>
+      <div class="foot">
+        <p class="notice">
+          Personal study material written from the lecture notes. Not an official FAU publication: check anything
+          exam-relevant against your course materials. Progress is saved only in this browser.
+        </p>
+        <nav class="about-links" aria-label="About this site"><a href="about/how-to-use.html">How to use</a><a href="about/version-log.html">Version log</a></nav>
+        <p class="credit">Made by <strong>Thanate Amornjiraporn (Focus)</strong></p>
+      </div>
+      <figure class="orb">
+        <canvas role="img" tabindex="0" aria-label="This site's code as a turning ball of dots" data-src="assets/graph-orb.json"></canvas>
+        <figcaption data-orb-caption></figcaption>
+      </figure>
     </footer>
     <script src="js/index.js"></script>
     <script src="js/tooltip.js"></script>
+    <script src="js/orb.js" defer></script>
   </body>
 </html>
