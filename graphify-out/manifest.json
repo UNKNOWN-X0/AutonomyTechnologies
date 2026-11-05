@@ -12,9 +12,9 @@
     "semantic_hash": ""
   },
   "index.html": {
-    "mtime": 1793878693.3122098,
-    "seen": 1793880066.3406951,
-    "ast_hash": "c075a516957b40d65ab32c9cd3d73c1a",
+    "mtime": 1793886311.5099723,
+    "seen": 1793886465.591888,
+    "ast_hash": "414ba48a12b5cefa10adf429342275b2",
     "semantic_hash": ""
   },
   "assets/preview.png": {
@@ -24,9 +24,9 @@
     "semantic_hash": ""
   },
   "AGENTS.md": {
-    "mtime": 1793871532.078391,
-    "seen": 1793871575.116333,
-    "ast_hash": "d29eeb07db1ba29e7d5eced17c16eefa",
+    "mtime": 1793886311.5091856,
+    "seen": 1793886465.591858,
+    "ast_hash": "5e0b865bd7aa968dedf7a98768cf6790",
     "semantic_hash": ""
   },
   "graphify-out/memory/query_20261024_200642_26a2d038_how_are_the_static_study_pages_hosted__and_what_gi.md": {
@@ -78,9 +78,9 @@
     "semantic_hash": ""
   },
   "tools/guide-to-tex.py": {
-    "mtime": 1793827656.3991685,
-    "seen": 1793827819.400855,
-    "ast_hash": "cb77dec56fc5b486750b6d83a3c12b7b",
+    "mtime": 1793886651.1978097,
+    "seen": 1793886673.90874,
+    "ast_hash": "b67bcef7f670ba4aa35df672f43185f9",
     "semantic_hash": ""
   },
   "eei/ch1-electrostatic-fields.html": {
@@ -462,9 +462,9 @@
     "semantic_hash": ""
   },
   "about/version-log.html": {
-    "mtime": 1793879033.0857582,
-    "seen": 1793880066.340675,
-    "ast_hash": "03ee7429852ab48066e1e1e69401da71",
+    "mtime": 1793886323.0976315,
+    "seen": 1793886465.591864,
+    "ast_hash": "ca179c312b2916fd1e4b0921bee3e1c1",
     "semantic_hash": ""
   },
   "docs/DIAGRAM-AND-LAB-PLAN.md": {
@@ -498,9 +498,9 @@
     "semantic_hash": ""
   },
   "assets/graph-orb.json": {
-    "mtime": 1793880076.8979127,
-    "seen": 1793880366.64384,
-    "ast_hash": "ef45746e171a3a492081c5452cdd33a5",
+    "mtime": 1793886477.6106348,
+    "seen": 1793886673.908693,
+    "ast_hash": "4e23e33e0f5814dcf5d35a4366d5b141",
     "semantic_hash": ""
   },
   "js/orb.js": {
@@ -522,9 +522,9 @@
     "semantic_hash": ""
   },
   "js/eei/ch2-lab.js": {
-    "mtime": 1793880241.998148,
-    "seen": 1793880366.643857,
-    "ast_hash": "b0f4754f900a0bb4c245eef0497a8f29",
+    "mtime": 1793883272.1834984,
+    "seen": 1793886465.591821,
+    "ast_hash": "9bb1e8a9b069861ecf1e458222d67147",
     "semantic_hash": ""
   },
   "js/eei/ch2-physics.js": {
@@ -549,6 +549,18 @@
     "mtime": 1793880241.9490328,
     "seen": 1793880366.643913,
     "ast_hash": "210a9fc9c75392e48600df58cc1cf309",
+    "semantic_hash": ""
+  },
+  "docs/EXERCISE-SOLUTIONS-STANDARD.md": {
+    "mtime": 1793886311.4571445,
+    "seen": 1793886465.591878,
+    "ast_hash": "d3cb973f0175a8123bf0c275ba8e7a35",
+    "semantic_hash": ""
+  },
+  "eei/exercise-1-worked-solutions.html": {
+    "mtime": 1793886441.2749295,
+    "seen": 1793886465.591885,
+    "ast_hash": "a1f846afa7704880d7e067007310dc3a",
     "semantic_hash": ""
   }
 }

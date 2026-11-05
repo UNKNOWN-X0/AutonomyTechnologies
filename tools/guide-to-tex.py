@@ -660,7 +660,12 @@ class Conv:
         return "".join(out)
 
     def items(self, node):
-        return "".join(r"\item %s" % self.li(k) + "\n" for k in node.kids if isinstance(k, Node) and k.tag == "li")
+        out = []
+        for k in node.kids:
+            if isinstance(k, Node) and k.tag == "li":
+                content = self.li(k).strip()
+                out.append(r"\item" + (" " + content if content else "") + "\n")
+        return "".join(out)
 
     def li(self, k):
         if any(isinstance(x, Node) and x.tag in ("ol", "ul", "div", "p") for x in k.kids):

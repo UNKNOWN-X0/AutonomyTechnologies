@@ -1,0 +1,279 @@
+\documentclass[11pt]{article}
+\usepackage[margin=18mm,headheight=22pt]{geometry}
+\usepackage{amsmath}
+\usepackage{fontspec}
+\usepackage{unicode-math}
+\setmainfont{NewCM10}[Extension=.otf,UprightFont=*-Book,BoldFont=*-Bold,ItalicFont=*-BookItalic,BoldItalicFont=*-BoldItalic]
+\setsansfont{NewCMSans10}[Extension=.otf,UprightFont=*-Book,BoldFont=*-Bold,ItalicFont=*-BookOblique,BoldItalicFont=*-BoldOblique]
+\setmathfont{NewCMMath-Book.otf}
+\usepackage{xcolor}
+\definecolor{FAUblue}{HTML}{04316A}
+\definecolor{Paperblue}{HTML}{EEF2F7}
+\definecolor{EEIgold}{HTML}{CC9C42}
+\usepackage{etoolbox,enumitem,booktabs,tabularx,array,needspace,microtype}
+\usepackage[most]{tcolorbox}
+\usepackage{titlesec,fancyhdr}
+\usepackage[hidelinks]{hyperref}
+\usepackage{draftwatermark}
+\SetWatermarkText{Made by Thanate Amornjiraporn (Focus)}
+\SetWatermarkColor{black!7}\SetWatermarkFontSize{30pt}\SetWatermarkAngle{45}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{5pt}
+\setlist{itemsep=2pt,topsep=3pt,leftmargin=1.6em,beginpenalty=10000,endpenalty=10000}
+\raggedbottom
+\clubpenalty=10000 \widowpenalty=10000 \displaywidowpenalty=10000 \interlinepenalty=10000
+\setcounter{secnumdepth}{0}
+\setcounter{tocdepth}{1}
+\pagestyle{fancy}\fancyhf{}
+\fancyhead[L]{\small\sffamily\color{FAUblue} From Fundamentals to AI Apocalypse · EEI · Exercise 1}
+\fancyhead[R]{\small\sffamily Exercise 1: Worked solutions}
+\fancyfoot[C]{\small\thepage}
+\titleformat{\section}{\Large\bfseries\sffamily\color{FAUblue}}{}{0pt}{}
+\titleformat{\subsection}{\large\bfseries\sffamily\color{FAUblue}}{}{0pt}{}
+\titlespacing*{\section}{0pt}{16pt}{6pt}
+\preto\section{\Needspace{8\baselineskip}}
+\preto\subsection{\Needspace{6\baselineskip}}
+\newtcolorbox{equationcard}[1]{colback=Paperblue,colframe=Paperblue,boxrule=0pt,arc=0pt,left=10pt,right=10pt,top=6pt,bottom=6pt,title={#1},fonttitle=\small\bfseries\sffamily,coltitle=FAUblue,before skip=8pt,after skip=8pt}
+\newtcolorbox{workedbox}[1]{colback=white,colframe=EEIgold,boxrule=0pt,leftrule=3pt,arc=0pt,left=10pt,top=4pt,bottom=4pt,title={#1},fonttitle=\small\bfseries\sffamily,coltitle=FAUblue,attach title to upper={\par},before skip=8pt,after skip=8pt}
+\newtcolorbox{recallbox}[1]{colback=white,colframe=FAUblue,boxrule=0pt,leftrule=3pt,arc=0pt,left=10pt,top=4pt,bottom=4pt,title={#1},fonttitle=\small\bfseries\sffamily,coltitle=FAUblue,attach title to upper={\par},before skip=8pt,after skip=8pt}
+\usepackage{environ}
+\newsavebox\measurebox
+% Typeset the section once invisibly to measure it; start a new page if it will not fit in what is left.
+\makeatletter
+\newif\ifkeep@measuring
+\NewEnviron{keepsection}{%
+  \ifkeep@measuring \BODY \else
+    \edef\keep@sec{\the\value{section}}\edef\keep@sub{\the\value{subsection}}%
+    \setbox\measurebox\vbox{\hsize\linewidth\keep@measuringtrue\def\Needspace##1{}\BODY}%
+    \setcounter{section}{\keep@sec}\setcounter{subsection}{\keep@sub}%
+    \dimen2=\ht\measurebox \advance\dimen2\dp\measurebox
+    \dimen@=\textheight
+    \ifdim\pagegoal<\maxdimen
+      \dimen@=\pagegoal \advance\dimen@-\pagetotal
+      \ifdim\dimen2>\dimen@ \clearpage \dimen@=\textheight \fi
+    \fi
+    % if it fits, nothing inside may force an early break
+    \ifdim\dimen2>\dimen@ \BODY \else \begingroup\def\Needspace##1{}\BODY\endgroup \fi
+  \fi}
+\makeatother
+\newtcolorbox{notebox}{colback=Paperblue,colframe=Paperblue,boxrule=0pt,arc=0pt,left=8pt,right=8pt,top=4pt,bottom=4pt,before skip=6pt,after skip=6pt}
+\newtcolorbox{plainbox}{colback=white,colframe=FAUblue,boxrule=0pt,leftrule=3pt,arc=0pt,left=10pt,right=8pt,top=4pt,bottom=4pt,before skip=6pt,after skip=8pt}
+\usetikzlibrary{arrows.meta}
+\title{\sffamily\bfseries\color{FAUblue}Exercise 1: Worked solutions}
+\author{Electrical Engineering I \ensuremath{\cdot} Module 92315 \ensuremath{\cdot} Exercise 1\\[2pt]\small From Fundamentals to AI Apocalypse · personal study guide}
+\date{}
+\begin{document}
+\maketitle
+\begingroup\footnotesize\setlength{\parskip}{0pt}\tableofcontents\endgroup
+\clearpage
+
+\Needspace{8\baselineskip}
+{\large Work each part on paper before opening its solution. Each answer builds from the geometry or field definition, then checks the result.}
+
+
+\begin{keepsection}
+\Needspace{6\baselineskip}
+\section{Task 1: Cylinder in cylindrical coordinates}
+
+A right circular cylinder has radius \textit{a}, height \textit{h}, and its axis lies along \textit{z}. The origin is at the centre of the base; \textit{z} points upward.
+
+\begin{keepsection}
+\Needspace{6\baselineskip}
+\subsection{1a: Describe the three boundary surfaces}
+
+\Needspace{3\baselineskip}
+Try first: write the coordinate ranges for the base, curved side, and top.
+
+\nopagebreak[4]{\small\itshape Answers: see “Task 1: Cylinder in cylindrical coordinates” under Answers at the end.}
+\end{keepsection}
+
+\begin{keepsection}
+\Needspace{6\baselineskip}
+\subsection{1b: Give the outward unit normals}
+
+\Needspace{3\baselineskip}
+Try first: identify which coordinate direction points out of each smooth face.
+
+\nopagebreak[4]{\small\itshape Answers: see “Task 1: Cylinder in cylindrical coordinates” under Answers at the end.}
+\end{keepsection}
+\end{keepsection}
+
+\begin{keepsection}
+\Needspace{5\baselineskip}
+\section{Task 2: Hemisphere of radius \textit{a}}
+
+Include both the curved half-sphere and its flat base when finding total surface area.
+
+\begin{keepsection}
+\Needspace{6\baselineskip}
+\subsection{2a: Total surface area}
+
+\Needspace{3\baselineskip}
+Try first: calculate the curved part and disk separately, then add them.
+
+\nopagebreak[4]{\small\itshape Answers: see “Task 2: Hemisphere of radius a” under Answers at the end.}
+\end{keepsection}
+
+\begin{keepsection}
+\Needspace{6\baselineskip}
+\subsection{2b: Volume}
+
+\Needspace{3\baselineskip}
+Try first: set the spherical radial limit to \textit{a} and the polar angle to the upper half.
+
+\nopagebreak[4]{\small\itshape Answers: see “Task 2: Hemisphere of radius a” under Answers at the end.}
+\end{keepsection}
+\end{keepsection}
+
+\begin{keepsection}
+\Needspace{7\baselineskip}
+\section{Task 3: Field integral around a circle}
+
+Integrate each field around a circle of radius ρ = \textit{b} centred at the origin. Assume φ increases from 0 to 2π, counterclockwise when viewed from +\textit{z}. Reversing this path reverses any nonzero result.
+
+\begin{keepsection}
+\Needspace{6\baselineskip}
+\subsection{3a: Uniform x-directed field}
+
+\Needspace{3\baselineskip}
+Given \textit{H} = \textit{H}\textsubscript{0}\textit{e}\textsubscript{x}. Try first: parameterize the circle and evaluate the dot product.
+
+\nopagebreak[4]{\small\itshape Answers: see “Task 3: Field integral around a circle” under Answers at the end.}
+\end{keepsection}
+
+\begin{keepsection}
+\Needspace{6\baselineskip}
+\subsection{3b: Radial field}
+
+\Needspace{3\baselineskip}
+Given \textit{H} = \textit{H}\textsubscript{0}\textit{e}\textsubscript{ρ}. Try first: compare the field direction with the path tangent.
+
+\nopagebreak[4]{\small\itshape Answers: see “Task 3: Field integral around a circle” under Answers at the end.}
+\end{keepsection}
+
+\begin{keepsection}
+\Needspace{7\baselineskip}
+\subsection{3c: Azimuthal field growing with radius}
+
+\Needspace{4\baselineskip}
+Given \textit{H} = \textit{H}\textsubscript{0}(ρ/\textit{a})\textit{e}\textsubscript{φ}. Try first: evaluate the field on ρ = \textit{b} and use the circle's tangent element.
+
+\nopagebreak[4]{\small\itshape Answers: see “Task 3: Field integral around a circle” under Answers at the end.}
+\end{keepsection}
+\end{keepsection}
+
+
+\clearpage
+\section{Answers}
+\begin{keepsection}\subsection{Task 1: Cylinder in cylindrical coordinates}
+
+\begin{workedbox}{1a \ensuremath{\cdot} Surface coordinates}
+\Needspace{9\baselineskip}
+\begin{enumerate}
+\item In cylindrical coordinates a point is \textit{r} = ρ \textit{e}\textsubscript{ρ} + \textit{z e}\textsubscript{z}. A disk varies in ρ and φ while holding \textit{z} fixed; the side holds ρ fixed.
+\item For the base, set \textit{z} = 0: 0 \ensuremath{\leq} ρ \ensuremath{\leq} \textit{a}, 0 \ensuremath{\leq} φ \ensuremath{<} 2π. For the top, set \textit{z} = \textit{h} with the same disk ranges.
+\item \Needspace{4\baselineskip}
+For the lateral surface, set ρ = \textit{a}, with 0 \ensuremath{\leq} φ \ensuremath{<} 2π and 0 \ensuremath{\leq} \textit{z} \ensuremath{\leq} \textit{h}.
+
+\Needspace{4\baselineskip}
+\textbf{Result:} base: (ρ, φ, 0); side: (\textit{a}, φ, \textit{z}); top: (ρ, φ, \textit{h}), over the ranges above.
+
+\textbf{Check:} the curved side has no radial thickness; each disk spans the full radius.
+\end{enumerate}
+\end{workedbox}
+
+\end{keepsection}
+\begin{keepsection}\subsection{Task 1: Cylinder in cylindrical coordinates}
+
+\begin{workedbox}{1b \ensuremath{\cdot} Outward normals}
+\Needspace{8\baselineskip}
+\begin{enumerate}
+\item The bottom face lies at \textit{z} = 0. The cylinder occupies larger \textit{z}, so outward points downward: \ensuremath{-}\textit{e}\textsubscript{z}.
+\item The side is at fixed ρ = \textit{a}; increasing ρ leaves the cylinder, so its normal is +\textit{e}\textsubscript{ρ}.
+\item \Needspace{6\baselineskip}
+The top is at \textit{z} = \textit{h}, so outward is +\textit{e}\textsubscript{z}. Thus the normals are base \ensuremath{-}\textit{e}\textsubscript{z}, side +\textit{e}\textsubscript{ρ}, top +\textit{e}\textsubscript{z}. At the sharp circular rims, the adjacent face normals differ, so there is no single smooth-face normal.
+
+\textbf{Check:} each normal points away from the cylinder's interior.
+\end{enumerate}
+\end{workedbox}
+
+\end{keepsection}
+\begin{keepsection}\subsection{Task 2: Hemisphere of radius a}
+
+\begin{workedbox}{2a \ensuremath{\cdot} Curved surface plus base}
+\Needspace{7\baselineskip}
+\begin{enumerate}
+\item Use spherical coordinates with polar angle θ measured down from +\textit{z}. On the curved hemisphere, r = \textit{a}, 0 \ensuremath{\leq} θ \ensuremath{\leq} π/2, 0 \ensuremath{\leq} φ \ensuremath{<} 2π, and dA = \textit{a}² sin θ dθ dφ.
+\item Integrate the curved part: A\textsubscript{curve} = \ensuremath{\int}₀²π \ensuremath{\int}₀\textasciicircum{}(π/2) \textit{a}² sin θ dθ dφ = 2π\textit{a}².
+\item \Needspace{4\baselineskip}
+The base disk has area A\textsubscript{base} = π\textit{a}². Add the two pieces: \textbf{A\textsubscript{total} = 2π\textit{a}² + π\textit{a}² = 3π\textit{a}².}
+
+\textbf{Check:} the curved half is half the sphere's 4π\textit{a}² area; remember to include the base.
+\end{enumerate}
+\end{workedbox}
+
+\end{keepsection}
+\begin{keepsection}\subsection{Task 2: Hemisphere of radius a}
+
+\begin{workedbox}{2b \ensuremath{\cdot} Spherical volume integral}
+\Needspace{6\baselineskip}
+\begin{enumerate}
+\item For the hemisphere, 0 \ensuremath{\leq} r \ensuremath{\leq} \textit{a}, 0 \ensuremath{\leq} θ \ensuremath{\leq} π/2, and 0 \ensuremath{\leq} φ \ensuremath{<} 2π. The volume element is dV = r² sin θ dr dθ dφ.
+\item Separate the factors: V = (\ensuremath{\int}₀ᵃ r² dr)(\ensuremath{\int}₀\textasciicircum{}(π/2) sin θ dθ)(\ensuremath{\int}₀²π dφ) = (\textit{a}³/3)(1)(2π).
+\item \Needspace{4\baselineskip}
+\textbf{Result: V = 2π\textit{a}³/3.}
+
+\textbf{Check:} it is half the full sphere's 4π\textit{a}³/3 volume.
+\end{enumerate}
+\end{workedbox}
+
+\end{keepsection}
+\begin{keepsection}\subsection{Task 3: Field integral around a circle}
+
+\begin{workedbox}{3a: Uniform field}
+\Needspace{7\baselineskip}
+\begin{enumerate}
+\item On the circle, d\textit{s} = \textit{b e}\textsubscript{φ} dφ, where \textit{e}\textsubscript{φ} = \ensuremath{-}sin φ \textit{e}\textsubscript{x} + cos φ \textit{e}\textsubscript{y}.
+\item Then \textit{H} \ensuremath{\cdot} d\textit{s} = \ensuremath{-}\textit{b H}\textsubscript{0} sin φ dφ. Integrate around the full loop: \ensuremath{\oint} \textit{H} \ensuremath{\cdot} d\textit{s} = \ensuremath{-}\textit{b H}\textsubscript{0} \ensuremath{\int}₀²π sin φ dφ.
+\item \Needspace{6\baselineskip}
+\textbf{Result: \ensuremath{\oint} \textit{H} \ensuremath{\cdot} d\textit{s} = 0.} The positive and negative tangential contributions cancel over a full turn.
+
+\textbf{Check:} the field is not perpendicular everywhere; zero comes from cancellation, not pointwise orthogonality.
+\end{enumerate}
+\end{workedbox}
+
+\end{keepsection}
+\begin{keepsection}\subsection{Task 3: Field integral around a circle}
+
+\begin{workedbox}{3b: Radial field}
+\Needspace{7\baselineskip}
+\begin{enumerate}
+\item The circle's line element is tangential: d\textit{s} = \textit{b e}\textsubscript{φ} dφ. The field points radially along \textit{e}\textsubscript{ρ}.
+\item Radial and azimuthal unit vectors are perpendicular, so \textit{e}\textsubscript{ρ} \ensuremath{\cdot} \textit{e}\textsubscript{φ} = 0 at every point. Hence \textit{H} \ensuremath{\cdot} d\textit{s} = 0 everywhere on the path.
+\item \Needspace{5\baselineskip}
+\textbf{Result: \ensuremath{\oint} \textit{H} \ensuremath{\cdot} d\textit{s} = 0.}
+
+\textbf{Check:} unlike 3a, this integrand vanishes point by point, so no cancellation argument is needed.
+\end{enumerate}
+\end{workedbox}
+
+\end{keepsection}
+\begin{keepsection}\subsection{Task 3: Field integral around a circle}
+
+\begin{workedbox}{3c \ensuremath{\cdot} Tangential field}
+\Needspace{6\baselineskip}
+\begin{enumerate}
+\item On ρ = \textit{b}, the field is \textit{H} = (\textit{b}/\textit{a})\textit{H}\textsubscript{0}\textit{e}\textsubscript{φ}; the path element is d\textit{s} = \textit{b e}\textsubscript{φ} dφ.
+\item The directions agree, so \textit{H} \ensuremath{\cdot} d\textit{s} = (\textit{H}\textsubscript{0}\textit{b}²/\textit{a})dφ. Integrating through 2π gives 2π\textit{H}\textsubscript{0}\textit{b}²/\textit{a}.
+\item \Needspace{5\baselineskip}
+\textbf{Result: \ensuremath{\oint} \textit{H} \ensuremath{\cdot} d\textit{s} = 2π\textit{H}\textsubscript{0}\textit{b}²/\textit{a}.} The assumed counterclockwise direction makes it positive.
+
+\textbf{Check:} H has units A/m, so H times path length has units A. Clockwise traversal changes the sign.
+\end{enumerate}
+\end{workedbox}
+
+\end{keepsection}
+
+\vfill{\small Personal worked-solution guide based on the supplied EEI Exercise 1 sheet, written in my own words; no exercise text or figures are reproduced. Not an official FAU publication; check course details against the current material. Made by \textbf{Thanate Amornjiraporn (Focus)}.}
+
+\end{document}
