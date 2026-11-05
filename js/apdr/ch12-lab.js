@@ -173,10 +173,38 @@
     if (s.guess) text(ctx, "Your prediction: " + s.guess, w / 2, h - 46, c, 11);
   }
 
+  // "Or try your own": a Boolean expression in x and y in the chapter's notation (+ or, juxtaposition or · and, ′ not, ⊕),
+  // rewritten for js/mei/expr.js. Returns { fn(x, y) → 0/1 } or { error }.
+  function boolXY(text) {
+    var t = String(text).replace(/[′’`]/g, "'").replace(/\s+/g, "");
+    if (!t) return { error: "type an expression, for example x + x′y" };
+    var bad = t.replace(/[xy01+*·'()¬!~⊕^]/gi, "");
+    if (bad) return { error: "“" + bad[0] + "” is not allowed: use x, y, 0, 1, +, ·, ′, ⊕ and brackets" };
+    t = t.replace(/\^/g, "⊕").replace(/x/gi, "A").replace(/y/gi, "B");
+    var out = "";
+    for (var i = 0; i < t.length; i++) { if (i && /[AB01)']/.test(t[i - 1]) && /[AB01(¬!~]/.test(t[i])) out += "*"; out += t[i]; }
+    var r = Expr.logic(out);
+    if (r.error) return { error: r.error.replace(/ ?: use A, B, C.*$/, "") };
+    return { fn: function (x, y) { return Number(!!r.fn({ A: !!x, B: !!y })); } };
+  }
+  function ownMsg(form, m) { var e = form.querySelector("[data-own-msg]"); if (e) e.textContent = m || ""; }
+  // Canvas point in the 360 px layout that queue() centres in the stage.
+  function stagePoint(canvas, ev) {
+    var r = canvas.getBoundingClientRect(), H = Math.min(r.height, 360);
+    return { x: ev.clientX - r.left, y: ev.clientY - r.top - Math.round((r.height - H) / 2), w: r.width };
+  }
   function experimentIdentity() {
     var section = document.querySelector('[data-experiment="identity"]'), form = section.querySelector("form"), state = { kind: "identity", law: "absorption" };
     function setLaw() { state.law = form.querySelector("[data-law]").value; state.result = null; queue(section.querySelector("canvas"), state); }
     form.querySelector("[data-law]").addEventListener("change", setLaw); form.querySelector('[data-act="reset"]').addEventListener("click", setLaw);
+    function ownLaw() {
+      var L = form.querySelector('[data-own="left"]'), R = form.querySelector('[data-own="right"]'), l = boolXY(L.value), r = boolXY(R.value);
+      if (l.error || r.error) { ownMsg(form, (l.error ? "Left: " + l.error : "Right: " + r.error) + "."); return; }
+      ownMsg(form, "");
+      LAWS.own = { title: L.value.trim() + "  and  " + R.value.trim(), left: l.fn, right: r.fn };
+      state.law = "own"; state.result = null; queue(section.querySelector("canvas"), state);
+    }
+    form.querySelectorAll("[data-own]").forEach(function (el) { el.addEventListener("input", ownLaw); });
     register("identity", "1.2 Identity checks", section, form, state, function (show) {
       return [
         standard({ id: "absorption", setup: function () { state.law = "absorption"; } }, state, show, [["no", "No · a counterexample"], ["yes", "Yes · every row"]], "1.2", "For x,y in {0,1}, does x+xy=x hold on every row?", "yes", "If x=0, both sides are 0. If x=1, x+xy is 1 regardless of y; all four rows agree.", "absorption"),
@@ -229,7 +257,38 @@
           .then(function () { state.revealing = false; state.cubes = state.targetCubes; state.result = answer; show(); });
       };
     }
-    function chosen() { set(maps[Number(form.querySelector("[data-map]").value)]); }
+    var mIn = form.querySelector('[data-own="m"]'), dcIn = form.querySelector('[data-own="dc"]');
+    function chosen() { var m = maps[Number(form.querySelector("[data-map]").value)]; if (mIn) { mIn.value = m.join(", "); dcIn.value = ""; } ownMsg(form, ""); set(m); }
+    function cells(t, what) {
+      var out = [];
+      String(t).split(/[\s,;]+/).filter(Boolean).forEach(function (p) {
+        if (!/^[0-7]$/.test(p)) throw new Error(what + ": “" + p + "” is not a minterm, use 0 to 7");
+        if (out.indexOf(+p) < 0) out.push(+p);
+      });
+      return out.sort();
+    }
+    function ownMap() {
+      try {
+        var m = cells(mIn.value, "Minterms"), dc = cells(dcIn.value, "Don’t-cares").filter(function (x) { return m.indexOf(x) < 0; });
+        if (!m.length) return ownMsg(form, "Type at least one minterm, for example 1, 3, 5.");
+        ownMsg(form, ""); set(m, dc);
+      } catch (e) { ownMsg(form, e.message + "."); }
+    }
+    if (mIn) { mIn.addEventListener("input", ownMap); dcIn.addEventListener("input", ownMap); }
+    // In the sandbox a click on a cell turns it 0 → 1 → don't-care → 0.
+    section.querySelector(".stage").classList.add("clicks");
+    section.querySelector(".stage").addEventListener("click", function (ev) {
+      if (state.challenge || section.querySelector(".stage").classList.contains("locked") || !mIn) return;
+      var pt = stagePoint(section.querySelector("canvas"), ev), x0 = (pt.w - 192) / 2, j = Math.floor((pt.x - x0) / 48), r = Math.floor((pt.y - 79) / 38);
+      if (j < 0 || j > 3 || r < 0 || r > 1) return;
+      var min = (r << 2) | [0, 1, 3, 2][j], m = (state.minterms || []).slice(), dc = (state.dc || []).slice();
+      if (m.indexOf(min) >= 0) { m.splice(m.indexOf(min), 1); dc.push(min); }
+      else if (dc.indexOf(min) >= 0) dc.splice(dc.indexOf(min), 1);
+      else m.push(min);
+      mIn.value = m.sort().join(", "); dcIn.value = dc.sort().join(", ");
+      if (!m.length) { state.minterms = []; state.dc = dc; state.cubes = []; state.result = "No true cells: f = 0"; form.querySelector('[data-out="result"]').textContent = "0"; queue(section.querySelector("canvas"), state); return; }
+      ownMap();
+    });
     form.querySelector("[data-map]").addEventListener("change", chosen);
     register("kmap", "1.4 Karnaugh maps", section, form, state, function (show) {
       return [
@@ -275,7 +334,22 @@
     var options = [[0,1,1,0],[0,0,0,1],[0,1,1,1]];
     function anfText(c) { var labels = ["1", "B", "A", "AB"], terms = c.map(function (v,i) { return v ? labels[i] : null; }).filter(Boolean); return terms.length ? terms.join(" ⊕ ") : "0"; }
     function set(values) { state.values = values; state.coeff = P.toAnf(values); state.poly = anfText(state.coeff); queue(section.querySelector("canvas"), state); }
-    function choose() { set(options[Number(form.querySelector("[data-anf]").value)]); form.querySelector('[data-out="result"]').textContent = state.poly; }
+    var fIn = form.querySelector('[data-own="f"]');
+    function choose() { set(options[Number(form.querySelector("[data-anf]").value)]); if (fIn) fIn.value = state.values.join(""); ownMsg(form, ""); form.querySelector('[data-out="result"]').textContent = state.poly; }
+    function ownAnf() {
+      var t = fIn.value.replace(/[\s,]+/g, "");
+      if (!/^[01]{4}$/.test(t)) return ownMsg(form, "Type four bits for rows 00, 01, 10, 11, for example 0110.");
+      ownMsg(form, ""); set(t.split("").map(Number)); form.querySelector('[data-out="result"]').textContent = state.poly;
+    }
+    if (fIn) fIn.addEventListener("input", ownAnf);
+    // In the sandbox a click on a cell of the f row flips that output.
+    section.querySelector(".stage").classList.add("clicks");
+    section.querySelector(".stage").addEventListener("click", function (ev) {
+      if (state.challenge || section.querySelector(".stage").classList.contains("locked") || !fIn) return;
+      var pt = stagePoint(section.querySelector("canvas"), ev), cell = Math.min(50, (pt.w - 104) / 4), x0 = (pt.w - cell * 4) / 2 + 22, i = Math.floor((pt.x - x0) / cell);
+      if (i < 0 || i > 3 || pt.y < 84 || pt.y > 111) return;
+      var v = state.values.slice(); v[i] ^= 1; fIn.value = v.join(""); ownAnf();
+    });
     state.coeff = P.toAnf(state.values); state.poly = anfText(state.coeff);
     form.querySelector("[data-anf]").addEventListener("change", choose); form.querySelector('[data-act="reset"]').addEventListener("click", choose);
     register("anf", "1.5 Algebraic normal form", section, form, state, function (show) {

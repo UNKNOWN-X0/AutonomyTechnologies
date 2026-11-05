@@ -80,7 +80,9 @@
       // Endless practice: generate() returns a spec like the fixed ones (tests/lab-generators.test.js checks it).
       generate: generate && function () { return challenge(show, state, generate()); },
     });
-    form.querySelector('[data-act="run"]').addEventListener("click", function () {
+    // Results follow the inputs as you type (no Run button); a half-typed value shows what to fix.
+    function live() {
+      if (state.challenge) return;
       try {
         var next = Object.assign({}, state, read(form), { challenge: false, guess: "" });
         next.result = apply(next);
@@ -89,7 +91,9 @@
         state.result = null; out.textContent = e.message || "Check the inputs.";
       }
       show();
-    });
+    }
+    form.addEventListener("input", live);
+    form.addEventListener("change", live);
     form.querySelector('[data-act="reset"]').addEventListener("click", function () {
       form.reset(); fresh();
     });

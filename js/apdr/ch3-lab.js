@@ -20,6 +20,16 @@
     wrongs.concat(more || []).forEach(function (w) { if (out.length < 3 && out.indexOf(w) < 0) out.push(w); });
     return mix(out);
   }
+  // Results follow the inputs (no Convert, Decode or Calculate button): the action runs on every edit, after Reset and
+  // when the sandbox opens. Stands in for the removed button, so each experiment keeps its one handler.
+  function liveAction(form) {
+    return { addEventListener: function (type, fn) {
+      form._live = fn;
+      form.addEventListener("input", fn); form.addEventListener("change", fn);
+      var r = form.querySelector('[data-act="reset"]');
+      if (r) r.addEventListener("click", function () { if (typeof setTimeout === "function") setTimeout(fn, 0); });
+    } };
+  }
   function queue(canvas, state) {
     canvas._labState = state;
     if (canvas._paint) cancelAnimationFrame(canvas._paint);
@@ -268,7 +278,7 @@
     function show() { queue(canvas, state); }
     function set(value, from, to) { state.value = value; state.from = from; state.to = to; state.result = null; }
     function readForm() { set(form.querySelector("[data-value]").value, Number(form.querySelector("[data-from]").value), Number(form.querySelector("[data-to]").value)); }
-    form.querySelector('[data-act="convert"]').addEventListener("click", function () {
+    liveAction(form).addEventListener("live", function () {
       readForm(); try { state.result = P.convert(state.value, state.from, state.to).result; form.querySelector('[data-out="result"]').textContent = state.result; }
       catch (e) { form.querySelector('[data-out="result"]').textContent = "check digits and base"; } show();
     });
@@ -283,7 +293,7 @@
     Lab.experiment({ id: "bases", title: "3.1 Number bases", card: section.querySelector(".challenge"),
       lock: function (on) { lock(form, section, on); },
       setup: function (c) { state.challenge = true; state.progress = 0; state.revealing = false; state.result = null; c.stage(); },
-      sandbox: function () { state.challenge = false; state.revealing = false; state.guess = ""; readForm(); show(); },
+      sandbox: function () { state.challenge = false; state.revealing = false; state.guess = ""; readForm(); show(); if (form._live) form._live(); },
       // Endless practice (tests/lab-generators.test.js checks one correct option, every time)
       generate: function () {
         var v = 20 + rnd(100), bin = v.toString(2), rev = bin.split("").reverse().join(""), flip = bin.slice(0, -2) + (bin.slice(-2, -1) === "1" ? "0" : "1") + bin.slice(-1);
@@ -304,7 +314,7 @@
     function show() { queue(canvas, state); }
     function calculate(task, bits, encoding, bias) { return task === "bcd" ? P.encodeBcd(Number(bits)) : minus(P.decodeInteger(bits, encoding, bias)); }
     function readForm() { state.task = form.querySelector("[data-task]").value; state.bits = form.querySelector("[data-value]").value; state.encoding = form.querySelector("[data-encoding]").value; state.bias = Number(form.querySelector("[data-bias]").value); }
-    form.querySelector('[data-act="decode"]').addEventListener("click", function () { readForm(); try { state.result = calculate(state.task, state.bits, state.encoding, state.bias); form.querySelector('[data-out="result"]').textContent = state.result; } catch (e) { state.result = null; form.querySelector('[data-out="result"]').textContent = "check the pattern or bias"; } show(); });
+    liveAction(form).addEventListener("live", function () { readForm(); try { state.result = calculate(state.task, state.bits, state.encoding, state.bias); form.querySelector('[data-out="result"]').textContent = state.result; } catch (e) { state.result = null; form.querySelector('[data-out="result"]').textContent = "check the pattern or bias"; } show(); });
     form.querySelector('[data-act="reset"]').addEventListener("click", function () { form.querySelector("[data-task]").value = "decode"; form.querySelector("[data-value]").value = "1111"; form.querySelector("[data-encoding]").value = "twos-complement"; form.querySelector("[data-bias]").value = "8"; readForm(); state.result = null; form.querySelector('[data-out="result"]').textContent = "—"; show(); });
     form.querySelector("[data-task]").addEventListener("change", function (event) { form.querySelector('[data-value]').value = event.target.value === "bcd" ? "59" : "1111"; });
     function challenge(id, short, prompt, task, bits, encoding, bias, options, answer, why) {
@@ -316,7 +326,7 @@
     Lab.experiment({ id: "encodings", title: "3.2 Integer representations", card: section.querySelector(".challenge"),
       lock: function (on) { lock(form, section, on); },
       setup: function (c) { state.challenge = true; state.progress = 0; state.revealing = false; state.result = null; c.stage(); },
-      sandbox: function () { state.challenge = false; state.revealing = false; state.result = null; state.guess = ""; readForm(); show(); },
+      sandbox: function () { state.challenge = false; state.revealing = false; state.result = null; state.guess = ""; readForm(); show(); if (form._live) form._live(); },
       // Endless practice (tests/lab-generators.test.js checks one correct option, every time)
       generate: function () {
         var u = 9 + rnd(7), bits = u.toString(2), val = u - 16, sm = -(u - 8), lab = function (x) { return String(x).replace("-", "−"); };
@@ -336,7 +346,7 @@
       state = { kind: "characters", hex: "46 72 65 64" };
     function show() { queue(canvas, state); }
     function decode(hex) { return P.decodeAsciiHex(hex); }
-    form.querySelector('[data-act="decode"]').addEventListener("click", function () { state.hex = form.querySelector("[data-hex]").value; try { state.result = decode(state.hex); form.querySelector('[data-out="result"]').textContent = state.result; } catch (e) { state.result = null; form.querySelector('[data-out="result"]').textContent = "use two-digit ASCII-range hex bytes"; } show(); });
+    liveAction(form).addEventListener("live", function () { state.hex = form.querySelector("[data-hex]").value; try { state.result = decode(state.hex); form.querySelector('[data-out="result"]').textContent = state.result; } catch (e) { state.result = null; form.querySelector('[data-out="result"]').textContent = "use two-digit ASCII-range hex bytes"; } show(); });
     form.querySelector('[data-act="reset"]').addEventListener("click", function () { state.hex = "46 72 65 64"; state.result = null; state.guess = ""; form.querySelector("[data-hex]").value = state.hex; form.querySelector('[data-out="result"]').textContent = "—"; show(); });
     function challenge(id, short, prompt, hex, options, answer, why) {
       return standard(function () { state.hex = hex; state.result = null; state.guess = ""; show(); },
@@ -347,7 +357,7 @@
     Lab.experiment({ id: "characters", title: "3.3 Character data", card: section.querySelector(".challenge"),
       lock: function (on) { lock(form, section, on); },
       setup: function (c) { state.challenge = true; state.progress = 0; state.revealing = false; state.result = null; c.stage(); },
-      sandbox: function () { state.challenge = false; state.revealing = false; state.result = null; state.guess = ""; state.hex = form.querySelector("[data-hex]").value; show(); },
+      sandbox: function () { state.challenge = false; state.revealing = false; state.result = null; state.guess = ""; state.hex = form.querySelector("[data-hex]").value; show(); if (form._live) form._live(); },
       // Endless practice (tests/lab-generators.test.js checks one correct option, every time)
       generate: function () {
         var c = 65 + rnd(26), ch = String.fromCharCode(c), hex = c.toString(16).toUpperCase();
@@ -372,7 +382,7 @@
     function show() { queue(canvas, state); }
     function readForm() { state.left = form.querySelector("[data-left]").value; state.right = form.querySelector("[data-right]").value; state.operation = form.querySelector("[data-operation]").value; }
     function calculate(left, right, operation) { var r = P.unsignedArithmetic(left, right, operation); return { source: r, label: formatUnsigned(r, operation) }; }
-    form.querySelector('[data-act="calculate"]').addEventListener("click", function () { readForm(); try { var r = calculate(state.left, state.right, state.operation); state.result = r.label; state.resultBits = r.source.bits; state.quotientBits = r.source.quotientBits; state.remainderBits = r.source.remainderBits; form.querySelector('[data-out="result"]').textContent = r.label; } catch (e) { state.result = null; form.querySelector('[data-out="result"]').textContent = "check binary digits and divisor"; } show(); });
+    liveAction(form).addEventListener("live", function () { readForm(); try { var r = calculate(state.left, state.right, state.operation); state.result = r.label; state.resultBits = r.source.bits; state.quotientBits = r.source.quotientBits; state.remainderBits = r.source.remainderBits; form.querySelector('[data-out="result"]').textContent = r.label; } catch (e) { state.result = null; form.querySelector('[data-out="result"]').textContent = "check binary digits and divisor"; } show(); });
     form.querySelector('[data-act="reset"]').addEventListener("click", function () { form.querySelector("[data-left]").value = "111011"; form.querySelector("[data-right]").value = "101010"; form.querySelector("[data-operation]").value = "add"; state = Object.assign(state, { left: "111011", right: "101010", operation: "add", result: null, guess: "" }); form.querySelector('[data-out="result"]').textContent = "—"; show(); });
     function challenge(id, short, prompt, left, right, operation, options, answer, why) {
       return standard(function () { state.left = left; state.right = right; state.operation = operation; state.result = null; state.guess = ""; show(); },
@@ -383,7 +393,7 @@
     Lab.experiment({ id: "unsigned", title: "3.4 Unsigned arithmetic", card: section.querySelector(".challenge"),
       lock: function (on) { lock(form, section, on); },
       setup: function (c) { state.challenge = true; state.progress = 0; state.revealing = false; state.result = null; c.stage(); },
-      sandbox: function () { state.challenge = false; state.revealing = false; state.result = null; state.guess = ""; readForm(); show(); },
+      sandbox: function () { state.challenge = false; state.revealing = false; state.result = null; state.guess = ""; readForm(); show(); if (form._live) form._live(); },
       // Endless practice (tests/lab-generators.test.js checks one correct option, every time)
       generate: function () {
         var x = 8 + rnd(24), y = 8 + rnd(24), a = x.toString(2), b = y.toString(2), sum = (x + y).toString(2), xor = (x ^ y).toString(2);
@@ -406,7 +416,7 @@
     function show() { queue(canvas, state); }
     function readForm() { state.width = Number(form.querySelector("[data-width]").value); state.left = form.querySelector("[data-left]").value.trim(); state.right = form.querySelector("[data-right]").value.trim(); state.operation = form.querySelector("[data-operation]").value; }
     function calculate(left, right, operation) { return P.twosArithmetic(left, right, operation); }
-    form.querySelector('[data-act="calculate"]').addEventListener("click", function () { readForm(); function out(name, value) { form.querySelector('[data-out="' + name + '"]').textContent = value; } try { if (state.left.length !== state.width || state.right.length !== state.width) throw new RangeError("wrong width"); var r = calculate(state.left, state.right, state.operation); Object.assign(state, r); state.result = r; out("pattern", r.pattern); out("result", minus(r.decoded)); out("carry", r.carryOut ? "1" : "0"); out("overflow", r.overflow ? "yes" : "no"); } catch (e) { state.result = null; out("pattern", "enter exactly " + state.width + " bits"); out("result", "—"); out("carry", "—"); out("overflow", "—"); } show(); });
+    liveAction(form).addEventListener("live", function () { readForm(); function out(name, value) { form.querySelector('[data-out="' + name + '"]').textContent = value; } try { if (state.left.length !== state.width || state.right.length !== state.width) throw new RangeError("wrong width"); var r = calculate(state.left, state.right, state.operation); Object.assign(state, r); state.result = r; out("pattern", r.pattern); out("result", minus(r.decoded)); out("carry", r.carryOut ? "1" : "0"); out("overflow", r.overflow ? "yes" : "no"); } catch (e) { state.result = null; out("pattern", "enter exactly " + state.width + " bits"); out("result", "—"); out("carry", "—"); out("overflow", "—"); } show(); });
     form.querySelector('[data-act="reset"]').addEventListener("click", function () { form.querySelector("[data-width]").value = "4"; form.querySelector("[data-left]").value = "0101"; form.querySelector("[data-right]").value = "0011"; form.querySelector("[data-operation]").value = "add"; Object.assign(state, { left: "0101", right: "0011", operation: "add", result: null, guess: "" }); form.querySelector('[data-out="pattern"]').textContent = "—"; form.querySelector('[data-out="result"]').textContent = "—"; form.querySelector('[data-out="carry"]').textContent = "—"; form.querySelector('[data-out="overflow"]').textContent = "—"; show(); });
     function challenge(id, short, prompt, left, right, operation, options, answer, why) {
       return standard(function () { state.left = left; state.right = right; state.operation = operation; state.result = null; state.guess = ""; show(); },
@@ -417,7 +427,7 @@
     Lab.experiment({ id: "signed", title: "3.5 Two’s-complement arithmetic", card: section.querySelector(".challenge"),
       lock: function (on) { lock(form, section, on); },
       setup: function (c) { state.challenge = true; state.progress = 0; state.revealing = false; state.result = null; c.stage(); },
-      sandbox: function () { state.challenge = false; state.revealing = false; state.result = null; state.guess = ""; readForm(); show(); },
+      sandbox: function () { state.challenge = false; state.revealing = false; state.result = null; state.guess = ""; readForm(); show(); if (form._live) form._live(); },
       // Endless practice: does a random four-bit two’s-complement addition overflow?
       generate: function () {
         var a = rnd(16), b = rnd(16), sv = function (u) { return u >= 8 ? u - 16 : u; }, exact = sv(a) + sv(b), over = exact < -8 || exact > 7,

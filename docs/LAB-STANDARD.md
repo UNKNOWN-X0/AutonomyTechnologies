@@ -60,6 +60,20 @@ Chapter numbers may include a lowercase letter suffix (for example, `12a` or `34
 | Why | Two or three sentences: the rule, the numbers that come out, and the misconception it corrects. The engine appends the link to the guide section. |
 | Order | Start with the most common misconception, end with one that combines ideas. |
 
+## Generated challenges (New challenge)
+
+Add `generate()` wherever the question is a calculation or a classification that random values can vary; leave it out where the fixed questions are about one idea or one picture (timing limits, Gauss surfaces, numerical stability), because random versions would only repeat them. 35 of 53 experiments have one (2026-11-05).
+
+| Part | Rule |
+|---|---|
+| Shape | Build the challenge with the lab's own factory (`challenge()`, `spec()`, `standard()`) so it stages, previews and reveals like a fixed one. Its `id` starts with `gen-`; count tests skip these ids. |
+| Answer | Computed from the physics module (or the same rule the stage draws), never typed in. The `why` uses the generated numbers: rule, working, result. |
+| Options | The right one plus up to two distinct wrong ones, shuffled (`pick`/`three`/`mix` helpers in each lab). Each wrong option is a real slip: bits read in the wrong order, averaging instead of the update rule, forgetting to normalise, the carry dropped. |
+| Never two right answers | A wrong option must not also be correct. Where an answer can be written several ways (a K-map cover), take wrong options from a different function, not another form of the same one. |
+| Edge cases | Re-draw values that make options collide or the question trivial: palindromic bit patterns, equal capacitors, `−0`, an exponent field of exactly 127, g² = x. |
+| Stage | `stage()` sets every field the drawing reads, including the form-side values a sandbox would read, so the drawing matches the prompt. |
+| Text | Plain prompts with the numbers in them; superscripts as Unicode (2⁻²³); long bit strings stay on the stage, not in the prompt. |
+
 ## Stage and interaction
 
 - **Drawing:** a canvas for fields, plots and heatmaps; an SVG overlay only for focusable handles. Redraw on change through one `requestAnimationFrame` queue, never in a loop.
@@ -67,6 +81,7 @@ Chapter numbers may include a lowercase letter suffix (for example, `12a` or `34
 - **Dragging:** the `.stage` element listens for pointer events and picks the nearest object within reach (about 30 px). The redrawn shapes never receive the pointer, so a drag survives redraws in Safari. Every draggable object also moves with the arrow keys (Shift for bigger steps) and keeps focus while it moves.
 - **Readouts:** values carry units with SI prefixes through `fmt()`, in tabular figures. Where a comparison is the point, show factors against a stored state ("×2", "×½", "unchanged").
 - **Sandbox state:** `sandbox()` clears every challenge-only field, and Replay re-renders the first challenge from a clean state.
+- **Your own values:** where a preset list limits what can be tried, add an "Or try your own" fieldset (`fieldset.own`) with typed inputs (`data-own`), checked as you type, with a one-line message (`[data-own-msg]`) that says what is wrong and how to fix it. Typed rules go through `js/mei/expr.js` (arithmetic, logic and set expressions, no `eval`). Results update as you type and are shown as soon as the sandbox opens; keep a button only for a step the student takes on purpose (Run one step, Add a charge, Compare from here), never for a calculation that is instant. Clickable stage cells (APDR 12a K-map and ANF) mirror a typed field, so keyboard users have the same control, and the stage gets the `clicks` class for its pointer cursor.
 - **Hover help:** tooltips (`data-tip`) only repeat or explain what is already visible.
 
 ## Layout
@@ -107,8 +122,9 @@ A lab is done when all of the following hold:
 2. `node --test` passes, including `tests/lab-challenges.test.js`, which checks every lab's challenge data and reports how often the answer is the first option.
 3. Every challenge of every experiment is played, then replayed once, in Playwright Chromium **and WebKit**, at 1280 px and 390 px, in light and dark mode and with reduced motion. There are no console errors, the stage is on screen at every reveal, card and stage are the same height side by side with no jump at the reveal, and no page scrolls sideways.
 4. Each sandbox is used: dragging with the mouse and by touch, arrow keys, and every control. Values are read only after a frame has settled.
-5. The BrowserTests smoke suite passes.
-6. `scripts/refresh-graph.sh --changed` from the workspace root has run.
+5. Every experiment with `generate()` is played at least three times in both engines through **New challenge** and **Another challenge**, with no console errors and a verdict each time; sample prompts and explanations are read for sense, not only checked by the test.
+6. The BrowserTests smoke suite passes.
+7. `scripts/refresh-graph.sh --changed` from the workspace root has run.
 
 ## Updating a lab
 

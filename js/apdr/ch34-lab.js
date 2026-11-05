@@ -140,12 +140,14 @@
       id: id, title: title, card: card,
       lock: lock,
       setup: function (c) { c.stage(); },
-      sandbox: function () { Object.assign(state, start, { nodes: start.nodes.slice(), steps: [] }); paint(); },
+      sandbox: function () { Object.assign(state, start, { nodes: start.nodes.slice(), steps: [] }); paint(); live(); },
       challenges: specs.map(function (spec) { return challenge(state, canvas, spec); }),
       // Endless practice: generate() returns a spec like the fixed ones (tests/lab-generators.test.js checks it).
       generate: generate && function () { return challenge(state, canvas, generate()); },
     });
-    form.querySelector('[data-act="run"]').addEventListener("click", function () {
+    // Results follow the inputs as you type (no Run button); a half-typed value shows what to fix.
+    function live() {
+      if (state.challenge) return;
       try {
         var result = run(form);
         state.heading = result.heading; state.nodes = result.nodes || ["input", "rule", "result"];
@@ -157,11 +159,13 @@
         form.querySelector('[data-out="result"]').textContent = state.answer;
       }
       paint();
-    });
+    }
+    form.addEventListener("input", live);
+    form.addEventListener("change", live);
     form.querySelector('[data-act="reset"]').addEventListener("click", function () {
       form.reset(); state.heading = "Follow the representation"; state.nodes = ["input", "rule", "result"];
       state.answer = "?"; state.steps = []; state.viz = null; state.done = false; state.guess = "";
-      form.querySelector('[data-out="result"]').textContent = "—"; paint();
+      form.querySelector('[data-out="result"]').textContent = "—"; paint(); live();
     });
   }
 

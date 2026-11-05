@@ -132,9 +132,9 @@
     "semantic_hash": ""
   },
   "js/eei/ch1-lab.js": {
-    "mtime": 1793821734.4446363,
-    "seen": 1793822946.205324,
-    "ast_hash": "f1c0a9e25ea8f97d864954b881db291e",
+    "mtime": 1793831912.9191995,
+    "seen": 1793833348.847636,
+    "ast_hash": "4e333f32062c393344ae7d639a39cb05",
     "semantic_hash": ""
   },
   "js/eei/ch1-physics.js": {
@@ -204,9 +204,9 @@
     "semantic_hash": ""
   },
   "js/apdr/ch2-lab.js": {
-    "mtime": 1793629940.2607524,
-    "seen": 1793630087.92186,
-    "ast_hash": "ff1fd6b813cbdd13d014563f7632d9c9",
+    "mtime": 1793831305.1497273,
+    "seen": 1793833348.847625,
+    "ast_hash": "1154a77fe72712b9c9bcb92525e3e265",
     "semantic_hash": ""
   },
   "js/apdr/ch2-physics.js": {
@@ -252,9 +252,9 @@
     "semantic_hash": ""
   },
   "js/apdr/ch12-lab.js": {
-    "mtime": 1793821982.1387322,
-    "seen": 1793822946.205309,
-    "ast_hash": "8eb0068b5a44302ddc4a906f70b4f02a",
+    "mtime": 1793832696.3398178,
+    "seen": 1793833348.8476212,
+    "ast_hash": "7c2ffddd119f78a16b52bd441974712e",
     "semantic_hash": ""
   },
   "js/apdr/ch12-physics.js": {
@@ -276,9 +276,9 @@
     "semantic_hash": ""
   },
   "js/apdr/ch4-lab.js": {
-    "mtime": 1793613523.9820974,
-    "seen": 1793624688.33729,
-    "ast_hash": "0d0bbd576389e82455143988a816ffec",
+    "mtime": 1793832685.5064487,
+    "seen": 1793833348.8476312,
+    "ast_hash": "3640e0d335240c8513dfbe8d2e4cac95",
     "semantic_hash": ""
   },
   "js/apdr/ch4-physics.js": {
@@ -300,9 +300,9 @@
     "semantic_hash": ""
   },
   "js/apdr/ch34-lab.js": {
-    "mtime": 1793692980.089329,
-    "seen": 1793693069.046654,
-    "ast_hash": "3dd105c46be191ca2c22a938ad975a19",
+    "mtime": 1793831789.5282364,
+    "seen": 1793833348.847629,
+    "ast_hash": "7d673a028b6626806bff65c0f7ab3bbb",
     "semantic_hash": ""
   },
   "js/apdr/ch34-physics.js": {
@@ -462,9 +462,9 @@
     "semantic_hash": ""
   },
   "about/version-log.html": {
-    "mtime": 1793831089.606437,
-    "seen": 1793831111.0606568,
-    "ast_hash": "e7f38da6067aef394ab4950ba987d97b",
+    "mtime": 1793832706.9876115,
+    "seen": 1793833348.8476732,
+    "ast_hash": "da6f8a5b878ef21725659610ead20600",
     "semantic_hash": ""
   },
   "docs/DIAGRAM-AND-LAB-PLAN.md": {

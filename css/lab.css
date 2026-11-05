@@ -783,6 +783,10 @@
 }
 
 /* "Or try your own" (MEI labs): typed rules under the presets; the boxes use the shared control style below. */
+/* Stages whose cells can be clicked in the sandbox (APDR 12a K-map and ANF). */
+.stage.clicks:not(.locked) canvas {
+  cursor: pointer;
+}
 .controls .own-msg {
   min-height: 1.3em;
   margin: 6px 0 0;
