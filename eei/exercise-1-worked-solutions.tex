@@ -298,11 +298,11 @@ A small surface patch grows with both directions around the sphere. Its area ele
 \item \Needspace{4\baselineskip}
 Integrate over the curved part:
 
-\begin{equation*}{A}_{\text{curve}}\, =\, ∫_{0}^{2π}\, ∫_{0}^{π/2}\, {a}^{2}\, \text{sin}\, {θ}\, \mathrm{d}{θ}\, \mathrm{d}{φ}\end{equation*}
+\begin{equation*}{A}_{\text{curve}}\, =\, \int_{0}^{2π} \, \int_{0}^{π/2} \, {a}^{2}\, \text{sin}\, {θ}\, \mathrm{d}{θ}\, \mathrm{d}{φ}\end{equation*}
 \item \Needspace{4\baselineskip}
 The angular integral gives 1 and the azimuthal integral gives 2π:
 
-\begin{equation*}∫_{0}^{π/2}\, \text{sin}\, {θ}\, \mathrm{d}{θ}\, =\, [-\text{cos}\, {θ}]_{0}^{π/2}\, =\, 1;\, \quad \, {A}_{\text{curve}}\, =\, 2π{a}^{2}\end{equation*}
+\begin{equation*}\int_{0}^{π/2} \, \text{sin}\, {θ}\, \mathrm{d}{θ}\, =\, [-\text{cos}\, {θ}]_{0}^{π/2}\, =\, 1;\, \quad \, {A}_{\text{curve}}\, =\, 2π{a}^{2}\end{equation*}
 \item \Needspace{4\baselineskip}
 The flat base is a disk of radius \textit{a}. Add the boundary pieces:
 
@@ -327,11 +327,11 @@ The spherical-coordinate volume element includes the coordinate Jacobian, which 
 \item \Needspace{4\baselineskip}
 Set up the integral. The factors depend on separate variables:
 
-\begin{equation*}{V}\, =\, ∫_{0}^{2π}\, ∫_{0}^{π/2}\, ∫_{0}^{\mathrm{a}}\, {r}^{2}\, \text{sin}\, {θ}\, \mathrm{d}{r}\, \mathrm{d}{θ}\, \mathrm{d}{φ}\end{equation*}
+\begin{equation*}{V}\, =\, \int_{0}^{2π} \, \int_{0}^{π/2} \, \int_{0}^{\mathrm{a}} \, {r}^{2}\, \text{sin}\, {θ}\, \mathrm{d}{r}\, \mathrm{d}{θ}\, \mathrm{d}{φ}\end{equation*}
 \item \Needspace{4\baselineskip}
 Evaluate each factor:
 
-\begin{equation*}∫_{0}^{\mathrm{a}}\, {r}^{2}\, \mathrm{d}{r}\, =\, {a}^{3}/3;\, \quad \, ∫_{0}^{π/2}\, \text{sin}\, {θ}\, \mathrm{d}{θ}\, =\, 1;\, \quad \, ∫_{0}^{2π}\, \mathrm{d}{φ}\, =\, 2π\end{equation*}
+\begin{equation*}\int_{0}^{\mathrm{a}} \, {r}^{2}\, \mathrm{d}{r}\, =\, {a}^{3}/3;\, \quad \, \int_{0}^{π/2} \, \text{sin}\, {θ}\, \mathrm{d}{θ}\, =\, 1;\, \quad \, \int_{0}^{2π} \, \mathrm{d}{φ}\, =\, 2π\end{equation*}
 \item \Needspace{4\baselineskip}
 \textbf{Result:}
 
@@ -363,12 +363,12 @@ Take the dot product with the constant field:
 \item \Needspace{4\baselineskip}
 Integrate over the whole circle:
 
-\begin{equation*}∮\, {H}\, \cdot \, \mathrm{d}{s}\, =\, -{b\,H}_{0}\, ∫_{0}^{2π}\, \text{sin}\, {φ}\, \mathrm{d}{φ}\, =\, {b\,H}_{0}[\text{cos}\, {φ}]_{0}^{2π}\end{equation*}
+\begin{equation*}\oint \, {H}\, \cdot \, \mathrm{d}{s}\, =\, -{b\,H}_{0}\, \int_{0}^{2π} \, \text{sin}\, {φ}\, \mathrm{d}{φ}\, =\, {b\,H}_{0}[\text{cos}\, {φ}]_{0}^{2π}\end{equation*}
 \item \Needspace{4\baselineskip}
 \textbf{Result:}
 
 \Needspace{4\baselineskip}
-\begin{equation*}∮\, {H}\, \cdot \, \mathrm{d}{s}\, =\, 0\end{equation*}
+\begin{equation*}\oint \, {H}\, \cdot \, \mathrm{d}{s}\, =\, 0\end{equation*}
 
 \Needspace{5\baselineskip}
 The positive and negative tangential contributions cancel over one full turn.
@@ -396,7 +396,7 @@ The dot product is zero at each point because the directions are perpendicular:
 \textbf{Result:}
 
 \Needspace{5\baselineskip}
-\begin{equation*}∮\, {H}\, \cdot \, \mathrm{d}{s}\, =\, 0\end{equation*}
+\begin{equation*}\oint \, {H}\, \cdot \, \mathrm{d}{s}\, =\, 0\end{equation*}
 
 \textbf{Check:} unlike 3a, the integrand is zero point by point. No cancellation between different parts of the circle is needed.
 \end{enumerate}
@@ -423,12 +423,12 @@ Both vectors point along \textit{e}\textsubscript{φ}, whose dot product with it
 \item \Needspace{4\baselineskip}
 Integrate the constant around one revolution:
 
-\begin{equation*}∮\, {H}\, \cdot \, \mathrm{d}{s}\, =\, ∫_{0}^{2π}\, {H}_{0}({b}^{2}/{a})\, \mathrm{d}{φ}\, =\, 2π{H}_{0}{b}^{2}/{a}\end{equation*}
+\begin{equation*}\oint \, {H}\, \cdot \, \mathrm{d}{s}\, =\, \int_{0}^{2π} \, {H}_{0}({b}^{2}/{a})\, \mathrm{d}{φ}\, =\, 2π{H}_{0}{b}^{2}/{a}\end{equation*}
 \item \Needspace{4\baselineskip}
 \textbf{Result:}
 
 \Needspace{4\baselineskip}
-\begin{equation*}∮\, {H}\, \cdot \, \mathrm{d}{s}\, =\, 2π{H}_{0}{b}^{2}/{a}\end{equation*}
+\begin{equation*}\oint \, {H}\, \cdot \, \mathrm{d}{s}\, =\, 2π{H}_{0}{b}^{2}/{a}\end{equation*}
 
 \Needspace{5\baselineskip}
 It is positive for the assumed counterclockwise direction.
