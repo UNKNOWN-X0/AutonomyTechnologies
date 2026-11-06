@@ -429,6 +429,35 @@ def viz_tikz(f):
                     T(169, cy - 25, "eφ, ds", r"\footnotesize", "anchor=west", False, "FAUblue"),
                     T(169, cy + 17, "eρ = ex", r"\footnotesize", "anchor=west"),
                     T(cx + rad + 6, cy + 5, "P", r"\footnotesize", "anchor=west", True)]
+        elif sub == "axis-pair":
+            out += [arrow_t(22, 96, 222, 96), arrow_t(120, 174, 120, 12),
+                    r"\draw[black!55,dashed] %s -- %s;" % (P(120, 52), P(184, 75)),
+                    r"\draw[black!55,dashed] %s -- %s;" % (P(120, 140), P(184, 75))]
+            for x, y in ((120, 52), (120, 140)):
+                out.append(r"\filldraw[draw=FAUblue,fill=FAUblue] %s circle (%.3f);" % (P(x, y), 6 * VS))
+            out += [r"\fill[FAUblue] %s circle (%.3f);" % (P(184, 75), 4 * VS),
+                    T(224, 101, "x", r"\footnotesize", "anchor=west", True),
+                    T(116, 10, "y", r"\footnotesize", "anchor=east", True),
+                    T(132, 50, "Q1", r"\footnotesize", "anchor=west"),
+                    T(132, 144, "Q2", r"\footnotesize", "anchor=west"),
+                    T(191, 72, "P(x,y)", r"\footnotesize", "anchor=west", True),
+                    T(108, 48, "a", r"\footnotesize", "anchor=east", True),
+                    T(108, 145, "−a", r"\footnotesize", "anchor=east", True)]
+        elif sub == "diamond":
+            out += [r"\draw[black!55,dashed] %s -- %s;" % (P(120, 29), P(120, 148)),
+                    r"\draw[black!80] %s -- %s -- %s -- %s -- cycle;" %
+                    (P(120, 29), P(69, 80), P(120, 131), P(171, 80)),
+                    arrow_t(120, 143, 120, 10), arrow_t(120, 131, 218, 131)]
+            for x, y in ((120, 29), (69, 80), (171, 80), (120, 131)):
+                out.append(r"\filldraw[draw=FAUblue,fill=FAUblue] %s circle (%.3f);" % (P(x, y), 6 * VS))
+            out += [T(132, 26, "Q2", r"\footnotesize", "anchor=west"),
+                    T(55, 75, "Q1", r"\footnotesize", "anchor=east"),
+                    T(183, 75, "Q3", r"\footnotesize", "anchor=west"),
+                    T(132, 146, "Q", r"\footnotesize", "anchor=west"),
+                    T(79, 57, "a", r"\footnotesize", "", True),
+                    T(161, 57, "a", r"\footnotesize", "", True),
+                    T(221, 136, "x", r"\footnotesize", "anchor=west", True),
+                    T(116, 9, "y", r"\footnotesize", "anchor=east", True)]
     elif kind == "plot":
         xr = [float(v) for v in (a.get("data-xr") or "0 1").split()]
         yr = [float(v) for v in (a.get("data-yr") or "0 1").split()]

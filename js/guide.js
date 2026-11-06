@@ -611,6 +611,42 @@
         txt(svg, px + 6, cy + 5, "P", "vz-small vz-it", "start");
         return [236, 154];
       }
+      if (d.kind2 === "axis-pair") {
+        arrow(svg, 22, 96, 222, 96, "vz-line");
+        arrow(svg, 120, 174, 120, 12, "vz-line");
+        txt(svg, 224, 101, "x", "vz-small vz-it", "start");
+        txt(svg, 116, 10, "y", "vz-small vz-it", "end");
+        el("line", { x1: 120, y1: 52, x2: 184, y2: 75, class: "vz-dash" }, svg);
+        el("line", { x1: 120, y1: 140, x2: 184, y2: 75, class: "vz-dash" }, svg);
+        el("circle", { cx: 120, cy: 52, r: 6, class: "vz-charge" }, svg);
+        el("circle", { cx: 120, cy: 140, r: 6, class: "vz-charge" }, svg);
+        el("circle", { cx: 184, cy: 75, r: 4, class: "vz-dot" }, svg);
+        txt(svg, 132, 50, "Q₁", "vz-small", "start");
+        txt(svg, 132, 144, "Q₂", "vz-small", "start");
+        txt(svg, 191, 72, "P(x,y)", "vz-small vz-it", "start");
+        txt(svg, 108, 48, "a", "vz-small vz-it", "end");
+        txt(svg, 108, 145, "−a", "vz-small vz-it", "end");
+        return [240, 184];
+      }
+      if (d.kind2 === "diamond") {
+        el("line", { x1: 120, y1: 29, x2: 120, y2: 148, class: "vz-dash" }, svg);
+        el("path", { d: "M120 29L69 80L120 131L171 80Z", class: "vz-line" }, svg);
+        arrow(svg, 120, 143, 120, 10, "vz-line");
+        arrow(svg, 120, 131, 218, 131, "vz-line");
+        el("circle", { cx: 120, cy: 29, r: 6, class: "vz-charge" }, svg);
+        el("circle", { cx: 69, cy: 80, r: 6, class: "vz-charge" }, svg);
+        el("circle", { cx: 171, cy: 80, r: 6, class: "vz-charge" }, svg);
+        el("circle", { cx: 120, cy: 131, r: 6, class: "vz-charge" }, svg);
+        txt(svg, 132, 26, "Q₂", "vz-small", "start");
+        txt(svg, 55, 75, "Q₁", "vz-small", "end");
+        txt(svg, 183, 75, "Q₃", "vz-small", "start");
+        txt(svg, 132, 146, "Q", "vz-small", "start");
+        txt(svg, 79, 57, "a", "vz-small vz-it");
+        txt(svg, 161, 57, "a", "vz-small vz-it");
+        txt(svg, 221, 136, "x", "vz-small vz-it", "start");
+        txt(svg, 116, 9, "y", "vz-small vz-it", "end");
+        return [240, 164];
+      }
       return [1, 1];
     },
     field: function (svg, d) {

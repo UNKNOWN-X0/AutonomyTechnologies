@@ -148,7 +148,8 @@
     parts.parentNode.insertBefore(panels, parts.nextSibling);
 
     tabItems.forEach(function (item, pi) {
-      var sourceLink = item.querySelector("a[href]"),
+      var sourceLinks = Array.prototype.slice.call(item.querySelectorAll("a[href]")),
+        sourceLink = sourceLinks[0],
         label = item.dataset.tab || (sourceLink ? sourceLink.textContent.trim() : item.textContent.trim()),
         key = "part-" + si + "-" + pi,
         tab = document.createElement("button"),
@@ -173,17 +174,21 @@
       if (label.toLowerCase() === "lecture") {
         chapters.id = key + "-chapters";
         panel.appendChild(chapters);
-      } else if (sourceLink) {
-        var resource = document.createElement("div"),
-          heading = document.createElement("h4"),
-          link = sourceLink.cloneNode(true),
-          note = document.createElement("p");
-        resource.className = "part-resource";
-        heading.appendChild(link);
-        note.textContent = tabItems[pi].dataset.note || "Open the linked " + label.toLowerCase() + " material.";
-        resource.appendChild(heading);
-        resource.appendChild(note);
-        panel.appendChild(resource);
+      } else if (sourceLinks.length) {
+        sourceLinks.forEach(function (sourceLink, ri) {
+          var resource = document.createElement("div"),
+            heading = document.createElement("h4"),
+            link = sourceLink.cloneNode(true);
+          resource.className = "part-resource";
+          heading.appendChild(link);
+          resource.appendChild(heading);
+          if (ri === 0) {
+            var note = document.createElement("p");
+            note.textContent = tabItems[pi].dataset.note || "Open the linked " + label.toLowerCase() + " material.";
+            resource.appendChild(note);
+          }
+          panel.appendChild(resource);
+        });
       } else {
         var empty = document.createElement("p");
         empty.className = "part-empty";
