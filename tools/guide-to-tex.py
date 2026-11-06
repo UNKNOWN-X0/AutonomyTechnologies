@@ -487,6 +487,47 @@ def viz_tikz(f):
                     r"\draw[black!75] %s -- %s;" % (P(82, 181), P(204, 181)),
                     T(110, 174, "a1", r"\footnotesize", "", True),
                     T(165, 196, "a2", r"\footnotesize", "", True)]
+        elif sub == "halfspace-line":
+            out += [r"\fill[black!8] %s rectangle %s;" % (P(42, 25), P(226, 76)),
+                    r"\fill[FAUblue!10] %s rectangle %s;" % (P(42, 76), P(226, 144)),
+                    r"\draw[black!80,line width=1.1pt] %s -- %s;" % (P(42, 76), P(226, 76)),
+                    arrow_t(50, 148, 50, 18), arrow_t(42, 137, 229, 137),
+                    r"\draw[black!55,dashed] %s -- %s;" % (P(50, 137), P(160, 76)),
+                    r"\filldraw[draw=FAUblue,fill=FAUblue] %s circle (%.3f);" % (P(50, 137), 7 * VS),
+                    r"\node[text=white,font=\footnotesize\bfseries] at %s {$+$};" % P(50, 137),
+                    r"\fill[FAUblue] %s circle (%.3f);" % (P(160, 76), 4 * VS),
+                    arrow_t(30, 133, 30, 82),
+                    T(232, 142, "x", r"\footnotesize", "anchor=west", True),
+                    T(47, 15, "y", r"\footnotesize", "anchor=east", True),
+                    T(82, 51, "ε1", r"\footnotesize", "", False, "FAUblue"),
+                    T(82, 111, "ε0", r"\footnotesize"),
+                    T(62, 149, "λ0", r"\footnotesize", "anchor=west", False, "FAUblue"),
+                    T(24, 110, "h", r"\footnotesize", "anchor=east", True),
+                    T(168, 72, "P(x,h)", r"\footnotesize", "anchor=west", True),
+                    T(159, 94, "y = h", r"\footnotesize", "anchor=west", True)]
+        elif sub == "coax-layered":
+            cx, cy = 122, 90
+            # Nested fills expose the air cavity, inner metal, two dielectric layers, outer metal, and exterior.
+            for r, fill in ((76, "black!8"), (70, "FAUblue!25"), (61, "white"),
+                            (61, "black!8"), (42, "white"), (42, "FAUblue!18"),
+                            (25, "FAUblue!25"), (16, "white")):
+                out.append(r"\filldraw[draw=black!70,fill=%s] %s circle (%.3f);" %
+                           (fill, P(cx, cy), r * VS))
+            for r in (76, 70, 61, 42, 25, 16):
+                out.append(r"\draw[black!70] %s circle (%.3f);" % (P(cx, cy), r * VS))
+            out += [arrow_t(144, 112, 160, 112, "FAUblue,line width=1.2pt"),
+                    T(122, 95, "ε0", r"\footnotesize", "", True),
+                    T(137, 76, "σ0", r"\footnotesize", "anchor=west", False, "FAUblue"),
+                    T(184, 64, "σ2", r"\footnotesize", "anchor=west", False, "FAUblue"),
+                    T(91, 72, "ε1", r"\footnotesize", "", False, "FAUblue"),
+                    T(93, 48, "ε2", r"\footnotesize"),
+                    T(183, 38, "ε0", r"\footnotesize", "", True),
+                    T(154, 127, "Dρ", r"\footnotesize", "", True, "FAUblue"),
+                    T(122, 63, "a0", r"\footnotesize", "anchor=west", True),
+                    T(122, 44, "a1", r"\footnotesize", "anchor=west", True),
+                    T(122, 25, "a2", r"\footnotesize", "anchor=west", True),
+                    r"\draw[black!80] %s -- %s;" % (P(44, 87), P(54, 87)),
+                    T(45, 78, "d", r"\footnotesize", "", True)]
     elif kind == "plot":
         xr = [float(v) for v in (a.get("data-xr") or "0 1").split()]
         yr = [float(v) for v in (a.get("data-yr") or "0 1").split()]

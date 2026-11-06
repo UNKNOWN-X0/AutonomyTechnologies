@@ -12,9 +12,9 @@
     "semantic_hash": ""
   },
   "index.html": {
-    "mtime": 1793950622.998807,
-    "seen": 1793951146.5567129,
-    "ast_hash": "6e54f487a6758f848b0cf0d7359dbb01",
+    "mtime": 1793952617.644588,
+    "seen": 1793953598.9156978,
+    "ast_hash": "810b85a25e0e964a72626bcf9bf32d12",
     "semantic_hash": ""
   },
   "assets/preview.png": {
@@ -72,15 +72,15 @@
     "semantic_hash": ""
   },
   "js/guide.js": {
-    "mtime": 1793950766.489781,
-    "seen": 1793951146.5566468,
-    "ast_hash": "c4d0ed67baa06d4f1ad0a7799455edb3",
+    "mtime": 1793953385.0737057,
+    "seen": 1793953598.915633,
+    "ast_hash": "73e03ab15e453be3d78b223165eaa34b",
     "semantic_hash": ""
   },
   "tools/guide-to-tex.py": {
-    "mtime": 1793950820.2150993,
-    "seen": 1793951146.556679,
-    "ast_hash": "b8d236e4c520faccd9926eb2ddc4ce7c",
+    "mtime": 1793953385.0741622,
+    "seen": 1793953598.915663,
+    "ast_hash": "62c72ffc476ce958f2b6cdf9c4ff1603",
     "semantic_hash": ""
   },
   "eei/ch1-electrostatic-fields.html": {
@@ -144,9 +144,9 @@
     "semantic_hash": ""
   },
   "docs/GUIDE-STANDARD.md": {
-    "mtime": 1793950820.2491815,
-    "seen": 1793951146.556702,
-    "ast_hash": "a4b71aa30193b3d2db06b8393023cf3b",
+    "mtime": 1793953193.4915283,
+    "seen": 1793953598.915686,
+    "ast_hash": "bb01006c9adc9565c64fd2541a3b2936",
     "semantic_hash": ""
   },
   "docs/LAB-STANDARD.md": {
@@ -462,9 +462,9 @@
     "semantic_hash": ""
   },
   "about/version-log.html": {
-    "mtime": 1793950893.2697613,
-    "seen": 1793951146.5566878,
-    "ast_hash": "1c036f842fbd25e3d5175f2ee21292df",
+    "mtime": 1793953193.492532,
+    "seen": 1793953598.915672,
+    "ast_hash": "b1a7b92611131b3b7c99cb972c566974",
     "semantic_hash": ""
   },
   "docs/DIAGRAM-AND-LAB-PLAN.md": {
@@ -498,8 +498,8 @@
     "semantic_hash": ""
   },
   "assets/graph-orb.json": {
-    "mtime": 1793950214.8235486,
-    "seen": 1793951146.5566232,
+    "mtime": 1793951157.3057072,
+    "seen": 1793953598.915614,
     "ast_hash": "ef5df0eba3570ac095c20adf189b2f5a",
     "semantic_hash": ""
   },
@@ -558,21 +558,27 @@
     "semantic_hash": ""
   },
   "eei/exercise-1-worked-solutions.html": {
-    "mtime": 1793950623.0367525,
-    "seen": 1793951146.5567071,
-    "ast_hash": "962666d7faa0c0da0200f7372472f5df",
+    "mtime": 1793952618.015696,
+    "seen": 1793953598.915691,
+    "ast_hash": "e107f3e36a33cc79b8508cdb7f2448fb",
     "semantic_hash": ""
   },
   "eei/exercise-2-worked-solutions.html": {
-    "mtime": 1793950623.0694668,
-    "seen": 1793951146.556708,
-    "ast_hash": "087d36d7eb4251e10dcb37abfd0be621",
+    "mtime": 1793952618.533151,
+    "seen": 1793953598.915692,
+    "ast_hash": "bc326e499b948c0eedc9e0d434d0b16e",
     "semantic_hash": ""
   },
   "eei/exercise-3-worked-solutions.html": {
-    "mtime": 1793951086.7857423,
-    "seen": 1793951146.55671,
-    "ast_hash": "daf967d6ebc81d3cb65761d89b32af65",
+    "mtime": 1793952618.9185445,
+    "seen": 1793953598.915693,
+    "ast_hash": "79efd8e9f7cff350e1525c759cf971d8",
+    "semantic_hash": ""
+  },
+  "eei/exercise-4-worked-solutions.html": {
+    "mtime": 1793953313.6768353,
+    "seen": 1793953598.915694,
+    "ast_hash": "fa5d56d04352109be58c3aff0a3a427f",
     "semantic_hash": ""
   }
 }

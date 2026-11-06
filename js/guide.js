@@ -682,6 +682,52 @@
         txt(svg, 165, 196, "a₂", "vz-small vz-it");
         return [250, 204];
       }
+      if (d.kind2 === "halfspace-line") {
+        el("rect", { x: 42, y: 25, width: 184, height: 51, class: "vz-bg" }, svg);
+        el("rect", { x: 42, y: 76, width: 184, height: 68, class: "vz-fill" }, svg);
+        el("line", { x1: 42, y1: 76, x2: 226, y2: 76, class: "vz-line thick" }, svg);
+        arrow(svg, 50, 148, 50, 18, "vz-line");
+        arrow(svg, 42, 137, 229, 137, "vz-line");
+        txt(svg, 232, 142, "x", "vz-small vz-it", "start");
+        txt(svg, 47, 15, "y", "vz-small vz-it", "end");
+        txt(svg, 82, 51, "ε₁", "vz-small vz-acc");
+        txt(svg, 82, 111, "ε₀", "vz-small");
+        el("circle", { cx: 50, cy: 137, r: 7, class: "vz-charge" }, svg);
+        txt(svg, 50, 141, "+", "vz-small vz-on");
+        txt(svg, 62, 149, "λ₀", "vz-small vz-acc", "start");
+        el("line", { x1: 50, y1: 137, x2: 160, y2: 76, class: "vz-dash" }, svg);
+        el("circle", { cx: 160, cy: 76, r: 4, class: "vz-dot" }, svg);
+        txt(svg, 168, 72, "P(x,h)", "vz-small vz-it", "start");
+        arrow(svg, 30, 133, 30, 82, "vz-line");
+        txt(svg, 24, 110, "h", "vz-small vz-it", "end");
+        txt(svg, 159, 94, "y = h", "vz-small vz-it", "start");
+        return [250, 166];
+      }
+      if (d.kind2 === "coax-layered") {
+        var cx = 122, cy = 90;
+        el("circle", { cx: cx, cy: cy, r: 76, class: "vz-bg vz-line" }, svg);
+        el("circle", { cx: cx, cy: cy, r: 70, class: "vz-charge" }, svg);
+        el("circle", { cx: cx, cy: cy, r: 61, class: "vz-bg vz-line" }, svg);
+        el("circle", { cx: cx, cy: cy, r: 61, class: "vz-fill" }, svg);
+        el("circle", { cx: cx, cy: cy, r: 42, class: "vz-bg vz-line" }, svg);
+        el("circle", { cx: cx, cy: cy, r: 42, class: "vz-cell vz-line" }, svg);
+        el("circle", { cx: cx, cy: cy, r: 25, class: "vz-charge" }, svg);
+        el("circle", { cx: cx, cy: cy, r: 16, class: "vz-bg vz-line" }, svg);
+        txt(svg, 122, 95, "ε₀", "vz-small vz-it");
+        txt(svg, 137, 76, "σ₀", "vz-small vz-acc", "start");
+        txt(svg, 184, 64, "σ₂", "vz-small vz-acc", "start");
+        txt(svg, 91, 72, "ε₁", "vz-small vz-acc");
+        txt(svg, 93, 48, "ε₂", "vz-small");
+        txt(svg, 183, 38, "ε₀", "vz-small vz-it");
+        arrow(svg, 144, 112, 160, 112, "vz-seg");
+        txt(svg, 154, 127, "Dρ", "vz-small vz-it vz-acc");
+        txt(svg, 122, 63, "a₀", "vz-small vz-it", "start");
+        txt(svg, 122, 44, "a₁", "vz-small vz-it", "start");
+        txt(svg, 122, 25, "a₂", "vz-small vz-it", "start");
+        el("line", { x1: 44, y1: 87, x2: 54, y2: 87, class: "vz-line" }, svg);
+        txt(svg, 45, 78, "d", "vz-small vz-it");
+        return [240, 176];
+      }
       return [1, 1];
     },
     field: function (svg, d) {
