@@ -458,6 +458,35 @@ def viz_tikz(f):
                     T(161, 57, "a", r"\footnotesize", "", True),
                     T(221, 136, "x", r"\footnotesize", "anchor=west", True),
                     T(116, 9, "y", r"\footnotesize", "anchor=east", True)]
+        elif sub == "charged-sphere":
+            out += [r"\filldraw[draw=black!75,fill=black!10] %s circle (%.3f);" % (P(112, 84), 56 * VS),
+                    r"\draw[black!80,line width=1pt] %s -- %s;" % (P(112, 84), P(74, 43)),
+                    r"\fill[FAUblue] %s circle (%.3f);" % (P(112, 84), 3 * VS),
+                    arrow_t(151, 48, 174, 27, "FAUblue,line width=1.3pt"),
+                    T(82, 57, "a", r"\footnotesize", "", True),
+                    T(112, 90, "ρ0", r"\small", "", True),
+                    T(177, 88, "ρ = 0", r"\footnotesize", "anchor=west", True),
+                    T(179, 26, "Er", r"\footnotesize", "anchor=west", False, "FAUblue")]
+        elif sub == "coax-cap":
+            out += [r"\filldraw[draw=black!70,fill=black!20] %s rectangle %s;" % (P(53, 30), P(204, 43)),
+                    r"\filldraw[draw=black!70,fill=black!20] %s rectangle %s;" % (P(53, 131), P(204, 144)),
+                    r"\filldraw[draw=black!75,fill=FAUblue!18] %s rectangle %s;" % (P(82, 43), P(138, 131)),
+                    r"\filldraw[draw=black!75,fill=black!8] %s rectangle %s;" % (P(138, 43), P(204, 131)),
+                    arrow_t(82, 126, 82, 48),
+                    arrow_t(42, 48, 42, 126), T(35, 91, "h", r"\footnotesize", "anchor=east", True),
+                    arrow_t(112, 69, 112, 105, "FAUblue,line width=1.2pt"),
+                    arrow_t(170, 69, 170, 105, "FAUblue,line width=1.2pt"),
+                    arrow_t(220, 44, 220, 130, "FAUblue,line width=1.2pt"),
+                    T(76, 23, "z", r"\footnotesize", "anchor=east", True),
+                    T(110, 62, "ε1", r"\footnotesize", "", False, "FAUblue"),
+                    T(170, 62, "ε0", r"\footnotesize"),
+                    T(225, 91, "U10", r"\footnotesize", "anchor=west", True, "FAUblue")]
+            for x, y in ((82, 159), (138, 159), (204, 181)):
+                out.append(r"\draw[black!75] %s -- %s;" % (P(x, y - 6), P(x, y + 6)))
+            out += [r"\draw[black!75] %s -- %s;" % (P(82, 159), P(138, 159)),
+                    r"\draw[black!75] %s -- %s;" % (P(82, 181), P(204, 181)),
+                    T(110, 174, "a1", r"\footnotesize", "", True),
+                    T(165, 196, "a2", r"\footnotesize", "", True)]
     elif kind == "plot":
         xr = [float(v) for v in (a.get("data-xr") or "0 1").split()]
         yr = [float(v) for v in (a.get("data-yr") or "0 1").split()]

@@ -647,6 +647,41 @@
         txt(svg, 116, 9, "y", "vz-small vz-it", "end");
         return [240, 164];
       }
+      if (d.kind2 === "charged-sphere") {
+        el("circle", { cx: 112, cy: 84, r: 56, class: "vz-bg vz-line" }, svg);
+        el("line", { x1: 112, y1: 84, x2: 74, y2: 43, class: "vz-line thick" }, svg);
+        el("circle", { cx: 112, cy: 84, r: 3, class: "vz-dot" }, svg);
+        txt(svg, 82, 57, "a", "vz-small vz-it");
+        txt(svg, 112, 90, "ρ₀", "vz-text vz-it");
+        txt(svg, 177, 88, "ρ = 0", "vz-small vz-it", "start");
+        arrow(svg, 151, 48, 174, 27, "vz-seg");
+        txt(svg, 179, 26, "Eᵣ", "vz-small vz-acc", "start");
+        return [236, 148];
+      }
+      if (d.kind2 === "coax-cap") {
+        el("rect", { x: 53, y: 30, width: 151, height: 13, class: "vz-charge" }, svg);
+        el("rect", { x: 53, y: 131, width: 151, height: 13, class: "vz-charge" }, svg);
+        el("rect", { x: 82, y: 43, width: 56, height: 88, class: "vz-fill vz-line" }, svg);
+        el("rect", { x: 138, y: 43, width: 66, height: 88, class: "vz-bg vz-line" }, svg);
+        arrow(svg, 82, 126, 82, 48, "vz-line");
+        txt(svg, 76, 23, "z", "vz-small vz-it", "end");
+        arrow(svg, 42, 48, 42, 126, "vz-line");
+        txt(svg, 35, 91, "h", "vz-small vz-it", "end");
+        arrow(svg, 112, 69, 112, 105, "vz-seg");
+        arrow(svg, 170, 69, 170, 105, "vz-seg");
+        txt(svg, 110, 62, "ε₁", "vz-small vz-acc");
+        txt(svg, 170, 62, "ε₀", "vz-small");
+        arrow(svg, 220, 44, 220, 130, "vz-seg");
+        txt(svg, 225, 91, "U₁₀", "vz-small vz-it vz-acc", "start");
+        el("line", { x1: 82, y1: 159, x2: 138, y2: 159, class: "vz-line" }, svg);
+        el("line", { x1: 82, y1: 153, x2: 82, y2: 164, class: "vz-line" }, svg);
+        el("line", { x1: 138, y1: 153, x2: 138, y2: 164, class: "vz-line" }, svg);
+        txt(svg, 110, 174, "a₁", "vz-small vz-it");
+        el("line", { x1: 82, y1: 181, x2: 204, y2: 181, class: "vz-line" }, svg);
+        el("line", { x1: 204, y1: 175, x2: 204, y2: 186, class: "vz-line" }, svg);
+        txt(svg, 165, 196, "a₂", "vz-small vz-it");
+        return [250, 204];
+      }
       return [1, 1];
     },
     field: function (svg, d) {
