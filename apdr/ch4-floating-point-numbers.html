@@ -346,13 +346,13 @@
           </tbody></table></div>
           <p>For a denormalised single-precision number, the leading bit is 0 and the effective exponent is −126.</p>
           <p>Denormalised values provide a gradual step from the smallest normalised values toward zero.</p>
-          <p>Infinity represents overflow results and divisions of non-zero values by zero. You can do basic arithmetic with it, such as ∞+5=∞.</p>
+          <p>With the default round-to-nearest mode, overflow produces a signed infinity; other rounding modes can produce the largest finite value. Division of a finite non-zero value by zero also produces a signed infinity. You can do basic arithmetic with infinity, such as ∞+5=∞.</p>
           <p>NaN represents an operation without a real-number result, such as 0/0, infinity−infinity, 0×∞, or the square root of a negative number.</p>
           <p>Operations on infinity and NaN follow format rules, not ordinary real-number algebra in every case.</p>
           <h3>Special arithmetic examples</h3><div class="tw"><table><thead><tr><th>Operation</th><th>Result</th></tr></thead><tbody>
-            <tr><td>N ÷ ±∞</td><td>0</td></tr><tr><td>± non-zero ÷ 0</td><td>±∞</td></tr><tr><td>+∞ + +∞</td><td>+∞</td></tr><tr><td>±∞ × ±∞</td><td>±∞</td></tr>
+            <tr><td>finite x ÷ ±∞</td><td>signed 0</td></tr><tr><td>finite non-zero ÷ ±0</td><td>signed ∞</td></tr><tr><td>+∞ + +∞</td><td>+∞</td></tr><tr><td>±∞ × ±∞</td><td>±∞</td></tr>
             <tr><td>±0 ÷ ±0</td><td>NaN</td></tr><tr><td>+∞ − +∞</td><td>NaN</td></tr><tr><td>±∞ ÷ ±∞</td><td>NaN</td></tr><tr><td>±∞ × 0</td><td>NaN</td></tr>
-          </tbody></table></div><p>The sign of the infinity in signed cases depends on the operand signs. The notes say an invalid operation yields either a NaN result (quiet NaN) or an exception (signalling NaN); this is simplified, as the slips list explains.</p>
+          </tbody></table></div><p>The signs of zero and infinity in these results depend on the operand signs. The notes say an invalid operation yields either a NaN result (quiet NaN) or an exception (signalling NaN); this is simplified, as the slips list explains.</p>
           <div class="worked"><p class="worked-title">Worked classification · single precision fields</p><p>Classify sign 0, exponent 11111111, fraction 000…000.</p><ol>
             <li>The exponent field is all ones.</li>
             <li>The fraction field is all zeroes.</li>

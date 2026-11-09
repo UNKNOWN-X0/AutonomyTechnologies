@@ -137,24 +137,20 @@ Arithmetic aligns or combines significands and then rounds to the available prec
 
 \Needspace{7\baselineskip}
 \begin{itemize}
-\item 
-\Needspace{4\baselineskip}
+\item \Needspace{4\baselineskip}
 \textbf{Sign, significand, exponent} \hfill{\small\color{FAUblue}§4.1}
 
 \Needspace{4\baselineskip}
 value = sign \ensuremath{\times} significand \ensuremath{\times} base\textsuperscript{exponent}
 
 Rests on: scientific notation separates a number’s digits from its scale.
-
-\item 
-\Needspace{4\baselineskip}
+\item \Needspace{4\baselineskip}
 \textbf{Binary fractions} \hfill{\small\color{FAUblue}§4.2}
 
 \Needspace{4\baselineskip}
 0.b\textsubscript{1}b\textsubscript{2}… = $\sum_{\mathrm{i}=1}^{\infty } $ b\textsubscript{i}2\textsuperscript{\ensuremath{-}i}
 
 Rests on: each fractional bit has a negative power-of-two place value.
-
 \end{itemize}
 
 \Needspace{10\baselineskip}
@@ -162,24 +158,20 @@ Rests on: each fractional bit has a negative power-of-two place value.
 
 \Needspace{8\baselineskip}
 \begin{itemize}
-\item 
-\Needspace{4\baselineskip}
+\item \Needspace{4\baselineskip}
 \textbf{Floating-point arithmetic} \hfill{\small\color{FAUblue}§4.3}
 
 \Needspace{4\baselineskip}
 multiply: multiply significands; add exponents
 
 Rests on: exponent laws and normalisation after an operation.
-
-\item 
-\Needspace{4\baselineskip}
+\item \Needspace{4\baselineskip}
 \textbf{Rounding and limits} \hfill{\small\color{FAUblue}§4.3}
 
 \Needspace{4\baselineskip}
 finite precision \ensuremath{\to} rounding; finite range \ensuremath{\to} overflow or underflow
 
 Rests on: a format can store only finitely many significand and exponent patterns.
-
 \end{itemize}
 
 \Needspace{10\baselineskip}
@@ -187,24 +179,20 @@ Rests on: a format can store only finitely many significand and exponent pattern
 
 \Needspace{8\baselineskip}
 \begin{itemize}
-\item 
-\Needspace{4\baselineskip}
+\item \Needspace{4\baselineskip}
 \textbf{IEEE formats} \hfill{\small\color{FAUblue}§4.4}
 
 \Needspace{4\baselineskip}
 sign + biased exponent + fraction
 
 Rests on: a standard layout makes bit patterns portable between systems.
-
-\item 
-\Needspace{4\baselineskip}
+\item \Needspace{4\baselineskip}
 \textbf{Special values} \hfill{\small\color{FAUblue}§4.5}
 
 \Needspace{4\baselineskip}
 zero \ensuremath{\cdot} denormalised \ensuremath{\cdot} infinity \ensuremath{\cdot} NaN
 
 Rests on: reserved exponent patterns encode values outside the normalised range.
-
 \end{itemize}
 
 \Needspace{14\baselineskip}
@@ -762,11 +750,11 @@ All ones & Non-zero & NaN, or not-a-number & — \\
 \Needspace{5\baselineskip}
 For a denormalised single-precision number, the leading bit is 0 and the effective exponent is \ensuremath{-}126.
 
-\Needspace{5\baselineskip}
+\Needspace{6\baselineskip}
 Denormalised values provide a gradual step from the smallest normalised values toward zero.
 
-\Needspace{6\baselineskip}
-Infinity represents overflow results and divisions of non-zero values by zero. You can do basic arithmetic with it, such as \ensuremath{\infty}+5=\ensuremath{\infty}.
+\Needspace{7\baselineskip}
+With the default round-to-nearest mode, overflow produces a signed infinity; other rounding modes can produce the largest finite value. Division of a finite non-zero value by zero also produces a signed infinity. You can do basic arithmetic with infinity, such as \ensuremath{\infty}+5=\ensuremath{\infty}.
 
 \Needspace{6\baselineskip}
 NaN represents an operation without a real-number result, such as 0/0, infinity\ensuremath{-}infinity, 0\ensuremath{\times}\ensuremath{\infty}, or the square root of a negative number.
@@ -780,8 +768,8 @@ Operations on infinity and NaN follow format rules, not ordinary real-number alg
 \Needspace{10\baselineskip}
 \begin{center}\small\begin{tabularx}{\linewidth}{>{\raggedright\arraybackslash}X>{\raggedright\arraybackslash}X}\toprule
 \textbf{Operation} & \textbf{Result} \\ \midrule
-N ÷ \ensuremath{\pm}\ensuremath{\infty} & 0 \\
-\ensuremath{\pm} non-zero ÷ 0 & \ensuremath{\pm}\ensuremath{\infty} \\
+finite x ÷ \ensuremath{\pm}\ensuremath{\infty} & signed 0 \\
+finite non-zero ÷ \ensuremath{\pm}0 & signed \ensuremath{\infty} \\
 +\ensuremath{\infty} + +\ensuremath{\infty} & +\ensuremath{\infty} \\
 \ensuremath{\pm}\ensuremath{\infty} \ensuremath{\times} \ensuremath{\pm}\ensuremath{\infty} & \ensuremath{\pm}\ensuremath{\infty} \\
 \ensuremath{\pm}0 ÷ \ensuremath{\pm}0 & NaN \\
@@ -791,7 +779,7 @@ N ÷ \ensuremath{\pm}\ensuremath{\infty} & 0 \\
 \bottomrule\end{tabularx}\end{center}
 
 \Needspace{11\baselineskip}
-The sign of the infinity in signed cases depends on the operand signs. The notes say an invalid operation yields either a NaN result (quiet NaN) or an exception (signalling NaN); this is simplified, as the slips list explains.
+The signs of zero and infinity in these results depend on the operand signs. The notes say an invalid operation yields either a NaN result (quiet NaN) or an exception (signalling NaN); this is simplified, as the slips list explains.
 
 \begin{workedbox}{Worked classification \ensuremath{\cdot} single precision fields}
 Classify sign 0, exponent 11111111, fraction 000…000.

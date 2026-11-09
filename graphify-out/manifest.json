@@ -270,9 +270,9 @@
     "semantic_hash": ""
   },
   "apdr/ch4-floating-point-numbers.html": {
-    "mtime": 1793827536.5438066,
-    "seen": 1793827819.4008791,
-    "ast_hash": "ed480f85567dd2f2b6ebf9b760a1c605",
+    "mtime": 1794210436.9614296,
+    "seen": 1794210477.9740028,
+    "ast_hash": "da55ba29709b3b3709b772ec4680c912",
     "semantic_hash": ""
   },
   "js/apdr/ch4-lab.js": {
@@ -462,9 +462,9 @@
     "semantic_hash": ""
   },
   "about/version-log.html": {
-    "mtime": 1793953193.492532,
-    "seen": 1793953598.915672,
-    "ast_hash": "b1a7b92611131b3b7c99cb972c566974",
+    "mtime": 1794210436.9626992,
+    "seen": 1794210477.9739919,
+    "ast_hash": "00f1aa8f293d287b21c2891144ef1c80",
     "semantic_hash": ""
   },
   "docs/DIAGRAM-AND-LAB-PLAN.md": {
@@ -498,8 +498,8 @@
     "semantic_hash": ""
   },
   "assets/graph-orb.json": {
-    "mtime": 1793951157.3057072,
-    "seen": 1793953598.915614,
+    "mtime": 1793953609.6032295,
+    "seen": 1794210477.973923,
     "ast_hash": "ef5df0eba3570ac095c20adf189b2f5a",
     "semantic_hash": ""
   },
