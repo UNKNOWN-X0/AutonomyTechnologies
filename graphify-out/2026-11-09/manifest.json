@@ -24,9 +24,9 @@
     "semantic_hash": ""
   },
   "AGENTS.md": {
-    "mtime": 1793886311.5091856,
-    "seen": 1793886465.591858,
-    "ast_hash": "5e0b865bd7aa968dedf7a98768cf6790",
+    "mtime": 1794237451.5963197,
+    "seen": 1794237575.713922,
+    "ast_hash": "d986003d7f0966d7b8965d6e34b28f8c",
     "semantic_hash": ""
   },
   "graphify-out/memory/query_20261024_200642_26a2d038_how_are_the_static_study_pages_hosted__and_what_gi.md": {
@@ -48,9 +48,9 @@
     "semantic_hash": ""
   },
   "js/index.js": {
-    "mtime": 1794226312.247566,
-    "seen": 1794226561.635678,
-    "ast_hash": "65426fb6c20de60531244193ea446824",
+    "mtime": 1794235573.3058057,
+    "seen": 1794235665.759899,
+    "ast_hash": "90cd25325404a25e7ec8e51475062553",
     "semantic_hash": ""
   },
   ".impeccable/surfaces/index-html.md": {
@@ -60,9 +60,9 @@
     "semantic_hash": ""
   },
   "DESIGN.md": {
-    "mtime": 1793875525.6181674,
-    "seen": 1793877610.481327,
-    "ast_hash": "bb58328ea7feec180cb321c283572fc9",
+    "mtime": 1794237451.5959013,
+    "seen": 1794237575.713922,
+    "ast_hash": "7abc364512c09e50680927d514d67718",
     "semantic_hash": ""
   },
   "PRODUCT.md": {
@@ -72,21 +72,21 @@
     "semantic_hash": ""
   },
   "js/guide.js": {
-    "mtime": 1793953385.0737057,
-    "seen": 1793953598.915633,
-    "ast_hash": "73e03ab15e453be3d78b223165eaa34b",
+    "mtime": 1794237432.1787415,
+    "seen": 1794237575.7138891,
+    "ast_hash": "6a1ec8db3c4ec9387edf245f5b474ec2",
     "semantic_hash": ""
   },
   "tools/guide-to-tex.py": {
-    "mtime": 1794225323.4831252,
-    "seen": 1794225593.3494852,
-    "ast_hash": "7c178c8c20f8850f03d5801d6c125bf1",
+    "mtime": 1794237432.1791496,
+    "seen": 1794237575.713917,
+    "ast_hash": "962dc00e97c11217ecd64d9cab3e5a65",
     "semantic_hash": ""
   },
   "eei/ch1-electrostatic-fields.html": {
-    "mtime": 1793870430.2400796,
-    "seen": 1793870461.136329,
-    "ast_hash": "512a1cf2b6ed6f23aa09497407110185",
+    "mtime": 1794236766.8970802,
+    "seen": 1794237575.713942,
+    "ast_hash": "ac4e3157854eec5bab0e5467f1b12918",
     "semantic_hash": ""
   },
   "tools/check-guide.py": {
@@ -144,9 +144,9 @@
     "semantic_hash": ""
   },
   "docs/GUIDE-STANDARD.md": {
-    "mtime": 1794225550.9985898,
-    "seen": 1794225593.349507,
-    "ast_hash": "a6b1914c9aadc7c79f24c7442daac015",
+    "mtime": 1794237558.924584,
+    "seen": 1794237575.713939,
+    "ast_hash": "d832b94759862e4631f36a2ef5006a5f",
     "semantic_hash": ""
   },
   "docs/LAB-STANDARD.md": {
@@ -408,9 +408,9 @@
     "semantic_hash": ""
   },
   "mei/ch3-mappings.html": {
-    "mtime": 1793824225.0487874,
-    "seen": 1793825044.53126,
-    "ast_hash": "3c92e86fe58a4077e3256834b5650950",
+    "mtime": 1794237162.4573753,
+    "seen": 1794237575.7139552,
+    "ast_hash": "5c955a6d084402bc14efa8b6f92552f5",
     "semantic_hash": ""
   },
   "js/mei/ch3-lab.js": {
@@ -456,15 +456,15 @@
     "semantic_hash": ""
   },
   "about/how-to-use.html": {
-    "mtime": 1794225064.5217953,
-    "seen": 1794225118.074107,
-    "ast_hash": "bf8a2ef93ed5d7f94cc98407ccddde0f",
+    "mtime": 1794235624.4478252,
+    "seen": 1794235665.759934,
+    "ast_hash": "1ff9ecccacd5a5cc833660f1c0443994",
     "semantic_hash": ""
   },
   "about/version-log.html": {
-    "mtime": 1794226522.2692175,
-    "seen": 1794226561.635713,
-    "ast_hash": "75ab8801c9cab5c2708cc2104223e419",
+    "mtime": 1794237568.7616396,
+    "seen": 1794237575.7139258,
+    "ast_hash": "bcd49f78aa69ef793e9f92257ffcfa4f",
     "semantic_hash": ""
   },
   "docs/DIAGRAM-AND-LAB-PLAN.md": {
@@ -498,9 +498,9 @@
     "semantic_hash": ""
   },
   "assets/graph-orb.json": {
-    "mtime": 1794225778.325457,
-    "seen": 1794226561.635658,
-    "ast_hash": "62ee43c1f37a38350f868185a2a00ca4",
+    "mtime": 1794236245.724312,
+    "seen": 1794237575.713871,
+    "ast_hash": "0b43737756aa3cd2c9de2a9e289d7531",
     "semantic_hash": ""
   },
   "js/orb.js": {

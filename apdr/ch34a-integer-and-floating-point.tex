@@ -232,7 +232,7 @@ In base b, each digit d\textsubscript{i} contributes d\textsubscript{i}b\textsup
 \Needspace{14\baselineskip}
 \begin{center}
 \begin{minipage}[t]{0.950\linewidth}\centering
-\begin{tikzpicture}
+\begin{tikzpicture}[line join=round]
 \node[,inner sep=1pt,font=\scriptsize] at (0.306,-0.252) {64};
 \filldraw[draw=black!50,fill=FAUblue!25] (0.072,-0.360) rectangle (0.540,-0.900);
 \node[,inner sep=1pt,font=\small] at (0.306,-0.630) {1};
@@ -367,7 +367,7 @@ To form \ensuremath{-}x in n-bit two’s complement, invert all n bits of x and 
 \Needspace{14\baselineskip}
 \begin{center}
 \begin{minipage}[t]{0.950\linewidth}\centering
-\begin{tikzpicture}
+\begin{tikzpicture}[line join=round]
 \node[,inner sep=1pt,font=\scriptsize] at (0.306,-0.252) {\ensuremath{-}8};
 \filldraw[draw=black!50,fill=FAUblue!25] (0.072,-0.360) rectangle (0.540,-0.900);
 \node[,inner sep=1pt,font=\small] at (0.306,-0.630) {1};
@@ -435,7 +435,7 @@ ASCII uses seven bits, giving 128 code values. The lecture describes eight-bit e
 \Needspace{14\baselineskip}
 \begin{center}
 \begin{minipage}[t]{0.950\linewidth}\centering
-\begin{tikzpicture}
+\begin{tikzpicture}[line join=round]
 \node[,inner sep=1pt,font=\scriptsize] at (0.306,-0.252) {128};
 \filldraw[draw=black!50,fill=Paperblue] (0.072,-0.360) rectangle (0.540,-0.900);
 \node[,inner sep=1pt,font=\small] at (0.306,-0.630) {0};
@@ -611,7 +611,7 @@ Add the bit patterns and discard any carry beyond the most significant bit. For 
 \Needspace{14\baselineskip}
 \begin{center}
 \begin{minipage}[t]{0.950\linewidth}\centering
-\begin{tikzpicture}
+\begin{tikzpicture}[line join=round]
 \draw[black!70] (2.160,-2.160) circle (1.260);
 \node[,inner sep=1pt,font=\scriptsize] at (2.160,-0.504) {0000};
 \node[,inner sep=1pt,font=\footnotesize] at (2.160,-1.224) {0};
@@ -731,7 +731,7 @@ Floating-point values are finite in number, and their spacing changes with magni
 \Needspace{14\baselineskip}
 \begin{center}
 \begin{minipage}[t]{0.950\linewidth}\centering
-\begin{tikzpicture}
+\begin{tikzpicture}[line join=round]
 \draw[-{Stealth[length=4pt]},black!80] (0.180,-0.612) -- (4.896,-0.612);
 \draw[black!80] (0.918,-0.522) -- (0.918,-0.702);
 \node[,inner sep=1pt,font=\footnotesize] at (0.918,-1.008) {1};
@@ -810,7 +810,7 @@ The first bit after the binary point has weight 2\textsuperscript{\ensuremath{-}
 \Needspace{14\baselineskip}
 \begin{center}
 \begin{minipage}[t]{0.950\linewidth}\centering
-\begin{tikzpicture}
+\begin{tikzpicture}[line join=round]
 \filldraw[draw=black!50,fill=Paperblue] (0.072,-0.360) rectangle (0.540,-0.900);
 \node[,inner sep=1pt,font=\small] at (0.306,-0.630) {0.};
 \node[,inner sep=1pt,font=\scriptsize] at (0.774,-0.252) {1/2};
@@ -1032,7 +1032,7 @@ The exponent field stores a biased exponent rather than a two’s-complement exp
 \Needspace{14\baselineskip}
 \begin{center}
 \begin{minipage}[t]{0.950\linewidth}\centering
-\begin{tikzpicture}
+\begin{tikzpicture}[line join=round]
 \node[,inner sep=1pt,font=\scriptsize] at (0.306,-0.252) {1 bit};
 \filldraw[draw=black!50,fill=Paperblue] (0.072,-0.360) rectangle (0.540,-0.900);
 \node[,inner sep=1pt,font=\small] at (0.306,-0.630) {S};
@@ -1109,7 +1109,7 @@ Reserved exponent patterns extend useful behaviour beyond normalised values.
 \Needspace{14\baselineskip}
 \begin{center}
 \begin{minipage}[t]{0.303\linewidth}\centering
-\begin{tikzpicture}
+\begin{tikzpicture}[line join=round]
 \filldraw[draw=black!50,fill=Paperblue] (0.072,-0.360) rectangle (0.540,-0.900);
 \node[,inner sep=1pt,font=\small] at (0.306,-0.630) {0};
 \node[,inner sep=1pt,font=\scriptsize] at (0.306,-1.188) {sign};
@@ -1121,7 +1121,7 @@ Reserved exponent patterns extend useful behaviour beyond normalised values.
 \node[,inner sep=1pt,font=\scriptsize] at (3.348,-1.188) {fraction};
 \end{tikzpicture}\par\smallskip{\small\raggedright \textbf{+0}: every bit is 0.\par}\end{minipage}\hfill
 \begin{minipage}[t]{0.303\linewidth}\centering
-\begin{tikzpicture}
+\begin{tikzpicture}[line join=round]
 \filldraw[draw=black!50,fill=Paperblue] (0.072,-0.360) rectangle (0.540,-0.900);
 \node[,inner sep=1pt,font=\small] at (0.306,-0.630) {0};
 \node[,inner sep=1pt,font=\scriptsize] at (0.306,-1.188) {sign};
@@ -1133,7 +1133,7 @@ Reserved exponent patterns extend useful behaviour beyond normalised values.
 \node[,inner sep=1pt,font=\scriptsize] at (3.348,-1.188) {fraction};
 \end{tikzpicture}\par\smallskip{\small\raggedright \textbf{+\ensuremath{\infty}}: exponent all 1s, fraction 0.\par}\end{minipage}\hfill
 \begin{minipage}[t]{0.303\linewidth}\centering
-\begin{tikzpicture}
+\begin{tikzpicture}[line join=round]
 \filldraw[draw=black!50,fill=Paperblue] (0.072,-0.360) rectangle (0.540,-0.900);
 \node[,inner sep=1pt,font=\small] at (0.306,-0.630) {0};
 \node[,inner sep=1pt,font=\scriptsize] at (0.306,-1.188) {sign};
@@ -1345,7 +1345,7 @@ C treats memory as a contiguous line of bytes, each with a numerical address, us
 \Needspace{14\baselineskip}
 \begin{center}
 \begin{minipage}[t]{0.950\linewidth}\centering
-\begin{tikzpicture}
+\begin{tikzpicture}[line join=round]
 \node[anchor=east,inner sep=1pt,font=\small] at (1.800,-0.432) {\textit{x}};
 \node[anchor=east,inner sep=1pt,font=\scriptsize] at (1.800,-0.720) {0x1000};
 \draw[black!50,fill=Paperblue] (1.980,-0.180) rectangle (3.708,-0.900);
@@ -1446,7 +1446,7 @@ Python keeps the reference idea from §5.1 but hides the addresses and the freei
 \Needspace{14\baselineskip}
 \begin{center}
 \begin{minipage}[t]{0.950\linewidth}\centering
-\begin{tikzpicture}
+\begin{tikzpicture}[line join=round]
 \node[anchor=east,inner sep=1pt,font=\small] at (1.800,-0.432) {\textit{a}};
 \draw[black!50,fill=Paperblue] (1.980,-0.180) rectangle (3.708,-0.900);
 \node[,inner sep=1pt,font=\small] at (2.844,-0.540) {};

@@ -227,12 +227,13 @@ A function is more than a formula: its domain and codomain are part of its defin
 \Needspace{14\baselineskip}
 \begin{center}
 \begin{minipage}[t]{0.465\linewidth}\centering
-\begin{tikzpicture}
+\begin{tikzpicture}[line join=round]
 \draw[-{Stealth[length=4pt]},black!80] (0.720,-2.310) -- (4.572,-2.310);
 \draw[-{Stealth[length=4pt]},black!80] (2.556,-2.628) -- (2.556,-0.180);
-\draw[FAUblue,line width=1.6pt] (1.179,-0.523) -- (1.294,-0.808) -- (1.408,-1.069) -- (1.523,-1.304) -- (1.638,-1.516) -- (1.753,-1.702) -- (1.867,-1.864) -- (1.982,-2.000) -- (2.097,-2.112) -- (2.212,-2.198) -- (2.326,-2.261) -- (2.441,-2.297) -- (2.556,-2.310) -- (2.671,-2.297) -- (2.785,-2.261) -- (2.900,-2.198) -- (3.015,-2.112) -- (3.130,-2.000) -- (3.244,-1.864) -- (3.359,-1.702) -- (3.474,-1.516) -- (3.589,-1.304) -- (3.703,-1.069) -- (3.818,-0.808) -- (3.933,-0.523);
+\draw[FAUblue,line width=1.6pt] plot[smooth,tension=0.5] coordinates {(1.179,-0.523) (1.294,-0.808) (1.408,-1.069) (1.523,-1.304) (1.638,-1.516) (1.753,-1.702) (1.867,-1.864) (1.982,-2.000) (2.097,-2.112) (2.212,-2.198) (2.326,-2.261) (2.441,-2.297) (2.556,-2.310) (2.671,-2.297) (2.785,-2.261) (2.900,-2.198) (3.015,-2.112) (3.130,-2.000) (3.244,-1.864) (3.359,-1.702) (3.474,-1.516) (3.589,-1.304) (3.703,-1.069) (3.818,-0.808) (3.933,-0.523)};
 \draw[black!55,dashed] (3.290,-2.549) -- (3.290,-0.403);
-\node[anchor=west,text=FAUblue,inner sep=1pt,font=\footnotesize] at (3.398,-1.694) {one point};
+\fill[FAUblue] (3.290,-1.802) circle (0.063);
+\node[anchor=west,text=FAUblue,fill=white,fill opacity=0.85,text opacity=1,inner sep=1pt,font=\footnotesize] at (3.434,-1.802) {one point};
 \node[anchor=east,inner sep=1pt,font=\footnotesize] at (4.536,-2.598) {\textit{x}};
 \node[anchor=east,inner sep=1pt,font=\footnotesize] at (2.412,-0.288) {\textit{y}};
 \draw[black!80] (1.638,-2.238) -- (1.638,-2.382);
@@ -241,16 +242,18 @@ A function is more than a formula: its domain and codomain are part of its defin
 \node[,inner sep=1pt,font=\footnotesize] at (3.474,-2.598) {1};
 \end{tikzpicture}\par\smallskip{\small\raggedright \textbf{A function}: every vertical line meets the graph at most once, here \textit{y} = \textit{x}\textsuperscript{2}.\par}\end{minipage}\hfill
 \begin{minipage}[t]{0.465\linewidth}\centering
-\begin{tikzpicture}
+\begin{tikzpicture}[line join=round]
 \draw[-{Stealth[length=4pt]},black!80] (0.720,-1.476) -- (4.572,-1.476);
 \draw[-{Stealth[length=4pt]},black!80] (1.507,-2.628) -- (1.507,-0.180);
-\draw[FAUblue,line width=1.6pt] (4.077,-2.484) -- (3.667,-2.400) -- (3.292,-2.316) -- (2.953,-2.232) -- (2.649,-2.148) -- (2.382,-2.064) -- (2.149,-1.980) -- (1.953,-1.896) -- (1.793,-1.812) -- (1.667,-1.728) -- (1.578,-1.644) -- (1.525,-1.560) -- (1.507,-1.476) -- (1.525,-1.392) -- (1.578,-1.308) -- (1.668,-1.224) -- (1.793,-1.140) -- (1.953,-1.056) -- (2.149,-0.972) -- (2.382,-0.888) -- (2.649,-0.804) -- (2.952,-0.720) -- (3.292,-0.636) -- (3.667,-0.552) -- (4.077,-0.468);
+\draw[FAUblue,line width=1.6pt] plot[smooth,tension=0.5] coordinates {(4.077,-2.484) (3.667,-2.400) (3.292,-2.316) (2.953,-2.232) (2.649,-2.148) (2.382,-2.064) (2.149,-1.980) (1.953,-1.896) (1.793,-1.812) (1.667,-1.728) (1.578,-1.644) (1.525,-1.560) (1.507,-1.476) (1.525,-1.392) (1.578,-1.308) (1.668,-1.224) (1.793,-1.140) (1.953,-1.056) (2.149,-0.972) (2.382,-0.888) (2.649,-0.804) (2.952,-0.720) (3.292,-0.636) (3.667,-0.552) (4.077,-0.468)};
 \draw[black!55,dashed] (2.818,-2.556) -- (2.818,-0.396);
-\node[anchor=west,text=FAUblue,inner sep=1pt,font=\footnotesize] at (2.926,-0.648) {two points};
+\fill[FAUblue] (2.818,-0.756) circle (0.063);
+\node[anchor=east,text=FAUblue,fill=white,fill opacity=0.85,text opacity=1,inner sep=1pt,font=\footnotesize] at (2.674,-0.576) {two points};
+\fill[FAUblue] (2.818,-2.196) circle (0.063);
 \node[anchor=east,inner sep=1pt,font=\footnotesize] at (4.536,-1.764) {\textit{x}};
 \node[anchor=east,inner sep=1pt,font=\footnotesize] at (1.363,-0.288) {\textit{y}};
 \draw[black!80] (2.818,-1.404) -- (2.818,-1.548);
-\node[,inner sep=1pt,font=\footnotesize] at (2.818,-1.764) {1};
+\node[anchor=west,inner sep=1pt,font=\footnotesize] at (2.890,-1.692) {1};
 \end{tikzpicture}\par\smallskip{\small\raggedright \textbf{Not a function of x}: the line \textit{x} = 1 meets the curve \textit{x} = \textit{y}\textsuperscript{2} at \textit{y} = 1 and \textit{y} = \ensuremath{-}1.\par}\end{minipage}
 \end{center}
 
@@ -471,11 +474,11 @@ An inverse undoes a mapping. It can do that consistently only when an output ide
 \Needspace{14\baselineskip}
 \begin{center}
 \begin{minipage}[t]{0.950\linewidth}\centering
-\begin{tikzpicture}
+\begin{tikzpicture}[line join=round]
 \draw[-{Stealth[length=4pt]},black!80] (0.720,-2.628) -- (4.572,-2.628);
 \draw[-{Stealth[length=4pt]},black!80] (0.720,-2.628) -- (0.720,-0.180);
-\draw[FAUblue,line width=1.6pt] (0.720,-2.628) -- (0.828,-2.625) -- (0.935,-2.612) -- (1.043,-2.592) -- (1.151,-2.565) -- (1.260,-2.529) -- (1.366,-2.485) -- (1.475,-2.433) -- (1.583,-2.373) -- (1.691,-2.305) -- (1.800,-2.231) -- (1.906,-2.146) -- (2.014,-2.055) -- (2.123,-1.956) -- (2.229,-1.848) -- (2.338,-1.733) -- (2.446,-1.610) -- (2.554,-1.478) -- (2.661,-1.340) -- (2.769,-1.193) -- (2.877,-1.037) -- (2.986,-0.875) -- (3.092,-0.703) -- (3.200,-0.524) -- (3.309,-0.338);
-\draw[black!85,line width=1pt] (0.720,-2.628) -- (0.872,-2.295) -- (1.027,-2.158) -- (1.179,-2.052) -- (1.331,-1.963) -- (1.486,-1.885) -- (1.638,-1.814) -- (1.790,-1.748) -- (1.945,-1.688) -- (2.097,-1.630) -- (2.249,-1.576) -- (2.404,-1.526) -- (2.556,-1.476) -- (2.708,-1.429) -- (2.863,-1.384) -- (3.015,-1.340) -- (3.167,-1.297) -- (3.322,-1.257) -- (3.474,-1.217) -- (3.626,-1.179) -- (3.781,-1.141) -- (3.933,-1.104) -- (4.085,-1.068) -- (4.240,-1.034) -- (4.392,-0.999);
+\draw[FAUblue,line width=1.6pt] plot[smooth,tension=0.5] coordinates {(0.720,-2.628) (0.828,-2.625) (0.935,-2.612) (1.043,-2.592) (1.151,-2.565) (1.260,-2.529) (1.366,-2.485) (1.475,-2.433) (1.583,-2.373) (1.691,-2.305) (1.800,-2.231) (1.906,-2.146) (2.014,-2.055) (2.123,-1.956) (2.229,-1.848) (2.338,-1.733) (2.446,-1.610) (2.554,-1.478) (2.661,-1.340) (2.769,-1.193) (2.877,-1.037) (2.986,-0.875) (3.092,-0.703) (3.200,-0.524) (3.309,-0.338)};
+\draw[black!85,line width=1pt] plot[smooth,tension=0.5] coordinates {(0.720,-2.628) (0.729,-2.546) (0.757,-2.466) (0.803,-2.384) (0.872,-2.295) (1.027,-2.158) (1.179,-2.052) (1.331,-1.963) (1.486,-1.885) (1.638,-1.814) (1.790,-1.748) (1.945,-1.688) (2.097,-1.630) (2.249,-1.576) (2.404,-1.526) (2.556,-1.476) (2.708,-1.429) (2.863,-1.384) (3.015,-1.340) (3.167,-1.297) (3.322,-1.257) (3.474,-1.217) (3.626,-1.179) (3.781,-1.141) (3.933,-1.104) (4.085,-1.068) (4.240,-1.034) (4.392,-0.999)};
 \draw[black!55,dashed] (0.720,-2.628) -- (4.392,-0.324);
 \node[anchor=east,inner sep=1pt,font=\footnotesize] at (4.536,-2.916) {\textit{x}};
 \node[anchor=east,inner sep=1pt,font=\footnotesize] at (0.576,-0.288) {\textit{y}};
@@ -651,12 +654,12 @@ This section collects important real-valued mappings. Their domain and range det
 \Needspace{14\baselineskip}
 \begin{center}
 \begin{minipage}[t]{0.950\linewidth}\centering
-\begin{tikzpicture}
+\begin{tikzpicture}[line join=round]
 \draw[-{Stealth[length=4pt]},black!80] (0.720,-1.860) -- (4.572,-1.860);
 \draw[-{Stealth[length=4pt]},black!80] (2.556,-2.628) -- (2.556,-0.180);
-\draw[FAUblue,line width=1.6pt] (0.720,-0.324) -- (0.873,-0.651) -- (1.026,-0.950) -- (1.179,-1.220) -- (1.332,-1.462) -- (1.485,-1.675) -- (1.638,-1.860) -- (1.791,-2.017) -- (1.944,-2.145) -- (2.097,-2.244) -- (2.250,-2.315) -- (2.403,-2.358) -- (2.556,-2.372) -- (2.709,-2.358) -- (2.862,-2.315) -- (3.015,-2.244) -- (3.168,-2.145) -- (3.321,-2.017) -- (3.474,-1.860) -- (3.627,-1.675) -- (3.780,-1.462) -- (3.933,-1.220) -- (4.086,-0.950) -- (4.239,-0.651) -- (4.392,-0.324);
-\draw[black!85,line width=1pt] (0.968,-0.328) -- (1.100,-0.572) -- (1.232,-0.796) -- (1.364,-0.998) -- (1.498,-1.179) -- (1.630,-1.339) -- (1.762,-1.477) -- (1.894,-1.594) -- (2.026,-1.690) -- (2.159,-1.764) -- (2.292,-1.818) -- (2.424,-1.849) -- (2.556,-1.860) -- (2.688,-1.849) -- (2.820,-1.818) -- (2.953,-1.764) -- (3.086,-1.690) -- (3.218,-1.594) -- (3.350,-1.477) -- (3.482,-1.339) -- (3.614,-1.179) -- (3.747,-0.998) -- (3.880,-0.796) -- (4.012,-0.572) -- (4.144,-0.328);
-\draw[black!55,dashed] (1.262,-0.330) -- (1.370,-0.492) -- (1.477,-0.641) -- (1.586,-0.776) -- (1.693,-0.895) -- (1.801,-1.001) -- (1.909,-1.094) -- (2.016,-1.171) -- (2.125,-1.235) -- (2.232,-1.285) -- (2.340,-1.320) -- (2.449,-1.341) -- (2.556,-1.348) -- (2.663,-1.341) -- (2.772,-1.320) -- (2.880,-1.285) -- (2.987,-1.235) -- (3.095,-1.171) -- (3.203,-1.094) -- (3.312,-1.001) -- (3.419,-0.895) -- (3.526,-0.776) -- (3.635,-0.641) -- (3.743,-0.492) -- (3.850,-0.330);
+\draw[FAUblue,line width=1.6pt] plot[smooth,tension=0.5] coordinates {(0.720,-0.324) (0.873,-0.651) (1.026,-0.950) (1.179,-1.220) (1.332,-1.462) (1.485,-1.675) (1.638,-1.860) (1.791,-2.017) (1.944,-2.145) (2.097,-2.244) (2.250,-2.315) (2.403,-2.358) (2.556,-2.372) (2.709,-2.358) (2.862,-2.315) (3.015,-2.244) (3.168,-2.145) (3.321,-2.017) (3.474,-1.860) (3.627,-1.675) (3.780,-1.462) (3.933,-1.220) (4.086,-0.950) (4.239,-0.651) (4.392,-0.324)};
+\draw[black!85,line width=1pt] plot[smooth,tension=0.5] coordinates {(0.968,-0.328) (1.100,-0.572) (1.232,-0.796) (1.364,-0.998) (1.498,-1.179) (1.630,-1.339) (1.762,-1.477) (1.894,-1.594) (2.026,-1.690) (2.159,-1.764) (2.292,-1.818) (2.424,-1.849) (2.556,-1.860) (2.688,-1.849) (2.820,-1.818) (2.953,-1.764) (3.086,-1.690) (3.218,-1.594) (3.350,-1.477) (3.482,-1.339) (3.614,-1.179) (3.747,-0.998) (3.880,-0.796) (4.012,-0.572) (4.144,-0.328)};
+\draw[black!55,dashed] plot[smooth,tension=0.5] coordinates {(1.262,-0.330) (1.370,-0.492) (1.477,-0.641) (1.586,-0.776) (1.693,-0.895) (1.801,-1.001) (1.909,-1.094) (2.016,-1.171) (2.125,-1.235) (2.232,-1.285) (2.340,-1.320) (2.449,-1.341) (2.556,-1.348) (2.663,-1.341) (2.772,-1.320) (2.880,-1.285) (2.987,-1.235) (3.095,-1.171) (3.203,-1.094) (3.312,-1.001) (3.419,-0.895) (3.526,-0.776) (3.635,-0.641) (3.743,-0.492) (3.850,-0.330)};
 \node[anchor=east,inner sep=1pt,font=\footnotesize] at (4.536,-2.148) {\textit{x}};
 \node[anchor=east,inner sep=1pt,font=\footnotesize] at (2.412,-0.288) {\textit{y}};
 \draw[black!80] (1.638,-1.788) -- (1.638,-1.932);
@@ -701,7 +704,7 @@ General root formulas exist for degrees 3 and 4. For degree 5 and above there is
 \Needspace{14\baselineskip}
 \begin{center}
 \begin{minipage}[t]{0.950\linewidth}\centering
-\begin{tikzpicture}
+\begin{tikzpicture}[line join=round]
 \draw[-{Stealth[length=4pt]},black!80] (0.144,-1.512) -- (2.988,-1.512);
 \draw[-{Stealth[length=4pt]},black!80] (1.512,-2.844) -- (1.512,-0.072);
 \draw[black!80] (1.512,-1.512) circle (1.116);
@@ -711,8 +714,8 @@ General root formulas exist for degrees 3 and 4. For degree 5 and above there is
 \draw[black!80] (1.872,-1.512) arc (0:40.0:0.360);
 \fill[FAUblue] (2.367,-0.795) circle (0.072);
 \node[,inner sep=1pt,font=\footnotesize] at (2.094,-1.376) {\textit{x}};
-\node[anchor=west,text=FAUblue,inner sep=1pt,font=\footnotesize] at (1.584,-1.836) {cos x};
-\node[anchor=west,inner sep=1pt,font=\footnotesize] at (2.511,-1.153) {sin x};
+\node[anchor=west,text=FAUblue,fill=white,fill opacity=0.85,text opacity=1,inner sep=1pt,font=\footnotesize] at (1.584,-1.764) {cos x};
+\node[anchor=west,inner sep=1pt,font=\footnotesize] at (2.659,-1.153) {sin x};
 \node[anchor=east,inner sep=1pt,font=\footnotesize] at (1.759,-1.009) {\textit{1}};
 \node[anchor=west,inner sep=1pt,font=\small] at (2.511,-0.651) {\textit{P}};
 \end{tikzpicture}\par\smallskip{\small\raggedright \textbf{The unit circle.} The point at angle \textit{x} on a circle of radius 1 is P = (cos \textit{x}, sin \textit{x}): cos \textit{x} is how far right, sin \textit{x} how far up.\par}\end{minipage}
@@ -778,11 +781,11 @@ For inverse functions, restrict sine to [\ensuremath{-}π/2,π/2], cosine to [0,
 \Needspace{14\baselineskip}
 \begin{center}
 \begin{minipage}[t]{0.950\linewidth}\centering
-\begin{tikzpicture}
+\begin{tikzpicture}[line join=round]
 \draw[-{Stealth[length=4pt]},black!80] (0.720,-1.706) -- (4.572,-1.706);
 \draw[-{Stealth[length=4pt]},black!80] (2.189,-2.628) -- (2.189,-0.180);
-\draw[FAUblue,line width=1.6pt] (0.720,-1.644) -- (0.815,-1.635) -- (0.909,-1.626) -- (1.003,-1.615) -- (1.098,-1.602) -- (1.193,-1.588) -- (1.287,-1.571) -- (1.382,-1.553) -- (1.476,-1.532) -- (1.571,-1.508) -- (1.665,-1.481) -- (1.760,-1.449) -- (1.855,-1.414) -- (1.949,-1.374) -- (2.043,-1.328) -- (2.138,-1.276) -- (2.233,-1.217) -- (2.328,-1.150) -- (2.422,-1.073) -- (2.516,-0.987) -- (2.611,-0.888) -- (2.706,-0.775) -- (2.800,-0.647) -- (2.895,-0.501) -- (2.989,-0.336);
-\draw[black!85,line width=1pt] (2.292,-2.612) -- (2.379,-2.328) -- (2.466,-2.154) -- (2.554,-2.028) -- (2.642,-1.929) -- (2.729,-1.848) -- (2.817,-1.779) -- (2.904,-1.718) -- (2.991,-1.665) -- (3.079,-1.617) -- (3.167,-1.575) -- (3.254,-1.535) -- (3.342,-1.499) -- (3.429,-1.465) -- (3.517,-1.434) -- (3.604,-1.404) -- (3.692,-1.376) -- (3.780,-1.350) -- (3.867,-1.326) -- (3.954,-1.302) -- (4.042,-1.280) -- (4.130,-1.259) -- (4.217,-1.238) -- (4.305,-1.219) -- (4.392,-1.200);
+\draw[FAUblue,line width=1.6pt] plot[smooth,tension=0.5] coordinates {(0.720,-1.644) (0.815,-1.635) (0.909,-1.626) (1.003,-1.615) (1.098,-1.602) (1.193,-1.588) (1.287,-1.571) (1.382,-1.553) (1.476,-1.532) (1.571,-1.508) (1.665,-1.481) (1.760,-1.449) (1.855,-1.414) (1.949,-1.374) (2.043,-1.328) (2.138,-1.276) (2.233,-1.217) (2.328,-1.150) (2.422,-1.073) (2.516,-0.987) (2.611,-0.888) (2.706,-0.775) (2.800,-0.647) (2.895,-0.501) (2.989,-0.336)};
+\draw[black!85,line width=1pt] plot[smooth,tension=0.5] coordinates {(2.292,-2.612) (2.379,-2.328) (2.466,-2.154) (2.554,-2.028) (2.642,-1.929) (2.729,-1.848) (2.817,-1.779) (2.904,-1.718) (2.991,-1.665) (3.079,-1.617) (3.167,-1.575) (3.254,-1.535) (3.342,-1.499) (3.429,-1.465) (3.517,-1.434) (3.604,-1.404) (3.692,-1.376) (3.780,-1.350) (3.867,-1.326) (3.954,-1.302) (4.042,-1.280) (4.130,-1.259) (4.217,-1.238) (4.305,-1.219) (4.392,-1.200)};
 \draw[black!55,dashed] (0.720,-2.628) -- (4.392,-0.324);
 \node[anchor=east,inner sep=1pt,font=\footnotesize] at (4.536,-1.994) {\textit{x}};
 \node[anchor=east,inner sep=1pt,font=\footnotesize] at (2.045,-0.288) {\textit{y}};
@@ -842,7 +845,7 @@ Cartesian coordinates locate a point by horizontal and vertical displacement. Po
 \Needspace{14\baselineskip}
 \begin{center}
 \begin{minipage}[t]{0.950\linewidth}\centering
-\begin{tikzpicture}
+\begin{tikzpicture}[line join=round]
 \draw[-{Stealth[length=4pt]},black!80] (0.144,-1.512) -- (2.988,-1.512);
 \draw[-{Stealth[length=4pt]},black!80] (1.512,-2.844) -- (1.512,-0.072);
 \draw[black!80] (1.512,-1.512) circle (1.116);
@@ -852,8 +855,8 @@ Cartesian coordinates locate a point by horizontal and vertical displacement. Po
 \draw[black!80] (1.872,-1.512) arc (0:35.0:0.360);
 \fill[FAUblue] (2.426,-0.872) circle (0.072);
 \node[,inner sep=1pt,font=\footnotesize] at (2.101,-1.396) {\textit{φ}};
-\node[anchor=west,text=FAUblue,inner sep=1pt,font=\footnotesize] at (1.584,-1.836) {x = r cos φ};
-\node[anchor=west,inner sep=1pt,font=\footnotesize] at (2.570,-1.192) {y = r sin φ};
+\node[anchor=west,text=FAUblue,fill=white,fill opacity=0.85,text opacity=1,inner sep=1pt,font=\footnotesize] at (1.584,-1.764) {x = r cos φ};
+\node[anchor=west,inner sep=1pt,font=\footnotesize] at (2.671,-1.192) {y = r sin φ};
 \node[anchor=east,inner sep=1pt,font=\footnotesize] at (1.789,-1.048) {\textit{r}};
 \node[anchor=west,inner sep=1pt,font=\small] at (2.570,-0.728) {\textit{P}};
 \end{tikzpicture}\par\smallskip{\small\raggedright \textbf{Polar to Cartesian.} For the point at distance \textit{r} and angle φ, the horizontal side of the triangle is \textit{r} cos φ and the vertical side \textit{r} sin φ.\par}\end{minipage}

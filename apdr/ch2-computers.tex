@@ -235,7 +235,7 @@ An algorithm turns a problem into steps that a person or machine can carry out. 
 \Needspace{14\baselineskip}
 \begin{center}
 \begin{minipage}[t]{0.950\linewidth}\centering
-\begin{tikzpicture}
+\begin{tikzpicture}[line join=round]
 \filldraw[draw=black!50,fill=Paperblue] (0.072,-0.180) rectangle (2.016,-1.188);
 \node[,inner sep=1pt,font=\small] at (1.044,-0.540) {Start};
 \node[,inner sep=1pt,font=\scriptsize] at (1.044,-0.828) {a first guess};
@@ -316,7 +316,7 @@ A \textbf{fixed-program computer}, such as a calculator, does one built-in job. 
 \Needspace{14\baselineskip}
 \begin{center}
 \begin{minipage}[t]{0.950\linewidth}\centering
-\begin{tikzpicture}
+\begin{tikzpicture}[line join=round]
 \filldraw[draw=black!50,fill=Paperblue] (0.072,-0.180) rectangle (2.016,-1.188);
 \node[,inner sep=1pt,font=\small] at (1.044,-0.540) {Memory};
 \node[,inner sep=1pt,font=\scriptsize] at (1.044,-0.828) {program and data};
@@ -381,7 +381,7 @@ A computer needs instructions that are legal in its language and have a defined 
 \Needspace{14\baselineskip}
 \begin{center}
 \begin{minipage}[t]{0.950\linewidth}\centering
-\begin{tikzpicture}
+\begin{tikzpicture}[line join=round]
 \filldraw[draw=black!50,fill=Paperblue] (0.072,-0.180) rectangle (2.016,-1.188);
 \node[,inner sep=1pt,font=\small] at (1.044,-0.540) {Syntax};
 \node[,inner sep=1pt,font=\scriptsize] at (1.044,-0.828) {legal symbols?};
@@ -445,7 +445,7 @@ A \textbf{proposition} is a statement that is either true or false. Compound pro
 \Needspace{14\baselineskip}
 \begin{center}
 \begin{minipage}[t]{0.303\linewidth}\centering
-\begin{tikzpicture}
+\begin{tikzpicture}[line join=round]
 \begin{scope}\clip (1.404,-1.224) circle (0.792); \fill[FAUblue!25] (2.196,-1.224) circle (0.792); \end{scope}
 \draw[black!70] (0.072,-0.072) rectangle (3.528,-2.268);
 \draw[black!80] (1.404,-1.224) circle (0.792);
@@ -454,7 +454,7 @@ A \textbf{proposition} is a statement that is either true or false. Compound pro
 \node[,inner sep=1pt,font=\small] at (3.096,-0.576) {\textit{B}};
 \end{tikzpicture}\par\smallskip{\small\raggedright \textbf{A \ensuremath{\land} B} is true only where both are true.\par}\end{minipage}\hfill
 \begin{minipage}[t]{0.303\linewidth}\centering
-\begin{tikzpicture}
+\begin{tikzpicture}[line join=round]
 \fill[FAUblue!25] (1.404,-1.224) circle (0.792);
 \fill[FAUblue!25] (2.196,-1.224) circle (0.792);
 \draw[black!70] (0.072,-0.072) rectangle (3.528,-2.268);
@@ -464,7 +464,7 @@ A \textbf{proposition} is a statement that is either true or false. Compound pro
 \node[,inner sep=1pt,font=\small] at (3.096,-0.576) {\textit{B}};
 \end{tikzpicture}\par\smallskip{\small\raggedright \textbf{A \ensuremath{\lor} B} is true where at least one is true, including both.\par}\end{minipage}\hfill
 \begin{minipage}[t]{0.303\linewidth}\centering
-\begin{tikzpicture}
+\begin{tikzpicture}[line join=round]
 \fill[FAUblue!25] (0.072,-0.072) rectangle (3.528,-2.268);
 \fill[white] (1.404,-1.224) circle (0.792);
 \draw[black!70] (0.072,-0.072) rectangle (3.528,-2.268);
@@ -629,7 +629,7 @@ Negating a compound expression changes its operation and negates each input: NOT
 \Needspace{14\baselineskip}
 \begin{center}
 \begin{minipage}[t]{0.465\linewidth}\centering
-\begin{tikzpicture}
+\begin{tikzpicture}[line join=round]
 \fill[FAUblue!25] (0.072,-0.072) rectangle (3.528,-2.268);
 \fill[white] (1.404,-1.224) circle (0.792);
 \fill[white] (2.196,-1.224) circle (0.792);
@@ -640,7 +640,7 @@ Negating a compound expression changes its operation and negates each input: NOT
 \node[,inner sep=1pt,font=\small] at (3.096,-0.576) {\textit{B}};
 \end{tikzpicture}\par\smallskip{\small\raggedright \textbf{(\textit{A} + \textit{B})′ = \textit{A}′ \ensuremath{\cdot} \textit{B}′}: outside both circles.\par}\end{minipage}\hfill
 \begin{minipage}[t]{0.465\linewidth}\centering
-\begin{tikzpicture}
+\begin{tikzpicture}[line join=round]
 \fill[FAUblue!25] (0.072,-0.072) rectangle (3.528,-2.268);
 \begin{scope}\clip (1.404,-1.224) circle (0.792); \fill[white] (2.196,-1.224) circle (0.792); \end{scope}
 \draw[black!70] (0.072,-0.072) rectangle (3.528,-2.268);
@@ -799,7 +799,7 @@ The final slides contrast an ideal, instantaneous gate with real switching. They
 \Needspace{14\baselineskip}
 \begin{center}
 \begin{minipage}[t]{0.950\linewidth}\centering
-\begin{tikzpicture}
+\begin{tikzpicture}[line join=round]
 \node[anchor=east,inner sep=1pt,font=\footnotesize] at (0.972,-0.414) {\textit{A}};
 \draw[black!85,line width=1pt] (1.152,-0.576) -- (1.584,-0.576) -- (1.584,-0.576) -- (2.016,-0.576) -- (2.016,-0.576) -- (2.448,-0.576) -- (2.448,-0.216) -- (2.880,-0.216) -- (2.880,-0.216) -- (3.312,-0.216) -- (3.312,-0.216) -- (3.744,-0.216) -- (3.744,-0.216) -- (4.176,-0.216) -- (4.176,-0.216) -- (4.608,-0.216) -- (4.608,-0.216) -- (5.040,-0.216) -- (5.040,-0.216) -- (5.472,-0.216);
 \node[anchor=east,inner sep=1pt,font=\footnotesize] at (0.972,-1.026) {\textit{out}};

@@ -207,7 +207,7 @@ In base b, each digit d\textsubscript{i} contributes d\textsubscript{i}b\textsup
 \Needspace{14\baselineskip}
 \begin{center}
 \begin{minipage}[t]{0.950\linewidth}\centering
-\begin{tikzpicture}
+\begin{tikzpicture}[line join=round]
 \node[,inner sep=1pt,font=\scriptsize] at (0.306,-0.252) {64};
 \filldraw[draw=black!50,fill=FAUblue!25] (0.072,-0.360) rectangle (0.540,-0.900);
 \node[,inner sep=1pt,font=\small] at (0.306,-0.630) {1};
@@ -344,7 +344,7 @@ Excess exists to keep numbers in order. In two’s complement a negative value s
 \Needspace{14\baselineskip}
 \begin{center}
 \begin{minipage}[t]{0.950\linewidth}\centering
-\begin{tikzpicture}
+\begin{tikzpicture}[line join=round]
 \node[,inner sep=1pt,font=\scriptsize] at (0.306,-0.252) {\ensuremath{-}8};
 \filldraw[draw=black!50,fill=FAUblue!25] (0.072,-0.360) rectangle (0.540,-0.900);
 \node[,inner sep=1pt,font=\small] at (0.306,-0.630) {1};
@@ -420,7 +420,7 @@ The 128 ASCII patterns divide into 52 letters (26 lowercase and 26 uppercase), 1
 \Needspace{14\baselineskip}
 \begin{center}
 \begin{minipage}[t]{0.950\linewidth}\centering
-\begin{tikzpicture}
+\begin{tikzpicture}[line join=round]
 \node[,inner sep=1pt,font=\scriptsize] at (0.306,-0.252) {128};
 \filldraw[draw=black!50,fill=Paperblue] (0.072,-0.360) rectangle (0.540,-0.900);
 \node[,inner sep=1pt,font=\small] at (0.306,-0.630) {0};
@@ -604,7 +604,7 @@ Add the bit patterns and discard any carry beyond the most significant bit. For 
 \Needspace{14\baselineskip}
 \begin{center}
 \begin{minipage}[t]{0.950\linewidth}\centering
-\begin{tikzpicture}
+\begin{tikzpicture}[line join=round]
 \draw[black!70] (2.160,-2.160) circle (1.260);
 \node[,inner sep=1pt,font=\scriptsize] at (2.160,-0.504) {0000};
 \node[,inner sep=1pt,font=\footnotesize] at (2.160,-1.224) {0};

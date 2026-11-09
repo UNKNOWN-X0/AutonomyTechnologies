@@ -2061,10 +2061,41 @@ main li sup {
   stroke-width: 2;
 }
 polyline.vz-line,
-polyline.vz-dash {
+polyline.vz-dash,
+path.vz-line:not(.vz-fill, .vz-cell, .vz-bg),
+path.vz-dash,
+path.vz-seg {
   fill: none;
 }
+/* A label that has to cross a line gets a halo in the background colour, so the line breaks around the letters. */
+.vz-halo {
+  paint-order: stroke;
+  stroke: var(--surface);
+  stroke-width: 4px;
+  stroke-linejoin: round;
+}
+/* Curves and bends join round, so sampled lines read as smooth rather than kinked. */
+.viz svg :is(polyline, path, line),
+.amap svg line {
+  stroke-linejoin: round;
+}
+.viz svg :is(polyline, path).vz-line,
+.viz svg :is(polyline, path).vz-seg {
+  stroke-linecap: round;
+}
 
+/* A flow chart is drawn twice: a row, and a stack for narrow screens, where the row's text would shrink too far. */
+.viz svg.vz-narrow {
+  display: none;
+}
+@media (max-width: 560px) {
+  .viz svg.vz-wide {
+    display: none;
+  }
+  .viz svg.vz-narrow {
+    display: block;
+  }
+}
 /* Wide diagrams (a chain of steps) take a full row, so their labels stay readable. */
 .figs > .viz[data-kind="flow"] {
   flex: 1 1 100%;

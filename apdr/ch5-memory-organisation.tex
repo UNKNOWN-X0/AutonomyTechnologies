@@ -201,7 +201,7 @@ Hierarchy balances speed, capacity, cost, volatility, and flexibility. Registers
 \Needspace{14\baselineskip}
 \begin{center}
 \begin{minipage}[t]{0.950\linewidth}\centering
-\begin{tikzpicture}
+\begin{tikzpicture}[line join=round]
 \node[,inner sep=1pt,font=\footnotesize] at (2.340,-0.216) {faster, smaller};
 \filldraw[draw=black!50,fill=Paperblue] (1.530,-0.432) rectangle (3.150,-0.972);
 \node[,inner sep=1pt,font=\small] at (2.340,-0.702) {Registers};
@@ -279,7 +279,7 @@ A memory needs a way to identify locations and a unit that each address selects.
 \Needspace{14\baselineskip}
 \begin{center}
 \begin{minipage}[t]{0.950\linewidth}\centering
-\begin{tikzpicture}
+\begin{tikzpicture}[line join=round]
 \filldraw[draw=black!50,fill=Paperblue] (0.072,-0.360) rectangle (3.816,-0.900);
 \node[,inner sep=1pt,font=\small] at (1.944,-0.630) {a₁₅ … a₀};
 \node[,inner sep=1pt,font=\scriptsize] at (1.944,-1.188) {16 address bits};
@@ -334,7 +334,7 @@ When a value spans multiple bytes, the byte order determines what appears at inc
 \Needspace{14\baselineskip}
 \begin{center}
 \begin{minipage}[t]{0.465\linewidth}\centering
-\begin{tikzpicture}
+\begin{tikzpicture}[line join=round]
 \filldraw[draw=black!50,fill=FAUblue!25] (0.072,-0.360) rectangle (0.540,-0.900);
 \node[,inner sep=1pt,font=\small] at (0.306,-0.630) {12};
 \node[,inner sep=1pt,font=\scriptsize] at (0.306,-1.188) {100};
@@ -349,7 +349,7 @@ When a value spans multiple bytes, the byte order determines what appears at inc
 \node[,inner sep=1pt,font=\scriptsize] at (1.710,-1.188) {103};
 \end{tikzpicture}\par\smallskip{\small\raggedright \textbf{Big-endian}: 0x12345678 with its most significant byte, 12, at the lowest address.\par}\end{minipage}\hfill
 \begin{minipage}[t]{0.465\linewidth}\centering
-\begin{tikzpicture}
+\begin{tikzpicture}[line join=round]
 \filldraw[draw=black!50,fill=Paperblue] (0.072,-0.360) rectangle (0.540,-0.900);
 \node[,inner sep=1pt,font=\small] at (0.306,-0.630) {78};
 \node[,inner sep=1pt,font=\scriptsize] at (0.306,-1.188) {100};
@@ -467,7 +467,7 @@ Interleaving assigns addresses across modules so independent modules can serve r
 \Needspace{14\baselineskip}
 \begin{center}
 \begin{minipage}[t]{0.465\linewidth}\centering
-\begin{tikzpicture}
+\begin{tikzpicture}[line join=round]
 \filldraw[draw=black!50,fill=Paperblue] (0.072,-0.360) rectangle (2.880,-0.900);
 \node[,inner sep=1pt,font=\small] at (1.476,-0.630) {row};
 \node[,inner sep=1pt,font=\scriptsize] at (1.476,-1.188) {20 bits};
@@ -476,7 +476,7 @@ Interleaving assigns addresses across modules so independent modules can serve r
 \node[,inner sep=1pt,font=\scriptsize] at (3.348,-1.188) {2 bits};
 \end{tikzpicture}\par\smallskip{\small\raggedright \textbf{Low-order interleaving}: the lowest 2 bits choose the module, so consecutive addresses go to different modules.\par}\end{minipage}\hfill
 \begin{minipage}[t]{0.465\linewidth}\centering
-\begin{tikzpicture}
+\begin{tikzpicture}[line join=round]
 \filldraw[draw=black!50,fill=FAUblue!25] (0.072,-0.360) rectangle (1.008,-0.900);
 \node[,inner sep=1pt,font=\small] at (0.540,-0.630) {mod};
 \node[,inner sep=1pt,font=\scriptsize] at (0.540,-1.188) {2 bits};

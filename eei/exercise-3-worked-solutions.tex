@@ -84,15 +84,15 @@ A spherical volume charge has density \textit{ρ}\textsubscript{0} for 0 \ensure
 \Needspace{14\baselineskip}
 \begin{center}
 \begin{minipage}[t]{0.950\linewidth}\centering
-\begin{tikzpicture}
+\begin{tikzpicture}[line join=round]
 \filldraw[draw=black!75,fill=black!10] (2.016,-1.512) circle (1.008);
 \draw[black!80,line width=1pt] (2.016,-1.512) -- (1.332,-0.774);
 \fill[FAUblue] (2.016,-1.512) circle (0.054);
 \draw[-{Stealth[length=4pt]},FAUblue,line width=1.3pt] (2.718,-0.864) -- (3.132,-0.486);
-\node[,inner sep=1pt,font=\footnotesize] at (1.476,-1.026) {\textit{a}};
-\node[,inner sep=1pt,font=\small] at (2.016,-1.620) {\textit{ρ0}};
+\node[,inner sep=1pt,font=\footnotesize] at (1.746,-0.936) {\textit{a}};
+\node[,inner sep=1pt,font=\small] at (2.016,-1.800) {\textit{ρ\textsubscript{0}}};
 \node[anchor=west,inner sep=1pt,font=\footnotesize] at (3.186,-1.584) {\textit{ρ = 0}};
-\node[anchor=west,text=FAUblue,inner sep=1pt,font=\footnotesize] at (3.222,-0.468) {Er};
+\node[anchor=west,text=FAUblue,inner sep=1pt,font=\footnotesize] at (3.222,-0.396) {E\textsubscript{r}};
 \end{tikzpicture}\par\smallskip{\small\raggedright \textbf{Enclosed charge depends on the Gaussian radius.} Inside the material only the smaller sphere contributes; outside it, the entire charged sphere is enclosed.\par}\end{minipage}
 \end{center}
 
@@ -120,7 +120,7 @@ Two circular metal plates have radius \textit{a}\textsubscript{2} and separation
 \Needspace{14\baselineskip}
 \begin{center}
 \begin{minipage}[t]{0.950\linewidth}\centering
-\begin{tikzpicture}
+\begin{tikzpicture}[line join=round]
 \filldraw[draw=black!70,fill=black!20] (0.954,-0.540) rectangle (3.672,-0.774);
 \filldraw[draw=black!70,fill=black!20] (0.954,-2.358) rectangle (3.672,-2.592);
 \filldraw[draw=black!75,fill=FAUblue!18] (1.476,-0.774) rectangle (2.484,-2.358);

@@ -87,7 +87,7 @@ An infinite line charge of density \textit{λ}\textsubscript{0} lies along the z
 \Needspace{14\baselineskip}
 \begin{center}
 \begin{minipage}[t]{0.950\linewidth}\centering
-\begin{tikzpicture}
+\begin{tikzpicture}[line join=round]
 \fill[black!8] (0.756,-0.450) rectangle (4.068,-1.368);
 \fill[FAUblue!10] (0.756,-1.368) rectangle (4.068,-2.592);
 \draw[black!80,line width=1.1pt] (0.756,-1.368) -- (4.068,-1.368);
@@ -100,9 +100,9 @@ An infinite line charge of density \textit{λ}\textsubscript{0} lies along the z
 \draw[-{Stealth[length=4pt]},black!80] (0.540,-2.394) -- (0.540,-1.476);
 \node[anchor=west,inner sep=1pt,font=\footnotesize] at (4.176,-2.556) {\textit{x}};
 \node[anchor=east,inner sep=1pt,font=\footnotesize] at (0.846,-0.270) {\textit{y}};
-\node[text=FAUblue,inner sep=1pt,font=\footnotesize] at (1.476,-0.918) {ε1};
-\node[,inner sep=1pt,font=\footnotesize] at (1.476,-1.998) {ε0};
-\node[anchor=west,text=FAUblue,inner sep=1pt,font=\footnotesize] at (1.116,-2.682) {λ0};
+\node[text=FAUblue,inner sep=1pt,font=\footnotesize] at (1.476,-0.918) {ε\textsubscript{1}};
+\node[,inner sep=1pt,font=\footnotesize] at (3.600,-1.944) {ε\textsubscript{0}};
+\node[anchor=west,text=FAUblue,inner sep=1pt,font=\footnotesize] at (1.080,-2.772) {λ\textsubscript{0}};
 \node[anchor=east,inner sep=1pt,font=\footnotesize] at (0.432,-1.980) {\textit{h}};
 \node[anchor=west,inner sep=1pt,font=\footnotesize] at (3.024,-1.296) {\textit{P(x,h)}};
 \node[anchor=west,inner sep=1pt,font=\footnotesize] at (2.862,-1.692) {\textit{y = h}};
@@ -133,7 +133,7 @@ Two infinitely long concentric metal cylinders share the z-axis. The inner metal
 \Needspace{14\baselineskip}
 \begin{center}
 \begin{minipage}[t]{0.950\linewidth}\centering
-\begin{tikzpicture}
+\begin{tikzpicture}[line join=round]
 \filldraw[draw=black!70,fill=black!8] (2.196,-1.620) circle (1.368);
 \filldraw[draw=black!70,fill=FAUblue!25] (2.196,-1.620) circle (1.260);
 \filldraw[draw=black!70,fill=white] (2.196,-1.620) circle (1.098);
@@ -148,19 +148,23 @@ Two infinitely long concentric metal cylinders share the z-axis. The inner metal
 \draw[black!70] (2.196,-1.620) circle (0.756);
 \draw[black!70] (2.196,-1.620) circle (0.450);
 \draw[black!70] (2.196,-1.620) circle (0.288);
-\draw[-{Stealth[length=4pt]},FAUblue,line width=1.2pt] (2.592,-2.016) -- (2.880,-2.016);
-\node[,inner sep=1pt,font=\footnotesize] at (2.196,-1.710) {\textit{ε0}};
-\node[anchor=west,text=FAUblue,inner sep=1pt,font=\footnotesize] at (2.466,-1.368) {σ0};
-\node[anchor=west,text=FAUblue,inner sep=1pt,font=\footnotesize] at (3.312,-1.152) {σ2};
-\node[text=FAUblue,inner sep=1pt,font=\footnotesize] at (1.638,-1.296) {ε1};
-\node[,inner sep=1pt,font=\footnotesize] at (1.674,-0.864) {ε2};
-\node[,inner sep=1pt,font=\footnotesize] at (3.294,-0.684) {\textit{ε0}};
-\node[text=FAUblue,inner sep=1pt,font=\footnotesize] at (2.772,-2.286) {\textit{Dρ}};
-\node[anchor=west,inner sep=1pt,font=\footnotesize] at (2.196,-1.134) {\textit{a0}};
-\node[anchor=west,inner sep=1pt,font=\footnotesize] at (2.196,-0.792) {\textit{a1}};
-\node[anchor=west,inner sep=1pt,font=\footnotesize] at (2.196,-0.450) {\textit{a2}};
-\draw[black!80] (0.792,-1.566) -- (0.972,-1.566);
-\node[,inner sep=1pt,font=\footnotesize] at (0.810,-1.404) {\textit{d}};
+\draw[-{Stealth[length=4pt]},FAUblue,line width=1.2pt] (2.988,-1.620) -- (3.258,-1.620);
+\node[,inner sep=1pt,font=\footnotesize] at (2.196,-1.512) {\textit{ε\textsubscript{0}}};
+\node[text=FAUblue,fill=white,fill opacity=0.85,text opacity=1,inner sep=1pt,font=\footnotesize] at (1.674,-1.296) {ε\textsubscript{1}};
+\node[fill=white,fill opacity=0.85,text opacity=1,inner sep=1pt,font=\footnotesize] at (1.548,-0.954) {ε\textsubscript{2}};
+\node[,inner sep=1pt,font=\footnotesize] at (0.792,-0.324) {\textit{ε\textsubscript{0}}};
+\node[anchor=west,text=FAUblue,fill=white,fill opacity=0.85,text opacity=1,inner sep=1pt,font=\footnotesize] at (2.520,-1.242) {σ\textsubscript{0}};
+\node[anchor=west,text=FAUblue,fill=white,fill opacity=0.85,text opacity=1,inner sep=1pt,font=\footnotesize] at (3.078,-1.188) {σ\textsubscript{2}};
+\node[text=FAUblue,fill=white,fill opacity=0.85,text opacity=1,inner sep=1pt,font=\footnotesize] at (3.132,-1.854) {\textit{D\textsubscript{ρ}}};
+\draw[black!55,dashed] (2.196,-1.620) -- (2.196,-2.718);
+\draw[black!80] (2.124,-2.070) -- (2.268,-2.070);
+\node[anchor=west,fill=white,fill opacity=0.85,text opacity=1,inner sep=1pt,font=\footnotesize] at (2.322,-2.070) {\textit{a\textsubscript{0}}};
+\draw[black!80] (2.124,-2.376) -- (2.268,-2.376);
+\node[anchor=west,fill=white,fill opacity=0.85,text opacity=1,inner sep=1pt,font=\footnotesize] at (2.322,-2.376) {\textit{a\textsubscript{1}}};
+\draw[black!80] (2.124,-2.718) -- (2.268,-2.718);
+\node[anchor=west,fill=white,fill opacity=0.85,text opacity=1,inner sep=1pt,font=\footnotesize] at (2.322,-2.718) {\textit{a\textsubscript{2}}};
+\draw[black!80] (0.792,-1.620) -- (0.972,-1.620);
+\node[anchor=east,inner sep=1pt,font=\footnotesize] at (0.720,-1.620) {\textit{d}};
 \end{tikzpicture}\par\smallskip{\small\raggedright \textbf{Track each cylindrical boundary by radius.} The field runs radially through ε\textsubscript{1} then ε\textsubscript{2}; free surface charges sit on the two metal faces bordering the dielectric gap.\par}\end{minipage}
 \end{center}
 

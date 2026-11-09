@@ -214,7 +214,7 @@ Write the structure as (B, +, \ensuremath{\cdot}, ', 0, 1). Join (+) and meet (\
 \Needspace{14\baselineskip}
 \begin{center}
 \begin{minipage}[t]{0.303\linewidth}\centering
-\begin{tikzpicture}
+\begin{tikzpicture}[line join=round]
 \begin{scope}\clip (1.404,-1.224) circle (0.792); \fill[FAUblue!25] (2.196,-1.224) circle (0.792); \end{scope}
 \draw[black!70] (0.072,-0.072) rectangle (3.528,-2.268);
 \draw[black!80] (1.404,-1.224) circle (0.792);
@@ -224,7 +224,7 @@ Write the structure as (B, +, \ensuremath{\cdot}, ', 0, 1). Join (+) and meet (\
 \node[anchor=west,inner sep=1pt,font=\footnotesize] at (0.216,-2.088) {\textit{1}};
 \end{tikzpicture}\par\smallskip{\small\raggedright \textbf{x \ensuremath{\cdot} y}: in the set view, meet is intersection.\par}\end{minipage}\hfill
 \begin{minipage}[t]{0.303\linewidth}\centering
-\begin{tikzpicture}
+\begin{tikzpicture}[line join=round]
 \fill[FAUblue!25] (1.404,-1.224) circle (0.792);
 \fill[FAUblue!25] (2.196,-1.224) circle (0.792);
 \draw[black!70] (0.072,-0.072) rectangle (3.528,-2.268);
@@ -235,7 +235,7 @@ Write the structure as (B, +, \ensuremath{\cdot}, ', 0, 1). Join (+) and meet (\
 \node[anchor=west,inner sep=1pt,font=\footnotesize] at (0.216,-2.088) {\textit{1}};
 \end{tikzpicture}\par\smallskip{\small\raggedright \textbf{x + y}: join is union.\par}\end{minipage}\hfill
 \begin{minipage}[t]{0.303\linewidth}\centering
-\begin{tikzpicture}
+\begin{tikzpicture}[line join=round]
 \fill[FAUblue!25] (0.072,-0.072) rectangle (3.528,-2.268);
 \fill[white] (1.404,-1.224) circle (0.792);
 \draw[black!70] (0.072,-0.072) rectangle (3.528,-2.268);
@@ -496,7 +496,7 @@ For n variables, a map has 2\textsuperscript{n} cells in Gray-code order. A lega
 \Needspace{14\baselineskip}
 \begin{center}
 \begin{minipage}[t]{0.465\linewidth}\centering
-\begin{tikzpicture}
+\begin{tikzpicture}[line join=round]
 \node[font=\footnotesize] at (0.720,-0.432) {\textit{A} / \textit{BC}};
 \node[,inner sep=1pt,font=\footnotesize] at (1.620,-0.648) {00};
 \node[,inner sep=1pt,font=\footnotesize] at (2.340,-0.648) {01};
@@ -523,7 +523,7 @@ For n variables, a map has 2\textsuperscript{n} cells in Gray-code order. A lega
 \draw[FAUblue,line width=1.4pt] (2.772,-0.900) rectangle (4.068,-2.196);
 \end{tikzpicture}\par\smallskip{\small\raggedright \textbf{A group of four} 1s in the columns BC = 11 and 10: A and C change inside it and drop out, leaving the single literal B.\par}\end{minipage}\hfill
 \begin{minipage}[t]{0.465\linewidth}\centering
-\begin{tikzpicture}
+\begin{tikzpicture}[line join=round]
 \node[font=\footnotesize] at (0.720,-0.432) {\textit{A} / \textit{BC}};
 \node[,inner sep=1pt,font=\footnotesize] at (1.620,-0.648) {00};
 \node[,inner sep=1pt,font=\footnotesize] at (2.340,-0.648) {01};
@@ -680,7 +680,7 @@ Equivalent formulas can behave differently while a real circuit switches. Verifi
 \Needspace{14\baselineskip}
 \begin{center}
 \begin{minipage}[t]{0.950\linewidth}\centering
-\begin{tikzpicture}
+\begin{tikzpicture}[line join=round]
 \fill[FAUblue!25] (2.880,-0.072) rectangle (3.312,-2.592);
 \node[anchor=east,inner sep=1pt,font=\footnotesize] at (0.972,-0.414) {\textit{x}};
 \draw[black!85,line width=1pt] (1.152,-0.216) -- (1.584,-0.216) -- (1.584,-0.216) -- (2.016,-0.216) -- (2.016,-0.216) -- (2.448,-0.216) -- (2.448,-0.216) -- (2.880,-0.216) -- (2.880,-0.576) -- (3.312,-0.576) -- (3.312,-0.576) -- (3.744,-0.576) -- (3.744,-0.576) -- (4.176,-0.576) -- (4.176,-0.576) -- (4.608,-0.576) -- (4.608,-0.576) -- (5.040,-0.576) -- (5.040,-0.576) -- (5.472,-0.576);

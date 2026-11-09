@@ -221,7 +221,7 @@ A \textbf{statement} is a sentence that is either true or false; its truth value
 \Needspace{14\baselineskip}
 \begin{center}
 \begin{minipage}[t]{0.950\linewidth}\centering
-\begin{tikzpicture}
+\begin{tikzpicture}[line join=round]
 \fill[FAUblue!25] (0.072,-0.072) rectangle (3.528,-2.268);
 \fill[white] (1.404,-1.224) circle (0.792);
 \fill[FAUblue!25] (2.196,-1.224) circle (0.792);
@@ -444,7 +444,7 @@ Each operation is easiest to understand by asking when an arbitrary element x be
 \Needspace{14\baselineskip}
 \begin{center}
 \begin{minipage}[t]{0.223\linewidth}\centering
-\begin{tikzpicture}
+\begin{tikzpicture}[line join=round]
 \fill[FAUblue!25] (1.404,-1.224) circle (0.792);
 \fill[FAUblue!25] (2.196,-1.224) circle (0.792);
 \draw[black!70] (0.072,-0.072) rectangle (3.528,-2.268);
@@ -455,7 +455,7 @@ Each operation is easiest to understand by asking when an arbitrary element x be
 \node[anchor=west,inner sep=1pt,font=\footnotesize] at (0.216,-2.088) {\textit{X}};
 \end{tikzpicture}\par\smallskip{\small\raggedright \textbf{A \ensuremath{\cup} B}: everything in A, in B, or in both.\par}\end{minipage}\hfill
 \begin{minipage}[t]{0.223\linewidth}\centering
-\begin{tikzpicture}
+\begin{tikzpicture}[line join=round]
 \begin{scope}\clip (1.404,-1.224) circle (0.792); \fill[FAUblue!25] (2.196,-1.224) circle (0.792); \end{scope}
 \draw[black!70] (0.072,-0.072) rectangle (3.528,-2.268);
 \draw[black!80] (1.404,-1.224) circle (0.792);
@@ -465,7 +465,7 @@ Each operation is easiest to understand by asking when an arbitrary element x be
 \node[anchor=west,inner sep=1pt,font=\footnotesize] at (0.216,-2.088) {\textit{X}};
 \end{tikzpicture}\par\smallskip{\small\raggedright \textbf{A \ensuremath{\cap} B}: only what is in both.\par}\end{minipage}\hfill
 \begin{minipage}[t]{0.223\linewidth}\centering
-\begin{tikzpicture}
+\begin{tikzpicture}[line join=round]
 \fill[FAUblue!25] (1.404,-1.224) circle (0.792);
 \fill[white] (2.196,-1.224) circle (0.792);
 \draw[black!70] (0.072,-0.072) rectangle (3.528,-2.268);
@@ -476,7 +476,7 @@ Each operation is easiest to understand by asking when an arbitrary element x be
 \node[anchor=west,inner sep=1pt,font=\footnotesize] at (0.216,-2.088) {\textit{X}};
 \end{tikzpicture}\par\smallskip{\small\raggedright \textbf{A \textbackslash{} B}: what is in A but not in B.\par}\end{minipage}\hfill
 \begin{minipage}[t]{0.223\linewidth}\centering
-\begin{tikzpicture}
+\begin{tikzpicture}[line join=round]
 \fill[FAUblue!25] (0.072,-0.072) rectangle (3.528,-2.268);
 \fill[white] (1.404,-1.224) circle (0.792);
 \draw[black!70] (0.072,-0.072) rectangle (3.528,-2.268);
@@ -524,7 +524,7 @@ Set identities can be proved by translating both sides into membership condition
 \Needspace{14\baselineskip}
 \begin{center}
 \begin{minipage}[t]{0.465\linewidth}\centering
-\begin{tikzpicture}
+\begin{tikzpicture}[line join=round]
 \fill[FAUblue!25] (0.072,-0.072) rectangle (3.528,-2.268);
 \fill[white] (1.404,-1.224) circle (0.792);
 \fill[white] (2.196,-1.224) circle (0.792);
@@ -536,7 +536,7 @@ Set identities can be proved by translating both sides into membership condition
 \node[anchor=west,inner sep=1pt,font=\footnotesize] at (0.216,-2.088) {\textit{X}};
 \end{tikzpicture}\par\smallskip{\small\raggedright \textbf{(A \ensuremath{\cup} B)\ensuremath{^{c}} = A\ensuremath{^{c}} \ensuremath{\cap} B\ensuremath{^{c}}}: outside both circles, the same region either way.\par}\end{minipage}\hfill
 \begin{minipage}[t]{0.465\linewidth}\centering
-\begin{tikzpicture}
+\begin{tikzpicture}[line join=round]
 \fill[FAUblue!25] (0.072,-0.072) rectangle (3.528,-2.268);
 \begin{scope}\clip (1.404,-1.224) circle (0.792); \fill[white] (2.196,-1.224) circle (0.792); \end{scope}
 \draw[black!70] (0.072,-0.072) rectangle (3.528,-2.268);

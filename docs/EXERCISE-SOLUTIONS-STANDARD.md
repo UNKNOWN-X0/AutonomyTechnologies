@@ -28,10 +28,11 @@ Each solution should:
 4. State the result with units and direction/sign where relevant.
 5. Close with a quick independent check or likely mistake.
 
-Put important equations on their own `<p class="math-line">…</p>` inside worked steps. The browser uses the site's math-capable serif stack; the PDF converter renders these as display equations. Keep explanatory prose in the normal reading font. Link each problem to the nearest relevant course topic. Where geometry or direction is hard to picture, add an annotated `<figure class="viz">` immediately after the setup and use a supported picture kind that also renders in the PDF. Separate geometric pieces or physical cases before combining them. State any assumption missing from the source, especially orientation or boundary conventions. Never imply a unique smooth normal at a sharp edge.
+Put important equations on their own `<p class="math-line">…</p>` inside worked steps. The browser uses the site's math-capable serif stack; the PDF converter renders these as display equations. Keep explanatory prose in the normal reading font. Link each problem to the nearest relevant course topic. Where geometry or direction is hard to picture, add an annotated `<figure class="viz">` immediately after the setup and use a supported picture kind that also renders in the PDF. Its labels follow the guide standard's rule [Diagrams read cleanly](GUIDE-STANDARD.md#markup): off every line and ring edge, inside the picture, with real subscripts. Separate geometric pieces or physical cases before combining them. State any assumption missing from the source, especially orientation or boundary conventions. Never imply a unique smooth normal at a sharp edge.
 
 ## Acceptance
 
 - Every exercise subpart is represented once and solved in full, with no unexplained algebra jumps.
 - Check vector directions, integration bounds, dimensions, signs, and limiting or geometric checks.
+- Look at each figure in the browser and zoomed in the PDF; the BrowserTests diagram-label check passes.
 - Verify the page visually, confirm all answer disclosures and step controls work, regenerate PDF/TeX from HTML, and inspect the PDF output.

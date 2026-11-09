@@ -291,11 +291,15 @@ def P(x, y):
     return "(%.3f,%.3f)" % (x * VS, -y * VS)
 
 
-def T(x, y, s, size=r"\small", anchor="", italic=False, color=""):
-    body = tex_text(s)
+def T(x, y, s, size=r"\small", anchor="", italic=False, color="", halo=False):
+    # "e_z" or "e_{ρ0}" sets the part after _ as a subscript, as the page does; a halo is a white backing that keeps
+    # a label legible where it has to cross a line
+    bits = re.split(r"_(\{[^}]+\}|[^\s_,{])", s)
+    body = "".join(r"\textsubscript{%s}" % tex_text(b.strip("{}")) if i % 2 else tex_text(b) for i, b in enumerate(bits))
     if italic:
         body = r"\textit{%s}" % body
-    opts = ",".join(o for o in (anchor, ("text=" + color) if color else "") if o)
+    opts = ",".join(o for o in (anchor, ("text=" + color) if color else "",
+                                "fill=white,fill opacity=0.85,text opacity=1" if halo else "") if o)
     return r"\node[%s,inner sep=1pt,font=%s] at %s {%s};" % (opts, size, P(x, y), body)
 
 
@@ -325,11 +329,19 @@ def dipole_lines(A, B):
     return out
 
 
+def smooth(pts):
+    """A sampled curve as TikZ path text: four or more points become a smooth plot through every point (the page
+    draws the same points as a Catmull-Rom curve); fewer stay straight segments."""
+    if len(pts) < 4:
+        return " -- ".join(P(x, y) for x, y in pts)
+    return "plot[smooth,tension=0.5] coordinates {%s}" % " ".join(P(x, y) for x, y in pts)
+
+
 def viz_tikz(f):
     import math
     a = f.attrs
     kind, _, sub = a.get("data-kind", "").partition(" ")
-    out = [r"\begin{tikzpicture}"]
+    out = [r"\begin{tikzpicture}[line join=round]"]
     if kind == "venn":
         shade = a.get("data-shade", "inter")
         A, B, R = (78, 68), (122, 68), 44
@@ -409,8 +421,8 @@ def viz_tikz(f):
                 r"\draw[black!80] %s arc (0:%.1f:%.3f);" % (P(cx + 20, cy), math.degrees(ang), 20 * VS),
                 r"\fill[FAUblue] %s circle (%.3f);" % (P(px, py), 4 * VS),
                 T(cx + 28 * math.cos(ang / 2) + 6, cy - 28 * math.sin(ang / 2) + 2, L[3] if len(L) > 3 else "φ", r"\footnotesize", "", True),
-                T(cx + 4, cy + 18, L[0], r"\footnotesize", "anchor=west", False, "FAUblue"),
-                T(px + 8, (cy + py) / 2, L[1], r"\footnotesize", "anchor=west"),
+                T(cx + 4, cy + 14, L[0], r"\footnotesize", "anchor=west", False, "FAUblue", True),
+                T(cx + math.sqrt(R * R - ((cy - py) / 2) ** 2) + 5, (cy + py) / 2, L[1], r"\footnotesize", "anchor=west"),
                 T((cx + px) / 2 - 10, (cy + py) / 2 - 8, L[2], r"\footnotesize", "anchor=east", True),
                 T(px + 8, py - 8, "P", r"\small", "anchor=west", True)]
     elif kind == "shape":
@@ -423,16 +435,16 @@ def viz_tikz(f):
                     arrow_t(90, 24, 90, 5, "FAUblue,line width=1.5pt"),
                     arrow_t(132, 68, 160, 68, "FAUblue,line width=1.5pt"),
                     arrow_t(90, 126, 90, 151, "FAUblue,line width=1.5pt"),
-                    T(118, 14, "+ez", r"\footnotesize", "anchor=west", False, "FAUblue"),
-                    T(168, 72, "+eρ", r"\footnotesize", "anchor=west", False, "FAUblue"),
-                    T(112, 158, "−ez", r"\footnotesize", "anchor=west", False, "FAUblue")]
+                    T(100, 10, "+e_z", r"\footnotesize", "anchor=west", True, "FAUblue"),
+                    T(168, 68, "+e_ρ", r"\footnotesize", "anchor=west", True, "FAUblue"),
+                    T(100, 154, "−e_z", r"\footnotesize", "anchor=west", True, "FAUblue")]
         elif sub == "hemisphere":
             out += [r"\filldraw[draw=black!70,fill=Paperblue] %s ellipse [x radius=%.3f,y radius=%.3f];" % (P(120, 108), 56 * VS, 15 * VS),
                     r"\filldraw[draw=black!80,fill=FAUblue!25] %s .. controls %s and %s .. %s -- cycle;" % (P(64, 108), P(64, 42), P(176, 42), P(176, 108)),
                     r"\draw[black!80,line width=1.2pt] %s .. controls %s and %s .. %s;" % (P(64, 108), P(64, 42), P(176, 42), P(176, 108)),
                     r"\draw[black!55,dashed] %s -- %s;" % (P(120, 108), P(120, 51)),
                     r"\fill[FAUblue] %s circle (%.3f);" % (P(120, 108), 3 * VS),
-                    T(120, 77, "a", r"\small", "anchor=west", True, "FAUblue"),
+                    T(125, 80, "a", r"\small", "anchor=west", True, "FAUblue"),
                     r"\draw[black!80] %s -- %s;" % (P(36, 49), P(73, 69)),
                     T(5, 38, "curved surface", r"\footnotesize", "anchor=west"),
                     r"\draw[black!80] %s -- %s;" % (P(174, 124), P(198, 139)),
@@ -440,16 +452,16 @@ def viz_tikz(f):
         elif sub == "loop":
             cx, cy, rad = 78, 92, 48
             out += [r"\draw[black!80] %s circle (%.3f);" % (P(cx, cy), rad * VS),
-                    arrow_t(99, 48, 73, 48, "FAUblue,line width=1.5pt"),
+                    arrow_t(100, 36, 70, 36, "FAUblue,line width=1.5pt"),
                     T(80, 22, "increasing φ", r"\footnotesize", "", False, "FAUblue"),
                     r"\draw[black!85,line width=1pt] %s -- %s;" % (P(cx, cy), P(cx + rad, cy)),
                     T((cx + cx + rad) / 2, cy - 7, "b", r"\footnotesize", "", True),
                     r"\fill[FAUblue] %s circle (%.3f);" % (P(cx + rad, cy), 4 * VS),
                     arrow_t(cx + rad, cy - 7, cx + rad, cy - 35, "FAUblue,line width=1.5pt"),
                     arrow_t(cx + rad + 5, cy, cx + rad + 34, cy),
-                    T(169, cy - 25, "eφ, ds", r"\footnotesize", "anchor=west", False, "FAUblue"),
-                    T(169, cy + 17, "eρ = ex", r"\footnotesize", "anchor=west"),
-                    T(cx + rad + 6, cy + 5, "P", r"\footnotesize", "anchor=west", True)]
+                    T(cx + rad + 12, cy - 28, "e_φ, ds", r"\footnotesize", "anchor=west", True, "FAUblue"),
+                    T(cx + rad + 38, cy, "e_ρ = e_x", r"\footnotesize", "anchor=west", True),
+                    T(cx + rad + 5, cy + 14, "P", r"\footnotesize", "anchor=west", True)]
         elif sub == "axis-pair":
             out += [arrow_t(22, 96, 222, 96), arrow_t(120, 174, 120, 12),
                     r"\draw[black!55,dashed] %s -- %s;" % (P(120, 52), P(184, 75)),
@@ -458,7 +470,7 @@ def viz_tikz(f):
                 out.append(r"\filldraw[draw=FAUblue,fill=FAUblue] %s circle (%.3f);" % (P(x, y), 6 * VS))
             out += [r"\fill[FAUblue] %s circle (%.3f);" % (P(184, 75), 4 * VS),
                     T(224, 101, "x", r"\footnotesize", "anchor=west", True),
-                    T(116, 10, "y", r"\footnotesize", "anchor=east", True),
+                    T(111, 12, "y", r"\footnotesize", "anchor=east", True),
                     T(132, 50, "Q1", r"\footnotesize", "anchor=west"),
                     T(132, 144, "Q2", r"\footnotesize", "anchor=west"),
                     T(191, 72, "P(x,y)", r"\footnotesize", "anchor=west", True),
@@ -478,16 +490,16 @@ def viz_tikz(f):
                     T(79, 57, "a", r"\footnotesize", "", True),
                     T(161, 57, "a", r"\footnotesize", "", True),
                     T(221, 136, "x", r"\footnotesize", "anchor=west", True),
-                    T(116, 9, "y", r"\footnotesize", "anchor=east", True)]
+                    T(111, 11, "y", r"\footnotesize", "anchor=east", True)]
         elif sub == "charged-sphere":
             out += [r"\filldraw[draw=black!75,fill=black!10] %s circle (%.3f);" % (P(112, 84), 56 * VS),
                     r"\draw[black!80,line width=1pt] %s -- %s;" % (P(112, 84), P(74, 43)),
                     r"\fill[FAUblue] %s circle (%.3f);" % (P(112, 84), 3 * VS),
                     arrow_t(151, 48, 174, 27, "FAUblue,line width=1.3pt"),
-                    T(82, 57, "a", r"\footnotesize", "", True),
-                    T(112, 90, "ρ0", r"\small", "", True),
+                    T(97, 52, "a", r"\footnotesize", "", True),
+                    T(112, 100, "ρ_0", r"\small", "", True),
                     T(177, 88, "ρ = 0", r"\footnotesize", "anchor=west", True),
-                    T(179, 26, "Er", r"\footnotesize", "anchor=west", False, "FAUblue")]
+                    T(179, 22, "E_r", r"\footnotesize", "anchor=west", False, "FAUblue")]
         elif sub == "coax-cap":
             out += [r"\filldraw[draw=black!70,fill=black!20] %s rectangle %s;" % (P(53, 30), P(204, 43)),
                     r"\filldraw[draw=black!70,fill=black!20] %s rectangle %s;" % (P(53, 131), P(204, 144)),
@@ -520,9 +532,9 @@ def viz_tikz(f):
                     arrow_t(30, 133, 30, 82),
                     T(232, 142, "x", r"\footnotesize", "anchor=west", True),
                     T(47, 15, "y", r"\footnotesize", "anchor=east", True),
-                    T(82, 51, "ε1", r"\footnotesize", "", False, "FAUblue"),
-                    T(82, 111, "ε0", r"\footnotesize"),
-                    T(62, 149, "λ0", r"\footnotesize", "anchor=west", False, "FAUblue"),
+                    T(82, 51, "ε_1", r"\footnotesize", "", False, "FAUblue"),
+                    T(200, 108, "ε_0", r"\footnotesize"),
+                    T(60, 154, "λ_0", r"\footnotesize", "anchor=west", False, "FAUblue"),
                     T(24, 110, "h", r"\footnotesize", "anchor=east", True),
                     T(168, 72, "P(x,h)", r"\footnotesize", "anchor=west", True),
                     T(159, 94, "y = h", r"\footnotesize", "anchor=west", True)]
@@ -536,19 +548,21 @@ def viz_tikz(f):
                            (fill, P(cx, cy), r * VS))
             for r in (76, 70, 61, 42, 25, 16):
                 out.append(r"\draw[black!70] %s circle (%.3f);" % (P(cx, cy), r * VS))
-            out += [arrow_t(144, 112, 160, 112, "FAUblue,line width=1.2pt"),
-                    T(122, 95, "ε0", r"\footnotesize", "", True),
-                    T(137, 76, "σ0", r"\footnotesize", "anchor=west", False, "FAUblue"),
-                    T(184, 64, "σ2", r"\footnotesize", "anchor=west", False, "FAUblue"),
-                    T(91, 72, "ε1", r"\footnotesize", "", False, "FAUblue"),
-                    T(93, 48, "ε2", r"\footnotesize"),
-                    T(183, 38, "ε0", r"\footnotesize", "", True),
-                    T(154, 127, "Dρ", r"\footnotesize", "", True, "FAUblue"),
-                    T(122, 63, "a0", r"\footnotesize", "anchor=west", True),
-                    T(122, 44, "a1", r"\footnotesize", "anchor=west", True),
-                    T(122, 25, "a2", r"\footnotesize", "anchor=west", True),
-                    r"\draw[black!80] %s -- %s;" % (P(44, 87), P(54, 87)),
-                    T(45, 78, "d", r"\footnotesize", "", True)]
+            # same placement as the page: labels in their own band or outside, haloed where they meet a ring edge
+            out += [arrow_t(166, cy, 181, cy, "FAUblue,line width=1.2pt"),
+                    T(cx, cy - 6, "ε_0", r"\footnotesize", "", True),
+                    T(93, 72, "ε_1", r"\footnotesize", "", False, "FAUblue", True),
+                    T(86, 53, "ε_2", r"\footnotesize", "", False, "", True),
+                    T(44, 18, "ε_0", r"\footnotesize", "", True),
+                    T(140, cy - 21, "σ_0", r"\footnotesize", "anchor=west", False, "FAUblue", True),
+                    T(171, 66, "σ_2", r"\footnotesize", "anchor=west", False, "FAUblue", True),
+                    T(174, cy + 13, "D_ρ", r"\footnotesize", "", True, "FAUblue", True),
+                    r"\draw[black!55,dashed] %s -- %s;" % (P(cx, cy), P(cx, cy + 61))]
+            for r, lab in ((25, "a_0"), (42, "a_1"), (61, "a_2")):
+                out += [r"\draw[black!80] %s -- %s;" % (P(cx - 4, cy + r), P(cx + 4, cy + r)),
+                        T(cx + 7, cy + r, lab, r"\footnotesize", "anchor=west", True, "", True)]
+            out += [r"\draw[black!80] %s -- %s;" % (P(44, cy), P(54, cy)),
+                    T(40, cy, "d", r"\footnotesize", "anchor=east", True)]
     elif kind == "plot":
         xr = [float(v) for v in (a.get("data-xr") or "0 1").split()]
         yr = [float(v) for v in (a.get("data-yr") or "0 1").split()]
@@ -556,6 +570,7 @@ def viz_tikz(f):
         X = lambda v: X0 + (v - xr[0]) / (xr[1] - xr[0]) * (X1 - X0)
         Y = lambda v: Y0 - (v - yr[0]) / (yr[1] - yr[0]) * (Y0 - Y1)
         pts = lambda t: " -- ".join(P(X(float(p.split(",")[0])), Y(float(p.split(",")[1]))) for p in t.split())
+        xy = lambda t: [(X(float(p.split(",")[0])), Y(float(p.split(",")[1]))) for p in t.split()]
         if a.get("data-shade"):
             out.append(r"\fill[FAUblue!25] %s -- cycle;" % pts(a["data-shade"]))
         ax = X(0) if xr[0] < 0 < xr[1] else X0
@@ -565,18 +580,30 @@ def viz_tikz(f):
             if not l.strip():
                 continue
             style = ["FAUblue,line width=1.6pt", "black!85,line width=1pt", "black!55,dashed"][min(i, 2)]
-            out.append(r"\draw[%s] %s;" % (style, pts(l)))
+            out.append(r"\draw[%s] %s;" % (style, smooth(xy(l))))
         for m in (a.get("data-marks") or "").split(";"):
             if m:
-                xy, _, lab = m.partition(":")
-                x_, y_ = [float(v) for v in xy.split(",")]
-                out.append(T(X(x_) + 6, Y(y_) - 6, lab, r"\footnotesize", "anchor=west", False, "FAUblue"))
+                q = m.split(":")
+                x_, y_ = [float(v) for v in q[0].split(",")]
+                lab, side = (q + ["", ""])[1:3]
+                if side:  # dot at the point, label on the named side (e/w, lifted by n, dropped by s), as on the page
+                    w = "w" in side
+                    dy = -10 if "n" in side else 10 if "s" in side else 0
+                    out.append(r"\fill[FAUblue] %s circle (%.3f);" % (P(X(x_), Y(y_)), 3.5 * VS))
+                    if lab:
+                        out.append(T(X(x_) + (-8 if w else 8), Y(y_) + dy, lab, r"\footnotesize",
+                                     "anchor=east" if w else "anchor=west", False, "FAUblue", True))
+                else:
+                    out.append(T(X(x_) + 6, Y(y_) - 6, lab, r"\footnotesize", "anchor=west", False, "FAUblue"))
         out += [T(X1 + 8, ay + 16, a.get("data-xlabel") or "x", r"\footnotesize", "anchor=east", True),
                 T(ax - 8, Y1 - 2, a.get("data-ylabel") if a.get("data-ylabel") is not None else "y", r"\footnotesize", "anchor=east", True)]
         for t in (a.get("data-xticks") or "").split():
-            v, _, lab = t.partition(":")
+            v, lab, side = (t.split(":") + ["", ""])[:3]
             out.append(r"\draw[black!80] %s -- %s;" % (P(X(float(v)), ay - 4), P(X(float(v)), ay + 4)))
-            out.append(T(X(float(v)), ay + 16, lab or v, r"\footnotesize"))
+            if side == "r":
+                out.append(T(X(float(v)) + 4, ay + 12, lab or v, r"\footnotesize", "anchor=west"))
+            else:
+                out.append(T(X(float(v)), ay + 16, lab or v, r"\footnotesize"))
     elif kind == "field":
         def charge(x, y, sign):
             out.append(r"\filldraw[draw=FAUblue,fill=FAUblue] %s circle (%.3f);" % (P(x, y), 12 * VS))
@@ -595,7 +622,7 @@ def viz_tikz(f):
             charge(40, 148, "+"); charge(200, 148, "+")
             Px, Py = 120, 84
             out += [r"\fill[FAUblue] %s circle (%.3f);" % (P(Px, Py), 3.5 * VS),
-                    r"\node[anchor=east,font=\small] at %s {\textit{P}};" % P(Px - 10, Py),
+                    r"\node[font=\small] at %s {\textit{P}};" % P(Px, Py + 15),
                     arrow_t(Px, Py, Px + 40, Py - 32), arrow_t(Px, Py, Px - 40, Py - 32),
                     arrow_t(Px, Py, Px, Py - 52, "FAUblue,line width=1.6pt"),
                     r"\node[anchor=west,font=\footnotesize] at %s {$E_1$};" % P(Px + 46, Py - 30),
@@ -604,36 +631,36 @@ def viz_tikz(f):
         elif sub == "dipole":
             A, B = (80, 90), (180, 90)
             for pts_ in dipole_lines(A, B):
-                out.append(r"\draw[black!80] %s;" % " -- ".join(P(x, y) for x, y in pts_[::2] + [pts_[-1]]))
+                out.append(r"\draw[black!80] %s;" % smooth(pts_[::2] + [pts_[-1]]))
                 m = len(pts_) // 2
                 if len(pts_) > 4:
                     out.append(arrow_t(pts_[m - 1][0], pts_[m - 1][1], pts_[m][0], pts_[m][1]))
             charge(A[0], A[1], "+"); charge(B[0], B[1], "-")
         elif sub == "slab":
-            out += [r"\fill[FAUblue!25] %s rectangle %s;" % (P(84, 18), P(116, 112)),
-                    r"\draw[black!85,line width=2.5pt] %s -- %s;" % (P(46, 18), P(46, 112)),
-                    r"\draw[black!85,line width=2.5pt] %s -- %s;" % (P(154, 18), P(154, 112)),
-                    T(46, 10, "+"), T(154, 10, "−")]
-            for k_, y in enumerate((30, 48, 66, 84, 102)):
+            out += [r"\fill[FAUblue!25] %s rectangle %s;" % (P(84, 26), P(116, 120)),
+                    r"\draw[black!85,line width=2.5pt] %s -- %s;" % (P(46, 26), P(46, 120)),
+                    r"\draw[black!85,line width=2.5pt] %s -- %s;" % (P(154, 26), P(154, 120)),
+                    T(46, 13, "+"), T(154, 13, "−")]
+            for k_, y in enumerate((38, 56, 74, 92, 110)):
                 out.append(r"\draw[black!80] %s -- %s;" % (P(54, y), P(82, y)))
                 out.append(arrow_t(118, y, 146, y))
                 if k_ % 2 == 0:
                     out.append(r"\draw[black!80] %s -- %s;" % (P(82, y), P(118, y)))
-            out += [T(100, 40, "−+", r"\footnotesize"), T(100, 76, "−+", r"\footnotesize"),
-                    T(100, 126, a.get("data-label") or "fewer E lines inside the slab", r"\footnotesize")]
+            out += [T(100, 46, "−+", r"\footnotesize"), T(100, 82, "−+", r"\footnotesize"),
+                    T(100, 134, a.get("data-label") or "fewer E lines inside the slab", r"\footnotesize")]
         elif sub == "plates":
-            out += [r"\draw[black!85,line width=2.5pt] %s -- %s;" % (P(46, 18), P(46, 112)),
-                    r"\draw[black!85,line width=2.5pt] %s -- %s;" % (P(154, 18), P(154, 112)),
-                    T(46, 10, "+"), T(154, 10, "−")]
-            out += [arrow_t(54, y, 146, y) for y in (30, 48, 66, 84, 102)]
-            out.append(T(100, 126, a.get("data-label") or "uniform E between the plates", r"\footnotesize"))
+            out += [r"\draw[black!85,line width=2.5pt] %s -- %s;" % (P(46, 26), P(46, 120)),
+                    r"\draw[black!85,line width=2.5pt] %s -- %s;" % (P(154, 26), P(154, 120)),
+                    T(46, 13, "+"), T(154, 13, "−")]
+            out += [arrow_t(54, y, 146, y) for y in (38, 56, 74, 92, 110)]
+            out.append(T(100, 134, a.get("data-label") or "uniform E between the plates", r"\footnotesize"))
         else:
             c, neg = 80, sub == "point-"
             if a.get("data-extra") == "equipot":
                 out += [r"\draw[black!55,dashed] %s circle (%.3f);" % (P(c, c), r_ * VS) for r_ in (34, 54)]
             if a.get("data-extra") == "surface":
                 out += [r"\draw[black!65,dashed,line width=1pt] %s circle (%.3f);" % (P(c, c), 46 * VS),
-                        T(c + 36, c - 40, "A", r"\footnotesize", "anchor=west", True, "FAUblue")]
+                        T(c + 20, c - 56, "A", r"\footnotesize", "anchor=west", True, "FAUblue")]
             for k in range(8):
                 t = k * math.pi / 4
                 p1 = (c + 20 * math.cos(t), c - 20 * math.sin(t))

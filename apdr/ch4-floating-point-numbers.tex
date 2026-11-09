@@ -249,7 +249,7 @@ Floating-point values are finite in number, and their spacing changes with magni
 \Needspace{14\baselineskip}
 \begin{center}
 \begin{minipage}[t]{0.950\linewidth}\centering
-\begin{tikzpicture}
+\begin{tikzpicture}[line join=round]
 \draw[-{Stealth[length=4pt]},black!80] (0.180,-0.612) -- (4.896,-0.612);
 \draw[black!80] (0.918,-0.522) -- (0.918,-0.702);
 \node[,inner sep=1pt,font=\footnotesize] at (0.918,-1.008) {1};
@@ -351,7 +351,7 @@ Each following bit has half the previous weight.
 \Needspace{14\baselineskip}
 \begin{center}
 \begin{minipage}[t]{0.950\linewidth}\centering
-\begin{tikzpicture}
+\begin{tikzpicture}[line join=round]
 \filldraw[draw=black!50,fill=Paperblue] (0.072,-0.360) rectangle (0.540,-0.900);
 \node[,inner sep=1pt,font=\small] at (0.306,-0.630) {0.};
 \node[,inner sep=1pt,font=\scriptsize] at (0.774,-0.252) {1/2};
@@ -601,7 +601,7 @@ The exponent field stores an excess (biased) value rather than a two’s-complem
 \Needspace{14\baselineskip}
 \begin{center}
 \begin{minipage}[t]{0.950\linewidth}\centering
-\begin{tikzpicture}
+\begin{tikzpicture}[line join=round]
 \node[,inner sep=1pt,font=\scriptsize] at (0.306,-0.252) {1 bit};
 \filldraw[draw=black!50,fill=Paperblue] (0.072,-0.360) rectangle (0.540,-0.900);
 \node[,inner sep=1pt,font=\small] at (0.306,-0.630) {S};
@@ -694,7 +694,7 @@ Reserved exponent patterns extend useful behaviour beyond normalised values.
 \Needspace{14\baselineskip}
 \begin{center}
 \begin{minipage}[t]{0.303\linewidth}\centering
-\begin{tikzpicture}
+\begin{tikzpicture}[line join=round]
 \filldraw[draw=black!50,fill=Paperblue] (0.072,-0.360) rectangle (0.540,-0.900);
 \node[,inner sep=1pt,font=\small] at (0.306,-0.630) {0};
 \node[,inner sep=1pt,font=\scriptsize] at (0.306,-1.188) {sign};
@@ -706,7 +706,7 @@ Reserved exponent patterns extend useful behaviour beyond normalised values.
 \node[,inner sep=1pt,font=\scriptsize] at (3.348,-1.188) {fraction};
 \end{tikzpicture}\par\smallskip{\small\raggedright \textbf{+0}: every bit is 0.\par}\end{minipage}\hfill
 \begin{minipage}[t]{0.303\linewidth}\centering
-\begin{tikzpicture}
+\begin{tikzpicture}[line join=round]
 \filldraw[draw=black!50,fill=Paperblue] (0.072,-0.360) rectangle (0.540,-0.900);
 \node[,inner sep=1pt,font=\small] at (0.306,-0.630) {0};
 \node[,inner sep=1pt,font=\scriptsize] at (0.306,-1.188) {sign};
@@ -718,7 +718,7 @@ Reserved exponent patterns extend useful behaviour beyond normalised values.
 \node[,inner sep=1pt,font=\scriptsize] at (3.348,-1.188) {fraction};
 \end{tikzpicture}\par\smallskip{\small\raggedright \textbf{+\ensuremath{\infty}}: exponent all 1s, fraction 0.\par}\end{minipage}\hfill
 \begin{minipage}[t]{0.303\linewidth}\centering
-\begin{tikzpicture}
+\begin{tikzpicture}[line join=round]
 \filldraw[draw=black!50,fill=Paperblue] (0.072,-0.360) rectangle (0.540,-0.900);
 \node[,inner sep=1pt,font=\small] at (0.306,-0.630) {0};
 \node[,inner sep=1pt,font=\scriptsize] at (0.306,-1.188) {sign};

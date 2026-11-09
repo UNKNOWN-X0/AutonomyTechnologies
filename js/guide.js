@@ -367,8 +367,11 @@
       said = [];
     var defs = el("defs", {}, svg);
     ["ink", "hot"].forEach(function (k) {
-      var m = el("marker", { id: "amap-" + fi + "-" + k, viewBox: "0 0 8 8", refX: "7", refY: "4", markerWidth: "7", markerHeight: "7", orient: "auto-start-reverse" }, defs);
-      el("path", { d: "M0 0 8 4 0 8z", class: "mk-" + k }, m);
+      // one head size in user units for every arrow (a stroke-scaled head turns into a blob on the thick ones);
+      // the line stops 7 units short and the head's notch (x = 3) sits on its end, so the tip lands where the line was
+      // aimed and the shaft ends inside the head
+      var m = el("marker", { id: "amap-" + fi + "-" + k, viewBox: "0 0 10 10", refX: "3", refY: "5", markerWidth: "10", markerHeight: "10", markerUnits: "userSpaceOnUse", orient: "auto-start-reverse" }, defs);
+      el("path", { d: "M0 0.5 10 5 0 9.5 2.8 5z", class: "mk-" + k }, m);
     });
     sets.forEach(function (st, si) {
       var x0 = si * (BW + GAP),
@@ -401,7 +404,10 @@
           var t = x1; x1 = x2; x2 = t;
           t = y1; y1 = y2; y2 = t;
         }
-        el("line", { x1: x1, y1: y1, x2: x2, y2: y2, class: hot ? "arrow hot" : "arrow", "marker-end": "url(#amap-" + fi + "-" + (hot ? "hot" : "ink") + ")" }, svg);
+        var L = Math.hypot(x2 - x1, y2 - y1) || 1;
+        x2 -= (7 * (x2 - x1)) / L;
+        y2 -= (7 * (y2 - y1)) / L;
+        el("line", { x1: x1, y1: y1, x2: x2.toFixed(1), y2: y2.toFixed(1), class: hot ? "arrow hot" : "arrow", "marker-end": "url(#amap-" + fi + "-" + (hot ? "hot" : "ink") + ")" }, svg);
         said.push(rev ? p[1] + " to " + p[0] : p[0] + " to " + p[1]);
       });
     });
@@ -412,22 +418,53 @@
   // Picture diagrams (figure.viz, data-kind = venn | numline | bits | circle | field | ladder), drawn from data so the
   // page and the PDF (tools/guide-to-tex.py, same coordinates) show the same picture. Shaded or thick parts use the
   // action colour; the caption says what to look at. Each kind's attributes are described in docs/GUIDE-STANDARD.md.
+  // "e_z" or "e_{ρ0}" sets the part after _ as a subscript (the PDF sets the same label in TeX).
   function txt(svg, x, y, s, cls, anchor) {
-    var t = el("text", { x: x, y: y, class: cls || "vz-text", "text-anchor": anchor || "middle" }, svg);
-    t.textContent = s;
+    var t = el("text", { x: x, y: y, class: cls || "vz-text", "text-anchor": anchor || "middle" }, svg),
+      bits = String(s).split(/_(\{[^}]+\}|[^\s_,{])/);
+    if (bits.length === 1) {
+      t.textContent = s;
+      return t;
+    }
+    var low = false;
+    bits.forEach(function (b, i) {
+      var sub = i % 2 === 1;
+      if (!b) return;
+      var sp = el("tspan", sub ? { "font-size": "75%" } : {}, t);
+      if (sub !== low) sp.setAttribute("dy", sub ? "0.3em" : "-0.225em"); // 0.3em of the 75% size, then back up
+      low = sub;
+      sp.textContent = sub ? b.replace(/^\{|\}$/g, "") : b;
+    });
     return t;
   }
-  function head(svg, id, x1, y1, x2, y2, cls) {
-    // a filled triangle at (x2, y2) pointing along the segment
-    var a = Math.atan2(y2 - y1, x2 - x1),
-      L = 8,
-      W = 4,
-      p = [x2, y2, x2 - L * Math.cos(a) + W * Math.sin(a), y2 - L * Math.sin(a) - W * Math.cos(a), x2 - L * Math.cos(a) - W * Math.sin(a), y2 - L * Math.sin(a) + W * Math.cos(a)];
-    el("path", { d: "M" + p[0] + " " + p[1] + "L" + p[2] + " " + p[3] + "L" + p[4] + " " + p[5] + "z", class: cls || "vz-head" }, svg);
+  // Arrowhead size grows with the shaft: a thick shaft must never be wider than its own head.
+  var HEAD = { "vz-seg": [12, 6.5], "vz-line thick": [10, 5], "": [8, 4] };
+  function head(svg, id, x1, y1, x2, y2, cls, size) {
+    // a swept (stealth) head with its tip at (x2, y2), pointing along the segment
+    var a = Math.atan2(y2 - y1, x2 - x1), c = Math.cos(a), s = Math.sin(a),
+      L = (size || HEAD[""])[0],
+      W = (size || HEAD[""])[1],
+      f = function (n) { return n.toFixed(2); },
+      bx = x2 - L * c, by = y2 - L * s,
+      nx = x2 - 0.72 * L * c, ny = y2 - 0.72 * L * s;
+    el("path", { d: "M" + f(x2) + " " + f(y2) + "L" + f(bx + W * s) + " " + f(by - W * c) + "L" + f(nx) + " " + f(ny) + "L" + f(bx - W * s) + " " + f(by + W * c) + "z", class: cls || "vz-head" }, svg);
   }
   function arrow(svg, x1, y1, x2, y2, cls) {
-    el("line", { x1: x1, y1: y1, x2: x2, y2: y2, class: cls || "vz-line" }, svg);
-    head(svg, null, x1, y1, x2, y2, cls === "vz-seg" ? "vz-head hot" : "vz-head");
+    // the shaft stops inside the head, so it never shows through the tip
+    var size = HEAD[cls || ""] || HEAD[""], len = Math.hypot(x2 - x1, y2 - y1), k = len ? (0.8 * size[0]) / len : 0;
+    el("line", { x1: x1, y1: y1, x2: x2 - (x2 - x1) * k, y2: y2 - (y2 - y1) * k, class: cls || "vz-line" }, svg);
+    head(svg, null, x1, y1, x2, y2, cls === "vz-seg" ? "vz-head hot" : "vz-head", size);
+  }
+  // A sampled curve (four or more points) as a smooth Catmull-Rom path through every point; fewer points stay straight.
+  function curve(svg, P, cls) {
+    if (P.length < 4) return el("polyline", { points: P.map(function (p) { return p.join(","); }).join(" "), class: cls }, svg);
+    var d = "M" + P[0][0] + " " + P[0][1];
+    for (var i = 0; i < P.length - 1; i++) {
+      var p0 = P[i - 1] || P[i], p1 = P[i], p2 = P[i + 1], p3 = P[i + 2] || p2;
+      d += "C" + (p1[0] + (p2[0] - p0[0]) / 6).toFixed(1) + " " + (p1[1] + (p2[1] - p0[1]) / 6).toFixed(1) + " " +
+        (p2[0] - (p3[0] - p1[0]) / 6).toFixed(1) + " " + (p2[1] - (p3[1] - p1[1]) / 6).toFixed(1) + " " + p2[0] + " " + p2[1];
+    }
+    return el("path", { d: d, class: cls }, svg);
   }
   // Dipole field lines: start 12 lines on a small circle round +q and step along E (unit steps of 3) until they reach
   // −q or leave the frame. tools/guide-to-tex.py traces the same lines with the same numbers.
@@ -454,7 +491,8 @@
         X0 = 40, X1 = 244, Y0 = 146, Y1 = 18,
         X = function (v) { return X0 + ((v - xr[0]) / (xr[1] - xr[0])) * (X1 - X0); },
         Y = function (v) { return Y0 - ((v - yr[0]) / (yr[1] - yr[0])) * (Y0 - Y1); },
-        pts = function (s) { return s.trim().split(" ").map(function (p) { var q = p.split(","); return X(+q[0]).toFixed(1) + "," + Y(+q[1]).toFixed(1); }).join(" "); };
+        xy = function (s) { return s.trim().split(/\s+/).map(function (p) { var q = p.split(","); return [+X(+q[0]).toFixed(1), +Y(+q[1]).toFixed(1)]; }); },
+        pts = function (s) { return xy(s).map(function (p) { return p.join(","); }).join(" "); };
       if (d.shade) el("polygon", { points: pts(d.shade), class: "vz-fill" }, svg);
       // axes through the origin when 0 is in range, else along the low edges
       var ax = xr[0] < 0 && xr[1] > 0 ? X(0) : X0, ay = yr[0] < 0 && yr[1] > 0 ? Y(0) : Y0;
@@ -462,18 +500,25 @@
       arrow(svg, ax, Y0, ax, Y1 - 8);
       (d.lines || "").split(";").forEach(function (l, i) {
         if (!l.trim()) return; // an empty slot keeps the next line's style (blue, black, dashed by position)
-        el("polyline", { points: pts(l), class: i === 0 ? "vz-seg thin" : i === 1 ? "vz-line thick" : "vz-dash" }, svg);
+        curve(svg, xy(l), i === 0 ? "vz-seg thin" : i === 1 ? "vz-line thick" : "vz-dash");
       });
       (d.marks || "").split(";").filter(Boolean).forEach(function (m) {
-        var q = m.split(":"), xy = q[0].split(",");
-        txt(svg, X(+xy[0]) + 6, Y(+xy[1]) - 6, q[1], "vz-small vz-acc", "start");
+        // "x,y:label" sets the label above right; "x,y:label:e" marks the point with a dot and sets the label on the
+        // side named (e or w, with n or s to lift or drop it: nw, se, …), so it clears the curve through the point
+        var q = m.split(":"), xy = q[0].split(","), mx = X(+xy[0]), my = Y(+xy[1]), w = /w/.test(q[2] || "");
+        if (q[2]) {
+          el("circle", { cx: mx, cy: my, r: 3.5, class: "vz-dot" }, svg);
+          if (q[1]) txt(svg, mx + (w ? -8 : 8), my + (/n/.test(q[2]) ? -6 : /s/.test(q[2]) ? 14 : 4), q[1], "vz-small vz-acc vz-halo", w ? "end" : "start");
+        } else txt(svg, mx + 6, my - 6, q[1], "vz-small vz-acc", "start");
       });
       txt(svg, X1 + 8, ay + 18, d.xlabel || "x", "vz-small vz-it", "end");
       txt(svg, ax - 8, Y1 - 2, d.ylabel != null ? d.ylabel : "y", "vz-small vz-it", "end");
       (d.xticks || "").split(" ").filter(Boolean).forEach(function (t) {
         var q = t.split(":");
         el("line", { x1: X(+q[0]), y1: ay - 4, x2: X(+q[0]), y2: ay + 4, class: "vz-line" }, svg);
-        txt(svg, X(+q[0]), ay + 18, q[1] || q[0], "vz-small");
+        // "1:1:r" sets the tick label to the right, clear of a vertical line through the tick
+        if (q[2] === "r") txt(svg, X(+q[0]) + 4, ay + 16, q[1] || q[0], "vz-small", "start");
+        else txt(svg, X(+q[0]), ay + 18, q[1] || q[0], "vz-small");
       });
       return [262, 170];
     },
@@ -563,11 +608,13 @@
       el("path", { d: "M" + (cx + 20) + " " + cy + "A20 20 0 0 0 " + (cx + 20 * Math.cos(a)) + " " + (cy - 20 * Math.sin(a)), class: "vz-line" }, svg);
       el("circle", { cx: px, cy: py, r: 4, class: "vz-dot" }, svg);
       txt(svg, cx + 28 * Math.cos(a / 2) + 6, cy - 28 * Math.sin(a / 2) + 4, L[3] || "φ", "vz-small vz-it");
-      txt(svg, cx + 4, cy + 18, L[0], "vz-small vz-acc", "start");
-      txt(svg, px + 8, (cy + py) / 2 + 4, L[1], "vz-small", "start");
+      // the vertical side's label sits just outside the circle at its height; the horizontal one under the axis
+      var my = (cy + py) / 2, ex = cx + Math.sqrt(R * R - (cy - my) * (cy - my));
+      txt(svg, cx + 4, cy + 18, L[0], "vz-small vz-acc vz-halo", "start");
+      txt(svg, ex + 5, my + 4, L[1], "vz-small", "start");
       txt(svg, (cx + px) / 2 - 10, (cy + py) / 2 - 6, L[2], "vz-small vz-it", "end");
       txt(svg, px + 8, py - 6, "P", "vz-text vz-it", "start");
-      return [200, 168];
+      return [Math.max(200, Math.ceil(ex + 9 + L[1].length * 6.6)), 168];
     },
     shape: function (svg, d) {
       if (d.kind2 === "cylinder") {
@@ -578,9 +625,9 @@
         arrow(svg, 90, 24, 90, 5, "vz-seg");
         arrow(svg, 132, 68, 160, 68, "vz-seg");
         arrow(svg, 90, 126, 90, 151, "vz-seg");
-        txt(svg, 118, 14, "+e_z", "vz-small vz-acc", "start");
-        txt(svg, 168, 72, "+e_ρ", "vz-small vz-acc", "start");
-        txt(svg, 112, 158, "−e_z", "vz-small vz-acc", "start");
+        txt(svg, 100, 14, "+e_z", "vz-small vz-it vz-acc", "start");
+        txt(svg, 168, 72, "+e_ρ", "vz-small vz-it vz-acc", "start");
+        txt(svg, 100, 158, "−e_z", "vz-small vz-it vz-acc", "start");
         return [232, 170];
       }
       if (d.kind2 === "hemisphere") {
@@ -589,7 +636,7 @@
         el("path", { d: "M64 108A56 60 0 0 1 176 108", class: "vz-line thick" }, svg);
         el("line", { x1: 120, y1: 108, x2: 120, y2: 51, class: "vz-dash" }, svg);
         el("circle", { cx: 120, cy: 108, r: 3, class: "vz-dot" }, svg);
-        txt(svg, 120, 77, "a", "vz-text vz-it vz-acc", "start");
+        txt(svg, 125, 84, "a", "vz-text vz-it vz-acc", "start");
         el("line", { x1: 36, y1: 49, x2: 73, y2: 69, class: "vz-line" }, svg);
         txt(svg, 5, 38, "curved surface", "vz-small", "start");
         el("line", { x1: 174, y1: 124, x2: 198, y2: 139, class: "vz-line" }, svg);
@@ -598,7 +645,7 @@
       }
       if (d.kind2 === "loop") {
         var cx = 78, cy = 92, r = 48, px = cx + r;
-        arrow(svg, 99, 48, 73, 48, "vz-seg");
+        arrow(svg, 100, 36, 70, 36, "vz-seg");
         txt(svg, 80, 22, "increasing φ", "vz-small vz-acc");
         el("circle", { cx: cx, cy: cy, r: r, class: "vz-line" }, svg);
         el("line", { x1: cx, y1: cy, x2: px, y2: cy, class: "vz-line thick" }, svg);
@@ -606,16 +653,16 @@
         el("circle", { cx: px, cy: cy, r: 4, class: "vz-dot" }, svg);
         arrow(svg, px, cy - 7, px, cy - 35, "vz-seg");
         arrow(svg, px + 5, cy, px + 34, cy, "vz-line");
-        txt(svg, 169, cy - 25, "eφ, ds", "vz-small vz-acc", "start");
-        txt(svg, 169, cy + 17, "eρ = ex", "vz-small", "start");
-        txt(svg, px + 6, cy + 5, "P", "vz-small vz-it", "start");
+        txt(svg, px + 12, cy - 24, "e_φ, ds", "vz-small vz-it vz-acc", "start");
+        txt(svg, px + 38, cy + 4, "e_ρ = e_x", "vz-small vz-it", "start");
+        txt(svg, px + 5, cy + 18, "P", "vz-small vz-it", "start");
         return [236, 154];
       }
       if (d.kind2 === "axis-pair") {
         arrow(svg, 22, 96, 222, 96, "vz-line");
         arrow(svg, 120, 174, 120, 12, "vz-line");
         txt(svg, 224, 101, "x", "vz-small vz-it", "start");
-        txt(svg, 116, 10, "y", "vz-small vz-it", "end");
+        txt(svg, 111, 16, "y", "vz-small vz-it", "end");
         el("line", { x1: 120, y1: 52, x2: 184, y2: 75, class: "vz-dash" }, svg);
         el("line", { x1: 120, y1: 140, x2: 184, y2: 75, class: "vz-dash" }, svg);
         el("circle", { cx: 120, cy: 52, r: 6, class: "vz-charge" }, svg);
@@ -644,15 +691,15 @@
         txt(svg, 79, 57, "a", "vz-small vz-it");
         txt(svg, 161, 57, "a", "vz-small vz-it");
         txt(svg, 221, 136, "x", "vz-small vz-it", "start");
-        txt(svg, 116, 9, "y", "vz-small vz-it", "end");
+        txt(svg, 111, 15, "y", "vz-small vz-it", "end");
         return [240, 164];
       }
       if (d.kind2 === "charged-sphere") {
         el("circle", { cx: 112, cy: 84, r: 56, class: "vz-bg vz-line" }, svg);
         el("line", { x1: 112, y1: 84, x2: 74, y2: 43, class: "vz-line thick" }, svg);
         el("circle", { cx: 112, cy: 84, r: 3, class: "vz-dot" }, svg);
-        txt(svg, 82, 57, "a", "vz-small vz-it");
-        txt(svg, 112, 90, "ρ₀", "vz-text vz-it");
+        txt(svg, 97, 56, "a", "vz-small vz-it");
+        txt(svg, 112, 104, "ρ₀", "vz-text vz-it");
         txt(svg, 177, 88, "ρ = 0", "vz-small vz-it", "start");
         arrow(svg, 151, 48, 174, 27, "vz-seg");
         txt(svg, 179, 26, "Eᵣ", "vz-small vz-acc", "start");
@@ -691,10 +738,10 @@
         txt(svg, 232, 142, "x", "vz-small vz-it", "start");
         txt(svg, 47, 15, "y", "vz-small vz-it", "end");
         txt(svg, 82, 51, "ε₁", "vz-small vz-acc");
-        txt(svg, 82, 111, "ε₀", "vz-small");
+        txt(svg, 200, 112, "ε₀", "vz-small");
         el("circle", { cx: 50, cy: 137, r: 7, class: "vz-charge" }, svg);
         txt(svg, 50, 141, "+", "vz-small vz-on");
-        txt(svg, 62, 149, "λ₀", "vz-small vz-acc", "start");
+        txt(svg, 60, 158, "λ₀", "vz-small vz-acc", "start");
         el("line", { x1: 50, y1: 137, x2: 160, y2: 76, class: "vz-dash" }, svg);
         el("circle", { cx: 160, cy: 76, r: 4, class: "vz-dot" }, svg);
         txt(svg, 168, 72, "P(x,h)", "vz-small vz-it", "start");
@@ -713,19 +760,24 @@
         el("circle", { cx: cx, cy: cy, r: 42, class: "vz-cell vz-line" }, svg);
         el("circle", { cx: cx, cy: cy, r: 25, class: "vz-charge" }, svg);
         el("circle", { cx: cx, cy: cy, r: 16, class: "vz-bg vz-line" }, svg);
-        txt(svg, 122, 95, "ε₀", "vz-small vz-it");
-        txt(svg, 137, 76, "σ₀", "vz-small vz-acc", "start");
-        txt(svg, 184, 64, "σ₂", "vz-small vz-acc", "start");
-        txt(svg, 91, 72, "ε₁", "vz-small vz-acc");
-        txt(svg, 93, 48, "ε₂", "vz-small");
-        txt(svg, 183, 38, "ε₀", "vz-small vz-it");
-        arrow(svg, 144, 112, 160, 112, "vz-seg");
-        txt(svg, 154, 127, "Dρ", "vz-small vz-it vz-acc");
-        txt(svg, 122, 63, "a₀", "vz-small vz-it", "start");
-        txt(svg, 122, 44, "a₁", "vz-small vz-it", "start");
-        txt(svg, 122, 25, "a₂", "vz-small vz-it", "start");
-        el("line", { x1: 44, y1: 87, x2: 54, y2: 87, class: "vz-line" }, svg);
-        txt(svg, 45, 78, "d", "vz-small vz-it");
+        // labels stay in their own band or outside; a halo keeps the ones on a ring edge legible.
+        // Radii: a0 = 25 (inner metal), a1 = 42 (between the dielectrics), a2 = 61 (outer metal).
+        txt(svg, cx, cy - 2, "ε₀", "vz-small vz-it");
+        txt(svg, 93, 76, "ε₁", "vz-small vz-acc vz-halo");
+        txt(svg, 86, 57, "ε₂", "vz-small vz-halo");
+        txt(svg, 44, 22, "ε₀", "vz-small vz-it");
+        txt(svg, 140, cy - 17, "σ₀", "vz-small vz-acc vz-halo", "start");
+        txt(svg, 171, 70, "σ₂", "vz-small vz-acc vz-halo", "start");
+        arrow(svg, 166, cy, 181, cy, "vz-seg");
+        txt(svg, 174, cy + 17, "D_ρ", "vz-small vz-it vz-acc vz-halo");
+        // a radius ruler straight down, where nothing else is drawn: a tick and a label at each boundary
+        el("line", { x1: cx, y1: cy, x2: cx, y2: cy + 61, class: "vz-dash" }, svg);
+        [[25, "a₀"], [42, "a₁"], [61, "a₂"]].forEach(function (r) {
+          el("line", { x1: cx - 4, y1: cy + r[0], x2: cx + 4, y2: cy + r[0], class: "vz-line" }, svg);
+          txt(svg, cx + 7, cy + r[0] + 4, r[1], "vz-small vz-it vz-halo", "start");
+        });
+        el("line", { x1: 44, y1: cy, x2: 54, y2: cy, class: "vz-line" }, svg);
+        txt(svg, 40, cy + 4, "d", "vz-small vz-it", "end");
         return [240, 176];
       }
       return [1, 1];
@@ -757,7 +809,7 @@
         charge(200, 148, "+");
         var P = [120, 84];
         el("circle", { cx: P[0], cy: P[1], r: 3.5, class: "vz-dot" }, svg);
-        txt(svg, P[0] - 10, P[1] + 4, "P", "vz-text vz-it", "end");
+        txt(svg, P[0], P[1] + 20, "P", "vz-text vz-it");
         arrow(svg, P[0], P[1], P[0] + 40, P[1] - 32);
         arrow(svg, P[0], P[1], P[0] - 40, P[1] - 32);
         arrow(svg, P[0], P[1], P[0], P[1] - 52, "vz-seg");
@@ -770,7 +822,7 @@
         // field lines traced from the field of +q and −q (same steps as the PDF renderer)
         var A = [80, 90], B = [180, 90];
         DIPOLE_LINES(A, B).forEach(function (pts) {
-          el("polyline", { points: pts.map(function (p) { return p[0].toFixed(1) + "," + p[1].toFixed(1); }).join(" "), class: "vz-line" }, svg);
+          curve(svg, pts.map(function (p) { return [+p[0].toFixed(1), +p[1].toFixed(1)]; }), "vz-line");
           var m = Math.floor(pts.length / 2);
           if (pts.length > 4) head(svg, null, pts[m - 1][0], pts[m - 1][1], pts[m][0], pts[m][1]);
         });
@@ -780,34 +832,34 @@
       }
       if (sub === "slab") {
         // a dielectric slab between charged plates: fewer E lines inside, aligned dipoles
-        el("rect", { x: 84, y: 18, width: 32, height: 94, class: "vz-fill" }, svg);
-        el("line", { x1: 46, y1: 18, x2: 46, y2: 112, class: "vz-plate" }, svg);
-        el("line", { x1: 154, y1: 18, x2: 154, y2: 112, class: "vz-plate" }, svg);
-        txt(svg, 46, 12, "+", "vz-text");
-        txt(svg, 154, 12, "−", "vz-text");
-        [30, 48, 66, 84, 102].forEach(function (y, k) {
+        el("rect", { x: 84, y: 26, width: 32, height: 94, class: "vz-fill" }, svg);
+        el("line", { x1: 46, y1: 26, x2: 46, y2: 120, class: "vz-plate" }, svg);
+        el("line", { x1: 154, y1: 26, x2: 154, y2: 120, class: "vz-plate" }, svg);
+        txt(svg, 46, 17, "+", "vz-text");
+        txt(svg, 154, 17, "−", "vz-text");
+        [38, 56, 74, 92, 110].forEach(function (y, k) {
           el("line", { x1: 54, y1: y, x2: 82, y2: y, class: "vz-line" }, svg);
           arrow(svg, 118, y, 146, y);
           if (k % 2 === 0) el("line", { x1: 82, y1: y, x2: 118, y2: y, class: "vz-line" }, svg);
         });
-        [38, 74].forEach(function (y) { txt(svg, 100, y + 4, "−+", "vz-small"); });
-        txt(svg, 100, 126, d.label || "fewer E lines inside the slab", "vz-small");
-        return [200, 134];
+        [46, 82].forEach(function (y) { txt(svg, 100, y + 4, "−+", "vz-small"); });
+        txt(svg, 100, 134, d.label || "fewer E lines inside the slab", "vz-small");
+        return [200, 142];
       }
       if (d.kind2 === "plates") {
-        el("line", { x1: 46, y1: 18, x2: 46, y2: 112, class: "vz-plate" }, svg);
-        el("line", { x1: 154, y1: 18, x2: 154, y2: 112, class: "vz-plate" }, svg);
-        txt(svg, 46, 12, "+", "vz-text");
-        txt(svg, 154, 12, "−", "vz-text");
-        [30, 48, 66, 84, 102].forEach(function (y) { arrow(svg, 54, y, 146, y); });
-        txt(svg, 100, 126, d.label || "uniform E between the plates", "vz-small");
-        return [200, 134];
+        el("line", { x1: 46, y1: 26, x2: 46, y2: 120, class: "vz-plate" }, svg);
+        el("line", { x1: 154, y1: 26, x2: 154, y2: 120, class: "vz-plate" }, svg);
+        txt(svg, 46, 17, "+", "vz-text");
+        txt(svg, 154, 17, "−", "vz-text");
+        [38, 56, 74, 92, 110].forEach(function (y) { arrow(svg, 54, y, 146, y); });
+        txt(svg, 100, 134, d.label || "uniform E between the plates", "vz-small");
+        return [200, 142];
       }
       var c = 80, neg = d.kind2 === "point-";
       if (d.extra === "equipot") [34, 54].forEach(function (r) { el("circle", { cx: c, cy: c, r: r, class: "vz-dash" }, svg); });
       if (d.extra === "surface") {
         el("circle", { cx: c, cy: c, r: 46, class: "vz-dash thick" }, svg);
-        txt(svg, c + 36, c - 40, "A", "vz-small vz-it vz-acc", "start");
+        txt(svg, c + 20, c - 52, "A", "vz-small vz-it vz-acc", "start");
       }
       for (var k = 0; k < 8; k++) {
         var t = (k * Math.PI) / 4, x1 = c + 20 * Math.cos(t), y1 = c - 20 * Math.sin(t), x2 = c + 66 * Math.cos(t), y2 = c - 66 * Math.sin(t);
@@ -839,6 +891,18 @@
         X += BW + G;
       });
       return [X - G + 4, 76];
+    },
+    flowv: function (svg, d) {
+      // the same chain stacked top to bottom, for narrow screens, where the row would shrink its text too far
+      var S = d.steps.split("|"), n = S.length, BW = 220, BH = 48, G = 22, Y = 4;
+      S.forEach(function (st, i) {
+        var lines = st.split(" / ");
+        el("rect", { x: 4, y: Y, width: BW, height: BH, class: i === n - 1 ? "vz-cell hot" : "vz-cell" }, svg);
+        lines.forEach(function (l, k) { txt(svg, 4 + BW / 2, Y + 28 + (k - (lines.length - 1) / 2) * 16, l, k === 0 ? "vz-text" : "vz-small"); });
+        if (i < n - 1) arrow(svg, 4 + BW / 2, Y + BH + 2, 4 + BW / 2, Y + BH + G - 2);
+        Y += BH + G;
+      });
+      return [BW + 8, Y - G + 4];
     },
     pascal: function (svg, d) {
       // rows 0..n of Pascal's triangle; data-sum="r:k" marks entries k and k+1 of row r and their sum below
@@ -899,7 +963,8 @@
         var t = (k / N) * 2 * Math.PI - Math.PI / 2, pat = k.toString(2).padStart(n, "0"), val = k >= N / 2 ? k - N : k,
           hot = pat === from || pat === to, x = c + R * Math.cos(t), y = c + R * Math.sin(t);
         txt(svg, x, y + 4, pat, hot ? "vz-small vz-acc" : "vz-small");
-        txt(svg, c + (R - 40) * Math.cos(t), c + (R - 40) * Math.sin(t) + 4, String(val).replace("-", "−"), hot ? "vz-text vz-acc" : "vz-small");
+        // the highlighted values stay the same size as their neighbours (bold, in colour) so they do not crowd them
+        txt(svg, c + (R - 40) * Math.cos(t), c + (R - 40) * Math.sin(t) + 4, String(val).replace("-", "−"), hot ? "vz-small vz-acc" : "vz-small");
       }
       if (from && to) {
         var k1 = parseInt(from, 2), k2 = parseInt(to, 2), t1 = (k1 / N) * 2 * Math.PI - Math.PI / 2, t2 = (k2 / N) * 2 * Math.PI - Math.PI / 2, rr = R - 22;
@@ -946,13 +1011,17 @@
     var d = Object.assign({}, fig.dataset), kind = d.kind.split(" ")[0];
     d.kind2 = d.kind.split(" ")[1];
     if (!VIZ[kind]) return;
-    var svg = el("svg", { role: "img" }),
-      wh = VIZ[kind](svg, d, "vz" + fi);
-    svg.setAttribute("viewBox", "0 0 " + wh[0] + " " + wh[1]);
-    svg.setAttribute("width", wh[0]);
-    svg.setAttribute("height", wh[1]);
     var cap = fig.querySelector("figcaption");
-    svg.setAttribute("aria-label", cap ? cap.textContent : kind);
-    fig.insertBefore(svg, fig.firstChild);
+    // a flow chart also gets a stacked copy; css/guide.css shows one or the other by screen width
+    (kind === "flow" ? ["flowv", "flow"] : [kind]).forEach(function (k) {
+      var svg = el("svg", { role: "img" }),
+        wh = VIZ[k](svg, d, "vz" + fi);
+      svg.setAttribute("viewBox", "0 0 " + wh[0] + " " + wh[1]);
+      svg.setAttribute("width", wh[0]);
+      svg.setAttribute("height", wh[1]);
+      svg.setAttribute("aria-label", cap ? cap.textContent : kind);
+      if (kind === "flow") svg.setAttribute("class", k === "flow" ? "vz-wide" : "vz-narrow");
+      fig.insertBefore(svg, fig.firstChild);
+    });
   });
 })();
