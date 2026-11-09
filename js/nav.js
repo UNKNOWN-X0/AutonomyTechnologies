@@ -217,24 +217,39 @@
   // Before the first group is reached (the study plan), the first group is the one to show.
   if (groups.length && !groups.some(function (g) { return g.open; })) fold(groups[0], true);
 
-  // Chapters: the hub (index.html) is the one list of chapters, so it is read from there rather than repeated in every page.
-  // A fold in the rail lists them all and a pager at the end of the page goes to the neighbours. Both keep the current view,
-  // guide or lab. Without the hub (opened as a file, offline) nothing is added.
+  // Chapters and exercises: the hub (index.html) is the one list of them, so it is read from there rather than repeated
+  // in every page. A fold in the rail lists them all, subject by subject, and a pager at the end of the page goes to the
+  // neighbours of the same kind (chapter to chapter, exercise to exercise). Both keep the current view, guide or lab.
+  // Without the hub (opened as a file, offline) nothing is added.
   var here = location.pathname.split("/").slice(-2).join("/"),
     root = new URL("../", location.href),
-    KEY = "nav-chapters";
+    KEY = "nav-chapters-2"; // v2 added exercises; a stale v1 cache is simply ignored
   function parse(html) {
     var doc = new DOMParser().parseFromString(html, "text/html"),
       out = [];
-    doc.querySelectorAll("li.chapter .go").forEach(function (go) {
-      var li = go.closest("li.chapter"),
-        links = go.querySelectorAll("a");
-      out.push({
-        code: li.dataset.code || "",
-        no: li.querySelector(".no").textContent.trim(),
-        title: li.querySelector(".title").textContent.trim(),
-        guide: links[0] && links[0].getAttribute("href"),
-        lab: links[1] ? links[1].getAttribute("href") : null,
+    doc.querySelectorAll("li.subject").forEach(function (sub) {
+      var subCode = ((sub.querySelector(".code") || {}).textContent || "").trim();
+      sub.querySelectorAll("li.chapter .go").forEach(function (go) {
+        var li = go.closest("li.chapter"),
+          links = go.querySelectorAll("a");
+        out.push({
+          kind: "chapter",
+          code: li.dataset.code || subCode,
+          no: li.querySelector(".no").textContent.trim(),
+          title: li.querySelector(".title").textContent.trim(),
+          guide: links[0] && links[0].getAttribute("href"),
+          lab: links[1] ? links[1].getAttribute("href") : null,
+        });
+      });
+      sub.querySelectorAll(".parts li[data-tab] a[href]").forEach(function (a, i) {
+        out.push({
+          kind: (a.closest("li").dataset.tab || "Exercise").toLowerCase(),
+          code: subCode,
+          no: a.dataset.no || String(i + 1),
+          title: a.textContent.trim(),
+          guide: a.getAttribute("href"),
+          lab: null,
+        });
       });
     });
     return out;
@@ -249,8 +264,8 @@
     function href(c) {
       return "../" + ((lab && c.lab) || c.guide);
     }
-    function chapterLabel(c) {
-      return "Chapter " + c.no + ": " + c.title;
+    function label(c) {
+      return c.kind === "chapter" ? "Chapter " + c.no + ": " + c.title : c.title;
     }
     function build() {
       var d = document.createElement("details"),
@@ -259,19 +274,20 @@
       d.className = "chapter-fold";
       sum.textContent = "Chapters";
       d.appendChild(sum);
-      var code = null;
+      var group = null;
       chs.forEach(function (c, i) {
-        if (c.code !== code) {
-          code = c.code;
+        var g = c.code + (c.kind === "chapter" ? "" : " " + c.kind + "s");
+        if (g !== group) {
+          group = g;
           var h = document.createElement("li");
           h.className = "fold-code";
-          h.textContent = code;
+          h.textContent = c.kind === "chapter" ? c.code : c.code + " · " + c.kind.charAt(0).toUpperCase() + c.kind.slice(1) + "s";
           ul.appendChild(h);
         }
         var li = document.createElement("li"),
           a = document.createElement("a");
         a.href = href(c);
-        a.textContent = c.no + " " + c.title;
+        a.textContent = c.kind === "chapter" ? c.no + " " + c.title : c.title.replace(/:.*/, "");
         if (i === cur) a.setAttribute("aria-current", "page");
         li.appendChild(a);
         ul.appendChild(li);
@@ -284,25 +300,30 @@
     if (anchor) anchor = anchor.closest(".home-row") || anchor;
     if (anchor && !toc.querySelector(".chapter-fold")) anchor.parentNode.insertBefore(build(), anchor.nextSibling);
     if (sheet && !sheet.querySelector(".chapter-fold")) sheet.insertBefore(build(), sheet.firstChild);
-    // Pager: neighbours within the same subject.
+    // Pager: neighbours of the same kind within the same subject.
+    var me = chs[cur];
+    function same(c) {
+      return c && c.code === me.code && c.kind === me.kind ? c : null;
+    }
     var main = document.querySelector("main"),
-      prev = chs[cur - 1] && chs[cur - 1].code === chs[cur].code ? chs[cur - 1] : null,
-      next = chs[cur + 1] && chs[cur + 1].code === chs[cur].code ? chs[cur + 1] : null;
+      prev = same(chs[cur - 1]),
+      next = same(chs[cur + 1]),
+      noun = me.kind === "chapter" ? "chapter" : me.kind;
     if (main && (prev || next) && !document.querySelector(".chapter-pager")) {
       var nav = document.createElement("nav");
       nav.className = "chapter-pager";
-      nav.setAttribute("aria-label", "Neighbouring chapters");
-      [[prev, "Previous chapter"], [next, "Next chapter"]].forEach(function (p) {
+      nav.setAttribute("aria-label", "Neighbouring " + noun + "s");
+      [[prev, "Previous " + noun, "prev"], [next, "Next " + noun, "next"]].forEach(function (p) {
         var a = document.createElement(p[0] ? "a" : "span"),
           k = document.createElement("span"),
           t = document.createElement("span");
-        a.className = p[1] === "Next chapter" ? "next" : "prev";
+        a.className = p[2];
         k.className = "pager-kind";
         k.textContent = p[1];
         t.className = "pager-title";
         if (p[0]) {
           a.href = href(p[0]);
-          t.textContent = chapterLabel(p[0]);
+          t.textContent = label(p[0]);
         }
         a.appendChild(k);
         a.appendChild(t);

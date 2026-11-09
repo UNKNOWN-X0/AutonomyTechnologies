@@ -265,10 +265,13 @@ main {
   position: relative;
   z-index: 1;
 }
-.chapter {
+/* Route stops sit on the row number, so they line up with it at every width (on phones the row also holds its buttons). */
+.chapter .no,
+.part-item .no {
   position: relative;
 }
-.chapter::before,
+.chapter .no::before,
+.part-item .no::before,
 .route-end::before {
   content: "";
   position: absolute;
@@ -281,12 +284,12 @@ main {
   background: var(--paper);
   box-sizing: border-box;
 }
-.chapter.started::before {
+.chapter.started .no::before {
   border-color: var(--fau-mark);
   background: var(--fau-mark);
 }
 /* First visit of the session: started stops wait empty until the sweep line (js/index.js) reaches them. */
-html.sweeping .chapter.started:not(.lit)::before {
+html.sweeping .chapter.started:not(.lit) .no::before {
   border-color: var(--muted);
   background: var(--paper);
 }
@@ -301,7 +304,7 @@ html.sweeping .chapter.started:not(.lit)::before {
   z-index: 60;
 }
 @media (prefers-reduced-motion: no-preference) {
-  .chapter.started::before {
+  .chapter.started .no::before {
     transition: border-color 150ms var(--ease), background-color 150ms var(--ease);
   }
 }
@@ -349,7 +352,7 @@ html.sweeping .chapter.started:not(.lit)::before {
 
 /* Perpetual signals (stopped under reduced motion). A ring keeps widening from the furthest chapter reached ("you are
    here"), and a small square keeps travelling down the unlit route ahead of it, toward "Continue on the route". */
-.chapter.here::after {
+.chapter.here .no::after {
   content: "";
   position: absolute;
   top: 50%;
@@ -361,6 +364,23 @@ html.sweeping .chapter.started:not(.lit)::before {
   box-sizing: border-box;
   pointer-events: none;
   opacity: 0;
+}
+.route-stop {
+  position: absolute;
+  left: calc(var(--route-x) - 5px);
+  top: calc(var(--route-lit, 0px) - 5px);
+  width: 10px;
+  height: 10px;
+  margin: 0;
+  border: 2px solid var(--fau-mark);
+  background: var(--fau-mark);
+  box-sizing: border-box;
+  list-style: none;
+  pointer-events: none;
+  display: none;
+}
+.subjects.route-at-tile .route-stop {
+  display: block;
 }
 .route-pulse {
   position: absolute;
@@ -383,7 +403,7 @@ html.sweeping .chapter.started:not(.lit)::before {
   opacity: 0;
 }
 @media (prefers-reduced-motion: no-preference) {
-  .chapter.here::after {
+  .chapter.here .no::after {
     animation: beacon 2.4s var(--ease) infinite;
   }
   .route-pulse::before {
@@ -406,7 +426,7 @@ html.sweeping .chapter.started:not(.lit)::before {
 }
 @media print {
   .route-pulse,
-  .chapter.here::after {
+  .chapter.here .no::after {
     display: none;
   }
 }
@@ -549,26 +569,51 @@ html.sweeping .chapter.started:not(.lit)::before {
   color: var(--muted);
   font: 600 0.9rem/1 var(--f-display);
 }
+/* Course parts as tabs (js/index.js): one segmented control like the guides' Guide | Lab switch, the open tab solid.
+   A part with material has blue text; an empty part is muted. */
+.parts[role="tablist"] {
+  gap: 0;
+  border: 2px solid var(--act);
+}
+.parts[role="tablist"] li,
+.parts[role="tablist"] li.has {
+  min-height: 0;
+  border: 0;
+  background: none;
+}
+.parts[role="tablist"] li + li {
+  border-left: 2px solid var(--act);
+}
+.parts[role="tablist"] li::before {
+  display: none;
+}
 .parts .part-tab {
   display: inline-flex;
   align-items: center;
-  min-height: 32px;
-  padding: 0 12px;
+  gap: 8px;
+  min-height: 36px;
+  padding: 0 16px;
   border: 0;
   background: transparent;
-  color: inherit;
-  font: inherit;
+  color: var(--muted);
+  font: 700 0.9rem/1 var(--f-display);
   cursor: pointer;
+  transition: background-color 150ms var(--ease), color 150ms var(--ease);
+}
+.parts li.has .part-tab {
+  color: var(--act);
+}
+.parts .part-tab:hover {
+  background: var(--fau-tint);
+}
+.parts li .part-tab[aria-selected="true"],
+.parts li.has .part-tab[aria-selected="true"] {
+  background: var(--act);
+  color: var(--act-ink);
 }
 .parts .part-tab:focus-visible {
   outline: 3px solid var(--act);
   outline-offset: 3px;
-}
-.parts li:has(> .part-tab[aria-selected="true"]) {
-  border-style: solid;
-  border-color: var(--course);
-  background: var(--course);
-  color: var(--ink);
 }
 .parts li::before {
   content: "";
@@ -588,23 +633,40 @@ html.sweeping .chapter.started:not(.lit)::before {
 .part-panel[hidden] {
   display: none;
 }
-.part-resource,
-.part-empty {
-  padding: 14px 0;
+/* Exercise and Tutorial rows share the chapter row's shape (number, title and note, button) without its progress. */
+.part-list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.part-item {
+  display: grid;
+  grid-template-columns: 3.25rem minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 24px;
+  padding: 16px 0;
   border-top: 1px solid var(--line);
 }
-.part-resource h4 {
-  font: 700 1rem/1.3 var(--f-display);
+.part-item .no {
+  font: 800 1.35rem/1 var(--f-display);
+  font-variant-numeric: tabular-nums;
 }
-.part-resource a {
-  color: var(--act);
-  text-underline-offset: 3px;
+.part-item h4 {
+  font: 700 1.1rem/1.25 var(--f-display);
 }
-.part-resource p,
-.part-empty {
+.part-item p {
   margin-top: 4px;
   color: var(--muted);
-  font-size: 0.95rem;
+  max-width: 60ch;
+}
+.part-empty {
+  padding: 16px 0;
+  border-top: 1px solid var(--line);
+  color: var(--muted);
+}
+/* The "N chapters" fold belongs to the Lecture list, so it steps aside while another tab is open. */
+.subject.part-other .subject-fold {
+  display: none;
 }
 .chapters {
   grid-column: 2 / -1;
@@ -733,6 +795,20 @@ footer {
     grid-template-columns: 2.75rem minmax(0, 1fr);
     gap: 12px 14px;
   }
+  .part-item {
+    grid-template-columns: 2.75rem minmax(0, 1fr);
+    gap: 12px 14px;
+  }
+  .parts[role="tablist"] li {
+    flex: 1;
+  }
+  .parts[role="tablist"] .part-tab {
+    width: 100%;
+    justify-content: center;
+  }
+  .part-item .go {
+    grid-column: 1 / -1;
+  }
   .chapter .ticks {
     grid-column: 2;
   }
@@ -740,7 +816,8 @@ footer {
 @media print {
   .subjects::before,
   .subjects::after,
-  .chapter::before,
+  .chapter .no::before,
+  .part-item .no::before,
   .route-end {
     display: none;
   }

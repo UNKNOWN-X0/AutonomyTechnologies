@@ -12,9 +12,9 @@
     "semantic_hash": ""
   },
   "index.html": {
-    "mtime": 1793952617.644588,
-    "seen": 1793953598.9156978,
-    "ast_hash": "810b85a25e0e964a72626bcf9bf32d12",
+    "mtime": 1794224629.039241,
+    "seen": 1794224800.466868,
+    "ast_hash": "bb5514d1b5feabcc0525419c44ebfd22",
     "semantic_hash": ""
   },
   "assets/preview.png": {
@@ -48,9 +48,9 @@
     "semantic_hash": ""
   },
   "js/index.js": {
-    "mtime": 1793949324.048835,
-    "seen": 1793950155.847175,
-    "ast_hash": "4937826643d4598a85e70d317da7506a",
+    "mtime": 1794226312.247566,
+    "seen": 1794226561.635678,
+    "ast_hash": "65426fb6c20de60531244193ea446824",
     "semantic_hash": ""
   },
   ".impeccable/surfaces/index-html.md": {
@@ -78,9 +78,9 @@
     "semantic_hash": ""
   },
   "tools/guide-to-tex.py": {
-    "mtime": 1793953385.0741622,
-    "seen": 1793953598.915663,
-    "ast_hash": "62c72ffc476ce958f2b6cdf9c4ff1603",
+    "mtime": 1794225323.4831252,
+    "seen": 1794225593.3494852,
+    "ast_hash": "7c178c8c20f8850f03d5801d6c125bf1",
     "semantic_hash": ""
   },
   "eei/ch1-electrostatic-fields.html": {
@@ -90,9 +90,9 @@
     "semantic_hash": ""
   },
   "tools/check-guide.py": {
-    "mtime": 1793876751.870646,
-    "seen": 1793877610.48132,
-    "ast_hash": "e768ad129ed17c6125afb8ca9ade9b15",
+    "mtime": 1794224784.100823,
+    "seen": 1794224800.466832,
+    "ast_hash": "4197f25f58909207c79625b43432ae0d",
     "semantic_hash": ""
   },
   "js/tooltip.js": {
@@ -144,9 +144,9 @@
     "semantic_hash": ""
   },
   "docs/GUIDE-STANDARD.md": {
-    "mtime": 1793953193.4915283,
-    "seen": 1793953598.915686,
-    "ast_hash": "bb01006c9adc9565c64fd2541a3b2936",
+    "mtime": 1794225550.9985898,
+    "seen": 1794225593.349507,
+    "ast_hash": "a6b1914c9aadc7c79f24c7442daac015",
     "semantic_hash": ""
   },
   "docs/LAB-STANDARD.md": {
@@ -438,9 +438,9 @@
     "semantic_hash": ""
   },
   "js/nav.js": {
-    "mtime": 1793799950.9330046,
-    "seen": 1793800017.648252,
-    "ast_hash": "e4e57dfb814647400518fd439a5853f9",
+    "mtime": 1794224701.3151789,
+    "seen": 1794224800.466816,
+    "ast_hash": "3345011b0adffb9d19ea207f3c332a7b",
     "semantic_hash": ""
   },
   "js/settings.js": {
@@ -450,21 +450,21 @@
     "semantic_hash": ""
   },
   "js/hud.js": {
-    "mtime": 1793802379.0469172,
-    "seen": 1793802479.7221708,
-    "ast_hash": "e77485c3da0326f01c13874d7006ec8d",
+    "mtime": 1794226444.4519758,
+    "seen": 1794226561.6356769,
+    "ast_hash": "9c03da5ab12c42e347ed5e4dc9e83167",
     "semantic_hash": ""
   },
   "about/how-to-use.html": {
-    "mtime": 1793888323.6993155,
-    "seen": 1793888510.2009652,
-    "ast_hash": "405c73a2ad3bb1ce61ea249b791e8266",
+    "mtime": 1794225064.5217953,
+    "seen": 1794225118.074107,
+    "ast_hash": "bf8a2ef93ed5d7f94cc98407ccddde0f",
     "semantic_hash": ""
   },
   "about/version-log.html": {
-    "mtime": 1794210436.9626992,
-    "seen": 1794210477.9739919,
-    "ast_hash": "00f1aa8f293d287b21c2891144ef1c80",
+    "mtime": 1794226522.2692175,
+    "seen": 1794226561.635713,
+    "ast_hash": "75ab8801c9cab5c2708cc2104223e419",
     "semantic_hash": ""
   },
   "docs/DIAGRAM-AND-LAB-PLAN.md": {
@@ -492,15 +492,15 @@
     "semantic_hash": ""
   },
   "tools/graph-describe.py": {
-    "mtime": 1793871971.4022284,
-    "seen": 1793872347.3605702,
-    "ast_hash": "71b00abb3dacdf08979ef781d8668582",
+    "mtime": 1794225161.3702643,
+    "seen": 1794225593.349483,
+    "ast_hash": "c329c09a57a0483f1cf234ef434ee8a6",
     "semantic_hash": ""
   },
   "assets/graph-orb.json": {
-    "mtime": 1793953609.6032295,
-    "seen": 1794210477.973923,
-    "ast_hash": "ef5df0eba3570ac095c20adf189b2f5a",
+    "mtime": 1794225778.325457,
+    "seen": 1794226561.635658,
+    "ast_hash": "62ee43c1f37a38350f868185a2a00ca4",
     "semantic_hash": ""
   },
   "js/orb.js": {
@@ -552,33 +552,33 @@
     "semantic_hash": ""
   },
   "docs/EXERCISE-SOLUTIONS-STANDARD.md": {
-    "mtime": 1793888915.857472,
-    "seen": 1793889110.167138,
-    "ast_hash": "9747265d3c1d8e8fc68d0caa984dc7c2",
+    "mtime": 1794225064.5222554,
+    "seen": 1794225118.07412,
+    "ast_hash": "2f483440685eeea9b545e8acd6fc9ec2",
     "semantic_hash": ""
   },
   "eei/exercise-1-worked-solutions.html": {
-    "mtime": 1793952618.015696,
-    "seen": 1793953598.915691,
-    "ast_hash": "e107f3e36a33cc79b8508cdb7f2448fb",
+    "mtime": 1794225480.0152042,
+    "seen": 1794225593.3495119,
+    "ast_hash": "30cb51f9878bb891977ddf28b64d0ce5",
     "semantic_hash": ""
   },
   "eei/exercise-2-worked-solutions.html": {
-    "mtime": 1793952618.533151,
-    "seen": 1793953598.915692,
-    "ast_hash": "bc326e499b948c0eedc9e0d434d0b16e",
+    "mtime": 1794225480.0162632,
+    "seen": 1794225593.349513,
+    "ast_hash": "eaca104bc83fa6d1bb6b1abae22eb237",
     "semantic_hash": ""
   },
   "eei/exercise-3-worked-solutions.html": {
-    "mtime": 1793952618.9185445,
-    "seen": 1793953598.915693,
-    "ast_hash": "79efd8e9f7cff350e1525c759cf971d8",
+    "mtime": 1794225480.01765,
+    "seen": 1794225593.349514,
+    "ast_hash": "b580e50d93028f1dc0abeeb8fe7b61c3",
     "semantic_hash": ""
   },
   "eei/exercise-4-worked-solutions.html": {
-    "mtime": 1793953313.6768353,
-    "seen": 1793953598.915694,
-    "ast_hash": "fa5d56d04352109be58c3aff0a3a427f",
+    "mtime": 1794225480.0188391,
+    "seen": 1794225593.349515,
+    "ast_hash": "f66503e882a13131af82cc8355353a72",
     "semantic_hash": ""
   }
 }

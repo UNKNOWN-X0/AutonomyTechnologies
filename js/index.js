@@ -103,11 +103,19 @@
         last = li;
       });
       // a folded subject hides its chapters, so the route then stops at the subject's tile
-      var at = last && !last.offsetParent ? last.closest("li.subject").querySelector(".code") : last;
+      var at = last && !last.offsetParent ? last.closest("li.subject").querySelector(".code") : last && (last.querySelector(".no") || last);
       ul.querySelectorAll("li.chapter.here").forEach(function (li) {
         li.classList.remove("here");
       });
       if (last && last.offsetParent) last.classList.add("here");
+      // stopping at a tile (chapters folded away or another tab open) gets its own stop square, so the line ends on purpose
+      ul.classList.toggle("route-at-tile", !!last && !last.offsetParent);
+      if (!ul.querySelector(".route-stop")) {
+        var stop = document.createElement("li");
+        stop.className = "route-stop";
+        stop.setAttribute("aria-hidden", "true");
+        ul.appendChild(stop);
+      }
       if (!ul.querySelector(".route-pulse")) {
         var pulse = document.createElement("li");
         pulse.className = "route-pulse";
@@ -131,26 +139,28 @@
   window.addEventListener("load", reroute);
   if (document.fonts && document.fonts.ready) document.fonts.ready.then(reroute);
 
-  // Course parts act as tabs; Lecture keeps the chapter route, while other tabs show their linked resources or an honest empty state.
+  // Course parts act as tabs. Lecture keeps the chapter route; Exercise and Tutorial list their pages as rows shaped
+  // like chapter rows (number, title, what it covers, a button), or say that nothing is posted yet. Each <a> in a
+  // part carries data-no and data-note. The chosen tab is remembered per subject (hub-tabs).
+  var tabMemory = read("hub-tabs", {});
   document.querySelectorAll("li.subject").forEach(function (sub, si) {
     var parts = sub.querySelector("ul.parts"),
       chapters = sub.querySelector("ol.chapters");
-    if (!parts || !chapters || !parts.children.length) return;
-
-    var subjectCode = (sub.querySelector(".code") || {}).textContent || "course",
+    // a single part (MATLAB's "Course · not started yet") is a status, not a choice, so it stays a plain chip
+    if (!parts || !chapters || parts.children.length < 2) return;
+    var code = ((sub.querySelector(".code") || {}).textContent || "course").trim(),
       panels = document.createElement("div"),
-      tabItems = Array.prototype.slice.call(parts.children),
       tabs = [],
-      views = [];
+      views = [],
+      labels = [];
     parts.setAttribute("role", "tablist");
-    parts.setAttribute("aria-label", subjectCode.trim() + " course parts");
+    parts.setAttribute("aria-label", code + " course parts");
     panels.className = "part-panels";
     parts.parentNode.insertBefore(panels, parts.nextSibling);
 
-    tabItems.forEach(function (item, pi) {
-      var sourceLinks = Array.prototype.slice.call(item.querySelectorAll("a[href]")),
-        sourceLink = sourceLinks[0],
-        label = item.dataset.tab || (sourceLink ? sourceLink.textContent.trim() : item.textContent.trim()),
+    Array.prototype.slice.call(parts.children).forEach(function (item, pi) {
+      var links = Array.prototype.slice.call(item.querySelectorAll("a[href]")),
+        label = item.dataset.tab || item.textContent.trim(),
         key = "part-" + si + "-" + pi,
         tab = document.createElement("button"),
         panel = document.createElement("div");
@@ -169,26 +179,29 @@
       panel.id = key + "-panel";
       panel.setAttribute("role", "tabpanel");
       panel.setAttribute("aria-labelledby", tab.id);
-      panel.tabIndex = 0;
       panel.hidden = true;
       if (label.toLowerCase() === "lecture") {
-        chapters.id = key + "-chapters";
         panel.appendChild(chapters);
-      } else if (sourceLinks.length) {
-        sourceLinks.forEach(function (sourceLink, ri) {
-          var resource = document.createElement("div"),
-            heading = document.createElement("h4"),
-            link = sourceLink.cloneNode(true);
-          resource.className = "part-resource";
-          heading.appendChild(link);
-          resource.appendChild(heading);
-          if (ri === 0) {
-            var note = document.createElement("p");
-            note.textContent = tabItems[pi].dataset.note || "Open the linked " + label.toLowerCase() + " material.";
-            resource.appendChild(note);
-          }
-          panel.appendChild(resource);
+      } else if (links.length) {
+        var list = document.createElement("ol");
+        list.className = "part-list";
+        links.forEach(function (a, ri) {
+          var row = document.createElement("li"),
+            title = a.textContent.split(":").slice(1).join(":").trim() || a.textContent.trim(),
+            btn = document.createElement("a");
+          row.className = "part-item";
+          btn.className = "btn primary";
+          btn.href = a.getAttribute("href");
+          btn.textContent = title; // "Worked solutions", as a chapter row's button says "Study guide"
+          btn.setAttribute("aria-label", a.textContent.trim());
+          row.innerHTML = '<span class="no"></span><div class="what"><h4 class="title"></h4><p></p></div><div class="go"></div>';
+          row.querySelector(".no").textContent = a.dataset.no || String(ri + 1);
+          row.querySelector(".title").textContent = label + " " + (a.dataset.no || ri + 1);
+          row.querySelector("p").textContent = a.dataset.note || "";
+          row.querySelector(".go").appendChild(btn);
+          list.appendChild(row);
         });
+        panel.appendChild(list);
       } else {
         var empty = document.createElement("p");
         empty.className = "part-empty";
@@ -198,34 +211,32 @@
       panels.appendChild(panel);
       tabs.push(tab);
       views.push(panel);
-
-      function select(index, focus) {
-        tabs.forEach(function (other, i) {
-          var selected = i === index;
-          other.setAttribute("aria-selected", String(selected));
-          other.tabIndex = selected ? 0 : -1;
-          views[i].hidden = !selected;
-        });
-        if (focus) tabs[index].focus();
-        reroute();
-      }
-      tab.addEventListener("click", function () { select(pi, false); });
+      labels.push(label);
+      tab.addEventListener("click", function () { select(pi, false, true); });
       tab.addEventListener("keydown", function (event) {
-        var next = pi;
-        if (event.key === "ArrowRight") next = (pi + 1) % tabs.length;
-        else if (event.key === "ArrowLeft") next = (pi + tabs.length - 1) % tabs.length;
-        else if (event.key === "Home") next = 0;
-        else if (event.key === "End") next = tabs.length - 1;
-        else return;
+        var next = { ArrowRight: (pi + 1) % tabs.length, ArrowLeft: (pi + tabs.length - 1) % tabs.length, Home: 0, End: tabs.length - 1 }[event.key];
+        if (next === undefined) return;
         event.preventDefault();
-        select(next, true);
+        select(next, true, true);
       });
     });
-    if (tabs.length) {
-      tabs[0].setAttribute("aria-selected", "true");
-      tabs[0].tabIndex = 0;
-      views[0].hidden = false;
+    function select(index, focus, save) {
+      tabs.forEach(function (tab, i) {
+        tab.setAttribute("aria-selected", String(i === index));
+        tab.tabIndex = i === index ? 0 : -1;
+        views[i].hidden = i !== index;
+      });
+      // the "N chapters" fold belongs to the Lecture list only
+      sub.classList.toggle("part-other", labels[index].toLowerCase() !== "lecture");
+      if (focus) tabs[index].focus();
+      if (save) {
+        tabMemory[code] = labels[index];
+        try { localStorage.setItem("hub-tabs", JSON.stringify(tabMemory)); } catch (e) {}
+      }
+      reroute();
     }
+    var saved = labels.indexOf(tabMemory[code]);
+    select(saved >= 0 ? saved : 0, false, false);
   });
   reroute();
 
@@ -529,6 +540,7 @@
       names[code.textContent.trim()] = name.textContent.trim();
       code.dataset.tip = name.textContent.trim() + (module ? " · " + module.textContent.split("·")[0].trim() : "");
       sub.querySelectorAll(".parts li").forEach(function (part) {
+        if (part.querySelector(".part-tab")) return; // tabs say what they hold when opened
         part.dataset.tip = part.classList.contains("has") ? "Material available" : "No material yet";
       });
     });

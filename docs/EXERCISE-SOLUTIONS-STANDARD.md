@@ -9,6 +9,13 @@ Use this format for worked exercise pages that accompany the study guides. The s
 - Preserve task and subpart labels and necessary givens. Paraphrase prompts and explanations; do not reproduce the exercise sheet's prose or figures.
 - Add a version-log entry for a student-visible release.
 
+## Page frame
+
+- The rail is the guides' rail: the brand with its mark, “All semesters”, and the task list (`toc-group` with the exercise name). No `chapter-switch`: `js/nav.js` reads the hub and adds the Chapters list (chapters, then the subject’s exercises) and a Previous / Next exercise pager. Load `../js/nav.js` after `guide.js` and `tooltip.js`.
+- The sign header has the code, `h1` and course line; there is no progress line (`p.meta`), because exercises carry no ticks.
+- On the hub, list the page inside its subject’s Exercise part (`li[data-tab="Exercise"]`) as `<a href="…" data-no="N" data-note="what it covers">Exercise N: Worked solutions</a>`. `js/index.js` turns each link into a row shaped like a chapter row.
+- `tools/check-guide.py` recognises `<subject>/exercise-<N>-worked-solutions.html` and checks this frame, every task’s topic link, every subpart’s try-first prompt and step-by-step answer, the contents lists, downloads and a fresh `.tex`, and the hub link; it must exit 0.
+
 ## Learning sequence
 
 For every source subpart, keep its label and provide a separate "Try first" prompt before the answer. Use `<details class="answers">` so the learner commits to an attempt before opening the solution. Inside, use `.worked` with a direct child `ol.method-list` so the site's existing control reveals one step at a time.

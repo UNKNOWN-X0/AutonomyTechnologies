@@ -33,6 +33,10 @@
         window.dispatchEvent(new Event("resize"));
       }, 150);
     }
+    // A worked answer is measured only once it opens: before that its lines have no width.
+    document.addEventListener("toggle", function (e) {
+      if (e.target.matches && e.target.matches("details.answers") && e.target.open) fitFormulas();
+    }, true);
     if (main && "ResizeObserver" in window)
       new ResizeObserver(function () {
         if (main.clientWidth !== lastW) {
@@ -160,7 +164,8 @@
     document.querySelectorAll(".eq-note").forEach(function (f) {
       spaceFormula(f, true);
     });
-    document.querySelectorAll(".formula").forEach(function (f) {
+    // worked-solution display lines (exercise pages) break the same way, so "= −" stays with the fraction after it
+    document.querySelectorAll(".formula, .worked .math-line").forEach(function (f) {
       segmentFormula(f);
       spaceFormula(f);
       var room = f.clientWidth;

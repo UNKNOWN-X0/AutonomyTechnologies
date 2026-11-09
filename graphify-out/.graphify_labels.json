@@ -14,6 +14,7 @@
   "12": "APDR 2 guide: topics",
   "13": "Home page and guide rules",
   "14": "APDR 4 lab: floating point",
+  "15": "Typed-formula reader and lab plan",
   "16": "Helper notes for AI agents",
   "17": "Saved question: hosting",
   "18": "Saved question: learner journey",
@@ -39,13 +40,17 @@
   "38": "MEI 2 formulas",
   "39": "MEI 3 formulas",
   "40": "Lab challenge tests",
+  "41": "EEI 2 lab: currents and resistance",
   "42": "APDR 5 formulas",
   "43": "EEI 1 formula tests",
+  "44": "Lab question generator tests",
   "45": "PDF converter: page blocks",
   "46": "PDF converter: diagrams",
   "47": "Graph node notes script",
   "48": "PDF converter: reading the page",
   "49": "Home page orb",
-  "50": "PDF converter: formulas",
-  "51": "Orb layout script"
+  "50": "EEI 2 formula tests",
+  "51": "APDR 2 formula tests",
+  "52": "EEI 2 formulas",
+  "53": "PDF converter: formulas"
 }

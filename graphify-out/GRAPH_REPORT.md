@@ -1,17 +1,17 @@
-# Graph Report - AutonomyTechnologies  (2026-11-06)
+# Graph Report - AutonomyTechnologies  (2026-11-09)
 
 ## Corpus Check
-- 67 files · ~244,486 words
+- 67 files · ~247,263 words
 - Verdict: corpus is large enough that graph structure adds value.
 - Unclassified: 6 file(s) not represented in the graph (top: .css 4, (none) 2)
 
 ## Summary
-- 1047 nodes · 2005 edges · 55 communities (42 shown, 13 thin omitted)
-- Extraction: 88% EXTRACTED · 12% INFERRED · 0% AMBIGUOUS · INFERRED: 246 edges (avg confidence: 0.86)
+- 1055 nodes · 2023 edges · 54 communities (42 shown, 12 thin omitted)
+- Extraction: 88% EXTRACTED · 12% INFERRED · 0% AMBIGUOUS · INFERRED: 248 edges (avg confidence: 0.86)
 - Token cost: 0 input · 0 output
 
 ## Graph Freshness
-- Built from commit: `1d241d68`
+- Built from commit: `7c488b8b`
 - Run `git rev-parse HEAD` and compare to check if the graph is stale.
 - Run `graphify update .` after code changes (no API cost).
 
@@ -31,7 +31,7 @@
 - APDR 2 guide: topics
 - Home page and guide rules
 - APDR 4 lab: floating point
-- compile
+- Typed-formula reader and lab plan
 - Helper notes for AI agents
 - Saved question: hosting
 - Saved question: learner journey
@@ -56,20 +56,19 @@
 - MEI 2 formulas
 - MEI 3 formulas
 - Lab challenge tests
-- eei/ch2-lab.js
+- EEI 2 lab: currents and resistance
 - APDR 5 formulas
 - EEI 1 formula tests
-- lab-generators.test.js
+- Lab question generator tests
 - PDF converter: page blocks
 - PDF converter: diagrams
 - Graph node notes script
 - PDF converter: reading the page
 - Home page orb
+- EEI 2 formula tests
+- APDR 2 formula tests
+- EEI 2 formulas
 - PDF converter: formulas
-- Orb layout script
-- eei/ch2-physics.js
-- eei-ch2-physics.test.js
-- apdr-ch2-physics.test.js
 
 ## God Nodes (most connected - your core abstractions)
 1. `fieldPlayground()` - 30 edges
@@ -88,8 +87,8 @@
   docs/LAB-STANDARD.md → js/apdr/ch12-physics.js
 - `Experiments` --references--> `generate()`  [INFERRED]
   docs/LAB-STANDARD.md → js/apdr/ch12-physics.js
-- `Generated challenges (New challenge)` --references--> `three()`  [INFERRED]
-  docs/LAB-STANDARD.md → js/apdr/ch3-lab.js
+- `Generated challenges (New challenge)` --references--> `generate()`  [INFERRED]
+  docs/LAB-STANDARD.md → js/apdr/ch12-physics.js
 - `Markup` --references--> `o()`  [INFERRED]
   docs/GUIDE-STANDARD.md → js/apdr/ch34-lab.js
 - `New kinds needed` --references--> `venn()`  [INFERRED]
@@ -98,7 +97,7 @@
 ## Import Cycles
 - None detected.
 
-## Communities (55 total, 13 thin omitted)
+## Communities (54 total, 12 thin omitted)
 
 ### Community 0 - "EEI 1 lab: fields and capacitors"
 Cohesion: 0.05
@@ -109,12 +108,12 @@ Cohesion: 0.04
 Nodes (45): Answer key, Buttons, Chapter switcher and tick groups, Colors, Components, Course code square, Course-part chips, Dark mode (+37 more)
 
 ### Community 2 - "Guide checker"
-Cohesion: 0.19
-Nodes (9): all_nodes(), answers_of(), check(), check_lab(), direct(), items(), main(), Report (+1 more)
+Cohesion: 0.17
+Nodes (11): all_nodes(), answers_of(), check(), check_exercise(), check_files(), check_lab(), direct(), items() (+3 more)
 
 ### Community 3 - "APDR 3 lab: number formats"
-Cohesion: 0.11
-Nodes (47): animate(), arrow(), box(), colours(), columnsShown(), decodeStep(), digits(), drawBases() (+39 more)
+Cohesion: 0.10
+Nodes (49): Generated challenges (New challenge), spec(), animate(), arrow(), box(), colours(), columnsShown(), decodeStep() (+41 more)
 
 ### Community 4 - "APDR 12a lab: Boolean algebra"
 Cohesion: 0.10
@@ -125,8 +124,8 @@ Cohesion: 0.09
 Nodes (39): bindStagePointer(), choose(), coords(), bit(), count(), domainRows(), domainStage(), drawSlider() (+31 more)
 
 ### Community 6 - "Lab rules and APDR 12a formulas"
-Cohesion: 0.08
-Nodes (27): Acceptance, Challenges, Experiments, Files, Generated challenges (New challenge), Lab standard, Layout, Links to and from the guide (+19 more)
+Cohesion: 0.09
+Nodes (25): Acceptance, Challenges, Experiments, Files, Lab standard, Layout, Links to and from the guide, Motion (+17 more)
 
 ### Community 7 - "EEI 1 formulas"
 Cohesion: 0.19
@@ -153,14 +152,14 @@ Cohesion: 0.20
 Nodes (11): Algorithm, Boolean expressions, Boolean laws, De Morgan's laws, Logic gates, NAND, Physical circuits, Program language (+3 more)
 
 ### Community 13 - "Home page and guide rules"
-Cohesion: 0.07
-Nodes (24): Acceptance, Content rules, Files, Labs, Page structure, PDF, Practice and testing, Principles (+16 more)
+Cohesion: 0.10
+Nodes (14): Page structure, ago(), countUp(), foldBoard(), go(), light(), reach(), reroute() (+6 more)
 
 ### Community 14 - "APDR 4 lab: floating point"
 Cohesion: 0.11
 Nodes (29): animate(), arithmeticResult(), arrow(), box(), challenge(), colours(), drawArithmetic(), drawFraction() (+21 more)
 
-### Community 15 - "compile"
+### Community 15 - "Typed-formula reader and lab plan"
 Cohesion: 0.08
 Nodes (36): Bugs found (Playwright WebKit, 1288 px, sandboxes opened), New kinds needed, Order and checks, Part A: diagrams by chapter, Part B: labs, Plan: more diagrams, freer labs, Proposed changes, Status (2026-11-05) (+28 more)
 
@@ -185,8 +184,8 @@ Cohesion: 0.46
 Nodes (7): below(), box(), draw(), pulse(), redraw(), select(), stopPulses()
 
 ### Community 25 - "Project overview documents"
-Cohesion: 0.07
-Nodes (30): Local workflow, Project data, Project instructions, Acceptance, Exercise solutions standard, Files and source, Learning sequence, Electrical Engineering I study cards (+22 more)
+Cohesion: 0.05
+Nodes (41): Local workflow, Project data, Project instructions, Acceptance, Exercise solutions standard, Files and source, Learning sequence, Page frame (+33 more)
 
 ### Community 26 - "APDR 4 formulas"
 Cohesion: 0.23
@@ -205,7 +204,7 @@ Cohesion: 0.16
 Nodes (26): binaryDraw(), bindSlider(), boundsDraw(), box(), distanceDraw(), distinct(), guess(), inductionDraw() (+18 more)
 
 ### Community 30 - "Contents rail and page navigation"
-Cohesion: 0.22
+Cohesion: 0.20
 Nodes (9): fold(), follow(), groupOf(), idOf(), lit(), show(), build(), href() (+1 more)
 
 ### Community 32 - "APDR 5 lab: memory"
@@ -236,11 +235,11 @@ Nodes (4): discriminant(), relationValues(), roots(), squarePreimages()
 Cohesion: 0.39
 Nodes (5): context(), fake(), loadExperiments(), ROOT, runEngine()
 
-### Community 41 - "eei/ch2-lab.js"
+### Community 41 - "EEI 2 lab: currents and resistance"
 Cohesion: 0.18
 Nodes (18): angle(), challenge(), draw(), marker(), text(), fmt(), getControls(), mount() (+10 more)
 
-### Community 44 - "lab-generators.test.js"
+### Community 44 - "Lab question generator tests"
 Cohesion: 0.38
 Nodes (5): context(), defsOf(), fake(), labs, ROOT
 
@@ -249,29 +248,29 @@ Cohesion: 0.23
 Nodes (4): Conv, est(), inline(), main()
 
 ### Community 46 - "PDF converter: diagrams"
-Cohesion: 0.25
-Nodes (10): amap_data(), amap_label(), amap_tikz(), arrow_t(), dipole_lines(), P(), T(), tex_text() (+2 more)
+Cohesion: 0.21
+Nodes (11): amap_data(), amap_label(), amap_tikz(), arrow_t(), dipole_lines(), grow_delims(), P(), T() (+3 more)
 
 ### Community 47 - "Graph node notes script"
-Cohesion: 0.31
-Nodes (8): comment_above(), describe(), file_phrase(), find_parents(), from_name(), main(), patch_html(), words()
+Cohesion: 0.20
+Nodes (10): comment_above(), describe(), file_phrase(), find_parents(), from_name(), main(), patch_html(), words() (+2 more)
 
 ### Community 49 - "Home page orb"
 Cohesion: 0.54
 Nodes (7): draw(), frame(), kick(), load(), readColours(), reduced(), token()
 
-### Community 50 - "PDF converter: formulas"
-Cohesion: 0.33
-Nodes (5): big_op(), math(), math_text(), math_wrap(), var_math()
-
-### Community 52 - "eei/ch2-physics.js"
+### Community 52 - "EEI 2 formulas"
 Cohesion: 0.12
 Nodes (5): Acceptance, EEI Chapter 2 lab: Stationary Currents, Experiments (in chapter order), Scope and files, conductivity()
 
+### Community 53 - "PDF converter: formulas"
+Cohesion: 0.33
+Nodes (5): big_op(), math(), math_text(), math_wrap(), var_math()
+
 ## Knowledge Gaps
 - **10 isolated node(s):** `Study Pages preview showing Electrical Engineering 1 and Mathematics for Engineers I course cards`, `Active-recall study workflow`, `Jekyll site CI`, `LaTeX, Pandoc, and KaTeX publishing pipeline`, `Bernhard Kainz` (+5 more)
-  These have ≤1 connection - possible missing edges or undocumented components. (Counts symbols only; 309 node(s) total have ≤1 connection when file, concept and rationale nodes are included.)
-- **13 thin communities (<3 nodes) omitted from report** — run `graphify query` to explore isolated nodes.
+  These have ≤1 connection - possible missing edges or undocumented components. (Counts symbols only; 314 node(s) total have ≤1 connection when file, concept and rationale nodes are included.)
+- **12 thin communities (<3 nodes) omitted from report** — run `graphify query` to explore isolated nodes.
 
 ## Work-memory lessons
 
@@ -281,16 +280,16 @@ Nodes (5): Acceptance, EEI Chapter 2 lab: Stationary Currents, Experiments (in c
 ## Suggested Questions
 _Questions this graph is uniquely positioned to answer:_
 
-- **Why does `Markup` connect `compile` to `Home page and guide rules`, `MEI 1 lab: logic and sets`?**
-  _High betweenness centrality (0.178) - this node is a cross-community bridge._
+- **Why does `Markup` connect `Typed-formula reader and lab plan` to `Project overview documents`, `MEI 1 lab: logic and sets`?**
+  _High betweenness centrality (0.174) - this node is a cross-community bridge._
 - **Are the 3 inferred relationships involving `fieldPlayground()` (e.g. with `eei/ch1-lab.js` and `endDrag()`) actually correct?**
   _`fieldPlayground()` has 3 INFERRED edges - model-reasoned connections that need verification._
 - **What connects `Study Pages preview showing Electrical Engineering 1 and Mathematics for Engineers I course cards`, `Active-recall study workflow`, `Jekyll site CI` to the rest of the system?**
   _10 weakly-connected nodes found - possible documentation gaps or missing edges._
 - **Should `EEI 1 lab: fields and capacitors` be split into smaller, more focused modules?**
   _Cohesion score 0.05303030303030303 - nodes in this community are weakly interconnected._
-- **Why does `Study guide standard` connect `Home page and guide rules` to `Project overview documents`, `compile`?**
-  _High betweenness centrality (0.111) - this node is a cross-community bridge._
+- **Why does `Study guide standard` connect `Project overview documents` to `Home page and guide rules`, `Typed-formula reader and lab plan`?**
+  _High betweenness centrality (0.108) - this node is a cross-community bridge._
 - **Are the 2 inferred relationships involving `capacitorBench()` (e.g. with `eei/ch1-lab.js` and `resize()`) actually correct?**
   _`capacitorBench()` has 2 INFERRED edges - model-reasoned connections that need verification._
 - **Should `Site look: design rules` be split into smaller, more focused modules?**

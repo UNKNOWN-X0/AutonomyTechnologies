@@ -1,6 +1,7 @@
-"""Check a study guide (docs/GUIDE-STANDARD.md) and its lab, if any (docs/LAB-STANDARD.md).
+"""Check a study guide (docs/GUIDE-STANDARD.md) and its lab, if any (docs/LAB-STANDARD.md), or a worked exercise
+page (docs/EXERCISE-SOLUTIONS-STANDARD.md).
 
-Usage: python3 -I tools/check-guide.py eei/ch1-electrostatic-fields.html [more guides...]
+Usage: python3 -I tools/check-guide.py eei/ch1-electrostatic-fields.html eei/exercise-1-worked-solutions.html [...]
 Prints every problem found and exits 1 if any errors remain. Warnings do not fail the check.
 """
 import importlib.util
@@ -56,8 +57,111 @@ class Report:
         self.warnings.append(msg)
 
 
+EXERCISE = re.compile(r"([a-z]+)/exercise-(\d+)-worked-solutions\.html")
+
+
+def check_files(root, html, path, page_dir, rep):
+    """Shared by guides and exercises: local links resolve, downloads exist, the .tex is fresh and the PDF newer."""
+    for a in all_nodes(root, lambda n: n.tag in ("a", "link", "script")):
+        ref = a.attrs.get("href") or a.attrs.get("src")
+        if not ref or re.match(r"(https?:|data:|#|mailto:)", ref):
+            continue
+        if not os.path.exists(os.path.normpath(os.path.join(page_dir, ref.split("#")[0]))):
+            rep.err("broken local link: %s" % ref)
+    stem = os.path.splitext(path)[0]
+    base = os.path.basename(stem)
+    for ext in (".pdf", ".tex"):
+        if 'href="%s%s"' % (base, ext) not in html:
+            rep.err("download link to %s%s missing" % (base, ext))
+    tex, pdf = stem + ".tex", stem + ".pdf"
+    if os.path.exists(tex):
+        with tempfile.TemporaryDirectory() as d:
+            fresh = os.path.join(d, "fresh.tex")
+            g2t.main(path, fresh)
+            if open(fresh, encoding="utf-8").read() != open(tex, encoding="utf-8").read():
+                rep.err("%s is stale: regenerate it with tools/guide-to-tex.py" % os.path.relpath(tex, ROOT))
+    if os.path.exists(pdf) and os.path.exists(tex) and os.path.getmtime(pdf) < os.path.getmtime(tex) - 1:
+        rep.err("%s is older than its .tex: rebuild the PDF" % os.path.relpath(pdf, ROOT))
+
+
+def check_exercise(path, rel, rep):
+    """Worked exercise pages: the guide shell, then per task a topic link and per subpart a try-first prompt and
+    hidden step-by-step answer (docs/EXERCISE-SOLUTIONS-STANDARD.md)."""
+    html = open(path, encoding="utf-8").read()
+    t = Tree()
+    t.feed(html)
+    root, page_dir = t.root, os.path.dirname(os.path.abspath(path))
+    for need in ('<html lang="en">', 'name="viewport"', 'name="description"', "<title>"):
+        if need not in html:
+            rep.err("head is missing %s" % need)
+    for asset in ("../css/system.css", "../css/guide.css", "../js/settings.js", "../js/guide.js", "../js/tooltip.js", "../js/nav.js"):
+        if asset not in html:
+            rep.err("page does not load %s" % asset)
+    body = find(root, lambda n: n.tag == "body")
+    if not body or not re.search(r"\bs-[a-z]+-\d\b", body.attrs.get("class", "")):
+        rep.err('<body> needs a subject class such as class="s-eei-1"')
+    toc = find(root, lambda n: n.tag == "nav" and "toc" in n.cls)
+    if not toc or not find(toc, lambda n: "brand" in n.cls and find(n, lambda m: m.tag == "svg")):
+        rep.err("the rail needs the site brand with its mark, as on the guides")
+    if toc and find(toc, lambda n: "chapter-switch" in n.cls):
+        rep.err("exercise pages have no Guide | Lab switch; nav.js adds the Chapters list with the exercises")
+    main = find(root, lambda n: n.tag == "main")
+    head = find(main, lambda n: n.tag == "header" and "sign" in n.cls)
+    for part in ("h1", "code", "course"):
+        if not head or not find(head, lambda n, p=part: n.tag == p or p in n.cls):
+            rep.err("sign header is missing its %s" % part)
+    tasks = [s for s in all_nodes(main, lambda n: n.tag == "section") if re.fullmatch(r"task-\d+", s.attrs.get("id", ""))]
+    if not tasks:
+        rep.err("no task sections (#task-N) found")
+    for s in tasks:
+        sid = s.attrs["id"]
+        if not find(s, lambda n: n.tag == "h2"):
+            rep.err("#%s has no h2" % sid)
+        if not find(s, lambda n: "topic-link" in n.cls):
+            rep.err("#%s needs a Connected topic link (p.topic-link)" % sid)
+        kids = [k for k in s.kids if isinstance(k, Node)]
+        subs = [i for i, k in enumerate(kids) if k.tag == "h3"]
+        if not subs:
+            rep.err("#%s has no subparts (h3)" % sid)
+        for n, i in enumerate(subs):
+            end = subs[n + 1] if n + 1 < len(subs) else len(kids)
+            block = kids[i + 1:end]
+            name = kids[i].text().strip()
+            if not any(k.tag == "p" and "try first" in k.text().lower() for k in block):
+                rep.err("#%s %r needs a “Try first” prompt before its answer" % (sid, name))
+            det = [k for k in block if k.tag == "details" and "answers" in k.cls]
+            if len(det) != 1:
+                rep.err("#%s %r needs exactly one details.answers" % (sid, name))
+            elif not find(det[0], lambda m: m.tag == "ol" and "method-list" in m.cls):
+                rep.err("#%s %r: its answer needs .worked > ol.method-list for step-by-step reveal" % (sid, name))
+    lists = [[a.attrs.get("href") for a in all_nodes(o, lambda n: n.tag == "a")] for o in all_nodes(toc, lambda n: n.tag == "ol")] if toc else []
+    if len(lists) == 2 and lists[0] != lists[1]:
+        rep.err("the mobile and desktop contents lists differ")
+    ids = {s.attrs["id"] for s in tasks}
+    for href in set(sum(lists, [])):
+        if href.startswith("#") and href[1:] not in ids:
+            rep.err("contents link %s has no target" % href)
+    for sid in ids - {h[1:] for h in sum(lists, []) if h.startswith("#")}:
+        rep.warn("#%s is not in the contents" % sid)
+    check_files(root, html, path, page_dir, rep)
+    if not find(main, lambda n: "source-note" in n.cls):
+        rep.err("missing the source note (personal material, not an official FAU publication)")
+    hub = open(os.path.join(ROOT, "index.html"), encoding="utf-8").read()
+    link = re.search(r'<a href="%s"([^>]*)>' % re.escape(rel), hub)
+    if not link:
+        rep.err("index.html does not link to %s from its subject's Exercise tab" % rel)
+    elif "data-note=" not in link.group(1) or "data-no=" not in link.group(1):
+        rep.err("the hub link to %s needs data-no and data-note (its row number and what it covers)" % rel)
+    smoke = os.path.join(ROOT, "..", "..", "BrowserTests", "tests", "smoke.spec.js")
+    if os.path.exists(smoke) and os.path.basename(path) not in open(smoke, encoding="utf-8").read():
+        rep.warn("BrowserTests smoke.spec.js does not list %s" % os.path.basename(path))
+    return rep
+
+
 def check(path):
     rep = Report(os.path.relpath(path, ROOT))
+    if EXERCISE.fullmatch(os.path.relpath(path, ROOT)):
+        return check_exercise(path, os.path.relpath(path, ROOT), rep)
     html = open(path, encoding="utf-8").read()
     t = Tree()
     t.feed(html)
@@ -264,26 +368,7 @@ def check(path):
             rep.err("index.html chapter entry does not link to %s" % rel)
 
     # --- links and downloads
-    for a in all_nodes(root, lambda n: n.tag in ("a", "link", "script")):
-        ref = a.attrs.get("href") or a.attrs.get("src")
-        if not ref or re.match(r"(https?:|data:|#|mailto:)", ref):
-            continue
-        target = os.path.normpath(os.path.join(page_dir, ref.split("#")[0]))
-        if not os.path.exists(target):
-            rep.err("broken local link: %s" % ref)
-    base = os.path.basename(stem)
-    for ext in (".pdf", ".tex"):
-        if 'href="%s%s"' % (base, ext) not in html:
-            rep.err("download link to %s%s missing" % (base, ext))
-    tex, pdf = stem + ".tex", stem + ".pdf"
-    if os.path.exists(tex):
-        with tempfile.TemporaryDirectory() as d:
-            fresh = os.path.join(d, "fresh.tex")
-            g2t.main(path, fresh)
-            if open(fresh, encoding="utf-8").read() != open(tex, encoding="utf-8").read():
-                rep.err("%s is stale: regenerate it with tools/guide-to-tex.py" % os.path.relpath(tex, ROOT))
-    if os.path.exists(pdf) and os.path.exists(tex) and os.path.getmtime(pdf) < os.path.getmtime(tex) - 1:
-        rep.err("%s is older than its .tex: rebuild the PDF" % os.path.relpath(pdf, ROOT))
+    check_files(root, html, path, page_dir, rep)
 
     if not find(main, lambda n: "source-note" in n.cls):
         rep.err("missing the source note (personal material, not an official FAU publication)")
