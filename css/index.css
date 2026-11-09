@@ -378,6 +378,7 @@ html.sweeping .chapter.started:not(.lit) .no::before {
   list-style: none;
   pointer-events: none;
   display: none;
+  z-index: 2; /* above the lit line, which is the list's ::after and so paints after every child */
 }
 .subjects.route-at-tile .route-stop {
   display: block;
