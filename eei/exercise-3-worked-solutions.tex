@@ -200,32 +200,32 @@ Try first: compute the initial and final capacitances, then compare their field 
 Spherical symmetry makes the field radial and equally strong everywhere on a concentric Gaussian sphere. Its area is 4π\textit{r}\textsuperscript{2}, so the flux law reduces to:
 
 \Needspace{4\baselineskip}
-\begin{equation*}∯\, {D}\, \cdot \, \mathrm{d}{A}\, =\, {D}_{\mathrm{r}}({r})\, 4π{r}^{2}\, =\, {Q}_{\text{enc}}({r})\end{equation*}
+\begin{equation*}\oiint \, {D}\, \cdot \, \mathrm{d}{A}\, =\, {D}_{\mathrm{r}}({r})\, 4π{r}^{2}\, =\, {Q}_{\text{enc}}({r})\end{equation*}
 
 Since \textit{D} = \textit{ε}\textsubscript{0}\textit{E}, solving this gives \textit{E}\textsubscript{r} once we know the enclosed charge.
 \item \Needspace{5\baselineskip}
 For 0 \ensuremath{<} \textit{r} \ensuremath{\leq} \textit{a}, the Gaussian sphere contains only a smaller volume of the uniform density. The spherical volume is 4π\textit{r}\textsuperscript{3}/3:
 
-\begin{equation*}{Q}_{\text{enc}}({r})\, =\, {ρ}_{0}(4π{r}^{3}/3)\end{equation*}
+\begin{equation*}{Q}_{\text{enc}}({r})\, =\, {ρ}_{0}\dfrac{4π{r}^{3}}{3}\end{equation*}
 \item \Needspace{4\baselineskip}
 Substitute that enclosed charge into Gauss’s law and divide by 4π\textit{ε}\textsubscript{0}\textit{r}\textsuperscript{2}:
 
-\begin{equation*}{E}_{\mathrm{r}}({r})\, =\, {Q}_{\text{enc}}/(4π{ε}_{0}{r}^{2})\, =\, {ρ}_{0}{r}/(3{ε}_{0}),\, \quad \, 0\, \leq \, {r}\, \leq \, {a}\end{equation*}
+\begin{equation*}{E}_{\mathrm{r}}({r})\, =\, \dfrac{{Q}_{\text{enc}}}{4π{ε}_{0}{r}^{2}}\, =\, \dfrac{{ρ}_{0}{r}}{3{ε}_{0}},\, \quad \, 0\, \leq \, {r}\, \leq \, {a}\end{equation*}
 \item \Needspace{5\baselineskip}
 For \textit{r} \ensuremath{>} \textit{a}, the Gaussian sphere encloses all the charge, whose volume is the full sphere of radius \textit{a}:
 
-\begin{equation*}{Q}_{\text{total}}\, =\, {ρ}_{0}(4π{a}^{3}/3);\, \quad \, {E}_{\mathrm{r}}({r})\, =\, {ρ}_{0}{a}^{3}/(3{ε}_{0}{r}^{2}),\, \quad \, {r}\, >\, {a}\end{equation*}
+\begin{equation*}{Q}_{\text{total}}\, =\, {ρ}_{0}\dfrac{4π{a}^{3}}{3};\, \quad \, {E}_{\mathrm{r}}({r})\, =\, \dfrac{{ρ}_{0}{a}^{3}}{3{ε}_{0}{r}^{2}},\, \quad \, {r}\, >\, {a}\end{equation*}
 \item \Needspace{4\baselineskip}
 \textbf{Result:} for the positive density shown, the vector field points radially outward. Inside:
 
 \Needspace{4\baselineskip}
-\begin{equation*}{E}({r})\, =\, [{ρ}_{0}{r}/(3{ε}_{0})]{e}_{\mathrm{r}},\, \quad \, 0\, \leq \, {r}\, \leq \, {a}\end{equation*}
+\begin{equation*}{E}({r})\, =\, \dfrac{{ρ}_{0}{r}}{3{ε}_{0}}{e}_{\mathrm{r}},\, \quad \, 0\, \leq \, {r}\, \leq \, {a}\end{equation*}
 
 \Needspace{4\baselineskip}
 Outside, all charge is enclosed:
 
 \Needspace{4\baselineskip}
-\begin{equation*}{E}({r})\, =\, [{ρ}_{0}{a}^{3}/(3{ε}_{0}{r}^{2})]{e}_{\mathrm{r}},\, \quad \, {r}\, >\, {a}\end{equation*}
+\begin{equation*}{E}({r})\, =\, \dfrac{{ρ}_{0}{a}^{3}}{3{ε}_{0}{r}^{2}}{e}_{\mathrm{r}},\, \quad \, {r}\, >\, {a}\end{equation*}
 
 \Needspace{6\baselineskip}
 At the origin, \textit{E} = 0; negative \textit{ρ}\textsubscript{0} reverses the radial direction.
@@ -243,7 +243,7 @@ At the origin, \textit{E} = 0; negative \textit{ρ}\textsubscript{0} reverses th
 \item \Needspace{5\baselineskip}
 The field is uniform and axial in each region. Moving from the lower plate at z = 0 to the upper plate at z = h gives the upper-minus-lower potential:
 
-\begin{equation*}{U}_{10}\, =\, {V}_{1}\, -\, {V}_{0}\, =\, -∫_{0}^{\mathrm{h}}\, {E}_{\mathrm{z}}\, \mathrm{d}{z}\end{equation*}
+\begin{equation*}{U}_{10}\, =\, {V}_{1}\, -\, {V}_{0}\, =\, -\int_{0}^{\mathrm{h}} \, {E}_{\mathrm{z}}\, \mathrm{d}{z}\end{equation*}
 \item \Needspace{5\baselineskip}
 The radial boundary at ρ = \textit{a}\textsubscript{1} is parallel to the z-directed field. Its tangential field component is continuous, so the assumed axial components agree:
 
@@ -251,12 +251,12 @@ The radial boundary at ρ = \textit{a}\textsubscript{1} is parallel to the z-dir
 \item \Needspace{5\baselineskip}
 Because each field is uniform over the gap, the integral is \textit{E}\textsubscript{z}\textit{h}. Solve for the common component:
 
-\begin{equation*}{E}_{1}\, =\, {E}_{2}\, =\, -{U}_{10}/{h}\end{equation*}
+\begin{equation*}{E}_{1}\, =\, {E}_{2}\, =\, -\dfrac{{U}_{10}}{{h}}\end{equation*}
 \item \Needspace{4\baselineskip}
-\textbf{Result:} in the requested gap (not inside the metal), the vector field is piecewise:
+\textbf{Result:} in the requested gap (not inside the metal), the field is the same everywhere:
 
 \Needspace{5\baselineskip}
-\begin{equation*}{E}(ρ,\mathrm{z})\, =\, \{\, -({U}_{10}/{h}){e}_{\mathrm{z}},\, \quad \, 0\, \leq \, ρ\, \leq \, {a}_{2},\, 0\, <\, \mathrm{z}\, <\, \mathrm{h}\, \}\end{equation*}
+\begin{equation*}{E}\, =\, -\dfrac{{U}_{10}}{{h}}\, {e}_{{z}},\, \quad \, 0\, \leq \, ρ\, \leq \, {a}_{2},\, \quad \, 0\, <\, {z}\, <\, {h}\end{equation*}
 
 \Needspace{6\baselineskip}
 The same field applies on both sides of ρ = \textit{a}\textsubscript{1} under the uniform-field approximation. The material changes D, not this tangential E.
@@ -275,16 +275,16 @@ The same field applies on both sides of ρ = \textit{a}\textsubscript{1} under t
 \item \Needspace{4\baselineskip}
 Over the dielectric circle, \textit{D} = \textit{ε}\textsubscript{1}\textit{E}; its area is π\textit{a}\textsubscript{1}\textsuperscript{2}:
 
-\begin{equation*}{Q}_{\text{core}}\, =\, σ_{1}π{a}_{1}^{2}\, =\, ({ε}_{1}{U}_{10}/{h})π{a}_{1}^{2}\end{equation*}
+\begin{equation*}{Q}_{\text{core}}\, =\, σ_{1}π{a}_{1}^{2}\, =\, \dfrac{{ε}_{1}{U}_{10}}{{h}}π{a}_{1}^{2}\end{equation*}
 \item \Needspace{4\baselineskip}
 Over the air annulus, \textit{D} = \textit{ε}\textsubscript{0}\textit{E}; its area is the whole plate disk minus the core disk:
 
-\begin{equation*}{Q}_{\text{air}}\, =\, σ_{2}π({a}_{2}^{2}\, -\, {a}_{1}^{2})\, =\, ({ε}_{0}{U}_{10}/{h})π({a}_{2}^{2}\, -\, {a}_{1}^{2})\end{equation*}
+\begin{equation*}{Q}_{\text{air}}\, =\, σ_{2}π({a}_{2}^{2}\, -\, {a}_{1}^{2})\, =\, \dfrac{{ε}_{0}{U}_{10}}{{h}}π({a}_{2}^{2}\, -\, {a}_{1}^{2})\end{equation*}
 \item \Needspace{4\baselineskip}
 Add the two disjoint patches on the same metal face:
 
 \Needspace{5\baselineskip}
-\begin{equation*}{Q}\, =\, {Q}_{\text{core}}\, +\, {Q}_{\text{air}}\, =\, ({πU}_{10}/{h})[{ε}_{1}{a}_{1}^{2}\, +\, {ε}_{0}({a}_{2}^{2}\, -\, {a}_{1}^{2})]\end{equation*}
+\begin{equation*}{Q}\, =\, {Q}_{\text{core}}\, +\, {Q}_{\text{air}}\, =\, \dfrac{{πU}_{10}}{{h}}[{ε}_{1}{a}_{1}^{2}\, +\, {ε}_{0}({a}_{2}^{2}\, -\, {a}_{1}^{2})]\end{equation*}
 
 \Needspace{6\baselineskip}
 \textbf{Result:} this is the charge on the underside of the upper plate. For positive U\textsubscript{10} it is positive; the lower plate carries the opposite charge.
@@ -302,7 +302,7 @@ Add the two disjoint patches on the same metal face:
 \item \Needspace{4\baselineskip}
 Capacitance is defined by \textit{C} = \textit{Q}/\textit{U}. Divide the expression from 8b by \textit{U}\textsubscript{10}:
 
-\begin{equation*}{C}\, =\, ({π}/{h})[{ε}_{1}{a}_{1}^{2}\, +\, {ε}_{0}({a}_{2}^{2}\, -\, {a}_{1}^{2})]\end{equation*}
+\begin{equation*}{C}\, =\, \dfrac{{π}}{{h}}[{ε}_{1}{a}_{1}^{2}\, +\, {ε}_{0}({a}_{2}^{2}\, -\, {a}_{1}^{2})]\end{equation*}
 \item \Needspace{6\baselineskip}
 \textbf{Result:} this is the capacitance under the stated uniform-field model. The two regions behave like capacitors in parallel because they span the same voltage and their charges add.
 
@@ -314,12 +314,12 @@ Capacitance is defined by \textit{C} = \textit{Q}/\textit{U}. Divide the express
 \begin{keepsection}\subsection{Task 8: Parallel plates with a dielectric cylinder}
 
 \begin{workedbox}{8d \ensuremath{\cdot} Fixed-voltage energy change}
-\Needspace{13\baselineskip}
+\Needspace{18\baselineskip}
 \begin{enumerate}
 \item \Needspace{4\baselineskip}
 Initially the capacitance is the value from 8c. After removal, the whole plate area is air:
 
-\begin{equation*}{C}_{\mathrm{i}}\, =\, ({π}/{h})[{ε}_{1}{a}_{1}^{2}\, +\, {ε}_{0}({a}_{2}^{2}\, -\, {a}_{1}^{2})];\, \quad \, {C}_{\mathrm{f}}\, =\, {ε}_{0}π{a}_{2}^{2}/{h}\end{equation*}
+\begin{equation*}{C}_{\mathrm{i}}\, =\, \dfrac{{π}}{{h}}[{ε}_{1}{a}_{1}^{2}\, +\, {ε}_{0}({a}_{2}^{2}\, -\, {a}_{1}^{2})];\, \quad \, {C}_{\mathrm{f}}\, =\, \dfrac{{ε}_{0}π{a}_{2}^{2}}{{h}}\end{equation*}
 \item \Needspace{5\baselineskip}
 With voltage held fixed, stored field energy is \textit{W} = \ensuremath{\tfrac12}\textit{C U}\textsuperscript{2}. Subtract the initial energy from the final energy:
 
@@ -327,9 +327,13 @@ With voltage held fixed, stored field energy is \textit{W} = \ensuremath{\tfrac1
 \item \Needspace{4\baselineskip}
 The air-region terms cancel, leaving the contribution from the removed core:
 
-\begin{equation*}Δ{W}_{\text{field}}\, =\, -[{πa}_{1}^{2}({ε}_{1}\, -\, {ε}_{0})/(2{h})]{U}_{10}^{2}\end{equation*}
+\begin{equation*}Δ{W}_{\text{field}}\, =\, -\dfrac{{πa}_{1}^{2}({ε}_{1}\, -\, {ε}_{0})}{2{h}}{U}_{10}^{2}\end{equation*}
 \item \Needspace{7\baselineskip}
-\textbf{Result:} if \textit{ε}\textsubscript{1} \ensuremath{>} \textit{ε}\textsubscript{0}, the stored field energy decreases by this amount (Δ\textit{W}\textsubscript{field} \ensuremath{<} 0), measured in joules. This is the capacitor’s field-energy change; energy also flows to or from the voltage source while the voltage stays fixed.
+Follow the energy that leaves. With \textit{U}\textsubscript{10} fixed, the plate charge changes by Δ\textit{Q} = (\textit{C}\textsubscript{f} \ensuremath{-} \textit{C}\textsubscript{i})\textit{U}\textsubscript{10} \ensuremath{<} 0, so charge flows back into the source. The energy the source delivers is \textit{W}\textsubscript{source} = \textit{U}\textsubscript{10}Δ\textit{Q} = 2Δ\textit{W}\textsubscript{field}, a negative number: the source takes energy back. Whoever pulls the core out supplies the difference:
+
+\begin{equation*}{W}_{\text{mech}}\, =\, Δ{W}_{\text{field}}\, -\, {W}_{\text{source}}\, =\, -Δ{W}_{\text{field}}\, =\, \dfrac{π{a}_{1}^{2}(ε_{1}\, -\, ε_{0})}{2{h}}{U}_{10}^{2}\end{equation*}
+\item \Needspace{8\baselineskip}
+\textbf{Result:} if \textit{ε}\textsubscript{1} \ensuremath{>} \textit{ε}\textsubscript{0}, the stored field energy decreases by this amount (Δ\textit{W}\textsubscript{field} \ensuremath{<} 0), measured in joules. Positive mechanical work of the same size is needed to pull the core out: at fixed voltage the field draws the dielectric into the gap, and the source takes back twice the field-energy drop.
 
 \textbf{Check:} if the core is indistinguishable from air, ε\textsubscript{1} = ε\textsubscript{0}, the change is zero. The magnitude scales with the removed area and with voltage squared.
 \end{enumerate}

@@ -134,6 +134,27 @@ MATH_MAP = {"−": "-", "∘": r"\circ ", "↦": r"\mapsto ", "·": r"\cdot ", "
             "{": r"\{", "}": r"\}", "%": r"\%", "&": r"\&", "#": r"\#"}
 
 
+OPERATOR_NAMES = {"sin", "cos", "tan", "ln", "log", "exp", "arcsin", "arccos", "arctan"}
+
+
+def grow_delims(s):
+    """Brackets that enclose a stacked fraction grow to fit it (\\left( … \\right)); others stay as written."""
+    out, stack, i = list(s), [], 0
+    while i < len(s):
+        if s[i] == "\\":
+            i += 2
+            continue
+        if s[i] in "([":
+            stack.append(i)
+        elif s[i] in ")]" and stack:
+            j = stack.pop()
+            if "([".index(s[j]) == ")]".index(s[i]) and "\\dfrac" in s[j:i]:
+                out[j] = r"\left" + s[j]
+                out[i] = r"\right" + s[i]
+        i += 1
+    return "".join(out)
+
+
 def math_text(s):
     s = s.replace("\u00a0", "\x00")
     parts = re.split(r"([A-Za-z]+|\x00+| +)", s)
@@ -146,7 +167,7 @@ def math_text(s):
         elif p[0] == " ":
             out.append(r"\, ")
         elif re.fullmatch(r"[A-Za-z]+", p):
-            out.append(r"\text{%s}" % p if len(p) > 1 else r"\mathrm{%s}" % p)
+            out.append("\\%s " % p if p in OPERATOR_NAMES else r"\text{%s}" % p if len(p) > 1 else r"\mathrm{%s}" % p)
         else:
             out.append("".join(MATH_MAP.get(ch, ch) for ch in p))
     return "".join(out)
@@ -830,7 +851,7 @@ class Conv:
             if "lab-link" in c:
                 return ""
             if "math-line" in c:
-                return "\n\\begin{equation*}%s\\end{equation*}\n" % math(k)
+                return "\n\\begin{equation*}%s\\end{equation*}\n" % grow_delims(math(k))
             if "method" in c:
                 return "\n\\begin{notebox}%s\\end{notebox}\n" % inline(k)
             if "plain" in c:
@@ -856,7 +877,7 @@ class Conv:
             title = find(k, lambda n: n.tag == "strong" and n.parent is k)
             forms = [n for n in k.kids if isinstance(n, Node) and "formula" in n.cls]
             note = find(k, lambda n: "eq-note" in n.cls)
-            formula_lines = r" \\ ".join(math(form) for form in forms)
+            formula_lines = r" \\ ".join(grow_delims(math(form)) for form in forms)
             s = "\n\\begin{equationcard}{%s}\n\\[ \\begin{gathered} %s \\end{gathered} \\]\n" % (inline(title) if title else "", formula_lines)
             if note:
                 s += "{\\small %s}\n" % inline(note)

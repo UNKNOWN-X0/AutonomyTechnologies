@@ -738,6 +738,16 @@ main > section {
   text-wrap: balance;
   overflow-wrap: anywhere;
 }
+/* Brackets around a stacked fraction grow to its height; integrals in a worked line get a sign tall enough for their limits. */
+.worked .math-line .delim {
+  display: inline-block;
+  margin-inline: 0.03em;
+  transform: scale(1.05, 1.9);
+  font-weight: 300;
+}
+.worked .math-line .op-int > .op-sym {
+  font-size: 2em;
+}
 @media (prefers-reduced-motion: no-preference) {
   .method-list > li.step-in {
     animation: step-reveal 260ms var(--ease) both;

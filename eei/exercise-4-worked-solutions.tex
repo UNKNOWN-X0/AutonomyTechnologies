@@ -79,7 +79,7 @@
 An infinite line charge of density \textit{λ}\textsubscript{0} lies along the z-axis. The lower half-space y \ensuremath{<} h is air with permittivity \textit{ε}\textsubscript{0}, and the upper half-space y \ensuremath{\geq} h has permittivity \textit{ε}\textsubscript{1}. In the air, measurements give the field below.
 
 \Needspace{5\baselineskip}
-\begin{equation*}{E}_{0}(\mathrm{x},\mathrm{y})\, =\, {λ}_{0}/[π({ε}_{0}\, +\, {ε}_{1})(\mathrm{x}^{2}\, +\, \mathrm{y}^{2})]\, [\mathrm{x}{e}_{\mathrm{x}}\, +\, ({ε}_{1}/{ε}_{0})\mathrm{y}{e}_{\mathrm{y}}]\end{equation*}
+\begin{equation*}{E}_{0}(\mathrm{x},\mathrm{y})\, =\, \dfrac{{λ}_{0}}{π({ε}_{0}\, +\, {ε}_{1})(\mathrm{x}^{2}\, +\, \mathrm{y}^{2})}\, \left[\mathrm{x}{e}_{\mathrm{x}}\, +\, \dfrac{{ε}_{1}}{{ε}_{0}}\mathrm{y}{e}_{\mathrm{y}}\right]\end{equation*}
 
 \Needspace{9\baselineskip}
 \textbf{Connected topic:} Material boundary conditions (§1.11) keep tangential E continuous and normal D continuous when no free surface charge is present.
@@ -164,7 +164,7 @@ Two infinitely long concentric metal cylinders share the z-axis. The inner metal
 \end{tikzpicture}\par\smallskip{\small\raggedright \textbf{Track each cylindrical boundary by radius.} The field runs radially through ε\textsubscript{1} then ε\textsubscript{2}; free surface charges sit on the two metal faces bordering the dielectric gap.\par}\end{minipage}
 \end{center}
 
-In the dielectric gap, symmetry gives \textit{D} = \textit{D}\textsubscript{ρ}(ρ)\textit{e}\textsubscript{ρ}. The source specifies the voltage convention by \textit{U}\textsubscript{20} = \ensuremath{\int} from P\textsubscript{0} (inner) to P\textsubscript{2} (outer) of \textit{E} \ensuremath{\cdot} d\textit{s}; use that orientation below.
+In the dielectric gap, symmetry gives \textit{D} = \textit{D}\textsubscript{ρ}(ρ)\textit{e}\textsubscript{ρ}. The sheet fixes the voltage direction: \textit{U}\textsubscript{20} = \ensuremath{\int} from P\textsubscript{2} (outer) to P\textsubscript{0} (inner) of \textit{E} \ensuremath{\cdot} d\textit{s}, matching the figure’s arrow from the outer to the inner terminal and the course convention \textit{U}\textsubscript{20} = φ\textsubscript{2} \ensuremath{-} φ\textsubscript{0}. The path therefore runs inward.
 
 \begin{keepsection}
 \Needspace{7\baselineskip}
@@ -181,7 +181,7 @@ Try first: apply cylindrical Gauss surfaces in each dielectric, then use continu
 \subsection{10b: Field and σ\textsubscript{0} as functions of U\textsubscript{20}}
 
 \Needspace{4\baselineskip}
-Try first: integrate E radially from a\textsubscript{0} to a\textsubscript{2}, splitting at a\textsubscript{1}, then solve the voltage relation for σ\textsubscript{0}.
+Try first: integrate E along the path the sheet gives, inward from P\textsubscript{2} at a\textsubscript{2} to P\textsubscript{0} at a\textsubscript{0}, splitting at a\textsubscript{1}, then solve the voltage relation for σ\textsubscript{0}.
 
 \nopagebreak[4]{\small\itshape Answers: see “Task 10: Two-dielectric coaxial capacitor” under Answers at the end.}
 \end{keepsection}
@@ -222,7 +222,7 @@ The interface is horizontal, so its normal is along y and its tangent is along x
 \item \Needspace{4\baselineskip}
 First evaluate the given air field at y = h. Its tangential component is:
 
-\begin{equation*}{E}_{0\mathrm{x}}(\mathrm{x},\mathrm{h})\, =\, {λ}_{0}\mathrm{x}/[π({ε}_{0}\, +\, {ε}_{1})(\mathrm{x}^{2}\, +\, \mathrm{h}^{2})]\end{equation*}
+\begin{equation*}{E}_{0\mathrm{x}}(\mathrm{x},\mathrm{h})\, =\, \dfrac{{λ}_{0}\mathrm{x}}{π({ε}_{0}\, +\, {ε}_{1})(\mathrm{x}^{2}\, +\, \mathrm{h}^{2})}\end{equation*}
 \item \Needspace{4\baselineskip}
 Keep that x-component unchanged across the boundary:
 
@@ -230,12 +230,12 @@ Keep that x-component unchanged across the boundary:
 \item \Needspace{5\baselineskip}
 The measured normal component contains the factor ε\textsubscript{1}/ε\textsubscript{0}. Multiplying it by ε\textsubscript{0}/ε\textsubscript{1} to preserve D cancels that factor:
 
-\begin{equation*}{E}_{1\mathrm{y}}(\mathrm{x},\mathrm{h})\, =\, ({ε}_{0}/{ε}_{1}){E}_{0\mathrm{y}}(\mathrm{x},\mathrm{h})\, =\, {λ}_{0}\mathrm{h}/[π({ε}_{0}\, +\, {ε}_{1})(\mathrm{x}^{2}\, +\, \mathrm{h}^{2})]\end{equation*}
+\begin{equation*}{E}_{1\mathrm{y}}(\mathrm{x},\mathrm{h})\, =\, \dfrac{{ε}_{0}}{{ε}_{1}}{E}_{0\mathrm{y}}(\mathrm{x},\mathrm{h})\, =\, \dfrac{{λ}_{0}\mathrm{h}}{π({ε}_{0}\, +\, {ε}_{1})(\mathrm{x}^{2}\, +\, \mathrm{h}^{2})}\end{equation*}
 \item \Needspace{4\baselineskip}
 \textbf{Result:} combine the two components into the dielectric-side vector:
 
 \Needspace{5\baselineskip}
-\begin{equation*}{E}_{1}(\mathrm{x},\mathrm{h})\, =\, {λ}_{0}/[π({ε}_{0}\, +\, {ε}_{1})(\mathrm{x}^{2}\, +\, \mathrm{h}^{2})]\, [\mathrm{x}{e}_{\mathrm{x}}\, +\, \mathrm{h}{e}_{\mathrm{y}}]\end{equation*}
+\begin{equation*}{E}_{1}(\mathrm{x},\mathrm{h})\, =\, \dfrac{{λ}_{0}}{π({ε}_{0}\, +\, {ε}_{1})(\mathrm{x}^{2}\, +\, \mathrm{h}^{2})}\, [\mathrm{x}{e}_{\mathrm{x}}\, +\, \mathrm{h}{e}_{\mathrm{y}}]\end{equation*}
 
 \textbf{Check:} the tangential component is unchanged; the normal flux density matches on both sides. With SI inputs, E is in V/m (equivalently N/C).
 \end{enumerate}
@@ -254,19 +254,19 @@ Choose a coaxial Gaussian cylinder of radius ρ and length Δz, with a\textsubsc
 \item \Needspace{5\baselineskip}
 Cancel the common factors. No free charge lies at the dielectric boundary ρ = a\textsubscript{1}, so normal D has the same value in both layers:
 
-\begin{equation*}{D}(ρ)\, =\, σ_{0}{a}_{0}/ρ\, {e}_{ρ},\, \quad \, {a}_{0}\, <\, ρ\, <\, {a}_{2}\end{equation*}
+\begin{equation*}{D}(ρ)\, =\, \dfrac{σ_{0}{a}_{0}}{ρ}\, {e}_{ρ},\, \quad \, {a}_{0}\, <\, ρ\, <\, {a}_{2}\end{equation*}
 \item \Needspace{4\baselineskip}
 Use D = εE separately in each material:
 
 \Needspace{4\baselineskip}
-\begin{equation*}{E}(ρ)\, =\, [σ_{0}{a}_{0}/(ε_{1}ρ)]{e}_{ρ},\, \quad \, {a}_{0}\, <\, ρ\, <\, {a}_{1}\end{equation*}
+\begin{equation*}{E}(ρ)\, =\, \dfrac{σ_{0}{a}_{0}}{ε_{1}ρ}{e}_{ρ},\, \quad \, {a}_{0}\, <\, ρ\, <\, {a}_{1}\end{equation*}
 
-\begin{equation*}{E}(ρ)\, =\, [σ_{0}{a}_{0}/(ε_{2}ρ)]{e}_{ρ},\, \quad \, {a}_{1}\, <\, ρ\, <\, {a}_{2}\end{equation*}
+\begin{equation*}{E}(ρ)\, =\, \dfrac{σ_{0}{a}_{0}}{ε_{2}ρ}{e}_{ρ},\, \quad \, {a}_{1}\, <\, ρ\, <\, {a}_{2}\end{equation*}
 \item \Needspace{5\baselineskip}
 At the inner face of the outer metal cylinder, the normal from the conductor into the gap points inward, \ensuremath{-}e\textsubscript{ρ}. Thus σ\textsubscript{2} = D \ensuremath{\cdot} (\ensuremath{-}e\textsubscript{ρ}) at ρ = a\textsubscript{2}:
 
 \Needspace{5\baselineskip}
-\begin{equation*}σ_{2}\, =\, -σ_{0}{a}_{0}/{a}_{2}\end{equation*}
+\begin{equation*}σ_{2}\, =\, -\dfrac{σ_{0}{a}_{0}}{{a}_{2}}\end{equation*}
 
 \Needspace{5\baselineskip}
 \textbf{Result:} D is radial and continuous through the dielectric interface; E changes magnitude inversely with permittivity. The two metal-face charges have opposite signs.
@@ -279,34 +279,34 @@ At the inner face of the outer metal cylinder, the normal from the conductor int
 \begin{keepsection}\subsection{Task 10: Two-dielectric coaxial capacitor}
 
 \begin{workedbox}{10b \ensuremath{\cdot} Integrate through both layers}
-\Needspace{13\baselineskip}
+\Needspace{17\baselineskip}
 \begin{enumerate}
 \item \Needspace{5\baselineskip}
-The specified path moves outward, in the +e\textsubscript{ρ} direction. Insert the two E expressions from 10a into the source’s voltage integral:
+The path runs inward, from ρ = \textit{a}\textsubscript{2} to ρ = \textit{a}\textsubscript{0}. Along a radial path d\textit{s} = \textit{e}\textsubscript{ρ} dρ, and the limits carry the direction, so \textit{E} \ensuremath{\cdot} d\textit{s} = \textit{E}\textsubscript{ρ} dρ with ρ decreasing. Insert the two E expressions from 10a:
 
-\begin{equation*}{U}_{20}\, =\, ∫_{\mathrm{a}0}^{\mathrm{a}1}\, [σ_{0}{a}_{0}/(ε_{1}ρ)]\, \mathrm{d}ρ\, +\, ∫_{\mathrm{a}1}^{\mathrm{a}2}\, [σ_{0}{a}_{0}/(ε_{2}ρ)]\, \mathrm{d}ρ\end{equation*}
-\item \Needspace{4\baselineskip}
-Each integral of 1/ρ gives a logarithm:
+\begin{equation*}{U}_{20}\, =\, \int_{{a}_{2}}^{{a}_{1}} \, \dfrac{σ_{0}{a}_{0}}{ε_{2}ρ}\, \mathrm{d}ρ\, +\, \int_{{a}_{1}}^{{a}_{0}} \, \dfrac{σ_{0}{a}_{0}}{ε_{1}ρ}\, \mathrm{d}ρ\end{equation*}
+\item \Needspace{5\baselineskip}
+Each integral of 1/ρ gives a logarithm; running inward makes each one negative, for example \ensuremath{\int} from \textit{a}\textsubscript{1} to \textit{a}\textsubscript{0} of dρ/ρ = ln(\textit{a}\textsubscript{0}/\textit{a}\textsubscript{1}) = \ensuremath{-}ln(\textit{a}\textsubscript{1}/\textit{a}\textsubscript{0}):
 
-\begin{equation*}{U}_{20}\, =\, σ_{0}{a}_{0}[\text{ln}({a}_{1}/{a}_{0})/ε_{1}\, +\, \text{ln}({a}_{2}/{a}_{1})/ε_{2}]\end{equation*}
+\begin{equation*}{U}_{20}\, =\, -σ_{0}{a}_{0}\left[\dfrac{1}{ε_{1}}\, \ln \dfrac{{a}_{1}}{{a}_{0}}\, +\, \dfrac{1}{ε_{2}}\, \ln \dfrac{{a}_{2}}{{a}_{1}}\right]\end{equation*}
 \item \Needspace{4\baselineskip}
 Define the positive geometry/material factor:
 
-\begin{equation*}{S}\, =\, \text{ln}({a}_{1}/{a}_{0})/ε_{1}\, +\, \text{ln}({a}_{2}/{a}_{1})/ε_{2}\end{equation*}
+\begin{equation*}{S}\, =\, \dfrac{1}{ε_{1}}\, \ln \dfrac{{a}_{1}}{{a}_{0}}\, +\, \dfrac{1}{ε_{2}}\, \ln \dfrac{{a}_{2}}{{a}_{1}}\end{equation*}
 \item \Needspace{4\baselineskip}
 Rearrange for the inner surface charge density, then substitute it back into D and E:
 
 \Needspace{4\baselineskip}
-\begin{equation*}σ_{0}\, =\, {U}_{20}/({a}_{0}{S});\, \quad \, {D}(ρ)\, =\, [{U}_{20}/({S}ρ)]{e}_{ρ}\end{equation*}
+\begin{equation*}σ_{0}\, =\, -\dfrac{{U}_{20}}{{a}_{0}{S}};\, \quad \, {D}(ρ)\, =\, -\dfrac{{U}_{20}}{{S}ρ}{e}_{ρ}\end{equation*}
 
 \Needspace{4\baselineskip}
-\begin{equation*}{E}(ρ)\, =\, [{U}_{20}/(ε_{1}{S}ρ)]{e}_{ρ},\, \quad \, {a}_{0}\, <\, ρ\, <\, {a}_{1}\end{equation*}
+\begin{equation*}{E}(ρ)\, =\, -\dfrac{{U}_{20}}{ε_{1}{S}ρ}{e}_{ρ},\, \quad \, {a}_{0}\, <\, ρ\, <\, {a}_{1}\end{equation*}
 
-\begin{equation*}{E}(ρ)\, =\, [{U}_{20}/(ε_{2}{S}ρ)]{e}_{ρ},\, \quad \, {a}_{1}\, <\, ρ\, <\, {a}_{2}\end{equation*}
-\item \Needspace{6\baselineskip}
-\textbf{Result:} these expressions use the path orientation specified in the sheet. Positive U\textsubscript{20} gives positive σ\textsubscript{0} and an outward field.
+\begin{equation*}{E}(ρ)\, =\, -\dfrac{{U}_{20}}{ε_{2}{S}ρ}{e}_{ρ},\, \quad \, {a}_{1}\, <\, ρ\, <\, {a}_{2}\end{equation*}
+\item \Needspace{8\baselineskip}
+\textbf{Result:} for positive U\textsubscript{20} the outer cylinder is at the higher potential, so σ\textsubscript{0} \ensuremath{<} 0, σ\textsubscript{2} = \ensuremath{-}σ\textsubscript{0}\textit{a}\textsubscript{0}/\textit{a}\textsubscript{2} \ensuremath{>} 0, and the field points inward, from the outer cylinder to the inner one.
 
-\textbf{Check:} integrating the resulting E over both layers returns U\textsubscript{20}. The field has units V/m and σ\textsubscript{0} has units C/m².
+\textbf{Check:} the field points from high to low potential, and the outer cylinder (node 2) is high when U\textsubscript{20} \ensuremath{>} 0, so an inward field is right. Integrating the resulting E inward from \textit{a}\textsubscript{2} to \textit{a}\textsubscript{0} returns +U\textsubscript{20}. Likely mistake: integrating outward from P\textsubscript{0} to P\textsubscript{2}, which flips every sign. The field has units V/m and σ\textsubscript{0} has units C/m².
 \end{enumerate}
 \end{workedbox}
 
@@ -314,16 +314,16 @@ Rearrange for the inner surface charge density, then substitute it back into D a
 \begin{keepsection}\subsection{Task 10: Two-dielectric coaxial capacitor}
 
 \begin{workedbox}{10c \ensuremath{\cdot} Capacitance per unit length}
-\Needspace{8\baselineskip}
+\Needspace{9\baselineskip}
 \begin{enumerate}
 \item \Needspace{5\baselineskip}
-The magnitude of charge on the facing inner surface over length Δz is Q = σ\textsubscript{0} 2πa\textsubscript{0}Δz. Capacitance is charge divided by voltage:
+Capacitance is the charge on the electrode at the higher potential divided by the voltage. For U\textsubscript{20} \ensuremath{>} 0 that is the outer cylinder, whose facing surface carries Q = σ\textsubscript{2} 2π\textit{a}\textsubscript{2}Δ\textit{z} = \ensuremath{-}σ\textsubscript{0} 2π\textit{a}\textsubscript{0}Δ\textit{z}:
 
-\begin{equation*}{C}\, =\, {Q}/{U}_{20}\, =\, (σ_{0}2π{a}_{0}Δ{z})/{U}_{20}\end{equation*}
+\begin{equation*}{C}\, =\, \dfrac{{Q}}{{U}_{20}}\, =\, \dfrac{-σ_{0}2π{a}_{0}Δ{z}}{{U}_{20}}\end{equation*}
 \item \Needspace{4\baselineskip}
-Substitute σ\textsubscript{0} = U\textsubscript{20}/(a\textsubscript{0}S). The voltage and a\textsubscript{0} cancel:
+Substitute σ\textsubscript{0} = \ensuremath{-}U\textsubscript{20}/(a\textsubscript{0}S). The signs, the voltage and a\textsubscript{0} cancel:
 
-\begin{equation*}{C}\, =\, 2πΔ{z}/{S};\, \quad \, {C}_{\mathrm{B}}\, =\, {C}/Δ{z}\, =\, 2π/{S}\end{equation*}
+\begin{equation*}{C}\, =\, \dfrac{2πΔ{z}}{{S}};\, \quad \, {C}_{\mathrm{B}}\, =\, \dfrac{{C}}{Δ{z}}\, =\, \dfrac{2π}{{S}}\end{equation*}
 \item \Needspace{5\baselineskip}
 \textbf{Result:} C is the capacitance over length Δz; C\textsubscript{B} is the capacitance loading per unit length.
 
@@ -342,7 +342,7 @@ Substitute σ\textsubscript{0} = U\textsubscript{20}/(a\textsubscript{0}S). The 
 For ρ \ensuremath{>} a\textsubscript{2}, a Gaussian cylinder outside both facing surfaces encloses their total charge per length:
 
 \Needspace{5\baselineskip}
-\begin{equation*}{q}_{\text{enc}}/Δ{z}\, =\, 2π{a}_{0}σ_{0}\, +\, 2π{a}_{2}σ_{2}\, =\, 0\end{equation*}
+\begin{equation*}\dfrac{{q}_{\text{enc}}}{Δ{z}}\, =\, 2π{a}_{0}σ_{0}\, +\, 2π{a}_{2}σ_{2}\, =\, 0\end{equation*}
 
 The cancellation uses σ\textsubscript{2} = \ensuremath{-}σ\textsubscript{0}a\textsubscript{0}/a\textsubscript{2}. Therefore D and E vanish outside the outer conductor; they also vanish within its metal wall.
 \item \Needspace{4\baselineskip}

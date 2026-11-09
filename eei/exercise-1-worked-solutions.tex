@@ -233,13 +233,16 @@ Given \textit{H} = \textit{H}\textsubscript{0}(\textit{ρ}/\textit{a})\textit{e}
 \begin{keepsection}\subsection{Task 1: Cylinder in cylindrical coordinates}
 
 \begin{workedbox}{1a \ensuremath{\cdot} Surface coordinates}
-\Needspace{13\baselineskip}
+\Needspace{16\baselineskip}
 \begin{enumerate}
 \item \Needspace{5\baselineskip}
 In cylindrical coordinates, \textit{ρ} measures distance from the axis, \textit{φ} gives the angle around it, and \textit{z} gives height. A point has position:
 
 \Needspace{5\baselineskip}
 \begin{equation*}{r}\, =\, {ρ\,e}_{ρ}\, +\, {z\,e}_{\mathrm{z}}\end{equation*}
+
+\Needspace{6\baselineskip}
+The angle has no term of its own: it sits in the direction of \textit{e}\textsubscript{ρ} = cos \textit{φ e}\textsubscript{\textit{x}} + sin \textit{φ e}\textsubscript{\textit{y}}, which turns as you go round the axis. So \textit{r} still depends on all three coordinates.
 
 To describe a surface, hold one coordinate fixed and let the other two run over the part of the surface we want.
 \item \Needspace{4\baselineskip}
@@ -255,10 +258,19 @@ To describe a surface, hold one coordinate fixed and let the other two run over 
 
 \begin{equation*}{z}\, =\, {h};\, 0\, \leq \, {ρ}\, \leq \, {a};\, 0\, \leq \, {φ}\, <\, 2π\end{equation*}
 \item \Needspace{4\baselineskip}
-\textbf{Result:} the coordinate forms are:
+\textbf{Result:} as position vectors, with the ranges above:
+
+\Needspace{4\baselineskip}
+\begin{equation*}\text{base}:\, {r}\, =\, {ρ\,e}_{ρ}\end{equation*}
+
+\Needspace{4\baselineskip}
+\begin{equation*}\text{side}:\, {r}\, =\, {a\,e}_{ρ}\, +\, {z\,e}_{\mathrm{z}}\end{equation*}
+
+\Needspace{4\baselineskip}
+\begin{equation*}\text{top}:\, {r}\, =\, {ρ\,e}_{ρ}\, +\, {h\,e}_{\mathrm{z}}\end{equation*}
 
 \Needspace{5\baselineskip}
-\begin{equation*}\text{base}\, ({ρ},\, {φ},\, 0);\, \text{side}\, ({a},\, {φ},\, {z});\, \text{top}\, ({ρ},\, {φ},\, {h})\end{equation*}
+In coordinates (\textit{ρ}, \textit{φ}, \textit{z}) these are (\textit{ρ}, \textit{φ}, 0), (\textit{a}, \textit{φ}, \textit{z}) and (\textit{ρ}, \textit{φ}, \textit{h}).
 
 \textbf{Check:} only the side fixes the radius. Each disk includes the centre and reaches all the way to \textit{a}.
 \end{enumerate}
@@ -294,15 +306,15 @@ To describe a surface, hold one coordinate fixed and let the other two run over 
 \item \Needspace{4\baselineskip}
 A small surface patch grows with both directions around the sphere. Its area element is:
 
-\begin{equation*}\mathrm{d}{A}\, =\, {a}^{2}\, \text{sin}\, {θ}\, \mathrm{d}{θ}\, \mathrm{d}{φ}\end{equation*}
+\begin{equation*}\mathrm{d}{A}\, =\, {a}^{2}\, \sin \, {θ}\, \mathrm{d}{θ}\, \mathrm{d}{φ}\end{equation*}
 \item \Needspace{4\baselineskip}
 Integrate over the curved part:
 
-\begin{equation*}{A}_{\text{curve}}\, =\, \int_{0}^{2π} \, \int_{0}^{π/2} \, {a}^{2}\, \text{sin}\, {θ}\, \mathrm{d}{θ}\, \mathrm{d}{φ}\end{equation*}
+\begin{equation*}{A}_{\text{curve}}\, =\, \int_{0}^{2π} \, \int_{0}^{π/2} \, {a}^{2}\, \sin \, {θ}\, \mathrm{d}{θ}\, \mathrm{d}{φ}\end{equation*}
 \item \Needspace{4\baselineskip}
 The angular integral gives 1 and the azimuthal integral gives 2π:
 
-\begin{equation*}\int_{0}^{π/2} \, \text{sin}\, {θ}\, \mathrm{d}{θ}\, =\, [-\text{cos}\, {θ}]_{0}^{π/2}\, =\, 1;\, \quad \, {A}_{\text{curve}}\, =\, 2π{a}^{2}\end{equation*}
+\begin{equation*}\int_{0}^{π/2} \, \sin \, {θ}\, \mathrm{d}{θ}\, =\, [-\cos \, {θ}]_{0}^{π/2}\, =\, 1;\, \quad \, {A}_{\text{curve}}\, =\, 2π{a}^{2}\end{equation*}
 \item \Needspace{4\baselineskip}
 The flat base is a disk of radius \textit{a}. Add the boundary pieces:
 
@@ -323,20 +335,20 @@ The flat base is a disk of radius \textit{a}. Add the boundary pieces:
 \item \Needspace{5\baselineskip}
 The spherical-coordinate volume element includes the coordinate Jacobian, which accounts for angular patches widening away from the origin:
 
-\begin{equation*}\mathrm{d}{V}\, =\, {r}^{2}\, \text{sin}\, {θ}\, \mathrm{d}{r}\, \mathrm{d}{θ}\, \mathrm{d}{φ}\end{equation*}
+\begin{equation*}\mathrm{d}{V}\, =\, {r}^{2}\, \sin \, {θ}\, \mathrm{d}{r}\, \mathrm{d}{θ}\, \mathrm{d}{φ}\end{equation*}
 \item \Needspace{4\baselineskip}
 Set up the integral. The factors depend on separate variables:
 
-\begin{equation*}{V}\, =\, \int_{0}^{2π} \, \int_{0}^{π/2} \, \int_{0}^{{a}} \, {r}^{2}\, \text{sin}\, {θ}\, \mathrm{d}{r}\, \mathrm{d}{θ}\, \mathrm{d}{φ}\end{equation*}
+\begin{equation*}{V}\, =\, \int_{0}^{2π} \, \int_{0}^{π/2} \, \int_{0}^{{a}} \, {r}^{2}\, \sin \, {θ}\, \mathrm{d}{r}\, \mathrm{d}{θ}\, \mathrm{d}{φ}\end{equation*}
 \item \Needspace{4\baselineskip}
 Evaluate each factor:
 
-\begin{equation*}\int_{0}^{{a}} \, {r}^{2}\, \mathrm{d}{r}\, =\, {a}^{3}/3;\, \quad \, \int_{0}^{π/2} \, \text{sin}\, {θ}\, \mathrm{d}{θ}\, =\, 1;\, \quad \, \int_{0}^{2π} \, \mathrm{d}{φ}\, =\, 2π\end{equation*}
+\begin{equation*}\int_{0}^{{a}} \, {r}^{2}\, \mathrm{d}{r}\, =\, \dfrac{{a}^{3}}{3};\, \quad \, \int_{0}^{π/2} \, \sin \, {θ}\, \mathrm{d}{θ}\, =\, 1;\, \quad \, \int_{0}^{2π} \, \mathrm{d}{φ}\, =\, 2π\end{equation*}
 \item \Needspace{4\baselineskip}
 \textbf{Result:}
 
 \Needspace{4\baselineskip}
-\begin{equation*}{V}\, =\, ({a}^{3}/3)(1)(2π)\, =\, 2π{a}^{3}/3\end{equation*}
+\begin{equation*}{V}\, =\, \dfrac{{a}^{3}}{3}(1)(2π)\, =\, \dfrac{2π{a}^{3}}{3}\end{equation*}
 
 \textbf{Check:} it is half the full sphere’s 4π\textit{a}\textsuperscript{3}/3 volume, and its units are length cubed.
 \end{enumerate}
@@ -351,19 +363,19 @@ Evaluate each factor:
 \item \Needspace{4\baselineskip}
 Parameterize the circle by its angle:
 
-\begin{equation*}{r}({φ})\, =\, {b}\, \text{cos}\, {φ\,e}_{\mathrm{x}}\, +\, {b}\, \text{sin}\, {φ\,e}_{\mathrm{y}},\, \quad \, 0\, \leq \, {φ}\, \leq \, 2π\end{equation*}
+\begin{equation*}{r}({φ})\, =\, {b}\, \cos \, {φ\,e}_{\mathrm{x}}\, +\, {b}\, \sin \, {φ\,e}_{\mathrm{y}},\, \quad \, 0\, \leq \, {φ}\, \leq \, 2π\end{equation*}
 \item \Needspace{4\baselineskip}
 Differentiate with respect to the path parameter to get the tangent line element:
 
-\begin{equation*}\mathrm{d}{s}\, =\, (-{b}\, \text{sin}\, {φ\,e}_{\mathrm{x}}\, +\, {b}\, \text{cos}\, {φ\,e}_{\mathrm{y}})\, \mathrm{d}{φ}\, =\, {b\,e}_{φ}\, \mathrm{d}{φ}\end{equation*}
+\begin{equation*}\mathrm{d}{s}\, =\, (-{b}\, \sin \, {φ\,e}_{\mathrm{x}}\, +\, {b}\, \cos \, {φ\,e}_{\mathrm{y}})\, \mathrm{d}{φ}\, =\, {b\,e}_{φ}\, \mathrm{d}{φ}\end{equation*}
 \item \Needspace{4\baselineskip}
 Take the dot product with the constant field:
 
-\begin{equation*}{H}\, \cdot \, \mathrm{d}{s}\, =\, -{b\,H}_{0}\, \text{sin}\, {φ}\, \mathrm{d}{φ}\end{equation*}
+\begin{equation*}{H}\, \cdot \, \mathrm{d}{s}\, =\, -{b\,H}_{0}\, \sin \, {φ}\, \mathrm{d}{φ}\end{equation*}
 \item \Needspace{4\baselineskip}
 Integrate over the whole circle:
 
-\begin{equation*}\oint \, {H}\, \cdot \, \mathrm{d}{s}\, =\, -{b\,H}_{0}\, \int_{0}^{2π} \, \text{sin}\, {φ}\, \mathrm{d}{φ}\, =\, {b\,H}_{0}[\text{cos}\, {φ}]_{0}^{2π}\end{equation*}
+\begin{equation*}\oint \, {H}\, \cdot \, \mathrm{d}{s}\, =\, -{b\,H}_{0}\, \int_{0}^{2π} \, \sin \, {φ}\, \mathrm{d}{φ}\, =\, {b\,H}_{0}[\cos \, {φ}]_{0}^{2π}\end{equation*}
 \item \Needspace{4\baselineskip}
 \textbf{Result:}
 
@@ -415,20 +427,20 @@ The path is the circle ρ = \textit{b}, with φ increasing:
 \item \Needspace{4\baselineskip}
 Substitute ρ = \textit{b} into the field. Its magnitude is constant along this circle:
 
-\begin{equation*}{H}\, =\, {H}_{0}({b}/{a}){e}_{φ}\end{equation*}
+\begin{equation*}{H}\, =\, {H}_{0}\dfrac{{b}}{{a}}{e}_{φ}\end{equation*}
 \item \Needspace{4\baselineskip}
 Both vectors point along \textit{e}\textsubscript{φ}, whose dot product with itself is 1:
 
-\begin{equation*}{H}\, \cdot \, \mathrm{d}{s}\, =\, {H}_{0}({b}^{2}/{a})\, \mathrm{d}{φ}\end{equation*}
+\begin{equation*}{H}\, \cdot \, \mathrm{d}{s}\, =\, {H}_{0}\dfrac{{b}^{2}}{{a}}\, \mathrm{d}{φ}\end{equation*}
 \item \Needspace{4\baselineskip}
 Integrate the constant around one revolution:
 
-\begin{equation*}\oint \, {H}\, \cdot \, \mathrm{d}{s}\, =\, \int_{0}^{2π} \, {H}_{0}({b}^{2}/{a})\, \mathrm{d}{φ}\, =\, 2π{H}_{0}{b}^{2}/{a}\end{equation*}
+\begin{equation*}\oint \, {H}\, \cdot \, \mathrm{d}{s}\, =\, \int_{0}^{2π} \, {H}_{0}\dfrac{{b}^{2}}{{a}}\, \mathrm{d}{φ}\, =\, \dfrac{2π{H}_{0}{b}^{2}}{{a}}\end{equation*}
 \item \Needspace{4\baselineskip}
 \textbf{Result:}
 
 \Needspace{4\baselineskip}
-\begin{equation*}\oint \, {H}\, \cdot \, \mathrm{d}{s}\, =\, 2π{H}_{0}{b}^{2}/{a}\end{equation*}
+\begin{equation*}\oint \, {H}\, \cdot \, \mathrm{d}{s}\, =\, \dfrac{2π{H}_{0}{b}^{2}}{{a}}\end{equation*}
 
 \Needspace{5\baselineskip}
 It is positive for the assumed counterclockwise direction.
