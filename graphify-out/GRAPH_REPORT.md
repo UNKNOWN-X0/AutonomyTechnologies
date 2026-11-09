@@ -1,17 +1,17 @@
 # Graph Report - AutonomyTechnologies  (2026-11-09)
 
 ## Corpus Check
-- 67 files · ~247,263 words
+- 67 files · ~247,400 words
 - Verdict: corpus is large enough that graph structure adds value.
 - Unclassified: 6 file(s) not represented in the graph (top: .css 4, (none) 2)
 
 ## Summary
-- 1055 nodes · 2023 edges · 54 communities (42 shown, 12 thin omitted)
+- 1056 nodes · 2024 edges · 54 communities (42 shown, 12 thin omitted)
 - Extraction: 88% EXTRACTED · 12% INFERRED · 0% AMBIGUOUS · INFERRED: 248 edges (avg confidence: 0.86)
 - Token cost: 0 input · 0 output
 
 ## Graph Freshness
-- Built from commit: `7c488b8b`
+- Built from commit: `98559828`
 - Run `git rev-parse HEAD` and compare to check if the graph is stale.
 - Run `graphify update .` after code changes (no API cost).
 
@@ -269,7 +269,7 @@ Nodes (5): big_op(), math(), math_text(), math_wrap(), var_math()
 
 ## Knowledge Gaps
 - **10 isolated node(s):** `Study Pages preview showing Electrical Engineering 1 and Mathematics for Engineers I course cards`, `Active-recall study workflow`, `Jekyll site CI`, `LaTeX, Pandoc, and KaTeX publishing pipeline`, `Bernhard Kainz` (+5 more)
-  These have ≤1 connection - possible missing edges or undocumented components. (Counts symbols only; 314 node(s) total have ≤1 connection when file, concept and rationale nodes are included.)
+  These have ≤1 connection - possible missing edges or undocumented components. (Counts symbols only; 315 node(s) total have ≤1 connection when file, concept and rationale nodes are included.)
 - **12 thin communities (<3 nodes) omitted from report** — run `graphify query` to explore isolated nodes.
 
 ## Work-memory lessons
@@ -281,7 +281,7 @@ Nodes (5): big_op(), math(), math_text(), math_wrap(), var_math()
 _Questions this graph is uniquely positioned to answer:_
 
 - **Why does `Markup` connect `Typed-formula reader and lab plan` to `Project overview documents`, `MEI 1 lab: logic and sets`?**
-  _High betweenness centrality (0.174) - this node is a cross-community bridge._
+  _High betweenness centrality (0.169) - this node is a cross-community bridge._
 - **Are the 3 inferred relationships involving `fieldPlayground()` (e.g. with `eei/ch1-lab.js` and `endDrag()`) actually correct?**
   _`fieldPlayground()` has 3 INFERRED edges - model-reasoned connections that need verification._
 - **What connects `Study Pages preview showing Electrical Engineering 1 and Mathematics for Engineers I course cards`, `Active-recall study workflow`, `Jekyll site CI` to the rest of the system?**
@@ -289,7 +289,7 @@ _Questions this graph is uniquely positioned to answer:_
 - **Should `EEI 1 lab: fields and capacitors` be split into smaller, more focused modules?**
   _Cohesion score 0.05303030303030303 - nodes in this community are weakly interconnected._
 - **Why does `Study guide standard` connect `Project overview documents` to `Home page and guide rules`, `Typed-formula reader and lab plan`?**
-  _High betweenness centrality (0.108) - this node is a cross-community bridge._
+  _High betweenness centrality (0.104) - this node is a cross-community bridge._
 - **Are the 2 inferred relationships involving `capacitorBench()` (e.g. with `eei/ch1-lab.js` and `resize()`) actually correct?**
   _`capacitorBench()` has 2 INFERRED edges - model-reasoned connections that need verification._
 - **Should `Site look: design rules` be split into smaller, more focused modules?**

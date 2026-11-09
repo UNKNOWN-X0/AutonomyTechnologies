@@ -48,9 +48,9 @@
     "semantic_hash": ""
   },
   "js/index.js": {
-    "mtime": 1794225561.9146254,
-    "seen": 1794225593.349458,
-    "ast_hash": "23061024335d4ab2ad36f9ad86cac983",
+    "mtime": 1794226312.247566,
+    "seen": 1794226561.635678,
+    "ast_hash": "65426fb6c20de60531244193ea446824",
     "semantic_hash": ""
   },
   ".impeccable/surfaces/index-html.md": {
@@ -450,9 +450,9 @@
     "semantic_hash": ""
   },
   "js/hud.js": {
-    "mtime": 1793802379.0469172,
-    "seen": 1793802479.7221708,
-    "ast_hash": "e77485c3da0326f01c13874d7006ec8d",
+    "mtime": 1794226444.4519758,
+    "seen": 1794226561.6356769,
+    "ast_hash": "9c03da5ab12c42e347ed5e4dc9e83167",
     "semantic_hash": ""
   },
   "about/how-to-use.html": {
@@ -462,9 +462,9 @@
     "semantic_hash": ""
   },
   "about/version-log.html": {
-    "mtime": 1794225550.999214,
-    "seen": 1794225593.349494,
-    "ast_hash": "dc541ea0a80e1a30e777e443f25eacc9",
+    "mtime": 1794226522.2692175,
+    "seen": 1794226561.635713,
+    "ast_hash": "75ab8801c9cab5c2708cc2104223e419",
     "semantic_hash": ""
   },
   "docs/DIAGRAM-AND-LAB-PLAN.md": {
@@ -498,8 +498,8 @@
     "semantic_hash": ""
   },
   "assets/graph-orb.json": {
-    "mtime": 1794225604.2928238,
-    "seen": 1794225747.9234402,
+    "mtime": 1794225778.325457,
+    "seen": 1794226561.635658,
     "ast_hash": "62ee43c1f37a38350f868185a2a00ca4",
     "semantic_hash": ""
   },

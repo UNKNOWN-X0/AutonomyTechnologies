@@ -228,6 +228,7 @@
       });
       // the "N chapters" fold belongs to the Lecture list only
       sub.classList.toggle("part-other", labels[index].toLowerCase() !== "lecture");
+      sub.dispatchEvent(new CustomEvent("parttab")); // the fold below relabels itself for the open tab
       if (focus) tabs[index].focus();
       if (save) {
         tabMemory[code] = labels[index];
@@ -240,35 +241,50 @@
   });
   reroute();
 
-  // Subjects fold their chapter lists. Until any chapter is started everything is open; after that a subject you have
-  // started opens by default and the rest start folded. A subject you open or fold yourself stays that way (saved here).
+  // Subjects fold what they show: the chapter list, or with tabs (above) the open tab's rows. Until any chapter is started
+  // everything is open; after that a subject you have started opens by default and the rest start folded. A subject you
+  // open or fold yourself stays that way (saved here), whichever tab is open. The button names what it folds
+  // ("2 chapters", "4 exercises") and steps aside on a tab with nothing to fold.
   var folds = read("hub-folds", {}),
     anyStarted = !!document.querySelector("li.chapter.started");
   document.querySelectorAll("li.subject").forEach(function (sub, n) {
     var list = sub.querySelector("ol.chapters"),
-      items = list ? list.querySelectorAll("li.chapter") : [],
+      target = sub.querySelector(".part-panels") || list,
       about = sub.querySelector(".about"),
       code = (sub.querySelector(".code") || {}).textContent;
-    if (!items.length || !about) return;
+    if (!target || !list || !list.querySelector("li.chapter") || !about) return;
     var btn = document.createElement("button");
     btn.type = "button";
     btn.className = "subject-fold";
-    list.id = list.id || "chapters-" + n;
-    btn.setAttribute("aria-controls", list.id);
-    btn.textContent = items.length + (items.length === 1 ? " chapter" : " chapters");
+    target.id = target.id || "fold-" + n;
+    btn.setAttribute("aria-controls", target.id);
     about.appendChild(btn);
+    function label() {
+      var tab = sub.querySelector('.part-tab[aria-selected="true"]'),
+        name = tab ? tab.textContent.trim().toLowerCase() : "lecture",
+        count = name === "lecture" ? list.querySelectorAll("li.chapter").length : sub.querySelectorAll(".part-panel:not([hidden]) .part-item").length,
+        noun = name === "lecture" ? "chapter" : name;
+      btn.hidden = !count;
+      btn.textContent = count + " " + noun + (count === 1 ? "" : "s");
+      // a tab with nothing to fold (Tutorial: "nothing posted yet") always shows its message
+      target.hidden = count ? !isOpen : false;
+    }
+    var isOpen = true;
     function set(open) {
-      list.hidden = !open;
+      isOpen = open;
+      target.hidden = !open;
       btn.setAttribute("aria-expanded", String(open));
       sub.classList.toggle("folded", !open);
     }
     set(code in folds ? folds[code] : !anyStarted || !!sub.querySelector("li.chapter.started"));
+    label();
+    sub.addEventListener("parttab", label);
     btn.addEventListener("click", function () {
-      set(list.hidden);
-      folds[code] = !list.hidden;
-      list.classList.toggle("opening", !list.hidden);
+      set(!isOpen);
+      folds[code] = isOpen;
+      target.classList.toggle("opening", !target.hidden);
       setTimeout(function () {
-        list.classList.remove("opening");
+        target.classList.remove("opening");
       }, 300);
       try {
         localStorage.setItem("hub-folds", JSON.stringify(folds));

@@ -432,6 +432,9 @@ html.sweeping .chapter.started:not(.lit) .no::before {
 }
 
 /* Folding: a subject's chapter list and the board's not-yet-due rows (js/index.js). */
+.subject-fold[hidden] {
+  display: none;
+}
 .subject-fold,
 .board-more {
   display: inline-flex;
@@ -474,7 +477,8 @@ html.sweeping .chapter.started:not(.lit) .no::before {
   text-underline-offset: 3px;
 }
 @media (prefers-reduced-motion: no-preference) {
-  .chapters.opening {
+  .chapters.opening,
+  .part-panels.opening {
     animation: fold-open 240ms var(--ease) both;
   }
 }
@@ -568,6 +572,20 @@ html.sweeping .chapter.started:not(.lit) .no::before {
   border: 2px dashed var(--line);
   color: var(--muted);
   font: 600 0.9rem/1 var(--f-display);
+}
+/* A subject with a single part (MATLAB: "Course · not started yet") shows it as a quiet status in the switch's shape:
+   same height, frame and type, grey, no square. */
+.parts:not([role="tablist"]) li {
+  box-sizing: border-box;
+  min-height: 40px;
+  padding: 0 16px;
+  border: 2px solid var(--line);
+  background: none;
+  color: var(--muted);
+  font: 700 0.9rem/1 var(--f-display);
+}
+.parts:not([role="tablist"]) li::before {
+  display: none;
 }
 /* Course parts as tabs (js/index.js): one segmented control like the guides' Guide | Lab switch, the open tab solid.
    A part with material has blue text; an empty part is muted. */
@@ -663,10 +681,6 @@ html.sweeping .chapter.started:not(.lit) .no::before {
   padding: 16px 0;
   border-top: 1px solid var(--line);
   color: var(--muted);
-}
-/* The "N chapters" fold belongs to the Lecture list, so it steps aside while another tab is open. */
-.subject.part-other .subject-fold {
-  display: none;
 }
 .chapters {
   grid-column: 2 / -1;
