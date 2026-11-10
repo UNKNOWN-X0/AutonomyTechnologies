@@ -451,7 +451,9 @@
   }
   function arrow(svg, x1, y1, x2, y2, cls) {
     // the shaft stops inside the head, so it never shows through the tip
-    var size = HEAD[cls || ""] || HEAD[""], len = Math.hypot(x2 - x1, y2 - y1), k = len ? (0.8 * size[0]) / len : 0;
+    // it ends 0.6 head-lengths behind the tip, past the notch (0.72), where the head is already wider than the shaft,
+    // so the head covers the shaft's square end: no gap at the notch and no corners beside it
+    var size = HEAD[cls || ""] || HEAD[""], len = Math.hypot(x2 - x1, y2 - y1), k = len ? (0.6 * size[0]) / len : 0;
     el("line", { x1: x1, y1: y1, x2: x2 - (x2 - x1) * k, y2: y2 - (y2 - y1) * k, class: cls || "vz-line" }, svg);
     head(svg, null, x1, y1, x2, y2, cls === "vz-seg" ? "vz-head hot" : "vz-head", size);
   }
