@@ -264,7 +264,7 @@
     chs.forEach(function (c, i) {
       if (c.guide === here || c.lab === here) cur = i;
     });
-    if (cur < 0) return;
+    if (cur < 0) return false;
     function href(c) {
       return "../" + ((lab && c.lab) || c.guide);
     }
@@ -335,13 +335,15 @@
       });
       main.appendChild(nav);
     }
+    return true;
   }
   var cached = null;
   try {
     cached = JSON.parse(sessionStorage.getItem(KEY));
   } catch (e) {}
-  if (cached) show(cached);
-  else if (window.fetch)
+  // a list saved earlier in this tab may predate the page being on the hub (a new tutorial, say): then fetch afresh
+  if (cached && show(cached)) return;
+  if (window.fetch)
     fetch(new URL("index.html", root))
       .then(function (r) {
         return r.ok ? r.text() : Promise.reject();
