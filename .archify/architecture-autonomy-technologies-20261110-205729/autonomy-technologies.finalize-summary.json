@@ -1,0 +1,322 @@
+{
+  "schemaVersion": 1,
+  "ok": true,
+  "command": "finalize",
+  "status": "pass",
+  "type": "architecture",
+  "quality": "showcase",
+  "specification": {
+    "path": "/Users/thanate/Developer/Education/AutonomyTechnologies/.archify/architecture-autonomy-technologies-20261110-205729/candidate.json",
+    "sha256": "de67828daaa58926cfb28515a21ff723c3f1493bc33c05bc3e894a72f899f1eb",
+    "bytes": 16398
+  },
+  "artifact": {
+    "path": "/Users/thanate/Developer/Education/AutonomyTechnologies/.archify/architecture-autonomy-technologies-20261110-205729/autonomy-technologies.html",
+    "sha256": "b2016732dc0e7c0c070b6ad87232d97f82540902b698f7da98e9a8278ee30bfb",
+    "bytes": 868901
+  },
+  "gates": {
+    "validate": "pass",
+    "deliver": "pass",
+    "check": "pass",
+    "browser-check": "pass"
+  },
+  "diagnostics": [],
+  "diagnosticSummary": {
+    "total": 0,
+    "shown": 0,
+    "truncated": false
+  },
+  "evidence": {
+    "receipt": "/Users/thanate/Developer/Education/AutonomyTechnologies/.archify/architecture-autonomy-technologies-20261110-205729/autonomy-technologies.finalize.json",
+    "summaryReceipt": "/Users/thanate/Developer/Education/AutonomyTechnologies/.archify/architecture-autonomy-technologies-20261110-205729/autonomy-technologies.finalize-summary.json",
+    "browserCheckReceipt": "/Users/thanate/Developer/Education/AutonomyTechnologies/.archify/architecture-autonomy-technologies-20261110-205729/autonomy-technologies.browser-check.json"
+  },
+  "update": {
+    "status": "current",
+    "installedVersion": "3.2.0",
+    "availableVersion": "3.2.0",
+    "releaseNotes": null,
+    "checkedAt": "2026-11-10T19:57:39.154Z",
+    "source": "cache",
+    "noticeRequired": false,
+    "noticeText": null
+  },
+  "visualReview": "not-requested",
+  "durationMs": 6215,
+  "browserCheck": {
+    "requested": true,
+    "ran": true
+  },
+  "visualReviewRecommendation": {
+    "action": "inspect-route-readability",
+    "signals": {
+      "resolvedCrossovers": 8,
+      "routesOverSuggestedBends": 3
+    },
+    "reason": "Automated gates passed, but crossings or detours still need perceptual review before claiming visual quality.",
+    "affectedRoutes": {
+      "crossings": [
+        {
+          "left": {
+            "id": "hub-settings",
+            "from": "hub",
+            "to": "settings",
+            "label": "loads in head",
+            "collectionIndex": 5,
+            "artifactIndex": 6
+          },
+          "right": {
+            "id": "repo-deploys",
+            "from": "repo",
+            "to": "pages-host",
+            "label": "push main",
+            "collectionIndex": 18,
+            "artifactIndex": 19
+          },
+          "point": [
+            404,
+            258.84615384615387
+          ]
+        },
+        {
+          "left": {
+            "id": "nav-hub",
+            "from": "nav",
+            "to": "hub",
+            "label": "fetch index.html",
+            "collectionIndex": 8,
+            "artifactIndex": 9
+          },
+          "right": {
+            "id": "guide-writes",
+            "from": "guide",
+            "to": "local-store",
+            "label": "ticks, reviews",
+            "collectionIndex": 13,
+            "artifactIndex": 14
+          },
+          "point": [
+            658,
+            266
+          ]
+        },
+        {
+          "left": {
+            "id": "hub-orb",
+            "from": "hub",
+            "to": "orb",
+            "label": "footer, near view",
+            "collectionIndex": 9,
+            "artifactIndex": 10
+          },
+          "right": {
+            "id": "settings-writes",
+            "from": "settings",
+            "to": "local-store",
+            "label": "site-settings",
+            "collectionIndex": 11,
+            "artifactIndex": 12
+          },
+          "point": [
+            410.00000000000006,
+            396.0000000000001
+          ]
+        },
+        {
+          "left": {
+            "id": "hub-orb",
+            "from": "hub",
+            "to": "orb",
+            "label": "footer, near view",
+            "collectionIndex": 9,
+            "artifactIndex": 10
+          },
+          "right": {
+            "id": "repo-deploys",
+            "from": "repo",
+            "to": "pages-host",
+            "label": "push main",
+            "collectionIndex": 18,
+            "artifactIndex": 19
+          },
+          "point": [
+            404.00000000000006,
+            396.0000000000001
+          ]
+        },
+        {
+          "left": {
+            "id": "settings-writes",
+            "from": "settings",
+            "to": "local-store",
+            "label": "site-settings",
+            "collectionIndex": 11,
+            "artifactIndex": 12
+          },
+          "right": {
+            "id": "repo-deploys",
+            "from": "repo",
+            "to": "pages-host",
+            "label": "push main",
+            "collectionIndex": 18,
+            "artifactIndex": 19
+          },
+          "point": [
+            404,
+            273.15384615384613
+          ]
+        },
+        {
+          "left": {
+            "id": "guide-writes",
+            "from": "guide",
+            "to": "local-store",
+            "label": "ticks, reviews",
+            "collectionIndex": 13,
+            "artifactIndex": 14
+          },
+          "right": {
+            "id": "lab-writes",
+            "from": "lab",
+            "to": "local-store",
+            "label": "answers, lab ticks",
+            "collectionIndex": 14,
+            "artifactIndex": 15
+          },
+          "point": [
+            658,
+            341.5
+          ],
+          "sharedNode": "local-store"
+        },
+        {
+          "left": {
+            "id": "lab-writes",
+            "from": "lab",
+            "to": "local-store",
+            "label": "answers, lab ticks",
+            "collectionIndex": 14,
+            "artifactIndex": 15
+          },
+          "right": {
+            "id": "nav-caches",
+            "from": "nav",
+            "to": "session-store",
+            "label": "cache list",
+            "collectionIndex": 15,
+            "artifactIndex": 16
+          },
+          "point": [
+            801,
+            341.5
+          ]
+        },
+        {
+          "left": {
+            "id": "lab-writes",
+            "from": "lab",
+            "to": "local-store",
+            "label": "answers, lab ticks",
+            "collectionIndex": 14,
+            "artifactIndex": 15
+          },
+          "right": {
+            "id": "guide-offers",
+            "from": "guide",
+            "to": "downloads",
+            "label": "Download PDF",
+            "collectionIndex": 22,
+            "artifactIndex": 23
+          },
+          "point": [
+            919.9999999999999,
+            341.49999999999994
+          ]
+        }
+      ],
+      "detours": [
+        {
+          "relationship": {
+            "id": "hub-orb",
+            "from": "hub",
+            "to": "orb",
+            "label": "footer, near view",
+            "collectionIndex": 9,
+            "artifactIndex": 10
+          },
+          "bends": 4,
+          "stretch": 1
+        },
+        {
+          "relationship": {
+            "id": "lab-writes",
+            "from": "lab",
+            "to": "local-store",
+            "label": "answers, lab ticks",
+            "collectionIndex": 14,
+            "artifactIndex": 15
+          },
+          "bends": 4,
+          "stretch": 1
+        },
+        {
+          "relationship": {
+            "id": "repo-deploys",
+            "from": "repo",
+            "to": "pages-host",
+            "label": "push main",
+            "collectionIndex": 18,
+            "artifactIndex": 19
+          },
+          "bends": 3,
+          "stretch": 1.06,
+          "directCorridorBlockers": [
+            {
+              "id": "settings",
+              "label": "Settings + HUD",
+              "box": [
+                220,
+                230,
+                160,
+                72
+              ]
+            },
+            {
+              "id": "orb",
+              "label": "Orb",
+              "box": [
+                220,
+                420,
+                160,
+                72
+              ]
+            },
+            {
+              "id": "orb-data",
+              "label": "Orb data",
+              "box": [
+                220,
+                610,
+                160,
+                72
+              ]
+            }
+          ]
+        }
+      ],
+      "truncated": false
+    },
+    "hints": [
+      "hub → settings crosses repo → pages-host: move the node of whichever is a branch, return, or second entrance to the other side of the main path, so that relationship runs through an empty corridor.",
+      "nav → hub crosses guide → local-store: move the node of whichever is a branch, return, or second entrance to the other side of the main path, so that relationship runs through an empty corridor.",
+      "hub → orb crosses settings → local-store: move the node of whichever is a branch, return, or second entrance to the other side of the main path, so that relationship runs through an empty corridor.",
+      "hub → orb crosses repo → pages-host: move the node of whichever is a branch, return, or second entrance to the other side of the main path, so that relationship runs through an empty corridor.",
+      "settings → local-store crosses repo → pages-host: move the node of whichever is a branch, return, or second entrance to the other side of the main path, so that relationship runs through an empty corridor.",
+      "guide → local-store and lab → local-store cross next to local-store: move node guide or lab so the two reach local-store from different sides (for example one level with it, one directly above or below it).",
+      "lab → local-store crosses nav → session-store: move the node of whichever is a branch, return, or second entrance to the other side of the main path, so that relationship runs through an empty corridor.",
+      "lab → local-store crosses guide → downloads: move the node of whichever is a branch, return, or second entrance to the other side of the main path, so that relationship runs through an empty corridor."
+    ],
+    "repair": "Trace these relationships at the desktop viewport. For Architecture, use references/architecture-layout-repair.md: reflow a blocked main path or tangled connected scene, and repair an isolated defect locally only when the surrounding composition is accepted. Preserve all semantic content and user-fixed geometry. Rerun finalize once after the edit."
+  }
+}

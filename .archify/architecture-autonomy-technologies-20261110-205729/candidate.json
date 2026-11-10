@@ -1,0 +1,750 @@
+{
+  "schema_version": 1,
+  "diagram_type": "architecture",
+  "meta": {
+    "title": "Study Site Architecture",
+    "output": ".archify/architecture-autonomy-technologies-20261110-205729/autonomy-technologies.html",
+    "quality_profile": "showcase",
+    "locale": "en",
+    "repository": {
+      "url": "https://github.com/UNKNOWN-X0/AutonomyTechnologies.git",
+      "provider": "github",
+      "link_mode": "web",
+      "revision": "a2a8e46a5f3dfa2a9011927cb3cf05d3f81d4280"
+    }
+  },
+  "components": [
+    {
+      "id": "learner",
+      "type": "external",
+      "label": "Learner",
+      "sublabel": "browser",
+      "pos": [
+        30,
+        40
+      ],
+      "size": [
+        120,
+        72
+      ],
+      "sources": [
+        {
+          "path": "about/how-to-use.html",
+          "line": 32,
+          "end_line": 34
+        }
+      ]
+    },
+    {
+      "id": "pages-host",
+      "type": "cloud",
+      "label": "GitHub Pages",
+      "sublabel": "Jekyll · main / root",
+      "pos": [
+        220,
+        40
+      ],
+      "size": [
+        160,
+        72
+      ],
+      "sources": [
+        {
+          "path": "README.md",
+          "line": 170,
+          "end_line": 176
+        }
+      ]
+    },
+    {
+      "id": "hub",
+      "type": "frontend",
+      "label": "Hub",
+      "sublabel": "index.html · js/index.js",
+      "pos": [
+        440,
+        40
+      ],
+      "size": [
+        170,
+        72
+      ],
+      "sources": [
+        {
+          "path": "index.html",
+          "line": 57,
+          "end_line": 63
+        },
+        {
+          "path": "js/index.js",
+          "line": 142,
+          "end_line": 145
+        },
+        {
+          "path": "js/index.js",
+          "line": 244,
+          "end_line": 247
+        }
+      ],
+      "tag": "board · route · tabs"
+    },
+    {
+      "id": "guide",
+      "type": "frontend",
+      "label": "Study pages",
+      "sublabel": "guides · worked pages · appendix",
+      "pos": [
+        706,
+        40
+      ],
+      "size": [
+        190,
+        80
+      ],
+      "sources": [
+        {
+          "path": "js/guide.js",
+          "line": 1,
+          "end_line": 12
+        },
+        {
+          "path": "index.html",
+          "line": 179,
+          "end_line": 183
+        },
+        {
+          "path": "eei/tutorial-1-worked-solutions.html",
+          "line": 89,
+          "end_line": 89
+        }
+      ],
+      "tag": "guide.js · ticks · review log"
+    },
+    {
+      "id": "lab",
+      "type": "frontend",
+      "label": "Labs",
+      "sublabel": "*-lab.html · js/lab.js",
+      "pos": [
+        937,
+        40
+      ],
+      "size": [
+        150,
+        72
+      ],
+      "sources": [
+        {
+          "path": "js/lab.js",
+          "line": 1,
+          "end_line": 17
+        },
+        {
+          "path": "js/lab.js",
+          "line": 560,
+          "end_line": 570
+        }
+      ],
+      "tag": "predict · reveal"
+    },
+    {
+      "id": "fonts",
+      "type": "cloud",
+      "label": "Google Fonts",
+      "sublabel": "Hanken Grotesk",
+      "pos": [
+        30,
+        230
+      ],
+      "size": [
+        120,
+        72
+      ],
+      "sources": [
+        {
+          "path": "index.html",
+          "line": 16,
+          "end_line": 19
+        }
+      ]
+    },
+    {
+      "id": "settings",
+      "type": "frontend",
+      "label": "Settings + HUD",
+      "sublabel": "settings.js → hud.js",
+      "pos": [
+        220,
+        230
+      ],
+      "size": [
+        160,
+        72
+      ],
+      "sources": [
+        {
+          "path": "js/settings.js",
+          "line": 1,
+          "end_line": 6
+        },
+        {
+          "path": "js/settings.js",
+          "line": 23,
+          "end_line": 26
+        },
+        {
+          "path": "js/hud.js",
+          "line": 1,
+          "end_line": 8
+        }
+      ],
+      "tag": "every page"
+    },
+    {
+      "id": "nav",
+      "type": "frontend",
+      "label": "Contents rail",
+      "sublabel": "js/nav.js · Chapters + pager",
+      "pos": [
+        706,
+        230
+      ],
+      "size": [
+        190,
+        72
+      ],
+      "sources": [
+        {
+          "path": "js/nav.js",
+          "line": 220,
+          "end_line": 227
+        },
+        {
+          "path": "js/nav.js",
+          "line": 340,
+          "end_line": 358
+        }
+      ]
+    },
+    {
+      "id": "experiments",
+      "type": "backend",
+      "label": "Chapter experiments",
+      "sublabel": "chN-lab.js + physics",
+      "pos": [
+        937,
+        230
+      ],
+      "size": [
+        150,
+        80
+      ],
+      "sources": [
+        {
+          "path": "js/eei/ch2-lab.js",
+          "line": 1,
+          "end_line": 3
+        },
+        {
+          "path": "js/lab.js",
+          "line": 103,
+          "end_line": 104
+        },
+        {
+          "path": "js/lab.js",
+          "line": 308,
+          "end_line": 309
+        }
+      ]
+    },
+    {
+      "id": "orb",
+      "type": "frontend",
+      "label": "Orb",
+      "sublabel": "js/orb.js · hub footer",
+      "pos": [
+        220,
+        420
+      ],
+      "size": [
+        160,
+        72
+      ],
+      "sources": [
+        {
+          "path": "js/orb.js",
+          "line": 1,
+          "end_line": 5
+        },
+        {
+          "path": "js/orb.js",
+          "line": 68,
+          "end_line": 68
+        },
+        {
+          "path": "index.html",
+          "line": 225,
+          "end_line": 232
+        }
+      ]
+    },
+    {
+      "id": "local-store",
+      "type": "database",
+      "label": "localStorage",
+      "sublabel": "ticks · answers · tabs",
+      "pos": [
+        440,
+        420
+      ],
+      "size": [
+        170,
+        80
+      ],
+      "sources": [
+        {
+          "path": "js/guide.js",
+          "line": 1,
+          "end_line": 12
+        },
+        {
+          "path": "js/lab.js",
+          "line": 1,
+          "end_line": 9
+        },
+        {
+          "path": "js/index.js",
+          "line": 145,
+          "end_line": 145
+        }
+      ]
+    },
+    {
+      "id": "session-store",
+      "type": "database",
+      "label": "sessionStorage",
+      "sublabel": "nav-chapters-2 · hub-swept",
+      "pos": [
+        706,
+        420
+      ],
+      "size": [
+        190,
+        72
+      ],
+      "sources": [
+        {
+          "path": "js/nav.js",
+          "line": 340,
+          "end_line": 355
+        },
+        {
+          "path": "js/index.js",
+          "line": 322,
+          "end_line": 323
+        }
+      ]
+    },
+    {
+      "id": "orb-data",
+      "type": "database",
+      "label": "Orb data",
+      "sublabel": "assets/graph-orb.json",
+      "pos": [
+        220,
+        610
+      ],
+      "size": [
+        160,
+        72
+      ],
+      "sources": [
+        {
+          "path": "tools/graph-orb.py",
+          "line": 71,
+          "end_line": 71
+        }
+      ]
+    },
+    {
+      "id": "graph",
+      "type": "database",
+      "label": "Graphify graph",
+      "sublabel": "graph.json",
+      "pos": [
+        30,
+        420
+      ],
+      "size": [
+        120,
+        72
+      ],
+      "sources": [
+        {
+          "path": "tools/graph-orb.py",
+          "line": 27,
+          "end_line": 28
+        }
+      ]
+    },
+    {
+      "id": "downloads",
+      "type": "database",
+      "label": "PDF + .tex",
+      "sublabel": "beside each page",
+      "pos": [
+        706,
+        610
+      ],
+      "size": [
+        190,
+        72
+      ],
+      "sources": [
+        {
+          "path": "eei/ch1-electrostatic-fields.html",
+          "line": 111,
+          "end_line": 112
+        }
+      ]
+    },
+    {
+      "id": "tests",
+      "type": "backend",
+      "label": "node --test",
+      "sublabel": "tests/*.test.js",
+      "pos": [
+        937,
+        420
+      ],
+      "size": [
+        150,
+        72
+      ],
+      "sources": [
+        {
+          "path": "tests/lab-challenges.test.js",
+          "line": 1,
+          "end_line": 5
+        },
+        {
+          "path": "tests/lab-generators.test.js",
+          "line": 1,
+          "end_line": 3
+        }
+      ]
+    },
+    {
+      "id": "graph-tools",
+      "type": "backend",
+      "label": "Graph scripts",
+      "sublabel": "notes · 3D layout",
+      "pos": [
+        30,
+        610
+      ],
+      "size": [
+        120,
+        80
+      ],
+      "sources": [
+        {
+          "path": "tools/graph-describe.py",
+          "line": 549,
+          "end_line": 549
+        },
+        {
+          "path": "tools/graph-orb.py",
+          "line": 1,
+          "end_line": 6
+        }
+      ]
+    },
+    {
+      "id": "repo",
+      "type": "cloud",
+      "label": "GitHub repository",
+      "sublabel": "main · HTML is the source",
+      "pos": [
+        220,
+        800
+      ],
+      "size": [
+        160,
+        72
+      ],
+      "sources": [
+        {
+          "path": "README.md",
+          "line": 158,
+          "end_line": 166
+        }
+      ]
+    },
+    {
+      "id": "to-tex",
+      "type": "backend",
+      "label": "guide-to-tex.py",
+      "sublabel": "HTML → .tex → latexmk PDF",
+      "pos": [
+        440,
+        800
+      ],
+      "size": [
+        170,
+        72
+      ],
+      "sources": [
+        {
+          "path": "tools/guide-to-tex.py",
+          "line": 1,
+          "end_line": 6
+        },
+        {
+          "path": "tools/guide-to-tex.py",
+          "line": 1334,
+          "end_line": 1355
+        }
+      ]
+    },
+    {
+      "id": "check",
+      "type": "backend",
+      "label": "check-guide.py",
+      "sublabel": "guides · labs · worked pages",
+      "pos": [
+        706,
+        800
+      ],
+      "size": [
+        190,
+        72
+      ],
+      "sources": [
+        {
+          "path": "tools/check-guide.py",
+          "line": 1,
+          "end_line": 6
+        },
+        {
+          "path": "tools/check-guide.py",
+          "line": 242,
+          "end_line": 248
+        },
+        {
+          "path": "tools/check-guide.py",
+          "line": 101,
+          "end_line": 101
+        }
+      ]
+    },
+    {
+      "id": "ci",
+      "type": "cloud",
+      "label": "Jekyll site CI",
+      "sublabel": "build check only",
+      "pos": [
+        30,
+        800
+      ],
+      "size": [
+        120,
+        72
+      ],
+      "sources": [
+        {
+          "path": ".github/workflows/jekyll-docker.yml",
+          "line": 1,
+          "end_line": 19
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "id": "learner-https",
+      "from": "learner",
+      "to": "pages-host",
+      "label": "HTTPS",
+      "variant": "emphasis"
+    },
+    {
+      "id": "pages-serves",
+      "from": "pages-host",
+      "to": "hub",
+      "label": "serves",
+      "variant": "emphasis"
+    },
+    {
+      "id": "hub-guide",
+      "from": "hub",
+      "to": "guide",
+      "label": "guide · tabs",
+      "variant": "emphasis"
+    },
+    {
+      "id": "guide-lab",
+      "from": "guide",
+      "to": "lab",
+      "label": "Lab"
+    },
+    {
+      "id": "learner-fonts",
+      "from": "learner",
+      "to": "fonts",
+      "label": "font CSS"
+    },
+    {
+      "id": "hub-settings",
+      "from": "hub",
+      "to": "settings",
+      "label": "loads in head"
+    },
+    {
+      "id": "guide-nav",
+      "from": "guide",
+      "to": "nav",
+      "label": "rail"
+    },
+    {
+      "id": "lab-exp",
+      "from": "lab",
+      "to": "experiments",
+      "label": "window.Lab"
+    },
+    {
+      "id": "nav-hub",
+      "from": "nav",
+      "to": "hub",
+      "label": "fetch index.html",
+      "variant": "dashed"
+    },
+    {
+      "id": "hub-orb",
+      "from": "hub",
+      "to": "orb",
+      "label": "footer, near view"
+    },
+    {
+      "id": "orb-reads",
+      "from": "orb",
+      "to": "orb-data",
+      "label": "fetch"
+    },
+    {
+      "id": "settings-writes",
+      "from": "settings",
+      "to": "local-store",
+      "label": "site-settings",
+      "labelDx": -48
+    },
+    {
+      "id": "hub-reads",
+      "from": "hub",
+      "to": "local-store",
+      "label": "reads"
+    },
+    {
+      "id": "guide-writes",
+      "from": "guide",
+      "to": "local-store",
+      "label": "ticks, reviews"
+    },
+    {
+      "id": "lab-writes",
+      "from": "lab",
+      "to": "local-store",
+      "label": "answers, lab ticks"
+    },
+    {
+      "id": "nav-caches",
+      "from": "nav",
+      "to": "session-store",
+      "label": "cache list"
+    },
+    {
+      "id": "graph-tools-read",
+      "from": "graph-tools",
+      "to": "graph",
+      "label": "reads"
+    },
+    {
+      "id": "graph-tools-write",
+      "from": "graph-tools",
+      "to": "orb-data",
+      "label": "writes"
+    },
+    {
+      "id": "repo-deploys",
+      "from": "repo",
+      "to": "pages-host",
+      "label": "push main"
+    },
+    {
+      "id": "repo-ci",
+      "from": "repo",
+      "to": "ci",
+      "label": "on push"
+    },
+    {
+      "id": "repo-tex",
+      "from": "repo",
+      "to": "to-tex",
+      "label": "page HTML"
+    },
+    {
+      "id": "tex-writes",
+      "from": "to-tex",
+      "to": "downloads",
+      "label": "writes .tex, PDF"
+    },
+    {
+      "id": "guide-offers",
+      "from": "guide",
+      "to": "downloads",
+      "label": "Download PDF",
+      "variant": "dashed"
+    },
+    {
+      "id": "check-stale",
+      "from": "check",
+      "to": "downloads",
+      "label": "staleness"
+    },
+    {
+      "id": "tests-run",
+      "from": "tests",
+      "to": "experiments",
+      "label": "require + run"
+    }
+  ],
+  "cards": [
+    {
+      "dot": "cyan",
+      "title": "Pages and navigation",
+      "items": [
+        "The hub lists every semester, subject and chapter. Its review board ranks started chapters by due date from each chapter's -checks and -log keys, and it draws the route line and radar from the same progress. (js/index.js:46–60, 93–112)",
+        "Subjects with more than one course part get a Lecture / Exercise / Tutorial / Appendix switch: Lecture shows the chapter list, the other tabs list worked pages from their links in index.html. The open tab and each subject's fold are saved as hub-tabs and hub-folds. (js/index.js:142–145, 244–247; index.html:179–183)",
+        "Guides, labs and worked pages share the contents rail. It fetches the hub's index.html, caches the chapter-and-exercise list in sessionStorage as nav-chapters-2, refetches when the cached list lacks the current page, and adds a Chapters fold and a Previous/Next pager of the same kind. (js/nav.js:220–227, 340–358)"
+      ]
+    },
+    {
+      "dot": "emerald",
+      "title": "Progress stays in the browser",
+      "items": [
+        "There is no server or account. Guides save ticks as <key>-checks and review days as <key>-log; labs save answers as <key>-lab and tick lab-<id> in the same -checks key, so the hub counts both. (js/guide.js:1–12; js/lab.js:1–9)",
+        "Settings (theme, motion, text size) save as site-settings and apply from <head>; settings.js also loads the HUD layer, hud.js. Storage errors are swallowed, so nothing persists where storage is blocked. (js/settings.js:1–6, 23–26; js/hud.js:1–8)",
+        "Lab experiments are per-chapter scripts that register with window.Lab; experiments with a generate() offer endless practice that is never saved. Their physics modules also load in node for the tests. (js/lab.js:103–104, 308–309, 560–570)"
+      ]
+    },
+    {
+      "dot": "rose",
+      "title": "Authoring, data and publishing",
+      "items": [
+        "Page HTML is the single source: guide-to-tex.py writes the .tex and latexmk builds the PDF, both committed beside each guide, worked page and appendix; check-guide.py checks guides, labs, worked pages and appendices and fails when a .tex is stale. (tools/guide-to-tex.py:1334–1355; tools/check-guide.py:242–248, 101)",
+        "The Graphify graph (graphify-out/graph.json) is refreshed by the workspace refresh script; graph-describe.py adds plain-English notes to graph.html and graph-orb.py lays the graph out in 3D as assets/graph-orb.json, which the hub's orb fetches when scrolled near. (tools/graph-orb.py:1–6, 27–28, 71; js/orb.js:1–5, 68)",
+        "GitHub Pages publishes main from the root on every push; the Jekyll site CI workflow only builds the site as a check. Google Fonts serves Hanken Grotesk to every page's browser. (README.md:170–176; .github/workflows/jekyll-docker.yml:1–19; index.html:16–19)"
+      ]
+    }
+  ]
+}
