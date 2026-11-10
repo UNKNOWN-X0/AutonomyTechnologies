@@ -1,0 +1,270 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="theme-color" content="#04316A" />
+  <meta name="description" content="Step-by-step worked solutions for MEI Exercise Sheet 1: statements, sets, quantifiers, and number systems." />
+  <title>Exercise 1 · Worked solutions · MEI</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../css/system.css" /><script src="../js/settings.js"></script>
+  <link rel="stylesheet" href="../css/guide.css" />
+</head>
+<body class="s-mei-1">
+<div class="wrap">
+  <nav class="toc" aria-label="Exercise contents">
+    <a class="brand" href="../index.html" aria-label="From Fundamentals to AI Apocalypse home">
+      <svg class="mark" viewBox="0 0 40 40" width="38" height="38" aria-hidden="true">
+        <defs>
+          <linearGradient id="mk-bg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#04316A" /><stop offset="1" stop-color="#021D40" /></linearGradient>
+          <linearGradient id="mk-ring" x1="0" y1="1" x2="1" y2="0"><stop offset="0" stop-color="#80ECF1" /><stop offset="1" stop-color="#9BE34A" /></linearGradient>
+          <radialGradient id="mk-core"><stop offset="0" stop-color="#F4FFE6" /><stop offset=".45" stop-color="#9BE34A" /><stop offset="1" stop-color="#9BE34A" stop-opacity="0" /></radialGradient>
+        </defs>
+        <rect width="40" height="40" fill="url(#mk-bg)" />
+        <g class="mk-orbit mk-orbit-a"><g transform="rotate(-28 20 20)"><ellipse cx="20" cy="20" rx="14" ry="6.2" fill="none" stroke="url(#mk-ring)" stroke-width="1.6" /><circle class="mk-charge" r="1.9" fill="#fff" /></g></g>
+        <g class="mk-orbit mk-orbit-b"><ellipse cx="20" cy="20" rx="14" ry="6.2" fill="none" stroke="#C9D6EA" stroke-width="1.1" stroke-opacity=".55" transform="rotate(32 20 20)" /></g>
+        <circle class="mk-glow" cx="20" cy="20" r="8" fill="url(#mk-core)" /><circle cx="20" cy="20" r="3" fill="#F4FFE6" />
+      </svg>
+      <span>From Fundamentals to AI Apocalypse</span>
+    </a>
+    <a class="home" href="../index.html">All semesters</a>
+    <details class="mobile-toc"><summary>Jump to a task</summary><ol>
+      <li><a href="#task-1">Exercise 1.1 · Statements</a></li><li><a href="#task-2">Exercise 1.2 · Sets</a></li><li><a href="#task-3">Exercise 1.3 · Quantifiers</a></li><li><a href="#task-4">Self-Study 1.4 · Statements</a></li><li><a href="#task-5">Self-Study 1.5 · Sets</a></li><li><a href="#task-6">Self-Study 1.6 · Quantifiers and numbers</a></li>
+    </ol></details>
+    <ol><li class="toc-group" aria-hidden="true">Exercise 1</li>
+      <li><a href="#task-1">Exercise 1.1 · Statements</a></li><li><a href="#task-2">Exercise 1.2 · Sets</a></li><li><a href="#task-3">Exercise 1.3 · Quantifiers</a></li><li><a href="#task-4">Self-Study 1.4 · Statements</a></li><li><a href="#task-5">Self-Study 1.5 · Sets</a></li><li><a href="#task-6">Self-Study 1.6 · Quantifiers and numbers</a></li>
+    </ol>
+  </nav>
+  <main>
+    <header class="sign"><span class="code">MEI</span><h1>Exercise 1: Worked solutions</h1><p class="course">Mathematics for Engineers I · Module 62765 · Exercise Sheet 1</p></header>
+    <p class="standfirst">Try each part before opening its solution. The worked steps show how to translate the wording into logic, test membership one element at a time, and keep quantifier order straight.</p>
+    <div class="downloads" aria-label="Download exercise solution files"><p>Take the solutions offline</p><a class="btn primary" href="exercise-1-worked-solutions.pdf" download>Download clean PDF</a><a class="btn" href="exercise-1-worked-solutions.tex" download>Download LaTeX source (.tex)</a></div>
+
+    <section id="task-1" aria-labelledby="task-1-title">
+      <h2 id="task-1-title">Exercise 1.1: Statements</h2>
+      <p>A logical statement is a sentence with one definite truth value. A sentence can be a statement even when we do not know whether it is true; an unassigned variable or an undefined judgement can prevent a definite truth value.</p>
+      <p class="topic-link"><strong>Connected topic:</strong> <a href="ch1-statements-logic-sets.html#sec-11">Propositional logic, predicates and quantifiers (§1.1)</a> define statements, open forms and truth values.</p>
+
+      <h3>1a: Classify the four expressions</h3>
+      <p>Try first: for each sentence, ask whether its variables and context are fixed well enough that it must be true or false.</p>
+      <details class="answers"><summary>Attempted it? Open the worked steps</summary><div class="worked"><p class="worked-title">1a · A definite truth value</p><ol class="method-list">
+        <li><p><strong>i. “<var>z</var> is prime.”</strong> The value of <var>z</var> has not been given or quantified. This is an open form: it becomes a statement only after a value is assigned to <var>z</var> (or a quantifier is added). <strong>As written, it is not a statement.</strong></p></li>
+        <li><p><strong>ii. The claim about Lothar Matthäus and the 2011 Tour de France.</strong> It names a particular person and event, with no free variable. It is a factual declarative sentence, so it has a definite truth value whether or not the reader knows it. <strong>It is a statement.</strong></p></li>
+        <li><p><strong>iii. “This statement is false.”</strong> If it were true, what it says would make it false; if it were false, then what it says would be true. It cannot be assigned a consistent true-or-false value in ordinary two-valued logic. <strong>It is not a logical statement.</strong></p></li>
+        <li><p><strong>iv. The conditional involving <var>n</var> and the oak trees.</strong> The variable <var>n</var> is free, so different values of <var>n</var> can change the antecedent. The sentence would need a specified <var>n</var>, or a quantifier such as “for every <var>n</var>”. <strong>As written, it is not a statement.</strong></p></li>
+      </ol></div></details>
+
+      <h3>1b: Compare three equivalent forms</h3>
+      <p>Try first: make a row for each truth-value pair of <var>A</var> and <var>B</var>, then calculate all three expressions independently.</p>
+      <details class="answers"><summary>Attempted it? Open the worked steps</summary><div class="worked"><p class="worked-title">1b · Truth table for implication and its contrapositive</p><ol class="method-list">
+        <li><p>There are two propositions, so there are four input rows. In the last column, the three expressions are linked by biconditionals; that column is true when their truth values agree.</p></li>
+        <li><div class="tw"><table><thead><tr><th><var>A</var></th><th><var>B</var></th><th><var>A</var> ⇒ <var>B</var></th><th>¬<var>B</var> ⇒ ¬<var>A</var></th><th>¬(<var>A</var> ∧ ¬<var>B</var>)</th><th>whole chain</th></tr></thead><tbody>
+          <tr><td>T</td><td>T</td><td>T</td><td>T</td><td>T</td><td>T</td></tr><tr><td>T</td><td>F</td><td>F</td><td>F</td><td>F</td><td>T</td></tr><tr><td>F</td><td>T</td><td>T</td><td>T</td><td>T</td><td>T</td></tr><tr><td>F</td><td>F</td><td>T</td><td>T</td><td>T</td><td>T</td></tr>
+        </tbody></table></div></li>
+        <li><p>The columns for <var>A</var> ⇒ <var>B</var>, ¬<var>B</var> ⇒ ¬<var>A</var>, and ¬(<var>A</var> ∧ ¬<var>B</var>) match in every row. The biconditional chain is therefore true in all four rows: all three formulas are equivalent, and the chain is a tautology.</p></li>
+        <li><p><strong>Check by rules:</strong> ¬<var>B</var> ⇒ ¬<var>A</var> is the contrapositive of <var>A</var> ⇒ <var>B</var>. Also, implication is equivalent to ¬<var>A</var> ∨ <var>B</var>, and De Morgan’s law gives ¬(<var>A</var> ∧ ¬<var>B</var>) = ¬<var>A</var> ∨ <var>B</var>.</p></li>
+      </ol></div></details>
+
+      <h3>1c: Find the guilty suspect</h3>
+      <p>Try first: write each clue as an implication, then test whether Christoph can be guilty.</p>
+      <details class="answers"><summary>Attempted it? Open the worked steps</summary><div class="worked"><p class="worked-title">1c · Translate the clues and eliminate cases</p><ol class="method-list">
+        <li><p>Let <var>A</var>, <var>B</var> and <var>C</var> mean that Anton, Bert and Christoph, respectively, are guilty. The three clues become:</p><p class="math-line"><var>C</var> ⇒ <var>A</var></p><p class="math-line">(<var>B</var> ∨ <var>C</var>) ⇒ ¬<var>A</var></p><p class="math-line">(¬<var>A</var> ∨ ¬<var>C</var>) ⇒ <var>B</var></p></li>
+        <li><p>Suppose <var>C</var> were true. The first clue would make <var>A</var> true. Then <var>B</var> ∨ <var>C</var> is true, so the second clue makes ¬<var>A</var> true. That contradicts <var>A</var>; hence <var>C</var> is false.</p></li>
+        <li><p>Because ¬<var>C</var> is true, the antecedent <var>A</var> ∨ ¬<var>C</var> in the third clue is true. Therefore <var>B</var> is true: Bert is guilty.</p></li>
+        <li><p>Now <var>B</var> ∨ <var>C</var> is true, so the second clue gives ¬<var>A</var>. Anton is innocent, and we already found Christoph innocent.</p></li>
+        <li><p><strong>Conclusion:</strong> <var>B</var> is true while <var>A</var> and <var>C</var> are false. <strong>Bert committed the crime.</strong> Substitution checks all three clues: true, true, and true.</p></li>
+      </ol></div></details>
+    </section>
+
+    <section id="task-2" aria-labelledby="task-2-title">
+      <h2 id="task-2-title">Exercise 1.2: Sets</h2>
+      <p>Translate set operations into membership conditions. This keeps the meaning precise even when the sets overlap in a complicated way.</p>
+      <p class="topic-link"><strong>Connected topic:</strong> <a href="ch1-statements-logic-sets.html#sec-12">Set operations, Cartesian products and power sets (§1.2)</a> express union, intersection and difference through membership.</p>
+
+      <h3>2a: Read four regions in the diagram</h3>
+      <p>Try first: translate each expression using “<var>x</var> is in …” before describing the region in words.</p>
+      <div class="figs"><figure class="viz" data-kind="scene" data-scene="view|0|0|10|7|230;rect|0.2|0.2|9.8|6.8|line;circle|3.5|4.3|1.8|ink;rect|4.5|3.8|8.5|6.2|line;path|3.5,1.1 7.7,1.1 5.7,4.5 3.5,1.1|ink;label|2.3|5.6|A|c|big;label|7.7|5.5|B|c|big;label|6.8|2.3|C|c|big;label|9.2|6.5|X|c|big"><figcaption><strong>Three overlapping subsets of <var>X</var>.</strong> The outlines show the regions named by <var>A</var>, <var>B</var> and <var>C</var>; the membership tests below specify exactly which points each answer keeps.</figcaption></figure></div>
+      <details class="answers"><summary>Attempted it? Open the worked steps</summary><div class="worked"><p class="worked-title">2a · Convert each expression to a membership test</p><ol class="method-list">
+        <li><p>For i), membership in <var>A</var> \ <var>B</var> means “in <var>A</var> and not in <var>B</var>”. Intersecting with <var>C</var> adds one more “and”:</p><p class="math-line"><var>x</var> ∈ (<var>A</var> \ <var>B</var>) ∩ <var>C</var> ⇔ (<var>x</var> ∈ <var>A</var>) ∧ (<var>x</var> ∉ <var>B</var>) ∧ (<var>x</var> ∈ <var>C</var>)</p><p>Keep the part shared by <var>A</var> and <var>C</var> that lies outside <var>B</var>.</p></li>
+        <li><p>For ii), union means “or”. Keep every point in <var>C</var>, together with any point that is in <var>A</var> but outside <var>B</var>:</p><p class="math-line"><var>x</var> ∈ (<var>A</var> \ <var>B</var>) ∪ <var>C</var> ⇔ ((<var>x</var> ∈ <var>A</var>) ∧ (<var>x</var> ∉ <var>B</var>)) ∨ (<var>x</var> ∈ <var>C</var>)</p></li>
+        <li><p>For iii), a complement keeps the points in <var>X</var> that fail membership in the whole union. De Morgan’s law changes “not (P or Q)” to “not P and not Q”:</p><p class="math-line">((<var>A</var> \ <var>B</var>) ∪ <var>C</var>)<sup>c</sup> = ((<var>A</var> \ <var>B</var>)<sup>c</sup>) ∩ <var>C</var><sup>c</sup> = (<var>A</var><sup>c</sup> ∪ <var>B</var>) ∩ <var>C</var><sup>c</sup></p><p>So keep points outside <var>C</var> and either outside <var>A</var> or inside <var>B</var>.</p></li>
+        <li><p>For iv), first combine the two differences: <var>A</var> \ <var>C</var> and <var>B</var> \ <var>C</var> together are all of <var>A</var> ∪ <var>B</var> with <var>C</var> removed. Complementing adds <var>C</var> back and keeps the points outside both <var>A</var> and <var>B</var>:</p><p class="math-line">((<var>A</var> \ <var>C</var>) ∪ (<var>B</var> \ <var>C</var>))<sup>c</sup> = ((<var>A</var> ∪ <var>B</var>) \ <var>C</var>)<sup>c</sup> = (<var>A</var> ∪ <var>B</var>)<sup>c</sup> ∪ <var>C</var></p></li>
+        <li><p><strong>Check:</strong> in iii) any point inside <var>C</var> is excluded; in iv) every point inside <var>C</var> is included. That opposite treatment is a quick way to catch a misplaced complement.</p></li>
+      </ol></div></details>
+
+      <h3>2b: Work with even, odd and ordered-pair sets</h3>
+      <p>Try first: separate the integer examples from the ordered-pair example, and check both coordinates of each pair.</p>
+      <details class="answers"><summary>Attempted it? Open the worked steps</summary><div class="worked"><p class="worked-title">2b · Operations, products and power sets</p><ol class="method-list">
+        <li><p><var>A</var> contains the positive even natural numbers; <var>B</var> contains the positive odd natural numbers. Every positive natural number is exactly one of these, so:</p><p class="math-line"><var>A</var> ∪ <var>B</var> = ℕ</p><p class="math-line"><var>A</var> ∩ <var>B</var> = ∅</p><p class="math-line"><var>A</var> \ <var>B</var> = <var>A</var></p><p class="math-line"><var>B</var> \ <var>A</var> = <var>B</var></p></li>
+        <li><p>The Cartesian product asks for ordered pairs whose first entry is in the first factor and second entry is in the second:</p><p class="math-line"><var>A</var> × <var>B</var> = {(<var>a</var>, <var>b</var>) : <var>a</var> ∈ <var>A</var>, <var>b</var> ∈ <var>B</var>}</p></li>
+        <li><p>Test the two elements of <var>C</var> separately. (<var>2</var>, <var>3</var>) passes: 2 is even and 3 is odd. (<var>3</var>, <var>4</var>) fails: 3 is not even and 4 is not odd. Since one element fails, <strong><var>C</var> is not a subset of <var>A</var> × <var>B</var>.</strong></p></li>
+        <li><p>The power set contains every subset of <var>C</var>: the empty set, each one-element subset, and <var>C</var> itself.</p><p class="math-line">𝒫(<var>C</var>) = {∅, {(<var>2</var>, <var>3</var>)}, {(<var>3</var>, <var>4</var>)}, {(<var>2</var>, <var>3</var>), (<var>3</var>, <var>4</var>)}}</p><p>There are 2² = 4 subsets, matching the two elements of <var>C</var>.</p></li>
+      </ol></div></details>
+
+      <h3>2c: Prove a set identity by membership</h3>
+      <p>Try first: take an arbitrary <var>x</var> and translate both “set difference” steps into and/not conditions.</p>
+      <details class="answers"><summary>Attempted it? Open the worked steps</summary><div class="worked"><p class="worked-title">2c · Element-by-element proof</p><ol class="method-list">
+        <li><p>Take any <var>x</var>. It belongs to the left-hand side exactly when it is in <var>A</var> but not in <var>A</var> \ <var>B</var>:</p><p class="math-line"><var>x</var> ∈ <var>A</var> \ (<var>A</var> \ <var>B</var>) ⇔ (<var>x</var> ∈ <var>A</var>) ∧ ¬(<var>x</var> ∈ <var>A</var> \ <var>B</var>)</p></li>
+        <li><p>Expand the inner difference: <var>x</var> ∈ <var>A</var> \ <var>B</var> means <var>x</var> ∈ <var>A</var> and <var>x</var> ∉ <var>B</var>. Therefore:</p><p class="math-line">(<var>x</var> ∈ <var>A</var>) ∧ ¬((<var>x</var> ∈ <var>A</var>) ∧ (<var>x</var> ∉ <var>B</var>))</p></li>
+        <li><p>Because we already know <var>x</var> ∈ <var>A</var>, the negated inner condition reduces to <var>x</var> ∈ <var>B</var>. Thus membership is equivalent to <var>x</var> ∈ <var>A</var> and <var>x</var> ∈ <var>B</var>:</p><p class="math-line"><var>x</var> ∈ <var>A</var> \ (<var>A</var> \ <var>B</var>) ⇔ <var>x</var> ∈ <var>A</var> ∩ <var>B</var></p></li>
+        <li><p>This is true for every <var>x</var>, so both sets contain exactly the same elements. Hence <strong><var>A</var> \ (<var>A</var> \ <var>B</var>) = <var>A</var> ∩ <var>B</var>.</strong></p></li>
+      </ol></div></details>
+    </section>
+
+    <section id="task-3" aria-labelledby="task-3-title">
+      <h2 id="task-3-title">Exercise 1.3: Quantifiers — students and courses</h2>
+      <p>Let <var>S</var> be the student set, <var>C</var> the course set, and <var>B</var>(<var>s</var>, <var>c</var>) mean that student <var>s</var> passed course <var>c</var>. The order of “for all” and “there exists” determines who may vary.</p>
+      <p class="topic-link"><strong>Connected topic:</strong> <a href="ch1-statements-logic-sets.html#sec-11">Predicates, quantifier order and negation (§1.1)</a> define the domain and the order in which choices are made.</p>
+
+      <h3>3a: Translate “a bright spark passes everything”</h3>
+      <p>Try first: decide whether the student is chosen before or after the course, and whether one student must pass every course.</p>
+      <details class="answers"><summary>Attempted it? Open the worked steps</summary><div class="worked"><p class="worked-title">3a · One student, all courses</p><ol class="method-list">
+        <li><p>“There is a student” gives ∃<var>s</var>. “Passes everything” says that same student passes every course, giving ∀<var>c</var>. The correct choice is <strong>b) ∃<var>s</var> ∈ <var>S</var> ∀<var>c</var> ∈ <var>C</var>: <var>B</var>(<var>s</var>, <var>c</var>).</strong></p></li>
+        <li><p>Translate the other choices to see the difference:</p><div class="tw"><table><thead><tr><th>Choice</th><th>Meaning</th></tr></thead><tbody>
+          <tr><td>a) ∀<var>s</var> ∃<var>c</var> <var>B</var>(<var>s</var>,<var>c</var>)</td><td>Every student has passed at least one course; it may be a different course for each student.</td></tr>
+          <tr><td>c) ∃<var>s</var> ∃<var>c</var> <var>B</var>(<var>s</var>,<var>c</var>)</td><td>At least one student has passed at least one course.</td></tr>
+          <tr><td>d) ∀<var>c</var> ∃<var>s</var> <var>B</var>(<var>s</var>,<var>c</var>)</td><td>Every course has at least one student who passed it; the student may vary by course.</td></tr>
+        </tbody></table></div></li>
+        <li><p><strong>Check:</strong> ∃<var>s</var>∀<var>c</var> is stronger than ∀<var>s</var>∃<var>c</var>. The former fixes one student and then asks about every course.</p></li>
+      </ol></div></details>
+
+      <h3>3b: Translate “nobody passed the whole programme”</h3>
+      <p>Try first: negate “there is a student who passed every course”, then swap the quantifiers as you push the negation inward.</p>
+      <details class="answers"><summary>Attempted it? Open the worked steps</summary><div class="worked"><p class="worked-title">3b · Each student missed a course</p><ol class="method-list">
+        <li><p>“Nobody has made it through” means there is no student who passed all courses:</p><p class="math-line">¬(∃<var>s</var> ∈ <var>S</var> ∀<var>c</var> ∈ <var>C</var>: <var>B</var>(<var>s</var>, <var>c</var>))</p></li>
+        <li><p>Negating ∃ changes it to ∀; negating ∀ changes it to ∃; the predicate is negated too:</p><p class="math-line">∀<var>s</var> ∈ <var>S</var> ∃<var>c</var> ∈ <var>C</var>: ¬<var>B</var>(<var>s</var>, <var>c</var>)</p><p>So the answer is <strong>d)</strong>: every student has at least one course they have not passed.</p></li>
+        <li><p>The other options say:</p><div class="tw"><table><thead><tr><th>Choice</th><th>Meaning</th></tr></thead><tbody>
+          <tr><td>a) ∃<var>s</var> ∀<var>c</var> ¬<var>B</var>(<var>s</var>,<var>c</var>)</td><td>At least one student has passed no courses.</td></tr>
+          <tr><td>b) ∀<var>c</var> ∃<var>s</var> ¬<var>B</var>(<var>s</var>,<var>c</var>)</td><td>Every course has at least one student who has not passed it.</td></tr>
+          <tr><td>c) ∀<var>s</var> ∀<var>c</var> ¬<var>B</var>(<var>s</var>,<var>c</var>)</td><td>No student has passed any course.</td></tr>
+        </tbody></table></div></li>
+        <li><p><strong>Check:</strong> the correct statement allows a student to have passed most courses; it only requires one unpassed course for each student.</p></li>
+      </ol></div></details>
+
+      <h3>3c: Translate “a course everyone passes”</h3>
+      <p>Try first: identify the one course that must work for every student, then contrast it with “each student has some course”.</p>
+      <details class="answers"><summary>Attempted it? Open the worked steps</summary><div class="worked"><p class="worked-title">3c · One course, all students</p><ol class="method-list">
+        <li><p>“There is a course” gives ∃<var>c</var>; “every student passes it” gives ∀<var>s</var>. The correct choice is <strong>a) ∃<var>c</var> ∈ <var>C</var> ∀<var>s</var> ∈ <var>S</var>: <var>B</var>(<var>s</var>, <var>c</var>).</strong></p></li>
+        <li><p>The other formulas mean:</p><div class="tw"><table><thead><tr><th>Choice</th><th>Meaning</th></tr></thead><tbody>
+          <tr><td>b) ∀<var>c</var> ∃<var>s</var> <var>B</var>(<var>s</var>,<var>c</var>)</td><td>Every course has some student who passed it.</td></tr>
+          <tr><td>c) ∀<var>s</var> ∃<var>c</var> <var>B</var>(<var>s</var>,<var>c</var>)</td><td>Every student has passed at least one course.</td></tr>
+          <tr><td>d) ∃<var>s</var> ∀<var>c</var> <var>B</var>(<var>s</var>,<var>c</var>)</td><td>Some student has passed every course.</td></tr>
+        </tbody></table></div></li>
+        <li><p><strong>Check:</strong> in a), one course is chosen first and then tested for every student. In d), it is one student tested against every course.</p></li>
+      </ol></div></details>
+    </section>
+
+    <section id="task-4" aria-labelledby="task-4-title">
+      <h2 id="task-4-title">Self-Study 1.4: Statements</h2>
+      <p>This review combines statement classification, truth tables, implication language and translating ordinary “unless” sentences.</p>
+      <p class="topic-link"><strong>Connected topic:</strong> <a href="ch1-statements-logic-sets.html#sec-11">Statements, truth tables and logical equivalence (§1.1)</a> define the tests used below.</p>
+
+      <h3>4a: Decide whether each sentence is a statement</h3>
+      <p>Try first: check whether the sentence asserts something with a definite truth value, not whether you personally know the value.</p>
+      <details class="answers"><summary>Attempted it? Open the worked steps</summary><div class="worked"><p class="worked-title">4a · Assertion or open judgement?</p><ol class="method-list">
+        <li><p><strong>i. The conditional about a father having a sibling.</strong> It is a complete declarative sentence with a fixed family relation as its subject. It can be true or false, even if the family facts are unknown. <strong>It is a statement.</strong></p></li>
+        <li><p><strong>ii. “The formula is beautiful.”</strong> No formula or precise criterion for “beautiful” is specified. Under the guide’s logical definition, the sentence has no definite truth value. <strong>As written, it is not a logical statement.</strong></p></li>
+      </ol></div></details>
+
+      <h3>4b: Verify two equivalences by truth table</h3>
+      <p>Try first: make one table for the distributive law and a second for De Morgan’s law; compare the two target columns row by row.</p>
+      <details class="answers"><summary>Attempted it? Open the worked steps</summary><div class="worked"><p class="worked-title">4b · Distributive law and De Morgan’s law</p><ol class="method-list">
+        <li><p>For i), evaluate the left side <var>A</var> ∧ (<var>B</var> ∨ <var>C</var>) and right side (<var>A</var> ∧ <var>B</var>) ∨ (<var>A</var> ∧ <var>C</var>) for all eight assignments:</p><div class="tw"><table><thead><tr><th><var>A</var></th><th><var>B</var></th><th><var>C</var></th><th><var>A</var> ∧ (<var>B</var> ∨ <var>C</var>)</th><th>(<var>A</var> ∧ <var>B</var>) ∨ (<var>A</var> ∧ <var>C</var>)</th></tr></thead><tbody>
+          <tr><td>T</td><td>T</td><td>T</td><td>T</td><td>T</td></tr><tr><td>T</td><td>T</td><td>F</td><td>T</td><td>T</td></tr><tr><td>T</td><td>F</td><td>T</td><td>T</td><td>T</td></tr><tr><td>T</td><td>F</td><td>F</td><td>F</td><td>F</td></tr><tr><td>F</td><td>T</td><td>T</td><td>F</td><td>F</td></tr><tr><td>F</td><td>T</td><td>F</td><td>F</td><td>F</td></tr><tr><td>F</td><td>F</td><td>T</td><td>F</td><td>F</td></tr><tr><td>F</td><td>F</td><td>F</td><td>F</td><td>F</td></tr>
+        </tbody></table></div></li>
+        <li><p>The two columns agree in all eight rows, so the distributive equivalence is true for every assignment.</p></li>
+        <li><p>For ii), compare both sides of ¬(<var>A</var> ∧ <var>B</var>) ⇔ ¬<var>A</var> ∨ ¬<var>B</var>:</p><div class="tw"><table><thead><tr><th><var>A</var></th><th><var>B</var></th><th>¬(<var>A</var> ∧ <var>B</var>)</th><th>¬<var>A</var> ∨ ¬<var>B</var></th></tr></thead><tbody>
+          <tr><td>T</td><td>T</td><td>F</td><td>F</td></tr><tr><td>T</td><td>F</td><td>T</td><td>T</td></tr><tr><td>F</td><td>T</td><td>T</td><td>T</td></tr><tr><td>F</td><td>F</td><td>T</td><td>T</td></tr>
+        </tbody></table></div></li>
+        <li><p>These columns also agree in every row. The equivalence is a tautology, which verifies this De Morgan law.</p></li>
+      </ol></div></details>
+
+      <h3>4c: Rewrite “if” and “only if” sentences</h3>
+      <p>Try first: for “<var>X</var> only if <var>Y</var>”, write <var>X</var> ⇒ <var>Y</var>; then substitute the given truth values.</p>
+      <details class="answers"><summary>Attempted it? Open the worked steps</summary><div class="worked"><p class="worked-title">4c · Conditional direction and truth value</p><ol class="method-list">
+        <li><p>Use <var>C</var> = cats have wings, <var>D</var> = dogs have wings, <var>P</var> = parrots have wings. The given assignment makes all three false.</p></li>
+        <li><p><strong>i. Cats have wings only if dogs have wings.</strong> “Only if” puts the necessary condition second: <var>C</var> ⇒ <var>D</var>, read “If cats have wings, then dogs have wings.” It is true because the antecedent <var>C</var> is false.</p></li>
+        <li><p><strong>ii. Parrots have wings only if dogs have wings.</strong> Formula <var>P</var> ⇒ <var>D</var>, read “If parrots have wings, then dogs have wings.” It is true because <var>P</var> is false.</p></li>
+        <li><p><strong>iii. Parrots have wings if dogs have wings.</strong> The condition after “if” is the antecedent: <var>D</var> ⇒ <var>P</var>, read “If dogs have wings, then parrots have wings.” It is true because <var>D</var> is false.</p></li>
+        <li><p><strong>iv. If cats or dogs have wings, then both cats and dogs have wings.</strong> Formula (<var>C</var> ∨ <var>D</var>) ⇒ (<var>C</var> ∧ <var>D</var>). It is true because its antecedent is false. <strong>All four sentences are true</strong> for the supplied assignment; a conditional with a false antecedent is true in the truth-table definition.</p></li>
+      </ol></div></details>
+
+      <h3>4d: Show that a conditional is not a tautology</h3>
+      <p>Try first: to make an implication false, make its antecedent true and its consequent false.</p>
+      <details class="answers"><summary>Attempted it? Open the worked steps</summary><div class="worked"><p class="worked-title">4d · One counterexample is enough</p><ol class="method-list">
+        <li><p>Choose <var>A</var> = false and <var>B</var> = true. Then <var>A</var> ⇒ <var>B</var> is true (false antecedent), while <var>B</var> ⇒ <var>A</var> is false (true antecedent and false consequent).</p></li>
+        <li><p>The outer implication is therefore true ⇒ false, which is false:</p><p class="math-line">(<var>A</var> ⇒ <var>B</var>) ⇒ (<var>B</var> ⇒ <var>A</var>) = T ⇒ F = F</p></li>
+        <li><p>A tautology must be true for every assignment. This single false row proves the formula is <strong>not</strong> a tautology.</p></li>
+      </ol></div></details>
+
+      <h3>4e: Translate “if”, “only if” and “unless”</h3>
+      <p>Try first: “<var>B</var> unless <var>G</var>” means that if <var>G</var> is absent, <var>B</var> does not happen. Compare the directions after translating.</p>
+      <details class="answers"><summary>Attempted it? Open the worked steps</summary><div class="worked"><p class="worked-title">4e · Mirror conditions</p><ol class="method-list">
+        <li><p>Let <var>B</var> mean the mirror breaks, <var>G</var> mean it is made of glass, and <var>W</var> mean it is high on the wall.</p></li>
+        <li><p><strong>i. Breaks if it is made of glass:</strong> glass is sufficient for breaking, so <var>G</var> ⇒ <var>B</var>.</p></li>
+        <li><p><strong>ii. Breaks only if it is made of glass:</strong> glass is necessary for breaking, so <var>B</var> ⇒ <var>G</var>.</p></li>
+        <li><p><strong>iii. Unless it is made of glass, it will not break:</strong> if it is not glass, it does not break: ¬<var>G</var> ⇒ ¬<var>B</var>. By contraposition, this is equivalent to <var>B</var> ⇒ <var>G</var>.</p></li>
+        <li><p><strong>iv. It is high on the wall, but will not break unless it is glass:</strong> “but” is conjunction, so the full formula is <var>W</var> ∧ (¬<var>G</var> ⇒ ¬<var>B</var>), equivalently <var>W</var> ∧ (<var>B</var> ⇒ <var>G</var>).</p></li>
+        <li><p><strong>Equivalent pair:</strong> ii) and iii) express the same conditional. In iv), that conditional is joined to the extra requirement <var>W</var>, so iv) is not generally equivalent to ii).</p></li>
+      </ol></div></details>
+    </section>
+
+    <section id="task-5" aria-labelledby="task-5-title">
+      <h2 id="task-5-title">Self-Study 1.5: Sets</h2>
+      <p>Use the intervals and point set in the source diagram. Complements here are relative to ℝ, since the exercise defines all three sets as subsets of ℝ.</p>
+      <p class="topic-link"><strong>Connected topic:</strong> <a href="ch1-statements-logic-sets.html#sec-12">Intervals, complements and power sets (§1.2)</a> define membership and the universe for these operations.</p>
+
+      <h3>5a: Combine two intervals with a finite set</h3>
+      <p>Try first: write the sets as <var>A</var> = (−2, 1], <var>B</var> = (−1, 1), and <var>C</var> = {−2, 0, 1}; mark the endpoints before combining.</p>
+      <div class="figs"><figure class="viz" data-kind="numline" data-range="-3 2" data-ticks="-2 -1 0 1" data-seg="-2 1 oc"><figcaption><strong><var>A</var> = (−2, 1].</strong> The left endpoint is open and the right endpoint is included.</figcaption></figure><figure class="viz" data-kind="numline" data-range="-3 2" data-ticks="-2 -1 0 1" data-seg="-1 1 oo"><figcaption><strong><var>B</var> = (−1, 1).</strong> Both endpoints are excluded.</figcaption></figure><figure class="viz" data-kind="numline" data-range="-3 2" data-ticks="-2:_ -1:_ 0:_ 1:_" data-marks="-2:−2;0:0;1:1"><figcaption><strong><var>C</var> = {−2, 0, 1}.</strong> The red points mark the three roots of <var>x</var>(<var>x</var> + 2)(<var>x</var> − 1) = 0.</figcaption></figure></div>\n+      <details class="answers"><summary>Attempted it? Open the worked steps</summary><div class="worked"><p class="worked-title">5a · Intervals and roots</p><ol class="method-list">\n+        <li><p>Factor equation <var>x</var>(<var>x</var> + 2)(<var>x</var> − 1) = 0. A product is zero when a factor is zero, so <var>C</var> = {−2, 0, 1}. The interval <var>B</var> sits entirely inside <var>A</var>.</p></li>\n+        <li><p><var>A</var> ∩ <var>B</var> keeps numbers in both. Since <var>B</var> is contained in <var>A</var>, the answer is <strong>(−1, 1).</strong></p></li>\n+        <li><p><var>A</var> ∩ <var>B</var> ∩ <var>C</var> asks which listed roots lie in the overlap (−1, 1). Only 0 does, so the answer is <strong>{0}.</strong></p></li>\n+        <li><p><var>A</var> ∩ (<var>B</var> ∪ <var>C</var>) starts with <var>B</var> ∩ <var>A</var> = (−1, 1). Of the points in <var>C</var>, 0 is already there, 1 belongs to <var>A</var>, and −2 does not. Thus the union adds only 1: <strong>(−1, 1].</strong></p></li>\n+        <li><p>Because <var>B</var> ⊂ <var>A</var>, <var>A</var> ∪ <var>B</var> = <var>A</var>. Everything in ℝ outside (−2, 1] is <strong>(−∞, −2] ∪ (1, ∞).</strong> The point −2 is included in the complement because it is excluded from <var>A</var>; 1 is not.</p></li>\n+        <li><p>First remove <var>B</var> from <var>A</var>: <var>A</var> \\ <var>B</var> = (−2, −1] ∪ {1}. Then remove <var>C</var>; its point 1 is removed, while −2 was not in the interval to begin with. The result is <strong>(−2, −1].</strong></p></li>\n+        <li><p><strong>Endpoint check:</strong> −2 never belongs to <var>A</var>; −1 belongs to <var>A</var> but not <var>B</var>; 1 belongs to <var>A</var> and <var>C</var> but not <var>B</var>. These three points catch the most likely endpoint mistakes.</p></li>\n+      </ol></div></details>
+
+      <h3>5b: Form two power sets and test membership</h3>
+      <p>Try first: list subsets by size, and expand the Cartesian product before deciding what its power set contains.</p>
+      <details class="answers"><summary>Attempted it? Open the worked steps</summary><div class="worked"><p class="worked-title">5b · Every subset, including the empty set</p><ol class="method-list">
+        <li><p><var>M</var><sub>1</sub> = {<var>b</var>, <var>a</var>, <var>c</var>} has one empty subset, three one-element subsets, three two-element subsets and itself:</p><p class="math-line">𝒫(<var>M</var><sub>1</sub>) = {∅, {<var>a</var>}, {<var>b</var>}, {<var>c</var>}, {<var>a</var>,<var>b</var>}, {<var>a</var>,<var>c</var>}, {<var>b</var>,<var>c</var>}, {<var>a</var>,<var>b</var>,<var>c</var>}}</p></li>
+        <li><p>Expand the ordered-pair set first:</p><p class="math-line"><var>M</var><sub>2</sub> = {1, 2} × {1} = {(1, 1), (2, 1)}</p></li>
+        <li><p>Its four subsets are:</p><p class="math-line">𝒫(<var>M</var><sub>2</sub>) = {∅, {(1, 1)}, {(2, 1)}, {(1, 1), (2, 1)}}</p></li>
+        <li><p><strong>Is {1, 2} ∈ 𝒫(<var>M</var><sub>2</sub>)?</strong> Membership in a power set means being a subset of <var>M</var><sub>2</sub>. But the elements of <var>M</var><sub>2</sub> are ordered pairs, not the numbers 1 and 2; neither 1 nor 2 is in <var>M</var><sub>2</sub>. Therefore {1, 2} is not a subset of <var>M</var><sub>2</sub>, so <strong>{1, 2} ∉ 𝒫(<var>M</var><sub>2</sub>).</strong></p></li>
+        <li><p><strong>Check:</strong> the product has two pairs, so its power set has 2² = 4 members.</p></li>
+      </ol></div></details>
+
+      <h3>5c: Prove a difference identity</h3>
+      <p>Try first: expand “not in <var>B</var> \ <var>C</var>” and distribute “and” over “or”.</p>
+      <details class="answers"><summary>Attempted it? Open the worked steps</summary><div class="worked"><p class="worked-title">5c · Use membership and distributivity</p><ol class="method-list">
+        <li><p>Take arbitrary <var>x</var> ∈ <var>X</var>. It belongs to the left side when <var>x</var> ∈ <var>A</var> and it is not true that <var>x</var> is in <var>B</var> but outside <var>C</var>:</p><p class="math-line"><var>x</var> ∈ <var>A</var> \ (<var>B</var> \ <var>C</var>) ⇔ (<var>x</var> ∈ <var>A</var>) ∧ ¬((<var>x</var> ∈ <var>B</var>) ∧ (<var>x</var> ∉ <var>C</var>))</p></li>
+        <li><p>By De Morgan’s law, the negated bracket says <var>x</var> ∉ <var>B</var> or <var>x</var> ∈ <var>C</var>. Distribute the outer “and”:</p><p class="math-line">(<var>x</var> ∈ <var>A</var>) ∧ ((<var>x</var> ∉ <var>B</var>) ∨ (<var>x</var> ∈ <var>C</var>))</p><p class="math-line">⇔ ((<var>x</var> ∈ <var>A</var>) ∧ (<var>x</var> ∉ <var>B</var>)) ∨ ((<var>x</var> ∈ <var>A</var>) ∧ (<var>x</var> ∈ <var>C</var>))</p></li>
+        <li><p>Translate the two terms back into sets: the first is <var>A</var> \ <var>B</var>; the second is <var>A</var> ∩ <var>C</var>. Therefore both sides have exactly the same members:</p><p class="math-line"><var>A</var> \ (<var>B</var> \ <var>C</var>) = (<var>A</var> \ <var>B</var>) ∪ (<var>A</var> ∩ <var>C</var>)</p></li>
+      </ol></div></details>
+    </section>
+
+    <section id="task-6" aria-labelledby="task-6-title">
+      <h2 id="task-6-title">Self-Study 1.6: Quantifiers and numbers</h2>
+      <p>For each domain, decide whether every quantified claim holds. In these notes, ℕ = {1, 2, 3, …}, ℤ is the integers, and ℝ<sup>+</sup> = (0, ∞).</p>
+      <p class="topic-link"><strong>Connected topics:</strong> <a href="ch1-statements-logic-sets.html#sec-11">Quantifiers and negation (§1.1)</a> and <a href="ch2-real-numbers.html#sec-21">number systems (§2.1)</a> specify the logic and the three domains.</p>
+
+      <h3>6a: Evaluate four statements and write their negations</h3>
+      <p>Try first: substitute a test value to disprove a universal claim; to prove one, give a valid witness for every value required.</p>
+      <details class="answers"><summary>Attempted it? Open the worked steps</summary><div class="worked"><p class="worked-title">6a · Truth values in ℕ, ℤ and ℝ<sup>+</sup></p><ol class="method-list">
+        <li><p>First negate each statement by swapping ∀ and ∃ and negating the relation:</p><div class="tw"><table><thead><tr><th>Statement</th><th>Negation</th></tr></thead><tbody>
+          <tr><td>i) ∃<var>x</var> ∈ <var>M</var> ∀<var>y</var> ∈ <var>M</var>: <var>x</var> &lt; <var>y</var></td><td>∀<var>x</var> ∈ <var>M</var> ∃<var>y</var> ∈ <var>M</var>: <var>x</var> ≥ <var>y</var></td></tr>
+          <tr><td>ii) ∀<var>y</var> ∈ <var>M</var> ∃<var>x</var> ∈ <var>M</var>: <var>x</var> &lt; <var>y</var></td><td>∃<var>y</var> ∈ <var>M</var> ∀<var>x</var> ∈ <var>M</var>: <var>x</var> ≥ <var>y</var></td></tr>
+          <tr><td>iii) ∃<var>x</var> ∈ <var>M</var> ∀<var>y</var> ∈ <var>M</var>: <var>x</var> + <var>y</var> = 1</td><td>∀<var>x</var> ∈ <var>M</var> ∃<var>y</var> ∈ <var>M</var>: <var>x</var> + <var>y</var> ≠ 1</td></tr>
+          <tr><td>iv) ∀<var>y</var> ∈ <var>M</var> ∃<var>x</var> ∈ <var>M</var>: <var>x</var> + <var>y</var> = 1</td><td>∃<var>y</var> ∈ <var>M</var> ∀<var>x</var> ∈ <var>M</var>: <var>x</var> + <var>y</var> ≠ 1</td></tr>
+        </tbody></table></div></li>
+        <li><p><strong>i) False in all three domains.</strong> If <var>x</var> is in <var>M</var>, the universal condition must also hold at <var>y</var> = <var>x</var>, which would require <var>x</var> &lt; <var>x</var>. That is false for every number.</p></li>
+        <li><p><strong>ii)</strong> For ℕ, take <var>y</var> = 1; there is no smaller natural number in this course’s convention, so the claim is false. For ℤ, choose <var>x</var> = <var>y</var> − 1 for any integer <var>y</var>; this is always an integer smaller than <var>y</var>, so the claim is true. For ℝ<sup>+</sup>, choose <var>x</var> = <var>y</var>/2 for each <var>y</var>; it is still positive and is smaller than <var>y</var>. Thus the values are <strong>F, T, T.</strong></p></li>
+        <li><p><strong>iii) False in all three domains.</strong> The same chosen <var>x</var> would have to satisfy the equation for every <var>y</var>. Testing <var>y</var> = 1 forces <var>x</var> = 0; testing <var>y</var> = 2 forces <var>x</var> = −1. One value of <var>x</var> cannot meet both requirements.</p></li>
+        <li><p><strong>iv)</strong> For ℕ, choose <var>y</var> = 2: the only possible <var>x</var> is −1, which is not natural, so false. In ℤ, for every <var>y</var> choose <var>x</var> = 1 − <var>y</var>, which is an integer, so true. In ℝ<sup>+</sup>, again <var>y</var> = 2 would require <var>x</var> = −1, not positive, so false. The values are <strong>F, T, F.</strong></p></li>
+        <li><p>Collected results:</p><div class="tw"><table><thead><tr><th>Claim</th><th>ℕ</th><th>ℤ</th><th>ℝ<sup>+</sup></th></tr></thead><tbody><tr><td>i)</td><td>F</td><td>F</td><td>F</td></tr><tr><td>ii)</td><td>F</td><td>T</td><td>T</td></tr><tr><td>iii)</td><td>F</td><td>F</td><td>F</td></tr><tr><td>iv)</td><td>F</td><td>T</td><td>F</td></tr></tbody></table></div></li>
+        <li><p><strong>Check:</strong> ii) asks whether there is always a smaller member; ℤ and ℝ<sup>+</sup> have no least element. iv) asks whether 1 − <var>y</var> stays in the same set for every <var>y</var>; this works in ℤ but not in the positive domains.</p></li>
+      </ol></div></details>
+    </section>
+
+    <p class="source-note">Personal worked-solution guide based on the supplied Mathematics for Engineers I Exercise Sheet 1, rewritten in my own words; no exercise text or figures are reproduced. Not an official FAU publication; check course details against the current material. Made by <strong>Thanate Amornjiraporn (Focus)</strong>.</p>
+  </main>
+</div>
+<script src="../js/guide.js"></script><script src="../js/tooltip.js"></script><script src="../js/nav.js"></script>
+</body>
+</html>

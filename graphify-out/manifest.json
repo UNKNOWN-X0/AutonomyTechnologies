@@ -12,9 +12,9 @@
     "semantic_hash": ""
   },
   "index.html": {
-    "mtime": 1794313006.263774,
-    "seen": 1794313080.515788,
-    "ast_hash": "62eb9c467f4ab0f3ea80ee76e0f1194c",
+    "mtime": 1794347697.863944,
+    "seen": 1794347820.302186,
+    "ast_hash": "96a7595e80ceea5554e685f612ae33e9",
     "semantic_hash": ""
   },
   "assets/preview.png": {
@@ -462,9 +462,9 @@
     "semantic_hash": ""
   },
   "about/version-log.html": {
-    "mtime": 1794339252.5104737,
-    "seen": 1794340458.570087,
-    "ast_hash": "08f4c91c25c4823dcaa476debf20c0c2",
+    "mtime": 1794350394.1323178,
+    "seen": 1794350709.889877,
+    "ast_hash": "846637479ca25294942b5f05af177f2f",
     "semantic_hash": ""
   },
   "docs/DIAGRAM-AND-LAB-PLAN.md": {
@@ -498,8 +498,8 @@
     "semantic_hash": ""
   },
   "assets/graph-orb.json": {
-    "mtime": 1794325637.2997699,
-    "seen": 1794340458.570027,
+    "mtime": 1794347831.522247,
+    "seen": 1794350709.889819,
     "ast_hash": "fadc08be62d59d599a0d596d698850ea",
     "semantic_hash": ""
   },
@@ -621,6 +621,30 @@
     "mtime": 1794324931.53691,
     "seen": 1794325625.701866,
     "ast_hash": "f87711c7796f8925b929d113dc5b8466",
+    "semantic_hash": ""
+  },
+  "mei/exercise-1-worked-solutions.html": {
+    "mtime": 1794350339.2447689,
+    "seen": 1794350709.889915,
+    "ast_hash": "d33b865a3e801dd165b202767ee9a2b8",
+    "semantic_hash": ""
+  },
+  "mei/exercise-2-worked-solutions.html": {
+    "mtime": 1794344960.0747447,
+    "seen": 1794345045.4636428,
+    "ast_hash": "07e2077ac096e0cc20caa80a001181c5",
+    "semantic_hash": ""
+  },
+  "mei/exercise-3-worked-solutions.html": {
+    "mtime": 1794346638.6562324,
+    "seen": 1794346673.9937222,
+    "ast_hash": "cd3af7120aba1e085e494d4df640ca9d",
+    "semantic_hash": ""
+  },
+  "mei/exercise-4-worked-solutions.html": {
+    "mtime": 1794350623.5956383,
+    "seen": 1794350709.8899179,
+    "ast_hash": "cb6712a8b6f9f368196865516708dc4f",
     "semantic_hash": ""
   }
 }
