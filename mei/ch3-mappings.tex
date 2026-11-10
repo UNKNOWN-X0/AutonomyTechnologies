@@ -188,7 +188,7 @@ Rests on: completing the square and checking Δ’s sign.
 \textbf{Cartesian conversion} \hfill{\small\color{FAUblue}§3.6}
 
 \Needspace{4\baselineskip}
-r=\ensuremath{\surd}(x\textsuperscript{2}+y\textsuperscript{2})
+r=\ensuremath{\sqrt{\mathrm{x}^{2}+\mathrm{y}^{2}}}
 
 Rests on: right-triangle length and a quadrant-aware angle.
 \end{itemize}
@@ -320,7 +320,7 @@ Let f:\ensuremath{\mathbb{R}}\ensuremath{\to}\ensuremath{\mathbb{R}} be f(x)=x\t
 \begin{notebox}\textbf{Trap:} f\textsuperscript{\ensuremath{-}1}(B) means “inputs that land in B”; it does not mean “apply the inverse function”. The inverse function exists only if f is injective.\end{notebox}
 
 \Needspace{6\baselineskip}
-\begin{notebox}\textbf{Near miss:} the rule “\textit{x} \ensuremath{\mapsto} \ensuremath{\pm}\ensuremath{\surd}\textit{x}” on [0, \ensuremath{\infty}) looks like a function, but it sends 4 to both 2 and \ensuremath{-}2. Two outputs for one input break the mapping rule; keeping only the positive root, \textit{x} \ensuremath{\mapsto} \ensuremath{\surd}\textit{x}, makes it a mapping.\end{notebox}
+\begin{notebox}\textbf{Near miss:} the rule “\textit{x} \ensuremath{\mapsto} \ensuremath{\pm}\ensuremath{\sqrt{{x}}}” on [0, \ensuremath{\infty}) looks like a function, but it sends 4 to both 2 and \ensuremath{-}2. Two outputs for one input break the mapping rule; keeping only the positive root, \textit{x} \ensuremath{\mapsto} \ensuremath{\sqrt{{x}}}, makes it a mapping.\end{notebox}
 
 \Needspace{9\baselineskip}
 \begin{recallbox}{Recall check \ensuremath{\cdot} answer before opening}
@@ -428,7 +428,7 @@ Consider f(x)=x\textsuperscript{2} with domain [0,\ensuremath{\infty}).
 \Needspace{7\baselineskip}
 \begin{enumerate}
 \item If the codomain is \ensuremath{\mathbb{R}}, the mapping is injective but not surjective, because no negative real is a square.
-\item If the codomain is [0,\ensuremath{\infty}), every codomain value y has the preimage \ensuremath{\surd}y. Thus it is surjective too.
+\item If the codomain is [0,\ensuremath{\infty}), every codomain value y has the preimage \ensuremath{\sqrt{\mathrm{y}}}. Thus it is surjective too.
 \item So f:[0,\ensuremath{\infty})\ensuremath{\to}[0,\ensuremath{\infty}) is bijective. Check: each y\ensuremath{\geq}0 has exactly one non-negative square root.
 \end{enumerate}
 \end{workedbox}
@@ -484,7 +484,7 @@ An inverse undoes a mapping. It can do that consistently only when an output ide
 \node[anchor=east,inner sep=1pt,font=\footnotesize] at (0.576,-0.288) {\textit{y}};
 \draw[black!80] (2.556,-2.556) -- (2.556,-2.700);
 \node[,inner sep=1pt,font=\footnotesize] at (2.556,-2.916) {1};
-\end{tikzpicture}\par\smallskip{\small\raggedright \textbf{f and f\textsuperscript{\ensuremath{-}1} are mirror images in the line y = x}: here \textit{x}\textsuperscript{2} on [0, \ensuremath{\infty}) (blue) and \ensuremath{\surd}\textit{x} (black).\par}\end{minipage}
+\end{tikzpicture}\par\smallskip{\small\raggedright \textbf{f and f\textsuperscript{\ensuremath{-}1} are mirror images in the line y = x}: here \textit{x}\textsuperscript{2} on [0, \ensuremath{\infty}) (blue) and \ensuremath{\sqrt{{x}}} (black).\par}\end{minipage}
 \end{center}
 
 \Needspace{14\baselineskip}
@@ -539,7 +539,7 @@ Let f:\ensuremath{\mathbb{R}}\ensuremath{\to}\ensuremath{\mathbb{R}}, f(x)=2x+3.
 \begin{notebox}\textbf{Trap:} f\textsuperscript{\ensuremath{-}1}(x) is not 1/f(x). It means the inverse mapping. If f is not injective, solving y=f(x) may give multiple x-values and no inverse function.\end{notebox}
 
 \Needspace{5\baselineskip}
-\begin{notebox}\textbf{Near miss:} \textit{f}(\textit{x}) = \textit{x}\textsuperscript{2} on \ensuremath{\mathbb{R}} cannot be inverted: 2 and \ensuremath{-}2 both give 4, so “the input that gave 4” is not unique. Restrict the domain to [0, \ensuremath{\infty}) and it becomes injective, with \textit{f}\textsuperscript{\ensuremath{-}1}(\textit{y}) = \ensuremath{\surd}\textit{y}.\end{notebox}
+\begin{notebox}\textbf{Near miss:} \textit{f}(\textit{x}) = \textit{x}\textsuperscript{2} on \ensuremath{\mathbb{R}} cannot be inverted: 2 and \ensuremath{-}2 both give 4, so “the input that gave 4” is not unique. Restrict the domain to [0, \ensuremath{\infty}) and it becomes injective, with \textit{f}\textsuperscript{\ensuremath{-}1}(\textit{y}) = \ensuremath{\sqrt{{y}}}.\end{notebox}
 
 \Needspace{9\baselineskip}
 \begin{recallbox}{Recall check \ensuremath{\cdot} answer before opening}
@@ -614,7 +614,7 @@ Let f:\ensuremath{\mathbb{R}}\ensuremath{\to}\ensuremath{\mathbb{R}} be f(x)=2x+
 \begin{notebox}\textbf{Trap:} do not apply the left-hand function first. Write the nested expression g(f(x)) before simplifying, and check that f’s image lies in g’s domain.\end{notebox}
 
 \Needspace{5\baselineskip}
-\begin{notebox}\textbf{Near miss:} with \textit{f}(\textit{x}) = \textit{x} \ensuremath{-} 2 and \textit{g}(\textit{x}) = \ensuremath{\surd}\textit{x}, the composite \textit{g}(\textit{f}(\textit{x})) = \ensuremath{\surd}(\textit{x} \ensuremath{-} 2) is not defined on all of \ensuremath{\mathbb{R}}: \textit{f}(0) = \ensuremath{-}2 lies outside the domain [0, \ensuremath{\infty}) of \textit{g}. Restrict \textit{f} to [2, \ensuremath{\infty}) first.\end{notebox}
+\begin{notebox}\textbf{Near miss:} with \textit{f}(\textit{x}) = \textit{x} \ensuremath{-} 2 and \textit{g}(\textit{x}) = \ensuremath{\sqrt{{x}}}, the composite \textit{g}(\textit{f}(\textit{x})) = \ensuremath{\sqrt{{x}\, -\, 2}} is not defined on all of \ensuremath{\mathbb{R}}: \textit{f}(0) = \ensuremath{-}2 lies outside the domain [0, \ensuremath{\infty}) of \textit{g}. Restrict \textit{f} to [2, \ensuremath{\infty}) first.\end{notebox}
 
 \Needspace{9\baselineskip}
 \begin{recallbox}{Recall check \ensuremath{\cdot} answer before opening}
@@ -647,7 +647,7 @@ This section collects important real-valued mappings. Their domain and range det
 \end{equationcard}
 
 \begin{equationcard}{Quadratic formula and discriminant}
-\[ \begin{gathered} Δ\, =\, {b}^{2}-4\text{ac} \\ {x}\, =\, (-{b}\pm \sqrtΔ)/(2{a}), \text{ax}^{2}+\text{bx}+{c}\, =\, 0,\, {a}\, ≠\, 0 \end{gathered} \]
+\[ \begin{gathered} Δ\, =\, {b}^{2}-4\text{ac} \\ {x}\, =\, (-{b}\pm \sqrt{Δ})/(2{a}), \text{ax}^{2}+\text{bx}+{c}\, =\, 0,\, {a}\, ≠\, 0 \end{gathered} \]
 {\small \emph{Read it as: “delta is b squared minus four a c”: its sign tells you how many real roots there are before you solve anything.}\par Δ\ensuremath{>}0 gives two distinct real roots; Δ=0 gives one repeated root; Δ\ensuremath{<}0 gives no real roots. When Δ\ensuremath{\geq}0, the roots factor the polynomial as a(x\ensuremath{-}x\textsubscript{1})(x\ensuremath{-}x\textsubscript{2}).}
 \end{equationcard}
 
@@ -753,7 +753,7 @@ Find sin(π/3+π/6).
 \Needspace{5\baselineskip}
 \begin{enumerate}
 \item Use sin(x+y)=sin x cos y+cos x sin y.
-\item Substitute the special-angle values: (\ensuremath{\surd}3/2)(\ensuremath{\surd}3/2)+(1/2)(1/2)=3/4+1/4=1.
+\item Substitute the special-angle values: (\ensuremath{\sqrt{3}}/2)(\ensuremath{\sqrt{3}}/2)+(1/2)(1/2)=3/4+1/4=1.
 \item The result matches sin(π/2)=1, a useful unit-circle check.
 \end{enumerate}
 \end{workedbox}
@@ -863,7 +863,7 @@ Cartesian coordinates locate a point by horizontal and vertical displacement. Po
 \end{center}
 
 \begin{equationcard}{Cartesian to polar}
-\[ \begin{gathered} {r}\, =\, \sqrt({x}^{2}+{y}^{2}) \\ \tan \, φ\, =\, {y}/{x}\, \text{when}\, {x}\, ≠\, 0 \end{gathered} \]
+\[ \begin{gathered} {r}\, =\, \sqrt{{x}^{2}+{y}^{2}} \\ \tan \, φ\, =\, {y}/{x}\, \text{when}\, {x}\, ≠\, 0 \end{gathered} \]
 {\small \emph{Read it as: “r is the square root of x squared plus y squared” (Pythagoras), and “tan phi is y over x”, which fixes φ only up to the quadrant.}\par Use the signs of x and y to select the quadrant. For 0\ensuremath{\leq}φ\ensuremath{<}2π: use arctan(y/x) when x\ensuremath{>}0,y\ensuremath{\geq}0; add 2π when x\ensuremath{>}0,y\ensuremath{<}0; add π when x\ensuremath{<}0; take π/2 when x=0,y\ensuremath{>}0 and 3π/2 when x=0,y\ensuremath{<}0. The origin has r=0 and no unique angle.}
 \end{equationcard}
 
@@ -873,9 +873,9 @@ With r\ensuremath{\geq}0 and unrestricted angle, polar coordinates are not uniqu
 \begin{workedbox}{Worked example \ensuremath{\cdot} convert a point and a region}
 \Needspace{7\baselineskip}
 \begin{enumerate}
-\item Convert (x,y)=(\ensuremath{-}1,1). The radius is r=\ensuremath{\surd}(1+1)=\ensuremath{\surd}2. The point is in quadrant II, so φ=3π/4. Thus (\ensuremath{-}1,1)=(\ensuremath{\surd}2,3π/4).
+\item Convert (x,y)=(\ensuremath{-}1,1). The radius is r=\ensuremath{\sqrt{1+1}}=\ensuremath{\sqrt{2}}. The point is in quadrant II, so φ=3π/4. Thus (\ensuremath{-}1,1)=(\ensuremath{\sqrt{2}},3π/4).
 \item Convert the region 0\ensuremath{\leq}r\ensuremath{\leq}2, 0\ensuremath{\leq}φ\ensuremath{\leq}π/4. Since r\textsuperscript{2}=x\textsuperscript{2}+y\textsuperscript{2}, it lies inside the circle x\textsuperscript{2}+y\textsuperscript{2}\ensuremath{\leq}4. The angle range is the first-quadrant wedge between y=0 and y=x, so 0\ensuremath{\leq}y\ensuremath{\leq}x.
-\item Check a boundary point: r=2, φ=π/4 gives x=y=\ensuremath{\surd}2 and x\textsuperscript{2}+y\textsuperscript{2}=4.
+\item Check a boundary point: r=2, φ=π/4 gives x=y=\ensuremath{\sqrt{2}} and x\textsuperscript{2}+y\textsuperscript{2}=4.
 \end{enumerate}
 \end{workedbox}
 
@@ -911,10 +911,10 @@ Image and preimage & Im(f)=\{f(x):x\ensuremath{\in}X\}; f\textsuperscript{\ensur
 Types & Injective: equal outputs imply equal inputs; onto: Im(f)=Y & State the codomain before deciding “onto”. \\
 Inverse & f\textsuperscript{\ensuremath{-}1}:Im(f)\ensuremath{\to}X; f\textsuperscript{\ensuremath{-}1}\ensuremath{\circ}f=id\textsubscript{X} & Only for an injective mapping. \\
 Composition & (g\ensuremath{\circ}f)(x)=g(f(x)) & f first; verify Im(f)\ensuremath{\subseteq}D(g). \\
-Quadratic & Δ=b\textsuperscript{2}\ensuremath{-}4ac; x=(\ensuremath{-}b\ensuremath{\pm}\ensuremath{\surd}Δ)/(2a) & Use real-root cases by the sign of Δ; require a\ensuremath{\neq}0. \\
+Quadratic & Δ=b\textsuperscript{2}\ensuremath{-}4ac; x=(\ensuremath{-}b\ensuremath{\pm}\ensuremath{\sqrt{Δ}})/(2a) & Use real-root cases by the sign of Δ; require a\ensuremath{\neq}0. \\
 Trigonometry & sin\textsuperscript{2}x+cos\textsuperscript{2}x=1; sin(x\ensuremath{\pm}y)=sin x cos y\ensuremath{\pm}cos x sin y; cos(x\ensuremath{\pm}y)=cos x cos y\ensuremath{\mp}sin x sin y; sin(2x)=2 sin x cos x; sin x\ensuremath{-}sin y=2 cos((x+y)/2) sin((x\ensuremath{-}y)/2); tan(x\ensuremath{\pm}y)=(tan x\ensuremath{\pm}tan y)/(1\ensuremath{\mp}tan x tan y) & Angles are radians; exclude cosine or denominators equal to zero. \\
 Exponential/logarithm & e\textsuperscript{x+y}=e\textsuperscript{x}e\textsuperscript{y}; ln(xy)=ln x+ln y; log\textsubscript{a}x=ln x/ln a & x,y\ensuremath{>}0 and a\ensuremath{>}0, a\ensuremath{\neq}1 for log\textsubscript{a}. \\
-Polar conversion & x=r cos φ; y=r sin φ; r=\ensuremath{\surd}(x\textsuperscript{2}+y\textsuperscript{2}) & Angles are radians; check quadrant; origin has no unique angle. \\
+Polar conversion & x=r cos φ; y=r sin φ; r=\ensuremath{\sqrt{\mathrm{x}^{2}+\mathrm{y}^{2}}} & Angles are radians; check quadrant; origin has no unique angle. \\
 \bottomrule\end{tabularx}\end{center}
 \end{keepsection}
 
@@ -972,7 +972,7 @@ Try all 24 problems before opening the answer key. The topics are interleaved, s
 \item Let f:\ensuremath{\mathbb{Z}}\ensuremath{\to}\ensuremath{\mathbb{Z}} be f(x)=|x|. Find Im(f) and f\textsuperscript{\ensuremath{-}1}(\{3\}).
 \item Find the roots of x\textsuperscript{2}+2x\ensuremath{-}8=0.
 \item Is f:\ensuremath{\mathbb{R}}\ensuremath{\to}\ensuremath{\mathbb{R}}, f(x)=x\textsuperscript{3}, injective, surjective, both or neither?
-\item Convert (x,y)=(\ensuremath{-}1,\ensuremath{-}\ensuremath{\surd}3) to polar coordinates with 0\ensuremath{\leq}φ\ensuremath{<}2π.
+\item Convert (x,y)=(\ensuremath{-}1,\ensuremath{-}\ensuremath{\sqrt{3}}) to polar coordinates with 0\ensuremath{\leq}φ\ensuremath{<}2π.
 \item Find the inverse of f(x)=4x\ensuremath{-}7 on \ensuremath{\mathbb{R}}.
 \item For f(x)=3x\ensuremath{-}2 and g(x)=x+4, find g\ensuremath{\circ}f and f\ensuremath{\circ}g.
 \item For f:\ensuremath{\mathbb{N}}\ensuremath{\to}\ensuremath{\mathbb{N}}, f(n)=n\textsuperscript{2}, find f(\{1,3,5\}) and say whether Im(f) equals the codomain \ensuremath{\mathbb{N}}.
@@ -980,7 +980,7 @@ Try all 24 problems before opening the answer key. The topics are interleaved, s
 \item Make x\ensuremath{\mapsto}x\textsuperscript{2} bijective by choosing a domain and codomain restriction.
 \item Solve 2\textsuperscript{x}=16 and state which property makes your step valid.
 \item Find the inverse of f(x)=5x+10 and verify f\textsuperscript{\ensuremath{-}1}(f(2)).
-\item Let f:\ensuremath{\mathbb{R}}\ensuremath{\to}[0,\ensuremath{\infty}), f(x)=x\textsuperscript{2} and g:[0,\ensuremath{\infty})\ensuremath{\to}\ensuremath{\mathbb{R}}, g(t)=\ensuremath{\surd}t. Find g\ensuremath{\circ}f.
+\item Let f:\ensuremath{\mathbb{R}}\ensuremath{\to}[0,\ensuremath{\infty}), f(x)=x\textsuperscript{2} and g:[0,\ensuremath{\infty})\ensuremath{\to}\ensuremath{\mathbb{R}}, g(t)=\ensuremath{\sqrt{\mathrm{t}}}. Find g\ensuremath{\circ}f.
 \item Does the relation y\textsuperscript{2}=x define y as a function of x on \ensuremath{\mathbb{R}}? Explain using one input.
 \item Use sin(2x)=2 sin x cos x to find sin(π/3).
 \item How many real roots does 3x\textsuperscript{2}+2x+5=0 have? Compute Δ.
@@ -1176,19 +1176,19 @@ Tick a skill only in a later session, at least one day after learning it, when y
 \item Im(f)=\ensuremath{\mathbb{N}}\textsubscript{0}; the inputs with |x|=3 are \{\ensuremath{-}3,3\}. \hfill{\small\color{FAUblue}§3.1}
 \item Δ=4+32=36, so x=(\ensuremath{-}2\ensuremath{\pm}6)/2; roots are 2 and \ensuremath{-}4. \hfill{\small\color{FAUblue}§3.5}
 \item Both. It is strictly increasing, and for every y\ensuremath{\in}\ensuremath{\mathbb{R}}, there is a unique real x with x\textsuperscript{3}=y. \hfill{\small\color{FAUblue}§3.2}
-\item r=\ensuremath{\surd}(1+3)=2. The point is in quadrant III, so φ=4π/3; answer (2,4π/3). \hfill{\small\color{FAUblue}§3.6}
+\item r=\ensuremath{\sqrt{1+3}}=2. The point is in quadrant III, so φ=4π/3; answer (2,4π/3). \hfill{\small\color{FAUblue}§3.6}
 \item Set y=4x\ensuremath{-}7 and solve x=(y+7)/4, so f\textsuperscript{\ensuremath{-}1}(y)=(y+7)/4. \hfill{\small\color{FAUblue}§3.3}
 \item (g\ensuremath{\circ}f)(x)=3x+2; (f\ensuremath{\circ}g)(x)=3x+10. The order changes the result. \hfill{\small\color{FAUblue}§3.4}
 \item f(\{1,3,5\})=\{1,9,25\}. Im(f) is the set of perfect squares \{1,4,9,…\}, a proper subset of \ensuremath{\mathbb{N}} (2 is never reached), so f is not onto \ensuremath{\mathbb{N}}. \hfill{\small\color{FAUblue}§3.1}
-\item 150°=150π/180=5π/6. On the unit circle cos(5π/6)=\ensuremath{-}\ensuremath{\surd}3/2. \hfill{\small\color{FAUblue}§3.5}
-\item Use domain [0,\ensuremath{\infty}) and codomain [0,\ensuremath{\infty}). Then x² is strictly increasing and every y\ensuremath{\geq}0 has input \ensuremath{\surd}y. \hfill{\small\color{FAUblue}§3.2}
+\item 150°=150π/180=5π/6. On the unit circle cos(5π/6)=\ensuremath{-}\ensuremath{\sqrt{3}}/2. \hfill{\small\color{FAUblue}§3.5}
+\item Use domain [0,\ensuremath{\infty}) and codomain [0,\ensuremath{\infty}). Then x² is strictly increasing and every y\ensuremath{\geq}0 has input \ensuremath{\sqrt{\mathrm{y}}}. \hfill{\small\color{FAUblue}§3.2}
 \item 2\textsuperscript{x}=2\textsuperscript{4}, hence x=4 because 2\textsuperscript{x} is injective for base 2\ensuremath{>}1. \hfill{\small\color{FAUblue}§3.5}
 \item f\textsuperscript{\ensuremath{-}1}(y)=(y\ensuremath{-}10)/5. At f(2)=20, f\textsuperscript{\ensuremath{-}1}(20)=2. \hfill{\small\color{FAUblue}§3.3}
-\item (g\ensuremath{\circ}f)(x)=\ensuremath{\surd}(x²)=|x|. Its domain is all \ensuremath{\mathbb{R}} because f outputs [0,\ensuremath{\infty}), g’s domain. \hfill{\small\color{FAUblue}§3.4}
+\item (g\ensuremath{\circ}f)(x)=\ensuremath{\sqrt{\mathrm{x}²}}=|x|. Its domain is all \ensuremath{\mathbb{R}} because f outputs [0,\ensuremath{\infty}), g’s domain. \hfill{\small\color{FAUblue}§3.4}
 \item No. For x=4, both y=2 and y=\ensuremath{-}2 satisfy y²=x, so one input has two outputs. \hfill{\small\color{FAUblue}§3.1}
-\item sin(π/3)=sin(2\ensuremath{\cdot}π/6)=2 sin(π/6)cos(π/6)=2\ensuremath{\cdot}(1/2)\ensuremath{\cdot}(\ensuremath{\surd}3/2)=\ensuremath{\surd}3/2. \hfill{\small\color{FAUblue}§3.5}
+\item sin(π/3)=sin(2\ensuremath{\cdot}π/6)=2 sin(π/6)cos(π/6)=2\ensuremath{\cdot}(1/2)\ensuremath{\cdot}(\ensuremath{\sqrt{3}}/2)=\ensuremath{\sqrt{3}}/2. \hfill{\small\color{FAUblue}§3.5}
 \item Δ=2²\ensuremath{-}4\ensuremath{\cdot}3\ensuremath{\cdot}5=\ensuremath{-}56\ensuremath{<}0, so there are no real roots. \hfill{\small\color{FAUblue}§3.5}
-\item x=3cos(π/6)=3\ensuremath{\surd}3/2; y=3sin(π/6)=3/2. \hfill{\small\color{FAUblue}§3.6}
+\item x=3cos(π/6)=3\ensuremath{\sqrt{3}}/2; y=3sin(π/6)=3/2. \hfill{\small\color{FAUblue}§3.6}
 \item 1\ensuremath{\leq}x²\ensuremath{\leq}4, so x\ensuremath{\in}[\ensuremath{-}2,\ensuremath{-}1]\ensuremath{\cup}[1,2]. This is a preimage, not an inverse function. \hfill{\small\color{FAUblue}§3.1}
 \item The degree is 5, so it has at most 5 distinct real roots. \hfill{\small\color{FAUblue}§3.5}
 \item Cosine is restricted to [0,π]; its range there is [\ensuremath{-}1,1]. \hfill{\small\color{FAUblue}§3.5}
@@ -1204,8 +1204,8 @@ Tick a skill only in a later session, at least one day after learning it, when y
 
 \Needspace{9\baselineskip}
 \begin{enumerate}
-\item f is strictly increasing on [0,\ensuremath{\infty}), so it is injective. Every y\ensuremath{\geq}0 is f(\ensuremath{\surd}y), so it is onto [0,\ensuremath{\infty}) and bijective. \hfill{\small\color{FAUblue}§3.2}
-\item Solving y=x² with x\ensuremath{\geq}0 gives f\textsuperscript{\ensuremath{-}1}(y)=\ensuremath{\surd}y. Then f\textsuperscript{\ensuremath{-}1}(f(x))=\ensuremath{\surd}(x²)=x for x\ensuremath{\geq}0. \hfill{\small\color{FAUblue}§3.3}
+\item f is strictly increasing on [0,\ensuremath{\infty}), so it is injective. Every y\ensuremath{\geq}0 is f(\ensuremath{\sqrt{\mathrm{y}}}), so it is onto [0,\ensuremath{\infty}) and bijective. \hfill{\small\color{FAUblue}§3.2}
+\item Solving y=x² with x\ensuremath{\geq}0 gives f\textsuperscript{\ensuremath{-}1}(y)=\ensuremath{\sqrt{\mathrm{y}}}. Then f\textsuperscript{\ensuremath{-}1}(f(x))=\ensuremath{\sqrt{\mathrm{x}²}}=x for x\ensuremath{\geq}0. \hfill{\small\color{FAUblue}§3.3}
 \item (g\ensuremath{\circ}f)(x)=x²\ensuremath{-}1; its domain is [0,\ensuremath{\infty}) and its image is [\ensuremath{-}1,\ensuremath{\infty}). \hfill{\small\color{FAUblue}§3.1} \hfill{\small\color{FAUblue}§3.4}
 \item No. g outputs [\ensuremath{-}1,\ensuremath{\infty}), but f accepts only non-negative inputs. For t\ensuremath{\in}[0,1), g(t)=t\ensuremath{-}1 is negative, so f(g(t))=f(t\ensuremath{-}1) is undefined. \hfill{\small\color{FAUblue}§3.4}
 \end{enumerate}
@@ -1217,8 +1217,8 @@ Tick a skill only in a later session, at least one day after learning it, when y
 \begin{enumerate}
 \item Δ=(\ensuremath{-}2)²\ensuremath{-}4\ensuremath{\cdot}1\ensuremath{\cdot}(\ensuremath{-}3)=16\ensuremath{>}0, so there are two distinct real roots. The formula gives x=(2\ensuremath{\pm}4)/2, or 3 and \ensuremath{-}1. \hfill{\small\color{FAUblue}§3.5}
 \item P(x)=(x\ensuremath{-}3)(x+1). Substituting x=3 gives 9\ensuremath{-}6\ensuremath{-}3=0. \hfill{\small\color{FAUblue}§3.5}
-\item x=4cos(π/3)=2 and y=4sin(π/3)=2\ensuremath{\surd}3, so (x,y)=(2,2\ensuremath{\surd}3). \hfill{\small\color{FAUblue}§3.6}
-\item By the addition theorem, sin(π/4+π/6) = sin(π/4) cos(π/6) + cos(π/4) sin(π/6) = (\ensuremath{\surd}2/2)(\ensuremath{\surd}3/2) + (\ensuremath{\surd}2/2)(1/2), which equals (\ensuremath{\surd}6+\ensuremath{\surd}2)/4\ensuremath{\approx}0.966. The angle 5π/12=75° is in quadrant I just below π/2, where sine is 1, so a positive value just under 1 fits. \hfill{\small\color{FAUblue}§3.5}
+\item x=4cos(π/3)=2 and y=4sin(π/3)=2\ensuremath{\sqrt{3}}, so (x,y)=(2,2\ensuremath{\sqrt{3}}). \hfill{\small\color{FAUblue}§3.6}
+\item By the addition theorem, sin(π/4+π/6) = sin(π/4) cos(π/6) + cos(π/4) sin(π/6) = (\ensuremath{\sqrt{2}}/2)(\ensuremath{\sqrt{3}}/2) + (\ensuremath{\sqrt{2}}/2)(1/2), which equals (\ensuremath{\sqrt{6}}+\ensuremath{\sqrt{2}})/4\ensuremath{\approx}0.966. The angle 5π/12=75° is in quadrant I just below π/2, where sine is 1, so a positive value just under 1 fits. \hfill{\small\color{FAUblue}§3.5}
 \end{enumerate}
 
 \end{keepsection}

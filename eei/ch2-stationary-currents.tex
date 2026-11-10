@@ -275,7 +275,7 @@ Total current hides where carriers move and how they cross a surface. Current de
 \end{equationcard}
 
 \begin{equationcard}{Current through a surface}
-\[ \begin{gathered} {I}\, =\, ∬_{{A}}\, {J}\, \cdot \, \mathrm{d}{A} \end{gathered} \]
+\[ \begin{gathered} {I}\, =\, \iint_{{A}} \, {J}\, \cdot \, \mathrm{d}{A} \end{gathered} \]
 {\small \emph{Read it as: “current through A is the surface integral of current density dotted with the oriented area element”.}\par The area vector points along the chosen surface normal. For uniform \textit{J} meeting a flat surface at angle α to its normal, \textit{I} = |\textit{J}|\textit{A} cos α. Unit: A.}
 \end{equationcard}
 
@@ -328,7 +328,7 @@ A stationary current does not pile charge up at any point. That conservation con
 \end{equationcard}
 
 \begin{equationcard}{Zero net current through a closed surface}
-\[ \begin{gathered} ∯_{{A}}\, {J}\, \cdot \, \mathrm{d}{A}\, =\, 0 \end{gathered} \]
+\[ \begin{gathered} \oiint_{{A}} \, {J}\, \cdot \, \mathrm{d}{A}\, =\, 0 \end{gathered} \]
 {\small \emph{Read it as: “the outward current integrated over a closed surface is zero”.}\par Use the outward normal. Inflow and outflow have opposite signs. Unit: A.}
 \end{equationcard}
 
@@ -626,7 +626,7 @@ Power is energy transfer per time; a resistor converts electrical energy to heat
 \end{equationcard}
 
 \begin{equationcard}{Power density and energy}
-\[ \begin{gathered} {p}_{\mathrm{V}}\, =\, {E}\, \cdot \, {J} \\ {W}\, =\, ∫_{{t}_{0}}^{{t}_{0}+{T}}\, {P}({t})\, \mathrm{d}{t} \end{gathered} \]
+\[ \begin{gathered} {p}_{\mathrm{V}}\, =\, {E}\, \cdot \, {J} \\ {W}\, =\, \int_{{t}_{0}}^{{t}_{0}+{T}} \, {P}({t})\, \mathrm{d}{t} \end{gathered} \]
 {\small \emph{Read it as: “power density is field dotted with current density; energy is power integrated over time”.}\par \textit{p}\textsubscript{V} is W/m\textsuperscript{3} and integrates to power. Energy is in J; 1 kWh = 3.6 \ensuremath{\times} 10\textsuperscript{6} J. At constant power, \textit{W} = \textit{P T}.}
 \end{equationcard}
 
@@ -672,14 +672,14 @@ A 24 Ω resistor runs at 12 V DC for 3.0 minutes. Find current, power, and energ
 \textbf{Quantity or relation} & \textbf{Use} & \textbf{SI unit} \\ \midrule
 \textit{I} = d\textit{Q}/d\textit{t} & Net charge flow rate & A = C/s \\
 \textit{J} = ϱ\textsubscript{V}\textit{v} & Local current density & A/m\textsuperscript{2} \\
-\textit{I} = \ensuremath{\iint}\textsubscript{\textit{A}} \textit{J} \ensuremath{\cdot} d\textit{A} & Current through oriented surface & A \\
-\ensuremath{\partial}\textit{J}/\ensuremath{\partial}\textit{t} = 0; \ensuremath{\oiint}\textsubscript{\textit{A}}\textit{J} \ensuremath{\cdot} d\textit{A} = 0 & Stationary current & A/m\textsuperscript{2}/s; A \\
+\textit{I} = $\iint_{{A}} $ \textit{J} \ensuremath{\cdot} d\textit{A} & Current through oriented surface & A \\
+\ensuremath{\partial}\textit{J}/\ensuremath{\partial}\textit{t} = 0; $\oiint_{{A}} $\textit{J} \ensuremath{\cdot} d\textit{A} = 0 & Stationary current & A/m\textsuperscript{2}/s; A \\
 \textit{v}\textsubscript{e} = \ensuremath{-}μ\textsubscript{e}\textit{E} & Electron drift model & m/s \\
 \textit{J} = κ\textit{E} = \textit{E}/ρ\textsubscript{R} & Local Ohm’s law & A/m\textsuperscript{2} \\
 κ = \textit{n}\textsubscript{e}\textit{e}μ\textsubscript{e}; ρ\textsubscript{R} = 1/κ & Conductivity and resistivity & S/m; Ω m \\
 \textit{R} = ρ\textsubscript{R}\textit{l}/\textit{A}; \textit{U} = \textit{R I}; \textit{G} = 1/\textit{R} & Uniform conductor & Ω; V; S \\
 \textit{J}\textsubscript{n1} = \textit{J}\textsubscript{n2}; \textit{E}\textsubscript{t1} = \textit{E}\textsubscript{t2} & Interface continuity & A/m\textsuperscript{2}; V/m \\
-\textit{P} = \textit{U I}; \textit{p}\textsubscript{V} = \textit{E} \ensuremath{\cdot} \textit{J}; \textit{P} = \ensuremath{\iiint}\textsubscript{V}\textit{p}\textsubscript{V}dV; \textit{W} = \ensuremath{\int}\textit{P}d\textit{t} & Power and energy & W; J \\
+\textit{P} = \textit{U I}; \textit{p}\textsubscript{V} = \textit{E} \ensuremath{\cdot} \textit{J}; \textit{P} = $\iiint_{\mathrm{V}} $\textit{p}\textsubscript{V}dV; \textit{W} = $\int $\textit{P}d\textit{t} & Power and energy & W; J \\
 \bottomrule\end{tabularx}\end{center}
 
 \begin{notebox}\textbf{Check every answer:} convert area and resistivity units before substituting; check current direction and the sign of the normal; test whether higher resistance should raise or lower current; and confirm that power has units of watts while energy has units of joules.\end{notebox}
@@ -700,7 +700,7 @@ Rebuild each chain on blank paper, without looking at the formula map.
 \item For a uniform cylindrical wire, substitute \textit{J} = \textit{I}/\textit{A} into \textit{E} = \textit{J}/κ, integrate over length, and identify \textit{R} = ρ\textsubscript{R}\textit{l}/\textit{A}. \hfill{\small\color{FAUblue}§2.2.3}
 \item Use a shrinking pillbox and a shrinking loop at a material boundary to derive continuity of \textit{J}\textsubscript{n} and \textit{E}\textsubscript{t}. \hfill{\small\color{FAUblue}§2.3}
 \item Start with work per charge and charge per time to derive \textit{P} = \textit{U I}; substitute Ohm’s law for the two resistor forms. \hfill{\small\color{FAUblue}§2.4}
-\item Integrate the instantaneous rate of energy transfer to get \textit{W} = \ensuremath{\int}\textit{P}(\textit{t})d\textit{t}; reduce it to \textit{P T} for constant power. \hfill{\small\color{FAUblue}§2.4}
+\item Integrate the instantaneous rate of energy transfer to get \textit{W} = $\int $\textit{P}(\textit{t})d\textit{t}; reduce it to \textit{P T} for constant power. \hfill{\small\color{FAUblue}§2.4}
 \end{enumerate}
 \end{keepsection}
 
@@ -843,7 +843,7 @@ Tick a skill only after doing its evidence problems without notes on a later day
 \begin{enumerate}
 \item Current is charge crossing a conductor section per unit time; its SI unit is the ampere (A).
 \item \textit{J} = ϱ\textsubscript{V}\textit{v}, where ϱ\textsubscript{V} is volume charge density and \textit{v} is carrier velocity.
-\item Zero: as much charge enters the closed surface as leaves it, so \ensuremath{\oint}\textsubscript{A} \textit{J} \ensuremath{\cdot} d\textit{A} = 0.
+\item Zero: as much charge enters the closed surface as leaves it, so $\oint_{\mathrm{A}} $ \textit{J} \ensuremath{\cdot} d\textit{A} = 0.
 \item Electrons are negative, so the electric force is opposite \textit{E}; conventional current is defined in the direction positive charge would move.
 \item The normal component \textit{J}\textsubscript{n} and tangential component \textit{E}\textsubscript{t} are continuous.
 \item Power is energy transferred per time; for constant DC values in a resistor, \textit{P} = \textit{U I} and \textit{W} = \textit{P T}.
@@ -926,7 +926,7 @@ Tick a skill only after doing its evidence problems without notes on a later day
 
 \Needspace{4\baselineskip}
 \begin{enumerate}
-\item Integrate instantaneous power over the time interval: \textit{W} = \ensuremath{\int}\textit{P}(\textit{t})d\textit{t}.
+\item Integrate instantaneous power over the time interval: \textit{W} = $\int $\textit{P}(\textit{t})d\textit{t}.
 \item 3.6 \ensuremath{\times} 10\textsuperscript{6} J.
 \end{enumerate}
 

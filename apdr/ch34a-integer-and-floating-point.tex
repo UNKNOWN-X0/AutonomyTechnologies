@@ -1174,7 +1174,7 @@ Subnormal values fill the gap between the smallest normal value and zero, so und
 They can be slow: many CPUs handle them through a microcode assist or a software trap, which the lecture calls orders of magnitude slower. Flush-to-zero (FTZ) is a non-compliant mode that treats subnormals as zero. It is faster but gives up that correctness, and high-performance programs often enable it.
 
 \Needspace{6\baselineskip}
-Infinity represents overflow results and some divisions by zero. NaN represents an operation without a real-number result, such as 0/0, \ensuremath{\surd}\ensuremath{-}1 or infinity\ensuremath{-}infinity.
+Infinity represents overflow results and some divisions by zero. NaN represents an operation without a real-number result, such as 0/0, \ensuremath{\sqrt{-1}} or infinity\ensuremath{-}infinity.
 
 \Needspace{6\baselineskip}
 Before IEEE 754, such operations could trap and end the program. With these values the computation continues, and the status propagates to be checked later.
@@ -1244,7 +1244,7 @@ Machine epsilon is the gap from 1 to the next larger representable value. For ra
 The slides bound the error by ε; under round-to-nearest the tight bound is ε/2 (= u). Both statements are true; use the slide form if the exam asks for it.
 
 \begin{equationcard}{Error propagation in a difference}
-\[ \begin{gathered} {x}′\, =\, {x}(1+δ_{{x}}),\, {y}′\, =\, {y}(1+δ_{{y}}) \\ \text{relative}\, \text{error}\, =\, (({x}′-{y}′)-({x}-{y}))/({x}-{y})\, =\, ({x}δ_{{x}}-{y}δ_{{y}})/({x}-{y}) \end{gathered} \]
+\[ \begin{gathered} {x}'\, =\, {x}(1+δ_{{x}}),\, {y}'\, =\, {y}(1+δ_{{y}}) \\ \text{relative}\, \text{error}\, =\, (({x}'-{y}')-({x}-{y}))/({x}-{y})\, =\, ({x}δ_{{x}}-{y}δ_{{y}})/({x}-{y}) \end{gathered} \]
 {\small The numerator stays about the size of the input errors. As x approaches y the denominator approaches zero, so the relative error can explode.}
 \end{equationcard}
 
@@ -1272,17 +1272,17 @@ If x and y are positive finite floating-point values in the same radix and preci
 \subsection{Stable quadratic roots}
 
 \Needspace{10\baselineskip}
-For ax\textsuperscript{2}+bx+c=0, require a\ensuremath{\neq}0 and D=b\textsuperscript{2}\ensuremath{-}4ac\ensuremath{\geq}0. The usual formula can subtract nearly equal quantities for one root. For D\ensuremath{>}0, choose the branch that adds magnitudes: if b\ensuremath{\geq}0, set q=\ensuremath{-}\ensuremath{\tfrac12}(b+\ensuremath{\surd}D); if b\ensuremath{<}0, set q=\ensuremath{-}\ensuremath{\tfrac12}(b\ensuremath{-}\ensuremath{\surd}D). Then the roots are q/a and c/q. This branch also handles b=0. For D=0, use the repeated root \ensuremath{-}b/(2a), since q may be zero. These steps avoid cancellation while respecting the degenerate cases.
+For ax\textsuperscript{2}+bx+c=0, require a\ensuremath{\neq}0 and D=b\textsuperscript{2}\ensuremath{-}4ac\ensuremath{\geq}0. The usual formula can subtract nearly equal quantities for one root. For D\ensuremath{>}0, choose the branch that adds magnitudes: if b\ensuremath{\geq}0, set q=\ensuremath{-}\ensuremath{\tfrac12}(b+\ensuremath{\sqrt{\mathrm{D}}}); if b\ensuremath{<}0, set q=\ensuremath{-}\ensuremath{\tfrac12}(b\ensuremath{-}\ensuremath{\sqrt{\mathrm{D}}}). Then the roots are q/a and c/q. This branch also handles b=0. For D=0, use the repeated root \ensuremath{-}b/(2a), since q may be zero. These steps avoid cancellation while respecting the degenerate cases.
 
 \Needspace{12\baselineskip}
-The notes write the same method as x\textsubscript{1}=(\ensuremath{-}b\ensuremath{-}sgn(b)\ensuremath{\surd}D)/(2a) and x\textsubscript{2}=c/(a x\textsubscript{1}). Since q=a\ensuremath{\cdot}x\textsubscript{1}, c/q is the slide’s c/(a x\textsubscript{1}). The second form comes from expanding a(x\ensuremath{-}x\textsubscript{1})(x\ensuremath{-}x\textsubscript{2}): matching the constant term gives x\textsubscript{1}x\textsubscript{2}=c/a, which is Vieta’s relation, so x\textsubscript{2} needs no subtraction.
+The notes write the same method as x\textsubscript{1}=(\ensuremath{-}b\ensuremath{-}sgn(b)\ensuremath{\sqrt{\mathrm{D}}})/(2a) and x\textsubscript{2}=c/(a x\textsubscript{1}). Since q=a\ensuremath{\cdot}x\textsubscript{1}, c/q is the slide’s c/(a x\textsubscript{1}). The second form comes from expanding a(x\ensuremath{-}x\textsubscript{1})(x\ensuremath{-}x\textsubscript{2}): matching the constant term gives x\textsubscript{1}x\textsubscript{2}=c/a, which is Vieta’s relation, so x\textsubscript{2} needs no subtraction.
 
 \begin{workedbox}{Worked example \ensuremath{\cdot} x\textsuperscript{2}+10\textsuperscript{8}x+1=0 in double precision}
 \Needspace{9\baselineskip}
 \begin{enumerate}
-\item Here a=1, b=10\textsuperscript{8}, c=1, so D=10\textsuperscript{16}\ensuremath{-}4 and \ensuremath{\surd}D\ensuremath{\approx}10\textsuperscript{8}.
-\item Direct formula for the small root: (\ensuremath{-}b+\ensuremath{\surd}D)/2 subtracts nearly equal values and gives about \ensuremath{-}7.45\ensuremath{\times}10\textsuperscript{\ensuremath{-}9}.
-\item Stable: b\ensuremath{\geq}0, so q=\ensuremath{-}\ensuremath{\tfrac12}(b+\ensuremath{\surd}D)\ensuremath{\approx}\ensuremath{-}10\textsuperscript{8}. The roots are q/a\ensuremath{\approx}\ensuremath{-}10\textsuperscript{8} and c/q\ensuremath{\approx}\ensuremath{-}10\textsuperscript{\ensuremath{-}8}.
+\item Here a=1, b=10\textsuperscript{8}, c=1, so D=10\textsuperscript{16}\ensuremath{-}4 and \ensuremath{\sqrt{\mathrm{D}}}\ensuremath{\approx}10\textsuperscript{8}.
+\item Direct formula for the small root: (\ensuremath{-}b+\ensuremath{\sqrt{\mathrm{D}}})/2 subtracts nearly equal values and gives about \ensuremath{-}7.45\ensuremath{\times}10\textsuperscript{\ensuremath{-}9}.
+\item Stable: b\ensuremath{\geq}0, so q=\ensuremath{-}\ensuremath{\tfrac12}(b+\ensuremath{\sqrt{\mathrm{D}}})\ensuremath{\approx}\ensuremath{-}10\textsuperscript{8}. The roots are q/a\ensuremath{\approx}\ensuremath{-}10\textsuperscript{8} and c/q\ensuremath{\approx}\ensuremath{-}10\textsuperscript{\ensuremath{-}8}.
 \item Check: the product of the roots is 1=c/a, and the sum is about \ensuremath{-}10\textsuperscript{8}=\ensuremath{-}b/a. The direct value was about 25\% off. \hfill{\small\color{FAUblue}§4.5}
 \end{enumerate}
 \end{workedbox}

@@ -182,7 +182,7 @@ Rests on: checking every possible input assignment.
 \textbf{Boolean laws} \hfill{\small\color{FAUblue}§2.6}
 
 \Needspace{4\baselineskip}
-(A + B)' = A' \ensuremath{\cdot} B'
+(A + B)\ensuremath{{}^{\prime}} = A\ensuremath{{}^{\prime}} \ensuremath{\cdot} B\ensuremath{{}^{\prime}}
 
 Rests on: equal outputs for every assignment.
 \item \Needspace{4\baselineskip}
@@ -267,7 +267,7 @@ For \textit{x} = 16 and initial guess \textit{g} = 3, calculate two updates.
 \begin{enumerate}
 \item First compare 3\textsuperscript{2} = 9 with 16, so continue. The next guess is (3 + 16/3)/2 \ensuremath{\approx} 4.167.
 \item Now 4.167\textsuperscript{2} \ensuremath{\approx} 17.36, so update again: (4.167 + 16/4.167)/2 \ensuremath{\approx} 4.003.
-\item The next estimate is about 4.000. The procedure approaches \ensuremath{\surd}16 and stops when its chosen closeness test succeeds. \hfill{\small\color{FAUblue}§2.1}
+\item The next estimate is about 4.000. The procedure approaches \ensuremath{\sqrt{16}} and stops when its chosen closeness test succeeds. \hfill{\small\color{FAUblue}§2.1}
 \item Sanity check: 4\textsuperscript{2} = 16, so the guesses are heading for the true root.
 \end{enumerate}
 \end{workedbox}
@@ -479,7 +479,7 @@ A \textbf{proposition} is a statement that is either true or false. Compound pro
 For example, let \textit{R} mean “it is raining” and \textit{W} mean “the weather forecast is bad”. The umbrella decision is \textit{U} = \textit{W} \ensuremath{\lor} \textit{R}. If \textit{W} = 0 and \textit{R} = 1, then \textit{U} = 1.
 
 \Needspace{8\baselineskip}
-More complex decisions combine several operations. The lecture gives \textit{U} = \textit{C}' \ensuremath{\cdot} (\textit{W} + \textit{R}): take an umbrella when you are not taking the car and either the forecast is bad or it is raining. Parentheses matter because the operations have different precedence.
+More complex decisions combine several operations. The lecture gives \textit{U} = \textit{C}\ensuremath{{}^{\prime}} \ensuremath{\cdot} (\textit{W} + \textit{R}): take an umbrella when you are not taking the car and either the forecast is bad or it is raining. Parentheses matter because the operations have different precedence.
 
 \Needspace{6\baselineskip}
 \begin{notebox}\textbf{Near miss:} in everyday speech “tea or coffee” often means one but not both, but this lecture’s OR is inclusive: \textit{A} \ensuremath{\lor} \textit{B} is also true when both are true. Exclusive or is a separate operation, XOR (§2.7).\end{notebox}
@@ -505,7 +505,7 @@ More complex decisions combine several operations. The lecture gives \textit{U} 
 \Needspace{8\baselineskip}
 Boolean algebra replaces long verbal propositions with symbols and gives every operation a precise meaning. Truth tables then provide a direct way to calculate an expression for every possible input.
 
-\begin{plainbox}\textbf{In plain words:} Boolean algebra writes logic as short formulas: a prime ' for NOT, \ensuremath{\cdot} for AND and + for OR, with 1 for true and 0 for false. A \textbf{truth table} checks a formula by listing every combination of inputs with the output for each; with \textit{n} inputs there are 2\textsuperscript{\textit{n}} rows.\end{plainbox}
+\begin{plainbox}\textbf{In plain words:} Boolean algebra writes logic as short formulas: a prime \ensuremath{{}^{\prime}} for NOT, \ensuremath{\cdot} for AND and + for OR, with 1 for true and 0 for false. A \textbf{truth table} checks a formula by listing every combination of inputs with the output for each; with \textit{n} inputs there are 2\textsuperscript{\textit{n}} rows.\end{plainbox}
 
 \begin{keepsection}
 \Needspace{15\baselineskip}
@@ -516,7 +516,7 @@ Boolean values use 1 for TRUE and 0 for FALSE. Variables stand for propositions.
 
 \begin{equationcard}{Notation and precedence}
 \[ \begin{gathered} {A}'\, =\, \text{NOT}\, {A} \\ {A}\, \cdot \, {B}\, =\, {A}\, \text{AND}\, {B} \\ {A}\, +\, {B}\, =\, {A}\, \text{OR}\, {B} \\ \text{NOT}\, \text{first}\, \cdot \, \text{AND}\, \text{next}\, \cdot \, \text{OR}\, \text{last} \end{gathered} \]
-{\small \emph{Read it as: “A prime is not A”, “A dot B is A and B”, “A plus B is A or B”; NOT is applied first, then AND, then OR.}\par Use parentheses to make grouping explicit. For example, C' \ensuremath{\cdot} (W + R) is different from C' \ensuremath{\cdot} W + R. In C, logical operators are \&\&, ||, !; bitwise operators are \&, |, ~ (the slide labels these “Binary”; see Slips in the notes).}
+{\small \emph{Read it as: “A prime is not A”, “A dot B is A and B”, “A plus B is A or B”; NOT is applied first, then AND, then OR.}\par Use parentheses to make grouping explicit. For example, C\ensuremath{{}^{\prime}} \ensuremath{\cdot} (W + R) is different from C\ensuremath{{}^{\prime}} \ensuremath{\cdot} W + R. In C, logical operators are \&\&, ||, !; bitwise operators are \&, |, ~ (the slide labels these “Binary”; see Slips in the notes).}
 \end{equationcard}
 \end{keepsection}
 
@@ -537,18 +537,18 @@ A truth table lists an expression's output for every assignment of its input var
 \bottomrule\end{tabularx}\end{center}
 
 \begin{workedbox}{Worked example \ensuremath{\cdot} the umbrella truth table}
-Build the table for \textit{U} = \textit{C}' \ensuremath{\cdot} (\textit{W} + \textit{R}) with partial results.
+Build the table for \textit{U} = \textit{C}\ensuremath{{}^{\prime}} \ensuremath{\cdot} (\textit{W} + \textit{R}) with partial results.
 
 \Needspace{5\baselineskip}
 \begin{enumerate}
 \item Three variables give 2\textsuperscript{3} = 8 rows. List (R,W,C) from 000 to 111.
-\item Name the partial results: X1 = R + W and X2 = C'.
+\item Name the partial results: X1 = R + W and X2 = C\ensuremath{{}^{\prime}}.
 \item Fill X1, then X2, then U = X1 \ensuremath{\cdot} X2.
 \end{enumerate}
 
 \Needspace{10\baselineskip}
 \begin{center}\small\begin{tabularx}{\linewidth}{>{\raggedright\arraybackslash}X>{\raggedright\arraybackslash}X>{\raggedright\arraybackslash}X>{\raggedright\arraybackslash}X>{\raggedright\arraybackslash}X>{\raggedright\arraybackslash}X}\toprule
-\textbf{R} & \textbf{W} & \textbf{C} & \textbf{X1 = R + W} & \textbf{X2 = C'} & \textbf{U = X1 \ensuremath{\cdot} X2} \\ \midrule
+\textbf{R} & \textbf{W} & \textbf{C} & \textbf{X1 = R + W} & \textbf{X2 = C\ensuremath{{}^{\prime}}} & \textbf{U = X1 \ensuremath{\cdot} X2} \\ \midrule
 0 & 0 & 0 & 0 & 1 & 0 \\
 0 & 0 & 1 & 0 & 0 & 0 \\
 0 & 1 & 0 & 1 & 1 & 1 \\
@@ -568,7 +568,7 @@ U = 1 only for (R,W,C) = 010, 100, 110. Sanity check: those are exactly the rows
 \subsection{Implication (beyond the notes)}
 
 \Needspace{8\baselineskip}
-Implication is not in these slides; the “=\ensuremath{>}” on slide 24 only means “we could write”. Take this truth table as its definition: A \ensuremath{\Rightarrow} B is false only for A = 1, B = 0, so its column for (A,B) = 00, 01, 10, 11 is 1, 1, 0, 1. Evaluating A' + B gives 1, 1, 0, 1 as well, so the two are equivalent.
+Implication is not in these slides; the “=\ensuremath{>}” on slide 24 only means “we could write”. Take this truth table as its definition: A \ensuremath{\Rightarrow} B is false only for A = 1, B = 0, so its column for (A,B) = 00, 01, 10, 11 is 1, 1, 0, 1. Evaluating A\ensuremath{{}^{\prime}} + B gives 1, 1, 0, 1 as well, so the two are equivalent.
 
 \Needspace{6\baselineskip}
 \begin{notebox}\textbf{Trap:} three input variables require eight rows, not six. List all assignments before calculating an output column. And + means OR here, so 1 + 1 = 1.\end{notebox}
@@ -605,7 +605,7 @@ Boolean laws let you transform an expression while preserving its output. Each i
 
 \begin{equationcard}{Negation, identity, and idempotence}
 \[ \begin{gathered} ({A}')'\, =\, {A} \\ {A}\, \cdot \, {A}'\, =\, 0 \\ {A}\, +\, {A}'\, =\, 1 \\ {A}\, \cdot \, {A}\, =\, {A} \\ {A}\, +\, {A}\, =\, {A} \\ {A}\, \cdot \, 0\, =\, 0 \\ {A}\, \cdot \, 1\, =\, {A} \\ {A}\, +\, 0\, =\, {A} \\ {A}\, +\, 1\, =\, 1 \end{gathered} \]
-{\small \emph{Read it as: “A or not A is always 1” and “A and not A is always 0”: a statement and its opposite are never both true and never both false.}\par The slides use \ensuremath{\cdot} for AND and + for OR. A and B may themselves be compound Boolean expressions. (A')' = A is listed under “Negation”, and the NAND slides call it the Involution law.}
+{\small \emph{Read it as: “A or not A is always 1” and “A and not A is always 0”: a statement and its opposite are never both true and never both false.}\par The slides use \ensuremath{\cdot} for AND and + for OR. A and B may themselves be compound Boolean expressions. (A\ensuremath{{}^{\prime}})\ensuremath{{}^{\prime}} = A is listed under “Negation”, and the NAND slides call it the Involution law.}
 \end{equationcard}
 
 \begin{equationcard}{Commutative, associative, and distributive}
@@ -638,7 +638,7 @@ Negating a compound expression changes its operation and negates each input: NOT
 \draw[black!80] (2.196,-1.224) circle (0.792);
 \node[,inner sep=1pt,font=\small] at (0.504,-0.576) {\textit{A}};
 \node[,inner sep=1pt,font=\small] at (3.096,-0.576) {\textit{B}};
-\end{tikzpicture}\par\smallskip{\small\raggedright \textbf{(\textit{A} + \textit{B})′ = \textit{A}′ \ensuremath{\cdot} \textit{B}′}: outside both circles.\par}\end{minipage}\hfill
+\end{tikzpicture}\par\smallskip{\small\raggedright \textbf{(\textit{A} + \textit{B})\ensuremath{{}^{\prime}} = \textit{A}\ensuremath{{}^{\prime}} \ensuremath{\cdot} \textit{B}\ensuremath{{}^{\prime}}}: outside both circles.\par}\end{minipage}\hfill
 \begin{minipage}[t]{0.465\linewidth}\centering
 \begin{tikzpicture}[line join=round]
 \fill[FAUblue!25] (0.072,-0.072) rectangle (3.528,-2.268);
@@ -648,25 +648,25 @@ Negating a compound expression changes its operation and negates each input: NOT
 \draw[black!80] (2.196,-1.224) circle (0.792);
 \node[,inner sep=1pt,font=\small] at (0.504,-0.576) {\textit{A}};
 \node[,inner sep=1pt,font=\small] at (3.096,-0.576) {\textit{B}};
-\end{tikzpicture}\par\smallskip{\small\raggedright \textbf{(\textit{A} \ensuremath{\cdot} \textit{B})′ = \textit{A}′ + \textit{B}′}: everything except the overlap.\par}\end{minipage}
+\end{tikzpicture}\par\smallskip{\small\raggedright \textbf{(\textit{A} \ensuremath{\cdot} \textit{B})\ensuremath{{}^{\prime}} = \textit{A}\ensuremath{{}^{\prime}} + \textit{B}\ensuremath{{}^{\prime}}}: everything except the overlap.\par}\end{minipage}
 \end{center}
 
 \begin{workedbox}{Worked example \ensuremath{\cdot} simplify a negated expression}
-Rewrite (A + B)' using De Morgan's law, then evaluate it when A = 0 and B = 1.
+Rewrite (A + B)\ensuremath{{}^{\prime}} using De Morgan's law, then evaluate it when A = 0 and B = 1.
 
 \Needspace{5\baselineskip}
 \begin{enumerate}
-\item Apply (A + B)' = A' \ensuremath{\cdot} B'.
+\item Apply (A + B)\ensuremath{{}^{\prime}} = A\ensuremath{{}^{\prime}} \ensuremath{\cdot} B\ensuremath{{}^{\prime}}.
 \item Substitute the inputs: 1 \ensuremath{\cdot} 0 = 0.
 \item The original expression is false because at least one input to the OR was true. \hfill{\small\color{FAUblue}§2.6}
 \end{enumerate}
 \end{workedbox}
 
 \Needspace{5\baselineskip}
-\begin{notebox}\textbf{Trap:} De Morgan swaps the operator as well as priming each input. (A + B)' is not A' + B'.\end{notebox}
+\begin{notebox}\textbf{Trap:} De Morgan swaps the operator as well as priming each input. (A + B)\ensuremath{{}^{\prime}} is not A\ensuremath{{}^{\prime}} + B\ensuremath{{}^{\prime}}.\end{notebox}
 
 \Needspace{5\baselineskip}
-\begin{notebox}\textbf{Near miss:} (\textit{A} \ensuremath{\cdot} \textit{B})' = \textit{A}' \ensuremath{\cdot} \textit{B}' looks natural, but try \textit{A} = 1, \textit{B} = 0: the left side is (0)' = 1 and the right side is 0 \ensuremath{\cdot} 1 = 0. De Morgan’s law also swaps the operator: (\textit{A} \ensuremath{\cdot} \textit{B})' = \textit{A}' + \textit{B}'.\end{notebox}
+\begin{notebox}\textbf{Near miss:} (\textit{A} \ensuremath{\cdot} \textit{B})\ensuremath{{}^{\prime}} = \textit{A}\ensuremath{{}^{\prime}} \ensuremath{\cdot} \textit{B}\ensuremath{{}^{\prime}} looks natural, but try \textit{A} = 1, \textit{B} = 0: the left side is (0)\ensuremath{{}^{\prime}} = 1 and the right side is 0 \ensuremath{\cdot} 1 = 0. De Morgan’s law also swaps the operator: (\textit{A} \ensuremath{\cdot} \textit{B})\ensuremath{{}^{\prime}} = \textit{A}\ensuremath{{}^{\prime}} + \textit{B}\ensuremath{{}^{\prime}}.\end{notebox}
 
 \Needspace{10\baselineskip}
 \begin{recallbox}{Recall check \ensuremath{\cdot} answer without looking}
@@ -733,15 +733,15 @@ The first NAND receives B and C and produces I. A second NAND receives A and I a
 
 \Needspace{7\baselineskip}
 \begin{enumerate}
-\item Name the intermediate output: I = (B \ensuremath{\cdot} C)'.
-\item Write the final gate: X = (A \ensuremath{\cdot} I)' = (A \ensuremath{\cdot} (B \ensuremath{\cdot} C)')'.
-\item Use (P \ensuremath{\cdot} Q)' = P' + Q': X = A' + ((B \ensuremath{\cdot} C)')'.
-\item Apply double negation: X = A' + B \ensuremath{\cdot} C. \hfill{\small\color{FAUblue}§2.7}
+\item Name the intermediate output: I = (B \ensuremath{\cdot} C)\ensuremath{{}^{\prime}}.
+\item Write the final gate: X = (A \ensuremath{\cdot} I)\ensuremath{{}^{\prime}} = (A \ensuremath{\cdot} (B \ensuremath{\cdot} C)\ensuremath{{}^{\prime}})\ensuremath{{}^{\prime}}.
+\item Use (P \ensuremath{\cdot} Q)\ensuremath{{}^{\prime}} = P\ensuremath{{}^{\prime}} + Q\ensuremath{{}^{\prime}}: X = A\ensuremath{{}^{\prime}} + ((B \ensuremath{\cdot} C)\ensuremath{{}^{\prime}})\ensuremath{{}^{\prime}}.
+\item Apply double negation: X = A\ensuremath{{}^{\prime}} + B \ensuremath{\cdot} C. \hfill{\small\color{FAUblue}§2.7}
 \end{enumerate}
 
 \Needspace{10\baselineskip}
 \begin{center}\small\begin{tabularx}{\linewidth}{>{\raggedright\arraybackslash}X>{\raggedright\arraybackslash}X>{\raggedright\arraybackslash}X>{\raggedright\arraybackslash}X>{\raggedright\arraybackslash}X}\toprule
-\textbf{A} & \textbf{B} & \textbf{C} & \textbf{B \ensuremath{\cdot} C} & \textbf{X = A' + B \ensuremath{\cdot} C} \\ \midrule
+\textbf{A} & \textbf{B} & \textbf{C} & \textbf{B \ensuremath{\cdot} C} & \textbf{X = A\ensuremath{{}^{\prime}} + B \ensuremath{\cdot} C} \\ \midrule
 0 & 0 & 0 & 0 & 1 \\
 0 & 0 & 1 & 0 & 1 \\
 0 & 1 & 0 & 0 & 1 \\
@@ -752,7 +752,7 @@ The first NAND receives B and C and produces I. A second NAND receives A and I a
 1 & 1 & 1 & 1 & 1 \\
 \bottomrule\end{tabularx}\end{center}
 
-Sanity check with the gates, row 1,1,0: I = (1 \ensuremath{\cdot} 0)' = 1, then X = (1 \ensuremath{\cdot} 1)' = 0, which matches the table.
+Sanity check with the gates, row 1,1,0: I = (1 \ensuremath{\cdot} 0)\ensuremath{{}^{\prime}} = 1, then X = (1 \ensuremath{\cdot} 1)\ensuremath{{}^{\prime}} = 0, which matches the table.
 \end{workedbox}
 
 \Needspace{7\baselineskip}
@@ -836,13 +836,13 @@ The final slides contrast an ideal, instantaneous gate with real switching. They
 \begin{center}\small\begin{tabularx}{\linewidth}{>{\raggedright\arraybackslash}X>{\raggedright\arraybackslash}X>{\raggedright\arraybackslash}X}\toprule
 \textbf{Idea} & \textbf{Rule} & \textbf{Check} \\ \midrule
 Truth-table size & \textit{n} inputs \ensuremath{\to} 2\textsuperscript{n} rows & Enumerate every assignment once. \\
-Implication (beyond the notes) & A \ensuremath{\Rightarrow} B = A' + B & False only for A=1, B=0. \\
-Complement of OR & (A + B)' = A' \ensuremath{\cdot} B' & Both inputs must be 0. \\
-Complement of AND & (A \ensuremath{\cdot} B)' = A' + B' & At least one input must be 0. \\
-XOR & A' \ensuremath{\cdot} B + A \ensuremath{\cdot} B' & Inputs differ. \\
-XNOR & A' \ensuremath{\cdot} B' + A \ensuremath{\cdot} B & Inputs agree. \\
-NAND constructions & A' = (A \ensuremath{\cdot} A)'; A \ensuremath{\cdot} B = ((A \ensuremath{\cdot} B)')'; A + B = (A' \ensuremath{\cdot} B')' & Name the law used. \\
-Two-stage NAND example & X = A' + B \ensuremath{\cdot} C & Label the intermediate output first. \\
+Implication (beyond the notes) & A \ensuremath{\Rightarrow} B = A\ensuremath{{}^{\prime}} + B & False only for A=1, B=0. \\
+Complement of OR & (A + B)\ensuremath{{}^{\prime}} = A\ensuremath{{}^{\prime}} \ensuremath{\cdot} B\ensuremath{{}^{\prime}} & Both inputs must be 0. \\
+Complement of AND & (A \ensuremath{\cdot} B)\ensuremath{{}^{\prime}} = A\ensuremath{{}^{\prime}} + B\ensuremath{{}^{\prime}} & At least one input must be 0. \\
+XOR & A\ensuremath{{}^{\prime}} \ensuremath{\cdot} B + A \ensuremath{\cdot} B\ensuremath{{}^{\prime}} & Inputs differ. \\
+XNOR & A\ensuremath{{}^{\prime}} \ensuremath{\cdot} B\ensuremath{{}^{\prime}} + A \ensuremath{\cdot} B & Inputs agree. \\
+NAND constructions & A\ensuremath{{}^{\prime}} = (A \ensuremath{\cdot} A)\ensuremath{{}^{\prime}}; A \ensuremath{\cdot} B = ((A \ensuremath{\cdot} B)\ensuremath{{}^{\prime}})\ensuremath{{}^{\prime}}; A + B = (A\ensuremath{{}^{\prime}} \ensuremath{\cdot} B\ensuremath{{}^{\prime}})\ensuremath{{}^{\prime}} & Name the law used. \\
+Two-stage NAND example & X = A\ensuremath{{}^{\prime}} + B \ensuremath{\cdot} C & Label the intermediate output first. \\
 \bottomrule\end{tabularx}\end{center}
 
 \begin{notebox}\textbf{Check every answer:} confirm the operator precedence, list every input assignment, and test the expression against one row that should make it true and one that should make it false.\end{notebox}
@@ -859,11 +859,11 @@ Rebuild each result from its definition before opening the worked examples.
 \begin{enumerate}
 \item Run the square-root update twice from \textit{x} = 16 and \textit{g} = 3; show each average. \hfill{\small\color{FAUblue}§2.1}
 \item Explain why the sequence, control flow, and stop rule all matter to a recipe. \hfill{\small\color{FAUblue}§2.1}
-\item Build the umbrella table for U = C' \ensuremath{\cdot} (W + R) with its partial results. \hfill{\small\color{FAUblue}§2.5}
-\item Take the truth-table definition of A \ensuremath{\Rightarrow} B and show its equivalence to A' + B. \hfill{\small\color{FAUblue}§2.5}
+\item Build the umbrella table for U = C\ensuremath{{}^{\prime}} \ensuremath{\cdot} (W + R) with its partial results. \hfill{\small\color{FAUblue}§2.5}
+\item Take the truth-table definition of A \ensuremath{\Rightarrow} B and show its equivalence to A\ensuremath{{}^{\prime}} + B. \hfill{\small\color{FAUblue}§2.5}
 \item Prove one De Morgan law by comparing its truth-table outputs. \hfill{\small\color{FAUblue}§2.6}
 \item Build NOT, AND, OR and NOR from NAND, naming the law for each. \hfill{\small\color{FAUblue}§2.7}
-\item Translate the two-stage NAND circuit into an expression, then simplify it to X = A' + B \ensuremath{\cdot} C. \hfill{\small\color{FAUblue}§2.7}
+\item Translate the two-stage NAND circuit into an expression, then simplify it to X = A\ensuremath{{}^{\prime}} + B \ensuremath{\cdot} C. \hfill{\small\color{FAUblue}§2.7}
 \end{enumerate}
 \end{keepsection}
 
@@ -880,7 +880,7 @@ Answer each question aloud in your own words, then compare with the model answer
 \item Why can the same computer execute different algorithms?
 \item Why is “3 + 'hi'” different from an expression with invalid syntax?
 \item Why does a truth table with n inputs have 2\textsuperscript{n} rows?
-\item Why do parentheses change C' \ensuremath{\cdot} (W + R) compared with C' \ensuremath{\cdot} W + R?
+\item Why do parentheses change C\ensuremath{{}^{\prime}} \ensuremath{\cdot} (W + R) compared with C\ensuremath{{}^{\prime}} \ensuremath{\cdot} W + R?
 \item Why is NAND called functionally complete?
 \item Why is a Boolean truth table not enough to describe a real circuit's timing?
 \end{enumerate}
@@ -903,26 +903,26 @@ Try all 25 problems before opening the worked answers. They alternate across top
 \item A machine stores instructions and uses tests to change which step runs next. Which computer model from the lecture does this describe?
 \item How many rows are needed for a truth table with four Boolean inputs?
 \item Classify “3 + 'hi'” using the lecture's distinction between syntax and static semantics.
-\item Rewrite (A \ensuremath{\cdot} B)' using a De Morgan law.
-\item For A=1 and B=0, evaluate A \ensuremath{\Rightarrow} B and A' + B. What do you observe?
+\item Rewrite (A \ensuremath{\cdot} B)\ensuremath{{}^{\prime}} using a De Morgan law.
+\item For A=1 and B=0, evaluate A \ensuremath{\Rightarrow} B and A\ensuremath{{}^{\prime}} + B. What do you observe?
 \item For x=9 and current guess g=2, calculate the next square-root guess using (g + x/g)/2.
-\item Rewrite (A + B + C)' using De Morgan's law.
+\item Rewrite (A + B + C)\ensuremath{{}^{\prime}} using De Morgan's law.
 \item State the difference between an ideal Boolean gate model and a physical circuit model.
-\item Let A=0, B=1, C=1. Evaluate A' + B \ensuremath{\cdot} C using the stated precedence.
+\item Let A=0, B=1, C=1. Evaluate A\ensuremath{{}^{\prime}} + B \ensuremath{\cdot} C using the stated precedence.
 \item Give one possible behaviour of a semantic error even when a program is syntactically valid.
 \item For A=1 and B=1, find A XOR B and A XNOR B.
 \item Simplify A \ensuremath{\cdot} A + A using Boolean laws.
 \item In C notation, which operator is logical AND: \& or \&\&?
-\item A two-stage NAND circuit has I=(A \ensuremath{\cdot} B)' and X=(I \ensuremath{\cdot} C)'. Simplify X.
+\item A two-stage NAND circuit has I=(A \ensuremath{\cdot} B)\ensuremath{{}^{\prime}} and X=(I \ensuremath{\cdot} C)\ensuremath{{}^{\prime}}. Simplify X.
 \item After the first square-root update, explain what the algorithm does if the stopping test still fails.
-\item Simplify (A + B)' \ensuremath{\cdot} (A + B) using a complement law.
+\item Simplify (A + B)\ensuremath{{}^{\prime}} \ensuremath{\cdot} (A + B) using a complement law.
 \item For the circuit in problem 16, find X when A=0, B=1, C=0, working through the gates.
 \item What is the maximum number of Boolean functions of three input variables? Treat a Boolean function as one choice of output bit for each truth-table row.
 \item Write A + B using only NAND operations, then name the law that makes it work.
 \item What can a stored-program computer do that a calculator, as a fixed-program computer, cannot?
 \item Classify each as a syntax error, a static semantic error, or valid: "hi"5, 3 + "hi", 3.2 * 5.
-\item Let V=(C + R) \ensuremath{\cdot} W'. List every input (C,R,W) that gives V=1.
-\item For C=1, W=1, R=1, evaluate C' \ensuremath{\cdot} W + R and C' \ensuremath{\cdot} (W + R).
+\item Let V=(C + R) \ensuremath{\cdot} W\ensuremath{{}^{\prime}}. List every input (C,R,W) that gives V=1.
+\item For C=1, W=1, R=1, evaluate C\ensuremath{{}^{\prime}} \ensuremath{\cdot} W + R and C\ensuremath{{}^{\prime}} \ensuremath{\cdot} (W + R).
 \end{enumerate}
 
 \nopagebreak[4]{\small\itshape Answers: see “Mixed practice” under Answers at the end.}
@@ -957,7 +957,7 @@ For this practice variation on the lecture's square-root recipe, make the stoppi
 \subsection{2 \ensuremath{\cdot} Simplify and check a NAND circuit}
 
 \Needspace{8\baselineskip}
-A circuit has I=(A\ensuremath{\cdot}C)' and X=(B\ensuremath{\cdot}I)'. Assume Boolean inputs.
+A circuit has I=(A\ensuremath{\cdot}C)\ensuremath{{}^{\prime}} and X=(B\ensuremath{\cdot}I)\ensuremath{{}^{\prime}}. Assume Boolean inputs.
 
 \Needspace{6\baselineskip}
 \begin{enumerate}
@@ -984,7 +984,7 @@ These were checked against the slides. Learn the corrected form, and expect that
 9, 18 & “Interpreter or compiler executes each instruction.” A compiler translates a program; it does not execute it. Slide 18 says commands are converted into machine language, which is the accurate part. & §§2.2–2.3 say the processor executes and the compiler translates. \\
 10 & “Compute anything” and “any other programming language” are loose: the claim holds for what is computable, in general-purpose (Turing-complete) languages. & §2.2 says “computable” and “general-purpose”. \\
 31 & “Binary: AND \& OR | NOT ~” should read bitwise. ~ takes one operand, so it is not binary in the usual sense. & §2.5 says bitwise. \\
-35, 42 & Notation clash, not an error: (A')' = A is under “Negation” on slide 35 and “Involution law” on slide 42. & §2.6 gives both names. \\
+35, 42 & Notation clash, not an error: (A\ensuremath{{}^{\prime}})\ensuremath{{}^{\prime}} = A is under “Negation” on slide 35 and “Involution law” on slide 42. & §2.6 gives both names. \\
 24 & Not an error, but a trap: “=\ensuremath{>}” here means “we could write”, not implication. The slides never define implication. & §2.5 marks implication as beyond the notes. \\
 49 & Uncertain: the slide titled TTL NAND gate also shows what appears to be a MOSFET cross-section (gate, source, drain), which is probably unrelated to TTL. & §2.8 mentions only the TTL NAND gate. \\
 7, 20, 40 & Typing slips with no effect on meaning: “An Algorithms”, “this this part”, “combination these functions”. & §§2.1 and 2.7 use the corrected wording. \\
@@ -1005,7 +1005,7 @@ Use day 0 to learn and practise. Tick a skill only in a later session, at least 
 \item $\mdlgwhtsquare$\ Evaluate NOT, AND, and inclusive OR, and name their C operators. (2, 7, 15)
 \item $\mdlgwhtsquare$\ Determine truth-table size and enumerate inputs. (4, 20, 24)
 \item $\mdlgwhtsquare$\ Apply precedence and parentheses correctly. (11, 25)
-\item $\mdlgwhtsquare$\ Show A\ensuremath{\Rightarrow}B=A'+B with a complete truth table (beyond the notes). (7)
+\item $\mdlgwhtsquare$\ Show A\ensuremath{\Rightarrow}B=A\ensuremath{{}^{\prime}}+B with a complete truth table (beyond the notes). (7)
 \item $\mdlgwhtsquare$\ Use complement, idempotent, and De Morgan laws. (6, 9, 14, 18)
 \item $\mdlgwhtsquare$\ Translate, simplify and build NAND circuits. (16, 19, 21)
 \item $\mdlgwhtsquare$\ Distinguish XOR from XNOR by input agreement. (13)
@@ -1084,7 +1084,7 @@ Use day 0 to learn and practise. Tick a skill only in a later session, at least 
 
 \Needspace{5\baselineskip}
 \begin{enumerate}
-\item (A + B)' = A' \ensuremath{\cdot} B'. \hfill{\small\color{FAUblue}§2.6}
+\item (A + B)\ensuremath{{}^{\prime}} = A\ensuremath{{}^{\prime}} \ensuremath{\cdot} B\ensuremath{{}^{\prime}}. \hfill{\small\color{FAUblue}§2.6}
 \item A \ensuremath{\cdot} A = A and A + A = A. \hfill{\small\color{FAUblue}§2.6}
 \item Make a truth table for both sides and compare the output columns in all four input rows. \hfill{\small\color{FAUblue}§2.6}
 \end{enumerate}
@@ -1095,7 +1095,7 @@ Use day 0 to learn and practise. Tick a skill only in a later session, at least 
 \Needspace{5\baselineskip}
 \begin{enumerate}
 \item When exactly one of its two inputs is true. \hfill{\small\color{FAUblue}§2.7}
-\item (A \ensuremath{\cdot} B)'. \hfill{\small\color{FAUblue}§2.7}
+\item (A \ensuremath{\cdot} B)\ensuremath{{}^{\prime}}. \hfill{\small\color{FAUblue}§2.7}
 \item Any Boolean function can be built from combinations of NAND gates alone. \hfill{\small\color{FAUblue}§2.7}
 \end{enumerate}
 
@@ -1118,7 +1118,7 @@ Use day 0 to learn and practise. Tick a skill only in a later session, at least 
 \item The stored instructions can change while the hardware remains the same; the machine follows the program it is given. A calculator cannot do this, because its job is built in. \hfill{\small\color{FAUblue}§2.2}
 \item The second expression is syntactically valid but has a static semantic problem: the operands cannot be combined meaningfully under the illustrated rules. Invalid syntax, such as "hi"5, is not a legal expression at all. The first problem concerns meaning, the second form. \hfill{\small\color{FAUblue}§2.3}
 \item Each variable has two possible values, so all combinations number 2 multiplied by itself n times. Every extra variable doubles the rows, because each old row appears once with 0 and once with 1. \hfill{\small\color{FAUblue}§2.5}
-\item NOT, AND, and OR have a precedence order; without parentheses the expression groups differently and can produce a different output. C' \ensuremath{\cdot} W + R means (C' \ensuremath{\cdot} W) + R, so R = 1 gives 1 even when C = 1. With the parentheses the same input gives 0. \hfill{\small\color{FAUblue}§2.5}
+\item NOT, AND, and OR have a precedence order; without parentheses the expression groups differently and can produce a different output. C\ensuremath{{}^{\prime}} \ensuremath{\cdot} W + R means (C\ensuremath{{}^{\prime}} \ensuremath{\cdot} W) + R, so R = 1 gives 1 even when C = 1. With the parentheses the same input gives 0. \hfill{\small\color{FAUblue}§2.5}
 \item Any Boolean function can be assembled using NAND gates alone. NOT, AND and OR can each be built from NAND, and those three express any truth table. That is the slides' meaning of a complete set. \hfill{\small\color{FAUblue}§2.7}
 \item A truth table describes stable input-output values, while real gates have switching delay and saturation limits. It says where the output ends up, not when it gets there. Two circuits with the same table may differ in timing. \hfill{\small\color{FAUblue}§2.8}
 \end{enumerate}
@@ -1132,26 +1132,26 @@ Use day 0 to learn and practise. Tick a skill only in a later session, at least 
 \item A stored-program computer. \hfill{\small\color{FAUblue}§2.2}
 \item 2\textsuperscript{4}=16 rows. \hfill{\small\color{FAUblue}§2.5}
 \item It is syntactically valid but has a static semantic error in the slide's example. \hfill{\small\color{FAUblue}§2.3}
-\item A' + B'. \hfill{\small\color{FAUblue}§2.6}
+\item A\ensuremath{{}^{\prime}} + B\ensuremath{{}^{\prime}}. \hfill{\small\color{FAUblue}§2.6}
 \item Both are 0. Their matching outputs for this row are consistent with the equivalence; check all four rows to prove it. \hfill{\small\color{FAUblue}§2.5}
-\item (2 + 9/2)/2 = 6.5/2 = 3.25. It is above \ensuremath{\surd}9 = 3 and closer than 2 was. \hfill{\small\color{FAUblue}§2.1}
-\item (A + B + C)' = A' \ensuremath{\cdot} B' \ensuremath{\cdot} C'. \hfill{\small\color{FAUblue}§2.6}
+\item (2 + 9/2)/2 = 6.5/2 = 3.25. It is above \ensuremath{\sqrt{9}} = 3 and closer than 2 was. \hfill{\small\color{FAUblue}§2.1}
+\item (A + B + C)\ensuremath{{}^{\prime}} = A\ensuremath{{}^{\prime}} \ensuremath{\cdot} B\ensuremath{{}^{\prime}} \ensuremath{\cdot} C\ensuremath{{}^{\prime}}. \hfill{\small\color{FAUblue}§2.6}
 \item The Boolean model gives stable outputs for inputs; a physical circuit also takes time to switch and has limits such as saturation. \hfill{\small\color{FAUblue}§2.8}
-\item NOT first gives A'=1; AND next gives B\ensuremath{\cdot}C=1; OR last gives 1+1=1. \hfill{\small\color{FAUblue}§2.5}
+\item NOT first gives A\ensuremath{{}^{\prime}}=1; AND next gives B\ensuremath{\cdot}C=1; OR last gives 1+1=1. \hfill{\small\color{FAUblue}§2.5}
 \item It may crash, run forever, or return an answer different from the programmer's intention. \hfill{\small\color{FAUblue}§2.3}
 \item XOR=0 and XNOR=1 because the inputs agree. \hfill{\small\color{FAUblue}§2.7}
 \item A\ensuremath{\cdot}A=A, so A\ensuremath{\cdot}A+A=A+A=A. \hfill{\small\color{FAUblue}§2.6}
 \item \&\& is logical AND; \& is bitwise AND. \hfill{\small\color{FAUblue}§2.5}
-\item X=((A\ensuremath{\cdot}B)'\ensuremath{\cdot}C)'=((A\ensuremath{\cdot}B)')'+C'=A\ensuremath{\cdot}B+C'. \hfill{\small\color{FAUblue}§2.7}
+\item X=((A\ensuremath{\cdot}B)\ensuremath{{}^{\prime}}\ensuremath{\cdot}C)\ensuremath{{}^{\prime}}=((A\ensuremath{\cdot}B)\ensuremath{{}^{\prime}})\ensuremath{{}^{\prime}}+C\ensuremath{{}^{\prime}}=A\ensuremath{\cdot}B+C\ensuremath{{}^{\prime}}. \hfill{\small\color{FAUblue}§2.7}
 \item Replace g by the average of g and x/g, then test the new guess again. \hfill{\small\color{FAUblue}§2.1}
-\item Let Y=A+B. Then Y'\ensuremath{\cdot}Y=0 by the complement law. \hfill{\small\color{FAUblue}§2.6}
-\item I=(0\ensuremath{\cdot}1)'=1, then X=(1\ensuremath{\cdot}0)'=1. The simplified form agrees: 0\ensuremath{\cdot}1+1=1. \hfill{\small\color{FAUblue}§2.7}
+\item Let Y=A+B. Then Y\ensuremath{{}^{\prime}}\ensuremath{\cdot}Y=0 by the complement law. \hfill{\small\color{FAUblue}§2.6}
+\item I=(0\ensuremath{\cdot}1)\ensuremath{{}^{\prime}}=1, then X=(1\ensuremath{\cdot}0)\ensuremath{{}^{\prime}}=1. The simplified form agrees: 0\ensuremath{\cdot}1+1=1. \hfill{\small\color{FAUblue}§2.7}
 \item There are 8 truth-table rows and two possible output choices per row, so 2\textsuperscript{8}=256 functions. \hfill{\small\color{FAUblue}§2.5}
-\item A + B=((A\ensuremath{\cdot}A)'\ensuremath{\cdot}(B\ensuremath{\cdot}B)')'. De Morgan gives (A'\ensuremath{\cdot}B')'=A+B, and each (X\ensuremath{\cdot}X)' is a NOT by the idempotent law. \hfill{\small\color{FAUblue}§2.7}
+\item A + B=((A\ensuremath{\cdot}A)\ensuremath{{}^{\prime}}\ensuremath{\cdot}(B\ensuremath{\cdot}B)\ensuremath{{}^{\prime}})\ensuremath{{}^{\prime}}. De Morgan gives (A\ensuremath{{}^{\prime}}\ensuremath{\cdot}B\ensuremath{{}^{\prime}})\ensuremath{{}^{\prime}}=A+B, and each (X\ensuremath{\cdot}X)\ensuremath{{}^{\prime}} is a NOT by the idempotent law. \hfill{\small\color{FAUblue}§2.7}
 \item Run different programs on the same hardware, because its instructions are stored and can change. A calculator does one built-in job. \hfill{\small\color{FAUblue}§2.2}
 \item "hi"5 is a syntax error; 3 + "hi" is a static semantic error; 3.2 * 5 is valid. \hfill{\small\color{FAUblue}§2.3}
 \item W must be 0 and C or R must be 1: (0,1,0), (1,0,0), (1,1,0). \hfill{\small\color{FAUblue}§2.5}
-\item C'=0, so C'\ensuremath{\cdot}W+R=0+1=1, but C'\ensuremath{\cdot}(W+R)=0\ensuremath{\cdot}1=0. The parentheses change the result. \hfill{\small\color{FAUblue}§2.5}
+\item C\ensuremath{{}^{\prime}}=0, so C\ensuremath{{}^{\prime}}\ensuremath{\cdot}W+R=0+1=1, but C\ensuremath{{}^{\prime}}\ensuremath{\cdot}(W+R)=0\ensuremath{\cdot}1=0. The parentheses change the result. \hfill{\small\color{FAUblue}§2.5}
 \end{enumerate}
 
 \end{keepsection}
@@ -1162,7 +1162,7 @@ Use day 0 to learn and practise. Tick a skill only in a later session, at least 
 \item Set the inputs x, g, and ε. Compute |g²\ensuremath{-}x|. If it is less than ε, output g and stop; otherwise replace g with (g+x/g)/2 and repeat the test. \hfill{\small\color{FAUblue}§2.1}
 \item First update: (4+25/4)/2=5.125. Second: (5.125+25/5.125)/2\ensuremath{\approx}5.00152. Its residual is about 0.0152, above ε=0.01, so another update is needed. The third guess is about 5.0000002, with residual about 0.000002, which passes. \hfill{\small\color{FAUblue}§2.1}
 \item The finite list is a finite description; its defined arithmetic and comparison steps are executable; the tolerance defines a stopping test; the repeated update is the control flow that repeats. To establish halting for every allowed input, one must show the update eventually makes the residual less than ε (and specify valid inputs such as x\ensuremath{>}0 and ε\ensuremath{>}0). \hfill{\small\color{FAUblue}§2.1}
-\item Update when S' is 1. At g=4, |16\ensuremath{-}25|=9, which is not below 0.01, so S=0 and S'=1. \hfill{\small\color{FAUblue}§2.4} \hfill{\small\color{FAUblue}§2.5}
+\item Update when S\ensuremath{{}^{\prime}} is 1. At g=4, |16\ensuremath{-}25|=9, which is not below 0.01, so S=0 and S\ensuremath{{}^{\prime}}=1. \hfill{\small\color{FAUblue}§2.4} \hfill{\small\color{FAUblue}§2.5}
 \end{enumerate}
 
 \end{keepsection}
@@ -1170,7 +1170,7 @@ Use day 0 to learn and practise. Tick a skill only in a later session, at least 
 
 \Needspace{9\baselineskip}
 \begin{enumerate}
-\item Substitute I: X=(B\ensuremath{\cdot}(A\ensuremath{\cdot}C)')'. De Morgan gives X=B'+((A\ensuremath{\cdot}C)')'. Double negation gives X=B'+A\ensuremath{\cdot}C. \hfill{\small\color{FAUblue}§2.6} \hfill{\small\color{FAUblue}§2.7}
+\item Substitute I: X=(B\ensuremath{\cdot}(A\ensuremath{\cdot}C)\ensuremath{{}^{\prime}})\ensuremath{{}^{\prime}}. De Morgan gives X=B\ensuremath{{}^{\prime}}+((A\ensuremath{\cdot}C)\ensuremath{{}^{\prime}})\ensuremath{{}^{\prime}}. Double negation gives X=B\ensuremath{{}^{\prime}}+A\ensuremath{\cdot}C. \hfill{\small\color{FAUblue}§2.6} \hfill{\small\color{FAUblue}§2.7}
 \item X for 000 to 111 is 1, 1, 0, 0, 1, 1, 0, 1. X=1 whenever B=0, and for B=1 only when A=C=1. \hfill{\small\color{FAUblue}§2.5}
 \item The circuit as given is two NAND gates, and NAND is functionally complete, so any Boolean function can be built from it. Physical switching has delay and saturation limits, so the output needs time to change. \hfill{\small\color{FAUblue}§2.7} \hfill{\small\color{FAUblue}§2.8}
 \end{enumerate}

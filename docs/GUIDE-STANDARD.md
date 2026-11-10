@@ -102,6 +102,7 @@ The PDF converter understands only this markup, so use it for all maths and stru
 | Variable | `<var>E</var>`; vectors are plain variables in this course's HTML |
 | Index, power | `<sub>…</sub>`, `<sup>…</sup>` (no Unicode superscript digits) |
 | Fraction | `<span class="frac"><span>numerator</span><span>denominator</span></span>` |
+| Square root | `<span class="sqrt"><span class="root">√</span><span class="rad">x<sup>2</sup> + y<sup>2</sup></span></span>`: the sign stretches to its radicand and a bar runs over all of it, so no brackets mark the extent. Used for every root, in running text too |
 | Sum, product | `<span class="op op-sum"><span class="op-sym">∑</span><sub>k=1</sub><sup>n</sup></span>` (∏ for products, ⋃ and ⋂ for indexed unions and intersections). The site stacks the top limit, sign and bottom limit; the PDF typesets `\sum`/`\prod` |
 | Integral | `<span class="op op-int"><span class="op-sym">∫</span><sub>a</sub><sup>b</sup></span>` (also ∮, ∬, ∯, ∭). The page draws one thin, slanted sign for all of them, with the upper limit beside its top end and the lower limit beside its bottom end; a closed-path or surface integral may carry only `<sub>`. Used for every sign, in running text too |
 | Formula card | `<div class="eq"><strong>Title</strong><span class="formula">…</span><span class="eq-note">…</span></div>`, with one `span.formula` per relation |
@@ -128,6 +129,29 @@ Write formulas so they read as maths at a glance:
 - **Code is not a formula.** C or MATLAB lines in a card keep their own spelling and are never italicised or respaced.
 
 Use real Unicode symbols (−, ×, ·, ≈, ε, ∫, ∮, ∯) rather than ASCII stand-ins. Do not use KaTeX, MathJax, images of formulas or external scripts. Formulas must read correctly with JavaScript off and in print.
+
+### Signs
+
+Every sign has one way to be written. The page and the PDF then draw it the same way everywhere, and `tools/check-guide.py` warns where a page strays (the last column). Code in a card (C, MATLAB, Python) is not maths: it keeps its own characters, including `*`, `'` and `-`.
+
+| Sign | Write | Page and PDF show | Never | Checked |
+|---|---|---|---|---|
+| Integral ∫ ∮ ∬ ∯ ∭ | `op op-int` markup (above), limits as its `<sub>`/`<sup>` | one thin, slanted sign; limits beside its top and bottom ends; `\int_a^b` in the PDF | a bare sign; limits in a loose `<sub>` after it | yes |
+| Sum, product ∑ ∏; big union, intersection ⋃ ⋂ | `op op-sum` markup, limits as its `<sub>`/`<sup>` | limits stacked over and under the sign | Σ or Π (Greek letters) as operators | — |
+| Square root √ | `sqrt` markup (above) | a sign joined to a bar over the whole radicand; `\sqrt{…}` in the PDF | a bare √; √(…) with brackets standing in for the bar | yes |
+| Fraction | `span.frac` in formula cards and worked lines; `a/b` in running text, limits and exponents | numerator over denominator; `\dfrac` in the PDF | `/` for a display quotient | — |
+| Brackets round a stacked fraction | `<span class="delim">(</span>` … `<span class="delim">)</span>` in worked lines | brackets as tall as the fraction; `\left( … \right)` in the PDF | — | — |
+| Minus − and ± ∓ | U+2212 (−), U+00B1, U+2213 | — | a hyphen `-` as minus | — |
+| Products · and × | `·` for a product and the dot product; `×` for the cross product, a Cartesian product and powers of ten (2.5 × 10<sup>3</sup>) | — | `*` or the letter x | — |
+| Relations = ≠ ≈ < > ≤ ≥, arrows → ⇒ ⇔ ↦ | the Unicode sign, a space either side at the top level | — | `<=`, `>=`, `!=`, `->`, `=>` | — |
+| Prime ′ (complement, derivative) | U+2032, as in <var>x</var>′ and (<var>A</var> · <var>B</var>)′ | ′ in text, `'` in PDF maths | a straight apostrophe `'` | yes, in formulas |
+| Index, power | `<sub>`, `<sup>`; in figure data and drawn labels, `x_{12}` or `e_ρ` | real sub- and superscripts | Unicode subscript digits ₀–₉ (the PDF font has none) or ⁴–⁹ | yes, subscript digits |
+| Unit vector | `<var>e</var><sub>ρ</sub>`; `e_ρ` in figure labels | italic e with an upright index | `e_ρ` typed into text | — |
+| Absolute value, length | `\|<var>x</var>\|`, `\|<var>r</var>\|` (vertical bars) | — | `abs(x)` | — |
+| Infinity ∞, partial ∂, degree ° | the Unicode sign | — | `inf`, `d/dx` for a partial | — |
+| Sets ∈ ∉ ⊆ ⊂ ∪ ∩ ∅ ℕ ℤ ℚ ℝ; logic ∧ ∨ ¬ ⊕ | the Unicode sign | — | `in`, `&&`, `!` outside code | — |
+
+When a new sign needs markup of its own, add it here, teach `tools/guide-to-tex.py` the same markup, and add a check where a wrong form is easy to type.
 
 ## PDF
 

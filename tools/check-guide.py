@@ -76,14 +76,15 @@ def check_files(root, html, path, page_dir, rep):
     if bare > 0:
         rep.warn("%d integral sign(s) outside <span class=\"op op-int\"><span class=\"op-sym\">…</span>…</span>" % bare)
     # the other signs with a fixed markup (GUIDE-STANDARD.md, Signs): roots, primes, subscripts
-    roots = len(re.findall(r"√", re.sub(r'<span class="root">√', "", body)))
+    plain = re.sub(r"<(script|title|style)\b.*?</\1>", "", html, flags=re.S)
+    roots = len(re.findall(r"√", re.sub(r"<[^>]*>", "", re.sub(r'<span class="root">√', "", plain))))
     if roots:
         rep.warn("%d square root(s) outside <span class=\"sqrt\"><span class=\"root\">√</span><span class=\"rad\">…</span></span>" % roots)
     maths = re.findall(r'<span class="formula">(.*?)</span>(?=<span class="(?:formula|eq-note)"|</div>)|<p class="math-line">(.*?)</p>', html, re.S)
     primes = sum(re.sub(r"<[^>]*>", "", a + b).count("'") for a, b in maths)
     if primes:
         rep.warn("%d straight apostrophe(s) in formulas: write a prime as ′ (U+2032)" % primes)
-    subs = re.findall(r"[₀-₉]", re.sub(r"<(script|title|style)\b.*?</\1>", "", html, flags=re.S))
+    subs = re.findall(r"[₀-₉]", plain)
     if subs:
         rep.warn("%d Unicode subscript digit(s) (the PDF font has none): use <sub> in text, x_{12} in figure data" % len(subs))
     stem = os.path.splitext(path)[0]

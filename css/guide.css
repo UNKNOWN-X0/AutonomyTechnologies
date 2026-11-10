@@ -1609,7 +1609,7 @@ main > section:first-of-type > h2 {
 }
 .sqrt > .rad {
   display: inline-block;
-  padding: 0.12em 0.08em 0 0.06em;
+  padding: 0.18em 0.08em 0 0.06em;
   border-top: 0.075em solid currentColor;
 }
 
