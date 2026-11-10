@@ -78,32 +78,40 @@
 \Needspace{8\baselineskip}
 Use the shown xy cross-section: Q\textsubscript{1} = (\ensuremath{-}a, 0), Q\textsubscript{2} = (a, 0), the line λ\textsubscript{1} passes through (0, a), and λ\textsubscript{2} passes through (0, \ensuremath{-}a/2). Both lines run parallel to z. Take air as vacuum for the field formulas, as instructed, and assume a \ensuremath{>} 0.
 
-\Needspace{10\baselineskip}
+\Needspace{11\baselineskip}
 \textbf{Connected topic:} Electric field strength (§1.3) gives Coulomb’s field and vector superposition. The line-charge formula is applied with its radial direction converted to Cartesian components.
 
 \Needspace{14\baselineskip}
 \begin{center}
 \begin{minipage}[t]{0.950\linewidth}\centering
 \begin{tikzpicture}[line join=round]
-\draw[-{Stealth[length=4pt]},black!80] (0.720,-1.706) -- (4.572,-1.706);
-\draw[-{Stealth[length=4pt]},black!80] (2.556,-2.628) -- (2.556,-0.180);
-\fill[FAUblue] (1.332,-1.706) circle (0.063);
-\node[anchor=east,text=FAUblue,fill=white,fill opacity=0.85,text opacity=1,inner sep=1pt,font=\footnotesize] at (1.188,-1.886) {Q1};
-\fill[FAUblue] (3.780,-1.706) circle (0.063);
-\node[anchor=west,text=FAUblue,fill=white,fill opacity=0.85,text opacity=1,inner sep=1pt,font=\footnotesize] at (3.924,-1.886) {Q2};
-\fill[FAUblue] (2.556,-0.785) circle (0.063);
-\node[anchor=west,text=FAUblue,fill=white,fill opacity=0.85,text opacity=1,inner sep=1pt,font=\footnotesize] at (2.700,-0.605) {λ1};
-\fill[FAUblue] (2.556,-2.167) circle (0.063);
-\node[anchor=east,text=FAUblue,fill=white,fill opacity=0.85,text opacity=1,inner sep=1pt,font=\footnotesize] at (2.412,-2.347) {λ2};
-\node[anchor=east,inner sep=1pt,font=\footnotesize] at (4.536,-1.994) {\textit{x}};
-\node[anchor=east,inner sep=1pt,font=\footnotesize] at (2.412,-0.288) {\textit{y}};
-\draw[black!80] (1.332,-1.634) -- (1.332,-1.778);
-\node[,inner sep=1pt,font=\footnotesize] at (1.332,-1.994) {\ensuremath{-}a};
-\draw[black!80] (2.556,-1.634) -- (2.556,-1.778);
-\node[,inner sep=1pt,font=\footnotesize] at (2.556,-1.994) {0};
-\draw[black!80] (3.780,-1.634) -- (3.780,-1.778);
-\node[,inner sep=1pt,font=\footnotesize] at (3.780,-1.994) {a};
-\end{tikzpicture}\par\smallskip{\small\raggedright \textbf{Cross-section normal to the infinite lines.} Their field directions at Q\textsubscript{2} point away from each line for positive λ and toward it for negative λ.\par}\end{minipage}
+\draw[-{Stealth[length=4pt]},black!80] (0.503,-2.359) -- (4.501,-2.359);
+\node[anchor=west,fill=white,fill opacity=0.85,text opacity=1,inner sep=1pt,font=\footnotesize] at (4.591,-2.539) {\textit{x}};
+\draw[-{Stealth[length=4pt]},black!80] (2.502,-3.644) -- (2.502,-0.503);
+\node[anchor=east,fill=white,fill opacity=0.85,text opacity=1,inner sep=1pt,font=\footnotesize] at (2.376,-0.503) {\textit{y}};
+\draw[black!80] (1.074,-2.287) -- (1.074,-2.431);
+\node[fill=white,fill opacity=0.85,text opacity=1,inner sep=1pt,font=\footnotesize] at (1.074,-2.557) {\ensuremath{-}a};
+\draw[black!80] (3.930,-2.287) -- (3.930,-2.431);
+\node[fill=white,fill opacity=0.85,text opacity=1,inner sep=1pt,font=\footnotesize] at (3.930,-2.557) {a};
+\draw[black!80] (2.430,-0.932) -- (2.574,-0.932);
+\node[anchor=east,fill=white,fill opacity=0.85,text opacity=1,inner sep=1pt,font=\footnotesize] at (2.376,-0.932) {a};
+\draw[black!80] (2.430,-3.073) -- (2.574,-3.073);
+\node[anchor=east,fill=white,fill opacity=0.85,text opacity=1,inner sep=1pt,font=\footnotesize] at (2.376,-3.073) {\ensuremath{-}a/2};
+\draw[black!55,dashed] (2.502,-0.932) -- (3.930,-2.359);
+\draw[black!55,dashed] (2.502,-3.073) -- (3.930,-2.359);
+\node[anchor=west,fill=white,fill opacity=0.85,text opacity=1,inner sep=1pt,font=\footnotesize] at (3.306,-1.483) {\textit{\ensuremath{\surd}2 a}};
+\node[anchor=west,fill=white,fill opacity=0.85,text opacity=1,inner sep=1pt,font=\footnotesize] at (3.306,-2.896) {\textit{\ensuremath{\surd}5 a/2}};
+\fill[FAUblue] (1.074,-2.359) circle (0.063);
+\node[fill=white,fill opacity=0.85,text opacity=1,inner sep=1pt,font=\footnotesize] at (1.074,-2.161) {\textit{Q\textsubscript{1}}};
+\fill[FAUblue] (3.930,-2.359) circle (0.063);
+\node[fill=white,fill opacity=0.85,text opacity=1,inner sep=1pt,font=\footnotesize] at (3.930,-2.161) {\textit{Q\textsubscript{2}}};
+\filldraw[draw=black!80,fill=white] (2.502,-0.932) circle (0.099);
+\fill[FAUblue] (2.502,-0.932) circle (0.032);
+\node[anchor=west,fill=white,fill opacity=0.85,text opacity=1,inner sep=1pt,font=\footnotesize] at (2.628,-0.932) {\textit{λ\textsubscript{1}}};
+\filldraw[draw=black!80,fill=white] (2.502,-3.073) circle (0.099);
+\fill[FAUblue] (2.502,-3.073) circle (0.032);
+\node[anchor=west,fill=white,fill opacity=0.85,text opacity=1,inner sep=1pt,font=\footnotesize] at (2.628,-3.073) {\textit{λ\textsubscript{2}}};
+\end{tikzpicture}\par\smallskip{\small\raggedright \textbf{Distances to Q\textsubscript{2}.} The point charges sit on the x-axis at \ensuremath{\pm}\textit{a}; the line charges run along z through (0, \textit{a}) and (0, \ensuremath{-}\textit{a}/2). The dashed lines are the perpendicular distances from each line to Q\textsubscript{2}, \ensuremath{\sqrt{2}} \textit{a} and \ensuremath{\sqrt{5}} \textit{a}/2, which set the line fields there.\par}\end{minipage}
 \end{center}
 
 \begin{keepsection}
@@ -172,7 +180,7 @@ Try first: set both components from 6e to zero and solve the y equation before t
 \section{Task 7: Point charge}
 
 \Needspace{8\baselineskip}
-Take Q \ensuremath{>} 0 as the reference scale. The figure places Q\textsubscript{1} = \ensuremath{\surd}5 Q at (0, a) and Q\textsubscript{2} = \ensuremath{\surd}2 Q at (3a, 0). The supplied net forces on Q\textsubscript{1} and Q\textsubscript{2} are F\textsubscript{1} = F\textsubscript{0}[\ensuremath{-}(3 + 5\ensuremath{\surd}5)e\textsubscript{x} + e\textsubscript{y}] and F\textsubscript{2} = F\textsubscript{0}(13e\textsubscript{x} \ensuremath{-} 11e\textsubscript{y}), with F\textsubscript{0} = Q²/(40πε\textsubscript{0}a²). The charges are in vacuum and a \ensuremath{>} 0; F\textsubscript{0} is a force scale measured in newtons.
+Take Q \ensuremath{>} 0 as the reference scale. The figure places Q\textsubscript{1} = \ensuremath{\sqrt{5}} Q at (0, a) and Q\textsubscript{2} = \ensuremath{\sqrt{2}} Q at (3a, 0). The supplied net forces on Q\textsubscript{1} and Q\textsubscript{2} are F\textsubscript{1} = F\textsubscript{0}[\ensuremath{-}(3 + 5\ensuremath{\sqrt{5}})e\textsubscript{x} + e\textsubscript{y}] and F\textsubscript{2} = F\textsubscript{0}(13e\textsubscript{x} \ensuremath{-} 11e\textsubscript{y}), with F\textsubscript{0} = Q²/(40πε\textsubscript{0}a²). The charges are in vacuum and a \ensuremath{>} 0; F\textsubscript{0} is a force scale measured in newtons.
 
 \Needspace{9\baselineskip}
 \textbf{Connected topic:} Electric field strength (§1.3) connects Coulomb force, displacement direction and vector superposition.
@@ -181,25 +189,23 @@ Take Q \ensuremath{>} 0 as the reference scale. The figure places Q\textsubscrip
 \begin{center}
 \begin{minipage}[t]{0.950\linewidth}\centering
 \begin{tikzpicture}[line join=round]
-\draw[-{Stealth[length=4pt]},black!80] (0.720,-2.052) -- (4.572,-2.052);
-\draw[-{Stealth[length=4pt]},black!80] (1.147,-2.628) -- (1.147,-0.180);
-\fill[FAUblue] (1.147,-1.092) circle (0.063);
-\node[anchor=east,text=FAUblue,fill=white,fill opacity=0.85,text opacity=1,inner sep=1pt,font=\footnotesize] at (1.003,-0.912) {Q1};
-\fill[FAUblue] (3.709,-2.052) circle (0.063);
-\node[anchor=west,text=FAUblue,fill=white,fill opacity=0.85,text opacity=1,inner sep=1pt,font=\footnotesize] at (3.853,-2.232) {Q2};
-\fill[FAUblue] (2.855,-1.092) circle (0.063);
-\node[anchor=west,text=FAUblue,fill=white,fill opacity=0.85,text opacity=1,inner sep=1pt,font=\footnotesize] at (2.999,-0.912) {Q3?};
-\node[anchor=east,inner sep=1pt,font=\footnotesize] at (4.536,-2.340) {\textit{x/a}};
-\node[anchor=east,inner sep=1pt,font=\footnotesize] at (1.003,-0.288) {\textit{y/a}};
-\draw[black!80] (1.147,-1.980) -- (1.147,-2.124);
-\node[,inner sep=1pt,font=\footnotesize] at (1.147,-2.340) {0};
-\draw[black!80] (2.001,-1.980) -- (2.001,-2.124);
-\node[,inner sep=1pt,font=\footnotesize] at (2.001,-2.340) {1};
-\draw[black!80] (2.855,-1.980) -- (2.855,-2.124);
-\node[,inner sep=1pt,font=\footnotesize] at (2.855,-2.340) {2};
-\draw[black!80] (3.709,-1.980) -- (3.709,-2.124);
-\node[,inner sep=1pt,font=\footnotesize] at (3.709,-2.340) {3};
-\end{tikzpicture}\par\smallskip{\small\raggedright \textbf{Known charges and the unknown third location.} Q\textsubscript{3} is marked only schematically; infer its exact coordinates from the pair-force directions.\par}\end{minipage}
+\draw[-{Stealth[length=4pt]},black!80] (0.586,-1.923) -- (4.598,-1.923);
+\node[anchor=west,fill=white,fill opacity=0.85,text opacity=1,inner sep=1pt,font=\footnotesize] at (4.688,-2.103) {\textit{x}};
+\draw[-{Stealth[length=4pt]},black!80] (0.895,-2.232) -- (0.895,-0.535);
+\node[anchor=east,fill=white,fill opacity=0.85,text opacity=1,inner sep=1pt,font=\footnotesize] at (0.769,-0.535) {\textit{y}};
+\draw[black!80] (1.923,-1.851) -- (1.923,-1.995);
+\node[fill=white,fill opacity=0.85,text opacity=1,inner sep=1pt,font=\footnotesize] at (1.923,-2.121) {a};
+\draw[black!80] (2.952,-1.851) -- (2.952,-1.995);
+\node[fill=white,fill opacity=0.85,text opacity=1,inner sep=1pt,font=\footnotesize] at (2.952,-2.121) {2a};
+\draw[black!80] (3.981,-1.851) -- (3.981,-1.995);
+\node[fill=white,fill opacity=0.85,text opacity=1,inner sep=1pt,font=\footnotesize] at (3.981,-2.121) {3a};
+\draw[black!80] (0.823,-0.895) -- (0.967,-0.895);
+\node[anchor=east,fill=white,fill opacity=0.85,text opacity=1,inner sep=1pt,font=\footnotesize] at (0.769,-0.895) {a};
+\fill[FAUblue] (0.895,-0.895) circle (0.063);
+\node[anchor=west,fill=white,fill opacity=0.85,text opacity=1,inner sep=1pt,font=\footnotesize] at (1.021,-0.895) {\textit{Q\textsubscript{1} = \ensuremath{\surd}5 Q}};
+\fill[FAUblue] (3.981,-1.923) circle (0.063);
+\node[fill=white,fill opacity=0.85,text opacity=1,inner sep=1pt,font=\footnotesize] at (3.981,-1.725) {\textit{Q\textsubscript{2} = \ensuremath{\surd}2 Q}};
+\end{tikzpicture}\par\smallskip{\small\raggedright \textbf{The two known charges.} Q\textsubscript{1} = \ensuremath{\sqrt{5}} Q sits at (0, \textit{a}) and Q\textsubscript{2} = \ensuremath{\sqrt{2}} Q at (3\textit{a}, 0). The third charge is not drawn: its position is what 7e finds from the directions of the forces.\par}\end{minipage}
 \end{center}
 
 \begin{keepsection}
@@ -257,7 +263,7 @@ Try first: intersect the horizontal line through Q\textsubscript{1} with the dia
 \subsection{7f: Charge ratio Q\textsubscript{3}/Q}
 
 \Needspace{3\baselineskip}
-Try first: use the magnitude of F\textsubscript{13}, the separation 2a, and Q\textsubscript{1} = \ensuremath{\surd}5 Q.
+Try first: use the magnitude of F\textsubscript{13}, the separation 2a, and Q\textsubscript{1} = \ensuremath{\sqrt{5}} Q.
 
 \nopagebreak[4]{\small\itshape Answers: see “Task 7: Point charge” under Answers at the end.}
 \end{keepsection}
@@ -284,15 +290,15 @@ Try first: reverse F\textsubscript{13} and F\textsubscript{23} by Newton’s thi
 \item \Needspace{5\baselineskip}
 The source is at x = \ensuremath{-}a and the field point at x = a, so the displacement points along +x and has length 2a:
 
-\begin{equation*}{R}_{21}\, =\, 2\mathrm{a}\, {e}_{\mathrm{x}},\, \quad \, \mathrm{R}_{21}\, =\, 2\mathrm{a}\end{equation*}
+\begin{equation*}{R}_{21}\, =\, 2{a}\, {e}_{\mathrm{x}},\quad \, \quad \, |{R}_{21}|\, =\, 2{a}\end{equation*}
 \item \Needspace{4\baselineskip}
 Coulomb’s field is the source charge times the radial unit vector divided by 4πε\textsubscript{0}R²:
 
 \Needspace{4\baselineskip}
-\begin{equation*}{E}_{\mathrm{Q}_{1}}(\mathrm{Q}_{2})\, =\, (\mathrm{Q}_{1}/(4πε_{0}\mathrm{R}_{21}^{2}))\, {e}_{\mathrm{x}}\end{equation*}
+\begin{equation*}{E}_{\mathrm{Q}1}({Q}_{2})\, =\, \dfrac{{Q}_{1}}{4πε_{0}\, |{R}_{21}|^{2}}\, {e}_{\mathrm{x}}\end{equation*}
 
 \Needspace{4\baselineskip}
-\begin{equation*}{E}_{\mathrm{Q}_{1}}(\mathrm{Q}_{2})\, =\, \mathrm{Q}_{1}/(16πε_{0}\mathrm{a}^{2})\, {e}_{\mathrm{x}}\end{equation*}
+\begin{equation*}{E}_{\mathrm{Q}1}({Q}_{2})\, =\, \dfrac{{Q}_{1}}{16πε_{0}\, {a}^{2}}\, {e}_{\mathrm{x}}\end{equation*}
 
 The sign of Q\textsubscript{1} sets whether the field points +x or \ensuremath{-}x. The 1/(2a)² factor is easy to miss.
 \end{enumerate}
@@ -307,12 +313,12 @@ The sign of Q\textsubscript{1} sets whether the field points +x or \ensuremath{-
 \item \Needspace{4\baselineskip}
 The electric force on a charge is its charge times the electric field at its position:
 
-\begin{equation*}{F}_{12}\, =\, \mathrm{Q}_{2}\, {E}_{\mathrm{Q}_{1}}(\mathrm{Q}_{2})\end{equation*}
+\begin{equation*}{F}_{12}\, =\, {Q}_{2}\, {E}_{\mathrm{Q}1}({Q}_{2})\end{equation*}
 \item \Needspace{4\baselineskip}
 Substitute the result from 6a:
 
 \Needspace{5\baselineskip}
-\begin{equation*}{F}_{12}\, =\, \mathrm{Q}_{1}\mathrm{Q}_{2}/(16πε_{0}\mathrm{a}^{2})\, {e}_{\mathrm{x}}\end{equation*}
+\begin{equation*}{F}_{12}\, =\, \dfrac{{Q}_{1}\, {Q}_{2}}{16πε_{0}\, {a}^{2}}\, {e}_{\mathrm{x}}\end{equation*}
 
 Like signs give a force toward +x on Q\textsubscript{2}; opposite signs reverse it. Its units are newtons because charge times field is C\ensuremath{\cdot}N/C.
 \end{enumerate}
@@ -322,23 +328,23 @@ Like signs give a force toward +x on Q\textsubscript{2}; opposite signs reverse 
 \begin{keepsection}\subsection{Task 6: Line and point charges}
 
 \begin{workedbox}{6c \ensuremath{\cdot} Infinite-line fields}
-\Needspace{10\baselineskip}
+\Needspace{9\baselineskip}
 \begin{enumerate}
 \item \Needspace{5\baselineskip}
-For λ\textsubscript{1}, the displacement from its axis (0, a) to Q\textsubscript{2} (a, 0) is (a, \ensuremath{-}a). Its radius is \ensuremath{\surd}2 a and its radial unit vector is (e\textsubscript{x} \ensuremath{-} e\textsubscript{y})/\ensuremath{\surd}2:
+For λ\textsubscript{1}, the displacement from its axis (0, a) to Q\textsubscript{2} (a, 0) is (a, \ensuremath{-}a). Its radius is \ensuremath{\sqrt{2}} a and its radial unit vector is (e\textsubscript{x} \ensuremath{-} e\textsubscript{y})/\ensuremath{\sqrt{2}}:
 
-\begin{equation*}{E}_{λ_{1}}\, =\, (λ_{1}/(2πε_{0}\sqrt2\, \mathrm{a}))(({e}_{\mathrm{x}}\, -\, {e}_{\mathrm{y}})/\sqrt2)\, =\, λ_{1}/(4πε_{0}\mathrm{a})({e}_{\mathrm{x}}\, -\, {e}_{\mathrm{y}})\end{equation*}
+\begin{equation*}{E}_{λ1}\, =\, \dfrac{λ_{1}}{2πε_{0}\, \sqrt{2}\, {a}}\, \cdot \, \dfrac{{e}_{\mathrm{x}}\, -\, {e}_{\mathrm{y}}}{\sqrt{2}}\, =\, \dfrac{λ_{1}}{4πε_{0}\, {a}}({e}_{\mathrm{x}}\, -\, {e}_{\mathrm{y}})\end{equation*}
 \item \Needspace{4\baselineskip}
-For λ\textsubscript{2}, the displacement is (a, a/2), with radius \ensuremath{\surd}5 a/2 and unit direction (2e\textsubscript{x} + e\textsubscript{y})/\ensuremath{\surd}5:
+For λ\textsubscript{2}, the displacement is (a, a/2), with radius \ensuremath{\sqrt{5}} a/2 and unit direction (2e\textsubscript{x} + e\textsubscript{y})/\ensuremath{\sqrt{5}}:
 
-\begin{equation*}{E}_{λ_{2}}\, =\, (λ_{2}/(πε_{0}\mathrm{a}\sqrt5))((2{e}_{\mathrm{x}}\, +\, {e}_{\mathrm{y}})/\sqrt5)\, =\, λ_{2}/(5πε_{0}\mathrm{a})(2{e}_{\mathrm{x}}\, +\, {e}_{\mathrm{y}})\end{equation*}
+\begin{equation*}{E}_{λ2}\, =\, \dfrac{λ_{2}}{πε_{0}\, \sqrt{5}\, {a}}\, \cdot \, \dfrac{2{e}_{\mathrm{x}}\, +\, {e}_{\mathrm{y}}}{\sqrt{5}}\, =\, \dfrac{λ_{2}}{5πε_{0}\, {a}}(2{e}_{\mathrm{x}}\, +\, {e}_{\mathrm{y}})\end{equation*}
 \item \Needspace{4\baselineskip}
 Add the x and y components separately:
 
 \Needspace{5\baselineskip}
-\begin{equation*}{E}_{\text{lines}}\, =\, (1/(πε_{0}\mathrm{a}))[(λ_{1}/4\, +\, 2λ_{2}/5){e}_{\mathrm{x}}\, +\, (-λ_{1}/4\, +\, λ_{2}/5){e}_{\mathrm{y}}]\end{equation*}
+\begin{equation*}{E}_{\text{lines}}\, =\, \dfrac{1}{πε_{0}\, {a}}\left[\left(\dfrac{λ_{1}}{4}\, +\, \dfrac{2λ_{2}}{5}\right){e}_{\mathrm{x}}\, +\, \left(-\dfrac{λ_{1}}{4}\, +\, \dfrac{λ_{2}}{5}\right){e}_{\mathrm{y}}\right]\end{equation*}
 
-Check the second line’s distance is a\ensuremath{\surd}5/2, not a\ensuremath{\surd}5; its source is only a/2 below the x-axis. Each field component has units N/C.
+Check the second line’s distance is a\ensuremath{\sqrt{5}}/2, not a\ensuremath{\sqrt{5}}; its source is only a/2 below the x-axis. Each field component has units N/C.
 \end{enumerate}
 \end{workedbox}
 
@@ -346,17 +352,17 @@ Check the second line’s distance is a\ensuremath{\surd}5/2, not a\ensuremath{\
 \begin{keepsection}\subsection{Task 6: Line and point charges}
 
 \begin{workedbox}{6d \ensuremath{\cdot} Force from both lines}
-\Needspace{7\baselineskip}
+\Needspace{6\baselineskip}
 \begin{enumerate}
 \item \Needspace{4\baselineskip}
 Both line fields act at Q\textsubscript{2}, so their combined force is Q\textsubscript{2} times their vector sum:
 
-\begin{equation*}{F}_{\text{lines},2}\, =\, \mathrm{Q}_{2}\, {E}_{\text{lines}}\end{equation*}
+\begin{equation*}{F}_{\text{lines},2}\, =\, {Q}_{2}\, {E}_{\text{lines}}\end{equation*}
 \item \Needspace{4\baselineskip}
 Therefore:
 
 \Needspace{5\baselineskip}
-\begin{equation*}{F}_{\text{lines},2}\, =\, \mathrm{Q}_{2}/(πε_{0}\mathrm{a})[(λ_{1}/4\, +\, 2λ_{2}/5){e}_{\mathrm{x}}\, +\, (-λ_{1}/4\, +\, λ_{2}/5){e}_{\mathrm{y}}]\end{equation*}
+\begin{equation*}{F}_{\text{lines},2}\, =\, \dfrac{{Q}_{2}}{πε_{0}\, {a}}\left[\left(\dfrac{λ_{1}}{4}\, +\, \dfrac{2λ_{2}}{5}\right){e}_{\mathrm{x}}\, +\, \left(-\dfrac{λ_{1}}{4}\, +\, \dfrac{λ_{2}}{5}\right){e}_{\mathrm{y}}\right]\end{equation*}
 
 A negative component indicates the corresponding force points along the negative axis; the force components are in newtons.
 \end{enumerate}
@@ -376,7 +382,7 @@ Electrostatic forces add linearly, so the total is the point-charge contribution
 Collect the coefficients of each Cartesian direction:
 
 \Needspace{4\baselineskip}
-\begin{equation*}{F}_{2}\, =\, [\mathrm{Q}_{1}\mathrm{Q}_{2}/(16πε_{0}\mathrm{a}^{2})\, +\, \mathrm{Q}_{2}(λ_{1}/4\, +\, 2λ_{2}/5)/(πε_{0}\mathrm{a})]{e}_{\mathrm{x}}\, +\, [\mathrm{Q}_{2}(-λ_{1}/4\, +\, λ_{2}/5)/(πε_{0}\mathrm{a})]{e}_{\mathrm{y}}\end{equation*}
+\begin{equation*}{F}_{2}\, =\, \left[\dfrac{{Q}_{1}\, {Q}_{2}}{16πε_{0}\, {a}^{2}}\, +\, \dfrac{{Q}_{2}}{πε_{0}\, {a}}\left(\dfrac{λ_{1}}{4}\, +\, \dfrac{2λ_{2}}{5}\right)\right]{e}_{\mathrm{x}}\, +\, \dfrac{{Q}_{2}}{πε_{0}\, {a}}\left(-\dfrac{λ_{1}}{4}\, +\, \dfrac{λ_{2}}{5}\right){e}_{\mathrm{y}}\end{equation*}
 
 \textbf{Check:} if both line densities vanish, this reduces to the Coulomb force in 6b.
 \end{enumerate}
@@ -391,14 +397,14 @@ Collect the coefficients of each Cartesian direction:
 \item \Needspace{4\baselineskip}
 Q\textsubscript{2} is nonzero, so the y-component vanishes when:
 
-\begin{equation*}-λ_{1}/4\, +\, λ_{2}/5\, =\, 0\, \quad \, \Rightarrow \, \quad \, λ_{2}\, =\, 5λ_{1}/4\end{equation*}
+\begin{equation*}-\dfrac{λ_{1}}{4}\, +\, \dfrac{λ_{2}}{5}\, =\, 0\, \quad \, \quad \Rightarrow \quad \, \quad \, λ_{2}\, =\, \dfrac{5λ_{1}}{4}\end{equation*}
 \item \Needspace{4\baselineskip}
 Insert this relation into the x-component, including the field from Q\textsubscript{1}:
 
 \Needspace{4\baselineskip}
-\begin{equation*}\mathrm{Q}_{1}/(16\mathrm{a}^{2})\, +\, λ_{1}/(4\mathrm{a})\, +\, 2(5λ_{1}/4)/(5\mathrm{a})\, =\, 0\end{equation*}
+\begin{equation*}\dfrac{{Q}_{1}}{16{a}^{2}}\, +\, \dfrac{λ_{1}}{4{a}}\, +\, \dfrac{2}{5{a}}\, \cdot \, \dfrac{5λ_{1}}{4}\, =\, 0\end{equation*}
 
-\begin{equation*}\mathrm{Q}_{1}/(16\mathrm{a}^{2})\, +\, 3λ_{1}/(4\mathrm{a})\, =\, 0\, \quad \, \Rightarrow \, \quad \, \mathrm{Q}_{1}\, =\, -12\mathrm{a}λ_{1}\end{equation*}
+\begin{equation*}\dfrac{{Q}_{1}}{16{a}^{2}}\, +\, \dfrac{3λ_{1}}{4{a}}\, =\, 0\, \quad \, \quad \Rightarrow \quad \, \quad \, {Q}_{1}\, =\, -12{a}λ_{1}\end{equation*}
 \item Thus the required condition is \textbf{λ\textsubscript{2} = 5λ\textsubscript{1}/4 and Q\textsubscript{1} = \ensuremath{-}12aλ\textsubscript{1}} (equivalently λ\textsubscript{1} = \ensuremath{-}Q\textsubscript{1}/(12a), λ\textsubscript{2} = \ensuremath{-}5Q\textsubscript{1}/(48a)). These signs make the line forces cancel in y and balance Q\textsubscript{1}’s x contribution.
 \end{enumerate}
 \end{workedbox}
@@ -407,22 +413,22 @@ Insert this relation into the x-component, including the field from Q\textsubscr
 \begin{keepsection}\subsection{Task 7: Point charge}
 
 \begin{workedbox}{7a \ensuremath{\cdot} First known pair force}
-\Needspace{7\baselineskip}
+\Needspace{8\baselineskip}
 \begin{enumerate}
 \item \Needspace{4\baselineskip}
-The displacement from Q\textsubscript{2} at (3a, 0) to Q\textsubscript{1} at (0, a) is (\ensuremath{-}3a, a), and the distance is \ensuremath{\surd}10 a:
+The displacement from Q\textsubscript{2} at (3a, 0) to Q\textsubscript{1} at (0, a) is (\ensuremath{-}3a, a), and the distance is \ensuremath{\sqrt{10}} a:
 
-\begin{equation*}{R}_{12}\, =\, \mathrm{a}(-3{e}_{\mathrm{x}}\, +\, {e}_{\mathrm{y}}),\, \quad \, \mathrm{R}_{12}\, =\, \sqrt10\, \mathrm{a}\end{equation*}
+\begin{equation*}{R}_{12}\, =\, {a}(-3{e}_{\mathrm{x}}\, +\, {e}_{\mathrm{y}}),\quad \, \quad \, |{R}_{12}|\, =\, \sqrt{10}\, {a}\end{equation*}
 \item \Needspace{5\baselineskip}
-Coulomb force on Q\textsubscript{1} from Q\textsubscript{2} is kQ\textsubscript{1}Q\textsubscript{2} times the unit displacement divided by R². Here Q\textsubscript{1}Q\textsubscript{2} = \ensuremath{\surd}10 Q²:
+Coulomb force on Q\textsubscript{1} from Q\textsubscript{2} is kQ\textsubscript{1}Q\textsubscript{2} times the unit displacement divided by R². Here Q\textsubscript{1}Q\textsubscript{2} = \ensuremath{\sqrt{10}} Q²:
 
 \Needspace{4\baselineskip}
-\begin{equation*}{F}_{12}\, =\, (1/(4πε_{0}))\, (\sqrt10\, \mathrm{Q}^{2}/(10\sqrt10\, \mathrm{a}^{2}))(-3{e}_{\mathrm{x}}\, +\, {e}_{\mathrm{y}})\end{equation*}
+\begin{equation*}{F}_{12}\, =\, \dfrac{1}{4πε_{0}}\, \cdot \, \dfrac{{Q}_{1}\, {Q}_{2}}{|{R}_{12}|^{3}}\, {R}_{12}\, =\, \dfrac{1}{4πε_{0}}\, \cdot \, \dfrac{\sqrt{10}\, {Q}^{2}}{10\sqrt{10}\, {a}^{3}}\, {a}(-3{e}_{\mathrm{x}}\, +\, {e}_{\mathrm{y}})\end{equation*}
 
 \Needspace{5\baselineskip}
-\begin{equation*}{F}_{12}\, =\, \mathrm{F}_{0}(-3{e}_{\mathrm{x}}\, +\, {e}_{\mathrm{y}})\end{equation*}
+\begin{equation*}{F}_{12}\, =\, \dfrac{{Q}^{2}}{40πε_{0}\, {a}^{2}}(-3{e}_{\mathrm{x}}\, +\, {e}_{\mathrm{y}})\, =\, {F}_{0}(-3{e}_{\mathrm{x}}\, +\, {e}_{\mathrm{y}})\end{equation*}
 
-The displacement points from the source toward Q\textsubscript{1}, so this force points down-left for like charges.
+The displacement points from the source toward Q\textsubscript{1}, so for like charges this force points up and to the left, away from Q\textsubscript{2}.
 \end{enumerate}
 \end{workedbox}
 
@@ -440,7 +446,7 @@ Forces between a pair have equal magnitude and opposite direction:
 Therefore:
 
 \Needspace{4\baselineskip}
-\begin{equation*}{F}_{21}\, =\, \mathrm{F}_{0}(3{e}_{\mathrm{x}}\, -\, {e}_{\mathrm{y}})\end{equation*}
+\begin{equation*}{F}_{21}\, =\, {F}_{0}(3{e}_{\mathrm{x}}\, -\, {e}_{\mathrm{y}})\end{equation*}
 
 The two pair forces sum to zero when applied to both charges together.
 \end{enumerate}
@@ -460,10 +466,10 @@ The given resultant on Q\textsubscript{1} is F\textsubscript{1} = F\textsubscrip
 Subtract the components (the +e\textsubscript{y} terms cancel):
 
 \Needspace{4\baselineskip}
-\begin{equation*}{F}_{13}\, =\, \mathrm{F}_{0}[-(3\, +\, 5\sqrt5){e}_{\mathrm{x}}\, +\, {e}_{\mathrm{y}}\, -\, (-3{e}_{\mathrm{x}}\, +\, {e}_{\mathrm{y}})]\end{equation*}
+\begin{equation*}{F}_{13}\, =\, {F}_{0}[-(3\, +\, 5\sqrt{5}){e}_{\mathrm{x}}\, +\, {e}_{\mathrm{y}}\, -\, (-3{e}_{\mathrm{x}}\, +\, {e}_{\mathrm{y}})]\end{equation*}
 
 \Needspace{4\baselineskip}
-\begin{equation*}{F}_{13}\, =\, -5\sqrt5\, \mathrm{F}_{0}{e}_{\mathrm{x}}\end{equation*}
+\begin{equation*}{F}_{13}\, =\, -5\sqrt{5}\, {F}_{0}\, {e}_{\mathrm{x}}\end{equation*}
 
 Its purely horizontal direction places Q\textsubscript{3} on the horizontal line through Q\textsubscript{1}.
 \end{enumerate}
@@ -478,15 +484,15 @@ Its purely horizontal direction places Q\textsubscript{3} on the horizontal line
 \item \Needspace{4\baselineskip}
 The given resultant on Q\textsubscript{2} is F\textsubscript{2} = F\textsubscript{21} + F\textsubscript{23}. Since F\textsubscript{21} = \ensuremath{-}F\textsubscript{12}:
 
-\begin{equation*}{F}_{23}\, =\, {F}_{2}\, +\, {F}_{12}\end{equation*}
+\begin{equation*}{F}_{23}\, =\, {F}_{2}\, -\, {F}_{21}\, =\, {F}_{2}\, +\, {F}_{12}\end{equation*}
 \item \Needspace{4\baselineskip}
 Combine components:
 
 \Needspace{4\baselineskip}
-\begin{equation*}{F}_{23}\, =\, \mathrm{F}_{0}[(13\, -\, 3){e}_{\mathrm{x}}\, +\, (-11\, +\, 1){e}_{\mathrm{y}}]\end{equation*}
+\begin{equation*}{F}_{23}\, =\, {F}_{0}[(13\, -\, 3){e}_{\mathrm{x}}\, +\, (-11\, +\, 1){e}_{\mathrm{y}}]\end{equation*}
 
 \Needspace{4\baselineskip}
-\begin{equation*}{F}_{23}\, =\, 10\mathrm{F}_{0}({e}_{\mathrm{x}}\, -\, {e}_{\mathrm{y}})\end{equation*}
+\begin{equation*}{F}_{23}\, =\, 10{F}_{0}({e}_{\mathrm{x}}\, -\, {e}_{\mathrm{y}})\end{equation*}
 
 Its direction line is diagonal, with equal x and negative y components.
 \end{enumerate}
@@ -502,8 +508,8 @@ Its direction line is diagonal, with equal x and negative y components.
 \item \Needspace{5\baselineskip}
 F\textsubscript{23} is parallel to (1, \ensuremath{-}1). The line through Q\textsubscript{2} = (3a, 0) in that direction has form (3a, 0) + t(1, \ensuremath{-}1). Its y-coordinate equals a when t = \ensuremath{-}a:
 
-\begin{equation*}(\mathrm{x}_{3},\, \mathrm{y}_{3})\, =\, (3\mathrm{a},\, 0)\, -\, \mathrm{a}(1,\, -1)\, =\, (2\mathrm{a},\, \mathrm{a})\end{equation*}
-\item \textbf{Result:} Q\textsubscript{3} is at (2a, a). This position also gives Q\textsubscript{1}Q\textsubscript{3} = 2a and Q\textsubscript{2}Q\textsubscript{3} = \ensuremath{\surd}2 a.
+\begin{equation*}({x}_{3},\, {y}_{3})\, =\, (3{a},\, 0)\, -\, {a}(1,\, -1)\, =\, (2{a},\, {a})\end{equation*}
+\item \textbf{Result:} Q\textsubscript{3} is at (2a, a). This position also gives Q\textsubscript{1}Q\textsubscript{3} = 2a and Q\textsubscript{2}Q\textsubscript{3} = \ensuremath{\sqrt{2}} a.
 \end{enumerate}
 \end{workedbox}
 
@@ -514,16 +520,16 @@ F\textsubscript{23} is parallel to (1, \ensuremath{-}1). The line through Q\text
 \Needspace{8\baselineskip}
 \begin{enumerate}
 \item \Needspace{4\baselineskip}
-The force magnitude between Q\textsubscript{1} and Q\textsubscript{3} is 5\ensuremath{\surd}5 F\textsubscript{0}. Coulomb’s law at separation 2a gives:
+The force magnitude between Q\textsubscript{1} and Q\textsubscript{3} is 5\ensuremath{\sqrt{5}} F\textsubscript{0}. Coulomb’s law at separation 2a gives:
 
-\begin{equation*}5\sqrt5\, \mathrm{F}_{0}\, =\, (1/(4πε_{0}))\, (\sqrt5\, \mathrm{Q}\, |\mathrm{Q}_{3}|/(2\mathrm{a})^{2})\end{equation*}
+\begin{equation*}5\sqrt{5}\, {F}_{0}\, =\, \dfrac{1}{4πε_{0}}\, \cdot \, \dfrac{\sqrt{5}\, {Q}\, |{Q}_{3}|}{(2{a})^{2}}\end{equation*}
 \item \Needspace{4\baselineskip}
 Insert F\textsubscript{0} = Q²/(40πε\textsubscript{0}a²) and cancel common positive factors:
 
 \Needspace{4\baselineskip}
-\begin{equation*}5\sqrt5\, \mathrm{Q}^{2}/(40πε_{0}\mathrm{a}^{2})\, =\, \sqrt5\, \mathrm{Q}|\mathrm{Q}_{3}|/(16πε_{0}\mathrm{a}^{2})\end{equation*}
+\begin{equation*}\dfrac{5\sqrt{5}\, {Q}^{2}}{40πε_{0}\, {a}^{2}}\, =\, \dfrac{\sqrt{5}\, {Q}\, |{Q}_{3}|}{16πε_{0}\, {a}^{2}}\end{equation*}
 
-\begin{equation*}|\mathrm{Q}_{3}|\, =\, 2\mathrm{Q}\end{equation*}
+\begin{equation*}|{Q}_{3}|\, =\, 2{Q}\end{equation*}
 \item F\textsubscript{13} points from Q\textsubscript{3} toward Q\textsubscript{1}, and Q\textsubscript{3} is to the right of Q\textsubscript{1}; the force is repulsive. Thus Q\textsubscript{3} has the same sign as Q\textsubscript{1}, and \textbf{Q\textsubscript{3}/Q = 2}.
 \end{enumerate}
 \end{workedbox}
@@ -532,19 +538,19 @@ Insert F\textsubscript{0} = Q²/(40πε\textsubscript{0}a²) and cancel common p
 \begin{keepsection}\subsection{Task 7: Point charge}
 
 \begin{workedbox}{7g \ensuremath{\cdot} Resultant on Q\textsubscript{3}}
-\Needspace{7\baselineskip}
+\Needspace{8\baselineskip}
 \begin{enumerate}
 \item \Needspace{5\baselineskip}
 The force on Q\textsubscript{3} from Q\textsubscript{1} is opposite the force of Q\textsubscript{3} on Q\textsubscript{1}; the same reversal holds for the Q\textsubscript{2} pair:
 
-\begin{equation*}{F}_{31}\, =\, -{F}_{13}\, =\, 5\sqrt5\, \mathrm{F}_{0}{e}_{\mathrm{x}},\, \quad \, {F}_{32}\, =\, -{F}_{23}\, =\, -10\mathrm{F}_{0}{e}_{\mathrm{x}}\, +\, 10\mathrm{F}_{0}{e}_{\mathrm{y}}\end{equation*}
+\begin{equation*}{F}_{31}\, =\, -{F}_{13}\, =\, 5\sqrt{5}\, {F}_{0}\, {e}_{\mathrm{x}},\quad \, \quad \, {F}_{32}\, =\, -{F}_{23}\, =\, -10{F}_{0}\, {e}_{\mathrm{x}}\, +\, 10{F}_{0}\, {e}_{\mathrm{y}}\end{equation*}
 \item \Needspace{4\baselineskip}
 Now add the two forces acting on Q\textsubscript{3}:
 
-\Needspace{5\baselineskip}
-\begin{equation*}{F}_{3}\, =\, \mathrm{F}_{0}[(5\sqrt5\, -\, 10){e}_{\mathrm{x}}\, +\, 10{e}_{\mathrm{y}}]\end{equation*}
+\Needspace{6\baselineskip}
+\begin{equation*}{F}_{3}\, =\, {F}_{0}[(5\sqrt{5}\, -\, 10){e}_{\mathrm{x}}\, +\, 10{e}_{\mathrm{y}}]\end{equation*}
 
-Its positive y component and small positive x component agree with Q\textsubscript{3} lying above and to the right of Q\textsubscript{2}. Numerically, 5\ensuremath{\surd}5 \ensuremath{-} 10 \ensuremath{\approx} 1.18.
+Q\textsubscript{2}, below and to the right of Q\textsubscript{3}, pushes it up and to the left; Q\textsubscript{1}, to its left, pushes it to the right. The two x parts nearly cancel, leaving a small positive x component and a positive y component. Numerically, 5\ensuremath{\sqrt{5}} \ensuremath{-} 10 \ensuremath{\approx} 1.18.
 \end{enumerate}
 \end{workedbox}
 

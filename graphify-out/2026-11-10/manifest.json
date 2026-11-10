@@ -72,15 +72,15 @@
     "semantic_hash": ""
   },
   "js/guide.js": {
-    "mtime": 1794322668.945769,
-    "seen": 1794322959.109198,
-    "ast_hash": "7f76816c7f3f9d40376b5d22bc3850e2",
+    "mtime": 1794325054.2415638,
+    "seen": 1794325625.701802,
+    "ast_hash": "2a18fff614b9cbd12414121fb0ef6e3d",
     "semantic_hash": ""
   },
   "tools/guide-to-tex.py": {
-    "mtime": 1794323623.9776702,
-    "seen": 1794323706.728353,
-    "ast_hash": "dcd75dd6d13e2b7c374374433ff36ba6",
+    "mtime": 1794325097.9305048,
+    "seen": 1794325625.7018309,
+    "ast_hash": "f6d891bc9ab07162c057570029a2da4a",
     "semantic_hash": ""
   },
   "eei/ch1-electrostatic-fields.html": {
@@ -144,9 +144,9 @@
     "semantic_hash": ""
   },
   "docs/GUIDE-STANDARD.md": {
-    "mtime": 1794323924.0387797,
-    "seen": 1794324011.0441751,
-    "ast_hash": "6bb3e8b76c41166442ec57f5119b205a",
+    "mtime": 1794325518.5452507,
+    "seen": 1794325625.701853,
+    "ast_hash": "6aa9ddee6a3fde4822c09fdfb5cffcc7",
     "semantic_hash": ""
   },
   "docs/LAB-STANDARD.md": {
@@ -450,9 +450,9 @@
     "semantic_hash": ""
   },
   "js/hud.js": {
-    "mtime": 1794226444.4519758,
-    "seen": 1794226561.6356769,
-    "ast_hash": "9c03da5ab12c42e347ed5e4dc9e83167",
+    "mtime": 1794325353.0832958,
+    "seen": 1794325625.701804,
+    "ast_hash": "37dfd4d67f0d5bfa5cefc3880d84acbd",
     "semantic_hash": ""
   },
   "about/how-to-use.html": {
@@ -462,9 +462,9 @@
     "semantic_hash": ""
   },
   "about/version-log.html": {
-    "mtime": 1794313006.2642968,
-    "seen": 1794313080.515755,
-    "ast_hash": "3705e0df3d7c895df231b256e8a72dd0",
+    "mtime": 1794325616.460643,
+    "seen": 1794325625.70184,
+    "ast_hash": "cbae62c7cc843a2a3d10f46495cfc0a0",
     "semantic_hash": ""
   },
   "docs/DIAGRAM-AND-LAB-PLAN.md": {
@@ -498,9 +498,9 @@
     "semantic_hash": ""
   },
   "assets/graph-orb.json": {
-    "mtime": 1794323720.4395373,
-    "seen": 1794324011.044107,
-    "ast_hash": "60129f50a38760a9f2b2fd6782ac8928",
+    "mtime": 1794324022.1385043,
+    "seen": 1794325625.701783,
+    "ast_hash": "b22e0363f6edc2b847183e136b980ec7",
     "semantic_hash": ""
   },
   "js/orb.js": {
@@ -582,21 +582,21 @@
     "semantic_hash": ""
   },
   "eei/tutorial-1-worked-solutions.html": {
-    "mtime": 1794304871.7900348,
-    "seen": 1794304910.8559492,
-    "ast_hash": "e14c2df93bb26d666543054eb44b2c31",
+    "mtime": 1794324818.053809,
+    "seen": 1794325625.7018619,
+    "ast_hash": "c0c83b15116f26a74c0d33fd5f0c8c04",
     "semantic_hash": ""
   },
   "eei/tutorial-2-worked-solutions.html": {
-    "mtime": 1794323553.922757,
-    "seen": 1794323706.728387,
-    "ast_hash": "0af7a3139be3d7a3a64930c6b03d0982",
+    "mtime": 1794325054.2411067,
+    "seen": 1794325625.7018628,
+    "ast_hash": "76df81e8e14c3127c9f2531a30addca1",
     "semantic_hash": ""
   },
   "eei/tutorial-3-worked-solutions.html": {
-    "mtime": 1794306659.525062,
-    "seen": 1794306674.768988,
-    "ast_hash": "0f255c1b0ee4589ee2805a1772cd688d",
+    "mtime": 1794325289.0942802,
+    "seen": 1794325625.701864,
+    "ast_hash": "d92ffb99b54e4b9063fb485ebe496a1a",
     "semantic_hash": ""
   },
   "eei/appendix-a-coordinate-systems.html": {
@@ -606,21 +606,21 @@
     "semantic_hash": ""
   },
   "eei/tutorial-4-worked-solutions.html": {
-    "mtime": 1794307092.6136658,
-    "seen": 1794307111.511798,
-    "ast_hash": "4a79a8118c149e8d2e406dc0912569a5",
+    "mtime": 1794325054.2407084,
+    "seen": 1794325625.701865,
+    "ast_hash": "e498d949b8766a4d4546ff776934a3dc",
     "semantic_hash": ""
   },
   "eei/tutorial-5-worked-solutions.html": {
-    "mtime": 1794323553.923513,
-    "seen": 1794323706.728389,
-    "ast_hash": "799bf8438f0faa252f34b8603f1cf677",
+    "mtime": 1794324931.536579,
+    "seen": 1794325625.701865,
+    "ast_hash": "9a41828fc9eb091cd0bf37b7078f2aa2",
     "semantic_hash": ""
   },
   "eei/tutorial-6-worked-solutions.html": {
-    "mtime": 1794323648.3925695,
-    "seen": 1794323706.72839,
-    "ast_hash": "77c4bbd2046d9c9a23f9582e3dd0cc24",
+    "mtime": 1794324931.53691,
+    "seen": 1794325625.701866,
+    "ast_hash": "f87711c7796f8925b929d113dc5b8466",
     "semantic_hash": ""
   }
 }

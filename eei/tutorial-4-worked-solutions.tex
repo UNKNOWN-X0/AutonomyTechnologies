@@ -78,28 +78,34 @@
 \Needspace{9\baselineskip}
 Two square plates of side \textit{a} are separated by total distance \textit{d}. Initially, dielectric 1 (\textit{ε}\textsubscript{r,1}) fills the upper half and dielectric 2 (\textit{ε}\textsubscript{r,2}) fills the lower half, each of thickness \textit{d}/2. Edge effects are neglected; the exposed surrounding region is air with relative permittivity 1. The voltage arrow points downward; take positive \textit{U}\textsubscript{0} to produce a downward field. Both relative permittivities are much greater than 1.
 
-\Needspace{8\baselineskip}
+\Needspace{9\baselineskip}
 \textbf{Connected topic:} Capacitance (§1.13) relates plate geometry and permittivity to charge and voltage; the interface conditions explain how the displacement crosses the two layers.
 
 \Needspace{14\baselineskip}
 \begin{center}
 \begin{minipage}[t]{0.950\linewidth}\centering
 \begin{tikzpicture}[line join=round]
-\draw[-{Stealth[length=4pt]},black!80] (0.720,-2.628) -- (4.572,-2.628);
-\draw[-{Stealth[length=4pt]},black!80] (0.720,-2.628) -- (0.720,-0.180);
-\draw[FAUblue,line width=1.6pt] (0.720,-1.476) -- (4.392,-1.476);
-\draw[black!85,line width=1pt] (0.720,-0.324) -- (4.392,-0.324);
-\fill[FAUblue] (2.556,-0.900) circle (0.063);
-\node[anchor=east,text=FAUblue,fill=white,fill opacity=0.85,text opacity=1,inner sep=1pt,font=\footnotesize] at (2.412,-0.720) {ε\textsubscript{r,1}};
-\fill[FAUblue] (2.556,-2.052) circle (0.063);
-\node[anchor=west,text=FAUblue,fill=white,fill opacity=0.85,text opacity=1,inner sep=1pt,font=\footnotesize] at (2.700,-1.872) {ε\textsubscript{r,2}};
-\node[anchor=east,inner sep=1pt,font=\footnotesize] at (4.536,-2.916) {\textit{x/a}};
-\node[anchor=east,inner sep=1pt,font=\footnotesize] at (0.576,-0.288) {\textit{z/d}};
-\draw[black!80] (0.720,-2.556) -- (0.720,-2.700);
-\node[,inner sep=1pt,font=\footnotesize] at (0.720,-2.916) {0};
-\draw[black!80] (4.392,-2.556) -- (4.392,-2.700);
-\node[,inner sep=1pt,font=\footnotesize] at (4.392,-2.916) {1};
-\end{tikzpicture}\par\smallskip{\small\raggedright \textbf{Initial side view of the stack.} The interface is at \textit{z} = \textit{d}/2; each dielectric fills the full plate area \textit{a}\textsuperscript{2}.\par}\end{minipage}
+\filldraw[draw=black!70,fill=FAUblue!25] (1.395,-1.930) rectangle (3.536,-0.860);
+\filldraw[draw=black!40,fill=Paperblue] (1.395,-3.001) rectangle (3.536,-1.930);
+\fill[FAUblue] (1.395,-0.896) rectangle (3.536,-0.760);
+\fill[FAUblue] (1.395,-3.101) rectangle (3.536,-2.965);
+\node[fill=white,fill opacity=0.85,text opacity=1,inner sep=1pt,font=\footnotesize] at (2.466,-1.395) {\textit{ε\textsubscript{r,1}}};
+\node[fill=white,fill opacity=0.85,text opacity=1,inner sep=1pt,font=\footnotesize] at (2.466,-2.466) {\textit{ε\textsubscript{r,2}}};
+\draw[black!80] (1.096,-3.001) -- (1.096,-1.930);
+\draw[black!80] (1.024,-3.001) -- (1.168,-3.001);
+\draw[black!80] (1.024,-1.930) -- (1.168,-1.930);
+\node[anchor=east,fill=white,fill opacity=0.85,text opacity=1,inner sep=1pt,font=\footnotesize] at (0.970,-2.466) {\textit{d/2}};
+\draw[black!80] (1.096,-1.930) -- (1.096,-0.860);
+\draw[black!80] (1.024,-1.930) -- (1.168,-1.930);
+\draw[black!80] (1.024,-0.860) -- (1.168,-0.860);
+\node[anchor=east,fill=white,fill opacity=0.85,text opacity=1,inner sep=1pt,font=\footnotesize] at (0.970,-1.395) {\textit{d/2}};
+\draw[black!80] (1.395,-3.343) -- (3.536,-3.343);
+\draw[black!80] (1.395,-3.271) -- (1.395,-3.415);
+\draw[black!80] (3.536,-3.271) -- (3.536,-3.415);
+\node[fill=white,fill opacity=0.85,text opacity=1,inner sep=1pt,font=\footnotesize] at (2.466,-3.541) {\textit{a}};
+\draw[-{Stealth[length=4pt]},FAUblue,line width=1.6pt] (3.921,-0.946) -- (3.921,-2.915);
+\node[anchor=west,text=FAUblue,fill=white,fill opacity=0.85,text opacity=1,inner sep=1pt,font=\footnotesize] at (4.047,-1.930) {\textit{U\textsubscript{0}}};
+\end{tikzpicture}\par\smallskip{\small\raggedright \textbf{Before the shift: two layers in series.} Dielectric ε\textsubscript{r,1} fills the upper half and ε\textsubscript{r,2} the lower half, each of thickness \textit{d}/2 over the full plate area \textit{a}\textsuperscript{2}. The voltage \textit{U}\textsubscript{0} points from the top plate to the bottom one.\par}\end{minipage}
 \end{center}
 
 \begin{keepsection}
@@ -141,33 +147,38 @@ Try first: dot \textit{D} with the outward normal from the metal into the dielec
 
 \nopagebreak[4]{\small\itshape Answers: see “Task 8: Electrostatics” under Answers at the end.}
 
-\Needspace{10\baselineskip}
+\Needspace{9\baselineskip}
 The lower dielectric is now shifted out along +\textit{e}\textsubscript{x} by a distance \textit{x}, with 0 \ensuremath{\leq} \textit{x} \ensuremath{\leq} \textit{a}. Its overlap width is \textit{a}\ensuremath{-}\textit{x}; the exposed gap beneath the upper dielectric is filled with air.
 
 \Needspace{14\baselineskip}
 \begin{center}
 \begin{minipage}[t]{0.950\linewidth}\centering
 \begin{tikzpicture}[line join=round]
-\draw[-{Stealth[length=4pt]},black!80] (0.720,-2.628) -- (4.572,-2.628);
-\draw[-{Stealth[length=4pt]},black!80] (0.720,-2.628) -- (0.720,-0.180);
-\draw[FAUblue,line width=1.6pt] (0.720,-1.476) -- (4.392,-1.476);
-\draw[black!85,line width=1pt] (0.720,-0.324) -- (4.392,-0.324);
-\draw[black!55,dashed] (2.005,-2.628) -- (2.005,-1.476);
-\fill[FAUblue] (3.107,-0.900) circle (0.063);
-\node[anchor=east,text=FAUblue,fill=white,fill opacity=0.85,text opacity=1,inner sep=1pt,font=\footnotesize] at (2.963,-0.720) {ε\textsubscript{r,1}};
-\fill[FAUblue] (3.290,-2.052) circle (0.063);
-\node[anchor=west,text=FAUblue,fill=white,fill opacity=0.85,text opacity=1,inner sep=1pt,font=\footnotesize] at (3.434,-1.872) {ε\textsubscript{r,2}};
-\fill[FAUblue] (1.271,-2.052) circle (0.063);
-\node[anchor=east,text=FAUblue,fill=white,fill opacity=0.85,text opacity=1,inner sep=1pt,font=\footnotesize] at (1.127,-1.872) {air};
-\fill[FAUblue] (2.005,-1.591) circle (0.063);
-\node[anchor=east,text=FAUblue,fill=white,fill opacity=0.85,text opacity=1,inner sep=1pt,font=\footnotesize] at (1.861,-1.771) {x};
-\node[anchor=east,inner sep=1pt,font=\footnotesize] at (4.536,-2.916) {\textit{x/a}};
-\node[anchor=east,inner sep=1pt,font=\footnotesize] at (0.576,-0.288) {\textit{z/d}};
-\draw[black!80] (0.720,-2.556) -- (0.720,-2.700);
-\node[,inner sep=1pt,font=\footnotesize] at (0.720,-2.916) {0};
-\draw[black!80] (4.392,-2.556) -- (4.392,-2.700);
-\node[,inner sep=1pt,font=\footnotesize] at (4.392,-2.916) {1};
-\end{tikzpicture}\par\smallskip{\small\raggedright \textbf{Shifted lower layer, drawn schematically.} The upper dielectric spans the full plate area; underneath it the air and remaining ε\textsubscript{r,2} regions share the voltage and act in parallel. The indicated shift boundary represents variable \textit{x}, not a fixed fraction.\par}\end{minipage}
+\filldraw[draw=black!70,fill=FAUblue!25] (1.387,-2.024) rectangle (3.510,-0.963);
+\filldraw[draw=black!70,fill=white] (1.387,-3.086) rectangle (2.067,-2.024);
+\filldraw[draw=black!40,fill=Paperblue] (2.067,-3.086) rectangle (4.190,-2.024);
+\fill[FAUblue] (1.387,-0.999) rectangle (3.510,-0.863);
+\fill[FAUblue] (1.387,-3.186) rectangle (3.510,-3.050);
+\node[fill=white,fill opacity=0.85,text opacity=1,inner sep=1pt,font=\footnotesize] at (2.449,-1.494) {\textit{ε\textsubscript{r,1}}};
+\node[fill=white,fill opacity=0.85,text opacity=1,inner sep=1pt,font=\footnotesize] at (1.727,-2.555) {air};
+\node[fill=white,fill opacity=0.85,text opacity=1,inner sep=1pt,font=\footnotesize] at (2.789,-2.555) {\textit{ε\textsubscript{r,2}}};
+\draw[black!80] (1.387,-3.426) -- (2.067,-3.426);
+\draw[black!80] (1.387,-3.354) -- (1.387,-3.498);
+\draw[black!80] (2.067,-3.354) -- (2.067,-3.498);
+\node[fill=white,fill opacity=0.85,text opacity=1,inner sep=1pt,font=\footnotesize] at (1.727,-3.624) {\textit{x}};
+\draw[black!80] (1.387,-0.623) -- (3.510,-0.623);
+\draw[black!80] (1.387,-0.551) -- (1.387,-0.695);
+\draw[black!80] (3.510,-0.551) -- (3.510,-0.695);
+\node[fill=white,fill opacity=0.85,text opacity=1,inner sep=1pt,font=\footnotesize] at (2.449,-0.425) {\textit{a}};
+\draw[black!80] (1.090,-3.086) -- (1.090,-2.024);
+\draw[black!80] (1.018,-3.086) -- (1.162,-3.086);
+\draw[black!80] (1.018,-2.024) -- (1.162,-2.024);
+\node[anchor=east,fill=white,fill opacity=0.85,text opacity=1,inner sep=1pt,font=\footnotesize] at (0.964,-2.555) {\textit{d/2}};
+\draw[black!80] (1.090,-2.024) -- (1.090,-0.963);
+\draw[black!80] (1.018,-2.024) -- (1.162,-2.024);
+\draw[black!80] (1.018,-0.963) -- (1.162,-0.963);
+\node[anchor=east,fill=white,fill opacity=0.85,text opacity=1,inner sep=1pt,font=\footnotesize] at (0.964,-1.494) {\textit{d/2}};
+\end{tikzpicture}\par\smallskip{\small\raggedright \textbf{After the shift by \textit{x}.} The upper layer still covers the whole plate. Below it, a strip of width \textit{x} is air and the rest, width \textit{a} \ensuremath{-} \textit{x}, is still ε\textsubscript{r,2}; the part pushed past the plate edge carries no field.\par}\end{minipage}
 \end{center}
 \end{keepsection}
 
@@ -213,22 +224,22 @@ Try first: check how the lower parallel capacitance changes with \textit{x}, the
 \item \Needspace{6\baselineskip}
 With no free charge at the internal interface, the normal component of \textit{D} is the same in both layers. The voltage arrow sets the field downward for positive \textit{U}\textsubscript{0}; denote the downward displacement magnitude by \textit{D}\textsubscript{0}:
 
-\begin{equation*}{D}_{1}\, =\, {D}_{2}\, =\, -{D}_{0}{e}_{\mathrm{z}}\end{equation*}
+\begin{equation*}{D}_{1}\, =\, {D}_{2}\, =\, -{D}_{0}\, {e}_{\mathrm{z}}\end{equation*}
 \item \Needspace{5\baselineskip}
 In each linear dielectric, \textit{D} = ε\textsubscript{0}ε\textsubscript{r}\textit{E}. The downward potential drop across each thickness \textit{d}/2 adds to \textit{U}\textsubscript{0}:
 
 \Needspace{4\baselineskip}
-\begin{equation*}{U}_{0}\, =\, (|{D}|/(ε_{0}ε_{\mathrm{r},1}))({d}/2)\, +\, (|{D}|/(ε_{0}ε_{\mathrm{r},2}))({d}/2)\end{equation*}
+\begin{equation*}{U}_{0}\, =\, \dfrac{{D}_{0}}{ε_{0}\, ε_{\mathrm{r},1}}\, \cdot \, \dfrac{{d}}{2}\, +\, \dfrac{{D}_{0}}{ε_{0}\, ε_{\mathrm{r},2}}\, \cdot \, \dfrac{{d}}{2}\end{equation*}
 
-\begin{equation*}|{D}|\, =\, 2ε_{0}ε_{\mathrm{r},1}ε_{\mathrm{r},2}{U}_{0}\, /\, [{d}(ε_{\mathrm{r},1}\, +\, ε_{\mathrm{r},2})]\end{equation*}
+\begin{equation*}{D}_{0}\, =\, \dfrac{2ε_{0}\, ε_{\mathrm{r},1}\, ε_{\mathrm{r},2}\, {U}_{0}}{{d}(ε_{\mathrm{r},1}\, +\, ε_{\mathrm{r},2})}\end{equation*}
 \item \Needspace{4\baselineskip}
 Apply the constitutive relation separately to each layer:
 
 \Needspace{4\baselineskip}
-\begin{equation*}{D}\, =\, -[2ε_{0}ε_{\mathrm{r},1}ε_{\mathrm{r},2}{U}_{0}/({d}(ε_{\mathrm{r},1}+ε_{\mathrm{r},2}))]{e}_{\mathrm{z}}\end{equation*}
+\begin{equation*}{D}\, =\, -\dfrac{2ε_{0}\, ε_{\mathrm{r},1}\, ε_{\mathrm{r},2}\, {U}_{0}}{{d}(ε_{\mathrm{r},1}\, +\, ε_{\mathrm{r},2})}\, {e}_{\mathrm{z}}\end{equation*}
 
 \Needspace{5\baselineskip}
-\begin{equation*}{E}_{1}\, =\, -[2ε_{\mathrm{r},2}{U}_{0}/({d}(ε_{\mathrm{r},1}+ε_{\mathrm{r},2}))]{e}_{\mathrm{z}},\, \quad \, {E}_{2}\, =\, -[2ε_{\mathrm{r},1}{U}_{0}/({d}(ε_{\mathrm{r},1}+ε_{\mathrm{r},2}))]{e}_{\mathrm{z}}\end{equation*}
+\begin{equation*}{E}_{1}\, =\, -\dfrac{2ε_{\mathrm{r},2}\, {U}_{0}}{{d}(ε_{\mathrm{r},1}\, +\, ε_{\mathrm{r},2})}\, {e}_{\mathrm{z}},\quad \, \quad \, {E}_{2}\, =\, -\dfrac{2ε_{\mathrm{r},1}\, {U}_{0}}{{d}(ε_{\mathrm{r},1}\, +\, ε_{\mathrm{r},2})}\, {e}_{\mathrm{z}}\end{equation*}
 
 For negative \textit{U}\textsubscript{0}, the vectors reverse. \textbf{Check:} substituting the two field magnitudes into the half-gap drops gives exactly \textit{U}\textsubscript{0}.
 \end{enumerate}
@@ -238,12 +249,33 @@ For negative \textit{U}\textsubscript{0}, the vectors reverse. \textbf{Check:} s
 \begin{keepsection}\subsection{Task 8: Electrostatics}
 
 \begin{workedbox}{8b \ensuremath{\cdot} Series connection}
-\Needspace{8\baselineskip}
+\Needspace{9\baselineskip}
 \begin{enumerate}
 \item \Needspace{6\baselineskip}
 Every field line crosses dielectric 1 and then dielectric 2. The same free charge magnitude sits on each plate, while the voltage divides between the layers, so the capacitors are in series:
 
-\begin{equation*}{C}_{1}\, —\, {C}_{2}\end{equation*}
+\Needspace{8\baselineskip}
+\begin{equation*}{C}_{1}\, \text{in}\, \text{series}\, \text{with}\, {C}_{2}\end{equation*}
+
+\Needspace{14\baselineskip}
+\begin{center}
+\begin{minipage}[t]{0.950\linewidth}\centering
+\begin{tikzpicture}[line join=round]
+\draw[black!80] (1.136,-0.995) -- (3.954,-0.995);
+\fill[white] (2.003,-0.833) rectangle (2.147,-1.157);
+\draw[black!85,line width=1pt] (2.012,-0.833) -- (2.012,-1.157);
+\draw[black!85,line width=1pt] (2.138,-0.833) -- (2.138,-1.157);
+\fill[white] (2.943,-0.833) rectangle (3.087,-1.157);
+\draw[black!85,line width=1pt] (2.952,-0.833) -- (2.952,-1.157);
+\draw[black!85,line width=1pt] (3.078,-0.833) -- (3.078,-1.157);
+\fill[FAUblue] (1.136,-0.995) circle (0.063);
+\fill[FAUblue] (3.954,-0.995) circle (0.063);
+\node[fill=white,fill opacity=0.85,text opacity=1,inner sep=1pt,font=\footnotesize] at (2.075,-0.685) {\textit{C\textsubscript{1}}};
+\node[fill=white,fill opacity=0.85,text opacity=1,inner sep=1pt,font=\footnotesize] at (3.015,-0.685) {\textit{C\textsubscript{2}}};
+\node[anchor=east,fill=white,fill opacity=0.85,text opacity=1,inner sep=1pt,font=\footnotesize] at (1.010,-0.995) {top};
+\node[anchor=west,fill=white,fill opacity=0.85,text opacity=1,inner sep=1pt,font=\footnotesize] at (4.080,-0.995) {bottom};
+\end{tikzpicture}\par\smallskip{\small\raggedright \textbf{Series.} One path from the top plate to the bottom plate through both layers: the same charge on each, the voltage shared.\par}\end{minipage}
+\end{center}
 \item The interface has no free surface charge, so the normal displacement (and therefore the series charge) is common to both. \textbf{Check:} a parallel model would incorrectly assign the full plate voltage to each half-thickness layer.
 \end{enumerate}
 \end{workedbox}
@@ -257,15 +289,15 @@ Every field line crosses dielectric 1 and then dielectric 2. The same free charg
 \item \Needspace{4\baselineskip}
 For a parallel-plate layer, \textit{C} = ε\textit{A}/\textit{t}. Each layer has area \textit{a}\textsuperscript{2} and thickness \textit{d}/2:
 
-\begin{equation*}{C}_{1}\, =\, 2ε_{0}ε_{\mathrm{r},1}{a}^{2}/{d},\, \quad \, {C}_{2}\, =\, 2ε_{0}ε_{\mathrm{r},2}{a}^{2}/{d}\end{equation*}
+\begin{equation*}{C}_{1}\, =\, \dfrac{2ε_{0}\, ε_{\mathrm{r},1}\, {a}^{2}}{{d}},\quad \, \quad \, {C}_{2}\, =\, \dfrac{2ε_{0}\, ε_{\mathrm{r},2}\, {a}^{2}}{{d}}\end{equation*}
 \item \Needspace{4\baselineskip}
 Series capacitances add by reciprocals:
 
 \Needspace{4\baselineskip}
-\begin{equation*}1/{C}\, =\, 1/{C}_{1}\, +\, 1/{C}_{2}\end{equation*}
+\begin{equation*}\dfrac{1}{{C}}\, =\, \dfrac{1}{{C}_{1}}\, +\, \dfrac{1}{{C}_{2}}\end{equation*}
 
 \Needspace{4\baselineskip}
-\begin{equation*}{C}\, =\, 2ε_{0}{a}^{2}ε_{\mathrm{r},1}ε_{\mathrm{r},2}\, /\, [{d}(ε_{\mathrm{r},1}+ε_{\mathrm{r},2})]\end{equation*}
+\begin{equation*}{C}\, =\, \dfrac{2ε_{0}\, {a}^{2}\, ε_{\mathrm{r},1}\, ε_{\mathrm{r},2}}{{d}(ε_{\mathrm{r},1}\, +\, ε_{\mathrm{r},2})}\end{equation*}
 
 \textbf{Check:} this is smaller than either layer capacitance, as a series equivalent must be.
 \end{enumerate}
@@ -285,7 +317,7 @@ The bottom face of the top plate points outward from the conductor in the \ensur
 Since \textit{D} also points downward for positive \textit{U}\textsubscript{0}, the dot product is positive:
 
 \Needspace{4\baselineskip}
-\begin{equation*}σ_{0}\, =\, 2ε_{0}ε_{\mathrm{r},1}ε_{\mathrm{r},2}{U}_{0}\, /\, [{d}(ε_{\mathrm{r},1}+ε_{\mathrm{r},2})]\end{equation*}
+\begin{equation*}σ_{0}\, =\, \dfrac{2ε_{0}\, ε_{\mathrm{r},1}\, ε_{\mathrm{r},2}\, {U}_{0}}{{d}(ε_{\mathrm{r},1}\, +\, ε_{\mathrm{r},2})}\end{equation*}
 
 The units are C/m². Reversing the applied voltage reverses the surface-charge sign.
 \end{enumerate}
@@ -295,12 +327,42 @@ The units are C/m². Reversing the applied voltage reverses the surface-charge s
 \begin{keepsection}\subsection{Task 8: Electrostatics}
 
 \begin{workedbox}{8e \ensuremath{\cdot} Series and parallel sections}
-\Needspace{7\baselineskip}
+\Needspace{8\baselineskip}
 \begin{enumerate}
 \item \Needspace{6\baselineskip}
 All paths pass through dielectric 1 across the full area \textit{a}\textsuperscript{2}. In the lower half, some area \textit{a}(\textit{a}\ensuremath{-}\textit{x}) contains dielectric 2 and the remaining area \textit{a x} contains air. Those lower branches share the same voltage:
 
-\begin{equation*}{C}_{1}\, —\, ({C}_{2}\, ∥\, {C}_{\mathrm{L}})\end{equation*}
+\Needspace{8\baselineskip}
+\begin{equation*}{C}_{1}\, \text{in}\, \text{series}\, \text{with}\, ({C}_{2}\, ∥\, {C}_{\mathrm{L}})\end{equation*}
+
+\Needspace{14\baselineskip}
+\begin{center}
+\begin{minipage}[t]{0.950\linewidth}\centering
+\begin{tikzpicture}[line join=round]
+\draw[black!80] (1.094,-1.183) -- (2.507,-1.183);
+\draw[black!80] (2.507,-0.741) -- (2.507,-1.624);
+\draw[black!80] (2.507,-0.741) -- (3.743,-0.741);
+\draw[black!80] (2.507,-1.624) -- (3.743,-1.624);
+\draw[black!80] (3.743,-0.741) -- (3.743,-1.624);
+\draw[black!80] (3.743,-1.183) -- (4.361,-1.183);
+\fill[white] (1.729,-1.021) rectangle (1.873,-1.345);
+\draw[black!85,line width=1pt] (1.738,-1.021) -- (1.738,-1.345);
+\draw[black!85,line width=1pt] (1.864,-1.021) -- (1.864,-1.345);
+\fill[white] (3.053,-0.579) rectangle (3.197,-0.903);
+\draw[black!85,line width=1pt] (3.062,-0.579) -- (3.062,-0.903);
+\draw[black!85,line width=1pt] (3.188,-0.579) -- (3.188,-0.903);
+\fill[white] (3.053,-1.462) rectangle (3.197,-1.786);
+\draw[black!85,line width=1pt] (3.062,-1.462) -- (3.062,-1.786);
+\draw[black!85,line width=1pt] (3.188,-1.462) -- (3.188,-1.786);
+\fill[FAUblue] (1.094,-1.183) circle (0.063);
+\fill[FAUblue] (4.361,-1.183) circle (0.063);
+\node[fill=white,fill opacity=0.85,text opacity=1,inner sep=1pt,font=\footnotesize] at (1.801,-0.879) {\textit{C\textsubscript{1}}};
+\node[fill=white,fill opacity=0.85,text opacity=1,inner sep=1pt,font=\footnotesize] at (3.125,-0.437) {\textit{C\textsubscript{2}}};
+\node[fill=white,fill opacity=0.85,text opacity=1,inner sep=1pt,font=\footnotesize] at (3.125,-1.928) {\textit{C\textsubscript{L}}};
+\node[anchor=east,fill=white,fill opacity=0.85,text opacity=1,inner sep=1pt,font=\footnotesize] at (0.968,-1.183) {top};
+\node[anchor=west,fill=white,fill opacity=0.85,text opacity=1,inner sep=1pt,font=\footnotesize] at (4.487,-1.183) {bottom};
+\end{tikzpicture}\par\smallskip{\small\raggedright \textbf{Series, then parallel.} Every path crosses C\textsubscript{1}; below it the path splits between the ε\textsubscript{r,2} part (C\textsubscript{2}) and the air strip (C\textsubscript{L}), which share one voltage.\par}\end{minipage}
+\end{center}
 \item Thus \textit{C}\textsubscript{2} and \textit{C}\textsubscript{L} are in parallel with one another, and their equivalent is in series with \textit{C}\textsubscript{1}. \textbf{Check:} at \textit{x} = 0 the air branch has zero area; at \textit{x} = \textit{a} the lower dielectric branch has zero area.
 \end{enumerate}
 \end{workedbox}
@@ -315,20 +377,20 @@ All paths pass through dielectric 1 across the full area \textit{a}\textsuperscr
 The upper layer keeps area \textit{a}\textsuperscript{2} and thickness \textit{d}/2. The two lower branches each have thickness \textit{d}/2:
 
 \Needspace{4\baselineskip}
-\begin{equation*}{C}_{1}\, =\, 2ε_{0}ε_{\mathrm{r},1}{a}^{2}/{d}\end{equation*}
+\begin{equation*}{C}_{1}\, =\, \dfrac{2ε_{0}\, ε_{\mathrm{r},1}\, {a}^{2}}{{d}}\end{equation*}
 
-\begin{equation*}{C}_{2}({x})\, =\, 2ε_{0}ε_{\mathrm{r},2}{a}({a}-{x})/{d},\, \quad \, {C}_{\mathrm{L}}({x})\, =\, 2ε_{0}{a\,x}/{d}\end{equation*}
+\begin{equation*}{C}_{2}({x})\, =\, \dfrac{2ε_{0}\, ε_{\mathrm{r},2}\, {a}({a}\, -\, {x})}{{d}},\quad \, \quad \, {C}_{\mathrm{L}}({x})\, =\, \dfrac{2ε_{0}\, {a}\, {x}}{{d}}\end{equation*}
 \item \Needspace{4\baselineskip}
 Add the parallel pair and then use the series formula:
 
 \Needspace{4\baselineskip}
-\begin{equation*}{C}_{\mathrm{p}}({x})\, =\, {C}_{2}({x})\, +\, {C}_{\mathrm{L}}({x})\, =\, (2ε_{0}{a}/{d})[ε_{\mathrm{r},2}{a}\, +\, (1-ε_{\mathrm{r},2}){x}]\end{equation*}
+\begin{equation*}{C}_{\mathrm{p}}({x})\, =\, {C}_{2}({x})\, +\, {C}_{\mathrm{L}}({x})\, =\, \dfrac{2ε_{0}\, {a}}{{d}}[ε_{\mathrm{r},2}\, {a}\, +\, (1\, -\, ε_{\mathrm{r},2}){x}]\end{equation*}
 
 \Needspace{4\baselineskip}
-\begin{equation*}{C}({x})\, =\, \dfrac{{C}_{1}{C}_{\mathrm{p}}({x})}{{C}_{1}+{C}_{\mathrm{p}}({x})}\end{equation*}
+\begin{equation*}{C}({x})\, =\, \dfrac{{C}_{1}\, {C}_{\mathrm{p}}({x})}{{C}_{1}\, +\, {C}_{\mathrm{p}}({x})}\end{equation*}
 
 \Needspace{5\baselineskip}
-\begin{equation*}{C}({x})\, =\, (2ε_{0}{a}/{d})\, \dfrac{ε_{\mathrm{r},1}{a}[ε_{\mathrm{r},2}{a}+(1-ε_{\mathrm{r},2}){x}]}{ε_{\mathrm{r},1}{a}+ε_{\mathrm{r},2}{a}+(1-ε_{\mathrm{r},2}){x}}\end{equation*}
+\begin{equation*}{C}({x})\, =\, \dfrac{2ε_{0}\, {a}}{{d}}\, \cdot \, \dfrac{ε_{\mathrm{r},1}\, {a}[ε_{\mathrm{r},2}\, {a}\, +\, (1\, -\, ε_{\mathrm{r},2}){x}]}{ε_{\mathrm{r},1}\, {a}\, +\, ε_{\mathrm{r},2}\, {a}\, +\, (1\, -\, ε_{\mathrm{r},2}){x}}\end{equation*}
 
 \textbf{Endpoint checks:} \textit{C}(0) matches 8c, while \textit{C}(\textit{a}) is the series combination of the upper dielectric and an air layer of thickness \textit{d}/2.
 \end{enumerate}
@@ -344,14 +406,14 @@ Add the parallel pair and then use the series formula:
 The lower equivalent is linear in \textit{x}:
 
 \Needspace{5\baselineskip}
-\begin{equation*}{C}_{\mathrm{p}}({x})\, =\, (2ε_{0}{a}/{d})[ε_{\mathrm{r},2}{a}\, +\, (1-ε_{\mathrm{r},2}){x}]\end{equation*}
+\begin{equation*}{C}_{\mathrm{p}}({x})\, =\, \dfrac{2ε_{0}\, {a}}{{d}}[ε_{\mathrm{r},2}\, {a}\, +\, (1\, -\, ε_{\mathrm{r},2}){x}]\end{equation*}
 
 Because ε\textsubscript{r,2} is much greater than 1, its slope is negative. The series equivalent \textit{C}\textsubscript{1}\textit{C}\textsubscript{p}/(\textit{C}\textsubscript{1}+\textit{C}\textsubscript{p}) increases monotonically with \textit{C}\textsubscript{p}.
 \item \Needspace{4\baselineskip}
 Therefore the total capacitance decreases throughout 0 \ensuremath{\leq} \textit{x} \ensuremath{\leq} \textit{a}:
 
 \Needspace{5\baselineskip}
-\begin{equation*}\text{Maximum}\, \text{at}\, {x}\, =\, 0;\, \text{minimum}\, \text{at}\, {x}\, =\, {a}.\end{equation*}
+\begin{equation*}\text{maximum}\, \text{at}\, {x}\, =\, 0,\quad \, \quad \, \text{minimum}\, \text{at}\, {x}\, =\, {a}\end{equation*}
 
 If ε\textsubscript{r,2} were exactly 1, the lower region would be air everywhere and the capacitance would be constant; the sheet specifies ε\textsubscript{r,2} much greater than 1, excluding that degenerate case.
 \end{enumerate}

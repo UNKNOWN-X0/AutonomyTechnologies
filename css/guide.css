@@ -725,7 +725,12 @@ main > section {
   position: relative;
 }
 .worked .math-line {
-  display: table;
+  /* shrink to the formula and centre it; block with fit-content rather than display: table, because Safari ignores
+     max-width on a table and a long line would then run off a phone screen instead of wrapping */
+  display: block;
+  box-sizing: border-box;
+  width: -webkit-fit-content;
+  width: fit-content;
   max-width: 100%;
   margin: 10px auto 14px;
   padding: 9px 14px;

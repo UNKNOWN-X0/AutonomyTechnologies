@@ -98,29 +98,32 @@ Try first: move the power of ten into a prefix and check that the leading number
 \Needspace{6\baselineskip}
 The points are \textit{P}\textsubscript{1} = (2, \ensuremath{-}1, 2) and \textit{P}\textsubscript{2} = (1, 2, 3). The coordinates have no stated unit, so the vector results are given in coordinate units.
 
-\Needspace{9\baselineskip}
+\Needspace{10\baselineskip}
 \textbf{Connected topic:} Electric field as a vector (§1.3) uses components, magnitudes and directions in the same Cartesian basis.
 
 \Needspace{14\baselineskip}
 \begin{center}
 \begin{minipage}[t]{0.950\linewidth}\centering
 \begin{tikzpicture}[line join=round]
-\draw[-{Stealth[length=4pt]},black!80] (0.720,-1.860) -- (4.572,-1.860);
-\draw[-{Stealth[length=4pt]},black!80] (2.189,-2.628) -- (2.189,-0.180);
-\draw[FAUblue,line width=1.6pt] (2.189,-1.860) -- (1.454,-0.708);
-\node[anchor=west,text=FAUblue,inner sep=1pt,font=\footnotesize] at (2.297,-1.752) {O};
-\node[anchor=west,text=FAUblue,inner sep=1pt,font=\footnotesize] at (1.562,-0.600) {r};
-\node[anchor=east,inner sep=1pt,font=\footnotesize] at (4.536,-2.148) {\textit{x}};
-\node[anchor=east,inner sep=1pt,font=\footnotesize] at (2.045,-0.288) {\textit{y}};
-\draw[black!80] (1.454,-1.788) -- (1.454,-1.932);
-\node[,inner sep=1pt,font=\footnotesize] at (1.454,-2.148) {-1};
-\draw[black!80] (2.189,-1.788) -- (2.189,-1.932);
-\node[,inner sep=1pt,font=\footnotesize] at (2.189,-2.148) {0};
-\draw[black!80] (2.923,-1.788) -- (2.923,-1.932);
-\node[,inner sep=1pt,font=\footnotesize] at (2.923,-2.148) {1};
-\draw[black!80] (3.658,-1.788) -- (3.658,-1.932);
-\node[,inner sep=1pt,font=\footnotesize] at (3.658,-2.148) {2};
-\end{tikzpicture}\par\smallskip{\small\raggedright \textbf{Projection of the displacement into the xy-plane.} The displacement runs from \textit{P}\textsubscript{1} to \textit{P}\textsubscript{2}; its z-component is +1 as well.\par}\end{minipage}
+\draw[-{Stealth[length=4pt]},black!80] (1.381,-1.939) -- (0.716,-3.112);
+\node[,inner sep=1pt,font=\footnotesize] at (0.619,-3.285) {\textit{x}};
+\draw[-{Stealth[length=4pt]},black!80] (1.381,-1.939) -- (3.004,-2.318);
+\node[,inner sep=1pt,font=\footnotesize] at (3.197,-2.363) {\textit{y}};
+\draw[-{Stealth[length=4pt]},black!80] (1.381,-1.939) -- (1.381,-0.450);
+\node[,inner sep=1pt,font=\footnotesize] at (1.381,-0.252) {\textit{z}};
+\draw[black!55,dashed] (0.504,-1.645) -- (0.504,-2.471);
+\draw[black!55,dashed] (1.381,-1.939) -- (0.504,-2.471);
+\draw[black!80] (1.381,-1.939) -- (0.504,-1.645);
+\draw[black!55,dashed] (2.210,-1.262) -- (2.210,-2.502);
+\draw[black!55,dashed] (1.381,-1.939) -- (2.210,-2.502);
+\draw[black!80] (1.381,-1.939) -- (2.210,-1.262);
+\draw[-{Stealth[length=4pt]},FAUblue,line width=1.5pt] (0.504,-1.645) -- (2.210,-1.262);
+\fill[FAUblue] (0.504,-1.645) circle (0.063);
+\fill[FAUblue] (2.210,-1.262) circle (0.063);
+\node[anchor=east,fill=white,fill opacity=0.85,text opacity=1,inner sep=1pt,font=\footnotesize] at (0.360,-1.645) {\textit{P\textsubscript{1}}};
+\node[anchor=west,fill=white,fill opacity=0.85,text opacity=1,inner sep=1pt,font=\footnotesize] at (2.354,-1.154) {\textit{P\textsubscript{2}}};
+\node[anchor=east,text=FAUblue,fill=white,fill opacity=0.85,text opacity=1,inner sep=1pt,font=\footnotesize] at (1.393,-1.219) {\textit{r\textsubscript{12}}};
+\end{tikzpicture}\par\smallskip{\small\raggedright \textbf{Endpoint minus start.} The position vectors of P\textsubscript{1} = (2, \ensuremath{-}1, 2) and P\textsubscript{2} = (1, 2, 3) run from the origin; the displacement \textit{r}\textsubscript{12} (blue) runs from P\textsubscript{1} to P\textsubscript{2}, so \textit{r}\textsubscript{12} = \textit{r}\textsubscript{P2} \ensuremath{-} \textit{r}\textsubscript{P1}. The dashed lines drop each point onto the xy-plane.\par}\end{minipage}
 \end{center}
 
 \begin{keepsection}
@@ -276,18 +279,18 @@ Subtract each matching coordinate:
 \item \Needspace{4\baselineskip}
 For Cartesian components, the length follows from the three-dimensional Pythagorean theorem:
 
-\begin{equation*}|{r}|\, =\, \sqrt({r}_{{x}}^{2}\, +\, {r}_{{y}}^{2}\, +\, {r}_{{z}}^{2})\end{equation*}
+\begin{equation*}|{r}|\, =\, \sqrt{{r}_{{x}}^{2}\, +\, {r}_{{y}}^{2}\, +\, {r}_{{z}}^{2}}\end{equation*}
 \item \Needspace{4\baselineskip}
 Here the components are (\ensuremath{-}1, 3, 1), so:
 
 \Needspace{4\baselineskip}
-\begin{equation*}|{r}|\, =\, \sqrt((-1)^{2}\, +\, 3^{2}\, +\, 1^{2})\end{equation*}
+\begin{equation*}|{r}|\, =\, \sqrt{(-1)^{2}\, +\, 3^{2}\, +\, 1^{2}}\end{equation*}
 
 \Needspace{4\baselineskip}
-\begin{equation*}|{r}|\, =\, \sqrt11\, \approx \, 3.32\end{equation*}
+\begin{equation*}|{r}|\, =\, \sqrt{11}\, \approx \, 3.32\end{equation*}
 
 \Needspace{4\baselineskip}
-\textbf{Result:} |\textit{r}| = \ensuremath{\surd}11 coordinate units.
+\textbf{Result:} |\textit{r}| = \ensuremath{\sqrt{11}} coordinate units.
 
 \textbf{Check:} a magnitude cannot be negative, and its square is 1 + 9 + 1 = 11.
 \end{enumerate}
@@ -304,15 +307,15 @@ The unit vector is the original vector divided by its positive length:
 
 \begin{equation*}{e}_{\mathrm{r}}\, =\, \dfrac{{r}}{|{r}|}\end{equation*}
 \item \Needspace{4\baselineskip}
-Use the vector from 2a (the vector named in 2b) and the magnitude from 2b:
+Divide the vector from 2a by its magnitude from 2b:
 
 \Needspace{4\baselineskip}
-\begin{equation*}{e}_{\mathrm{r}}\, =\, \dfrac{-{e}_{\mathrm{x}}\, +\, 3{e}_{\mathrm{y}}\, +\, {e}_{\mathrm{z}}}{\sqrt11}\end{equation*}
+\begin{equation*}{e}_{\mathrm{r}}\, =\, \dfrac{-{e}_{\mathrm{x}}\, +\, 3{e}_{\mathrm{y}}\, +\, {e}_{\mathrm{z}}}{\sqrt{11}}\end{equation*}
 
 \Needspace{4\baselineskip}
-\textbf{Result:} \textit{e}\textsubscript{r} = (\ensuremath{-}1, 3, 1)/\ensuremath{\surd}11.
+\textbf{Result:} \textit{e}\textsubscript{r} = (\ensuremath{-}1, 3, 1)/\ensuremath{\sqrt{11}}.
 
-\textbf{Check:} its length is \ensuremath{\surd}[(1 + 9 + 1)/11] = 1.
+\textbf{Check:} its length is \ensuremath{\sqrt{(1\, +\, 9\, +\, 1)/11}} = 1.
 \end{enumerate}
 \end{workedbox}
 
@@ -325,7 +328,7 @@ Use the vector from 2a (the vector named in 2b) and the magnitude from 2b:
 \item \Needspace{5\baselineskip}
 The cylindrical components are \textit{ρ} = 5, \textit{z} = 2, and φ = 45°. The spherical radius is the distance from the origin:
 
-\begin{equation*}{r}\, =\, \sqrt({ρ}^{2}\, +\, {z}^{2})\, =\, \sqrt(25\, +\, 4)\, =\, \sqrt29\end{equation*}
+\begin{equation*}{r}\, =\, \sqrt{{ρ}^{2}\, +\, {z}^{2}}\, =\, \sqrt{25\, +\, 4}\, =\, \sqrt{29}\end{equation*}
 \item \Needspace{5\baselineskip}
 \textit{ϑ} is measured from +z, so its tangent is opposite over adjacent = ρ/z. The point is above the xy-plane, hence \textit{ϑ} is in the first quadrant:
 
@@ -334,17 +337,17 @@ The cylindrical components are \textit{ρ} = 5, \textit{z} = 2, and φ = 45°. T
 The azimuth remains the supplied angle, φ = 45°. State the spherical coordinates by name so the angle order is clear:
 
 \Needspace{4\baselineskip}
-\begin{equation*}{r}\, =\, \sqrt29\end{equation*}
+\begin{equation*}{r}\, =\, \sqrt{29}\end{equation*}
 
 \Needspace{4\baselineskip}
 \begin{equation*}{φ}\, =\, 45°\end{equation*}
 
 \begin{equation*}{ϑ}\, \approx \, 68.2°\end{equation*}
 \item \Needspace{5\baselineskip}
-As a position vector, \textit{r} = \textit{r}\textit{e}\textsubscript{r}. Since \textit{ϑ} = arctan(5/2), sin\textit{ϑ} = 5/\ensuremath{\surd}29 and cos\textit{ϑ} = 2/\ensuremath{\surd}29, so the vector has no \textit{e}\textsubscript{ϑ} component:
+As a position vector, \textit{r} = \textit{r}\textit{e}\textsubscript{r}. Since \textit{ϑ} = arctan(5/2), sin\textit{ϑ} = 5/\ensuremath{\sqrt{29}} and cos\textit{ϑ} = 2/\ensuremath{\sqrt{29}}, so the vector has no \textit{e}\textsubscript{ϑ} component:
 
 \Needspace{4\baselineskip}
-\begin{equation*}{r}\, =\, \sqrt29\, {e}_{\mathrm{r}}\end{equation*}
+\begin{equation*}{r}\, =\, \sqrt{29}\, {e}_{\mathrm{r}}\end{equation*}
 
 \textbf{Check:} its cylindrical projection is \textit{r} sinϑ = 5 and its z-component is \textit{r} cosϑ = 2.
 \end{enumerate}
@@ -375,18 +378,18 @@ The completed entries are:
 \Needspace{10\baselineskip}
 \begin{center}\small\begin{tabularx}{\linewidth}{>{\raggedright\arraybackslash}X>{\raggedright\arraybackslash}X>{\raggedright\arraybackslash}X}\toprule
 \textbf{Cartesian unit vector} & \textbf{\textit{φ}} & \textbf{\textit{ϑ}} \\ \midrule
-\textit{e}\textsubscript{z} & any (shown as *) & 0° \\
-\ensuremath{-}\textit{e}\textsubscript{z} & any; undefined at the pole & 180° \\
+\textit{e}\textsubscript{z} & any (the sheet’s *) & 0° \\
+\ensuremath{-}\textit{e}\textsubscript{z} & any (the sheet’s *) & 180° \\
 \textit{e}\textsubscript{x} & 0° & 90° \\
 \ensuremath{-}\textit{e}\textsubscript{x} & 180° & 90° \\
 \textit{e}\textsubscript{y} & 90° & 90° \\
 \ensuremath{-}\textit{e}\textsubscript{y} & 270° & 90° \\
-(\textit{e}\textsubscript{x} + \textit{e}\textsubscript{y})/\ensuremath{\surd}2 & 45° & 90° \\
-(\textit{e}\textsubscript{x} \ensuremath{-} \textit{e}\textsubscript{z})/\ensuremath{\surd}2 & 0° & 135° \\
-(\textit{e}\textsubscript{y} + \textit{e}\textsubscript{z})/\ensuremath{\surd}2 & 90° & 45° \\
+(\textit{e}\textsubscript{x} + \textit{e}\textsubscript{y})/\ensuremath{\sqrt{2}} & 45° & 90° \\
+(\textit{e}\textsubscript{x} \ensuremath{-} \textit{e}\textsubscript{z})/\ensuremath{\sqrt{2}} & 0° & 135° \\
+(\textit{e}\textsubscript{y} + \textit{e}\textsubscript{z})/\ensuremath{\sqrt{2}} & 90° & 45° \\
 \bottomrule\end{tabularx}\end{center}
 \item \Needspace{6\baselineskip}
-For the last three rows, substitute the angles into the unit-vector formula. For example, φ = 0° and ϑ = 135° gives (sin135°, 0, cos135°) = (1/\ensuremath{\surd}2, 0, \ensuremath{-}1/\ensuremath{\surd}2).
+For the last three rows, substitute the angles into the unit-vector formula. For example, φ = 0° and ϑ = 135° gives (sin135°, 0, cos135°) = (1/\ensuremath{\sqrt{2}}, 0, \ensuremath{-}1/\ensuremath{\sqrt{2}}).
 
 \textbf{Check:} every listed Cartesian vector has unit length. Angles differing by 360° represent the same azimuth, so \ensuremath{-}90° is equivalent to 270°.
 \end{enumerate}

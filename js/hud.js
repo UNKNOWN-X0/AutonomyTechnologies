@@ -168,7 +168,11 @@
     document.querySelectorAll(".formula, .worked .math-line").forEach(function (f) {
       segmentFormula(f);
       spaceFormula(f);
-      var room = f.clientWidth;
+      // the room is what the line's container offers, less the line's own padding and border: a display line grows
+      // with its content, so its own width is never too small and long lines would otherwise run off a phone screen
+      var box = f.parentElement, bs = getComputedStyle(box), fs = getComputedStyle(f),
+        room = Math.min(f.clientWidth, box.clientWidth - parseFloat(bs.paddingLeft) - parseFloat(bs.paddingRight) -
+          parseFloat(fs.paddingLeft) - parseFloat(fs.paddingRight) - parseFloat(fs.borderLeftWidth) - parseFloat(fs.borderRightWidth));
       f.querySelectorAll(":scope > .f-seg").forEach(function (seg) {
         seg.classList.remove("f-free");
         if (room && seg.getBoundingClientRect().width > room + 1) seg.classList.add("f-free");

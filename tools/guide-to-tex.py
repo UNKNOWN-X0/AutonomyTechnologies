@@ -464,6 +464,38 @@ def coord_pieces(sub):
         vec(Q, (cos(th) * cos(pf), cos(th) * sin(pf), -sin(th)), 36, "e_ϑ")
         vec(Q, (-sin(pf), cos(pf), 0), 36, "e_φ")
         return fit()
+    if sub == "disp":
+        u = 30
+        P1, P2 = (2 * u, -1 * u, 2 * u), (1 * u, 2 * u, 3 * u)
+        axis((1, 0, 0), 3.6 * u, "x"); axis((0, 1, 0), 3.2 * u, "y"); axis((0, 0, 1), 3.6 * u, "z")
+        for q in (P1, P2):
+            out += [["line", [pr(q), pr((q[0], q[1], 0))], "dash"], ["line", [pr((0, 0, 0)), pr((q[0], q[1], 0))], "dash"], ["line", [pr((0, 0, 0)), pr(q)], "ink"]]
+        out += [["arrow", pr(P1), pr(P2), "seg"], ["dot", pr(P1)], ["dot", pr(P2)]]
+        p1, p2 = pr(P1), pr(P2)
+        mid = pr(((P1[0] + P2[0]) / 2, (P1[1] + P2[1]) / 2, (P1[2] + P2[2]) / 2))
+        out += [["text", (p1[0] - 8, p1[1] + 4), "P_1", "halo", "end"], ["text", (p2[0] + 8, p2[1] - 2), "P_2", "halo", "start"],
+                ["text", (mid[0] + 2, mid[1] - 9), "r_{12}", "acc halo", "end"]]
+        return fit()
+    if sub == "hollow":
+        ra, rb, hc = 34, 70, 96
+        ring_at = lambda r, z: (lambda t: (r * cos(t), r * sin(t), z))
+        out += [["curve", arc(ring_at(rb, 0), A + 90 * R, A + 270 * R, 36), "dash"], ["curve", arc(ring_at(rb, 0), A - 90 * R, A + 90 * R, 36), "ink"]]
+        for t in (A + 90 * R, A - 90 * R):
+            out.append(["line", [pr(ring_at(rb, 0)(t)), pr(ring_at(rb, hc)(t))], "ink"])
+        for t in (A + 90 * R, A - 90 * R):
+            out.append(["line", [pr(ring_at(ra, 0)(t)), pr(ring_at(ra, hc)(t))], "dash"])
+        out += [["curve", arc(ring_at(ra, 0), 0, 2 * math.pi, 48), "dash"],
+                ["poly", arc(ring_at(rb, hc), 0, 2 * math.pi, 72), "fill"], ["poly", arc(ring_at(ra, hc), 0, 2 * math.pi, 48), "bg"]]
+        top, ea, eb = pr((0, 0, hc)), pr(ring_at(ra, hc)(200 * R)), pr(ring_at(rb, hc)(-25 * R))
+        out += [["line", [top, ea], "ink"], ["line", [top, eb], "ink"], ["dot", top],
+                ["text", ((top[0] + ea[0]) / 2 - 6, (top[1] + ea[1]) / 2 + 13), "a", "halo", "middle"],
+                ["text", ((top[0] + eb[0]) / 2 + 4, (top[1] + eb[1]) / 2 + 14), "b", "halo", "middle"]]
+        s0, s1 = pr(ring_at(rb, 0)(A + 90 * R)), pr(ring_at(rb, hc)(A + 90 * R))
+        out += [["line", [(s0[0] + 12, s0[1]), (s1[0] + 12, s1[1])], "ink"], ["line", [(s0[0] + 8, s0[1]), (s0[0] + 16, s0[1])], "ink"],
+                ["line", [(s1[0] + 8, s1[1]), (s1[0] + 16, s1[1])], "ink"], ["text", (s0[0] + 20, (s0[1] + s1[1]) / 2 + 4), "c", "halo", "start"]]
+        wall = pr(ring_at((ra + rb) / 2, hc)(100 * R))
+        out.append(["text", (wall[0], wall[1] + 4), "ϱ_0", "acc halo", "middle"])
+        return fit()
     a, b, c = 70, 112, 74
     C = lambda i, j, k: pr((i * a, j * b, k * c))
     out += [["poly", [C(1, 0, 0), C(1, 1, 0), C(1, 1, 1), C(1, 0, 1)], "cell"], ["poly", [C(0, 1, 0), C(1, 1, 0), C(1, 1, 1), C(0, 1, 1)], "cell"],
@@ -484,10 +516,104 @@ def coord_pieces(sub):
     return fit()
 
 
+def scene_tikz(spec):
+    """data-kind="scene": the same flat drawing as VIZ.scene in js/guide.js, from the same data-scene items."""
+    import math
+    items = [[f.strip() for f in it.strip().split("|")] for it in spec.split(";") if it.strip()]
+    v = next((list(map(float, it[1:6])) + [240] * (6 - len(it)) for it in items if it[0] == "view"), [0, 0, 1, 1, 240])[:5]
+    M, k = 24, (v[4] or 240) / (v[2] - v[0])
+    X = lambda x: M + (float(x) - v[0]) * k
+    Y = lambda y: M + (v[3] - float(y)) * k
+    SIDE = {"c": (0, 4, ""), "n": (0, -7, ""), "s": (0, 15, ""), "e": (7, 4, "anchor=west"), "w": (-7, 4, "anchor=east"),
+            "ne": (5, -5, "anchor=west"), "nw": (-5, -5, "anchor=east"), "se": (5, 14, "anchor=west"), "sw": (-5, 14, "anchor=east")}
+    LINE = {"ink": "black!80", "thick": "black!85,line width=1pt", "dash": "black!55,dashed", "seg": "FAUblue,line width=1.6pt"}
+    BOX = {"fill": "draw=black!70,fill=FAUblue!25", "light": "draw=black!40,fill=Paperblue", "bg": "draw=black!70,fill=white",
+           "line": "draw=black!80", "dash": "draw=black!55,dashed", "dark": "draw=FAUblue,fill=FAUblue"}
+    out = []
+
+    def label(x, y, text, side="c", flags=""):
+        dx, dy, anchor = SIDE.get(side or "c", SIDE["c"])
+        out.append(T(X(x) + dx, Y(y) + dy - 4, text, r"\large" if "big" in flags else r"\footnotesize", anchor,
+                     "up" not in flags, "FAUblue" if "acc" in flags else "", True))
+
+    def ring_pts(cx, cy, r, t0, t1, n=48):
+        return [(cx + r * math.cos(math.radians(t0 + (t1 - t0) * i / n)), cy - r * math.sin(math.radians(t0 + (t1 - t0) * i / n))) for i in range(n + 1)]
+
+    for it in items:
+        t, a = it[0], it[1:]
+        if t == "axis":
+            if a[0] == "y":
+                out.append(arrow_t(X(0), Y(a[1]), X(0), Y(a[2])))
+                if len(a) > 3 and a[3]:
+                    label(0, a[2], a[3], "w")
+            else:
+                out.append(arrow_t(X(a[1]), Y(0), X(a[2]), Y(0)))
+                if len(a) > 3 and a[3]:
+                    label(a[2], 0, a[3], "se")
+        elif t == "tick":
+            if a[0] == "y":
+                out.append(r"\draw[black!80] %s -- %s;" % (P(X(0) - 4, Y(a[1])), P(X(0) + 4, Y(a[1]))))
+                label(0, a[1], a[2] if len(a) > 2 else a[1], "w", "up")
+            else:
+                out.append(r"\draw[black!80] %s -- %s;" % (P(X(a[1]), Y(0) - 4), P(X(a[1]), Y(0) + 4)))
+                label(a[1], 0, a[2] if len(a) > 2 else a[1], "s", "up")
+        elif t == "rect":
+            style = a[4] if len(a) > 4 else "line"
+            if style == "plate":
+                out.append(r"\fill[FAUblue] %s rectangle %s;" % (P(X(a[0]), Y(a[1]) + 2), P(X(a[2]), Y(a[3]) - 2)))
+            else:
+                out.append(r"\filldraw[%s] %s rectangle %s;" % (BOX.get(style, BOX["line"]) if style != "line" else "draw=black!80,fill=none", P(X(a[0]), Y(a[1])), P(X(a[2]), Y(a[3]))))
+        elif t == "line":
+            out.append(r"\draw[%s] %s -- %s;" % (LINE.get(a[4] if len(a) > 4 else "ink"), P(X(a[0]), Y(a[1])), P(X(a[2]), Y(a[3]))))
+        elif t == "arrow":
+            out.append(arrow_t(X(a[0]), Y(a[1]), X(a[2]), Y(a[3]), "FAUblue,line width=1.6pt" if len(a) > 4 and a[4] == "seg" else "black!80"))
+        elif t == "circle":
+            st = a[3] if len(a) > 3 else "ink"
+            opt = LINE.get(st) if st in LINE else BOX.get(st, "black!80")
+            out.append(r"\draw[%s] %s circle (%.3f);" % (opt, P(X(a[0]), Y(a[1])), float(a[2]) * k * VS))
+        elif t == "sector":
+            cx, cy, r0, r1, t0, t1 = X(a[0]), Y(a[1]), float(a[2]) * k, float(a[3]) * k, float(a[4]), float(a[5])
+            style = BOX.get(a[6] if len(a) > 6 else "fill")
+            if abs(t1 - t0) >= 359.9:
+                out.append(r"\filldraw[%s,even odd rule] %s circle (%.3f) %s;" % (style, P(cx, cy), r1 * VS, ("%s circle (%.3f)" % (P(cx, cy), r0 * VS)) if r0 else ""))
+            else:
+                pts = ring_pts(cx, cy, r1, t0, t1) + ring_pts(cx, cy, r0, t1, t0)
+                out.append(r"\filldraw[%s] %s -- cycle;" % (style, " -- ".join(P(x, y) for x, y in pts)))
+        elif t == "dot":
+            out.append(r"\fill[FAUblue] %s circle (%.3f);" % (P(X(a[0]), Y(a[1])), 3.5 * VS))
+        elif t == "charge":
+            out.append(r"\fill[FAUblue] %s circle (%.3f);" % (P(X(a[0]), Y(a[1])), 7 * VS))
+            out.append(r"\node[text=white,font=\scriptsize\bfseries] at %s {%s};" % (P(X(a[0]), Y(a[1])), "−" if a[2] == "-" else "+"))
+        elif t == "wire":
+            out.append(r"\filldraw[draw=black!80,fill=white] %s circle (%.3f);" % (P(X(a[0]), Y(a[1])), 5.5 * VS))
+            out.append(r"\fill[FAUblue] %s circle (%.3f);" % (P(X(a[0]), Y(a[1])), 1.8 * VS))
+        elif t == "path":
+            pts = [q.split(",") for q in a[0].split()]
+            out.append(r"\draw[%s] %s;" % (LINE.get(a[1] if len(a) > 1 else "ink"), " -- ".join(P(X(q[0]), Y(q[1])) for q in pts)))
+        elif t == "cap":
+            px, py = X(a[0]), Y(a[1])
+            if a[2] == "v":
+                out.append(r"\fill[white] %s rectangle %s;" % (P(px - 9, py - 4), P(px + 9, py + 4)))
+                out += [r"\draw[black!85,line width=1pt] %s -- %s;" % (P(px - 9, py + o), P(px + 9, py + o)) for o in (-3.5, 3.5)]
+            else:
+                out.append(r"\fill[white] %s rectangle %s;" % (P(px - 4, py - 9), P(px + 4, py + 9)))
+                out += [r"\draw[black!85,line width=1pt] %s -- %s;" % (P(px + o, py - 9), P(px + o, py + 9)) for o in (-3.5, 3.5)]
+        elif t == "dim":
+            ax, ay, bx, by = X(a[0]), Y(a[1]), X(a[2]), Y(a[3])
+            L = math.hypot(bx - ax, by - ay) or 1
+            nx, ny = (ay - by) / L * 4, (bx - ax) / L * 4
+            out.append(r"\draw[black!80] %s -- %s;" % (P(ax, ay), P(bx, by)))
+            out += [r"\draw[black!80] %s -- %s;" % (P(x - nx, y - ny), P(x + nx, y + ny)) for x, y in ((ax, ay), (bx, by))]
+            label((float(a[0]) + float(a[2])) / 2, (float(a[1]) + float(a[3])) / 2, a[4], a[5] if len(a) > 5 else "n")
+        elif t == "label":
+            label(a[0], a[1], a[2], a[3] if len(a) > 3 else "c", a[4] if len(a) > 4 else "")
+    return out
+
+
 def coord_tikz(sub):
     """TikZ for coord_pieces(): page y runs down, so text sits 4 units above its baseline point."""
     st = {"ink": "black!80", "thick": "black!85,line width=1pt", "dash": "black!55,dashed"}
-    fill = {"fill": "draw=black!70,fill=FAUblue!25", "cell": "draw=black!45,fill=Paperblue", "patch": "draw=FAUblue,fill=FAUblue"}
+    fill = {"fill": "draw=black!70,fill=FAUblue!25", "cell": "draw=black!45,fill=Paperblue", "patch": "draw=FAUblue,fill=FAUblue", "bg": "draw=black!70,fill=white"}
     out = []
     for p in coord_pieces(sub):
         if p[0] == "line":
@@ -841,6 +967,8 @@ def viz_tikz(f):
             out.append(r"\node[text=white,font=\small\bfseries] at %s {%s};" % (P(c, c), "−" if neg else "+"))
     elif kind == "coord":
         out += coord_tikz(sub)
+    elif kind == "scene":
+        out += scene_tikz(a.get("data-scene", ""))
     elif kind == "nest":
         R = [[x.strip() for x in r.split(":")] for r in a["data-rings"].split("|")]
         for i in range(len(R) - 1, -1, -1):

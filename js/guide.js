@@ -589,6 +589,40 @@
       vec(Q, [-Math.sin(pf), Math.cos(pf), 0], 36, "e_φ");
       return fit();
     }
+    if (sub === "disp") {
+      // two points P1 = (2, −1, 2) and P2 = (1, 2, 3), their position vectors, and the displacement r12 from P1 to P2
+      O = [70, 150];
+      var u = 30, P1 = [2 * u, -1 * u, 2 * u], P2 = [1 * u, 2 * u, 3 * u];
+      axis([1, 0, 0], 3.6 * u, "x"); axis([0, 1, 0], 3.2 * u, "y"); axis([0, 0, 1], 3.6 * u, "z");
+      [P1, P2].forEach(function (q) {
+        out.push(["line", [pr(q), pr([q[0], q[1], 0])], "dash"], ["line", [pr([0, 0, 0]), pr([q[0], q[1], 0])], "dash"], ["line", [pr([0, 0, 0]), pr(q)], "ink"]);
+      });
+      out.push(["arrow", pr(P1), pr(P2), "seg"], ["dot", pr(P1)], ["dot", pr(P2)]);
+      var p1 = pr(P1), p2 = pr(P2), mid = pr([(P1[0] + P2[0]) / 2, (P1[1] + P2[1]) / 2, (P1[2] + P2[2]) / 2]);
+      out.push(["text", [p1[0] - 8, p1[1] + 4], "P_1", "vz-small vz-it vz-halo", "end"], ["text", [p2[0] + 8, p2[1] - 2], "P_2", "vz-small vz-it vz-halo", "start"],
+        ["text", [mid[0] + 2, mid[1] - 9], "r_{12}", "vz-small vz-it vz-acc vz-halo", "end"]);
+      return fit();
+    }
+    if (sub === "hollow") {
+      // a hollow cylinder a ≤ ρ ≤ b, 0 ≤ z ≤ c: the charged wall shaded on top, the bore dashed below it
+      O = [96, 150];
+      var ra = 34, rb = 70, hc = 96, ringAt = function (r, z) { return function (t) { return [r * Math.cos(t), r * Math.sin(t), z]; }; };
+      out.push(["curve", arc(ringAt(rb, 0), A + 90 * R, A + 270 * R, 36), "dash"], ["curve", arc(ringAt(rb, 0), A - 90 * R, A + 90 * R, 36), "ink"]);
+      [A + 90 * R, A - 90 * R].forEach(function (t) { out.push(["line", [pr(ringAt(rb, 0)(t)), pr(ringAt(rb, hc)(t))], "ink"]); });
+      [A + 90 * R, A - 90 * R].forEach(function (t) { out.push(["line", [pr(ringAt(ra, 0)(t)), pr(ringAt(ra, hc)(t))], "dash"]); });
+      out.push(["curve", arc(ringAt(ra, 0), 0, 2 * Math.PI, 48), "dash"],
+        ["poly", arc(ringAt(rb, hc), 0, 2 * Math.PI, 72), "fill"], ["poly", arc(ringAt(ra, hc), 0, 2 * Math.PI, 48), "bg"]);
+      var top = pr([0, 0, hc]), ea = pr(ringAt(ra, hc)(200 * R)), eb = pr(ringAt(rb, hc)(-25 * R));
+      out.push(["line", [top, ea], "ink"], ["line", [top, eb], "ink"], ["dot", top]);
+      out.push(["text", [(top[0] + ea[0]) / 2 - 6, (top[1] + ea[1]) / 2 + 13], "a", "vz-small vz-it vz-halo", "middle"],
+        ["text", [(top[0] + eb[0]) / 2 + 4, (top[1] + eb[1]) / 2 + 14], "b", "vz-small vz-it vz-halo", "middle"]);
+      var s0 = pr(ringAt(rb, 0)(A + 90 * R)), s1 = pr(ringAt(rb, hc)(A + 90 * R));
+      out.push(["line", [[s0[0] + 12, s0[1]], [s1[0] + 12, s1[1]]], "ink"], ["line", [[s0[0] + 8, s0[1]], [s0[0] + 16, s0[1]]], "ink"], ["line", [[s1[0] + 8, s1[1]], [s1[0] + 16, s1[1]]], "ink"],
+        ["text", [s0[0] + 20, (s0[1] + s1[1]) / 2 + 4], "c", "vz-small vz-it vz-halo", "start"]);
+      var wall = pr(ringAt((ra + rb) / 2, hc)(100 * R));
+      out.push(["text", [wall[0], wall[1] + 4], "ϱ_0", "vz-small vz-it vz-acc vz-halo", "middle"]);
+      return fit();
+    }
     // box: the Cartesian volume element dx dy dz; each visible face carries its patch and outward normal
     O = [92, 128];
     var a = 70, b = 112, c = 74, C = function (i, j, k) { return pr([i * a, j * b, k * c]); };
@@ -1097,8 +1131,78 @@
       txt(svg, c, 2 * c + 12, d.label || "+1 steps clockwise", "vz-small");
       return [240, 256];
     },
+    // A flat drawing described in data-scene: items separated by ";", fields by "|", world coordinates with y up.
+    // view|x0|y0|x1|y1[|width px]   axis|x or y|from|to|label   tick|x or y|value|label
+    // rect|x0|y0|x1|y1|style (fill, light, bg, line, plate, dash, dark)   line|x0|y0|x1|y1|style (ink, thick, dash, seg)
+    // arrow|x0|y0|x1|y1|style (ink, seg)   circle|cx|cy|r|style   sector|cx|cy|r0|r1|deg0|deg1|style (an annulus piece)
+    // dot|x|y   charge|x|y|sign   wire|x|y (a line charge seen end-on)   path|x,y x,y …|style (an open polyline)
+    // cap|x|y|h or v (a capacitor symbol)   dim|x0|y0|x1|y1|label|side (a dimension line)
+    // label|x|y|text|side (c n s e w ne nw se sw)|flags (acc: blue, up: upright words, big: larger)
+    // Every label has a halo, so it stays legible where it must sit on a line. tools/guide-to-tex.py reads the same data.
+    scene: function (svg, d) {
+      var items = d.scene.split(";").map(function (x) { return x.trim().split("|").map(function (f) { return f.trim(); }); }).filter(function (x) { return x[0]; }),
+        v = (items.filter(function (x) { return x[0] === "view"; })[0] || ["view", 0, 0, 1, 1, 240]).slice(1).map(Number),
+        M = 24, k = (v[4] || 240) / (v[2] - v[0]), W = (v[2] - v[0]) * k + 2 * M, H = (v[3] - v[1]) * k + 2 * M;
+      function X(x) { return +(M + (+x - v[0]) * k).toFixed(1); }
+      function Y(y) { return +(M + (v[3] - +y) * k).toFixed(1); }
+      var SIDE = { c: [0, 4, "middle"], n: [0, -7, "middle"], s: [0, 15, "middle"], e: [7, 4, "start"], w: [-7, 4, "end"],
+        ne: [5, -5, "start"], nw: [-5, -5, "end"], se: [5, 14, "start"], sw: [-5, 14, "end"] };
+      function label(x, y, s, side, flags) {
+        var o = SIDE[side || "c"] || SIDE.c, f = flags || "", cls = (/big/.test(f) ? "vz-text" : "vz-small") + (/up/.test(f) ? "" : " vz-it") + (/acc/.test(f) ? " vz-acc" : "") + " vz-halo";
+        txt(svg, X(x) + o[0], Y(y) + o[1], s, cls, o[2]);
+      }
+      var LINE = { ink: "vz-line", thick: "vz-line thick", dash: "vz-dash", seg: "vz-seg" },
+        BOX = { fill: "vz-fill vz-line", light: "vz-cell", bg: "vz-bg vz-line", line: "vz-line", dash: "vz-dash", dark: "vz-charge" };
+      items.forEach(function (it) {
+        var a = it.slice(1), t = it[0];
+        if (t === "axis") {
+          var y = a[0] === "y";
+          if (y) arrow(svg, X(0), Y(a[1]), X(0), Y(a[2]));
+          else arrow(svg, X(a[1]), Y(0), X(a[2]), Y(0));
+          if (a[3]) { if (y) label(0, a[2], a[3], "w"); else label(a[2], 0, a[3], "se"); }
+        } else if (t === "tick") {
+          if (a[0] === "y") { el("line", { x1: X(0) - 4, y1: Y(a[1]), x2: X(0) + 4, y2: Y(a[1]), class: "vz-line" }, svg); label(0, a[1], a[2] || a[1], "w", "up"); }
+          else { el("line", { x1: X(a[1]), y1: Y(0) - 4, x2: X(a[1]), y2: Y(0) + 4, class: "vz-line" }, svg); label(a[1], 0, a[2] || a[1], "s", "up"); }
+        } else if (t === "rect") {
+          var x0 = Math.min(X(a[0]), X(a[2])), y0 = Math.min(Y(a[1]), Y(a[3]));
+          if (a[4] === "plate") el("rect", { x: x0, y: y0 - 2, width: Math.abs(X(a[2]) - X(a[0])), height: Math.max(4, Math.abs(Y(a[3]) - Y(a[1]))), class: "vz-charge" }, svg);
+          else el("rect", { x: x0, y: y0, width: Math.abs(X(a[2]) - X(a[0])), height: Math.abs(Y(a[3]) - Y(a[1])), class: BOX[a[4] || "line"] }, svg);
+        } else if (t === "line") el("line", { x1: X(a[0]), y1: Y(a[1]), x2: X(a[2]), y2: Y(a[3]), class: LINE[a[4] || "ink"] }, svg);
+        else if (t === "arrow") arrow(svg, X(a[0]), Y(a[1]), X(a[2]), Y(a[3]), a[4] === "seg" ? "vz-seg" : undefined);
+        else if (t === "circle") el("circle", { cx: X(a[0]), cy: Y(a[1]), r: +a[2] * k, class: BOX[a[3]] || LINE[a[3]] || "vz-line" }, svg);
+        else if (t === "sector") {
+          var cx = X(a[0]), cy = Y(a[1]), r0 = +a[2] * k, r1 = +a[3] * k, t0 = (+a[4] * Math.PI) / 180, t1 = (+a[5] * Math.PI) / 180, big = Math.abs(t1 - t0) > Math.PI ? 1 : 0,
+            P = function (r, t) { return (cx + r * Math.cos(t)).toFixed(1) + " " + (cy - r * Math.sin(t)).toFixed(1); };
+          if (Math.abs(+a[5] - +a[4]) >= 359.9) {
+            // a full ring: two circles, the inner one cut out (one arc cannot start and end at the same point)
+            var ring = function (r) { return r ? "M" + P(r, 0) + "A" + r + " " + r + " 0 1 0 " + P(r, Math.PI) + "A" + r + " " + r + " 0 1 0 " + P(r, 2 * Math.PI) + "Z" : ""; };
+            el("path", { d: ring(r1) + ring(r0), "fill-rule": "evenodd", class: BOX[a[6] || "fill"] }, svg);
+          } else el("path", { d: "M" + P(r1, t0) + "A" + r1 + " " + r1 + " 0 " + big + " 0 " + P(r1, t1) + "L" + P(r0, t1) + "A" + r0 + " " + r0 + " 0 " + big + " 1 " + P(r0, t0) + "Z", class: BOX[a[6] || "fill"] }, svg);
+        } else if (t === "dot") el("circle", { cx: X(a[0]), cy: Y(a[1]), r: 3.5, class: "vz-dot" }, svg);
+        else if (t === "charge") {
+          el("circle", { cx: X(a[0]), cy: Y(a[1]), r: 7, class: "vz-charge" }, svg);
+          txt(svg, X(a[0]), Y(a[1]) + 4.5, a[2] === "-" ? "−" : "+", "vz-small vz-on");
+        } else if (t === "wire") {
+          el("circle", { cx: X(a[0]), cy: Y(a[1]), r: 5.5, class: "vz-bg vz-line" }, svg);
+          el("circle", { cx: X(a[0]), cy: Y(a[1]), r: 1.8, class: "vz-dot" }, svg);
+        } else if (t === "path") {
+          el("polyline", { points: a[0].split(/\s+/).map(function (p) { var q = p.split(","); return X(q[0]) + "," + Y(q[1]); }).join(" "), class: LINE[a[1] || "ink"] }, svg);
+        } else if (t === "cap") {
+          // two plates 12 px long and 7 px apart, across the wire through (x, y)
+          var px = X(a[0]), py = Y(a[1]);
+          if (a[2] === "v") { el("rect", { x: px - 9, y: py - 4, width: 18, height: 8, class: "vz-bg" }, svg); [-3.5, 3.5].forEach(function (o) { el("line", { x1: px - 9, y1: py + o, x2: px + 9, y2: py + o, class: "vz-line thick" }, svg); }); }
+          else { el("rect", { x: px - 4, y: py - 9, width: 8, height: 18, class: "vz-bg" }, svg); [-3.5, 3.5].forEach(function (o) { el("line", { x1: px + o, y1: py - 9, x2: px + o, y2: py + 9, class: "vz-line thick" }, svg); }); }
+        } else if (t === "dim") {
+          var ax = X(a[0]), ay = Y(a[1]), bx = X(a[2]), by = Y(a[3]), L = Math.hypot(bx - ax, by - ay) || 1, nx = (ay - by) / L * 4, ny = (bx - ax) / L * 4;
+          el("line", { x1: ax, y1: ay, x2: bx, y2: by, class: "vz-line" }, svg);
+          [[ax, ay], [bx, by]].forEach(function (p) { el("line", { x1: p[0] - nx, y1: p[1] - ny, x2: p[0] + nx, y2: p[1] + ny, class: "vz-line" }, svg); });
+          label((+a[0] + +a[2]) / 2, (+a[1] + +a[3]) / 2, a[4], a[5] || "n");
+        } else if (t === "label") label(a[0], a[1], a[2], a[3], a[4]);
+      });
+      return [Math.ceil(W), Math.ceil(H)];
+    },
     coord: function (svg, d) {
-      var g = COORD(d.kind2), CL = { ink: "vz-line", thick: "vz-line thick", dash: "vz-dash", seg: "vz-seg", fill: "vz-fill vz-line", cell: "vz-cell", patch: "vz-charge" };
+      var g = COORD(d.kind2), CL = { ink: "vz-line", thick: "vz-line thick", dash: "vz-dash", seg: "vz-seg", fill: "vz-fill vz-line", cell: "vz-cell", patch: "vz-charge", bg: "vz-bg vz-line" };
       g.pieces.forEach(function (p) {
         if (p[0] === "line") el("line", { x1: p[1][0][0], y1: p[1][0][1], x2: p[1][1][0], y2: p[1][1][1], class: CL[p[2]] }, svg);
         else if (p[0] === "curve") curve(svg, p[1], CL[p[2]]);
