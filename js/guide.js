@@ -415,6 +415,13 @@
     fig.insertBefore(svg, fig.firstChild);
   });
 
+  // Integral signs: tag each one so css/guide.css draws the one thin, slanted sign for it, at any size.
+  var SIGN = { "∫": "int", "∮": "oint", "∬": "iint", "∯": "oiint", "∭": "iiint" };
+  document.querySelectorAll(".op-int > .op-sym").forEach(function (s) {
+    var k = SIGN[s.textContent.trim()];
+    if (k) s.setAttribute("data-sign", k);
+  });
+
   // Picture diagrams (figure.viz, data-kind = venn | numline | bits | circle | field | ladder), drawn from data so the
   // page and the PDF (tools/guide-to-tex.py, same coordinates) show the same picture. Shaded or thick parts use the
   // action colour; the caption says what to look at. Each kind's attributes are described in docs/GUIDE-STANDARD.md.
@@ -485,6 +492,121 @@
       out.push(pts);
     }
     return out;
+  }
+  // Coordinate-system pictures (data-kind="coord cyl | sph | box"), in a true orthographic 3D view: camera azimuth 20°,
+  // elevation 40°, so x comes toward the reader on the lower left, y runs right and z up. The geometry is a list of
+  // pieces ([type, …]) that the page draws here and tools/guide-to-tex.py rebuilds with the same numbers (COORD there).
+  function COORD(sub) {
+    var A = Math.PI / 9, E = (40 * Math.PI) / 180, R = Math.PI / 180,
+      U = [-Math.sin(A), Math.cos(A), 0],
+      W = [-Math.sin(E) * Math.cos(A), -Math.sin(E) * Math.sin(A), Math.cos(E)],
+      D = [Math.cos(E) * Math.cos(A), Math.cos(E) * Math.sin(A), Math.sin(E)],
+      O, out = [];
+    function dot(a, b) { return a[0] * b[0] + a[1] * b[1] + a[2] * b[2]; }
+    function pr(p) { return [+(O[0] + dot(p, U)).toFixed(1), +(O[1] - dot(p, W)).toFixed(1)]; }
+    function add(p, v, k) { return [p[0] + k * v[0], p[1] + k * v[1], p[2] + k * v[2]]; }
+    function arc(f, t0, t1, n) { var pts = []; for (var i = 0; i <= n; i++) pts.push(pr(f(t0 + ((t1 - t0) * i) / n))); return pts; }
+    // a label just past an arrow's tip, along the arrow as it appears on screen
+    function tipLabel(p, v, L, s, cls) {
+      var a = pr(p), b = pr(add(p, v, L)), dx = b[0] - a[0], dy = b[1] - a[1], m = Math.hypot(dx, dy) || 1;
+      out.push(["text", [+(b[0] + (11 * dx) / m).toFixed(1), +(b[1] + (11 * dy) / m + 4).toFixed(1)], s, cls, "middle"]);
+    }
+    // a unit vector at p, lengthened where the view foreshortens it so it is at least 30 px long on screen
+    function vec(p, v, L, s) {
+      var a = pr(p), b = pr(add(p, v, L)), m = Math.hypot(b[0] - a[0], b[1] - a[1]);
+      if (m < 30) L = (L * 30) / m;
+      out.push(["arrow", pr(p), pr(add(p, v, L)), "seg"]); tipLabel(p, v, L, s, "vz-small vz-it vz-acc vz-halo");
+    }
+    function axis(v, L, s) { out.push(["arrow", pr([0, 0, 0]), pr([v[0] * L, v[1] * L, v[2] * L]), "ink"]); tipLabel([0, 0, 0], v, L, s, "vz-small vz-it"); }
+    // a label beside a segment (at its middle, or at fraction "at" along it), on the side away from the point "away"
+    function midLabel(p, q, s, away, cls, at) {
+      var a = pr(p), b = pr(q), f = at == null ? 0.5 : at, m = [a[0] + f * (b[0] - a[0]), a[1] + f * (b[1] - a[1])], nx = b[1] - a[1], ny = a[0] - b[0], k = Math.hypot(nx, ny) || 1, w = pr(away);
+      if ((w[0] - m[0]) * nx + (w[1] - m[1]) * ny > 0) { nx = -nx; ny = -ny; }
+      out.push(["text", [+(m[0] + (10 * nx) / k).toFixed(1), +(m[1] + (10 * ny) / k + 4).toFixed(1)], s, cls || "vz-small vz-it", "middle"]);
+    }
+    // frame the picture round everything drawn (labels counted by their rough extent), with a margin
+    function fit() {
+      var x0 = 1e9, y0 = 1e9, x1 = -1e9, y1 = -1e9, M = 6;
+      function take(q, l, r, t, b) { x0 = Math.min(x0, q[0] - l); x1 = Math.max(x1, q[0] + r); y0 = Math.min(y0, q[1] - t); y1 = Math.max(y1, q[1] + b); }
+      out.forEach(function (p) {
+        if (p[0] === "line" || p[0] === "curve" || p[0] === "poly") p[1].forEach(function (q) { take(q, 0, 0, 0, 0); });
+        else if (p[0] === "circle") take(p[1], p[2], p[2], p[2], p[2]);
+        else if (p[0] === "arrow") { take(p[1], 0, 0, 0, 0); take(p[2], 6, 6, 6, 6); }
+        else if (p[0] === "dot") take(p[1], 4, 4, 4, 4);
+        else { var w = 7 * p[2].replace(/_/g, "").length; take(p[1], p[4] === "end" ? w : p[4] === "middle" ? w / 2 : 0, p[4] === "start" ? w : p[4] === "middle" ? w / 2 : 0, 12, 4); }
+      });
+      var dx = M - x0, dy = M - y0, mv = function (q) { return [+(q[0] + dx).toFixed(1), +(q[1] + dy).toFixed(1)]; };
+      out.forEach(function (p) {
+        if (p[0] === "line" || p[0] === "curve" || p[0] === "poly") p[1] = p[1].map(mv);
+        else if (p[0] === "arrow") { p[1] = mv(p[1]); p[2] = mv(p[2]); }
+        else p[1] = mv(p[1]);
+      });
+      return { pieces: out, size: [Math.ceil(x1 - x0 + 2 * M), Math.ceil(y1 - y0 + 2 * M)] };
+    }
+    if (sub === "cyl") {
+      // a point on the cylinder ρ = const: its coordinates, the unit vectors there and the wall patch dA = e_ρ ρ dφ dz
+      O = [84, 150];
+      var Rc = 72, H = 130, ph = 50 * R, zp = 92, ring = function (z) { return function (t) { return [Rc * Math.cos(t), Rc * Math.sin(t), z]; }; },
+        P = [Rc * Math.cos(ph), Rc * Math.sin(ph), zp], F = [P[0], P[1], 0];
+      out.push(["curve", arc(ring(0), A + 90 * R, A + 270 * R, 36), "dash"], ["curve", arc(ring(0), A - 90 * R, A + 90 * R, 36), "ink"],
+        ["curve", arc(ring(H), 0, 2 * Math.PI, 72), "ink"]);
+      [A + 90 * R, A - 90 * R].forEach(function (t) { out.push(["line", [pr(ring(0)(t)), pr(ring(H)(t))], "ink"]); });
+      axis([1, 0, 0], Rc + 46, "x"); axis([0, 1, 0], Rc + 56, "y"); axis([0, 0, 1], H + 34, "z");
+      var patch = arc(function (t) { return [Rc * Math.cos(t), Rc * Math.sin(t), zp - 9]; }, ph - 9 * R, ph + 9 * R, 8)
+        .concat(arc(function (t) { return [Rc * Math.cos(t), Rc * Math.sin(t), zp + 9]; }, ph + 9 * R, ph - 9 * R, 8));
+      out.push(["poly", patch, "fill"], ["line", [pr([0, 0, 0]), pr(F)], "thick"], ["line", [pr(F), pr(P)], "dash"],
+        ["curve", arc(function (t) { return [30 * Math.cos(t), 30 * Math.sin(t), 0]; }, 0, ph, 12), "ink"]);
+      midLabel([0, 0, 0], F, "ρ", [0, Rc, 0], null, 0.72);
+      var fl = pr([42 * Math.cos(ph / 2), 42 * Math.sin(ph / 2), 0]);
+      out.push(["text", [fl[0], fl[1] + 4], "φ", "vz-small vz-it", "middle"]);
+      midLabel(F, P, "z", [2 * P[0], 2 * P[1], zp / 2], null, 0.4);
+      var pc = pr([Rc * Math.cos(ph + 9 * R), Rc * Math.sin(ph + 9 * R), zp - 4]);
+      out.push(["text", [pc[0] + 6, pc[1] + 4], "dA", "vz-small vz-it vz-halo", "start"], ["dot", pr(P)]);
+      vec(P, [Math.cos(ph), Math.sin(ph), 0], 36, "e_ρ"); vec(P, [-Math.sin(ph), Math.cos(ph), 0], 36, "e_φ"); vec(P, [0, 0, 1], 36, "e_z");
+      return fit();
+    }
+    if (sub === "sph") {
+      // a point on the sphere r = const: r, ϑ from the z-axis, φ in the xy-plane, the unit vectors and dA = e_r r² sinϑ dϑ dφ
+      O = [104, 118];
+      var Rs = 84, th = 50 * R, pf = 100 * R,
+        S = function (t, p, r) { return [r * Math.sin(t) * Math.cos(p), r * Math.sin(t) * Math.sin(p), r * Math.cos(t)]; },
+        Q = S(th, pf, Rs), G = [Q[0], Q[1], 0];
+      out.push(["curve", arc(function (t) { return [Rs * Math.cos(t), Rs * Math.sin(t), 0]; }, A + 90 * R, A + 270 * R, 36), "dash"],
+        ["curve", arc(function (t) { return [Rs * Math.cos(t), Rs * Math.sin(t), 0]; }, A - 90 * R, A + 90 * R, 36), "ink"],
+        ["circle", O, Rs]);
+      axis([1, 0, 0], Rs + 40, "x"); axis([0, 1, 0], Rs + 40, "y"); axis([0, 0, 1], Rs + 34, "z");
+      var sp = arc(function (t) { return S(th - 9 * R, t, Rs); }, pf - 13 * R, pf + 13 * R, 8).concat(arc(function (t) { return S(th + 9 * R, t, Rs); }, pf + 13 * R, pf - 13 * R, 8));
+      out.push(["poly", sp, "fill"], ["line", [pr([0, 0, 0]), pr(Q)], "thick"], ["line", [pr(Q), pr(G)], "dash"], ["line", [pr([0, 0, 0]), pr(G)], "dash"],
+        ["curve", arc(function (t) { return S(t, pf, 32); }, 0, th, 10), "ink"],
+        ["curve", arc(function (t) { return [28 * Math.cos(t), 28 * Math.sin(t), 0]; }, 0, pf, 12), "ink"]);
+      midLabel([0, 0, 0], Q, "r", [0, 0, Rs]);
+      var tl = pr(S(th / 2, pf, 44)), pl = pr([40 * Math.cos(pf / 2), 40 * Math.sin(pf / 2), 0]);
+      out.push(["text", [tl[0], tl[1] + 4], "ϑ", "vz-small vz-it", "middle"], ["text", [pl[0], pl[1] + 4], "φ", "vz-small vz-it", "middle"]);
+      var sc = pr(Q);
+      out.push(["text", [sc[0] - 16, sc[1] - 10], "dA", "vz-small vz-it vz-halo", "end"], ["dot", sc]);
+      vec(Q, [Math.sin(th) * Math.cos(pf), Math.sin(th) * Math.sin(pf), Math.cos(th)], 36, "e_r");
+      vec(Q, [Math.cos(th) * Math.cos(pf), Math.cos(th) * Math.sin(pf), -Math.sin(th)], 36, "e_ϑ");
+      vec(Q, [-Math.sin(pf), Math.cos(pf), 0], 36, "e_φ");
+      return fit();
+    }
+    // box: the Cartesian volume element dx dy dz; each visible face carries its patch and outward normal
+    O = [92, 128];
+    var a = 70, b = 112, c = 74, C = function (i, j, k) { return pr([i * a, j * b, k * c]); };
+    out.push(["poly", [C(1, 0, 0), C(1, 1, 0), C(1, 1, 1), C(1, 0, 1)], "cell"], ["poly", [C(0, 1, 0), C(1, 1, 0), C(1, 1, 1), C(0, 1, 1)], "cell"],
+      ["poly", [C(0, 0, 1), C(1, 0, 1), C(1, 1, 1), C(0, 1, 1)], "fill"]);
+    [[C(0, 0, 0), C(1, 0, 0)], [C(0, 0, 0), C(0, 1, 0)], [C(0, 0, 0), C(0, 0, 1)]].forEach(function (e) { out.push(["line", e, "dash"]); });
+    [[C(1, 0, 0), C(1, 1, 0)], [C(1, 1, 0), C(0, 1, 0)], [C(1, 0, 0), C(1, 0, 1)], [C(1, 1, 0), C(1, 1, 1)], [C(0, 1, 0), C(0, 1, 1)],
+      [C(0, 0, 1), C(1, 0, 1)], [C(1, 0, 1), C(1, 1, 1)], [C(1, 1, 1), C(0, 1, 1)], [C(0, 1, 1), C(0, 0, 1)]].forEach(function (e) { out.push(["line", e, "ink"]); });
+    var faces = [[[a, b / 2, c / 2], [1, 0, 0], [0, 1, 0], [0, 0, 1], "e_x"], [[a / 2, b, c / 2], [0, 1, 0], [1, 0, 0], [0, 0, 1], "e_y"], [[a / 2, b / 2, c], [0, 0, 1], [1, 0, 0], [0, 1, 0], "e_z"]];
+    faces.forEach(function (f) {
+      var m = f[0], s1 = f[2], s2 = f[3], h = 7;
+      out.push(["poly", [pr(add(add(m, s1, -h), s2, -h)), pr(add(add(m, s1, h), s2, -h)), pr(add(add(m, s1, h), s2, h)), pr(add(add(m, s1, -h), s2, h))], "patch"]);
+      vec(m, f[1], 42, f[4]);
+    });
+    midLabel([a, 0, 0], [a, b, 0], "dy", [a / 2, b / 2, c / 2], null, 0.78);
+    midLabel([0, b, 0], [a, b, 0], "dx", [a / 2, b / 2, c / 2]);
+    midLabel([a, 0, 0], [a, 0, c], "dz", [a / 2, b / 2, c / 2]);
+    return fit();
   }
   var VIZ = {
     plot: function (svg, d) {
@@ -974,6 +1096,19 @@
       }
       txt(svg, c, 2 * c + 12, d.label || "+1 steps clockwise", "vz-small");
       return [240, 256];
+    },
+    coord: function (svg, d) {
+      var g = COORD(d.kind2), CL = { ink: "vz-line", thick: "vz-line thick", dash: "vz-dash", seg: "vz-seg", fill: "vz-fill vz-line", cell: "vz-cell", patch: "vz-charge" };
+      g.pieces.forEach(function (p) {
+        if (p[0] === "line") el("line", { x1: p[1][0][0], y1: p[1][0][1], x2: p[1][1][0], y2: p[1][1][1], class: CL[p[2]] }, svg);
+        else if (p[0] === "curve") curve(svg, p[1], CL[p[2]]);
+        else if (p[0] === "poly") el("polygon", { points: p[1].map(function (q) { return q.join(","); }).join(" "), class: CL[p[2]] }, svg);
+        else if (p[0] === "circle") el("circle", { cx: p[1][0], cy: p[1][1], r: p[2], class: "vz-line" }, svg);
+        else if (p[0] === "arrow") arrow(svg, p[1][0], p[1][1], p[2][0], p[2][1], p[3] === "seg" ? "vz-seg" : undefined);
+        else if (p[0] === "dot") el("circle", { cx: p[1][0], cy: p[1][1], r: 3.5, class: "vz-dot" }, svg);
+        else txt(svg, p[1][0], p[1][1], p[2], p[3], p[4]);
+      });
+      return g.size;
     },
     cells: function (svg, d) {
       // memory boxes: "name|address|value;…" in a column, and pointer arrows "p>x" drawn round the right side

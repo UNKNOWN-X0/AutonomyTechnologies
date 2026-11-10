@@ -254,6 +254,10 @@
     });
     return out;
   }
+  // "Exercise" → "Exercises", "Appendix" → "Appendices"
+  function plural(w) {
+    return /ix$/.test(w) ? w.slice(0, -2) + "ices" : w + "s";
+  }
   function show(chs) {
     var cur = -1,
       lab = /-lab\.html$/.test(here);
@@ -281,7 +285,7 @@
           group = g;
           var h = document.createElement("li");
           h.className = "fold-code";
-          h.textContent = c.kind === "chapter" ? c.code : c.code + " · " + c.kind.charAt(0).toUpperCase() + c.kind.slice(1) + "s";
+          h.textContent = c.kind === "chapter" ? c.code : c.code + " · " + plural(c.kind.charAt(0).toUpperCase() + c.kind.slice(1));
           ul.appendChild(h);
         }
         var li = document.createElement("li"),
@@ -312,7 +316,7 @@
     if (main && (prev || next) && !document.querySelector(".chapter-pager")) {
       var nav = document.createElement("nav");
       nav.className = "chapter-pager";
-      nav.setAttribute("aria-label", "Neighbouring " + noun + "s");
+      nav.setAttribute("aria-label", "Neighbouring " + plural(noun));
       [[prev, "Previous " + noun, "prev"], [next, "Next " + noun, "next"]].forEach(function (p) {
         var a = document.createElement(p[0] ? "a" : "span"),
           k = document.createElement("span"),

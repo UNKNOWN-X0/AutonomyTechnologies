@@ -1,0 +1,364 @@
+\documentclass[11pt]{article}
+\usepackage[margin=18mm,headheight=22pt]{geometry}
+\usepackage{amsmath}
+\usepackage{fontspec}
+\usepackage{unicode-math}
+\setmainfont{NewCM10}[Extension=.otf,UprightFont=*-Book,BoldFont=*-Bold,ItalicFont=*-BookItalic,BoldItalicFont=*-BoldItalic]
+\setsansfont{NewCMSans10}[Extension=.otf,UprightFont=*-Book,BoldFont=*-Bold,ItalicFont=*-BookOblique,BoldItalicFont=*-BoldOblique]
+\setmathfont{NewCMMath-Book.otf}
+\usepackage{xcolor}
+\definecolor{FAUblue}{HTML}{04316A}
+\definecolor{Paperblue}{HTML}{EEF2F7}
+\definecolor{EEIgold}{HTML}{CC9C42}
+\usepackage{etoolbox,enumitem,booktabs,tabularx,array,needspace,microtype}
+\usepackage[most]{tcolorbox}
+\usepackage{titlesec,fancyhdr}
+\usepackage[hidelinks]{hyperref}
+\usepackage{draftwatermark}
+\SetWatermarkText{Made by Thanate Amornjiraporn (Focus)}
+\SetWatermarkColor{black!7}\SetWatermarkFontSize{30pt}\SetWatermarkAngle{45}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{5pt}
+\setlist{itemsep=2pt,topsep=3pt,leftmargin=1.6em,beginpenalty=10000,endpenalty=10000}
+\raggedbottom
+\clubpenalty=10000 \widowpenalty=10000 \displaywidowpenalty=10000 \interlinepenalty=10000
+\setcounter{secnumdepth}{0}
+\setcounter{tocdepth}{1}
+\pagestyle{fancy}\fancyhf{}
+\fancyhead[L]{\small\sffamily\color{FAUblue} From Fundamentals to AI Apocalypse · EEI · Tutorial 4}
+\fancyhead[R]{\small\sffamily Tutorial 4: Worked solutions}
+\fancyfoot[C]{\small\thepage}
+\titleformat{\section}{\Large\bfseries\sffamily\color{FAUblue}}{}{0pt}{}
+\titleformat{\subsection}{\large\bfseries\sffamily\color{FAUblue}}{}{0pt}{}
+\titlespacing*{\section}{0pt}{16pt}{6pt}
+\preto\section{\Needspace{8\baselineskip}}
+\preto\subsection{\Needspace{6\baselineskip}}
+\newtcolorbox{equationcard}[1]{colback=Paperblue,colframe=Paperblue,boxrule=0pt,arc=0pt,left=10pt,right=10pt,top=6pt,bottom=6pt,title={#1},fonttitle=\small\bfseries\sffamily,coltitle=FAUblue,before skip=8pt,after skip=8pt}
+\newtcolorbox{workedbox}[1]{colback=white,colframe=EEIgold,boxrule=0pt,leftrule=3pt,arc=0pt,left=10pt,top=4pt,bottom=4pt,title={#1},fonttitle=\small\bfseries\sffamily,coltitle=FAUblue,attach title to upper={\par},before skip=8pt,after skip=8pt}
+\newtcolorbox{recallbox}[1]{colback=white,colframe=FAUblue,boxrule=0pt,leftrule=3pt,arc=0pt,left=10pt,top=4pt,bottom=4pt,title={#1},fonttitle=\small\bfseries\sffamily,coltitle=FAUblue,attach title to upper={\par},before skip=8pt,after skip=8pt}
+\usepackage{environ}
+\newsavebox\measurebox
+% Typeset the section once invisibly to measure it; start a new page if it will not fit in what is left.
+\makeatletter
+\newif\ifkeep@measuring
+\NewEnviron{keepsection}{%
+  \ifkeep@measuring \BODY \else
+    \edef\keep@sec{\the\value{section}}\edef\keep@sub{\the\value{subsection}}%
+    \setbox\measurebox\vbox{\hsize\linewidth\keep@measuringtrue\def\Needspace##1{}\BODY}%
+    \setcounter{section}{\keep@sec}\setcounter{subsection}{\keep@sub}%
+    \dimen2=\ht\measurebox \advance\dimen2\dp\measurebox
+    \dimen@=\textheight
+    \ifdim\pagegoal<\maxdimen
+      \dimen@=\pagegoal \advance\dimen@-\pagetotal
+      \ifdim\dimen2>\dimen@ \clearpage \dimen@=\textheight \fi
+    \fi
+    % if it fits, nothing inside may force an early break
+    \ifdim\dimen2>\dimen@ \BODY \else \begingroup\def\Needspace##1{}\BODY\endgroup \fi
+  \fi}
+\makeatother
+\newtcolorbox{notebox}{colback=Paperblue,colframe=Paperblue,boxrule=0pt,arc=0pt,left=8pt,right=8pt,top=4pt,bottom=4pt,before skip=6pt,after skip=6pt}
+\newtcolorbox{plainbox}{colback=white,colframe=FAUblue,boxrule=0pt,leftrule=3pt,arc=0pt,left=10pt,right=8pt,top=4pt,bottom=4pt,before skip=6pt,after skip=8pt}
+\usetikzlibrary{arrows.meta}
+\title{\sffamily\bfseries\color{FAUblue}Tutorial 4: Worked solutions}
+\author{Electrical Engineering I \ensuremath{\cdot} Module 92315 \ensuremath{\cdot} Tutorial 4\\[2pt]\small From Fundamentals to AI Apocalypse · personal study guide}
+\date{}
+\begin{document}
+\maketitle
+\begingroup\footnotesize\setlength{\parskip}{0pt}\tableofcontents\endgroup
+\clearpage
+
+\Needspace{8\baselineskip}
+{\large Model the initial stack as two capacitors in series. After the lower dielectric shifts, its overlap and the air-filled part form parallel branches beneath the upper dielectric.}
+
+
+\begin{keepsection}
+\Needspace{12\baselineskip}
+\section{Task 8: Electrostatics}
+
+\Needspace{9\baselineskip}
+Two square plates of side \textit{a} are separated by total distance \textit{d}. Initially, dielectric 1 (\textit{ε}\textsubscript{r,1}) fills the upper half and dielectric 2 (\textit{ε}\textsubscript{r,2}) fills the lower half, each of thickness \textit{d}/2. Edge effects are neglected; the exposed surrounding region is air with relative permittivity 1. The voltage arrow points downward; take positive \textit{U}\textsubscript{0} to produce a downward field. Both relative permittivities are much greater than 1.
+
+\Needspace{8\baselineskip}
+\textbf{Connected topic:} Capacitance (§1.13) relates plate geometry and permittivity to charge and voltage; the interface conditions explain how the displacement crosses the two layers.
+
+\Needspace{14\baselineskip}
+\begin{center}
+\begin{minipage}[t]{0.950\linewidth}\centering
+\begin{tikzpicture}[line join=round]
+\draw[-{Stealth[length=4pt]},black!80] (0.720,-2.628) -- (4.572,-2.628);
+\draw[-{Stealth[length=4pt]},black!80] (0.720,-2.628) -- (0.720,-0.180);
+\draw[FAUblue,line width=1.6pt] (0.720,-1.476) -- (4.392,-1.476);
+\draw[black!85,line width=1pt] (0.720,-0.324) -- (4.392,-0.324);
+\fill[FAUblue] (2.556,-0.900) circle (0.063);
+\node[anchor=east,text=FAUblue,fill=white,fill opacity=0.85,text opacity=1,inner sep=1pt,font=\footnotesize] at (2.412,-0.720) {ε\textsubscript{r,1}};
+\fill[FAUblue] (2.556,-2.052) circle (0.063);
+\node[anchor=west,text=FAUblue,fill=white,fill opacity=0.85,text opacity=1,inner sep=1pt,font=\footnotesize] at (2.700,-1.872) {ε\textsubscript{r,2}};
+\node[anchor=east,inner sep=1pt,font=\footnotesize] at (4.536,-2.916) {\textit{x/a}};
+\node[anchor=east,inner sep=1pt,font=\footnotesize] at (0.576,-0.288) {\textit{z/d}};
+\draw[black!80] (0.720,-2.556) -- (0.720,-2.700);
+\node[,inner sep=1pt,font=\footnotesize] at (0.720,-2.916) {0};
+\draw[black!80] (4.392,-2.556) -- (4.392,-2.700);
+\node[,inner sep=1pt,font=\footnotesize] at (4.392,-2.916) {1};
+\end{tikzpicture}\par\smallskip{\small\raggedright \textbf{Initial side view of the stack.} The interface is at \textit{z} = \textit{d}/2; each dielectric fills the full plate area \textit{a}\textsuperscript{2}.\par}\end{minipage}
+\end{center}
+
+\begin{keepsection}
+\Needspace{7\baselineskip}
+\subsection{8a: Find \textit{D} and \textit{E}}
+
+\Needspace{4\baselineskip}
+Try first: use continuity of the normal displacement at the dielectric boundary and add the two half-gap voltage drops.
+
+\nopagebreak[4]{\small\itshape Answers: see “Task 8: Electrostatics” under Answers at the end.}
+\end{keepsection}
+
+\begin{keepsection}
+\Needspace{7\baselineskip}
+\subsection{8b: Equivalent circuit before the shift}
+
+\Needspace{4\baselineskip}
+Try first: decide whether the layers lie one after another along the field or side by side across the plate area.
+
+\nopagebreak[4]{\small\itshape Answers: see “Task 8: Electrostatics” under Answers at the end.}
+\end{keepsection}
+
+\begin{keepsection}
+\Needspace{7\baselineskip}
+\subsection{8c: Total capacitance before the shift}
+
+\Needspace{4\baselineskip}
+Try first: calculate each layer’s plate capacitance using area \textit{a}\textsuperscript{2} and thickness \textit{d}/2, then combine in series.
+
+\nopagebreak[4]{\small\itshape Answers: see “Task 8: Electrostatics” under Answers at the end.}
+\end{keepsection}
+
+\begin{keepsection}
+\Needspace{6\baselineskip}
+\subsection{8d: Surface charge on the lower face of the top plate}
+
+\Needspace{3\baselineskip}
+Try first: dot \textit{D} with the outward normal from the metal into the dielectric at that face.
+
+\nopagebreak[4]{\small\itshape Answers: see “Task 8: Electrostatics” under Answers at the end.}
+
+\Needspace{10\baselineskip}
+The lower dielectric is now shifted out along +\textit{e}\textsubscript{x} by a distance \textit{x}, with 0 \ensuremath{\leq} \textit{x} \ensuremath{\leq} \textit{a}. Its overlap width is \textit{a}\ensuremath{-}\textit{x}; the exposed gap beneath the upper dielectric is filled with air.
+
+\Needspace{14\baselineskip}
+\begin{center}
+\begin{minipage}[t]{0.950\linewidth}\centering
+\begin{tikzpicture}[line join=round]
+\draw[-{Stealth[length=4pt]},black!80] (0.720,-2.628) -- (4.572,-2.628);
+\draw[-{Stealth[length=4pt]},black!80] (0.720,-2.628) -- (0.720,-0.180);
+\draw[FAUblue,line width=1.6pt] (0.720,-1.476) -- (4.392,-1.476);
+\draw[black!85,line width=1pt] (0.720,-0.324) -- (4.392,-0.324);
+\draw[black!55,dashed] (2.005,-2.628) -- (2.005,-1.476);
+\fill[FAUblue] (3.107,-0.900) circle (0.063);
+\node[anchor=east,text=FAUblue,fill=white,fill opacity=0.85,text opacity=1,inner sep=1pt,font=\footnotesize] at (2.963,-0.720) {ε\textsubscript{r,1}};
+\fill[FAUblue] (3.290,-2.052) circle (0.063);
+\node[anchor=west,text=FAUblue,fill=white,fill opacity=0.85,text opacity=1,inner sep=1pt,font=\footnotesize] at (3.434,-1.872) {ε\textsubscript{r,2}};
+\fill[FAUblue] (1.271,-2.052) circle (0.063);
+\node[anchor=east,text=FAUblue,fill=white,fill opacity=0.85,text opacity=1,inner sep=1pt,font=\footnotesize] at (1.127,-1.872) {air};
+\fill[FAUblue] (2.005,-1.591) circle (0.063);
+\node[anchor=east,text=FAUblue,fill=white,fill opacity=0.85,text opacity=1,inner sep=1pt,font=\footnotesize] at (1.861,-1.771) {x};
+\node[anchor=east,inner sep=1pt,font=\footnotesize] at (4.536,-2.916) {\textit{x/a}};
+\node[anchor=east,inner sep=1pt,font=\footnotesize] at (0.576,-0.288) {\textit{z/d}};
+\draw[black!80] (0.720,-2.556) -- (0.720,-2.700);
+\node[,inner sep=1pt,font=\footnotesize] at (0.720,-2.916) {0};
+\draw[black!80] (4.392,-2.556) -- (4.392,-2.700);
+\node[,inner sep=1pt,font=\footnotesize] at (4.392,-2.916) {1};
+\end{tikzpicture}\par\smallskip{\small\raggedright \textbf{Shifted lower layer, drawn schematically.} The upper dielectric spans the full plate area; underneath it the air and remaining ε\textsubscript{r,2} regions share the voltage and act in parallel. The indicated shift boundary represents variable \textit{x}, not a fixed fraction.\par}\end{minipage}
+\end{center}
+\end{keepsection}
+
+\begin{keepsection}
+\Needspace{7\baselineskip}
+\subsection{8e: Equivalent circuit after the shift}
+
+\Needspace{4\baselineskip}
+Try first: identify the full-area layer crossed by every field line, then split the lower half into the two side-by-side regions.
+
+\nopagebreak[4]{\small\itshape Answers: see “Task 8: Electrostatics” under Answers at the end.}
+\end{keepsection}
+
+\begin{keepsection}
+\Needspace{7\baselineskip}
+\subsection{8f: Capacitance as a function of \textit{x}}
+
+\Needspace{4\baselineskip}
+Try first: find each lower-region capacitance from its area and thickness, add the parallel branches, then combine that result in series with \textit{C}\textsubscript{1}.
+
+\nopagebreak[4]{\small\itshape Answers: see “Task 8: Electrostatics” under Answers at the end.}
+\end{keepsection}
+
+\begin{keepsection}
+\Needspace{7\baselineskip}
+\subsection{8g: Minimum and maximum capacitance}
+
+\Needspace{4\baselineskip}
+Try first: check how the lower parallel capacitance changes with \textit{x}, then use that the series equivalent increases when either component capacitance increases.
+
+\nopagebreak[4]{\small\itshape Answers: see “Task 8: Electrostatics” under Answers at the end.}
+\end{keepsection}
+\end{keepsection}
+
+
+\clearpage
+\section{Answers}
+\begin{keepsection}\subsection{Task 8: Electrostatics}
+
+\begin{workedbox}{8a \ensuremath{\cdot} Fields in the two layers}
+\Needspace{11\baselineskip}
+\begin{enumerate}
+\item \Needspace{6\baselineskip}
+With no free charge at the internal interface, the normal component of \textit{D} is the same in both layers. The voltage arrow sets the field downward for positive \textit{U}\textsubscript{0}; denote the downward displacement magnitude by \textit{D}\textsubscript{0}:
+
+\begin{equation*}{D}_{1}\, =\, {D}_{2}\, =\, -{D}_{0}{e}_{\mathrm{z}}\end{equation*}
+\item \Needspace{5\baselineskip}
+In each linear dielectric, \textit{D} = ε\textsubscript{0}ε\textsubscript{r}\textit{E}. The downward potential drop across each thickness \textit{d}/2 adds to \textit{U}\textsubscript{0}:
+
+\Needspace{4\baselineskip}
+\begin{equation*}{U}_{0}\, =\, (|{D}|/(ε_{0}ε_{\mathrm{r},1}))({d}/2)\, +\, (|{D}|/(ε_{0}ε_{\mathrm{r},2}))({d}/2)\end{equation*}
+
+\begin{equation*}|{D}|\, =\, 2ε_{0}ε_{\mathrm{r},1}ε_{\mathrm{r},2}{U}_{0}\, /\, [{d}(ε_{\mathrm{r},1}\, +\, ε_{\mathrm{r},2})]\end{equation*}
+\item \Needspace{4\baselineskip}
+Apply the constitutive relation separately to each layer:
+
+\Needspace{4\baselineskip}
+\begin{equation*}{D}\, =\, -[2ε_{0}ε_{\mathrm{r},1}ε_{\mathrm{r},2}{U}_{0}/({d}(ε_{\mathrm{r},1}+ε_{\mathrm{r},2}))]{e}_{\mathrm{z}}\end{equation*}
+
+\Needspace{5\baselineskip}
+\begin{equation*}{E}_{1}\, =\, -[2ε_{\mathrm{r},2}{U}_{0}/({d}(ε_{\mathrm{r},1}+ε_{\mathrm{r},2}))]{e}_{\mathrm{z}},\, \quad \, {E}_{2}\, =\, -[2ε_{\mathrm{r},1}{U}_{0}/({d}(ε_{\mathrm{r},1}+ε_{\mathrm{r},2}))]{e}_{\mathrm{z}}\end{equation*}
+
+For negative \textit{U}\textsubscript{0}, the vectors reverse. \textbf{Check:} substituting the two field magnitudes into the half-gap drops gives exactly \textit{U}\textsubscript{0}.
+\end{enumerate}
+\end{workedbox}
+
+\end{keepsection}
+\begin{keepsection}\subsection{Task 8: Electrostatics}
+
+\begin{workedbox}{8b \ensuremath{\cdot} Series connection}
+\Needspace{8\baselineskip}
+\begin{enumerate}
+\item \Needspace{6\baselineskip}
+Every field line crosses dielectric 1 and then dielectric 2. The same free charge magnitude sits on each plate, while the voltage divides between the layers, so the capacitors are in series:
+
+\begin{equation*}{C}_{1}\, —\, {C}_{2}\end{equation*}
+\item The interface has no free surface charge, so the normal displacement (and therefore the series charge) is common to both. \textbf{Check:} a parallel model would incorrectly assign the full plate voltage to each half-thickness layer.
+\end{enumerate}
+\end{workedbox}
+
+\end{keepsection}
+\begin{keepsection}\subsection{Task 8: Electrostatics}
+
+\begin{workedbox}{8c \ensuremath{\cdot} Series capacitance}
+\Needspace{6\baselineskip}
+\begin{enumerate}
+\item \Needspace{4\baselineskip}
+For a parallel-plate layer, \textit{C} = ε\textit{A}/\textit{t}. Each layer has area \textit{a}\textsuperscript{2} and thickness \textit{d}/2:
+
+\begin{equation*}{C}_{1}\, =\, 2ε_{0}ε_{\mathrm{r},1}{a}^{2}/{d},\, \quad \, {C}_{2}\, =\, 2ε_{0}ε_{\mathrm{r},2}{a}^{2}/{d}\end{equation*}
+\item \Needspace{4\baselineskip}
+Series capacitances add by reciprocals:
+
+\Needspace{4\baselineskip}
+\begin{equation*}1/{C}\, =\, 1/{C}_{1}\, +\, 1/{C}_{2}\end{equation*}
+
+\Needspace{4\baselineskip}
+\begin{equation*}{C}\, =\, 2ε_{0}{a}^{2}ε_{\mathrm{r},1}ε_{\mathrm{r},2}\, /\, [{d}(ε_{\mathrm{r},1}+ε_{\mathrm{r},2})]\end{equation*}
+
+\textbf{Check:} this is smaller than either layer capacitance, as a series equivalent must be.
+\end{enumerate}
+\end{workedbox}
+
+\end{keepsection}
+\begin{keepsection}\subsection{Task 8: Electrostatics}
+
+\begin{workedbox}{8d \ensuremath{\cdot} Free surface charge density}
+\Needspace{7\baselineskip}
+\begin{enumerate}
+\item \Needspace{5\baselineskip}
+The bottom face of the top plate points outward from the conductor in the \ensuremath{-}\textit{e}\textsubscript{z} direction. The free charge density on a conductor surface is \textit{D} \ensuremath{\cdot} \textit{n} just outside the metal:
+
+\begin{equation*}σ_{0}\, =\, {D}\, \cdot \, (-{e}_{\mathrm{z}})\end{equation*}
+\item \Needspace{4\baselineskip}
+Since \textit{D} also points downward for positive \textit{U}\textsubscript{0}, the dot product is positive:
+
+\Needspace{4\baselineskip}
+\begin{equation*}σ_{0}\, =\, 2ε_{0}ε_{\mathrm{r},1}ε_{\mathrm{r},2}{U}_{0}\, /\, [{d}(ε_{\mathrm{r},1}+ε_{\mathrm{r},2})]\end{equation*}
+
+The units are C/m². Reversing the applied voltage reverses the surface-charge sign.
+\end{enumerate}
+\end{workedbox}
+
+\end{keepsection}
+\begin{keepsection}\subsection{Task 8: Electrostatics}
+
+\begin{workedbox}{8e \ensuremath{\cdot} Series and parallel sections}
+\Needspace{7\baselineskip}
+\begin{enumerate}
+\item \Needspace{6\baselineskip}
+All paths pass through dielectric 1 across the full area \textit{a}\textsuperscript{2}. In the lower half, some area \textit{a}(\textit{a}\ensuremath{-}\textit{x}) contains dielectric 2 and the remaining area \textit{a x} contains air. Those lower branches share the same voltage:
+
+\begin{equation*}{C}_{1}\, —\, ({C}_{2}\, ∥\, {C}_{\mathrm{L}})\end{equation*}
+\item Thus \textit{C}\textsubscript{2} and \textit{C}\textsubscript{L} are in parallel with one another, and their equivalent is in series with \textit{C}\textsubscript{1}. \textbf{Check:} at \textit{x} = 0 the air branch has zero area; at \textit{x} = \textit{a} the lower dielectric branch has zero area.
+\end{enumerate}
+\end{workedbox}
+
+\end{keepsection}
+\begin{keepsection}\subsection{Task 8: Electrostatics}
+
+\begin{workedbox}{8f \ensuremath{\cdot} Capacitance after displacement}
+\Needspace{8\baselineskip}
+\begin{enumerate}
+\item \Needspace{5\baselineskip}
+The upper layer keeps area \textit{a}\textsuperscript{2} and thickness \textit{d}/2. The two lower branches each have thickness \textit{d}/2:
+
+\Needspace{4\baselineskip}
+\begin{equation*}{C}_{1}\, =\, 2ε_{0}ε_{\mathrm{r},1}{a}^{2}/{d}\end{equation*}
+
+\begin{equation*}{C}_{2}({x})\, =\, 2ε_{0}ε_{\mathrm{r},2}{a}({a}-{x})/{d},\, \quad \, {C}_{\mathrm{L}}({x})\, =\, 2ε_{0}{a\,x}/{d}\end{equation*}
+\item \Needspace{4\baselineskip}
+Add the parallel pair and then use the series formula:
+
+\Needspace{4\baselineskip}
+\begin{equation*}{C}_{\mathrm{p}}({x})\, =\, {C}_{2}({x})\, +\, {C}_{\mathrm{L}}({x})\, =\, (2ε_{0}{a}/{d})[ε_{\mathrm{r},2}{a}\, +\, (1-ε_{\mathrm{r},2}){x}]\end{equation*}
+
+\Needspace{4\baselineskip}
+\begin{equation*}{C}({x})\, =\, \dfrac{{C}_{1}{C}_{\mathrm{p}}({x})}{{C}_{1}+{C}_{\mathrm{p}}({x})}\end{equation*}
+
+\Needspace{5\baselineskip}
+\begin{equation*}{C}({x})\, =\, (2ε_{0}{a}/{d})\, \dfrac{ε_{\mathrm{r},1}{a}[ε_{\mathrm{r},2}{a}+(1-ε_{\mathrm{r},2}){x}]}{ε_{\mathrm{r},1}{a}+ε_{\mathrm{r},2}{a}+(1-ε_{\mathrm{r},2}){x}}\end{equation*}
+
+\textbf{Endpoint checks:} \textit{C}(0) matches 8c, while \textit{C}(\textit{a}) is the series combination of the upper dielectric and an air layer of thickness \textit{d}/2.
+\end{enumerate}
+\end{workedbox}
+
+\end{keepsection}
+\begin{keepsection}\subsection{Task 8: Electrostatics}
+
+\begin{workedbox}{8g \ensuremath{\cdot} Locate the extrema}
+\Needspace{8\baselineskip}
+\begin{enumerate}
+\item \Needspace{4\baselineskip}
+The lower equivalent is linear in \textit{x}:
+
+\Needspace{5\baselineskip}
+\begin{equation*}{C}_{\mathrm{p}}({x})\, =\, (2ε_{0}{a}/{d})[ε_{\mathrm{r},2}{a}\, +\, (1-ε_{\mathrm{r},2}){x}]\end{equation*}
+
+Because ε\textsubscript{r,2} is much greater than 1, its slope is negative. The series equivalent \textit{C}\textsubscript{1}\textit{C}\textsubscript{p}/(\textit{C}\textsubscript{1}+\textit{C}\textsubscript{p}) increases monotonically with \textit{C}\textsubscript{p}.
+\item \Needspace{4\baselineskip}
+Therefore the total capacitance decreases throughout 0 \ensuremath{\leq} \textit{x} \ensuremath{\leq} \textit{a}:
+
+\Needspace{5\baselineskip}
+\begin{equation*}\text{Maximum}\, \text{at}\, {x}\, =\, 0;\, \text{minimum}\, \text{at}\, {x}\, =\, {a}.\end{equation*}
+
+If ε\textsubscript{r,2} were exactly 1, the lower region would be air everywhere and the capacitance would be constant; the sheet specifies ε\textsubscript{r,2} much greater than 1, excluding that degenerate case.
+\end{enumerate}
+\end{workedbox}
+
+\end{keepsection}
+
+\vfill{\small Personal worked-solution guide based on the supplied EE1 Tutorial Task sheet, written in my own words; no tutorial text or figures are reproduced. Not an official FAU publication; check course details against current material. Made by \textbf{Thanate Amornjiraporn (Focus)}.}
+
+\end{document}

@@ -57,7 +57,7 @@ class Report:
         self.warnings.append(msg)
 
 
-EXERCISE = re.compile(r"([a-z]+)/exercise-(\d+)-worked-solutions\.html")
+WORKED_PAGE = re.compile(r"([a-z]+)/(exercise|tutorial)-(\d+)-worked-solutions\.html")
 
 
 def check_files(root, html, path, page_dir, rep):
@@ -68,6 +68,24 @@ def check_files(root, html, path, page_dir, rep):
             continue
         if not os.path.exists(os.path.normpath(os.path.join(page_dir, ref.split("#")[0]))):
             rep.err("broken local link: %s" % ref)
+    # every integral sign uses the operator markup, so the page draws one sign shape everywhere (GUIDE-STANDARD.md)
+    body = re.sub(r"<(script|title|style)\b.*?</\1>", "", html, flags=re.S)
+    body = re.sub(r'<span class="op-sym">[∫∮∬∯∭]', "", body)
+    body = re.sub(r"<[^>]*>", "", body)  # a sign inside an attribute does not count
+    bare = len(re.findall(r"[∫∮∬∯∭]", body))
+    if bare > 0:
+        rep.warn("%d integral sign(s) outside <span class=\"op op-int\"><span class=\"op-sym\">…</span>…</span>" % bare)
+    # the other signs with a fixed markup (GUIDE-STANDARD.md, Signs): roots, primes, subscripts
+    roots = len(re.findall(r"√", re.sub(r'<span class="root">√', "", body)))
+    if roots:
+        rep.warn("%d square root(s) outside <span class=\"sqrt\"><span class=\"root\">√</span><span class=\"rad\">…</span></span>" % roots)
+    maths = re.findall(r'<span class="formula">(.*?)</span>(?=<span class="(?:formula|eq-note)"|</div>)|<p class="math-line">(.*?)</p>', html, re.S)
+    primes = sum(re.sub(r"<[^>]*>", "", a + b).count("'") for a, b in maths)
+    if primes:
+        rep.warn("%d straight apostrophe(s) in formulas: write a prime as ′ (U+2032)" % primes)
+    subs = re.findall(r"[₀-₉]", re.sub(r"<(script|title|style)\b.*?</\1>", "", html, flags=re.S))
+    if subs:
+        rep.warn("%d Unicode subscript digit(s) (the PDF font has none): use <sub> in text, x_{12} in figure data" % len(subs))
     stem = os.path.splitext(path)[0]
     base = os.path.basename(stem)
     for ext in (".pdf", ".tex"):
@@ -84,9 +102,8 @@ def check_files(root, html, path, page_dir, rep):
         rep.err("%s is older than its .tex: rebuild the PDF" % os.path.relpath(pdf, ROOT))
 
 
-def check_exercise(path, rel, rep):
-    """Worked exercise pages: the guide shell, then per task a topic link and per subpart a try-first prompt and
-    hidden step-by-step answer (docs/EXERCISE-SOLUTIONS-STANDARD.md)."""
+def check_exercise(path, rel, rep, kind="Exercise"):
+    """Worked exercise/tutorial pages: shared shell, topic links, try-first prompts and step-by-step answers."""
     html = open(path, encoding="utf-8").read()
     t = Tree()
     t.feed(html)
@@ -104,7 +121,7 @@ def check_exercise(path, rel, rep):
     if not toc or not find(toc, lambda n: "brand" in n.cls and find(n, lambda m: m.tag == "svg")):
         rep.err("the rail needs the site brand with its mark, as on the guides")
     if toc and find(toc, lambda n: "chapter-switch" in n.cls):
-        rep.err("exercise pages have no Guide | Lab switch; nav.js adds the Chapters list with the exercises")
+        rep.err("worked pages have no Guide | Lab switch; nav.js adds the course list and pager")
     main = find(root, lambda n: n.tag == "main")
     head = find(main, lambda n: n.tag == "header" and "sign" in n.cls)
     for part in ("h1", "code", "course"):
@@ -149,7 +166,7 @@ def check_exercise(path, rel, rep):
     hub = open(os.path.join(ROOT, "index.html"), encoding="utf-8").read()
     link = re.search(r'<a href="%s"([^>]*)>' % re.escape(rel), hub)
     if not link:
-        rep.err("index.html does not link to %s from its subject's Exercise tab" % rel)
+        rep.err("index.html does not link to %s from its subject's %s tab" % (rel, kind))
     elif "data-note=" not in link.group(1) or "data-no=" not in link.group(1):
         rep.err("the hub link to %s needs data-no and data-note (its row number and what it covers)" % rel)
     smoke = os.path.join(ROOT, "..", "..", "BrowserTests", "tests", "smoke.spec.js")
@@ -158,10 +175,76 @@ def check_exercise(path, rel, rep):
     return rep
 
 
+APPENDIX = re.compile(r"([a-z]+)/appendix-([a-z])-[a-z0-9-]+\.html")
+
+
+def check_appendix(path, rel, rep):
+    """Reference appendix pages (docs/GUIDE-STANDARD.md, Appendix pages): the worked pages' frame, then sections
+    #sec-a1, #sec-a2, … of formula cards and figures, no hidden answers, and a hub link in the subject's Appendix tab."""
+    html = open(path, encoding="utf-8").read()
+    t = Tree()
+    t.feed(html)
+    root, page_dir = t.root, os.path.dirname(os.path.abspath(path))
+    for need in ('<html lang="en">', 'name="viewport"', 'name="description"', "<title>"):
+        if need not in html:
+            rep.err("head is missing %s" % need)
+    for asset in ("../css/system.css", "../css/guide.css", "../js/settings.js", "../js/guide.js", "../js/tooltip.js", "../js/nav.js"):
+        if asset not in html:
+            rep.err("page does not load %s" % asset)
+    body = find(root, lambda n: n.tag == "body")
+    if not body or not re.search(r"\bs-[a-z]+-\d\b", body.attrs.get("class", "")):
+        rep.err('<body> needs a subject class such as class="s-eei-1"')
+    toc = find(root, lambda n: n.tag == "nav" and "toc" in n.cls)
+    if not toc or not find(toc, lambda n: "brand" in n.cls and find(n, lambda m: m.tag == "svg")):
+        rep.err("the rail needs the site brand with its mark, as on the guides")
+    if toc and find(toc, lambda n: "chapter-switch" in n.cls):
+        rep.err("appendix pages have no Guide | Lab switch; nav.js adds the course list and pager")
+    main = find(root, lambda n: n.tag == "main")
+    head = find(main, lambda n: n.tag == "header" and "sign" in n.cls)
+    for part in ("h1", "code", "course"):
+        if not head or not find(head, lambda n, p=part: n.tag == p or p in n.cls):
+            rep.err("sign header is missing its %s" % part)
+    secs = [x for x in all_nodes(main, lambda n: n.tag == "section") if re.fullmatch(r"sec-[a-z]\d+", x.attrs.get("id", ""))]
+    if not secs:
+        rep.err("no appendix sections (#sec-a1, #sec-a2, …) found")
+    for x in secs:
+        if not find(x, lambda n: n.tag == "h2"):
+            rep.err("#%s has no h2" % x.attrs["id"])
+    if not find(main, lambda n: n.tag == "div" and "eq" in n.cls):
+        rep.err("an appendix collects formulas: it needs formula cards (div.eq)")
+    if find(main, lambda n: n.tag == "details" and "answers" in n.cls):
+        rep.err("an appendix is reference material: it has no hidden answers")
+    lists = [[a.attrs.get("href") for a in all_nodes(o, lambda n: n.tag == "a")] for o in all_nodes(toc, lambda n: n.tag == "ol")] if toc else []
+    if len(lists) == 2 and lists[0] != lists[1]:
+        rep.err("the mobile and desktop contents lists differ")
+    ids = {x.attrs["id"] for x in secs}
+    for href in set(sum(lists, [])):
+        if href.startswith("#") and href[1:] not in ids:
+            rep.err("contents link %s has no target" % href)
+    for sid in ids - {h[1:] for h in sum(lists, []) if h.startswith("#")}:
+        rep.warn("#%s is not in the contents" % sid)
+    check_files(root, html, path, page_dir, rep)
+    if not find(main, lambda n: "source-note" in n.cls):
+        rep.err("missing the source note (personal material, not an official FAU publication)")
+    hub = open(os.path.join(ROOT, "index.html"), encoding="utf-8").read()
+    link = re.search(r'<a href="%s"([^>]*)>' % re.escape(rel), hub)
+    if not link:
+        rep.err("index.html does not link to %s from its subject's Appendix tab" % rel)
+    elif "data-note=" not in link.group(1) or "data-no=" not in link.group(1):
+        rep.err("the hub link to %s needs data-no and data-note (its letter and what it covers)" % rel)
+    smoke = os.path.join(ROOT, "..", "..", "BrowserTests", "tests", "smoke.spec.js")
+    if os.path.exists(smoke) and os.path.basename(path) not in open(smoke, encoding="utf-8").read():
+        rep.warn("BrowserTests smoke.spec.js does not list %s" % os.path.basename(path))
+    return rep
+
+
 def check(path):
     rep = Report(os.path.relpath(path, ROOT))
-    if EXERCISE.fullmatch(os.path.relpath(path, ROOT)):
-        return check_exercise(path, os.path.relpath(path, ROOT), rep)
+    if APPENDIX.fullmatch(os.path.relpath(path, ROOT)):
+        return check_appendix(path, os.path.relpath(path, ROOT), rep)
+    worked = WORKED_PAGE.fullmatch(os.path.relpath(path, ROOT))
+    if worked:
+        return check_exercise(path, os.path.relpath(path, ROOT), rep, worked.group(2).capitalize())
     html = open(path, encoding="utf-8").read()
     t = Tree()
     t.feed(html)

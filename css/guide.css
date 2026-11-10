@@ -738,15 +738,12 @@ main > section {
   text-wrap: balance;
   overflow-wrap: anywhere;
 }
-/* Brackets around a stacked fraction grow to its height; integrals in a worked line get a sign tall enough for their limits. */
+/* Brackets around a stacked fraction grow to its height. */
 .worked .math-line .delim {
   display: inline-block;
   margin-inline: 0.03em;
   transform: scale(1.05, 1.9);
   font-weight: 300;
-}
-.worked .math-line .op-int > .op-sym {
-  font-size: 2em;
 }
 @media (prefers-reduced-motion: no-preference) {
   .method-list > li.step-in {
@@ -1525,10 +1522,21 @@ main > section:first-of-type > h2 {
 }
 .op-sum > sup { grid-area: hi; }
 .op-sum > sub { grid-area: lo; }
+/* Integrals: one thin, slanted sign everywhere, with the upper limit beside its top end and the lower limit beside its
+   bottom end (as in print). The sign is drawn as a mask in the text colour, so it stays thin at any height and looks the
+   same in every browser and font; js/guide.js tags each sign (data-sign), and without it the font's own sign shows.
+   Display lines (formula cards, worked lines, the concept map) get the tall sign, running text a shorter one. */
 .op-int {
+  --int-h: 1.6em;
   grid-template-areas: "sym hi" "sym lo";
   grid-template-columns: auto auto;
   align-items: center;
+  margin-inline: 0.04em 0.14em;
+}
+.formula .op-int,
+.math-line .op-int,
+.cm-formula .op-int {
+  --int-h: 2.3em;
 }
 .op-int > .op-sym {
   grid-area: sym;
@@ -1537,8 +1545,73 @@ main > section:first-of-type > h2 {
   line-height: 1;
   padding-inline-end: 0.06em;
 }
-.op-int > sup { grid-area: hi; align-self: start; }
-.op-int > sub { grid-area: lo; align-self: end; }
+.op-int > .op-sym[data-sign] {
+  display: inline-block;
+  height: var(--int-h);
+  padding: 0;
+  overflow: hidden;
+  font-size: 1em;
+  line-height: var(--int-h);
+  -webkit-text-fill-color: transparent;
+  background-color: currentColor;
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
+  -webkit-mask-size: 100% 100%;
+  mask-size: 100% 100%;
+}
+.op-int > .op-sym[data-sign="int"] {
+  width: calc(var(--int-h) * 0.40);
+  -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 40 100' fill='black' stroke='black' stroke-linecap='round' stroke-linejoin='round'%3E%3Cg fill='none'%3E%3Cpath d='M33 9C33 2 25 1 23.2 11' stroke-width='2.4'/%3E%3Cpath d='M23.2 11C21.4 32 19.4 68 17 89' stroke-width='3.3'/%3E%3Cpath d='M17 89C15.4 99 7 99 7 91' stroke-width='2.4'/%3E%3Ccircle fill='black' cx='33.4' cy='8.6' r='3.3'/%3E%3Ccircle fill='black' cx='6.6' cy='91.4' r='3.3'/%3E%3C/g%3E%3C/svg%3E");
+  mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 40 100' fill='black' stroke='black' stroke-linecap='round' stroke-linejoin='round'%3E%3Cg fill='none'%3E%3Cpath d='M33 9C33 2 25 1 23.2 11' stroke-width='2.4'/%3E%3Cpath d='M23.2 11C21.4 32 19.4 68 17 89' stroke-width='3.3'/%3E%3Cpath d='M17 89C15.4 99 7 99 7 91' stroke-width='2.4'/%3E%3Ccircle fill='black' cx='33.4' cy='8.6' r='3.3'/%3E%3Ccircle fill='black' cx='6.6' cy='91.4' r='3.3'/%3E%3C/g%3E%3C/svg%3E");
+}
+.op-int > .op-sym[data-sign="oint"] {
+  width: calc(var(--int-h) * 0.40);
+  -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 40 100' fill='black' stroke='black' stroke-linecap='round' stroke-linejoin='round'%3E%3Cg fill='none'%3E%3Cpath d='M33 9C33 2 25 1 23.2 11' stroke-width='2.4'/%3E%3Cpath d='M23.2 11C21.4 32 19.4 68 17 89' stroke-width='3.3'/%3E%3Cpath d='M17 89C15.4 99 7 99 7 91' stroke-width='2.4'/%3E%3Ccircle fill='black' cx='33.4' cy='8.6' r='3.3'/%3E%3Ccircle fill='black' cx='6.6' cy='91.4' r='3.3'/%3E%3Cellipse cx='20.0' cy='50' rx='7.5' ry='7.5' fill='none' stroke-width='2.2'/%3E%3C/g%3E%3C/svg%3E");
+  mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 40 100' fill='black' stroke='black' stroke-linecap='round' stroke-linejoin='round'%3E%3Cg fill='none'%3E%3Cpath d='M33 9C33 2 25 1 23.2 11' stroke-width='2.4'/%3E%3Cpath d='M23.2 11C21.4 32 19.4 68 17 89' stroke-width='3.3'/%3E%3Cpath d='M17 89C15.4 99 7 99 7 91' stroke-width='2.4'/%3E%3Ccircle fill='black' cx='33.4' cy='8.6' r='3.3'/%3E%3Ccircle fill='black' cx='6.6' cy='91.4' r='3.3'/%3E%3Cellipse cx='20.0' cy='50' rx='7.5' ry='7.5' fill='none' stroke-width='2.2'/%3E%3C/g%3E%3C/svg%3E");
+}
+.op-int > .op-sym[data-sign="iint"] {
+  width: calc(var(--int-h) * 0.56);
+  -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 56 100' fill='black' stroke='black' stroke-linecap='round' stroke-linejoin='round'%3E%3Cg fill='none'%3E%3Cpath d='M33 9C33 2 25 1 23.2 11' stroke-width='2.4'/%3E%3Cpath d='M23.2 11C21.4 32 19.4 68 17 89' stroke-width='3.3'/%3E%3Cpath d='M17 89C15.4 99 7 99 7 91' stroke-width='2.4'/%3E%3Ccircle fill='black' cx='33.4' cy='8.6' r='3.3'/%3E%3Ccircle fill='black' cx='6.6' cy='91.4' r='3.3'/%3E%3Cpath d='M49 9C49 2 41 1 39.2 11' stroke-width='2.4'/%3E%3Cpath d='M39.2 11C37.4 32 35.4 68 33 89' stroke-width='3.3'/%3E%3Cpath d='M33 89C31.4 99 23 99 23 91' stroke-width='2.4'/%3E%3Ccircle fill='black' cx='49.4' cy='8.6' r='3.3'/%3E%3Ccircle fill='black' cx='22.6' cy='91.4' r='3.3'/%3E%3C/g%3E%3C/svg%3E");
+  mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 56 100' fill='black' stroke='black' stroke-linecap='round' stroke-linejoin='round'%3E%3Cg fill='none'%3E%3Cpath d='M33 9C33 2 25 1 23.2 11' stroke-width='2.4'/%3E%3Cpath d='M23.2 11C21.4 32 19.4 68 17 89' stroke-width='3.3'/%3E%3Cpath d='M17 89C15.4 99 7 99 7 91' stroke-width='2.4'/%3E%3Ccircle fill='black' cx='33.4' cy='8.6' r='3.3'/%3E%3Ccircle fill='black' cx='6.6' cy='91.4' r='3.3'/%3E%3Cpath d='M49 9C49 2 41 1 39.2 11' stroke-width='2.4'/%3E%3Cpath d='M39.2 11C37.4 32 35.4 68 33 89' stroke-width='3.3'/%3E%3Cpath d='M33 89C31.4 99 23 99 23 91' stroke-width='2.4'/%3E%3Ccircle fill='black' cx='49.4' cy='8.6' r='3.3'/%3E%3Ccircle fill='black' cx='22.6' cy='91.4' r='3.3'/%3E%3C/g%3E%3C/svg%3E");
+}
+.op-int > .op-sym[data-sign="oiint"] {
+  width: calc(var(--int-h) * 0.56);
+  -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 56 100' fill='black' stroke='black' stroke-linecap='round' stroke-linejoin='round'%3E%3Cg fill='none'%3E%3Cpath d='M33 9C33 2 25 1 23.2 11' stroke-width='2.4'/%3E%3Cpath d='M23.2 11C21.4 32 19.4 68 17 89' stroke-width='3.3'/%3E%3Cpath d='M17 89C15.4 99 7 99 7 91' stroke-width='2.4'/%3E%3Ccircle fill='black' cx='33.4' cy='8.6' r='3.3'/%3E%3Ccircle fill='black' cx='6.6' cy='91.4' r='3.3'/%3E%3Cpath d='M49 9C49 2 41 1 39.2 11' stroke-width='2.4'/%3E%3Cpath d='M39.2 11C37.4 32 35.4 68 33 89' stroke-width='3.3'/%3E%3Cpath d='M33 89C31.4 99 23 99 23 91' stroke-width='2.4'/%3E%3Ccircle fill='black' cx='49.4' cy='8.6' r='3.3'/%3E%3Ccircle fill='black' cx='22.6' cy='91.4' r='3.3'/%3E%3Cellipse cx='28.0' cy='50' rx='16' ry='7.5' fill='none' stroke-width='2.2'/%3E%3C/g%3E%3C/svg%3E");
+  mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 56 100' fill='black' stroke='black' stroke-linecap='round' stroke-linejoin='round'%3E%3Cg fill='none'%3E%3Cpath d='M33 9C33 2 25 1 23.2 11' stroke-width='2.4'/%3E%3Cpath d='M23.2 11C21.4 32 19.4 68 17 89' stroke-width='3.3'/%3E%3Cpath d='M17 89C15.4 99 7 99 7 91' stroke-width='2.4'/%3E%3Ccircle fill='black' cx='33.4' cy='8.6' r='3.3'/%3E%3Ccircle fill='black' cx='6.6' cy='91.4' r='3.3'/%3E%3Cpath d='M49 9C49 2 41 1 39.2 11' stroke-width='2.4'/%3E%3Cpath d='M39.2 11C37.4 32 35.4 68 33 89' stroke-width='3.3'/%3E%3Cpath d='M33 89C31.4 99 23 99 23 91' stroke-width='2.4'/%3E%3Ccircle fill='black' cx='49.4' cy='8.6' r='3.3'/%3E%3Ccircle fill='black' cx='22.6' cy='91.4' r='3.3'/%3E%3Cellipse cx='28.0' cy='50' rx='16' ry='7.5' fill='none' stroke-width='2.2'/%3E%3C/g%3E%3C/svg%3E");
+}
+.op-int > .op-sym[data-sign="iiint"] {
+  width: calc(var(--int-h) * 0.72);
+  -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 72 100' fill='black' stroke='black' stroke-linecap='round' stroke-linejoin='round'%3E%3Cg fill='none'%3E%3Cpath d='M33 9C33 2 25 1 23.2 11' stroke-width='2.4'/%3E%3Cpath d='M23.2 11C21.4 32 19.4 68 17 89' stroke-width='3.3'/%3E%3Cpath d='M17 89C15.4 99 7 99 7 91' stroke-width='2.4'/%3E%3Ccircle fill='black' cx='33.4' cy='8.6' r='3.3'/%3E%3Ccircle fill='black' cx='6.6' cy='91.4' r='3.3'/%3E%3Cpath d='M49 9C49 2 41 1 39.2 11' stroke-width='2.4'/%3E%3Cpath d='M39.2 11C37.4 32 35.4 68 33 89' stroke-width='3.3'/%3E%3Cpath d='M33 89C31.4 99 23 99 23 91' stroke-width='2.4'/%3E%3Ccircle fill='black' cx='49.4' cy='8.6' r='3.3'/%3E%3Ccircle fill='black' cx='22.6' cy='91.4' r='3.3'/%3E%3Cpath d='M65 9C65 2 57 1 55.2 11' stroke-width='2.4'/%3E%3Cpath d='M55.2 11C53.4 32 51.4 68 49 89' stroke-width='3.3'/%3E%3Cpath d='M49 89C47.4 99 39 99 39 91' stroke-width='2.4'/%3E%3Ccircle fill='black' cx='65.4' cy='8.6' r='3.3'/%3E%3Ccircle fill='black' cx='38.6' cy='91.4' r='3.3'/%3E%3C/g%3E%3C/svg%3E");
+  mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 72 100' fill='black' stroke='black' stroke-linecap='round' stroke-linejoin='round'%3E%3Cg fill='none'%3E%3Cpath d='M33 9C33 2 25 1 23.2 11' stroke-width='2.4'/%3E%3Cpath d='M23.2 11C21.4 32 19.4 68 17 89' stroke-width='3.3'/%3E%3Cpath d='M17 89C15.4 99 7 99 7 91' stroke-width='2.4'/%3E%3Ccircle fill='black' cx='33.4' cy='8.6' r='3.3'/%3E%3Ccircle fill='black' cx='6.6' cy='91.4' r='3.3'/%3E%3Cpath d='M49 9C49 2 41 1 39.2 11' stroke-width='2.4'/%3E%3Cpath d='M39.2 11C37.4 32 35.4 68 33 89' stroke-width='3.3'/%3E%3Cpath d='M33 89C31.4 99 23 99 23 91' stroke-width='2.4'/%3E%3Ccircle fill='black' cx='49.4' cy='8.6' r='3.3'/%3E%3Ccircle fill='black' cx='22.6' cy='91.4' r='3.3'/%3E%3Cpath d='M65 9C65 2 57 1 55.2 11' stroke-width='2.4'/%3E%3Cpath d='M55.2 11C53.4 32 51.4 68 49 89' stroke-width='3.3'/%3E%3Cpath d='M49 89C47.4 99 39 99 39 91' stroke-width='2.4'/%3E%3Ccircle fill='black' cx='65.4' cy='8.6' r='3.3'/%3E%3Ccircle fill='black' cx='38.6' cy='91.4' r='3.3'/%3E%3C/g%3E%3C/svg%3E");
+}
+.op-int > sup { grid-area: hi; align-self: start; margin-left: 0.18em; }
+.op-int > sub { grid-area: lo; align-self: end; margin-left: -0.06em; }
+
+/* Square roots: a thin sign that stretches to the height of what is under it, joined to a bar over all of it (as in
+   print), so the reader sees exactly what the root covers. Markup:
+   <span class="sqrt"><span class="root">√</span><span class="rad">x<sup>2</sup> + y<sup>2</sup></span></span>.
+   The real √ stays in the text for copying and screen readers; the mask draws the sign in the text colour. */
+.sqrt {
+  position: relative;
+  display: inline-block;
+  padding-left: 0.6em;
+  white-space: nowrap;
+}
+.sqrt > .root {
+  position: absolute;
+  inset: 0 auto 0 0;
+  width: 0.62em;
+  overflow: hidden;
+  -webkit-text-fill-color: transparent;
+  background-color: currentColor;
+  -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 62 100' preserveAspectRatio='none'%3E%3Cpath fill='black' d='M2 60L13 54L28 88L54 0L62 0L62 6L57.5 6L31 100L26 100L11 61L4 64Z'/%3E%3C/svg%3E") no-repeat 0 0 / 100% 100%;
+  mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 62 100' preserveAspectRatio='none'%3E%3Cpath fill='black' d='M2 60L13 54L28 88L54 0L62 0L62 6L57.5 6L31 100L26 100L11 61L4 64Z'/%3E%3C/svg%3E") no-repeat 0 0 / 100% 100%;
+}
+.sqrt > .rad {
+  display: inline-block;
+  padding: 0.12em 0.08em 0 0.06em;
+  border-top: 0.075em solid currentColor;
+}
 
 /* Formula cards: one formula per line, italic variables, the note set apart under a hairline. */
 .eq {
@@ -2095,6 +2168,10 @@ path.vz-seg {
   .viz svg.vz-narrow {
     display: block;
   }
+}
+/* Coordinate-system pictures are 3D and busy, so they take a wider column: two to a row. */
+.figs > .viz[data-kind^="coord"] {
+  flex: 0 1 330px;
 }
 /* Wide diagrams (a chain of steps) take a full row, so their labels stay readable. */
 .figs > .viz[data-kind="flow"] {

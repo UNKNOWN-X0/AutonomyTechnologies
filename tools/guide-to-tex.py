@@ -65,7 +65,7 @@ def find(node, pred):
 TEXT_SPECIAL = {"&": r"\&", "%": r"\%", "$": r"\$", "#": r"\#", "_": r"\_",
                 "{": r"\{", "}": r"\}", "~": r"\textasciitilde{}", "^": r"\textasciicircum{}",
                 "\\": r"\textbackslash{}"}
-TEXT_MATH = {"⊕": r"\oplus", "∘": r"\circ", "↦": r"\mapsto", "∂": r"\partial", "∫": r"\int", "∮": r"\oint", "∯": r"\oiint", "∬": r"\iint", "∭": r"\iiint",
+TEXT_MATH = {"′": r"{}^{\prime}", "∑": r"\textstyle\sum", "∏": r"\textstyle\prod", "⊕": r"\oplus", "∘": r"\circ", "↦": r"\mapsto", "∂": r"\partial", "∫": r"\int", "∮": r"\oint", "∯": r"\oiint", "∬": r"\iint", "∭": r"\iiint",
              "≈": r"\approx", "∝": r"\propto", "≪": r"\ll", "≤": r"\leq", "≥": r"\geq",
              "→": r"\to", "≠": r"\neq", "±": r"\pm", "∓": r"\mp", "·": r"\cdot",
              "×": r"\times", "−": "-", "√": r"\surd", "∞": r"\infty", "Σ": r"\Sigma",
@@ -107,6 +107,8 @@ def inline(node):
             out.append(r"\textbf{%s}" % inline(k))
         elif t == "em":
             out.append(r"\emph{%s}" % inline(k))
+        elif t == "span" and "sqrt" in c:
+            out.append(r"\ensuremath{%s}" % sqrt_tex(k))
         elif t == "span" and "op" in c:
             out.append("$%s$" % big_op(k))
         elif t == "span" and "frac" in c:
@@ -124,7 +126,7 @@ def inline(node):
 
 
 # ---------- math mode (formula spans) ----------
-MATH_MAP = {"−": "-", "∘": r"\circ ", "↦": r"\mapsto ", "·": r"\cdot ", "×": r"\times ", "≈": r"\approx ", "½": r"\tfrac{1}{2}",
+MATH_MAP = {"′": "'", "−": "-", "∘": r"\circ ", "↦": r"\mapsto ", "·": r"\cdot ", "×": r"\times ", "≈": r"\approx ", "½": r"\tfrac{1}{2}",
             "Σ": r"\sum", "→": r"\to ", "∝": r"\propto ", "≪": r"\ll ", "√": r"\sqrt",
             "∞": r"\infty ", "≥": r"\geq ", "≤": r"\leq ", "±": r"\pm ", "∓": r"\mp ",
             "¬": r"\neg ", "∧": r"\land ", "∨": r"\lor ", "⇒": r"\Rightarrow ", "⇔": r"\Leftrightarrow ",
@@ -186,6 +188,8 @@ def math(node):
             out.append("_{%s}" % math(k))
         elif t == "sup":
             out.append("^{%s}" % math(k))
+        elif t == "span" and "sqrt" in c:
+            out.append(sqrt_tex(k))
         elif t == "span" and "op" in c:
             out.append(big_op(k))
         elif t == "span" and "frac" in c:
@@ -196,7 +200,7 @@ def math(node):
     return "".join(out)
 
 
-BIG_OPS = {"Σ": r"\sum", "∑": r"\sum", "Π": r"\prod", "∏": r"\prod", "∫": r"\int", "∮": r"\oint", "∬": r"\iint", "∯": r"\oiint", "∪": r"\bigcup", "∩": r"\bigcap", "⋃": r"\bigcup", "⋂": r"\bigcap"}
+BIG_OPS = {"Σ": r"\sum", "∑": r"\sum", "Π": r"\prod", "∏": r"\prod", "∫": r"\int", "∮": r"\oint", "∬": r"\iint", "∯": r"\oiint", "∭": r"\iiint", "∪": r"\bigcup", "∩": r"\bigcap", "⋃": r"\bigcup", "⋂": r"\bigcap"}
 
 
 def big_op(node):
@@ -208,6 +212,12 @@ def big_op(node):
     if "sup" in parts:
         s += "^{%s}" % math(parts["sup"])
     return s + " "
+
+
+def sqrt_tex(node):
+    """A <span class="sqrt">: \\sqrt over the whole radicand (the .rad span), as the page draws its bar."""
+    rad = next(x for x in node.kids if isinstance(x, Node) and "rad" in x.cls)
+    return r"\sqrt{%s}" % math(rad)
 
 
 def var_math(node):
@@ -335,6 +345,167 @@ def smooth(pts):
     if len(pts) < 4:
         return " -- ".join(P(x, y) for x, y in pts)
     return "plot[smooth,tension=0.5] coordinates {%s}" % " ".join(P(x, y) for x, y in pts)
+
+
+def coord_pieces(sub):
+    """Same geometry as COORD in js/guide.js: a true orthographic view (azimuth 20°, elevation 40°) of a point in
+    cylindrical or spherical coordinates, or of the Cartesian volume element, as a list of pieces in page units."""
+    import math
+    A, E, R = math.pi / 9, math.radians(40), math.pi / 180
+    U = (-math.sin(A), math.cos(A), 0)
+    W = (-math.sin(E) * math.cos(A), -math.sin(E) * math.sin(A), math.cos(E))
+    out = []
+    O = [0, 0]
+    dot = lambda a, b: a[0] * b[0] + a[1] * b[1] + a[2] * b[2]
+    pr = lambda p: (round(O[0] + dot(p, U), 1), round(O[1] - dot(p, W), 1))
+    add = lambda p, v, k: (p[0] + k * v[0], p[1] + k * v[1], p[2] + k * v[2])
+    arc = lambda f, t0, t1, n: [pr(f(t0 + (t1 - t0) * i / n)) for i in range(n + 1)]
+
+    def tip_label(p, v, L, s, cls):
+        a, b = pr(p), pr(add(p, v, L))
+        dx, dy = b[0] - a[0], b[1] - a[1]
+        m = math.hypot(dx, dy) or 1
+        out.append(["text", (b[0] + 11 * dx / m, b[1] + 11 * dy / m + 4), s, cls, "middle"])
+
+    def vec(p, v, L, s):
+        a, b = pr(p), pr(add(p, v, L))
+        m = math.hypot(b[0] - a[0], b[1] - a[1])
+        if m < 30:
+            L = L * 30 / m
+        out.append(["arrow", pr(p), pr(add(p, v, L)), "seg"])
+        tip_label(p, v, L, s, "acc halo")
+
+    def axis(v, L, s):
+        out.append(["arrow", pr((0, 0, 0)), pr((v[0] * L, v[1] * L, v[2] * L)), "ink"])
+        tip_label((0, 0, 0), v, L, s, "")
+
+    def mid_label(p, q, s, away, at=0.5):
+        a, b = pr(p), pr(q)
+        m = (a[0] + at * (b[0] - a[0]), a[1] + at * (b[1] - a[1]))
+        nx, ny = b[1] - a[1], a[0] - b[0]
+        k = math.hypot(nx, ny) or 1
+        w = pr(away)
+        if (w[0] - m[0]) * nx + (w[1] - m[1]) * ny > 0:
+            nx, ny = -nx, -ny
+        out.append(["text", (m[0] + 10 * nx / k, m[1] + 10 * ny / k + 4), s, "", "middle"])
+
+    def fit():
+        M, xs, ys = 6, [], []
+
+        def take(q, l, r, t, b):
+            xs.extend([q[0] - l, q[0] + r])
+            ys.extend([q[1] - t, q[1] + b])
+        for p in out:
+            if p[0] in ("line", "curve", "poly"):
+                for q in p[1]:
+                    take(q, 0, 0, 0, 0)
+            elif p[0] == "circle":
+                take(p[1], p[2], p[2], p[2], p[2])
+            elif p[0] == "arrow":
+                take(p[1], 0, 0, 0, 0)
+                take(p[2], 6, 6, 6, 6)
+            elif p[0] == "dot":
+                take(p[1], 4, 4, 4, 4)
+            else:
+                w = 7 * len(p[2].replace("_", ""))
+                take(p[1], w if p[4] == "end" else w / 2 if p[4] == "middle" else 0,
+                     w if p[4] == "start" else w / 2 if p[4] == "middle" else 0, 12, 4)
+        dx, dy = M - min(xs), M - min(ys)
+        mv = lambda q: (q[0] + dx, q[1] + dy)
+        for p in out:
+            if p[0] in ("line", "curve", "poly"):
+                p[1] = [mv(q) for q in p[1]]
+            elif p[0] == "arrow":
+                p[1], p[2] = mv(p[1]), mv(p[2])
+            else:
+                p[1] = mv(p[1])
+        return out
+
+    cos, sin = math.cos, math.sin
+    if sub == "cyl":
+        Rc, H, ph, zp = 72, 130, 50 * R, 92
+        ring = lambda z: (lambda t: (Rc * cos(t), Rc * sin(t), z))
+        P_, F = (Rc * cos(ph), Rc * sin(ph), zp), (Rc * cos(ph), Rc * sin(ph), 0)
+        out += [["curve", arc(ring(0), A + 90 * R, A + 270 * R, 36), "dash"], ["curve", arc(ring(0), A - 90 * R, A + 90 * R, 36), "ink"],
+                ["curve", arc(ring(H), 0, 2 * math.pi, 72), "ink"]]
+        for t in (A + 90 * R, A - 90 * R):
+            out.append(["line", [pr(ring(0)(t)), pr(ring(H)(t))], "ink"])
+        axis((1, 0, 0), Rc + 46, "x"); axis((0, 1, 0), Rc + 56, "y"); axis((0, 0, 1), H + 34, "z")
+        patch = arc(lambda t: (Rc * cos(t), Rc * sin(t), zp - 9), ph - 9 * R, ph + 9 * R, 8) + \
+            arc(lambda t: (Rc * cos(t), Rc * sin(t), zp + 9), ph + 9 * R, ph - 9 * R, 8)
+        out += [["poly", patch, "fill"], ["line", [pr((0, 0, 0)), pr(F)], "thick"], ["line", [pr(F), pr(P_)], "dash"],
+                ["curve", arc(lambda t: (30 * cos(t), 30 * sin(t), 0), 0, ph, 12), "ink"]]
+        mid_label((0, 0, 0), F, "ρ", (0, Rc, 0), 0.72)
+        fl = pr((42 * cos(ph / 2), 42 * sin(ph / 2), 0))
+        out.append(["text", (fl[0], fl[1] + 4), "φ", "", "middle"])
+        mid_label(F, P_, "z", (2 * P_[0], 2 * P_[1], zp / 2), 0.4)
+        pc = pr((Rc * cos(ph + 9 * R), Rc * sin(ph + 9 * R), zp - 4))
+        out += [["text", (pc[0] + 6, pc[1] + 4), "dA", "halo", "start"], ["dot", pr(P_)]]
+        vec(P_, (cos(ph), sin(ph), 0), 36, "e_ρ"); vec(P_, (-sin(ph), cos(ph), 0), 36, "e_φ"); vec(P_, (0, 0, 1), 36, "e_z")
+        return fit()
+    if sub == "sph":
+        Rs, th, pf = 84, 50 * R, 100 * R
+        S = lambda t, p, r: (r * sin(t) * cos(p), r * sin(t) * sin(p), r * cos(t))
+        Q, G = S(th, pf, Rs), (S(th, pf, Rs)[0], S(th, pf, Rs)[1], 0)
+        out += [["curve", arc(lambda t: (Rs * cos(t), Rs * sin(t), 0), A + 90 * R, A + 270 * R, 36), "dash"],
+                ["curve", arc(lambda t: (Rs * cos(t), Rs * sin(t), 0), A - 90 * R, A + 90 * R, 36), "ink"],
+                ["circle", tuple(O), Rs]]
+        axis((1, 0, 0), Rs + 40, "x"); axis((0, 1, 0), Rs + 40, "y"); axis((0, 0, 1), Rs + 34, "z")
+        sp = arc(lambda t: S(th - 9 * R, t, Rs), pf - 13 * R, pf + 13 * R, 8) + arc(lambda t: S(th + 9 * R, t, Rs), pf + 13 * R, pf - 13 * R, 8)
+        out += [["poly", sp, "fill"], ["line", [pr((0, 0, 0)), pr(Q)], "thick"], ["line", [pr(Q), pr(G)], "dash"], ["line", [pr((0, 0, 0)), pr(G)], "dash"],
+                ["curve", arc(lambda t: S(t, pf, 32), 0, th, 10), "ink"],
+                ["curve", arc(lambda t: (28 * cos(t), 28 * sin(t), 0), 0, pf, 12), "ink"]]
+        mid_label((0, 0, 0), Q, "r", (0, 0, Rs))
+        tl, pl = pr(S(th / 2, pf, 44)), pr((40 * cos(pf / 2), 40 * sin(pf / 2), 0))
+        out += [["text", (tl[0], tl[1] + 4), "ϑ", "", "middle"], ["text", (pl[0], pl[1] + 4), "φ", "", "middle"]]
+        sc = pr(Q)
+        out += [["text", (sc[0] - 16, sc[1] - 10), "dA", "halo", "end"], ["dot", sc]]
+        vec(Q, (sin(th) * cos(pf), sin(th) * sin(pf), cos(th)), 36, "e_r")
+        vec(Q, (cos(th) * cos(pf), cos(th) * sin(pf), -sin(th)), 36, "e_ϑ")
+        vec(Q, (-sin(pf), cos(pf), 0), 36, "e_φ")
+        return fit()
+    a, b, c = 70, 112, 74
+    C = lambda i, j, k: pr((i * a, j * b, k * c))
+    out += [["poly", [C(1, 0, 0), C(1, 1, 0), C(1, 1, 1), C(1, 0, 1)], "cell"], ["poly", [C(0, 1, 0), C(1, 1, 0), C(1, 1, 1), C(0, 1, 1)], "cell"],
+            ["poly", [C(0, 0, 1), C(1, 0, 1), C(1, 1, 1), C(0, 1, 1)], "fill"]]
+    for e in ((C(0, 0, 0), C(1, 0, 0)), (C(0, 0, 0), C(0, 1, 0)), (C(0, 0, 0), C(0, 0, 1))):
+        out.append(["line", list(e), "dash"])
+    for e in ((C(1, 0, 0), C(1, 1, 0)), (C(1, 1, 0), C(0, 1, 0)), (C(1, 0, 0), C(1, 0, 1)), (C(1, 1, 0), C(1, 1, 1)), (C(0, 1, 0), C(0, 1, 1)),
+              (C(0, 0, 1), C(1, 0, 1)), (C(1, 0, 1), C(1, 1, 1)), (C(1, 1, 1), C(0, 1, 1)), (C(0, 1, 1), C(0, 0, 1))):
+        out.append(["line", list(e), "ink"])
+    for m, n, s1, s2, lab in (((a, b / 2, c / 2), (1, 0, 0), (0, 1, 0), (0, 0, 1), "e_x"), ((a / 2, b, c / 2), (0, 1, 0), (1, 0, 0), (0, 0, 1), "e_y"),
+                              ((a / 2, b / 2, c), (0, 0, 1), (1, 0, 0), (0, 1, 0), "e_z")):
+        h = 7
+        out.append(["poly", [pr(add(add(m, s1, -h), s2, -h)), pr(add(add(m, s1, h), s2, -h)), pr(add(add(m, s1, h), s2, h)), pr(add(add(m, s1, -h), s2, h))], "patch"])
+        vec(m, n, 42, lab)
+    mid_label((a, 0, 0), (a, b, 0), "dy", (a / 2, b / 2, c / 2), 0.78)
+    mid_label((0, b, 0), (a, b, 0), "dx", (a / 2, b / 2, c / 2))
+    mid_label((a, 0, 0), (a, 0, c), "dz", (a / 2, b / 2, c / 2))
+    return fit()
+
+
+def coord_tikz(sub):
+    """TikZ for coord_pieces(): page y runs down, so text sits 4 units above its baseline point."""
+    st = {"ink": "black!80", "thick": "black!85,line width=1pt", "dash": "black!55,dashed"}
+    fill = {"fill": "draw=black!70,fill=FAUblue!25", "cell": "draw=black!45,fill=Paperblue", "patch": "draw=FAUblue,fill=FAUblue"}
+    out = []
+    for p in coord_pieces(sub):
+        if p[0] == "line":
+            out.append(r"\draw[%s] %s -- %s;" % (st[p[2]], P(*p[1][0]), P(*p[1][1])))
+        elif p[0] == "curve":
+            out.append(r"\draw[%s] %s;" % (st[p[2]], smooth(p[1])))
+        elif p[0] == "poly":
+            out.append(r"\filldraw[%s] %s -- cycle;" % (fill[p[2]], " -- ".join(P(*q) for q in p[1])))
+        elif p[0] == "circle":
+            out.append(r"\draw[black!80] %s circle (%.3f);" % (P(*p[1]), p[2] * VS))
+        elif p[0] == "arrow":
+            out.append(arrow_t(p[1][0], p[1][1], p[2][0], p[2][1], "FAUblue,line width=1.5pt" if p[3] == "seg" else "black!80"))
+        elif p[0] == "dot":
+            out.append(r"\fill[FAUblue] %s circle (%.3f);" % (P(*p[1]), 3.5 * VS))
+        else:
+            anchor = {"start": "anchor=west", "end": "anchor=east"}.get(p[4], "")
+            out.append(T(p[1][0], p[1][1] - 4, p[2], r"\footnotesize", anchor, True, "FAUblue" if "acc" in p[3] else "", "halo" in p[3]))
+    return out
 
 
 def viz_tikz(f):
@@ -668,6 +839,8 @@ def viz_tikz(f):
                 out.append(arrow_t(*(p2 + p1)) if neg else arrow_t(*(p1 + p2)))
             out.append(r"\filldraw[draw=FAUblue,fill=FAUblue] %s circle (%.3f);" % (P(c, c), 13 * VS))
             out.append(r"\node[text=white,font=\small\bfseries] at %s {%s};" % (P(c, c), "−" if neg else "+"))
+    elif kind == "coord":
+        out += coord_tikz(sub)
     elif kind == "nest":
         R = [[x.strip() for x in r.split(":")] for r in a["data-rings"].split("|")]
         for i in range(len(R) - 1, -1, -1):
@@ -1036,7 +1209,8 @@ def main(src, dst):
     main_el = find(t.root, lambda n: n.tag == "main")
     conv = Conv()
     body = conv.blocks(main_el)
-    ans = ["\n\\clearpage\n\\section{Answers}\n"]
+    # a page with no hidden answers (a reference appendix) gets no empty Answers section
+    ans = ["\n\\clearpage\n\\section{Answers}\n"] if conv.answers else []
     for label, summ, latex in conv.answers:
         ans.append("\\begin{keepsection}\\subsection{%s}\n%s\n\\end{keepsection}\n" % (tex_text(label), latex))
     note = body.rsplit("\\vfill", 1)

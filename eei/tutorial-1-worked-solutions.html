@@ -1,0 +1,89 @@
+<!doctype html>
+<html lang="en"><head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="theme-color" content="#04316A" /><meta name="description" content="Step-by-step worked solutions for EEI Tutorial 1: units and coordinate systems." />
+  <title>Tutorial 1 · Worked solutions · EEI</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" /><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../css/system.css" /><script src="../js/settings.js"></script><link rel="stylesheet" href="../css/guide.css" />
+</head><body class="s-eei-1"><div class="wrap">
+  <nav class="toc" aria-label="Tutorial contents"><a class="brand" href="../index.html" aria-label="From Fundamentals to AI Apocalypse home">
+    <svg class="mark" viewBox="0 0 40 40" width="38" height="38" aria-hidden="true"><defs><linearGradient id="mk-bg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#04316A"/><stop offset="1" stop-color="#021D40"/></linearGradient><linearGradient id="mk-ring" x1="0" y1="1" x2="1" y2="0"><stop offset="0" stop-color="#80ECF1"/><stop offset="1" stop-color="#9BE34A"/></linearGradient><radialGradient id="mk-core"><stop offset="0" stop-color="#F4FFE6"/><stop offset=".45" stop-color="#9BE34A"/><stop offset="1" stop-color="#9BE34A" stop-opacity="0"/></radialGradient></defs><rect width="40" height="40" fill="url(#mk-bg)"/><g class="mk-orbit mk-orbit-a"><g transform="rotate(-28 20 20)"><ellipse cx="20" cy="20" rx="14" ry="6.2" fill="none" stroke="url(#mk-ring)" stroke-width="1.6"/><circle class="mk-charge" r="1.9" fill="#fff"/></g></g><g class="mk-orbit mk-orbit-b"><ellipse cx="20" cy="20" rx="14" ry="6.2" fill="none" stroke="#C9D6EA" stroke-width="1.1" stroke-opacity=".55" transform="rotate(32 20 20)"/></g><circle class="mk-glow" cx="20" cy="20" r="8" fill="url(#mk-core)"/><circle cx="20" cy="20" r="3" fill="#F4FFE6"/></svg>
+    <span>From Fundamentals to AI Apocalypse</span></a>
+    <a class="home" href="../index.html">All semesters</a>
+    <details class="mobile-toc"><summary>Jump to a task</summary><ol><li><a href="#task-1">Task 1 · Convert units</a></li><li><a href="#task-2">Task 2 · Cartesian vectors</a></li><li><a href="#task-3">Task 3 · Coordinate systems</a></li></ol></details>
+    <ol><li class="toc-group" aria-hidden="true">Tutorial 1</li><li><a href="#task-1">Task 1 · Convert units</a></li><li><a href="#task-2">Task 2 · Cartesian vectors</a></li><li><a href="#task-3">Task 3 · Coordinate systems</a></li></ol>
+  </nav><main>
+    <header class="sign"><span class="code">EEI</span><h1>Tutorial 1: Worked solutions</h1><p class="course">Electrical Engineering I · Module 92315 · Tutorial 1</p></header>
+    <p class="standfirst">Use these first tasks to get comfortable with SI prefixes, vector arithmetic and coordinate systems. Try each part before opening its worked steps.</p>
+    <div class="downloads" aria-label="Download tutorial solution files"><p>Take the solutions offline</p><a class="btn primary" href="tutorial-1-worked-solutions.pdf" download>Download clean PDF</a><a class="btn" href="tutorial-1-worked-solutions.tex" download>Download LaTeX source (.tex)</a></div>
+
+    <section id="task-1" aria-labelledby="task-1-title">
+      <h2 id="task-1-title">Task 1: Convert units</h2>
+      <p>Rewrite each quantity using a suitable SI prefix while keeping its physical value unchanged.</p>
+      <p class="topic-link"><strong>Connected topic:</strong> <a href="ch1-electrostatic-fields.html#sec-11">Electric charge and field quantities (§1.1)</a> use SI units; prefixes are powers of ten attached to those units.</p>
+      <h3>1a–f: Choose the prefix</h3><p>Try first: move the power of ten into a prefix and check that the leading number is in a convenient range.</p>
+      <details class="answers"><summary>Attempted it? Open the worked steps</summary><div class="worked"><p class="worked-title">1a–f · Prefix conversions</p><ol class="method-list">
+        <li><p><strong>1a.</strong> The decimal 0.000011 is 11 × 10<sup>−6</sup>. The prefix micro (μ) means 10<sup>−6</sup>:</p><p class="math-line"><var>C</var> = 0.000011 F = 11 × 10<sup>−6</sup> F</p><p class="math-line"><var>C</var> = 11 μF</p><p><strong>Check:</strong> 11 μF is 0.000011 F.</p></li>
+        <li><p><strong>1b.</strong> Multiply the mantissas first: 47.47 × 10<sup>5</sup> = 4.747 × 10<sup>6</sup>. Mega (M) means 10<sup>6</sup>:</p><p class="math-line"><var>R</var> = 4.747 MΩ</p><p><strong>Check:</strong> 4.747 MΩ = 4,747,000 Ω = 47.47 × 100,000 Ω.</p></li>
+        <li><p><strong>1c.</strong> Combine the decimal factor and the given power: 0.062 × 10<sup>−3</sup> = 62 × 10<sup>−6</sup>. Micro means 10<sup>−6</sup>:</p><p class="math-line"><var>L</var> = 62 μH</p><p><strong>Check:</strong> 62 μH = 0.000062 H.</p></li>
+        <li><p><strong>1d.</strong> Kilo (k) means 10<sup>3</sup>, and 30,000 = 30 × 10<sup>3</sup>:</p><p class="math-line"><var>U</var> = 30 kV</p><p><strong>Check:</strong> 30 kV = 30,000 V.</p></li>
+        <li><p><strong>1e.</strong> 0.88 × 10<sup>−4</sup> = 8.8 × 10<sup>−5</sup> = 88 × 10<sup>−6</sup>. Micro means 10<sup>−6</sup>:</p><p class="math-line"><var>I</var> = 88 μA</p><p><strong>Check:</strong> 88 μA = 0.000088 A.</p></li>
+        <li><p><strong>1f.</strong> 1265 × 10<sup>6</sup> = 1.265 × 10<sup>9</sup>. Giga (G) means 10<sup>9</sup>:</p><p class="math-line"><var>P</var> = 1.265 GW</p><p><strong>Check:</strong> 1.265 GW = 1,265,000,000 W.</p></li>
+      </ol></div></details>
+    </section>
+
+    <section id="task-2" aria-labelledby="task-2-title">
+      <h2 id="task-2-title">Task 2: Cartesian coordinate system</h2>
+      <p>The points are <var>P</var><sub>1</sub> = (2, −1, 2) and <var>P</var><sub>2</sub> = (1, 2, 3). The coordinates have no stated unit, so the vector results are given in coordinate units.</p>
+      <p class="topic-link"><strong>Connected topic:</strong> <a href="ch1-electrostatic-fields.html#sec-13">Electric field as a vector (§1.3)</a> uses components, magnitudes and directions in the same Cartesian basis.</p>
+      <div class="figs"><figure class="viz" data-kind="plot" data-xr="-2 3" data-yr="-2 4" data-lines="0,0 -1,3" data-xticks="-1 0 1 2" data-yticks="-1 0 1 2 3" data-xlabel="x" data-ylabel="y" data-marks="0,0:O; -1,3:r"><figcaption><strong>Projection of the displacement into the xy-plane.</strong> The displacement runs from <var>P</var><sub>1</sub> to <var>P</var><sub>2</sub>; its z-component is +1 as well.</figcaption></figure></div>
+      <h3>2a: Displacement from P<sub>1</sub> to P<sub>2</sub></h3><p>Try first: subtract the starting point coordinates from the ending point coordinates, component by component.</p>
+      <details class="answers"><summary>Attempted it? Open the worked steps</summary><div class="worked"><p class="worked-title">2a · Displacement vector</p><ol class="method-list">
+        <li><p>A vector from point 1 to point 2 is the endpoint position minus the starting position:</p><p class="math-line"><var>r</var><sub>12</sub> = <var>r</var><sub>P2</sub> − <var>r</var><sub>P1</sub></p></li>
+        <li><p>Subtract each matching coordinate:</p><p class="math-line"><var>r</var><sub>12</sub> = (1 − 2, 2 − (−1), 3 − 2)</p><p class="math-line"><var>r</var><sub>12</sub> = (−1, 3, 1)</p><p class="math-line"><var>r</var><sub>12</sub> = −<var>e</var><sub>x</sub> + 3<var>e</var><sub>y</sub> + <var>e</var><sub>z</sub></p></li>
+        <li><p><strong>Result:</strong> the displacement is (−1, 3, 1) coordinate units. The negative x-component means the motion is toward decreasing x; the y and z components are positive.</p><p><strong>Check:</strong> adding the displacement to P<sub>1</sub> gives (2, −1, 2) + (−1, 3, 1) = (1, 2, 3), the stated endpoint.</p></li>
+      </ol></div></details>
+      <h3>2b: Magnitude of r = −e<sub>x</sub> + 3e<sub>y</sub> + e<sub>z</sub></h3><p>Try first: square each perpendicular component, add them, then take the positive square root.</p>
+      <details class="answers"><summary>Attempted it? Open the worked steps</summary><div class="worked"><p class="worked-title">2b · Vector magnitude</p><ol class="method-list">
+        <li><p>For Cartesian components, the length follows from the three-dimensional Pythagorean theorem:</p><p class="math-line">|<var>r</var>| = √(<var>r</var><sub><var>x</var></sub><sup>2</sup> + <var>r</var><sub><var>y</var></sub><sup>2</sup> + <var>r</var><sub><var>z</var></sub><sup>2</sup>)</p></li>
+        <li><p>Here the components are (−1, 3, 1), so:</p><p class="math-line">|<var>r</var>| = √((−1)<sup>2</sup> + 3<sup>2</sup> + 1<sup>2</sup>)</p><p class="math-line">|<var>r</var>| = √11 ≈ 3.32</p><p><strong>Result:</strong> |<var>r</var>| = √11 coordinate units.</p><p><strong>Check:</strong> a magnitude cannot be negative, and its square is 1 + 9 + 1 = 11.</p></li>
+      </ol></div></details>
+      <h3>2c: Unit vector in the direction of r</h3><p>Try first: divide the vector by its magnitude; this preserves its direction and makes its length one.</p>
+      <details class="answers"><summary>Attempted it? Open the worked steps</summary><div class="worked"><p class="worked-title">2c · Normalised direction</p><ol class="method-list">
+        <li><p>The unit vector is the original vector divided by its positive length:</p><p class="math-line"><var>e</var><sub>r</sub> = <span class="frac"><span><var>r</var></span><span>|<var>r</var>|</span></span></p></li>
+        <li><p>Use the vector from 2a (the vector named in 2b) and the magnitude from 2b:</p><p class="math-line"><var>e</var><sub>r</sub> = <span class="frac"><span>−<var>e</var><sub>x</sub> + 3<var>e</var><sub>y</sub> + <var>e</var><sub>z</sub></span><span>√11</span></span></p><p><strong>Result:</strong> <var>e</var><sub>r</sub> = (−1, 3, 1)/√11.</p><p><strong>Check:</strong> its length is √[(1 + 9 + 1)/11] = 1.</p></li>
+      </ol></div></details>
+    </section>
+
+    <section id="task-3" aria-labelledby="task-3-title">
+      <h2 id="task-3-title">Task 3: Coordinate systems</h2>
+      <p>Use the standard spherical convention in this course: φ is the azimuth in the xy-plane from +x, and ϑ is the polar angle down from +z.</p>
+      <p class="topic-link"><strong>Connected topic:</strong> <a href="ch1-electrostatic-fields.html#sec-110">Flux and Gauss’s law (§1.10)</a> uses spherical coordinates for radial fields and spherical surfaces.</p>
+      <h3>3a: Convert the position vector to spherical coordinates</h3><p>Try first: find the distance from the origin, keep the given azimuth, and use the ratio of cylindrical radius to height to find the polar angle.</p>
+      <details class="answers"><summary>Attempted it? Open the worked steps</summary><div class="worked"><p class="worked-title">3a · Cylindrical to spherical</p><ol class="method-list">
+        <li><p>The cylindrical components are <var>ρ</var> = 5, <var>z</var> = 2, and φ = 45°. The spherical radius is the distance from the origin:</p><p class="math-line"><var>r</var> = √(<var>ρ</var><sup>2</sup> + <var>z</var><sup>2</sup>) = √(25 + 4) = √29</p></li>
+        <li><p><var>ϑ</var> is measured from +z, so its tangent is opposite over adjacent = ρ/z. The point is above the xy-plane, hence <var>ϑ</var> is in the first quadrant:</p><p class="math-line"><var>ϑ</var> = arctan(<span class="frac"><span><var>ρ</var></span><span><var>z</var></span></span>) = arctan(<span class="frac"><span>5</span><span>2</span></span>) ≈ 68.2°</p></li>
+        <li><p>The azimuth remains the supplied angle, φ = 45°. State the spherical coordinates by name so the angle order is clear:</p><p class="math-line"><var>r</var> = √29</p><p class="math-line"><var>φ</var> = 45°</p><p class="math-line"><var>ϑ</var> ≈ 68.2°</p></li>
+        <li><p>As a position vector, <var>r</var> = <var>r</var><var>e</var><sub>r</sub>. Since <var>ϑ</var> = arctan(5/2), sin<var>ϑ</var> = 5/√29 and cos<var>ϑ</var> = 2/√29, so the vector has no <var>e</var><sub>ϑ</sub> component:</p><p class="math-line"><var>r</var> = √29 <var>e</var><sub>r</sub></p><p><strong>Check:</strong> its cylindrical projection is <var>r</var> sinϑ = 5 and its z-component is <var>r</var> cosϑ = 2.</p></li>
+      </ol></div></details>
+      <h3>3b: Complete the spherical unit-vector table</h3><p>Try first: remember that φ locates the projection in the xy-plane and ϑ measures down from +z. At the z-axis, azimuth is undefined.</p>
+      <details class="answers"><summary>Attempted it? Open the worked steps</summary><div class="worked"><p class="worked-title">3b · Unit vectors and spherical angles</p><ol class="method-list">
+        <li><p>For a unit direction, take its projection onto each Cartesian basis vector:</p><p class="math-line"><var>e</var><sub>r</sub> · <var>e</var><sub>x</sub> = sin<var>ϑ</var> cos<var>φ</var></p><p class="math-line"><var>e</var><sub>r</sub> · <var>e</var><sub>y</sub> = sin<var>ϑ</var> sin<var>φ</var></p><p class="math-line"><var>e</var><sub>r</sub> · <var>e</var><sub>z</sub> = cos<var>ϑ</var></p><p>Evaluate these three components for each listed direction. At either pole (±<var>e</var><sub>z</sub>), φ can be chosen arbitrarily because the projection into the xy-plane has zero length.</p></li>
+        <li><p>The completed entries are:</p><div class="tw"><table><thead><tr><th>Cartesian unit vector</th><th><var>φ</var></th><th><var>ϑ</var></th></tr></thead><tbody>
+          <tr><td><var>e</var><sub>z</sub></td><td>any (shown as *)</td><td>0°</td></tr>
+          <tr><td>−<var>e</var><sub>z</sub></td><td>any; undefined at the pole</td><td>180°</td></tr>
+          <tr><td><var>e</var><sub>x</sub></td><td>0°</td><td>90°</td></tr>
+          <tr><td>−<var>e</var><sub>x</sub></td><td>180°</td><td>90°</td></tr>
+          <tr><td><var>e</var><sub>y</sub></td><td>90°</td><td>90°</td></tr>
+          <tr><td>−<var>e</var><sub>y</sub></td><td>270°</td><td>90°</td></tr>
+          <tr><td>(<var>e</var><sub>x</sub> + <var>e</var><sub>y</sub>)/√2</td><td>45°</td><td>90°</td></tr>
+          <tr><td>(<var>e</var><sub>x</sub> − <var>e</var><sub>z</sub>)/√2</td><td>0°</td><td>135°</td></tr>
+          <tr><td>(<var>e</var><sub>y</sub> + <var>e</var><sub>z</sub>)/√2</td><td>90°</td><td>45°</td></tr>
+        </tbody></table></div></li>
+        <li><p>For the last three rows, substitute the angles into the unit-vector formula. For example, φ = 0° and ϑ = 135° gives (sin135°, 0, cos135°) = (1/√2, 0, −1/√2).</p><p><strong>Check:</strong> every listed Cartesian vector has unit length. Angles differing by 360° represent the same azimuth, so −90° is equivalent to 270°.</p></li>
+      </ol></div></details>
+    </section>
+    <p class="source-note">Personal worked-solution guide based on the supplied EE1 Tutorial Task sheet, written in my own words; no tutorial text or figures are reproduced. Not an official FAU publication; check course details against current material. Made by <strong>Thanate Amornjiraporn (Focus)</strong>.</p>
+  </main>
+</div><script src="../js/guide.js"></script><script src="../js/tooltip.js"></script><script src="../js/nav.js"></script></body></html>

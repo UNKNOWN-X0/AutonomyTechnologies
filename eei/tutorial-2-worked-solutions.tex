@@ -1,0 +1,215 @@
+\documentclass[11pt]{article}
+\usepackage[margin=18mm,headheight=22pt]{geometry}
+\usepackage{amsmath}
+\usepackage{fontspec}
+\usepackage{unicode-math}
+\setmainfont{NewCM10}[Extension=.otf,UprightFont=*-Book,BoldFont=*-Bold,ItalicFont=*-BookItalic,BoldItalicFont=*-BoldItalic]
+\setsansfont{NewCMSans10}[Extension=.otf,UprightFont=*-Book,BoldFont=*-Bold,ItalicFont=*-BookOblique,BoldItalicFont=*-BoldOblique]
+\setmathfont{NewCMMath-Book.otf}
+\usepackage{xcolor}
+\definecolor{FAUblue}{HTML}{04316A}
+\definecolor{Paperblue}{HTML}{EEF2F7}
+\definecolor{EEIgold}{HTML}{CC9C42}
+\usepackage{etoolbox,enumitem,booktabs,tabularx,array,needspace,microtype}
+\usepackage[most]{tcolorbox}
+\usepackage{titlesec,fancyhdr}
+\usepackage[hidelinks]{hyperref}
+\usepackage{draftwatermark}
+\SetWatermarkText{Made by Thanate Amornjiraporn (Focus)}
+\SetWatermarkColor{black!7}\SetWatermarkFontSize{30pt}\SetWatermarkAngle{45}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{5pt}
+\setlist{itemsep=2pt,topsep=3pt,leftmargin=1.6em,beginpenalty=10000,endpenalty=10000}
+\raggedbottom
+\clubpenalty=10000 \widowpenalty=10000 \displaywidowpenalty=10000 \interlinepenalty=10000
+\setcounter{secnumdepth}{0}
+\setcounter{tocdepth}{1}
+\pagestyle{fancy}\fancyhf{}
+\fancyhead[L]{\small\sffamily\color{FAUblue} From Fundamentals to AI Apocalypse · EEI · Tutorial 2}
+\fancyhead[R]{\small\sffamily Tutorial 2: Worked solutions}
+\fancyfoot[C]{\small\thepage}
+\titleformat{\section}{\Large\bfseries\sffamily\color{FAUblue}}{}{0pt}{}
+\titleformat{\subsection}{\large\bfseries\sffamily\color{FAUblue}}{}{0pt}{}
+\titlespacing*{\section}{0pt}{16pt}{6pt}
+\preto\section{\Needspace{8\baselineskip}}
+\preto\subsection{\Needspace{6\baselineskip}}
+\newtcolorbox{equationcard}[1]{colback=Paperblue,colframe=Paperblue,boxrule=0pt,arc=0pt,left=10pt,right=10pt,top=6pt,bottom=6pt,title={#1},fonttitle=\small\bfseries\sffamily,coltitle=FAUblue,before skip=8pt,after skip=8pt}
+\newtcolorbox{workedbox}[1]{colback=white,colframe=EEIgold,boxrule=0pt,leftrule=3pt,arc=0pt,left=10pt,top=4pt,bottom=4pt,title={#1},fonttitle=\small\bfseries\sffamily,coltitle=FAUblue,attach title to upper={\par},before skip=8pt,after skip=8pt}
+\newtcolorbox{recallbox}[1]{colback=white,colframe=FAUblue,boxrule=0pt,leftrule=3pt,arc=0pt,left=10pt,top=4pt,bottom=4pt,title={#1},fonttitle=\small\bfseries\sffamily,coltitle=FAUblue,attach title to upper={\par},before skip=8pt,after skip=8pt}
+\usepackage{environ}
+\newsavebox\measurebox
+% Typeset the section once invisibly to measure it; start a new page if it will not fit in what is left.
+\makeatletter
+\newif\ifkeep@measuring
+\NewEnviron{keepsection}{%
+  \ifkeep@measuring \BODY \else
+    \edef\keep@sec{\the\value{section}}\edef\keep@sub{\the\value{subsection}}%
+    \setbox\measurebox\vbox{\hsize\linewidth\keep@measuringtrue\def\Needspace##1{}\BODY}%
+    \setcounter{section}{\keep@sec}\setcounter{subsection}{\keep@sub}%
+    \dimen2=\ht\measurebox \advance\dimen2\dp\measurebox
+    \dimen@=\textheight
+    \ifdim\pagegoal<\maxdimen
+      \dimen@=\pagegoal \advance\dimen@-\pagetotal
+      \ifdim\dimen2>\dimen@ \clearpage \dimen@=\textheight \fi
+    \fi
+    % if it fits, nothing inside may force an early break
+    \ifdim\dimen2>\dimen@ \BODY \else \begingroup\def\Needspace##1{}\BODY\endgroup \fi
+  \fi}
+\makeatother
+\newtcolorbox{notebox}{colback=Paperblue,colframe=Paperblue,boxrule=0pt,arc=0pt,left=8pt,right=8pt,top=4pt,bottom=4pt,before skip=6pt,after skip=6pt}
+\newtcolorbox{plainbox}{colback=white,colframe=FAUblue,boxrule=0pt,leftrule=3pt,arc=0pt,left=10pt,right=8pt,top=4pt,bottom=4pt,before skip=6pt,after skip=8pt}
+\usetikzlibrary{arrows.meta}
+\title{\sffamily\bfseries\color{FAUblue}Tutorial 2: Worked solutions}
+\author{Electrical Engineering I \ensuremath{\cdot} Module 92315 \ensuremath{\cdot} Tutorial 2\\[2pt]\small From Fundamentals to AI Apocalypse · personal study guide}
+\date{}
+\begin{document}
+\maketitle
+\begingroup\footnotesize\setlength{\parskip}{0pt}\tableofcontents\endgroup
+\clearpage
+
+\Needspace{8\baselineskip}
+{\large These solutions build total charge by integrating the volume charge density over the region where it exists. Track the coordinate-dependent volume element and the density’s support.}
+
+
+\begin{keepsection}
+\Needspace{9\baselineskip}
+\section{Task 4: Cylinder coordinates}
+
+\Needspace{6\baselineskip}
+The space charge density is constant, ϱ\textsubscript{V} = ϱ\textsubscript{0}, in the hollow cylindrical region a \ensuremath{\leq} \textit{ρ} \ensuremath{\leq} b, 0 \ensuremath{\leq} \textit{φ} \ensuremath{\leq} 2π, 0 \ensuremath{\leq} \textit{z} \ensuremath{\leq} c, and zero outside. Assume 0 \ensuremath{\leq} a \ensuremath{<} b and c \ensuremath{>} 0.
+
+\Needspace{9\baselineskip}
+\textbf{Connected topic:} Flux and Gauss’s law (§1.10) develops cylindrical coordinates and radial geometry; the volume element supplies the appropriate shell weighting here.
+
+\Needspace{14\baselineskip}
+\begin{center}
+\begin{minipage}[t]{0.950\linewidth}\centering
+\begin{tikzpicture}[line join=round]
+\filldraw[draw=black!50,fill=Paperblue] (0.864,-0.612) rectangle (2.376,-2.016);
+\draw[black!80] (1.620,-0.612) ellipse [x radius=0.756,y radius=0.252];
+\draw[black!80] (1.620,-2.016) ellipse [x radius=0.756,y radius=0.252];
+\draw[black!80] (0.864,-0.612) -- (0.864,-2.016);
+\draw[black!80] (2.376,-0.612) -- (2.376,-2.016);
+\draw[-{Stealth[length=4pt]},FAUblue,line width=1.5pt] (1.620,-0.432) -- (1.620,-0.090);
+\draw[-{Stealth[length=4pt]},FAUblue,line width=1.5pt] (2.376,-1.224) -- (2.880,-1.224);
+\draw[-{Stealth[length=4pt]},FAUblue,line width=1.5pt] (1.620,-2.268) -- (1.620,-2.718);
+\node[anchor=west,text=FAUblue,inner sep=1pt,font=\footnotesize] at (1.800,-0.180) {\textit{+e\textsubscript{z}}};
+\node[anchor=west,text=FAUblue,inner sep=1pt,font=\footnotesize] at (3.024,-1.224) {\textit{+e\textsubscript{ρ}}};
+\node[anchor=west,text=FAUblue,inner sep=1pt,font=\footnotesize] at (1.800,-2.772) {\textit{\ensuremath{-}e\textsubscript{z}}};
+\end{tikzpicture}\par\smallskip{\small\raggedright \textbf{Integrate only the charged hollow region.} The charge occupies radii a through b and height c; its cylindrical volume element is ρ dρ dφ dz.\par}\end{minipage}
+\end{center}
+
+\begin{keepsection}
+\Needspace{7\baselineskip}
+\subsection{4: Total charge in the hollow cylinder}
+
+\Needspace{4\baselineskip}
+Try first: write the cylindrical volume element, then integrate across the inner and outer radii, the full angle, and the height.
+
+\nopagebreak[4]{\small\itshape Answers: see “Task 4: Cylinder coordinates” under Answers at the end.}
+\end{keepsection}
+\end{keepsection}
+
+\begin{keepsection}
+\Needspace{9\baselineskip}
+\section{Task 5: Spherical coordinates}
+
+\Needspace{6\baselineskip}
+The density varies radially as ϱ\textsubscript{V}(r) = ϱ\textsubscript{0}r\textsuperscript{2}/a\textsuperscript{2} inside a sphere of radius a and is zero for r \ensuremath{>} a. Assume a \ensuremath{>} 0.
+
+\Needspace{9\baselineskip}
+\textbf{Connected topic:} Flux and Gauss’s law (§1.10) uses spherical symmetry and spherical shells; here each shell contributes its density times its shell volume.
+
+\Needspace{14\baselineskip}
+\begin{center}
+\begin{minipage}[t]{0.950\linewidth}\centering
+\begin{tikzpicture}[line join=round]
+\filldraw[draw=black!75,fill=black!10] (2.016,-1.512) circle (1.008);
+\draw[black!80,line width=1pt] (2.016,-1.512) -- (1.332,-0.774);
+\fill[FAUblue] (2.016,-1.512) circle (0.054);
+\draw[-{Stealth[length=4pt]},FAUblue,line width=1.3pt] (2.718,-0.864) -- (3.132,-0.486);
+\node[,inner sep=1pt,font=\footnotesize] at (1.746,-0.936) {\textit{a}};
+\node[,inner sep=1pt,font=\small] at (2.016,-1.800) {\textit{ρ\textsubscript{0}}};
+\node[anchor=west,inner sep=1pt,font=\footnotesize] at (3.186,-1.584) {\textit{ρ = 0}};
+\node[anchor=west,text=FAUblue,inner sep=1pt,font=\footnotesize] at (3.222,-0.396) {E\textsubscript{r}};
+\end{tikzpicture}\par\smallskip{\small\raggedright \textbf{The charged sphere has radius a.} Its density rises with r², so outer spherical shells carry more charge per unit volume than inner ones.\par}\end{minipage}
+\end{center}
+
+\begin{keepsection}
+\Needspace{7\baselineskip}
+\subsection{5: Total charge in the sphere}
+
+\Needspace{4\baselineskip}
+Try first: multiply the radial density by the spherical shell volume 4πr²dr and integrate from the centre to a.
+
+\nopagebreak[4]{\small\itshape Answers: see “Task 5: Spherical coordinates” under Answers at the end.}
+\end{keepsection}
+\end{keepsection}
+
+
+\clearpage
+\section{Answers}
+\begin{keepsection}\subsection{Task 4: Cylinder coordinates}
+
+\begin{workedbox}{4 \ensuremath{\cdot} Cylindrical volume integral}
+\Needspace{10\baselineskip}
+\begin{enumerate}
+\item \Needspace{5\baselineskip}
+Total charge is the volume integral of volume charge density over the charged region. In cylindrical coordinates, a small volume is a wedge-shaped piece with volume ρ dρ dφ dz:
+
+\begin{equation*}\mathrm{Q}\, =\, \iiint_{\mathrm{V}} \, ϱ_{\mathrm{V}}\, \text{dV},\, \quad \, \text{dV}\, =\, ρ\, \mathrm{d}ρ\, \mathrm{d}φ\, \text{dz}\end{equation*}
+\item \Needspace{5\baselineskip}
+Substitute the constant density and the stated limits. The inner radius a excludes the empty central cylinder:
+
+\Needspace{4\baselineskip}
+\begin{equation*}\mathrm{Q}\, =\, ϱ_{0}\, \int_{0}^{\mathrm{c}} \, \int_{0}^{2π} \, \int_{\mathrm{a}}^{\mathrm{b}} \, ρ\, \mathrm{d}ρ\, \mathrm{d}φ\, \text{dz}\end{equation*}
+
+\begin{equation*}\mathrm{Q}\, =\, ϱ_{0}\, \int_{0}^{\mathrm{c}} \, \int_{0}^{2π} \, [(ρ^{2}/2)]_{\mathrm{a}}^{\mathrm{b}}\, \mathrm{d}φ\, \text{dz}\end{equation*}
+\item \Needspace{4\baselineskip}
+Evaluate the radial term, then the full revolution and cylinder height:
+
+\Needspace{4\baselineskip}
+\begin{equation*}\mathrm{Q}\, =\, ϱ_{0}\, ((\mathrm{b}^{2}\, -\, \mathrm{a}^{2})/2)(2π)\mathrm{c}\end{equation*}
+
+\Needspace{5\baselineskip}
+\begin{equation*}\mathrm{Q}\, =\, ϱ_{0}\, π(\mathrm{b}^{2}\, -\, \mathrm{a}^{2})\mathrm{c}\end{equation*}
+
+The sign follows the sign of ϱ\textsubscript{0}. \textbf{Check:} the factor π(b² \ensuremath{-} a²)c is exactly the hollow cylinder’s volume, and ϱ\textsubscript{0} times volume has units C.
+\end{enumerate}
+\end{workedbox}
+
+\end{keepsection}
+\begin{keepsection}\subsection{Task 5: Spherical coordinates}
+
+\begin{workedbox}{5 \ensuremath{\cdot} Spherical volume integral}
+\Needspace{8\baselineskip}
+\begin{enumerate}
+\item \Needspace{5\baselineskip}
+For a spherically symmetric density, integrate over concentric shells. A shell at radius r has volume 4πr²dr, and only radii 0 through a contain charge:
+
+\begin{equation*}\mathrm{Q}\, =\, \iiint_{\mathrm{V}} \, ϱ_{\mathrm{V}}\, \text{dV}\, =\, 4π\, \int_{0}^{\mathrm{a}} \, ϱ_{\mathrm{V}}(\mathrm{r})\, \mathrm{r}^{2}\, \text{dr}\end{equation*}
+\item \Needspace{4\baselineskip}
+Insert the given density. One factor r² comes from the shell area and another from ϱ\textsubscript{V}:
+
+\Needspace{4\baselineskip}
+\begin{equation*}\mathrm{Q}\, =\, 4π\, \int_{0}^{\mathrm{a}} \, (ϱ_{0}\mathrm{r}^{2}/\mathrm{a}^{2})\, \mathrm{r}^{2}\, \text{dr}\end{equation*}
+
+\begin{equation*}\mathrm{Q}\, =\, (4πϱ_{0}/\mathrm{a}^{2})\, \int_{0}^{\mathrm{a}} \, \mathrm{r}^{4}\, \text{dr}\end{equation*}
+\item \Needspace{4\baselineskip}
+Integrate \textit{r}\textsuperscript{4} and apply both limits:
+
+\Needspace{4\baselineskip}
+\begin{equation*}\mathrm{Q}\, =\, (4πϱ_{0}/\mathrm{a}^{2})[\mathrm{r}^{5}/5]_{0}^{\mathrm{a}}\end{equation*}
+
+\Needspace{5\baselineskip}
+\begin{equation*}\mathrm{Q}\, =\, 4πϱ_{0}\mathrm{a}^{3}/5\end{equation*}
+
+The sign follows ϱ\textsubscript{0}. \textbf{Check:} the average density is 3ϱ\textsubscript{0}/5, giving (3ϱ\textsubscript{0}/5)(4πa³/3), the same result.
+\end{enumerate}
+\end{workedbox}
+
+\end{keepsection}
+
+\vfill{\small Personal worked-solution guide based on the supplied EE1 Tutorial Task sheet, written in my own words; no tutorial text or figures are reproduced. Not an official FAU publication; check course details against current material. Made by \textbf{Thanate Amornjiraporn (Focus)}.}
+
+\end{document}

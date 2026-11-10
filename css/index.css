@@ -600,7 +600,9 @@ html.sweeping .chapter.started:not(.lit) .no::before {
   border: 0;
   background: none;
 }
-.parts[role="tablist"] li + li {
+/* the divider before every tab after the first; "li + li.has" outranks the li.has rule above that clears borders */
+.parts[role="tablist"] li + li,
+.parts[role="tablist"] li + li.has {
   border-left: 2px solid var(--act);
 }
 .parts[role="tablist"] li::before {

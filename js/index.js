@@ -265,7 +265,7 @@
         count = name === "lecture" ? list.querySelectorAll("li.chapter").length : sub.querySelectorAll(".part-panel:not([hidden]) .part-item").length,
         noun = name === "lecture" ? "chapter" : name;
       btn.hidden = !count;
-      btn.textContent = count + " " + noun + (count === 1 ? "" : "s");
+      btn.textContent = count + " " + (count === 1 ? noun : /ix$/.test(noun) ? noun.slice(0, -2) + "ices" : noun + "s"); // "2 appendices"
       // a tab with nothing to fold (Tutorial: "nothing posted yet") always shows its message
       target.hidden = count ? !isOpen : false;
     }

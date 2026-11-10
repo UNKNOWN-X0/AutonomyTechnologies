@@ -11,7 +11,7 @@ not a separate workflow guide.
 - **Graphify:** This repository has a persistent index at `graphify-out/graph.json`. Follow the workspace [Graphify graph standard](../../STANDARDS.md#graphify-graph-standard).
 - **Archify:** Diagrams for this repository belong in its `.archify/` folder. Follow the workspace [Archify diagram standard](../../STANDARDS.md#archify-diagram-standard); HTML diagrams are snapshots.
 - **Version log:** every release that changes what students see adds an entry at the top of `about/version-log.html`; `about/how-to-use.html` describes the current features.
-- **Study guides, labs, and exercises:** every chapter guide follows [docs/GUIDE-STANDARD.md](docs/GUIDE-STANDARD.md), every lab [docs/LAB-STANDARD.md](docs/LAB-STANDARD.md), and every worked exercise page [docs/EXERCISE-SOLUTIONS-STANDARD.md](docs/EXERCISE-SOLUTIONS-STANDARD.md). The HTML is the single source; regenerate the `.tex` and `.pdf` with `tools/guide-to-tex.py` and check with `tools/check-guide.py`, which must exit 0.
+- **Study guides, labs, and exercises:** every chapter guide follows [docs/GUIDE-STANDARD.md](docs/GUIDE-STANDARD.md), every lab [docs/LAB-STANDARD.md](docs/LAB-STANDARD.md), and every worked exercise page [docs/EXERCISE-SOLUTIONS-STANDARD.md](docs/EXERCISE-SOLUTIONS-STANDARD.md), and every appendix (reference material outside the chapters) the guide standard's [Appendix pages](docs/GUIDE-STANDARD.md#appendix-pages) section. The HTML is the single source; regenerate the `.tex` and `.pdf` with `tools/guide-to-tex.py` and check with `tools/check-guide.py`, which must exit 0.
 
 ## Local workflow
 

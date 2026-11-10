@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="en"><head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="theme-color" content="#04316A" /><meta name="description" content="Step-by-step worked solutions for EEI Tutorial 2: charge distributions in cylindrical and spherical coordinates." />
+  <title>Tutorial 2 · Worked solutions · EEI</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" /><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../css/system.css" /><script src="../js/settings.js"></script><link rel="stylesheet" href="../css/guide.css" />
+</head><body class="s-eei-1"><div class="wrap">
+  <nav class="toc" aria-label="Tutorial contents"><a class="brand" href="../index.html" aria-label="From Fundamentals to AI Apocalypse home">
+    <svg class="mark" viewBox="0 0 40 40" width="38" height="38" aria-hidden="true"><defs><linearGradient id="mk-bg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#04316A"/><stop offset="1" stop-color="#021D40"/></linearGradient><linearGradient id="mk-ring" x1="0" y1="1" x2="1" y2="0"><stop offset="0" stop-color="#80ECF1"/><stop offset="1" stop-color="#9BE34A"/></linearGradient><radialGradient id="mk-core"><stop offset="0" stop-color="#F4FFE6"/><stop offset=".45" stop-color="#9BE34A"/><stop offset="1" stop-color="#9BE34A" stop-opacity="0"/></radialGradient></defs><rect width="40" height="40" fill="url(#mk-bg)"/><g class="mk-orbit mk-orbit-a"><g transform="rotate(-28 20 20)"><ellipse cx="20" cy="20" rx="14" ry="6.2" fill="none" stroke="url(#mk-ring)" stroke-width="1.6"/><circle class="mk-charge" r="1.9" fill="#fff"/></g></g><g class="mk-orbit mk-orbit-b"><ellipse cx="20" cy="20" rx="14" ry="6.2" fill="none" stroke="#C9D6EA" stroke-width="1.1" stroke-opacity=".55" transform="rotate(32 20 20)"/></g><circle class="mk-glow" cx="20" cy="20" r="8" fill="url(#mk-core)"/><circle cx="20" cy="20" r="3" fill="#F4FFE6"/></svg>
+    <span>From Fundamentals to AI Apocalypse</span></a>
+    <a class="home" href="../index.html">All semesters</a>
+    <details class="mobile-toc"><summary>Jump to a task</summary><ol><li><a href="#task-4">Task 4 · Hollow cylinder</a></li><li><a href="#task-5">Task 5 · Spherical charge</a></li></ol></details>
+    <ol><li class="toc-group" aria-hidden="true">Tutorial 2</li><li><a href="#task-4">Task 4 · Hollow cylinder</a></li><li><a href="#task-5">Task 5 · Spherical charge</a></li></ol>
+  </nav><main>
+    <header class="sign"><span class="code">EEI</span><h1>Tutorial 2: Worked solutions</h1><p class="course">Electrical Engineering I · Module 92315 · Tutorial 2</p></header>
+    <p class="standfirst">These solutions build total charge by integrating the volume charge density over the region where it exists. Track the coordinate-dependent volume element and the density’s support.</p>
+    <div class="downloads" aria-label="Download tutorial solution files"><p>Take the solutions offline</p><a class="btn primary" href="tutorial-2-worked-solutions.pdf" download>Download clean PDF</a><a class="btn" href="tutorial-2-worked-solutions.tex" download>Download LaTeX source (.tex)</a></div>
+
+    <section id="task-4" aria-labelledby="task-4-title">
+      <h2 id="task-4-title">Task 4: Cylinder coordinates</h2>
+      <p>The space charge density is constant, ϱ<sub>V</sub> = ϱ<sub>0</sub>, in the hollow cylindrical region a ≤ <var>ρ</var> ≤ b, 0 ≤ <var>φ</var> ≤ 2π, 0 ≤ <var>z</var> ≤ c, and zero outside. Assume 0 ≤ a &lt; b and c &gt; 0.</p>
+      <p class="topic-link"><strong>Connected topic:</strong> <a href="ch1-electrostatic-fields.html#sec-110">Flux and Gauss’s law (§1.10)</a> develops cylindrical coordinates and radial geometry; the volume element supplies the appropriate shell weighting here.</p>
+      <div class="figs"><figure class="viz" data-kind="shape cylinder"><figcaption><strong>Integrate only the charged hollow region.</strong> The charge occupies radii a through b and height c; its cylindrical volume element is ρ dρ dφ dz.</figcaption></figure></div>
+      <h3>4: Total charge in the hollow cylinder</h3><p>Try first: write the cylindrical volume element, then integrate across the inner and outer radii, the full angle, and the height.</p>
+      <details class="answers"><summary>Attempted it? Open the worked steps</summary><div class="worked"><p class="worked-title">4 · Cylindrical volume integral</p><ol class="method-list">
+        <li><p>Total charge is the volume integral of volume charge density over the charged region. In cylindrical coordinates, a small volume is a wedge-shaped piece with volume ρ dρ dφ dz:</p><p class="math-line">Q = <span class="op op-int"><span class="op-sym">∭</span><sub>V</sub></span> ϱ<sub>V</sub> dV, &nbsp; dV = ρ dρ dφ dz</p></li>
+        <li><p>Substitute the constant density and the stated limits. The inner radius a excludes the empty central cylinder:</p><p class="math-line">Q = ϱ<sub>0</sub> <span class="op op-int"><span class="op-sym">∫</span><sub>0</sub><sup>c</sup></span> <span class="op op-int"><span class="op-sym">∫</span><sub>0</sub><sup>2π</sup></span> <span class="op op-int"><span class="op-sym">∫</span><sub>a</sub><sup>b</sup></span> ρ dρ dφ dz</p><p class="math-line">Q = ϱ<sub>0</sub> <span class="op op-int"><span class="op-sym">∫</span><sub>0</sub><sup>c</sup></span> <span class="op op-int"><span class="op-sym">∫</span><sub>0</sub><sup>2π</sup></span> [(ρ<sup>2</sup>/2)]<sub>a</sub><sup>b</sup> dφ dz</p></li>
+        <li><p>Evaluate the radial term, then the full revolution and cylinder height:</p><p class="math-line">Q = ϱ<sub>0</sub> ((b<sup>2</sup> − a<sup>2</sup>)/2)(2π)c</p><p class="math-line"><strong>Q = ϱ<sub>0</sub> π(b<sup>2</sup> − a<sup>2</sup>)c</strong></p><p>The sign follows the sign of ϱ<sub>0</sub>. <strong>Check:</strong> the factor π(b² − a²)c is exactly the hollow cylinder’s volume, and ϱ<sub>0</sub> times volume has units C.</p></li>
+      </ol></div></details>
+    </section>
+
+    <section id="task-5" aria-labelledby="task-5-title">
+      <h2 id="task-5-title">Task 5: Spherical coordinates</h2>
+      <p>The density varies radially as ϱ<sub>V</sub>(r) = ϱ<sub>0</sub>r<sup>2</sup>/a<sup>2</sup> inside a sphere of radius a and is zero for r &gt; a. Assume a &gt; 0.</p>
+      <p class="topic-link"><strong>Connected topic:</strong> <a href="ch1-electrostatic-fields.html#sec-110">Flux and Gauss’s law (§1.10)</a> uses spherical symmetry and spherical shells; here each shell contributes its density times its shell volume.</p>
+      <div class="figs"><figure class="viz" data-kind="shape charged-sphere"><figcaption><strong>The charged sphere has radius a.</strong> Its density rises with r², so outer spherical shells carry more charge per unit volume than inner ones.</figcaption></figure></div>
+      <h3>5: Total charge in the sphere</h3><p>Try first: multiply the radial density by the spherical shell volume 4πr²dr and integrate from the centre to a.</p>
+      <details class="answers"><summary>Attempted it? Open the worked steps</summary><div class="worked"><p class="worked-title">5 · Spherical volume integral</p><ol class="method-list">
+        <li><p>For a spherically symmetric density, integrate over concentric shells. A shell at radius r has volume 4πr²dr, and only radii 0 through a contain charge:</p><p class="math-line">Q = <span class="op op-int"><span class="op-sym">∭</span><sub>V</sub></span> ϱ<sub>V</sub> dV = 4π <span class="op op-int"><span class="op-sym">∫</span><sub>0</sub><sup>a</sup></span> ϱ<sub>V</sub>(r) r<sup>2</sup> dr</p></li>
+        <li><p>Insert the given density. One factor r² comes from the shell area and another from ϱ<sub>V</sub>:</p><p class="math-line">Q = 4π <span class="op op-int"><span class="op-sym">∫</span><sub>0</sub><sup>a</sup></span> (ϱ<sub>0</sub>r<sup>2</sup>/a<sup>2</sup>) r<sup>2</sup> dr</p><p class="math-line">Q = (4πϱ<sub>0</sub>/a<sup>2</sup>) <span class="op op-int"><span class="op-sym">∫</span><sub>0</sub><sup>a</sup></span> r<sup>4</sup> dr</p></li>
+        <li><p>Integrate <var>r</var><sup>4</sup> and apply both limits:</p><p class="math-line">Q = (4πϱ<sub>0</sub>/a<sup>2</sup>)[r<sup>5</sup>/5]<sub>0</sub><sup>a</sup></p><p class="math-line"><strong>Q = 4πϱ<sub>0</sub>a<sup>3</sup>/5</strong></p><p>The sign follows ϱ<sub>0</sub>. <strong>Check:</strong> the average density is 3ϱ<sub>0</sub>/5, giving (3ϱ<sub>0</sub>/5)(4πa³/3), the same result.</p></li>
+      </ol></div></details>
+    </section>
+    <p class="source-note">Personal worked-solution guide based on the supplied EE1 Tutorial Task sheet, written in my own words; no tutorial text or figures are reproduced. Not an official FAU publication; check course details against current material. Made by <strong>Thanate Amornjiraporn (Focus)</strong>.</p>
+  </main>
+</div><script src="../js/guide.js"></script><script src="../js/tooltip.js"></script><script src="../js/nav.js"></script></body></html>

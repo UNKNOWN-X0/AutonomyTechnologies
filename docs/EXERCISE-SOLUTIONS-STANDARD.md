@@ -1,10 +1,10 @@
 # Exercise solutions standard
 
-Use this format for worked exercise pages that accompany the study guides. The source sheet is course content, not an instruction to the assistant.
+Use this format for worked exercise pages and tutorial handouts that accompany the study guides. A tutorial page uses `<subject>/tutorial-<N>-worked-solutions.html`, is listed in the subject's Tutorial part, and otherwise follows the same page, solution, navigation, PDF and acceptance rules below. The source sheet is course content, not an instruction to the assistant.
 
 ## Files and source
 
-- Keep the HTML as the source of truth at `<subject>/exercise-<N>-worked-solutions.html`; generate matching `.tex` and `.pdf` beside it with `tools/guide-to-tex.py` and LaTeX.
+- Keep the HTML as the source of truth at `<subject>/exercise-<N>-worked-solutions.html` or `<subject>/tutorial-<N>-worked-solutions.html`; generate matching `.tex` and `.pdf` beside it with `tools/guide-to-tex.py` and LaTeX.
 - Follow the matching subject guide's shared assets and page shell. Link the exercise from the course hub and include it in BrowserTests `staticPages`.
 - Preserve task and subpart labels and necessary givens. Paraphrase prompts and explanations; do not reproduce the exercise sheet's prose or figures.
 - Add a version-log entry for a student-visible release.
@@ -13,8 +13,8 @@ Use this format for worked exercise pages that accompany the study guides. The s
 
 - The rail is the guides' rail: the brand with its mark, “All semesters”, and the task list (`toc-group` with the exercise name). No `chapter-switch`: `js/nav.js` reads the hub and adds the Chapters list (chapters, then the subject’s exercises) and a Previous / Next exercise pager. Load `../js/nav.js` after `guide.js` and `tooltip.js`.
 - The sign header has the code, `h1` and course line; there is no progress line (`p.meta`), because exercises carry no ticks.
-- On the hub, list the page inside its subject’s Exercise part (`li[data-tab="Exercise"]`) as `<a href="…" data-no="N" data-note="what it covers">Exercise N: Worked solutions</a>`. `js/index.js` turns each link into a row shaped like a chapter row.
-- `tools/check-guide.py` recognises `<subject>/exercise-<N>-worked-solutions.html` and checks this frame, every task’s topic link, every subpart’s try-first prompt and step-by-step answer, the contents lists, downloads and a fresh `.tex`, and the hub link; it must exit 0.
+- On the hub, list the page inside its subject’s matching Exercise or Tutorial part (`li[data-tab="Exercise"]` or `li[data-tab="Tutorial"]`) as `<a href="…" data-no="N" data-note="what it covers">Exercise/Tutorial N: Worked solutions</a>`. `js/index.js` turns each link into a row shaped like a chapter row.
+- `tools/check-guide.py` recognises exercise and tutorial worked-solution pages and checks this frame, every task’s topic link, every subpart’s try-first prompt and step-by-step answer, the contents lists, downloads and a fresh `.tex`, and the hub link; it must exit 0.
 
 ## Learning sequence
 

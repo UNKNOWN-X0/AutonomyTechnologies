@@ -1,0 +1,555 @@
+\documentclass[11pt]{article}
+\usepackage[margin=18mm,headheight=22pt]{geometry}
+\usepackage{amsmath}
+\usepackage{fontspec}
+\usepackage{unicode-math}
+\setmainfont{NewCM10}[Extension=.otf,UprightFont=*-Book,BoldFont=*-Bold,ItalicFont=*-BookItalic,BoldItalicFont=*-BoldItalic]
+\setsansfont{NewCMSans10}[Extension=.otf,UprightFont=*-Book,BoldFont=*-Bold,ItalicFont=*-BookOblique,BoldItalicFont=*-BoldOblique]
+\setmathfont{NewCMMath-Book.otf}
+\usepackage{xcolor}
+\definecolor{FAUblue}{HTML}{04316A}
+\definecolor{Paperblue}{HTML}{EEF2F7}
+\definecolor{EEIgold}{HTML}{CC9C42}
+\usepackage{etoolbox,enumitem,booktabs,tabularx,array,needspace,microtype}
+\usepackage[most]{tcolorbox}
+\usepackage{titlesec,fancyhdr}
+\usepackage[hidelinks]{hyperref}
+\usepackage{draftwatermark}
+\SetWatermarkText{Made by Thanate Amornjiraporn (Focus)}
+\SetWatermarkColor{black!7}\SetWatermarkFontSize{30pt}\SetWatermarkAngle{45}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{5pt}
+\setlist{itemsep=2pt,topsep=3pt,leftmargin=1.6em,beginpenalty=10000,endpenalty=10000}
+\raggedbottom
+\clubpenalty=10000 \widowpenalty=10000 \displaywidowpenalty=10000 \interlinepenalty=10000
+\setcounter{secnumdepth}{0}
+\setcounter{tocdepth}{1}
+\pagestyle{fancy}\fancyhf{}
+\fancyhead[L]{\small\sffamily\color{FAUblue} From Fundamentals to AI Apocalypse · EEI · Tutorial 3}
+\fancyhead[R]{\small\sffamily Tutorial 3: Worked solutions}
+\fancyfoot[C]{\small\thepage}
+\titleformat{\section}{\Large\bfseries\sffamily\color{FAUblue}}{}{0pt}{}
+\titleformat{\subsection}{\large\bfseries\sffamily\color{FAUblue}}{}{0pt}{}
+\titlespacing*{\section}{0pt}{16pt}{6pt}
+\preto\section{\Needspace{8\baselineskip}}
+\preto\subsection{\Needspace{6\baselineskip}}
+\newtcolorbox{equationcard}[1]{colback=Paperblue,colframe=Paperblue,boxrule=0pt,arc=0pt,left=10pt,right=10pt,top=6pt,bottom=6pt,title={#1},fonttitle=\small\bfseries\sffamily,coltitle=FAUblue,before skip=8pt,after skip=8pt}
+\newtcolorbox{workedbox}[1]{colback=white,colframe=EEIgold,boxrule=0pt,leftrule=3pt,arc=0pt,left=10pt,top=4pt,bottom=4pt,title={#1},fonttitle=\small\bfseries\sffamily,coltitle=FAUblue,attach title to upper={\par},before skip=8pt,after skip=8pt}
+\newtcolorbox{recallbox}[1]{colback=white,colframe=FAUblue,boxrule=0pt,leftrule=3pt,arc=0pt,left=10pt,top=4pt,bottom=4pt,title={#1},fonttitle=\small\bfseries\sffamily,coltitle=FAUblue,attach title to upper={\par},before skip=8pt,after skip=8pt}
+\usepackage{environ}
+\newsavebox\measurebox
+% Typeset the section once invisibly to measure it; start a new page if it will not fit in what is left.
+\makeatletter
+\newif\ifkeep@measuring
+\NewEnviron{keepsection}{%
+  \ifkeep@measuring \BODY \else
+    \edef\keep@sec{\the\value{section}}\edef\keep@sub{\the\value{subsection}}%
+    \setbox\measurebox\vbox{\hsize\linewidth\keep@measuringtrue\def\Needspace##1{}\BODY}%
+    \setcounter{section}{\keep@sec}\setcounter{subsection}{\keep@sub}%
+    \dimen2=\ht\measurebox \advance\dimen2\dp\measurebox
+    \dimen@=\textheight
+    \ifdim\pagegoal<\maxdimen
+      \dimen@=\pagegoal \advance\dimen@-\pagetotal
+      \ifdim\dimen2>\dimen@ \clearpage \dimen@=\textheight \fi
+    \fi
+    % if it fits, nothing inside may force an early break
+    \ifdim\dimen2>\dimen@ \BODY \else \begingroup\def\Needspace##1{}\BODY\endgroup \fi
+  \fi}
+\makeatother
+\newtcolorbox{notebox}{colback=Paperblue,colframe=Paperblue,boxrule=0pt,arc=0pt,left=8pt,right=8pt,top=4pt,bottom=4pt,before skip=6pt,after skip=6pt}
+\newtcolorbox{plainbox}{colback=white,colframe=FAUblue,boxrule=0pt,leftrule=3pt,arc=0pt,left=10pt,right=8pt,top=4pt,bottom=4pt,before skip=6pt,after skip=8pt}
+\usetikzlibrary{arrows.meta}
+\title{\sffamily\bfseries\color{FAUblue}Tutorial 3: Worked solutions}
+\author{Electrical Engineering I \ensuremath{\cdot} Module 92315 \ensuremath{\cdot} Tutorial 3\\[2pt]\small From Fundamentals to AI Apocalypse · personal study guide}
+\date{}
+\begin{document}
+\maketitle
+\begingroup\footnotesize\setlength{\parskip}{0pt}\tableofcontents\endgroup
+\clearpage
+
+\Needspace{9\baselineskip}
+{\large Resolve each interaction from its geometry, then add force vectors component by component. In Task 7, use Newton’s third law to separate the known pair interaction from the supplied net forces.}
+
+
+\begin{keepsection}
+\Needspace{11\baselineskip}
+\section{Task 6: Line and point charges}
+
+\Needspace{8\baselineskip}
+Use the shown xy cross-section: Q\textsubscript{1} = (\ensuremath{-}a, 0), Q\textsubscript{2} = (a, 0), the line λ\textsubscript{1} passes through (0, a), and λ\textsubscript{2} passes through (0, \ensuremath{-}a/2). Both lines run parallel to z. Take air as vacuum for the field formulas, as instructed, and assume a \ensuremath{>} 0.
+
+\Needspace{10\baselineskip}
+\textbf{Connected topic:} Electric field strength (§1.3) gives Coulomb’s field and vector superposition. The line-charge formula is applied with its radial direction converted to Cartesian components.
+
+\Needspace{14\baselineskip}
+\begin{center}
+\begin{minipage}[t]{0.950\linewidth}\centering
+\begin{tikzpicture}[line join=round]
+\draw[-{Stealth[length=4pt]},black!80] (0.720,-1.706) -- (4.572,-1.706);
+\draw[-{Stealth[length=4pt]},black!80] (2.556,-2.628) -- (2.556,-0.180);
+\fill[FAUblue] (1.332,-1.706) circle (0.063);
+\node[anchor=east,text=FAUblue,fill=white,fill opacity=0.85,text opacity=1,inner sep=1pt,font=\footnotesize] at (1.188,-1.886) {Q1};
+\fill[FAUblue] (3.780,-1.706) circle (0.063);
+\node[anchor=west,text=FAUblue,fill=white,fill opacity=0.85,text opacity=1,inner sep=1pt,font=\footnotesize] at (3.924,-1.886) {Q2};
+\fill[FAUblue] (2.556,-0.785) circle (0.063);
+\node[anchor=west,text=FAUblue,fill=white,fill opacity=0.85,text opacity=1,inner sep=1pt,font=\footnotesize] at (2.700,-0.605) {λ1};
+\fill[FAUblue] (2.556,-2.167) circle (0.063);
+\node[anchor=east,text=FAUblue,fill=white,fill opacity=0.85,text opacity=1,inner sep=1pt,font=\footnotesize] at (2.412,-2.347) {λ2};
+\node[anchor=east,inner sep=1pt,font=\footnotesize] at (4.536,-1.994) {\textit{x}};
+\node[anchor=east,inner sep=1pt,font=\footnotesize] at (2.412,-0.288) {\textit{y}};
+\draw[black!80] (1.332,-1.634) -- (1.332,-1.778);
+\node[,inner sep=1pt,font=\footnotesize] at (1.332,-1.994) {\ensuremath{-}a};
+\draw[black!80] (2.556,-1.634) -- (2.556,-1.778);
+\node[,inner sep=1pt,font=\footnotesize] at (2.556,-1.994) {0};
+\draw[black!80] (3.780,-1.634) -- (3.780,-1.778);
+\node[,inner sep=1pt,font=\footnotesize] at (3.780,-1.994) {a};
+\end{tikzpicture}\par\smallskip{\small\raggedright \textbf{Cross-section normal to the infinite lines.} Their field directions at Q\textsubscript{2} point away from each line for positive λ and toward it for negative λ.\par}\end{minipage}
+\end{center}
+
+\begin{keepsection}
+\Needspace{7\baselineskip}
+\subsection{6a: Field of Q\textsubscript{1} at Q\textsubscript{2}}
+
+\Needspace{4\baselineskip}
+Try first: find the displacement from Q\textsubscript{1} to Q\textsubscript{2}, then use Coulomb’s field with that direction and distance.
+
+\nopagebreak[4]{\small\itshape Answers: see “Task 6: Line and point charges” under Answers at the end.}
+\end{keepsection}
+
+\begin{keepsection}
+\Needspace{6\baselineskip}
+\subsection{6b: Force of Q\textsubscript{1} on Q\textsubscript{2}}
+
+\Needspace{3\baselineskip}
+Try first: multiply the field from 6a by the charge that experiences it, Q\textsubscript{2}.
+
+\nopagebreak[4]{\small\itshape Answers: see “Task 6: Line and point charges” under Answers at the end.}
+\end{keepsection}
+
+\begin{keepsection}
+\Needspace{7\baselineskip}
+\subsection{6c: Field of λ\textsubscript{1} and λ\textsubscript{2} at Q\textsubscript{2}}
+
+\Needspace{4\baselineskip}
+Try first: form the transverse displacement from each line to Q\textsubscript{2}, normalize it, and add the two line fields.
+
+\nopagebreak[4]{\small\itshape Answers: see “Task 6: Line and point charges” under Answers at the end.}
+\end{keepsection}
+
+\begin{keepsection}
+\Needspace{6\baselineskip}
+\subsection{6d: Force of the lines on Q\textsubscript{2}}
+
+\Needspace{3\baselineskip}
+Try first: use the field sum from 6c and multiply by Q\textsubscript{2}.
+
+\nopagebreak[4]{\small\itshape Answers: see “Task 6: Line and point charges” under Answers at the end.}
+\end{keepsection}
+
+\begin{keepsection}
+\Needspace{7\baselineskip}
+\subsection{6e: Total force on Q\textsubscript{2}}
+
+\Needspace{4\baselineskip}
+Try first: add the point-charge force from 6b to the line-charge force from 6d, keeping x and y components separate.
+
+\nopagebreak[4]{\small\itshape Answers: see “Task 6: Line and point charges” under Answers at the end.}
+\end{keepsection}
+
+\begin{keepsection}
+\Needspace{6\baselineskip}
+\subsection{6f: Condition for zero total force}
+
+\Needspace{3\baselineskip}
+Try first: set both components from 6e to zero and solve the y equation before the x equation.
+
+\nopagebreak[4]{\small\itshape Answers: see “Task 6: Line and point charges” under Answers at the end.}
+\end{keepsection}
+\end{keepsection}
+
+\begin{keepsection}
+\Needspace{11\baselineskip}
+\section{Task 7: Point charge}
+
+\Needspace{8\baselineskip}
+Take Q \ensuremath{>} 0 as the reference scale. The figure places Q\textsubscript{1} = \ensuremath{\surd}5 Q at (0, a) and Q\textsubscript{2} = \ensuremath{\surd}2 Q at (3a, 0). The supplied net forces on Q\textsubscript{1} and Q\textsubscript{2} are F\textsubscript{1} = F\textsubscript{0}[\ensuremath{-}(3 + 5\ensuremath{\surd}5)e\textsubscript{x} + e\textsubscript{y}] and F\textsubscript{2} = F\textsubscript{0}(13e\textsubscript{x} \ensuremath{-} 11e\textsubscript{y}), with F\textsubscript{0} = Q²/(40πε\textsubscript{0}a²). The charges are in vacuum and a \ensuremath{>} 0; F\textsubscript{0} is a force scale measured in newtons.
+
+\Needspace{9\baselineskip}
+\textbf{Connected topic:} Electric field strength (§1.3) connects Coulomb force, displacement direction and vector superposition.
+
+\Needspace{14\baselineskip}
+\begin{center}
+\begin{minipage}[t]{0.950\linewidth}\centering
+\begin{tikzpicture}[line join=round]
+\draw[-{Stealth[length=4pt]},black!80] (0.720,-2.052) -- (4.572,-2.052);
+\draw[-{Stealth[length=4pt]},black!80] (1.147,-2.628) -- (1.147,-0.180);
+\fill[FAUblue] (1.147,-1.092) circle (0.063);
+\node[anchor=east,text=FAUblue,fill=white,fill opacity=0.85,text opacity=1,inner sep=1pt,font=\footnotesize] at (1.003,-0.912) {Q1};
+\fill[FAUblue] (3.709,-2.052) circle (0.063);
+\node[anchor=west,text=FAUblue,fill=white,fill opacity=0.85,text opacity=1,inner sep=1pt,font=\footnotesize] at (3.853,-2.232) {Q2};
+\fill[FAUblue] (2.855,-1.092) circle (0.063);
+\node[anchor=west,text=FAUblue,fill=white,fill opacity=0.85,text opacity=1,inner sep=1pt,font=\footnotesize] at (2.999,-0.912) {Q3?};
+\node[anchor=east,inner sep=1pt,font=\footnotesize] at (4.536,-2.340) {\textit{x/a}};
+\node[anchor=east,inner sep=1pt,font=\footnotesize] at (1.003,-0.288) {\textit{y/a}};
+\draw[black!80] (1.147,-1.980) -- (1.147,-2.124);
+\node[,inner sep=1pt,font=\footnotesize] at (1.147,-2.340) {0};
+\draw[black!80] (2.001,-1.980) -- (2.001,-2.124);
+\node[,inner sep=1pt,font=\footnotesize] at (2.001,-2.340) {1};
+\draw[black!80] (2.855,-1.980) -- (2.855,-2.124);
+\node[,inner sep=1pt,font=\footnotesize] at (2.855,-2.340) {2};
+\draw[black!80] (3.709,-1.980) -- (3.709,-2.124);
+\node[,inner sep=1pt,font=\footnotesize] at (3.709,-2.340) {3};
+\end{tikzpicture}\par\smallskip{\small\raggedright \textbf{Known charges and the unknown third location.} Q\textsubscript{3} is marked only schematically; infer its exact coordinates from the pair-force directions.\par}\end{minipage}
+\end{center}
+
+\begin{keepsection}
+\Needspace{7\baselineskip}
+\subsection{7a: Force F\textsubscript{12} of Q\textsubscript{2} on Q\textsubscript{1}}
+
+\Needspace{4\baselineskip}
+Try first: find the vector from Q\textsubscript{2} to Q\textsubscript{1} and substitute both charges and their separation into Coulomb’s law.
+
+\nopagebreak[4]{\small\itshape Answers: see “Task 7: Point charge” under Answers at the end.}
+\end{keepsection}
+
+\begin{keepsection}
+\Needspace{6\baselineskip}
+\subsection{7b: Force F\textsubscript{21} of Q\textsubscript{1} on Q\textsubscript{2}}
+
+\Needspace{3\baselineskip}
+Try first: use Newton’s third law for the same pair.
+
+\nopagebreak[4]{\small\itshape Answers: see “Task 7: Point charge” under Answers at the end.}
+\end{keepsection}
+
+\begin{keepsection}
+\Needspace{6\baselineskip}
+\subsection{7c: Force F\textsubscript{13} of Q\textsubscript{3} on Q\textsubscript{1}}
+
+\Needspace{3\baselineskip}
+Try first: subtract the known Q\textsubscript{2} contribution from the supplied net force on Q\textsubscript{1}.
+
+\nopagebreak[4]{\small\itshape Answers: see “Task 7: Point charge” under Answers at the end.}
+\end{keepsection}
+
+\begin{keepsection}
+\Needspace{6\baselineskip}
+\subsection{7d: Force F\textsubscript{23} of Q\textsubscript{3} on Q\textsubscript{2}}
+
+\Needspace{3\baselineskip}
+Try first: add F\textsubscript{12} to the net force on Q\textsubscript{2}, using F\textsubscript{21} = \ensuremath{-}F\textsubscript{12}.
+
+\nopagebreak[4]{\small\itshape Answers: see “Task 7: Point charge” under Answers at the end.}
+\end{keepsection}
+
+\begin{keepsection}
+\Needspace{7\baselineskip}
+\subsection{7e: Coordinates of Q\textsubscript{3}}
+
+\Needspace{4\baselineskip}
+Try first: intersect the horizontal line through Q\textsubscript{1} with the diagonal direction line through Q\textsubscript{2}.
+
+\nopagebreak[4]{\small\itshape Answers: see “Task 7: Point charge” under Answers at the end.}
+\end{keepsection}
+
+\begin{keepsection}
+\Needspace{6\baselineskip}
+\subsection{7f: Charge ratio Q\textsubscript{3}/Q}
+
+\Needspace{3\baselineskip}
+Try first: use the magnitude of F\textsubscript{13}, the separation 2a, and Q\textsubscript{1} = \ensuremath{\surd}5 Q.
+
+\nopagebreak[4]{\small\itshape Answers: see “Task 7: Point charge” under Answers at the end.}
+\end{keepsection}
+
+\begin{keepsection}
+\Needspace{6\baselineskip}
+\subsection{7g: Total force F\textsubscript{3} on Q\textsubscript{3}}
+
+\Needspace{3\baselineskip}
+Try first: reverse F\textsubscript{13} and F\textsubscript{23} by Newton’s third law, then add them.
+
+\nopagebreak[4]{\small\itshape Answers: see “Task 7: Point charge” under Answers at the end.}
+\end{keepsection}
+\end{keepsection}
+
+
+\clearpage
+\section{Answers}
+\begin{keepsection}\subsection{Task 6: Line and point charges}
+
+\begin{workedbox}{6a \ensuremath{\cdot} Point-charge field}
+\Needspace{7\baselineskip}
+\begin{enumerate}
+\item \Needspace{5\baselineskip}
+The source is at x = \ensuremath{-}a and the field point at x = a, so the displacement points along +x and has length 2a:
+
+\begin{equation*}{R}_{21}\, =\, 2\mathrm{a}\, {e}_{\mathrm{x}},\, \quad \, \mathrm{R}_{21}\, =\, 2\mathrm{a}\end{equation*}
+\item \Needspace{4\baselineskip}
+Coulomb’s field is the source charge times the radial unit vector divided by 4πε\textsubscript{0}R²:
+
+\Needspace{4\baselineskip}
+\begin{equation*}{E}_{\mathrm{Q}_{1}}(\mathrm{Q}_{2})\, =\, (\mathrm{Q}_{1}/(4πε_{0}\mathrm{R}_{21}^{2}))\, {e}_{\mathrm{x}}\end{equation*}
+
+\Needspace{4\baselineskip}
+\begin{equation*}{E}_{\mathrm{Q}_{1}}(\mathrm{Q}_{2})\, =\, \mathrm{Q}_{1}/(16πε_{0}\mathrm{a}^{2})\, {e}_{\mathrm{x}}\end{equation*}
+
+The sign of Q\textsubscript{1} sets whether the field points +x or \ensuremath{-}x. The 1/(2a)² factor is easy to miss.
+\end{enumerate}
+\end{workedbox}
+
+\end{keepsection}
+\begin{keepsection}\subsection{Task 6: Line and point charges}
+
+\begin{workedbox}{6b \ensuremath{\cdot} Point-charge force}
+\Needspace{6\baselineskip}
+\begin{enumerate}
+\item \Needspace{4\baselineskip}
+The electric force on a charge is its charge times the electric field at its position:
+
+\begin{equation*}{F}_{12}\, =\, \mathrm{Q}_{2}\, {E}_{\mathrm{Q}_{1}}(\mathrm{Q}_{2})\end{equation*}
+\item \Needspace{4\baselineskip}
+Substitute the result from 6a:
+
+\Needspace{5\baselineskip}
+\begin{equation*}{F}_{12}\, =\, \mathrm{Q}_{1}\mathrm{Q}_{2}/(16πε_{0}\mathrm{a}^{2})\, {e}_{\mathrm{x}}\end{equation*}
+
+Like signs give a force toward +x on Q\textsubscript{2}; opposite signs reverse it. Its units are newtons because charge times field is C\ensuremath{\cdot}N/C.
+\end{enumerate}
+\end{workedbox}
+
+\end{keepsection}
+\begin{keepsection}\subsection{Task 6: Line and point charges}
+
+\begin{workedbox}{6c \ensuremath{\cdot} Infinite-line fields}
+\Needspace{10\baselineskip}
+\begin{enumerate}
+\item \Needspace{5\baselineskip}
+For λ\textsubscript{1}, the displacement from its axis (0, a) to Q\textsubscript{2} (a, 0) is (a, \ensuremath{-}a). Its radius is \ensuremath{\surd}2 a and its radial unit vector is (e\textsubscript{x} \ensuremath{-} e\textsubscript{y})/\ensuremath{\surd}2:
+
+\begin{equation*}{E}_{λ_{1}}\, =\, (λ_{1}/(2πε_{0}\sqrt2\, \mathrm{a}))(({e}_{\mathrm{x}}\, -\, {e}_{\mathrm{y}})/\sqrt2)\, =\, λ_{1}/(4πε_{0}\mathrm{a})({e}_{\mathrm{x}}\, -\, {e}_{\mathrm{y}})\end{equation*}
+\item \Needspace{4\baselineskip}
+For λ\textsubscript{2}, the displacement is (a, a/2), with radius \ensuremath{\surd}5 a/2 and unit direction (2e\textsubscript{x} + e\textsubscript{y})/\ensuremath{\surd}5:
+
+\begin{equation*}{E}_{λ_{2}}\, =\, (λ_{2}/(πε_{0}\mathrm{a}\sqrt5))((2{e}_{\mathrm{x}}\, +\, {e}_{\mathrm{y}})/\sqrt5)\, =\, λ_{2}/(5πε_{0}\mathrm{a})(2{e}_{\mathrm{x}}\, +\, {e}_{\mathrm{y}})\end{equation*}
+\item \Needspace{4\baselineskip}
+Add the x and y components separately:
+
+\Needspace{5\baselineskip}
+\begin{equation*}{E}_{\text{lines}}\, =\, (1/(πε_{0}\mathrm{a}))[(λ_{1}/4\, +\, 2λ_{2}/5){e}_{\mathrm{x}}\, +\, (-λ_{1}/4\, +\, λ_{2}/5){e}_{\mathrm{y}}]\end{equation*}
+
+Check the second line’s distance is a\ensuremath{\surd}5/2, not a\ensuremath{\surd}5; its source is only a/2 below the x-axis. Each field component has units N/C.
+\end{enumerate}
+\end{workedbox}
+
+\end{keepsection}
+\begin{keepsection}\subsection{Task 6: Line and point charges}
+
+\begin{workedbox}{6d \ensuremath{\cdot} Force from both lines}
+\Needspace{7\baselineskip}
+\begin{enumerate}
+\item \Needspace{4\baselineskip}
+Both line fields act at Q\textsubscript{2}, so their combined force is Q\textsubscript{2} times their vector sum:
+
+\begin{equation*}{F}_{\text{lines},2}\, =\, \mathrm{Q}_{2}\, {E}_{\text{lines}}\end{equation*}
+\item \Needspace{4\baselineskip}
+Therefore:
+
+\Needspace{5\baselineskip}
+\begin{equation*}{F}_{\text{lines},2}\, =\, \mathrm{Q}_{2}/(πε_{0}\mathrm{a})[(λ_{1}/4\, +\, 2λ_{2}/5){e}_{\mathrm{x}}\, +\, (-λ_{1}/4\, +\, λ_{2}/5){e}_{\mathrm{y}}]\end{equation*}
+
+A negative component indicates the corresponding force points along the negative axis; the force components are in newtons.
+\end{enumerate}
+\end{workedbox}
+
+\end{keepsection}
+\begin{keepsection}\subsection{Task 6: Line and point charges}
+
+\begin{workedbox}{6e \ensuremath{\cdot} Superposition of all forces}
+\Needspace{7\baselineskip}
+\begin{enumerate}
+\item \Needspace{5\baselineskip}
+Electrostatic forces add linearly, so the total is the point-charge contribution plus the two-line contribution:
+
+\begin{equation*}{F}_{2}\, =\, {F}_{12}\, +\, {F}_{\text{lines},2}\end{equation*}
+\item \Needspace{4\baselineskip}
+Collect the coefficients of each Cartesian direction:
+
+\Needspace{4\baselineskip}
+\begin{equation*}{F}_{2}\, =\, [\mathrm{Q}_{1}\mathrm{Q}_{2}/(16πε_{0}\mathrm{a}^{2})\, +\, \mathrm{Q}_{2}(λ_{1}/4\, +\, 2λ_{2}/5)/(πε_{0}\mathrm{a})]{e}_{\mathrm{x}}\, +\, [\mathrm{Q}_{2}(-λ_{1}/4\, +\, λ_{2}/5)/(πε_{0}\mathrm{a})]{e}_{\mathrm{y}}\end{equation*}
+
+\textbf{Check:} if both line densities vanish, this reduces to the Coulomb force in 6b.
+\end{enumerate}
+\end{workedbox}
+
+\end{keepsection}
+\begin{keepsection}\subsection{Task 6: Line and point charges}
+
+\begin{workedbox}{6f \ensuremath{\cdot} Balance the two components}
+\Needspace{7\baselineskip}
+\begin{enumerate}
+\item \Needspace{4\baselineskip}
+Q\textsubscript{2} is nonzero, so the y-component vanishes when:
+
+\begin{equation*}-λ_{1}/4\, +\, λ_{2}/5\, =\, 0\, \quad \, \Rightarrow \, \quad \, λ_{2}\, =\, 5λ_{1}/4\end{equation*}
+\item \Needspace{4\baselineskip}
+Insert this relation into the x-component, including the field from Q\textsubscript{1}:
+
+\Needspace{4\baselineskip}
+\begin{equation*}\mathrm{Q}_{1}/(16\mathrm{a}^{2})\, +\, λ_{1}/(4\mathrm{a})\, +\, 2(5λ_{1}/4)/(5\mathrm{a})\, =\, 0\end{equation*}
+
+\begin{equation*}\mathrm{Q}_{1}/(16\mathrm{a}^{2})\, +\, 3λ_{1}/(4\mathrm{a})\, =\, 0\, \quad \, \Rightarrow \, \quad \, \mathrm{Q}_{1}\, =\, -12\mathrm{a}λ_{1}\end{equation*}
+\item Thus the required condition is \textbf{λ\textsubscript{2} = 5λ\textsubscript{1}/4 and Q\textsubscript{1} = \ensuremath{-}12aλ\textsubscript{1}} (equivalently λ\textsubscript{1} = \ensuremath{-}Q\textsubscript{1}/(12a), λ\textsubscript{2} = \ensuremath{-}5Q\textsubscript{1}/(48a)). These signs make the line forces cancel in y and balance Q\textsubscript{1}’s x contribution.
+\end{enumerate}
+\end{workedbox}
+
+\end{keepsection}
+\begin{keepsection}\subsection{Task 7: Point charge}
+
+\begin{workedbox}{7a \ensuremath{\cdot} First known pair force}
+\Needspace{7\baselineskip}
+\begin{enumerate}
+\item \Needspace{4\baselineskip}
+The displacement from Q\textsubscript{2} at (3a, 0) to Q\textsubscript{1} at (0, a) is (\ensuremath{-}3a, a), and the distance is \ensuremath{\surd}10 a:
+
+\begin{equation*}{R}_{12}\, =\, \mathrm{a}(-3{e}_{\mathrm{x}}\, +\, {e}_{\mathrm{y}}),\, \quad \, \mathrm{R}_{12}\, =\, \sqrt10\, \mathrm{a}\end{equation*}
+\item \Needspace{5\baselineskip}
+Coulomb force on Q\textsubscript{1} from Q\textsubscript{2} is kQ\textsubscript{1}Q\textsubscript{2} times the unit displacement divided by R². Here Q\textsubscript{1}Q\textsubscript{2} = \ensuremath{\surd}10 Q²:
+
+\Needspace{4\baselineskip}
+\begin{equation*}{F}_{12}\, =\, (1/(4πε_{0}))\, (\sqrt10\, \mathrm{Q}^{2}/(10\sqrt10\, \mathrm{a}^{2}))(-3{e}_{\mathrm{x}}\, +\, {e}_{\mathrm{y}})\end{equation*}
+
+\Needspace{5\baselineskip}
+\begin{equation*}{F}_{12}\, =\, \mathrm{F}_{0}(-3{e}_{\mathrm{x}}\, +\, {e}_{\mathrm{y}})\end{equation*}
+
+The displacement points from the source toward Q\textsubscript{1}, so this force points down-left for like charges.
+\end{enumerate}
+\end{workedbox}
+
+\end{keepsection}
+\begin{keepsection}\subsection{Task 7: Point charge}
+
+\begin{workedbox}{7b \ensuremath{\cdot} Equal and opposite force}
+\Needspace{5\baselineskip}
+\begin{enumerate}
+\item \Needspace{4\baselineskip}
+Forces between a pair have equal magnitude and opposite direction:
+
+\begin{equation*}{F}_{21}\, =\, -{F}_{12}\end{equation*}
+\item \Needspace{4\baselineskip}
+Therefore:
+
+\Needspace{4\baselineskip}
+\begin{equation*}{F}_{21}\, =\, \mathrm{F}_{0}(3{e}_{\mathrm{x}}\, -\, {e}_{\mathrm{y}})\end{equation*}
+
+The two pair forces sum to zero when applied to both charges together.
+\end{enumerate}
+\end{workedbox}
+
+\end{keepsection}
+\begin{keepsection}\subsection{Task 7: Point charge}
+
+\begin{workedbox}{7c \ensuremath{\cdot} Isolate the remaining force}
+\Needspace{6\baselineskip}
+\begin{enumerate}
+\item \Needspace{4\baselineskip}
+The given resultant on Q\textsubscript{1} is F\textsubscript{1} = F\textsubscript{12} + F\textsubscript{13}, so rearrange to isolate the force from Q\textsubscript{3}:
+
+\begin{equation*}{F}_{13}\, =\, {F}_{1}\, -\, {F}_{12}\end{equation*}
+\item \Needspace{4\baselineskip}
+Subtract the components (the +e\textsubscript{y} terms cancel):
+
+\Needspace{4\baselineskip}
+\begin{equation*}{F}_{13}\, =\, \mathrm{F}_{0}[-(3\, +\, 5\sqrt5){e}_{\mathrm{x}}\, +\, {e}_{\mathrm{y}}\, -\, (-3{e}_{\mathrm{x}}\, +\, {e}_{\mathrm{y}})]\end{equation*}
+
+\Needspace{4\baselineskip}
+\begin{equation*}{F}_{13}\, =\, -5\sqrt5\, \mathrm{F}_{0}{e}_{\mathrm{x}}\end{equation*}
+
+Its purely horizontal direction places Q\textsubscript{3} on the horizontal line through Q\textsubscript{1}.
+\end{enumerate}
+\end{workedbox}
+
+\end{keepsection}
+\begin{keepsection}\subsection{Task 7: Point charge}
+
+\begin{workedbox}{7d \ensuremath{\cdot} Second remaining pair force}
+\Needspace{5\baselineskip}
+\begin{enumerate}
+\item \Needspace{4\baselineskip}
+The given resultant on Q\textsubscript{2} is F\textsubscript{2} = F\textsubscript{21} + F\textsubscript{23}. Since F\textsubscript{21} = \ensuremath{-}F\textsubscript{12}:
+
+\begin{equation*}{F}_{23}\, =\, {F}_{2}\, +\, {F}_{12}\end{equation*}
+\item \Needspace{4\baselineskip}
+Combine components:
+
+\Needspace{4\baselineskip}
+\begin{equation*}{F}_{23}\, =\, \mathrm{F}_{0}[(13\, -\, 3){e}_{\mathrm{x}}\, +\, (-11\, +\, 1){e}_{\mathrm{y}}]\end{equation*}
+
+\Needspace{4\baselineskip}
+\begin{equation*}{F}_{23}\, =\, 10\mathrm{F}_{0}({e}_{\mathrm{x}}\, -\, {e}_{\mathrm{y}})\end{equation*}
+
+Its direction line is diagonal, with equal x and negative y components.
+\end{enumerate}
+\end{workedbox}
+
+\end{keepsection}
+\begin{keepsection}\subsection{Task 7: Point charge}
+
+\begin{workedbox}{7e \ensuremath{\cdot} Locate the third charge}
+\Needspace{7\baselineskip}
+\begin{enumerate}
+\item F\textsubscript{13} has no y component, so the line joining Q\textsubscript{1} and Q\textsubscript{3} is horizontal. Since y\textsubscript{1} = a, this gives y\textsubscript{3} = a.
+\item \Needspace{5\baselineskip}
+F\textsubscript{23} is parallel to (1, \ensuremath{-}1). The line through Q\textsubscript{2} = (3a, 0) in that direction has form (3a, 0) + t(1, \ensuremath{-}1). Its y-coordinate equals a when t = \ensuremath{-}a:
+
+\begin{equation*}(\mathrm{x}_{3},\, \mathrm{y}_{3})\, =\, (3\mathrm{a},\, 0)\, -\, \mathrm{a}(1,\, -1)\, =\, (2\mathrm{a},\, \mathrm{a})\end{equation*}
+\item \textbf{Result:} Q\textsubscript{3} is at (2a, a). This position also gives Q\textsubscript{1}Q\textsubscript{3} = 2a and Q\textsubscript{2}Q\textsubscript{3} = \ensuremath{\surd}2 a.
+\end{enumerate}
+\end{workedbox}
+
+\end{keepsection}
+\begin{keepsection}\subsection{Task 7: Point charge}
+
+\begin{workedbox}{7f \ensuremath{\cdot} Find the third charge}
+\Needspace{8\baselineskip}
+\begin{enumerate}
+\item \Needspace{4\baselineskip}
+The force magnitude between Q\textsubscript{1} and Q\textsubscript{3} is 5\ensuremath{\surd}5 F\textsubscript{0}. Coulomb’s law at separation 2a gives:
+
+\begin{equation*}5\sqrt5\, \mathrm{F}_{0}\, =\, (1/(4πε_{0}))\, (\sqrt5\, \mathrm{Q}\, |\mathrm{Q}_{3}|/(2\mathrm{a})^{2})\end{equation*}
+\item \Needspace{4\baselineskip}
+Insert F\textsubscript{0} = Q²/(40πε\textsubscript{0}a²) and cancel common positive factors:
+
+\Needspace{4\baselineskip}
+\begin{equation*}5\sqrt5\, \mathrm{Q}^{2}/(40πε_{0}\mathrm{a}^{2})\, =\, \sqrt5\, \mathrm{Q}|\mathrm{Q}_{3}|/(16πε_{0}\mathrm{a}^{2})\end{equation*}
+
+\begin{equation*}|\mathrm{Q}_{3}|\, =\, 2\mathrm{Q}\end{equation*}
+\item F\textsubscript{13} points from Q\textsubscript{3} toward Q\textsubscript{1}, and Q\textsubscript{3} is to the right of Q\textsubscript{1}; the force is repulsive. Thus Q\textsubscript{3} has the same sign as Q\textsubscript{1}, and \textbf{Q\textsubscript{3}/Q = 2}.
+\end{enumerate}
+\end{workedbox}
+
+\end{keepsection}
+\begin{keepsection}\subsection{Task 7: Point charge}
+
+\begin{workedbox}{7g \ensuremath{\cdot} Resultant on Q\textsubscript{3}}
+\Needspace{7\baselineskip}
+\begin{enumerate}
+\item \Needspace{5\baselineskip}
+The force on Q\textsubscript{3} from Q\textsubscript{1} is opposite the force of Q\textsubscript{3} on Q\textsubscript{1}; the same reversal holds for the Q\textsubscript{2} pair:
+
+\begin{equation*}{F}_{31}\, =\, -{F}_{13}\, =\, 5\sqrt5\, \mathrm{F}_{0}{e}_{\mathrm{x}},\, \quad \, {F}_{32}\, =\, -{F}_{23}\, =\, -10\mathrm{F}_{0}{e}_{\mathrm{x}}\, +\, 10\mathrm{F}_{0}{e}_{\mathrm{y}}\end{equation*}
+\item \Needspace{4\baselineskip}
+Now add the two forces acting on Q\textsubscript{3}:
+
+\Needspace{5\baselineskip}
+\begin{equation*}{F}_{3}\, =\, \mathrm{F}_{0}[(5\sqrt5\, -\, 10){e}_{\mathrm{x}}\, +\, 10{e}_{\mathrm{y}}]\end{equation*}
+
+Its positive y component and small positive x component agree with Q\textsubscript{3} lying above and to the right of Q\textsubscript{2}. Numerically, 5\ensuremath{\surd}5 \ensuremath{-} 10 \ensuremath{\approx} 1.18.
+\end{enumerate}
+\end{workedbox}
+
+\end{keepsection}
+
+\vfill{\small Personal worked-solution guide based on the supplied EE1 Tutorial Task sheet, written in my own words; no tutorial text or figures are reproduced. Not an official FAU publication; check course details against current material. Made by \textbf{Thanate Amornjiraporn (Focus)}.}
+
+\end{document}
