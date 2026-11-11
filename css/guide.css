@@ -737,6 +737,11 @@ main > section {
   tab-size: 4;
 }
 .code-sample code { font: inherit; }
+/* a program name or expression inside prose (os.walk, a + b): monospace, no box, so a sentence keeps its rhythm */
+:is(p, li, td, figcaption) > code, :is(p, li, td) > strong > code {
+  font: 0.92em/1 ui-monospace, "SFMono-Regular", Consolas, monospace;
+  overflow-wrap: anywhere;
+}
 .worked .math-line {
   /* shrink to the formula and centre it; block with fit-content rather than display: table, because Safari ignores
      max-width on a table and a long line would then run off a phone screen instead of wrapping */

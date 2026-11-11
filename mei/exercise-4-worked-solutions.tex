@@ -77,11 +77,11 @@ Induction starts from the first valid index and shows that each true case forces
 \textbf{Connected topic:} Induction (§2.5).
 
 \begin{keepsection}
-\Needspace{6\baselineskip}
+\Needspace{7\baselineskip}
 \subsection{1a: Prove the finite geometric sum}
 
-\Needspace{3\baselineskip}
-Try first: check \textit{n}=0, then multiply the proposed sum by \textit{x} and subtract, keeping \textit{x}\ensuremath{\neq}1 visible.
+\Needspace{4\baselineskip}
+Try first: check the smallest case \textit{n} = 1, then add the next term \textit{x}\textsuperscript{\textit{n} + 1} to the formula for \textit{n} and put everything over 1 \ensuremath{-} \textit{x}.
 
 \nopagebreak[4]{\small\itshape Answers: see “Exercise 4.1: Mathematical induction” under Answers at the end.}
 \end{keepsection}
@@ -523,16 +523,28 @@ Try first: use \textit{k}=1 as the base, then subtract the same lower-index term
 \begin{keepsection}\subsection{Exercise 4.1: Mathematical induction}
 
 \begin{workedbox}{1a \ensuremath{\cdot} Prove the finite geometric sum}
-\Needspace{9\baselineskip}
+\Needspace{15\baselineskip}
 \begin{enumerate}
-\item Let \textit{S}\textsubscript{\textit{n}}=$\sum_{{k}=0}^{{n}} $\textit{x}\textsuperscript{\textit{k}}. The claim is \textit{S}\textsubscript{\textit{n}}=(1\ensuremath{-}\textit{x}\textsuperscript{\textit{n}+1})/(1\ensuremath{-}\textit{x}), for \textit{x}\ensuremath{\neq}1.
-\item At \textit{n}=0, \textit{S}\textsubscript{0}=1 and (1\ensuremath{-}\textit{x})/(1\ensuremath{-}\textit{x})=1.
-\item Assume the formula for \textit{n}. Add the next term: \textit{S}\textsubscript{\textit{n}+1}=\textit{S}\textsubscript{\textit{n}}+\textit{x}\textsuperscript{\textit{n}+1}=(1\ensuremath{-}\textit{x}\textsuperscript{\textit{n}+1})/(1\ensuremath{-}\textit{x})+\textit{x}\textsuperscript{\textit{n}+1}.
-\item Put the terms over the same denominator: [1\ensuremath{-}\textit{x}\textsuperscript{\textit{n}+1}+\textit{x}\textsuperscript{\textit{n}+1}(1\ensuremath{-}\textit{x})]/(1\ensuremath{-}\textit{x})=(1\ensuremath{-}\textit{x}\textsuperscript{\textit{n}+2})/(1\ensuremath{-}\textit{x}).
-\item \Needspace{5\baselineskip}
-That is the claimed formula with \textit{n}+1. The denominator is nonzero because \textit{x}\ensuremath{\neq}1; the base and step prove the result for all \textit{n}\ensuremath{\geq}0.
+\item \Needspace{4\baselineskip}
+Fix a real \textit{x} \ensuremath{\neq} 1 and write \textit{S}\textsubscript{\textit{n}} for the sum. The claim, for every \textit{n} \ensuremath{\in} \ensuremath{\mathbb{N}} = \{1, 2, 3, …\}, is
 
-\begin{equation*}\sum_{{k}=0}^{{n}} \, {x}^{{k}}\, =\, \dfrac{1\, -\, {x}^{{n}+1}}{1\, -\, {x}}\end{equation*}
+\begin{equation*}{S}_{{n}}\, =\, \sum_{{k}=0}^{{n}} \, {x}^{{k}}\, =\, \dfrac{1\, -\, {x}^{{n}\, +\, 1}}{1\, -\, {x}}\end{equation*}
+\item \Needspace{5\baselineskip}
+\textbf{Base case \textit{n} = 1}, the smallest natural number in this course. The sum has the two terms 1 + \textit{x}, and the right side factorises:
+
+\begin{equation*}\dfrac{1\, -\, {x}^{2}}{1\, -\, {x}}\, =\, \dfrac{(1\, -\, {x})(1\, +\, {x})}{1\, -\, {x}}\, =\, 1\, +\, {x}\, =\, {S}_{1}\end{equation*}
+\item \Needspace{4\baselineskip}
+\textbf{Induction hypothesis:} the formula holds for some \textit{n} \ensuremath{\in} \ensuremath{\mathbb{N}}. The next sum adds one term, \textit{x}\textsuperscript{\textit{n} + 1}:
+
+\begin{equation*}{S}_{{n}\, +\, 1}\, =\, {S}_{{n}}\, +\, {x}^{{n}\, +\, 1}\, =\, \dfrac{1\, -\, {x}^{{n}\, +\, 1}}{1\, -\, {x}}\, +\, {x}^{{n}\, +\, 1}\end{equation*}
+\item \Needspace{4\baselineskip}
+Put both terms over the denominator 1 \ensuremath{-} \textit{x}, which is not zero because \textit{x} \ensuremath{\neq} 1:
+
+\Needspace{4\baselineskip}
+\begin{equation*}=\, \dfrac{1\, -\, {x}^{{n}\, +\, 1}\, +\, {x}^{{n}\, +\, 1}\, -\, {x}^{{n}\, +\, 2}}{1\, -\, {x}}\, =\, \dfrac{1\, -\, {x}^{{n}\, +\, 2}}{1\, -\, {x}}\end{equation*}
+
+This is the formula with \textit{n} + 1 in place of \textit{n}, so with the base case it holds for every \textit{n} \ensuremath{\in} \ensuremath{\mathbb{N}}.
+\item \textbf{Note:} the formula is also true at \textit{n} = 0 (both sides equal 1), so starting there would prove a little more. The sheet asks for \textit{n} \ensuremath{\in} \ensuremath{\mathbb{N}}, and this course's \ensuremath{\mathbb{N}} starts at 1, so the base case is \textit{n} = 1, as in Exercise 3.5.
 \end{enumerate}
 \end{workedbox}
 

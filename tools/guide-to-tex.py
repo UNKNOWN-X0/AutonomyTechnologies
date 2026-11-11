@@ -107,6 +107,8 @@ def inline(node):
             out.append(r"\textbf{%s}" % inline(k))
         elif t == "em":
             out.append(r"\emph{%s}" % inline(k))
+        elif t == "code":  # a name or expression from a program, inside prose
+            out.append(r"\texttt{%s}" % inline(k))
         elif t == "span" and "sqrt" in c:
             out.append(r"\ensuremath{%s}" % sqrt_tex(k))
         elif t == "span" and "op" in c:

@@ -165,13 +165,13 @@ Try first: use string formatting and preserve the supplied name exactly.
 \begin{keepsection}\subsection{Task 1: Return the exact greeting}
 
 \begin{workedbox}{Task 01 \ensuremath{\cdot} hello() \ensuremath{\cdot} worked solution}
-\Needspace{11\baselineskip}
+\Needspace{10\baselineskip}
 \begin{enumerate}
 \item The contract is a zero-argument function returning one exact string. There is no input to transform.
-\item Return the required literal; do not print it, because printing produces None as the function result.
+\item Return the required literal; do not \texttt{print} it, because printing produces \texttt{None} as the function result.
 \item Call the function and compare the value, including capitalization, comma, and exclamation mark.
-\item \Needspace{4\baselineskip}
-\textbf{Core code:} the following is the key operation; fit it into the required function signature and return shape.
+\item \Needspace{3\baselineskip}
+\textbf{The whole function:}
 \begin{tcolorbox}[colback=Paperblue,colframe=Paperblue,boxrule=0pt,arc=0pt,left=7pt,right=7pt,top=5pt,bottom=5pt]\small\sloppy
 \noindent\hspace*{0em}\texttt{def hello():}\par
 \noindent\hspace*{1em}\texttt{return "Hello, World!"}\par
@@ -183,13 +183,13 @@ Try first: use string formatting and preserve the supplied name exactly.
 \begin{keepsection}\subsection{Task 2: Add two numbers}
 
 \begin{workedbox}{Task 02 \ensuremath{\cdot} add\_two\_numbers(a, b) \ensuremath{\cdot} worked solution}
-\Needspace{9\baselineskip}
+\Needspace{8\baselineskip}
 \begin{enumerate}
 \item The required operation is ordinary addition. Keep the parameters generic so Python preserves its numeric behavior for integers and floats.
-\item Return a + b; avoid converting to int, which would discard a fractional part.
-\item Check 2 + 3 = 5, then check a negative value and a float.
-\item \Needspace{4\baselineskip}
-\textbf{Core code:} the following is the key operation; fit it into the required function signature and return shape.
+\item Return \texttt{a + b}; avoid converting to \texttt{int}, which would discard a fractional part.
+\item Check that \texttt{add\_two\_numbers(2, 3)} returns 5, then check a negative value and a float.
+\item \Needspace{3\baselineskip}
+\textbf{The whole function:}
 \begin{tcolorbox}[colback=Paperblue,colframe=Paperblue,boxrule=0pt,arc=0pt,left=7pt,right=7pt,top=5pt,bottom=5pt]\small\sloppy
 \noindent\hspace*{0em}\texttt{def add\_two\_numbers(a, b):}\par
 \noindent\hspace*{1em}\texttt{return a + b}\par
@@ -201,13 +201,13 @@ Try first: use string formatting and preserve the supplied name exactly.
 \begin{keepsection}\subsection{Task 3: Square a number}
 
 \begin{workedbox}{Task 03 \ensuremath{\cdot} square(number) \ensuremath{\cdot} worked solution}
-\Needspace{9\baselineskip}
+\Needspace{8\baselineskip}
 \begin{enumerate}
 \item A square is the number multiplied by itself; it is not the square root and it is nonnegative for real inputs.
-\item Return number * number.
-\item Check square(4) = 16 and square(-3) = 9.
-\item \Needspace{4\baselineskip}
-\textbf{Core code:} the following is the key operation; fit it into the required function signature and return shape.
+\item Return \texttt{number * number}.
+\item Check \texttt{square(4)} = 16 and \texttt{square(-3)} = 9.
+\item \Needspace{3\baselineskip}
+\textbf{The whole function:}
 \begin{tcolorbox}[colback=Paperblue,colframe=Paperblue,boxrule=0pt,arc=0pt,left=7pt,right=7pt,top=5pt,bottom=5pt]\small\sloppy
 \noindent\hspace*{0em}\texttt{def square(number):}\par
 \noindent\hspace*{1em}\texttt{return number * number}\par
@@ -219,13 +219,13 @@ Try first: use string formatting and preserve the supplied name exactly.
 \begin{keepsection}\subsection{Task 4: Test whether a number is even}
 
 \begin{workedbox}{Task 04 \ensuremath{\cdot} is\_even(number) \ensuremath{\cdot} worked solution}
-\Needspace{9\baselineskip}
+\Needspace{8\baselineskip}
 \begin{enumerate}
 \item An integer is even exactly when its remainder modulo 2 is zero. Python’s modulo rule also handles negative integers consistently.
-\item Return the Boolean comparison number \% 2 == 0. Do not return the strings "True" or "False".
-\item Check 4 gives True, 5 gives False, and -2 gives True.
-\item \Needspace{4\baselineskip}
-\textbf{Core code:} the following is the key operation; fit it into the required function signature and return shape.
+\item Return the Boolean comparison \texttt{number \% 2 == 0}. Do not return the strings \texttt{"\texttt{True}"} or \texttt{"\texttt{False}"}.
+\item Check 4 gives \texttt{True}, 5 gives \texttt{False}, and -2 gives \texttt{True}.
+\item \Needspace{3\baselineskip}
+\textbf{The whole function:}
 \begin{tcolorbox}[colback=Paperblue,colframe=Paperblue,boxrule=0pt,arc=0pt,left=7pt,right=7pt,top=5pt,bottom=5pt]\small\sloppy
 \noindent\hspace*{0em}\texttt{def is\_even(number):}\par
 \noindent\hspace*{1em}\texttt{return number \% 2 == 0}\par
@@ -237,13 +237,13 @@ Try first: use string formatting and preserve the supplied name exactly.
 \begin{keepsection}\subsection{Task 5: Build a personalized greeting}
 
 \begin{workedbox}{Task 05 \ensuremath{\cdot} greet(name) \ensuremath{\cdot} worked solution}
-\Needspace{9\baselineskip}
+\Needspace{8\baselineskip}
 \begin{enumerate}
 \item The output has a fixed prefix, the name, and a final exclamation mark. No punctuation is added to the name itself.
 \item Use an f-string to construct and return the full text.
-\item Check greet("Ada") returns exactly "Hello, Ada!" and does not print to the terminal.
-\item \Needspace{4\baselineskip}
-\textbf{Core code:} the following is the key operation; fit it into the required function signature and return shape.
+\item Check \texttt{greet("Ada")} returns exactly \texttt{"Hello, Ada!"} and does not \texttt{print} to the terminal.
+\item \Needspace{3\baselineskip}
+\textbf{The whole function:}
 \begin{tcolorbox}[colback=Paperblue,colframe=Paperblue,boxrule=0pt,arc=0pt,left=7pt,right=7pt,top=5pt,bottom=5pt]\small\sloppy
 \noindent\hspace*{0em}\texttt{def greet(name):}\par
 \noindent\hspace*{1em}\texttt{return f"Hello, \{name\}!"}\par

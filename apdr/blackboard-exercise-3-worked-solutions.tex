@@ -82,7 +82,7 @@
 \subsection{3.1.1 Memory size in bits}
 
 \Needspace{3\baselineskip}
-Try first: For a 4G \ensuremath{\times} 32-bit memory, find the total capacity in bits and write it as 2\textsuperscript{x}.
+Try first: For a 4G \ensuremath{\times} 32-bit memory, find the total capacity in bits and write it as 2\textsuperscript{\textit{x}}.
 
 \nopagebreak[4]{\small\itshape Answers: see “Exercise 3.1: Memory chip architecture” under Answers at the end.}
 \end{keepsection}
@@ -227,9 +227,15 @@ Try first: A 32-bit integer 0x12345678 is stored little-endian and copied unchan
 \begin{workedbox}{3.1.1 Memory size in bits \ensuremath{\cdot} worked solution}
 \Needspace{7\baselineskip}
 \begin{enumerate}
-\item In the notation 4G \ensuremath{\times} 32, there are 4G addressable words and 32 bits per word. For this exercise, G means 2\textsuperscript{30}, so 4G = 2\textsuperscript{32} words.
-\item Multiply words by bits per word: 2\textsuperscript{32} \ensuremath{\times} 32 = 2\textsuperscript{32} \ensuremath{\times} 2\textsuperscript{5} = 2\textsuperscript{37} bits. Thus x = 37.
-\item The check is dimensional: word count \ensuremath{\times} bits/word gives bits. The 32-bit width adds five powers of two to the 4G word count.
+\item In the notation 4G \ensuremath{\times} 32 the first number counts the words and the second gives the bits in each word. In memory sizes G means 2\textsuperscript{30}, so 4G = 2\textsuperscript{2} \ensuremath{\cdot} 2\textsuperscript{30} = 2\textsuperscript{32} words.
+\item \Needspace{4\baselineskip}
+Capacity is words times bits per word:
+
+\Needspace{4\baselineskip}
+\begin{equation*}2^{32}\, \times \, 32\, =\, 2^{32}\, \times \, 2^{5}\, =\, 2^{37}\, \text{bits}\end{equation*}
+
+So \textbf{\textit{x} = 37}.
+\item \textbf{Check} the units: words \ensuremath{\times} bits/word = bits. A sketch helps: a column of 2\textsuperscript{32} rows, each row 32 bits wide.
 \end{enumerate}
 \end{workedbox}
 
@@ -237,11 +243,14 @@ Try first: A 32-bit integer 0x12345678 is stored little-endian and copied unchan
 \begin{keepsection}\subsection{Exercise 3.1: Memory chip architecture}
 
 \begin{workedbox}{3.1.2 Word-addressable memory \ensuremath{\cdot} worked solution}
-\Needspace{5\baselineskip}
+\Needspace{6\baselineskip}
 \begin{enumerate}
-\item The memory contains 4G = 2\textsuperscript{32} words. Word-addressing assigns one distinct address to each word.
-\item The number of address bits is log\textsubscript{2}(2\textsuperscript{32}) = 32 bits.
-\item A 32-bit address has 2\textsuperscript{32} patterns, exactly enough for all word addresses from 0 through 2\textsuperscript{32}\ensuremath{-}1.
+\item Word-addressable means every 32-bit word gets its own address, so we need one address for each of the 2\textsuperscript{32} words.
+\item \Needspace{4\baselineskip}
+A \textit{k}-bit address can name 2\textsuperscript{\textit{k}} places:
+
+\begin{equation*}\log _{2}(2^{32})\, =\, 32\, \text{address}\, \text{bits}\end{equation*}
+\item \textbf{Check:} 32 bits give the addresses 0 to 2\textsuperscript{32} \ensuremath{-} 1, exactly one per word.
 \end{enumerate}
 \end{workedbox}
 
@@ -249,11 +258,14 @@ Try first: A 32-bit integer 0x12345678 is stored little-endian and copied unchan
 \begin{keepsection}\subsection{Exercise 3.1: Memory chip architecture}
 
 \begin{workedbox}{3.1.3 Byte-addressable memory \ensuremath{\cdot} worked solution}
-\Needspace{6\baselineskip}
+\Needspace{7\baselineskip}
 \begin{enumerate}
-\item Each 32-bit word contains 4 bytes. The number of bytes is 2\textsuperscript{32} words \ensuremath{\times} 4 bytes/word = 2\textsuperscript{34} bytes.
-\item Addressing 2\textsuperscript{34} individual bytes requires 34 address bits.
-\item This is two more bits than word addressing because each word contains 2\textsuperscript{2} byte locations.
+\item \Needspace{4\baselineskip}
+Byte-addressable means every byte gets its own address. Each 32-bit word holds 4 bytes:
+
+\begin{equation*}2^{32}\, \text{words}\, \times \, 4\, \text{bytes}\, =\, 2^{32}\, \times \, 2^{2}\, =\, 2^{34}\, \text{bytes}\end{equation*}
+\item Naming 2\textsuperscript{34} bytes takes \textbf{34 address bits}.
+\item \textbf{Check:} two bits more than word addressing, because each word now has 2\textsuperscript{2} = 4 byte addresses inside it.
 \end{enumerate}
 \end{workedbox}
 
@@ -261,11 +273,17 @@ Try first: A 32-bit integer 0x12345678 is stored little-endian and copied unchan
 \begin{keepsection}\subsection{Exercise 3.1: Memory chip architecture}
 
 \begin{workedbox}{3.1.4 Byte address range \ensuremath{\cdot} worked solution}
-\Needspace{8\baselineskip}
+\Needspace{7\baselineskip}
 \begin{enumerate}
-\item There are 2\textsuperscript{34} byte addresses, numbered consecutively from zero. The highest address is therefore the count minus one.
-\item The lowest address is 0x000000000. The highest is 2\textsuperscript{34}\ensuremath{-}1 = 0x3FFFFFFFF. The address width is 34 bits.
-\item Check that the next address, 0x400000000, is 2\textsuperscript{34} and is outside the memory. Leading zeroes in the lowest address are only padding.
+\item The 2\textsuperscript{34} byte addresses are numbered from 0, so the highest is one less than the count.
+\item \Needspace{4\baselineskip}
+\begin{equation*}\text{lowest}\, =\, 0\mathrm{x}000000000\end{equation*}
+
+\Needspace{5\baselineskip}
+\begin{equation*}\text{highest}\, =\, 2^{34}\, -\, 1\, =\, 0\mathrm{x}3\text{FFFFFFFF}\end{equation*}
+
+Writing them takes \textbf{34 bits}: 2\textsuperscript{34} \ensuremath{-} 1 is thirty-four 1s, which is 3 followed by eight F digits in hexadecimal (2 + 8 \ensuremath{\cdot} 4 = 34 bits).
+\item \textbf{Check:} the next address, 0x400000000 = 2\textsuperscript{34}, lies outside the memory. The leading zeros of the lowest address only pad it to the same width.
 \end{enumerate}
 \end{workedbox}
 
@@ -273,21 +291,29 @@ Try first: A 32-bit integer 0x12345678 is stored little-endian and copied unchan
 \begin{keepsection}\subsection{Exercise 3.2: Memory modules architecture}
 
 \begin{workedbox}{3.2.1 Module configuration \ensuremath{\cdot} worked solution}
-\Needspace{12\baselineskip}
+\Needspace{13\baselineskip}
 \begin{enumerate}
-\item A chip supplies 4 bits per word, so eight chips in parallel supply the required 32-bit word. Each module then has 256M = 2\textsuperscript{28} words. Four such modules provide 1G = 2\textsuperscript{30} words.
-\item The full system uses 8 \ensuremath{\times} 4 = 32 chips. A module needs log\textsubscript{2}(2\textsuperscript{28}) = 28 row-address bits; the full memory needs log\textsubscript{2}(2\textsuperscript{30}) = 30 word-address bits.
-\item The configuration is:
-\item \Needspace{10\baselineskip}
-\begin{center}\small\begin{tabularx}{\linewidth}{>{\raggedright\arraybackslash}X>{\raggedright\arraybackslash}X}\toprule
-\textbf{Specification} & \textbf{Quantity} \\ \midrule
-RAM chips per memory module & 8 \\
-Memory modules & 4 \\
-RAM chips for full memory & 32 \\
-Address bits per module & 28 \\
-Address bits for full memory & 30 \\
+\item Build the word width first. One chip delivers 4 bits per word, so 32 / 4 = \textbf{8 chips} side by side form a 32-bit module. A module then holds as many words as one chip: 256M = 2\textsuperscript{28}.
+\item \Needspace{4\baselineskip}
+Then build the word count. The memory needs 1G = 2\textsuperscript{30} words:
+
+\Needspace{4\baselineskip}
+\begin{equation*}\text{modules}\, =\, \dfrac{2^{30}}{2^{28}}\, =\, 4\end{equation*}
+
+\begin{equation*}\text{chips}\, =\, 4\, \times \, 8\, =\, 32\end{equation*}
+\item \Needspace{13\baselineskip}
+Address widths: a module has 2\textsuperscript{28} words, so it needs 28 address bits; the whole memory has 2\textsuperscript{30} words, so 30.
+
+\Needspace{10\baselineskip}
+\begin{center}\small\begin{tabularx}{\linewidth}{>{\raggedright\arraybackslash}X>{\raggedright\arraybackslash}X>{\raggedright\arraybackslash}X}\toprule
+\textbf{Task} & \textbf{Specification} & \textbf{Quantity} \\ \midrule
+a) & RAM chips per memory module & 8 \\
+b) & Memory modules & 4 \\
+c) & RAM chips for the full memory & 32 \\
+d) & Address bits needed for a memory module & 28 \\
+e) & Address bits needed for the full memory & 30 \\
 \bottomrule\end{tabularx}\end{center}
-\item Check capacity and width separately: 4 modules \ensuremath{\times} 256M words = 1G words; 8 chips \ensuremath{\times} 4 bits = 32 bits per word.
+\item \textbf{Check} width and count separately: 8 chips \ensuremath{\times} 4 bits = 32 bits per word, and 4 modules \ensuremath{\times} 256M words = 1G words. The 2 extra address bits for the full memory pick one of the 4 = 2\textsuperscript{2} modules.
 \end{enumerate}
 \end{workedbox}
 
@@ -295,11 +321,52 @@ Address bits for full memory & 30 \\
 \begin{keepsection}\subsection{Exercise 3.2: Memory modules architecture}
 
 \begin{workedbox}{3.2.2 Word 14 across four modules \ensuremath{\cdot} worked solution}
-\Needspace{9\baselineskip}
+\Needspace{14\baselineskip}
 \begin{enumerate}
-\item There are four modules, so two address bits select a module. Each module holds 2\textsuperscript{28} words. High-order interleaving uses the most significant address bits for the module; low-order interleaving uses the least significant two bits.
-\item High-order: module = floor(14/2\textsuperscript{28}) = 0; local word address = 14. Low-order: module = 14 mod 4 = 2; local word address = floor(14/4) = 3.
-\item Check by reconstructing the addresses. High-order module 0 starts at word 0, so local 14 is global 14. Low-order module 2 stores words 2, 6, 10, 14, …; its fourth row is local address 3.
+\item The memory has 4 = 2\textsuperscript{2} modules, so 2 of the 30 word-address bits select a module and the other 28 select the word inside it. Word 14 is 1110\textsubscript{2}, that is 0 … 0 1110 in 30 bits.
+\item \Needspace{4\baselineskip}
+\textbf{High-order interleave} uses the top 2 bits for the module:
+
+\Needspace{4\baselineskip}
+\begin{equation*}\text{module}\, =\, ⌊14\, /\, 2^{28}⌋\, =\, 0\end{equation*}
+
+\Needspace{4\baselineskip}
+\begin{equation*}\text{word}\, \text{in}\, \text{module}\, =\, 14\end{equation*}
+
+\Needspace{4\baselineskip}
+\textbf{Low-order interleave} uses the bottom 2 bits:
+
+\Needspace{4\baselineskip}
+\begin{equation*}\text{module}\, =\, 14\, \text{mod}\, 4\, =\, 2\end{equation*}
+
+\begin{equation*}\text{word}\, \text{in}\, \text{module}\, =\, ⌊14\, /\, 4⌋\, =\, 3\end{equation*}
+\item \Needspace{9\baselineskip}
+The two address splits:
+
+\Needspace{14\baselineskip}
+\begin{center}
+\begin{minipage}[t]{0.465\linewidth}\centering
+\begin{tikzpicture}[line join=round]
+\filldraw[draw=black!50,fill=FAUblue!25] (0.072,-0.360) rectangle (1.008,-0.900);
+\node[,inner sep=1pt,font=\small] at (0.540,-0.630) {00};
+\node[,inner sep=1pt,font=\scriptsize] at (0.540,-1.188) {module 0};
+\node[,inner sep=1pt,font=\scriptsize] at (2.646,-0.252) {28 bits: address in module};
+\filldraw[draw=black!50,fill=Paperblue] (1.008,-0.360) rectangle (4.284,-0.900);
+\node[,inner sep=1pt,font=\small] at (2.646,-0.630) {0 … 0 0000 1110};
+\node[,inner sep=1pt,font=\scriptsize] at (2.646,-1.188) {word 14 in the module};
+\end{tikzpicture}\par\smallskip{\small\raggedright \textbf{High-order interleave.} The top 2 of the 30 address bits pick the module, so consecutive words fill module 0 first.\par}\end{minipage}\hfill
+\begin{minipage}[t]{0.465\linewidth}\centering
+\begin{tikzpicture}[line join=round]
+\node[,inner sep=1pt,font=\scriptsize] at (1.710,-0.252) {28 bits: address in module};
+\filldraw[draw=black!50,fill=Paperblue] (0.072,-0.360) rectangle (3.348,-0.900);
+\node[,inner sep=1pt,font=\small] at (1.710,-0.630) {0 … 0 0000 0011};
+\node[,inner sep=1pt,font=\scriptsize] at (1.710,-1.188) {word 3 in the module};
+\filldraw[draw=black!50,fill=FAUblue!25] (3.348,-0.360) rectangle (4.284,-0.900);
+\node[,inner sep=1pt,font=\small] at (3.816,-0.630) {10};
+\node[,inner sep=1pt,font=\scriptsize] at (3.816,-1.188) {module 2};
+\end{tikzpicture}\par\smallskip{\small\raggedright \textbf{Low-order interleave.} The bottom 2 bits pick the module, so consecutive words go to modules 0, 1, 2, 3, 0, …\par}\end{minipage}
+\end{center}
+\item \textbf{Check} by rebuilding the address. High-order: module 0 starts at word 0, so its word 14 is word 14. Low-order: module 2 holds words 2, 6, 10, 14, …, and 14 is its entry number 3 (counting from 0).
 \end{enumerate}
 \end{workedbox}
 
@@ -309,9 +376,22 @@ Address bits for full memory & 30 \\
 \begin{workedbox}{3.2.3 Word 300,000,000 \ensuremath{\cdot} worked solution}
 \Needspace{9\baselineskip}
 \begin{enumerate}
-\item For high-order interleaving, divide by the module capacity 2\textsuperscript{28} = 268,435,456. For low-order interleaving, divide by four modules.
-\item High-order: 300,000,000 = 1 \ensuremath{\times} 268,435,456 + 31,564,544, so the location is module 1, local word address 31,564,544. Low-order: 300,000,000 mod 4 = 0 and floor(300,000,000/4) = 75,000,000, so the location is module 0, local word address 75,000,000.
-\item Reconstruct: high-order 1 \ensuremath{\times} 2\textsuperscript{28} + 31,564,544 = 300,000,000; low-order 4 \ensuremath{\times} 75,000,000 + 0 = 300,000,000.
+\item High-order: divide by the module size 2\textsuperscript{28} = 268 435 456. Low-order: divide by the number of modules, 4.
+\item \Needspace{4\baselineskip}
+\textbf{a) High-order:}
+
+\Needspace{4\baselineskip}
+\begin{equation*}300\, 000\, 000\, =\, 1\, \times \, 268\, 435\, 456\, +\, 31\, 564\, 544\end{equation*}
+
+Module \textbf{1}, word \textbf{31 564 544} in that module.
+\item \Needspace{4\baselineskip}
+\textbf{b) Low-order:}
+
+\Needspace{4\baselineskip}
+\begin{equation*}300\, 000\, 000\, =\, 75\, 000\, 000\, \times \, 4\, +\, 0\end{equation*}
+
+Module \textbf{0}, word \textbf{75 000 000} in that module.
+\item \textbf{Check} by rebuilding: 1 \ensuremath{\times} 2\textsuperscript{28} + 31 564 544 = 300 000 000, and 4 \ensuremath{\times} 75 000 000 + 0 = 300 000 000.
 \end{enumerate}
 \end{workedbox}
 
@@ -321,9 +401,18 @@ Address bits for full memory & 30 \\
 \begin{workedbox}{3.3.1 Full-memory address width \ensuremath{\cdot} worked solution}
 \Needspace{7\baselineskip}
 \begin{enumerate}
-\item The capacity is 1G words \ensuremath{\times} 32 bits/word. Each word is four bytes, so there are 1G \ensuremath{\times} 4 = 4G = 2\textsuperscript{32} bytes.
-\item The full byte-addressable memory therefore needs log\textsubscript{2}(2\textsuperscript{32}) = 32 address bits.
-\item Check against word-addressing: 1G words require 30 bits; the two byte-within-word bits raise the byte address to 32 bits.
+\item \Needspace{4\baselineskip}
+The memory still holds 1G words of 4 bytes, but now every byte has an address:
+
+\begin{equation*}1\mathrm{G}\, \times \, 4\, =\, 2^{30}\, \times \, 2^{2}\, =\, 2^{32}\, \text{bytes}\end{equation*}
+\item \Needspace{10\baselineskip}
+\begin{center}\small\begin{tabularx}{\linewidth}{>{\raggedright\arraybackslash}X>{\raggedright\arraybackslash}X>{\raggedright\arraybackslash}X}\toprule
+\textbf{Task} & \textbf{Specification} & \textbf{Quantity} \\ \midrule
+a) & Address bits needed for the full memory & 32 \\
+\bottomrule\end{tabularx}\end{center}
+
+Chips and modules do not change: 8 chips per module, 4 modules, 32 chips.
+\item \textbf{Check:} 30 bits pick the word, as before, and 2 more pick the byte inside it.
 \end{enumerate}
 \end{workedbox}
 
@@ -331,11 +420,27 @@ Address bits for full memory & 30 \\
 \begin{keepsection}\subsection{Exercise 3.3: Byte-addressable memory modules}
 
 \begin{workedbox}{3.3.2 Word 14 after byte-addressing \ensuremath{\cdot} worked solution}
-\Needspace{10\baselineskip}
+\Needspace{18\baselineskip}
 \begin{enumerate}
-\item Word index 14 begins at byte address 14 \ensuremath{\times} 4 = 56. Because each module stores a complete 32-bit word, select the module using the word index; the two lowest byte-address bits identify the byte within that word.
-\item High-order interleaving: word 14 is in module 0 at local word row 14, beginning at local byte address 56. Low-order interleaving: module = 14 mod 4 = 2 and local word row = floor(14/4) = 3; the word begins at local byte address 3 \ensuremath{\times} 4 = 12. Its global byte address is still 56.
-\item The low-order module bits come from the word address after removing the two byte-offset bits. Reconstruct the global word index: 4 \ensuremath{\times} 3 + 2 = 14. The first byte of that word is 56.
+\item Word 14 starts at byte address 14 \ensuremath{\times} 4 = 56 = 111000\textsubscript{2}. In a 32-bit byte address the lowest 2 bits now pick the byte inside the word, and the 30 bits above them are the old word address.
+\item \Needspace{6\baselineskip}
+Each module is 32 bits wide, so it holds whole words; the module is therefore chosen from the word address, just above the 2 byte bits.
+
+\Needspace{5\baselineskip}
+\textbf{High-order:} the top 2 address bits pick the module. Word 14 is in \textbf{module 0}, at byte address 56 inside it (its word 14).
+
+\Needspace{4\baselineskip}
+\textbf{Low-order:} the 2 bits just above the byte offset pick the module:
+
+\Needspace{4\baselineskip}
+\begin{equation*}\text{module}\, =\, 14\, \text{mod}\, 4\, =\, 2\end{equation*}
+
+\Needspace{4\baselineskip}
+\begin{equation*}\text{word}\, \text{in}\, \text{module}\, =\, ⌊14\, /\, 4⌋\, =\, 3,\, \text{starting}\, \text{at}\, \text{byte}\, 3\, \times \, 4\, =\, 12\, \text{in}\, \text{the}\, \text{module}\end{equation*}
+
+So word 14 is in \textbf{module 2}, as in 3.2.2; only the addresses are now counted in bytes.
+\item \textbf{Assumption.} The sheet does not say which bits interleave. If instead the lowest 2 bits of the \emph{byte} address picked the module, the four bytes of word 14 (addresses 56 to 59) would land in modules 0, 1, 2 and 3, each at position 14. A word would then be split across modules, which does not fit modules built as 32-bit words, so the word-address reading above is the one to use; say so in your answer.
+\item \textbf{Check} with a sketch: byte addresses 0 to 15 hold words 0 to 3 in modules 0 to 3, so 56 = 4 \ensuremath{\times} 14 lies in the row of word 14, module 14 mod 4 = 2.
 \end{enumerate}
 \end{workedbox}
 

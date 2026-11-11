@@ -122,7 +122,7 @@ Try first: Calculate the four sums, difference, and products in the operand base
 \subsection{2.1.5 Overflow}
 
 \Needspace{4\baselineskip}
-Try first: For each decimal addition, find the mathematical sum, whether an 8-bit unsigned overflow occurs, and the stored byte. Then explain the NumPy result for uint8(250)+uint8(13).
+Try first: For each decimal addition, find the mathematical sum, whether an 8-bit unsigned overflow occurs, and the stored byte. Then explain the NumPy result for \texttt{uint8(250) + uint8(13)}.
 
 \nopagebreak[4]{\small\itshape Answers: see “Exercise 2.1: Natural numbers” under Answers at the end.}
 \end{keepsection}
@@ -132,7 +132,7 @@ Try first: For each decimal addition, find the mathematical sum, whether an 8-bi
 \subsection{2.1.6 Working with an unknown radix}
 
 \Needspace{4\baselineskip}
-Try first: The numeral 243 in base r has decimal value 99. Find r and decide whether 354\textsubscript{r} and 358\textsubscript{r} are valid.
+Try first: The numeral 243 in base \textit{r} has decimal value 99. Find \textit{r} and decide whether 354\textsubscript{\textit{r}} and 358\textsubscript{\textit{r}} are valid.
 
 \nopagebreak[4]{\small\itshape Answers: see “Exercise 2.1: Natural numbers” under Answers at the end.}
 \end{keepsection}
@@ -186,7 +186,7 @@ Try first: Complete the table for the three bit patterns and the two decimal val
 \subsection{2.3.2 Range and interpretation}
 
 \Needspace{4\baselineskip}
-Try first: Find the 8-bit and general n-bit ranges, explain the asymmetric counts, and interpret 11110110\textsubscript{2} both ways.
+Try first: Find the 8-bit and general \textit{n}-bit ranges, explain the asymmetric counts, and interpret 11110110\textsubscript{2} both ways.
 
 \nopagebreak[4]{\small\itshape Answers: see “Exercise 2.3: Signed and unsigned integers” under Answers at the end.}
 \end{keepsection}
@@ -236,11 +236,11 @@ Try first: Interpret 01000001\textsubscript{2} as unsigned, as 8-bit two’s com
 \textbf{Connected topic:} Boolean algebra identities (§1.1–1.2)
 
 \begin{keepsection}
-\Needspace{6\baselineskip}
+\Needspace{7\baselineskip}
 \subsection{2.5.1 Truth table}
 
-\Needspace{3\baselineskip}
-Try first: Fill the columns A\ensuremath{{}^{\prime}}, A\ensuremath{\cdot}B, A+B, and A+(B\ensuremath{\cdot}C) for all input rows in the given order.
+\Needspace{4\baselineskip}
+Try first: Fill the columns \textit{A}\ensuremath{{}^{\prime}}, \textit{A} \ensuremath{\cdot} \textit{B}, \textit{A} + \textit{B} and \textit{A} + (\textit{B} \ensuremath{\cdot} \textit{C}) for all input rows in the given order.
 
 \nopagebreak[4]{\small\itshape Answers: see “Exercise 2.5: Boolean algebra” under Answers at the end.}
 \end{keepsection}
@@ -260,7 +260,7 @@ Try first: Simplify the four expressions and name the Boolean law used at each s
 \subsection{2.5.3 Equivalence and construction}
 
 \Needspace{4\baselineskip}
-Try first: Compare A+(B\ensuremath{\cdot}C) with (A+B)(A+C) using algebra and a truth table; construct F=1 exactly when at least two inputs are 1.
+Try first: Compare \textit{A} + (\textit{B} \ensuremath{\cdot} \textit{C}) with (\textit{A} + \textit{B})(\textit{A} + \textit{C}) using algebra and a truth table; construct \textit{F} = 1 exactly when at least two inputs are 1.
 
 \nopagebreak[4]{\small\itshape Answers: see “Exercise 2.5: Boolean algebra” under Answers at the end.}
 \end{keepsection}
@@ -272,11 +272,36 @@ Try first: Compare A+(B\ensuremath{\cdot}C) with (A+B)(A+C) using algebra and a 
 \begin{keepsection}\subsection{Exercise 2.1: Natural numbers}
 
 \begin{workedbox}{2.1.1 Number representations \ensuremath{\cdot} worked solution}
-\Needspace{10\baselineskip}
+\Needspace{14\baselineskip}
 \begin{enumerate}
-\item Read each subscript as the base. For binary-to-octal, group bits from the binary point in threes; for binary-to-hexadecimal, group in fours. Pad only on the left with zeroes when needed.
-\item 10110110\textsubscript{2} = 010 110 110\textsubscript{2} = 266\textsubscript{8}, and 1011 0110\textsubscript{2} = B6\textsubscript{16}. The complete table is: 10110110\textsubscript{2} = 266\textsubscript{8} = 182\textsubscript{10} = B6\textsubscript{16}; 347\textsubscript{8} = 11100111\textsubscript{2} = 231\textsubscript{10} = E7\textsubscript{16}; 156\textsubscript{10} = 10011100\textsubscript{2} = 234\textsubscript{8} = 9C\textsubscript{16}; 2D7\textsubscript{16} = 0010 1101 0111\textsubscript{2} = 1327\textsubscript{8} = 727\textsubscript{10}; 110101011001\textsubscript{2} = 6531\textsubscript{8} = D59\textsubscript{16} = 3417\textsubscript{10}.
-\item The groups work because 8 = 2\textsuperscript{3} and 16 = 2\textsuperscript{4}: each octal digit encodes exactly three bits, and each hexadecimal digit exactly four. Check by expanding any one row back into powers of its base.
+\item Read each subscript as the base. To go from binary to octal, group the bits in threes from the right; to hexadecimal, in fours. Pad with zeros on the left only, where a group is short.
+\item \Needspace{4\baselineskip}
+The first and last rows, converted directly:
+
+\Needspace{4\baselineskip}
+\begin{equation*}10110110_{2}\, =\, 010\, 110\, 110_{2}\, =\, 266_{8}\end{equation*}
+
+\Needspace{4\baselineskip}
+\begin{equation*}10110110_{2}\, =\, 1011\, 0110_{2}\, =\, \mathrm{B}6_{16}\end{equation*}
+
+\Needspace{4\baselineskip}
+\begin{equation*}110101011001_{2}\, =\, 110\, 101\, 011\, 001_{2}\, =\, 6531_{8}\end{equation*}
+
+\begin{equation*}110101011001_{2}\, =\, 1101\, 0101\, 1001_{2}\, =\, \mathrm{D}59_{16}\end{equation*}
+\item \Needspace{12\baselineskip}
+The completed table, with the given entry of each row in bold:
+
+\Needspace{10\baselineskip}
+\begin{center}\small\begin{tabularx}{\linewidth}{>{\raggedright\arraybackslash}X>{\raggedright\arraybackslash}X>{\raggedright\arraybackslash}X>{\raggedright\arraybackslash}X}\toprule
+\textbf{Binary} & \textbf{Octal} & \textbf{Decimal} & \textbf{Hexadecimal} \\ \midrule
+\textbf{10110110} & 266 & 182 & B6 \\
+11100111 & \textbf{347} & 231 & E7 \\
+10011100 & 234 & \textbf{156} & 9C \\
+1011010111 & 1327 & 727 & \textbf{2D7} \\
+\textbf{110101011001} & 6531 & 3417 & D59 \\
+\bottomrule\end{tabularx}\end{center}
+\item Grouping works because 8 = 2\textsuperscript{3} and 16 = 2\textsuperscript{4}: one octal digit stands for exactly three bits and one hexadecimal digit for exactly four, so each group converts on its own and nothing carries from one group to the next.
+\item \textbf{Check:} expand one row back in its own base, for example B6\textsubscript{16} = 11 \ensuremath{\cdot} 16 + 6 = 182 and 347\textsubscript{8} = 3 \ensuremath{\cdot} 64 + 4 \ensuremath{\cdot} 8 + 7 = 231.
 \end{enumerate}
 \end{workedbox}
 
@@ -284,11 +309,28 @@ Try first: Compare A+(B\ensuremath{\cdot}C) with (A+B)(A+C) using algebra and a 
 \begin{keepsection}\subsection{Exercise 2.1: Natural numbers}
 
 \begin{workedbox}{2.1.2 Range of an unsigned representation \ensuremath{\cdot} worked solution}
-\Needspace{7\baselineskip}
+\Needspace{8\baselineskip}
 \begin{enumerate}
-\item An n-bit unsigned pattern has place values 2\textsuperscript{0} through 2\textsuperscript{n\ensuremath{-}1}. Its minimum is all zeroes; its maximum is their sum.
-\item The ranges are 0–255, 0–65,535, and 0–4,294,967,295. In general: 0 \ensuremath{\leq} x \ensuremath{\leq} 2\textsuperscript{n}\ensuremath{-}1. For 0 through 1000, 2\textsuperscript{9}\ensuremath{-}1=511 is too small, while 2\textsuperscript{10}\ensuremath{-}1=1023 is enough, so 10 bits are required.
-\item The count of distinct patterns is 2\textsuperscript{n}. Verify minimality by showing 2\textsuperscript{9} \ensuremath{<} 1001 \ensuremath{\leq} 2\textsuperscript{10}.
+\item An \textit{n}-bit unsigned pattern has place values 2\textsuperscript{0} to 2\textsuperscript{\textit{n} \ensuremath{-} 1}. The smallest value is all zeros; the largest is all ones, the sum of every place value.
+\item \Needspace{10\baselineskip}
+\begin{center}\small\begin{tabularx}{\linewidth}{>{\raggedright\arraybackslash}X>{\raggedright\arraybackslash}X>{\raggedright\arraybackslash}X}\toprule
+\textbf{Bits} & \textbf{Smallest} & \textbf{Largest} \\ \midrule
+8 & 0 & 2\textsuperscript{8} \ensuremath{-} 1 = 255 \\
+16 & 0 & 2\textsuperscript{16} \ensuremath{-} 1 = 65 535 \\
+32 & 0 & 2\textsuperscript{32} \ensuremath{-} 1 = 4 294 967 295 \\
+\bottomrule\end{tabularx}\end{center}
+
+\Needspace{4\baselineskip}
+In general an \textit{n}-bit unsigned integer covers
+
+\begin{equation*}0\, \leq \, {x}\, \leq \, 2^{{n}}\, -\, 1\end{equation*}
+\item \Needspace{5\baselineskip}
+The numbers 0 to 1000 are 1001 different values, and \textit{n} bits give 2\textsuperscript{\textit{n}} patterns, so we need the smallest \textit{n} with 2\textsuperscript{\textit{n}} \ensuremath{\geq} 1001:
+
+\Needspace{4\baselineskip}
+\begin{equation*}2^{9}\, =\, 512\, <\, 1001\, \leq \, 1024\, =\, 2^{10}\end{equation*}
+
+\textbf{10 bits} are required; 9 bits stop at 511.
 \end{enumerate}
 \end{workedbox}
 
@@ -296,11 +338,24 @@ Try first: Compare A+(B\ensuremath{\cdot}C) with (A+B)(A+C) using algebra and a 
 \begin{keepsection}\subsection{Exercise 2.1: Natural numbers}
 
 \begin{workedbox}{2.1.3 Representation and storage \ensuremath{\cdot} worked solution}
-\Needspace{9\baselineskip}
+\Needspace{12\baselineskip}
 \begin{enumerate}
-\item An unsigned byte stores 0 through 255. Convert each representation to its value, then compare with that range.
-\item 11111111\textsubscript{2}=255, 10000000\textsubscript{2}=128, FF\textsubscript{16}=255, and 256\textsubscript{10}=256. The first and third denote the same value and both fit; 128 fits; 256 does not.
-\item A numeral's value is the weighted sum of its digits in its base. Base-2 11111111 and base-16 FF are different spellings but both sum to 255. A byte stores the value's bit pattern, not the textual spelling.
+\item An unsigned 8-bit integer stores the values 0 to 255. Work out each value, then compare it with that range.
+\item \Needspace{5\baselineskip}
+Count the digits of the second binary value: 100000000\textsubscript{2} has \textbf{nine} digits, a 1 followed by eight zeros, so it is 2\textsuperscript{8}.
+
+\Needspace{4\baselineskip}
+\begin{equation*}11111111_{2}\, =\, 255\end{equation*}
+
+\Needspace{4\baselineskip}
+\begin{equation*}100000000_{2}\, =\, 2^{8}\, =\, 256\end{equation*}
+
+\Needspace{4\baselineskip}
+\begin{equation*}\text{FF}_{16}\, =\, 15\, \cdot \, 16\, +\, 15\, =\, 255\end{equation*}
+
+\begin{equation*}256_{10}\, =\, 256\end{equation*}
+\item \textbf{Fit in an unsigned byte:} 11111111\textsubscript{2} and FF\textsubscript{16}. \textbf{Do not fit:} 100000000\textsubscript{2} and 256\textsubscript{10}; 256 needs nine bits.
+\item \textbf{Same value, different spelling:} 11111111\textsubscript{2} = FF\textsubscript{16} = 255, and 100000000\textsubscript{2} = 256\textsubscript{10} = 256. A numeral is a weighted sum of its digits in its base; different bases give different digit strings for the same number. A byte holds the value's bit pattern, not the way it was written.
 \end{enumerate}
 \end{workedbox}
 
@@ -308,11 +363,38 @@ Try first: Compare A+(B\ensuremath{\cdot}C) with (A+B)(A+C) using algebra and a 
 \begin{keepsection}\subsection{Exercise 2.1: Natural numbers}
 
 \begin{workedbox}{2.1.4 Arithmetic \ensuremath{\cdot} worked solution}
-\Needspace{9\baselineskip}
+\Needspace{18\baselineskip}
 \begin{enumerate}
-\item Keep the radix fixed during each operation, align place values, and perform carries or borrows in that radix.
-\item 10110110\textsubscript{2} + 00101101\textsubscript{2} = 11100011\textsubscript{2} (227), which fits. 11001010\textsubscript{2} \ensuremath{-} 00110111\textsubscript{2} = 10010011\textsubscript{2} (147), which fits. 00101101\textsubscript{2} \ensuremath{\times} 00000100\textsubscript{2} = 10110100\textsubscript{2} (180), which fits. A7\textsubscript{16} + 3C\textsubscript{16} = E3\textsubscript{16} (227), which fits.
-\item All four values are at most FF\textsubscript{16}=255. The subtraction is nonnegative; the multiplication by 4 is a two-bit left shift, which provides a quick check.
+\item Keep the base fixed throughout: line the digits up by place value and carry or borrow in that base, as in decimal written arithmetic.
+\item \Needspace{11\baselineskip}
+\textbf{a)} Add column by column from the right; a column that sums to 2 or 3 writes 0 or 1 and carries 1 to the left.
+
+\Needspace{10\baselineskip}
+\begin{center}\small\begin{tabularx}{\linewidth}{>{\raggedright\arraybackslash}X>{\raggedright\arraybackslash}X>{\raggedright\arraybackslash}X>{\raggedright\arraybackslash}X>{\raggedright\arraybackslash}X>{\raggedright\arraybackslash}X>{\raggedright\arraybackslash}X>{\raggedright\arraybackslash}X>{\raggedright\arraybackslash}X}\toprule
+\textbf{} & \textbf{2\textsuperscript{7}} & \textbf{2\textsuperscript{6}} & \textbf{2\textsuperscript{5}} & \textbf{2\textsuperscript{4}} & \textbf{2\textsuperscript{3}} & \textbf{2\textsuperscript{2}} & \textbf{2\textsuperscript{1}} & \textbf{2\textsuperscript{0}} \\ \midrule
+carry &   & 1 & 1 & 1 & 1 &   &   &   \\
+ & 1 & 0 & 1 & 1 & 0 & 1 & 1 & 0 \\
++ & 0 & 0 & 1 & 0 & 1 & 1 & 0 & 1 \\
+= & 1 & 1 & 1 & 0 & 0 & 0 & 1 & 1 \\
+\bottomrule\end{tabularx}\end{center}
+
+The sum is 11100011\textsubscript{2} (227).
+\item \Needspace{11\baselineskip}
+\textbf{b)} Subtract from the right; where the top digit is too small, borrow 1 from the column to the left (it is worth 2 here). The marked columns lent a 1.
+
+\Needspace{10\baselineskip}
+\begin{center}\small\begin{tabularx}{\linewidth}{>{\raggedright\arraybackslash}X>{\raggedright\arraybackslash}X>{\raggedright\arraybackslash}X>{\raggedright\arraybackslash}X>{\raggedright\arraybackslash}X>{\raggedright\arraybackslash}X>{\raggedright\arraybackslash}X>{\raggedright\arraybackslash}X>{\raggedright\arraybackslash}X}\toprule
+\textbf{} & \textbf{2\textsuperscript{7}} & \textbf{2\textsuperscript{6}} & \textbf{2\textsuperscript{5}} & \textbf{2\textsuperscript{4}} & \textbf{2\textsuperscript{3}} & \textbf{2\textsuperscript{2}} & \textbf{2\textsuperscript{1}} & \textbf{2\textsuperscript{0}} \\ \midrule
+lent &   & 1 & 1 &   & 1 & 1 & 1 &   \\
+ & 1 & 1 & 0 & 0 & 1 & 0 & 1 & 0 \\
+\ensuremath{-} & 0 & 0 & 1 & 1 & 0 & 1 & 1 & 1 \\
+= & 1 & 0 & 0 & 1 & 0 & 0 & 1 & 1 \\
+\bottomrule\end{tabularx}\end{center}
+
+The difference is 10010011\textsubscript{2} (147).
+\item \textbf{c)} 00000100\textsubscript{2} = 2\textsuperscript{2}, so multiplying by it shifts every bit two places left: 00101101\textsubscript{2} \ensuremath{\times} 00000100\textsubscript{2} = 10110100\textsubscript{2} (180). The two bits pushed out at the top were 0, so nothing is lost.
+\item \textbf{d)} In hexadecimal, 7 + C = 19 = 16 + 3: write 3 and carry 1. Then A + 3 + 1 = 14 = E. So A7\textsubscript{16} + 3C\textsubscript{16} = E3\textsubscript{16} (227).
+\item \textbf{Fit:} all four results are at most FF\textsubscript{16} = 255, and the difference is not negative, so each fits an unsigned byte. \textbf{Check:} a) and d) are the same sum, 182 + 45 = 167 + 60 = 227.
 \end{enumerate}
 \end{workedbox}
 
@@ -320,11 +402,26 @@ Try first: Compare A+(B\ensuremath{\cdot}C) with (A+B)(A+C) using algebra and a 
 \begin{keepsection}\subsection{Exercise 2.1: Natural numbers}
 
 \begin{workedbox}{2.1.5 Overflow \ensuremath{\cdot} worked solution}
-\Needspace{10\baselineskip}
+\Needspace{14\baselineskip}
 \begin{enumerate}
-\item An 8-bit unsigned value stores the sum only when it is at most 255. For modular storage, retain the low eight bits, equivalently take the remainder modulo 256.
-\item 200+55=255: no overflow, stored 255. 200+56=256: overflow, stored 0. 250+13=263: overflow, stored 7. 128+128=256: overflow, stored 0. The condition is a+b\ensuremath{>}255. For the NumPy expression, the expected 8-bit result is 7 because 263 mod 256=7; this is fixed-width unsigned arithmetic; the NumPy 2.5.4 run also emits a RuntimeWarning for scalar overflow.
-\item Compare each stored value with its mathematical sum modulo 256. The boundary case 200+55 is exactly 255, so it does not overflow.
+\item An unsigned byte keeps only the low eight bits of a result, which is the result modulo 256. Overflow happens when the true sum is larger than 255.
+\item \Needspace{10\baselineskip}
+\begin{center}\small\begin{tabularx}{\linewidth}{>{\raggedright\arraybackslash}X>{\raggedright\arraybackslash}X>{\raggedright\arraybackslash}X>{\raggedright\arraybackslash}X}\toprule
+\textbf{Addition} & \textbf{Mathematical result} & \textbf{Overflow?} & \textbf{Stored in 8 bits} \\ \midrule
+200 + 55 & 255 & no & 255 \\
+200 + 56 & 256 & yes & 256 \ensuremath{-} 256 = 0 \\
+250 + 13 & 263 & yes & 263 \ensuremath{-} 256 = 7 \\
+128 + 128 & 256 & yes & 0 \\
+\bottomrule\end{tabularx}\end{center}
+\item \Needspace{4\baselineskip}
+\textbf{Condition:} two unsigned bytes \textit{a} and \textit{b} overflow exactly when
+
+\Needspace{4\baselineskip}
+\begin{equation*}{a}\, +\, {b}\, >\, 255\end{equation*}
+
+which is the same as a carry out of the leftmost bit; the stored value is then \textit{a} + \textit{b} \ensuremath{-} 256.
+\item \textbf{The NumPy lines:} both operands are \texttt{uint8}, so the sum is also computed as a \texttt{uint8}: 250 + 13 = 263 wraps to 263 \ensuremath{-} 256 = 7, and \texttt{print} shows \texttt{7}. Recent NumPy versions also warn about an overflow in the scalar addition. Python's own \texttt{250 + 13} would give 263, because Python integers have no fixed width.
+\item \textbf{Check:} 200 + 55 sits exactly on the limit 255, so it does not overflow.
 \end{enumerate}
 \end{workedbox}
 
@@ -332,11 +429,27 @@ Try first: Compare A+(B\ensuremath{\cdot}C) with (A+B)(A+C) using algebra and a 
 \begin{keepsection}\subsection{Exercise 2.1: Natural numbers}
 
 \begin{workedbox}{2.1.6 Working with an unknown radix \ensuremath{\cdot} worked solution}
-\Needspace{6\baselineskip}
+\Needspace{10\baselineskip}
 \begin{enumerate}
-\item Expand by place value: 243\textsubscript{r} = 2r\textsuperscript{2}+4r+3. A radix must be an integer larger than every digit.
-\item Solve 2r\textsuperscript{2}+4r+3=99, giving r\textsuperscript{2}+2r\ensuremath{-}48=0=(r+8)(r\ensuremath{-}6). The positive radix is r=6. In base six, 354\textsubscript{6} is valid because each digit is below 6; 358\textsubscript{6} is invalid because digit 8 is not allowed.
-\item Substitute r=6: 2\ensuremath{\cdot}36+4\ensuremath{\cdot}6+3=99. Reject \ensuremath{-}8 because a radix is positive.
+\item \Needspace{5\baselineskip}
+Expand by place value; a radix must be a whole number larger than every digit used, so \textit{r} \ensuremath{\geq} 5 here.
+
+\begin{equation*}243_{{r}}\, =\, 2{r}^{2}\, +\, 4{r}\, +\, 3\, =\, 99\end{equation*}
+\item \Needspace{4\baselineskip}
+Rearrange and factorise:
+
+\Needspace{4\baselineskip}
+\begin{equation*}2{r}^{2}\, +\, 4{r}\, -\, 96\, =\, 0\end{equation*}
+
+\Needspace{4\baselineskip}
+\begin{equation*}{r}^{2}\, +\, 2{r}\, -\, 48\, =\, 0\end{equation*}
+
+\Needspace{4\baselineskip}
+\begin{equation*}({r}\, +\, 8)({r}\, -\, 6)\, =\, 0\end{equation*}
+
+A radix is positive, so \textbf{\textit{r} = 6}; \ensuremath{-}8 is rejected.
+\item In base six the digits are 0 to 5. 354\textsubscript{6} is \textbf{valid}: every digit is below 6. 358\textsubscript{6} is \textbf{not valid}: 8 is not a base-six digit.
+\item \textbf{Check:} 2 \ensuremath{\cdot} 36 + 4 \ensuremath{\cdot} 6 + 3 = 72 + 24 + 3 = 99.
 \end{enumerate}
 \end{workedbox}
 
@@ -344,11 +457,37 @@ Try first: Compare A+(B\ensuremath{\cdot}C) with (A+B)(A+C) using algebra and a 
 \begin{keepsection}\subsection{Exercise 2.2: Floating-point numbers}
 
 \begin{workedbox}{2.2.1 Binary fractions \ensuremath{\cdot} worked solution}
-\Needspace{8\baselineskip}
+\Needspace{12\baselineskip}
 \begin{enumerate}
-\item After the binary point, places have weights 2\textsuperscript{\ensuremath{-}}\textsuperscript{1}, 2\textsuperscript{\ensuremath{-}}\textsuperscript{2}, and so on. To convert a binary fraction, add the place values of its 1 bits.
-\item 0.1011\textsubscript{2}=1/2+1/8+1/16=0.6875\textsubscript{10}. 10.011\textsubscript{2}=2+1/4+1/8=2.375\textsubscript{10}. For the reverse direction, repeatedly double the fractional part: 0.625\ensuremath{\times}2=1.25 gives bit 1 and remainder .25; .25\ensuremath{\times}2=.5 gives 0; .5\ensuremath{\times}2=1 gives 1. Thus 0.625\textsubscript{10}=0.101\textsubscript{2}. Similarly 5.375\textsubscript{10}=101.011\textsubscript{2}.
-\item Convert back: 0.101\textsubscript{2}=1/2+1/8=0.625, and 101.011\textsubscript{2}=4+1+1/4+1/8=5.375.
+\item After the binary point the places are worth 2\textsuperscript{\ensuremath{-}1} = 1/2, 2\textsuperscript{\ensuremath{-}2} = 1/4, 2\textsuperscript{\ensuremath{-}3} = 1/8 and so on. Binary to decimal: add the place values of the 1 bits. Decimal to binary: double the fraction again and again; each whole part that appears is the next bit.
+\item \Needspace{4\baselineskip}
+\textbf{Binary to decimal:}
+
+\begin{equation*}0.1011_{2}\, =\, \dfrac{1}{2}\, +\, \dfrac{1}{8}\, +\, \dfrac{1}{16}\, =\, 0.6875\end{equation*}
+\item \Needspace{9\baselineskip}
+\textbf{Decimal to binary,} for 0.625:
+
+\Needspace{10\baselineskip}
+\begin{center}\small\begin{tabularx}{\linewidth}{>{\raggedright\arraybackslash}X>{\raggedright\arraybackslash}X>{\raggedright\arraybackslash}X}\toprule
+\textbf{Fraction} & \textbf{\ensuremath{\times} 2} & \textbf{Bit} \\ \midrule
+0.625 & 1.25 & 1 \\
+0.25 & 0.5 & 0 \\
+0.5 & 1.0 & 1 \\
+\bottomrule\end{tabularx}\end{center}
+
+The fraction reaches 0, so 0.625\textsubscript{10} = 0.101\textsubscript{2}. For 5.375, the whole part 5 = 101\textsubscript{2} and 0.375 doubles to 0.75 (0), 1.5 (1), 1.0 (1), so 5.375\textsubscript{10} = 101.011\textsubscript{2}.
+\item \Needspace{10\baselineskip}
+The completed table:
+
+\Needspace{10\baselineskip}
+\begin{center}\small\begin{tabularx}{\linewidth}{>{\raggedright\arraybackslash}X>{\raggedright\arraybackslash}X}\toprule
+\textbf{Binary} & \textbf{Decimal} \\ \midrule
+\textbf{0.1011} & 0.6875 \\
+\textbf{10.011} & 2.375 \\
+0.101 & \textbf{0.625} \\
+101.011 & \textbf{5.375} \\
+\bottomrule\end{tabularx}\end{center}
+\item \textbf{Check:} convert back, 101.011\textsubscript{2} = 4 + 1 + 1/4 + 1/8 = 5.375.
 \end{enumerate}
 \end{workedbox}
 
@@ -356,11 +495,31 @@ Try first: Compare A+(B\ensuremath{\cdot}C) with (A+B)(A+C) using algebra and a 
 \begin{keepsection}\subsection{Exercise 2.2: Floating-point numbers}
 
 \begin{workedbox}{2.2.2 Finite and repeating representations \ensuremath{\cdot} worked solution}
-\Needspace{9\baselineskip}
+\Needspace{13\baselineskip}
 \begin{enumerate}
-\item Repeatedly multiply the fractional remainder by 2; each product's integer part is the next bit.
-\item For 1/10: remainders produce 0.0001100110011…\textsubscript{2} = 0.0(0011)\textsubscript{2}, with the block 0011 repeating. Reduce the candidates: 1/2, 3/8, 1/10, 5/16, 7/20. The finite ones are 1/2, 3/8, and 5/16; 1/10 and 7/20 repeat.
-\item A reduced fraction p/q has a finite binary expansion exactly when q is a power of 2. Here 10=2\ensuremath{\cdot}5 and 20=4\ensuremath{\cdot}5 retain a factor 5 after reduction, so those expansions cannot terminate.
+\item \Needspace{13\baselineskip}
+Use the doubling method from 2.2.1 on 0.1 and watch the fractions that remain:
+
+\Needspace{10\baselineskip}
+\begin{center}\small\begin{tabularx}{\linewidth}{>{\raggedright\arraybackslash}X>{\raggedright\arraybackslash}X>{\raggedright\arraybackslash}X}\toprule
+\textbf{Fraction} & \textbf{\ensuremath{\times} 2} & \textbf{Bit} \\ \midrule
+0.1 & 0.2 & 0 \\
+0.2 & 0.4 & 0 \\
+0.4 & 0.8 & 0 \\
+0.8 & 1.6 & 1 \\
+0.6 & 1.2 & 1 \\
+0.2 & 0.4 & 0 \\
+… & … & … \\
+\bottomrule\end{tabularx}\end{center}
+\item \Needspace{4\baselineskip}
+The fraction 0.2 has come back, so from there the bits 0011 repeat for ever:
+
+\Needspace{5\baselineskip}
+\begin{equation*}0.1_{10}\, =\, 0.0001\, 1001\, 1001\, 1…_{2}\end{equation*}
+
+It never reaches 0 because 1/10 has the factor 5 in its denominator, and doubling can never cancel a 5.
+\item Check each fraction in lowest terms: 1/2 = 0.1\textsubscript{2}, 3/8 = 0.011\textsubscript{2} and 5/16 = 0.0101\textsubscript{2} are \textbf{finite}; 1/10 and 7/20 (denominators 2 \ensuremath{\cdot} 5 and 4 \ensuremath{\cdot} 5) \textbf{repeat}.
+\item \textbf{Condition:} a fraction \textit{p}/\textit{q} in lowest terms has a finite binary expansion exactly when \textit{q} is a power of 2, that is \textit{q} = 2\textsuperscript{\textit{k}}. Then multiplying by 2\textsuperscript{\textit{k}} gives a whole number, which ends the doubling after \textit{k} bits.
 \end{enumerate}
 \end{workedbox}
 
@@ -368,11 +527,23 @@ Try first: Compare A+(B\ensuremath{\cdot}C) with (A+B)(A+C) using algebra and a 
 \begin{keepsection}\subsection{Exercise 2.3: Signed and unsigned integers}
 
 \begin{workedbox}{2.3.1 Two’s complement \ensuremath{\cdot} worked solution}
-\Needspace{8\baselineskip}
+\Needspace{11\baselineskip}
 \begin{enumerate}
-\item For a nonnegative value, write its ordinary binary form padded to eight bits. For a negative value, invert the bits of its magnitude and add one.
-\item 01111111\textsubscript{2}=127; 11111111\textsubscript{2}=\ensuremath{-}1; 10000000\textsubscript{2}=\ensuremath{-}128. Conversely, \ensuremath{-}8 is 11111000\textsubscript{2}, and \ensuremath{-}37 is 11011011\textsubscript{2}.
-\item Check negative encodings by interpreting the most significant bit as weight \ensuremath{-}128 and the remaining bits as positive powers: 11111000\textsubscript{2}=\ensuremath{-}128+120=\ensuremath{-}8; 11011011\textsubscript{2}=\ensuremath{-}128+64+16+8+2+1=\ensuremath{-}37.
+\item In 8-bit two's complement the leftmost bit is worth \ensuremath{-}128 and the others keep their usual positive weights. To encode a negative number, write its magnitude in 8 bits, invert every bit and add 1.
+\item For \ensuremath{-}37: 37 = 00100101\textsubscript{2}; inverted 11011010\textsubscript{2}; plus 1 gives 11011011\textsubscript{2}. For \ensuremath{-}8: 8 = 00001000\textsubscript{2} \ensuremath{\to} 11110111\textsubscript{2} \ensuremath{\to} 11111000\textsubscript{2}.
+\item \Needspace{11\baselineskip}
+The completed table:
+
+\Needspace{10\baselineskip}
+\begin{center}\small\begin{tabularx}{\linewidth}{>{\raggedright\arraybackslash}X>{\raggedright\arraybackslash}X}\toprule
+\textbf{Binary} & \textbf{Decimal} \\ \midrule
+\textbf{01111111} & 127 \\
+\textbf{11111111} & \ensuremath{-}1 \\
+\textbf{10000000} & \ensuremath{-}128 \\
+11111000 & \textbf{\ensuremath{-}8} \\
+11011011 & \textbf{\ensuremath{-}37} \\
+\bottomrule\end{tabularx}\end{center}
+\item \textbf{Check} with the \ensuremath{-}128 weight: 11111000\textsubscript{2} = \ensuremath{-}128 + 64 + 32 + 16 + 8 = \ensuremath{-}8 and 11011011\textsubscript{2} = \ensuremath{-}128 + 64 + 16 + 8 + 2 + 1 = \ensuremath{-}37.
 \end{enumerate}
 \end{workedbox}
 
@@ -380,11 +551,18 @@ Try first: Compare A+(B\ensuremath{\cdot}C) with (A+B)(A+C) using algebra and a 
 \begin{keepsection}\subsection{Exercise 2.3: Signed and unsigned integers}
 
 \begin{workedbox}{2.3.2 Range and interpretation \ensuremath{\cdot} worked solution}
-\Needspace{9\baselineskip}
+\Needspace{13\baselineskip}
 \begin{enumerate}
-\item In n-bit two’s complement, the leading bit has weight \ensuremath{-}2\textsuperscript{n\ensuremath{-}1}; the other bits sum from 0 to 2\textsuperscript{n\ensuremath{-}1}\ensuremath{-}1.
-\item The 8-bit range is \ensuremath{-}128 through 127. Generally it is \ensuremath{-}2\textsuperscript{n\ensuremath{-}1} through 2\textsuperscript{n\ensuremath{-}1}\ensuremath{-}1. There are 2\textsuperscript{n\ensuremath{-}1} negative patterns but only 2\textsuperscript{n\ensuremath{-}1}\ensuremath{-}1 positive patterns because zero uses one of the nonnegative patterns. 11110110\textsubscript{2} is 246 unsigned and \ensuremath{-}10 signed (\ensuremath{-}128+64+32+16+4+2).
-\item The same stored bits have no inherent signedness. The surrounding type or format decides whether the leading bit has weight +128 or \ensuremath{-}128.
+\item In \textit{n}-bit two's complement the leading bit is worth \ensuremath{-}2\textsuperscript{\textit{n} \ensuremath{-} 1} and the other bits add up to at most 2\textsuperscript{\textit{n} \ensuremath{-} 1} \ensuremath{-} 1.
+\item \Needspace{4\baselineskip}
+For 8 bits the range is \ensuremath{-}128 to 127; in general
+
+\Needspace{6\baselineskip}
+\begin{equation*}-2^{{n}\, -\, 1}\, \leq \, {x}\, \leq \, 2^{{n}\, -\, 1}\, -\, 1\end{equation*}
+
+There are 2\textsuperscript{\textit{n}} patterns. Half of them, 2\textsuperscript{\textit{n} \ensuremath{-} 1}, start with 1 and are negative; the other half start with 0, and one of those is zero, which leaves 2\textsuperscript{\textit{n} \ensuremath{-} 1} \ensuremath{-} 1 positive values. So there is one more negative value than positive.
+\item 11110110\textsubscript{2} read as unsigned is 128 + 64 + 32 + 16 + 4 + 2 = \textbf{246}; read as two's complement the first bit counts \ensuremath{-}128 instead, giving 246 \ensuremath{-} 256 = \textbf{\ensuremath{-}10}.
+\item The bits themselves carry no sign. The type the program declares decides whether the leading bit is worth +128 or \ensuremath{-}128.
 \end{enumerate}
 \end{workedbox}
 
@@ -392,11 +570,14 @@ Try first: Compare A+(B\ensuremath{\cdot}C) with (A+B)(A+C) using algebra and a 
 \begin{keepsection}\subsection{Exercise 2.3: Signed and unsigned integers}
 
 \begin{workedbox}{2.3.3 Signed overflow \ensuremath{\cdot} worked solution}
-\Needspace{8\baselineskip}
+\Needspace{9\baselineskip}
 \begin{enumerate}
-\item Add the bit patterns: 01100101\textsubscript{2}+00111110\textsubscript{2}=10100011\textsubscript{2}.
-\item The operands are +101 and +62; the 8-bit result pattern 10100011\textsubscript{2} represents \ensuremath{-}93 (\ensuremath{-}128+32+2+1). The mathematical sum is 163, outside the range \ensuremath{-}128…127, so signed overflow occurs.
-\item Two positive operands produced a negative result, which detects overflow. In general, signed addition overflows when operand signs match and the result sign differs; opposite-sign operands cannot overflow when added.
+\item \Needspace{4\baselineskip}
+Add the patterns as unsigned bits, then read the operands and the result as signed values.
+
+\begin{equation*}01100101_{2}\, +\, 00111110_{2}\, =\, 10100011_{2}\end{equation*}
+\item Both operands start with 0, so they are positive: +101 and +62. Their true sum 163 is above 127. The result starts with 1 and reads as \ensuremath{-}128 + 32 + 2 + 1 = \ensuremath{-}93, which is 163 \ensuremath{-} 256.
+\item \textbf{Signed overflow occurs.} Two positive operands gave a negative result. In general an addition overflows exactly when both operands have the same sign and the result's sign differs; adding a positive and a negative number can never overflow.
 \end{enumerate}
 \end{workedbox}
 
@@ -404,11 +585,28 @@ Try first: Compare A+(B\ensuremath{\cdot}C) with (A+B)(A+C) using algebra and a 
 \begin{keepsection}\subsection{Exercise 2.4: Text representation and interpretation}
 
 \begin{workedbox}{2.4.1 ASCII \ensuremath{\cdot} worked solution}
-\Needspace{8\baselineskip}
+\Needspace{10\baselineskip}
 \begin{enumerate}
-\item Treat each ASCII code as a byte. Convert binary to decimal and look up the corresponding standard ASCII character; reverse the process for a given decimal code.
-\item 01000001\textsubscript{2}=65\textsubscript{10}='A'; 01100001\textsubscript{2}=97\textsubscript{10}='a'; 48\textsubscript{10}=00110000\textsubscript{2}='0'. AIBE is 01000001 01001001 01000010 01000101\textsubscript{2}, or 41 49 42 45 in hexadecimal.
-\item Check that uppercase and lowercase letters differ by 32 in ASCII (one bit at this position), and that decimal 48 is the character '0', not the numeric value zero.
+\item ASCII gives each character a code from 0 to 127, stored in one byte. Convert the binary to decimal and look the code up, or the other way round.
+\item \Needspace{10\baselineskip}
+\begin{center}\small\begin{tabularx}{\linewidth}{>{\raggedright\arraybackslash}X>{\raggedright\arraybackslash}X>{\raggedright\arraybackslash}X}\toprule
+\textbf{Binary} & \textbf{Decimal} & \textbf{ASCII} \\ \midrule
+\textbf{01000001} & 65 & A \\
+\textbf{01100001} & 97 & a \\
+00110000 & \textbf{48} & 0 (the digit) \\
+\bottomrule\end{tabularx}\end{center}
+\item \Needspace{10\baselineskip}
+\textbf{AIBE} in 8-bit ASCII, one byte per letter:
+
+\Needspace{10\baselineskip}
+\begin{center}\small\begin{tabularx}{\linewidth}{>{\raggedright\arraybackslash}X>{\raggedright\arraybackslash}X>{\raggedright\arraybackslash}X}\toprule
+\textbf{Character} & \textbf{Hexadecimal} & \textbf{Binary} \\ \midrule
+A & 41 & 01000001 \\
+I & 49 & 01001001 \\
+B & 42 & 01000010 \\
+E & 45 & 01000101 \\
+\bottomrule\end{tabularx}\end{center}
+\item \textbf{Check:} a capital and a small letter differ by 32, a single bit (01000001\textsubscript{2} and 01100001\textsubscript{2}), and code 48 is the character '0', not the number zero.
 \end{enumerate}
 \end{workedbox}
 
@@ -428,11 +626,22 @@ Try first: Compare A+(B\ensuremath{\cdot}C) with (A+B)(A+C) using algebra and a 
 \begin{keepsection}\subsection{Exercise 2.5: Boolean algebra}
 
 \begin{workedbox}{2.5.1 Truth table \ensuremath{\cdot} worked solution}
-\Needspace{8\baselineskip}
+\Needspace{7\baselineskip}
 \begin{enumerate}
-\item Evaluate each row independently with 0=false and 1=true. Complement flips a bit; \ensuremath{\cdot} is AND; + is OR. Parentheses make B\ensuremath{\cdot}C happen before the outer OR.
-\item In the row order 000,001,010,011,100,101,110,111, the columns are: A\ensuremath{{}^{\prime}} = 1,1,1,1,0,0,0,0; A\ensuremath{\cdot}B = 0,0,0,0,0,0,1,1; A+B = 0,0,1,1,1,1,1,1; A+(B\ensuremath{\cdot}C) = 0,0,0,1,1,1,1,1.
-\item Spot-check 011: A=0 and B\ensuremath{\cdot}C=1, so the final expression is 1. For all rows with A=1, both OR columns are 1.
+\item Evaluate each row on its own: \ensuremath{{}^{\prime}} flips a bit, \ensuremath{\cdot} is AND, + is OR, and the brackets make \textit{B} \ensuremath{\cdot} \textit{C} happen before the outer OR.
+\item \Needspace{10\baselineskip}
+\begin{center}\small\begin{tabularx}{\linewidth}{>{\raggedright\arraybackslash}X>{\raggedright\arraybackslash}X>{\raggedright\arraybackslash}X>{\raggedright\arraybackslash}X>{\raggedright\arraybackslash}X>{\raggedright\arraybackslash}X>{\raggedright\arraybackslash}X}\toprule
+\textbf{\textit{A}} & \textbf{\textit{B}} & \textbf{\textit{C}} & \textbf{\textit{A}\ensuremath{{}^{\prime}}} & \textbf{\textit{A} \ensuremath{\cdot} \textit{B}} & \textbf{\textit{A} + \textit{B}} & \textbf{\textit{A} + (\textit{B} \ensuremath{\cdot} \textit{C})} \\ \midrule
+0 & 0 & 0 & 1 & 0 & 0 & 0 \\
+0 & 0 & 1 & 1 & 0 & 0 & 0 \\
+0 & 1 & 0 & 1 & 0 & 1 & 0 \\
+0 & 1 & 1 & 1 & 0 & 1 & 1 \\
+1 & 0 & 0 & 0 & 0 & 1 & 1 \\
+1 & 0 & 1 & 0 & 0 & 1 & 1 \\
+1 & 1 & 0 & 0 & 1 & 1 & 1 \\
+1 & 1 & 1 & 0 & 1 & 1 & 1 \\
+\bottomrule\end{tabularx}\end{center}
+\item \textbf{Check} row 011: \textit{A} = 0 but \textit{B} \ensuremath{\cdot} \textit{C} = 1, so the last column is 1. In every row with \textit{A} = 1 both OR columns are 1.
 \end{enumerate}
 \end{workedbox}
 
@@ -440,11 +649,31 @@ Try first: Compare A+(B\ensuremath{\cdot}C) with (A+B)(A+C) using algebra and a 
 \begin{keepsection}\subsection{Exercise 2.5: Boolean algebra}
 
 \begin{workedbox}{2.5.2 Simplification \ensuremath{\cdot} worked solution}
-\Needspace{7\baselineskip}
+\Needspace{11\baselineskip}
 \begin{enumerate}
-\item Use complement, identity, distributive, and absorption laws; show the intermediate rewrite so each result can be checked.
-\item A+A\ensuremath{{}^{\prime}}=1 by complement. A\ensuremath{\cdot}A\ensuremath{{}^{\prime}}=0 by complement. A+(A\ensuremath{{}^{\prime}}\ensuremath{\cdot}B)=(A+A\ensuremath{{}^{\prime}})(A+B)=1\ensuremath{\cdot}(A+B)=A+B, by distributivity and identity. (A+B)(A+B\ensuremath{{}^{\prime}})=A+BB\ensuremath{{}^{\prime}}=A+0=A, by distributivity and complement.
-\item Check the last two with A=0 and A=1 separately; their outputs match A+B and A respectively.
+\item Rewrite one law at a time and name it, so each step can be checked.
+\item \Needspace{4\baselineskip}
+\begin{equation*}{A}\, +\, {A}'\, =\, 1\end{equation*}
+
+\Needspace{4\baselineskip}
+\begin{equation*}{A}\, \cdot \, {A}'\, =\, 0\end{equation*}
+
+both by the complement law.
+\item \Needspace{4\baselineskip}
+\begin{equation*}{A}\, +\, ({A}'\, \cdot \, {B})\, =\, ({A}\, +\, {A}')\, \cdot \, ({A}\, +\, {B})\end{equation*}
+
+\Needspace{4\baselineskip}
+\begin{equation*}=\, 1\, \cdot \, ({A}\, +\, {B})\, =\, {A}\, +\, {B}\end{equation*}
+
+by distributivity of + over \ensuremath{\cdot}, then the complement and identity laws.
+\item \Needspace{4\baselineskip}
+\begin{equation*}({A}\, +\, {B})({A}\, +\, {B}')\, =\, {A}\, +\, {B}\, \cdot \, {B}'\end{equation*}
+
+\Needspace{4\baselineskip}
+\begin{equation*}=\, {A}\, +\, 0\, =\, {A}\end{equation*}
+
+by distributivity, then the complement and identity laws.
+\item \textbf{Check} the last two by putting \textit{A} = 0 and \textit{A} = 1: the left sides then give \textit{B} and 1, and 0 and 1, matching \textit{A} + \textit{B} and \textit{A}.
 \end{enumerate}
 \end{workedbox}
 
@@ -452,11 +681,50 @@ Try first: Compare A+(B\ensuremath{\cdot}C) with (A+B)(A+C) using algebra and a 
 \begin{keepsection}\subsection{Exercise 2.5: Boolean algebra}
 
 \begin{workedbox}{2.5.3 Equivalence and construction \ensuremath{\cdot} worked solution}
-\Needspace{9\baselineskip}
+\Needspace{14\baselineskip}
 \begin{enumerate}
-\item Expand the product using distributivity, then use idempotence and absorption. For the construction, list the input rows with at least two 1s.
-\item (A+B)(A+C)=A\ensuremath{\cdot}A+A\ensuremath{\cdot}C+A\ensuremath{\cdot}B+B\ensuremath{\cdot}C=A+A\ensuremath{\cdot}C+A\ensuremath{\cdot}B+B\ensuremath{\cdot}C=A+B\ensuremath{\cdot}C. Thus the expressions are equivalent. For row order 000 through 111, both evaluate to 0,0,0,1,1,1,1,1.
-\item The true rows for the “at least two” function are 011, 101, 110, and 111, giving F=A\ensuremath{{}^{\prime}}BC+AB\ensuremath{{}^{\prime}}C+ABC\ensuremath{{}^{\prime}}+ABC. Grouping pairs or using absorption yields F=AB+AC+BC. Check: exactly two 1s makes one pair term true; three 1s makes all three true.
+\item \Needspace{5\baselineskip}
+\textbf{Equivalence by algebra:} multiply out the product, then use idempotence (\textit{A} \ensuremath{\cdot} \textit{A} = \textit{A}) and absorption (\textit{A} + \textit{A} \ensuremath{\cdot} \textit{X} = \textit{A}):
+
+\Needspace{4\baselineskip}
+\begin{equation*}({A}\, +\, {B})({A}\, +\, {C})\, =\, {A}\, \cdot \, {A}\, +\, {A}\, \cdot \, {C}\, +\, {A}\, \cdot \, {B}\, +\, {B}\, \cdot \, {C}\end{equation*}
+
+\begin{equation*}=\, {A}\, +\, {A}\, \cdot \, {C}\, +\, {A}\, \cdot \, {B}\, +\, {B}\, \cdot \, {C}\, =\, {A}\, +\, {B}\, \cdot \, {C}\end{equation*}
+\item \textbf{By truth table:} both expressions give 0, 0, 0, 1, 1, 1, 1, 1 for the rows 000 to 111 (the last column of 2.5.1), so they are equivalent.
+\item \Needspace{14\baselineskip}
+\textbf{At least two inputs are 1:}
+
+\Needspace{10\baselineskip}
+\begin{center}\small\begin{tabularx}{\linewidth}{>{\raggedright\arraybackslash}X>{\raggedright\arraybackslash}X>{\raggedright\arraybackslash}X>{\raggedright\arraybackslash}X}\toprule
+\textbf{\textit{A}} & \textbf{\textit{B}} & \textbf{\textit{C}} & \textbf{\textit{F}} \\ \midrule
+0 & 0 & 0 & 0 \\
+0 & 0 & 1 & 0 \\
+0 & 1 & 0 & 0 \\
+0 & 1 & 1 & 1 \\
+1 & 0 & 0 & 0 \\
+1 & 0 & 1 & 1 \\
+1 & 1 & 0 & 1 \\
+1 & 1 & 1 & 1 \\
+\bottomrule\end{tabularx}\end{center}
+
+\Needspace{4\baselineskip}
+Write one product term for each row where \textit{F} = 1:
+
+\begin{equation*}{F}\, =\, {A}'{B}{C}\, +\, {A}{B}'{C}\, +\, {A}{B}{C}'\, +\, {A}{B}{C}\end{equation*}
+\item \Needspace{5\baselineskip}
+Copy the term \textit{A}\textit{B}\textit{C} twice more (idempotence) and pair it with each other term; each pair loses the variable that differs:
+
+\Needspace{4\baselineskip}
+\begin{equation*}{A}'{B}{C}\, +\, {A}{B}{C}\, =\, {B}{C}\end{equation*}
+
+\Needspace{4\baselineskip}
+\begin{equation*}{A}{B}'{C}\, +\, {A}{B}{C}\, =\, {A}{C}\end{equation*}
+
+\Needspace{4\baselineskip}
+\begin{equation*}{A}{B}{C}'\, +\, {A}{B}{C}\, =\, {A}{B}\end{equation*}
+
+\begin{equation*}{F}\, =\, {A}{B}\, +\, {A}{C}\, +\, {B}{C}\end{equation*}
+\item \textbf{Check:} with exactly two inputs 1, one pair term is 1; with all three, all three terms are; with one or none, no pair is complete.
 \end{enumerate}
 \end{workedbox}
 

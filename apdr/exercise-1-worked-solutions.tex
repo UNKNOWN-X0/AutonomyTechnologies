@@ -258,13 +258,13 @@ Try first: record the polyglot file and appended-data boundary from your assigne
 \begin{keepsection}\subsection{Task 1: Read only the requested prefix}
 
 \begin{workedbox}{1 \ensuremath{\cdot} read\_magic\_bytes(filepath, n=16) \ensuremath{\cdot} worked solution}
-\Needspace{12\baselineskip}
+\Needspace{11\baselineskip}
 \begin{enumerate}
 \item The input is a path to an arbitrary binary file. Open it in binary mode so the bytes are not decoded or translated. The result is the first n bytes, not the whole file.
-\item A bounded read naturally returns fewer than n bytes at end-of-file. Reject a negative n: Python treats read(-1) as “read the rest”, which would break the memory limit.
-\item Close the handle on success and on exceptions with a context manager. Check a short file and n=0: the returned values should be the bytes available and b"", respectively.
+\item A bounded read naturally returns fewer than n bytes at end-of-file. Reject a negative n: Python treats \texttt{read(-1)} as “read the rest”, which would break the memory limit.
+\item Close the handle on success and on exceptions with a context manager. Check a short file and n=0: the returned values should be the bytes available and \texttt{b""}, respectively.
 \item \Needspace{3\baselineskip}
-\textbf{Implementation pattern:} apply this operation inside the required function signature.
+\textbf{The whole function:}
 \begin{tcolorbox}[colback=Paperblue,colframe=Paperblue,boxrule=0pt,arc=0pt,left=7pt,right=7pt,top=5pt,bottom=5pt]\small\sloppy
 \noindent\hspace*{0em}\texttt{def read\_magic\_bytes(filepath, n=16):}\par
 \noindent\hspace*{1em}\texttt{if n \ensuremath{<} 0:}\par
@@ -285,7 +285,7 @@ Try first: record the polyglot file and appended-data boundary from your assigne
 \item DOCX, XLSX, PPTX, and JAR are ZIP containers: their local-file headers share the same PK prefix. Repeating that one prefix under four names does not distinguish them. Add these names as archive subtypes in a second-stage classifier, not as unique magic signatures.
 \item The sample table below covers thirteen signatures. It is a candidate table; a matching prefix is evidence to validate the format structure, not a complete proof that the file is valid.
 \item \Needspace{3\baselineskip}
-\textbf{Implementation pattern:} apply this operation inside the required function signature.
+\textbf{The table:}
 \begin{tcolorbox}[colback=Paperblue,colframe=Paperblue,boxrule=0pt,arc=0pt,left=7pt,right=7pt,top=5pt,bottom=5pt]\small\sloppy
 \noindent\hspace*{0em}\texttt{SIGNATURES = \{}\par
 \noindent\hspace*{1em}\texttt{"PNG": (b"\textbackslash{}x89PNG\textbackslash{}r\textbackslash{}n\textbackslash{}x1a\textbackslash{}n",),}\par
@@ -312,11 +312,11 @@ Try first: record the polyglot file and appended-data boundary from your assigne
 \begin{workedbox}{3 \ensuremath{\cdot} identify\_file\_type(magic) \ensuremath{\cdot} worked solution}
 \Needspace{22\baselineskip}
 \begin{enumerate}
-\item For ordinary types, compare the available prefix to each signature; startswith is safe for short byte strings and cannot index past the end. If several patterns match, prefer the longest matching signature.
-\item The sheet’s request to distinguish DOCX/XLSX/PPTX/JAR from magic alone is underspecified: their first bytes are shared. With only the first 16 bytes, the correct answer is ZIP. To refine it, inspect the archive directory: word/document.xml indicates DOCX, xl/workbook.xml XLSX, ppt/presentation.xml PPTX, and META-INF/MANIFEST.MF JAR.
+\item For ordinary types, compare the available prefix to each signature; \texttt{startswith} is safe for short byte strings and cannot index past the end. If several patterns match, prefer the longest matching signature.
+\item The sheet’s request to distinguish DOCX/XLSX/PPTX/JAR from magic alone is underspecified: their first bytes are shared. With only the first 16 bytes, the correct answer is ZIP. To refine it, inspect the archive directory: \texttt{word/document.xml} indicates DOCX, \texttt{xl/workbook.xml} XLSX, \texttt{ppt/presentation.xml} PPTX, and \texttt{META-INF/MANIFEST.MF} JAR.
 \item Use “unknown” only when no signature matches. Keep the container decision explicit so a generic ZIP is not mislabeled as an office document.
 \item \Needspace{3\baselineskip}
-\textbf{Implementation pattern:} apply this operation inside the required function signature.
+\textbf{The functions} (with \texttt{import zipfile} at the top of the file):
 \begin{tcolorbox}[colback=Paperblue,colframe=Paperblue,boxrule=0pt,arc=0pt,left=7pt,right=7pt,top=5pt,bottom=5pt]\small\sloppy
 \noindent\hspace*{0em}\texttt{def identify\_file\_type(magic):}\par
 \noindent\hspace*{1em}\texttt{matches = [(len(sig), kind)}\par
@@ -351,13 +351,13 @@ Try first: record the polyglot file and appended-data boundary from your assigne
 \begin{keepsection}\subsection{Task 4: Hash a file and verify integrity}
 
 \begin{workedbox}{4 \ensuremath{\cdot} compute\_checksum / verify\_integrity \ensuremath{\cdot} worked solution}
-\Needspace{16\baselineskip}
+\Needspace{15\baselineskip}
 \begin{enumerate}
-\item Create the requested hashlib digest by algorithm name. Unsupported names should raise the documented ValueError rather than silently switching algorithms.
-\item Read a chunk, update the digest, and repeat until an empty bytes value signals EOF. hexdigest gives the stable printable representation.
+\item Create the requested hashlib digest by algorithm name. Unsupported names should raise the documented \texttt{ValueError} rather than silently switching algorithms.
+\item Read a chunk, update the digest, and repeat until an empty bytes value signals EOF. \texttt{hexdigest} gives the stable printable representation.
 \item Verification means “recompute and compare with the expected digest”; a match detects accidental or malicious changes only when the expected digest is trusted. It does not prove who created the file.
 \item \Needspace{3\baselineskip}
-\textbf{Implementation pattern:} apply this operation inside the required function signature.
+\textbf{Both functions} (with \texttt{import hashlib, hmac}):
 \begin{tcolorbox}[colback=Paperblue,colframe=Paperblue,boxrule=0pt,arc=0pt,left=7pt,right=7pt,top=5pt,bottom=5pt]\small\sloppy
 \noindent\hspace*{0em}\texttt{def compute\_checksum(filepath, algo="sha256"):}\par
 \noindent\hspace*{1em}\texttt{digest = hashlib.new(algo)}\par
@@ -377,13 +377,13 @@ Try first: record the polyglot file and appended-data boundary from your assigne
 \begin{keepsection}\subsection{Task 5: Find mismatched file extensions recursively}
 
 \begin{workedbox}{5 \ensuremath{\cdot} find\_mismatched\_extensions(root\_dir) \ensuremath{\cdot} worked solution}
-\Needspace{20\baselineskip}
+\Needspace{21\baselineskip}
 \begin{enumerate}
-\item os.walk visits nested directories without a fixed depth. Normalize the suffix to lowercase and use a table; keep an unrecognized extension as "unknown" rather than guessing.
+\item \texttt{os.walk} visits nested directories without a fixed depth. Normalize the suffix to lowercase and use a table; keep an unrecognized extension as "unknown" rather than guessing.
 \item Classify content independently of the suffix. For a ZIP signature, open the archive and use Task 3’s member-name check to distinguish a plain ZIP from an office package or JAR.
 \item Only after a signature lookup returns unknown, classify text from the bytes; this must work for a text file with any suffix. Then compare the independently detected actual type with the suffix claim. Test a nested wrong extension, uppercase suffix, missing suffix, and unknown actual signature.
-\item \Needspace{3\baselineskip}
-\textbf{Implementation pattern:} apply this operation inside the required function signature.
+\item \Needspace{4\baselineskip}
+\textbf{The function.} It uses \texttt{EXTENSION\_TYPES}, a dictionary from lowercase suffix to type name such as \texttt{\{".png": "PNG", ".txt": "TXT"\}}, and the helpers from Tasks 3 and 8:
 \begin{tcolorbox}[colback=Paperblue,colframe=Paperblue,boxrule=0pt,arc=0pt,left=7pt,right=7pt,top=5pt,bottom=5pt]\small\sloppy
 \noindent\hspace*{0em}\texttt{def find\_mismatched\_extensions(root\_dir):}\par
 \noindent\hspace*{1em}\texttt{mismatches = []}\par
@@ -408,13 +408,13 @@ Try first: record the polyglot file and appended-data boundary from your assigne
 \begin{keepsection}\subsection{Task 6: Find files that validly match multiple formats}
 
 \begin{workedbox}{6 \ensuremath{\cdot} detect\_polyglot(filepath) \ensuremath{\cdot} worked solution}
-\Needspace{16\baselineskip}
+\Needspace{17\baselineskip}
 \begin{enumerate}
 \item Load or stream the file once, then ask each supported format validator whether the bytes satisfy that format’s structure. Add each valid type once.
-\item For a ZIP-based file, verify the central directory and inspect members. A string like \%PDF- somewhere inside a PNG is not, by itself, proof of a valid PDF; validate the PDF header position and its required ending structure too.
+\item For a ZIP-based file, verify the central directory and inspect members. A string like \texttt{\%PDF-} somewhere inside a PNG is not, by itself, proof of a valid PDF; validate the PDF header position and its required ending structure too.
 \item Return an empty list for no recognized valid format and a list of all valid matches otherwise. More than one match is the polyglot signal. Sort the result if deterministic output is required.
-\item \Needspace{3\baselineskip}
-\textbf{Implementation pattern:} apply this operation inside the required function signature.
+\item \Needspace{4\baselineskip}
+\textbf{The function.} Each entry of \texttt{FORMAT\_VALIDATORS} maps a type name to a function that takes the file's bytes and returns whether they form a complete, valid file of that type:
 \begin{tcolorbox}[colback=Paperblue,colframe=Paperblue,boxrule=0pt,arc=0pt,left=7pt,right=7pt,top=5pt,bottom=5pt]\small\sloppy
 \noindent\hspace*{0em}\texttt{def detect\_polyglot(filepath):}\par
 \noindent\hspace*{1em}\texttt{if isinstance(filepath, bytes):}\par
@@ -435,13 +435,13 @@ Try first: record the polyglot file and appended-data boundary from your assigne
 \begin{keepsection}\subsection{Task 7: Format an exact hexdump}
 
 \begin{workedbox}{7 \ensuremath{\cdot} bytes\_to\_hexdump(data, width=16) \ensuremath{\cdot} worked solution}
-\Needspace{16\baselineskip}
+\Needspace{15\baselineskip}
 \begin{enumerate}
 \item For each offset 0, width, 2\ensuremath{\times}width, …, slice at most width bytes. Format the offset as eight uppercase hex digits and each byte as two uppercase hex digits.
 \item Pad the hex column to width \ensuremath{\times} 3 characters. This makes the ASCII bar start in one column even when the last chunk is short.
 \item Printable ASCII is byte values 0x20 through 0x7E inclusive; render every other value as a dot. Keep the separator, padding, and no-final-newline behavior exact.
 \item \Needspace{3\baselineskip}
-\textbf{Implementation pattern:} apply this operation inside the required function signature.
+\textbf{The whole function:}
 \begin{tcolorbox}[colback=Paperblue,colframe=Paperblue,boxrule=0pt,arc=0pt,left=7pt,right=7pt,top=5pt,bottom=5pt]\small\sloppy
 \noindent\hspace*{0em}\texttt{def bytes\_to\_hexdump(data, width=16):}\par
 \noindent\hspace*{1em}\texttt{if width \ensuremath{<}= 0:}\par
@@ -463,39 +463,44 @@ Try first: record the polyglot file and appended-data boundary from your assigne
 \begin{keepsection}\subsection{Task 8: Classify common text encodings from bytes}
 
 \begin{workedbox}{8 \ensuremath{\cdot} detect\_text\_encoding(filepath) \ensuremath{\cdot} worked solution}
-\Needspace{24\baselineskip}
+\Needspace{27\baselineskip}
 \begin{enumerate}
 \item A UTF-8 BOM is EF BB BF; UTF-16 little-endian is FF FE; UTF-16 big-endian is FE FF. BOM checks take priority over heuristics.
 \item Without a BOM, UTF-16 text often has many zero bytes in one parity: ASCII-heavy LE text has zeros at odd indexes, while BE has zeros at even indexes. This heuristic needs enough bytes to show the pattern; short no-BOM strings are ambiguous and should be reported as unknown when they contain zero bytes. Binary data can also imitate the pattern.
 \item ASCII is a subset of UTF-8, so test all-ASCII bytes first when the result labels distinguish them. For non-ASCII bytes, try strict UTF-8 decoding explicitly; if it fails, use the assignment’s Latin-1 fallback. This is explicit validation, not automatic encoding detection.
-\item \Needspace{3\baselineskip}
-\textbf{Implementation pattern:} apply this operation inside the required function signature.
+\item \Needspace{4\baselineskip}
+\textbf{The function,} written on bytes so Task 10 can reuse it; \texttt{detect\_text\_encoding(filepath)} only reads the file and passes the bytes on:
 \begin{tcolorbox}[colback=Paperblue,colframe=Paperblue,boxrule=0pt,arc=0pt,left=7pt,right=7pt,top=5pt,bottom=5pt]\small\sloppy
-\noindent\hspace*{0em}\texttt{if data.startswith(b"\textbackslash{}xef\textbackslash{}xbb\textbackslash{}xbf"):}\par
-\noindent\hspace*{1em}\texttt{return "UTF-8"}\par
-\noindent\hspace*{0em}\texttt{if data.startswith(b"\textbackslash{}xff\textbackslash{}xfe"):}\par
-\noindent\hspace*{1em}\texttt{return "UTF-16-LE"}\par
-\noindent\hspace*{0em}\texttt{if data.startswith(b"\textbackslash{}xfe\textbackslash{}xff"):}\par
-\noindent\hspace*{1em}\texttt{return "UTF-16-BE"}\par
-\noindent\hspace*{0em}\texttt{paired = data[:len(data) - (len(data) \% 2)]}\par
-\noindent\hspace*{0em}\texttt{even\_zeros = sum(paired[i] == 0 for i in range(0, len(paired), 2))}\par
-\noindent\hspace*{0em}\texttt{odd\_zeros = sum(paired[i] == 0 for i in range(1, len(paired), 2))}\par
-\noindent\hspace*{0em}\texttt{if len(paired) \ensuremath{>}= 8 and odd\_zeros \ensuremath{>} len(paired) // 4 and odd\_zeros \ensuremath{>} even\_zeros:}\par
-\noindent\hspace*{1em}\texttt{return "UTF-16-LE"}\par
-\noindent\hspace*{0em}\texttt{if len(paired) \ensuremath{>}= 8 and even\_zeros \ensuremath{>} len(paired) // 4 and even\_zeros \ensuremath{>} odd\_zeros:}\par
-\noindent\hspace*{1em}\texttt{return "UTF-16-BE"}\par
-\noindent\hspace*{0em}\texttt{if b"\textbackslash{}x00" in data:}\par
-\noindent\hspace*{1em}\texttt{return "unknown" \# short no-BOM UTF-16 and binary data are ambiguous}\par
-\noindent\hspace*{0em}\texttt{controls = sum(byte \ensuremath{<} 0x20 and byte not in (9, 10, 12, 13) for byte in data)}\par
-\noindent\hspace*{0em}\texttt{if data and controls \ensuremath{>} len(data) // 100:}\par
-\noindent\hspace*{1em}\texttt{return "unknown" \# reject mostly binary/control content}\par
-\noindent\hspace*{0em}\texttt{if not data or all(byte \ensuremath{<} 0x80 for byte in data):}\par
-\noindent\hspace*{1em}\texttt{return "ASCII"}\par
-\noindent\hspace*{0em}\texttt{try:}\par
-\noindent\hspace*{1em}\texttt{data.decode("utf-8", errors="strict")}\par
-\noindent\hspace*{1em}\texttt{return "UTF-8"}\par
-\noindent\hspace*{0em}\texttt{except UnicodeDecodeError:}\par
-\noindent\hspace*{1em}\texttt{return "Latin-1"}\par
+\noindent\hspace*{0em}\texttt{def detect\_text\_encoding(filepath):}\par
+\noindent\hspace*{1em}\texttt{with open(filepath, "rb") as f:}\par
+\noindent\hspace*{3em}\texttt{return detect\_text\_encoding\_bytes(f.read())}\par
+\noindent\hspace*{0em}\texttt{}\par
+\noindent\hspace*{0em}\texttt{def detect\_text\_encoding\_bytes(data):}\par
+\noindent\hspace*{1em}\texttt{if data.startswith(b"\textbackslash{}xef\textbackslash{}xbb\textbackslash{}xbf"):}\par
+\noindent\hspace*{3em}\texttt{return "UTF-8"}\par
+\noindent\hspace*{1em}\texttt{if data.startswith(b"\textbackslash{}xff\textbackslash{}xfe"):}\par
+\noindent\hspace*{3em}\texttt{return "UTF-16-LE"}\par
+\noindent\hspace*{1em}\texttt{if data.startswith(b"\textbackslash{}xfe\textbackslash{}xff"):}\par
+\noindent\hspace*{3em}\texttt{return "UTF-16-BE"}\par
+\noindent\hspace*{1em}\texttt{paired = data[:len(data) - (len(data) \% 2)]}\par
+\noindent\hspace*{1em}\texttt{even\_zeros = sum(paired[i] == 0 for i in range(0, len(paired), 2))}\par
+\noindent\hspace*{1em}\texttt{odd\_zeros = sum(paired[i] == 0 for i in range(1, len(paired), 2))}\par
+\noindent\hspace*{1em}\texttt{if len(paired) \ensuremath{>}= 8 and odd\_zeros \ensuremath{>} len(paired) // 4 and odd\_zeros \ensuremath{>} even\_zeros:}\par
+\noindent\hspace*{3em}\texttt{return "UTF-16-LE"}\par
+\noindent\hspace*{1em}\texttt{if len(paired) \ensuremath{>}= 8 and even\_zeros \ensuremath{>} len(paired) // 4 and even\_zeros \ensuremath{>} odd\_zeros:}\par
+\noindent\hspace*{3em}\texttt{return "UTF-16-BE"}\par
+\noindent\hspace*{1em}\texttt{if b"\textbackslash{}x00" in data:}\par
+\noindent\hspace*{3em}\texttt{return "unknown" \# short no-BOM UTF-16 and binary data are ambiguous}\par
+\noindent\hspace*{1em}\texttt{controls = sum(byte \ensuremath{<} 0x20 and byte not in (9, 10, 12, 13) for byte in data)}\par
+\noindent\hspace*{1em}\texttt{if data and controls \ensuremath{>} len(data) // 100:}\par
+\noindent\hspace*{3em}\texttt{return "unknown" \# reject mostly binary/control content}\par
+\noindent\hspace*{1em}\texttt{if not data or all(byte \ensuremath{<} 0x80 for byte in data):}\par
+\noindent\hspace*{3em}\texttt{return "ASCII"}\par
+\noindent\hspace*{1em}\texttt{try:}\par
+\noindent\hspace*{3em}\texttt{data.decode("utf-8", errors="strict")}\par
+\noindent\hspace*{3em}\texttt{return "UTF-8"}\par
+\noindent\hspace*{1em}\texttt{except UnicodeDecodeError:}\par
+\noindent\hspace*{3em}\texttt{return "Latin-1"}\par
 \end{tcolorbox}
 \end{enumerate}
 \end{workedbox}
@@ -504,16 +509,16 @@ Try first: record the polyglot file and appended-data boundary from your assigne
 \begin{keepsection}\subsection{Task 9: Find the first byte after the valid file structure}
 
 \begin{workedbox}{9 \ensuremath{\cdot} find\_appended\_data(filepath, filetype) \ensuremath{\cdot} worked solution}
-\Needspace{25\baselineskip}
+\Needspace{27\baselineskip}
 \begin{enumerate}
-\item For PNG, start after its 8-byte signature. Each chunk is 4-byte big-endian length, 4-byte type, data, and 4-byte CRC; advance by 12 + length until a valid zero-length IEND chunk. The first byte after IEND is the candidate payload start.
-\item For JPEG, find the EOI marker FF D9 after correctly handling marker segments and byte-stuffed scan data. For GIF, parse image/extension sub-blocks to the trailer byte. For PDF, use the final \%\%EOF marker and account for allowed trailing whitespace.
+\item For PNG, start after its 8-byte signature. Each chunk is 4-byte big-endian length, 4-byte type, data, and 4-byte CRC; advance by 12 + length until a valid zero-length \texttt{IEND} chunk. The first byte after \texttt{IEND} is the candidate payload start.
+\item For JPEG, find the EOI marker FF D9 after correctly handling marker segments and byte-stuffed scan data. For GIF, parse image/extension sub-blocks to the trailer byte. For PDF, use the final \texttt{\%\%EOF} marker and account for allowed trailing whitespace.
 \item For ZIP, locate and validate the EOCD record; its 16-bit comment length determines the archive end. BMP stores its declared file size. RTF needs escaped-brace and binary-section handling; GZIP must distinguish concatenated members; ELF/SQLite derive the end from validated tables or page counts.
-\item Return None when the structure is invalid, truncated, unsupported, or ends exactly at EOF. Marker search alone can match bytes inside payloads, so validate lengths and bounds before accepting an offset.
-\item \Needspace{3\baselineskip}
-\textbf{Implementation pattern:} apply this operation inside the required function signature.
+\item Return \texttt{None} when the structure is invalid, truncated, unsupported, or ends exactly at EOF. Marker search alone can match bytes inside payloads, so validate lengths and bounds before accepting an offset.
+\item \Needspace{5\baselineskip}
+\textbf{The PNG branch.} Write the parser on bytes as well: \texttt{find\_appended\_data(filepath, filetype)} reads the file once and calls \texttt{find\_appended\_data\_bytes(data, filetype)}, which runs the branch for that type (this is the PNG one):
 \begin{tcolorbox}[colback=Paperblue,colframe=Paperblue,boxrule=0pt,arc=0pt,left=7pt,right=7pt,top=5pt,bottom=5pt]\small\sloppy
-\noindent\hspace*{0em}\texttt{\# PNG chunk walk (data is the full file bytes)}\par
+\noindent\hspace*{0em}\texttt{\# inside find\_appended\_data\_bytes(data, filetype), when filetype == "PNG"}\par
 \noindent\hspace*{0em}\texttt{if not data.startswith(SIGNATURES["PNG"][0]):}\par
 \noindent\hspace*{1em}\texttt{return None}\par
 \noindent\hspace*{0em}\texttt{pos = 8 \# after the PNG signature}\par
@@ -543,11 +548,11 @@ Try first: record the polyglot file and appended-data boundary from your assigne
 \begin{workedbox}{10 \ensuremath{\cdot} generate\_forensics\_report(root\_dir) \ensuremath{\cdot} worked solution}
 \Needspace{31\baselineskip}
 \begin{enumerate}
-\item Walk every path once. Read that file’s bytes once, then pass the in-memory bytes to the signature, encoding, hexdump, polyglot, and appended-data helpers. Hash the same bytes with hashlib.sha256; do not reopen the path for each task.
-\item For every file, record its path, first bytes, detected type, extension claim/mismatch, checksum, encoding result, polyglot types, appended offsets, and any bounded hexdump preview. If no known signature matches but the bytes pass Task 8 text checks, call the actual type TXT independent of its suffix. Keep values to JSON-compatible strings, numbers, lists, dictionaries, booleans, and nulls.
-\item Keep aggregate mismatches in their own list if that is the required schema. Benchmark with time.perf\_counter on at least 500 files; report the measured elapsed time and environment rather than inventing a “within budget” result.
-\item \Needspace{3\baselineskip}
-\textbf{Implementation pattern:} apply this operation inside the required function signature.
+\item Walk every path once. Read that file’s bytes once, then pass the in-memory bytes to the signature, encoding, hexdump, polyglot, and appended-data helpers. Hash the same bytes with \texttt{hashlib.sha256}; do not reopen the path for each task.
+\item For every file, record its path, first bytes, detected type, extension claim/mismatch, checksum, encoding result, polyglot types, appended offsets, and any bounded hexdump preview. If no known signature matches but the bytes pass Task 8 text checks, call the actual type \texttt{TXT} independent of its suffix. Keep values to JSON-compatible strings, numbers, lists, dictionaries, booleans, and nulls.
+\item Keep aggregate mismatches in their own list if that is the required schema. Benchmark with \texttt{time.perf\_counter} on at least 500 files; report the measured elapsed time and environment rather than inventing a “within budget” result.
+\item \Needspace{4\baselineskip}
+\textbf{The loop} (with \texttt{import hashlib, io, os, zipfile}), the body of \texttt{generate\_forensics\_report(root\_dir)}:
 \begin{tcolorbox}[colback=Paperblue,colframe=Paperblue,boxrule=0pt,arc=0pt,left=7pt,right=7pt,top=5pt,bottom=5pt]\small\sloppy
 \noindent\hspace*{0em}\texttt{report = \{"mismatches": [], "files": []\}}\par
 \noindent\hspace*{0em}\texttt{for folder, directories, names in os.walk(root\_dir):}\par
@@ -564,7 +569,7 @@ Try first: record the polyglot file and appended-data boundary from your assigne
 \noindent\hspace*{5em}\texttt{actual = "TXT" \# infer from bytes, never from the suffix}\par
 \noindent\hspace*{3em}\texttt{types = detect\_polyglot(data)}\par
 \noindent\hspace*{3em}\texttt{appended = \{kind: offset for kind in types}\par
-\noindent\hspace*{9em}\texttt{if (offset := find\_appended\_data(data, kind)) is not None\}}\par
+\noindent\hspace*{9em}\texttt{if (offset := find\_appended\_data\_bytes(data, kind)) is not None\}}\par
 \noindent\hspace*{3em}\texttt{row = \{"path": path, "magic\_hex": data[:16].hex(),}\par
 \noindent\hspace*{6em}\texttt{"actual\_type": actual, "claimed\_type": claimed,}\par
 \noindent\hspace*{6em}\texttt{"sha256": hashlib.sha256(data).hexdigest(),}\par
@@ -584,13 +589,13 @@ Try first: record the polyglot file and appended-data boundary from your assigne
 \begin{keepsection}\subsection{Task 10: Aggregate the forensic report and write the personalized justification}
 
 \begin{workedbox}{Written justification \ensuremath{\cdot} use your own sample offsets \ensuremath{\cdot} worked solution}
-\Needspace{15\baselineskip}
+\Needspace{14\baselineskip}
 \begin{enumerate}
 \item For the polyglot, name the file from your samples directory, list every format your validators accepted, and identify the byte evidence for each. Explain why both structures are valid rather than citing two coincidental marker strings.
 \item For the appended payload, report the file type, the end-marker or structural rule used, the returned byte offset, total file length, and number of trailing bytes (file length minus the offset). Include a short hexdump around the boundary.
 \item The guide intentionally does not publish a fixed filename or offset: this assignment seeds personalized examples. Run your own report and paste your actual results into your submission.
 \item \Needspace{3\baselineskip}
-\textbf{Implementation pattern:} apply this operation inside the required function signature.
+\textbf{A starting point} for finding your two rows:
 \begin{tcolorbox}[colback=Paperblue,colframe=Paperblue,boxrule=0pt,arc=0pt,left=7pt,right=7pt,top=5pt,bottom=5pt]\small\sloppy
 \noindent\hspace*{0em}\texttt{\# Use your own generated files; never copy another learner's offsets.}\par
 \noindent\hspace*{0em}\texttt{print(report["files"]) \# select the row with multiple valid types}\par

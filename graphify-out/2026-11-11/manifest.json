@@ -6,15 +6,15 @@
     "semantic_hash": "29fe146da84567bcc68665ce404ff135"
   },
   "README.md": {
-    "mtime": 1793875614.0962431,
-    "seen": 1793877610.481329,
-    "ast_hash": "4724a548f6b9bdcf734b17ffc7b971d6",
+    "mtime": 1794384317.202315,
+    "seen": 1794385040.345379,
+    "ast_hash": "2f0a34cf71ad58609e052a48e822cc44",
     "semantic_hash": ""
   },
   "index.html": {
-    "mtime": 1794347697.863944,
-    "seen": 1794347820.302186,
-    "ast_hash": "96a7595e80ceea5554e685f612ae33e9",
+    "mtime": 1794386485.544123,
+    "seen": 1794386518.120563,
+    "ast_hash": "aab1c5eaf00261b3404d19472bb294d3",
     "semantic_hash": ""
   },
   "assets/preview.png": {
@@ -24,9 +24,9 @@
     "semantic_hash": ""
   },
   "AGENTS.md": {
-    "mtime": 1794307537.254877,
-    "seen": 1794307574.6359942,
-    "ast_hash": "33efe538ab15036ba9bdb6c019bc109e",
+    "mtime": 1794384289.5832849,
+    "seen": 1794385040.345375,
+    "ast_hash": "099ac31d759446e38bca5d45ca149093",
     "semantic_hash": ""
   },
   "graphify-out/memory/query_20261024_200642_26a2d038_how_are_the_static_study_pages_hosted__and_what_gi.md": {
@@ -78,9 +78,9 @@
     "semantic_hash": ""
   },
   "tools/guide-to-tex.py": {
-    "mtime": 1794382857.7072413,
-    "seen": 1794383475.1258628,
-    "ast_hash": "a538f0d8cf6bb817eee145fcbd14e02b",
+    "mtime": 1794384535.188431,
+    "seen": 1794385040.345369,
+    "ast_hash": "b03cee7527bcd7ef9c6e1b8bb9cd2368",
     "semantic_hash": ""
   },
   "eei/ch1-electrostatic-fields.html": {
@@ -90,9 +90,9 @@
     "semantic_hash": ""
   },
   "tools/check-guide.py": {
-    "mtime": 1794323798.0343585,
-    "seen": 1794324011.044151,
-    "ast_hash": "4bd1da8571c8b41d28d96982aaf34da1",
+    "mtime": 1794384920.5896275,
+    "seen": 1794385040.345366,
+    "ast_hash": "9e92797de3ac72fe3b925c44de474879",
     "semantic_hash": ""
   },
   "js/tooltip.js": {
@@ -462,9 +462,9 @@
     "semantic_hash": ""
   },
   "about/version-log.html": {
-    "mtime": 1794383470.9132965,
-    "seen": 1794383475.1258729,
-    "ast_hash": "7f39135e223aec50b43147725586fa0a",
+    "mtime": 1794386485.544835,
+    "seen": 1794386518.120527,
+    "ast_hash": "f18406e658354a270d1c3b2b50193904",
     "semantic_hash": ""
   },
   "docs/DIAGRAM-AND-LAB-PLAN.md": {
@@ -498,9 +498,9 @@
     "semantic_hash": ""
   },
   "assets/graph-orb.json": {
-    "mtime": 1794382801.9431086,
-    "seen": 1794383475.125816,
-    "ast_hash": "fadc08be62d59d599a0d596d698850ea",
+    "mtime": 1794386053.5992844,
+    "seen": 1794386518.120469,
+    "ast_hash": "ba706ef7a78859b89187bd06b9f69eb2",
     "semantic_hash": ""
   },
   "js/orb.js": {
@@ -552,9 +552,9 @@
     "semantic_hash": ""
   },
   "docs/EXERCISE-SOLUTIONS-STANDARD.md": {
-    "mtime": 1794382567.9896955,
-    "seen": 1794382788.4602518,
-    "ast_hash": "c60b20e646044261e8657cfb0772e778",
+    "mtime": 1794385075.2566326,
+    "seen": 1794385471.2318861,
+    "ast_hash": "34fd63e99cde2c7260c8674c8dce3d75",
     "semantic_hash": ""
   },
   "eei/exercise-1-worked-solutions.html": {
@@ -645,6 +645,42 @@
     "mtime": 1794383193.0590281,
     "seen": 1794383475.125911,
     "ast_hash": "12c85e4f54c23d7f9b26d4fd6552dbd1",
+    "semantic_hash": ""
+  },
+  "apdr/blackboard-exercise-2-worked-solutions.html": {
+    "mtime": 1794385250.0598392,
+    "seen": 1794385471.231872,
+    "ast_hash": "b21de6f1204b730a7a5757e8de2f31c6",
+    "semantic_hash": ""
+  },
+  "apdr/exercise-0-worked-solutions.html": {
+    "mtime": 1794384947.4591238,
+    "seen": 1794385040.345397,
+    "ast_hash": "5d5be0d8eec389abba96e53a0337e697",
+    "semantic_hash": ""
+  },
+  "docs/TOOLING-STANDARD.md": {
+    "mtime": 1794384278.1634328,
+    "seen": 1794385040.345404,
+    "ast_hash": "5b41bf594a6f1af3234fdb13758667cf",
+    "semantic_hash": ""
+  },
+  "apdr/blackboard-exercise-3-worked-solutions.html": {
+    "mtime": 1794385990.0963175,
+    "seen": 1794386022.848317,
+    "ast_hash": "a0a18a6b64ded5cf6fb9d3ffb0dd2f8f",
+    "semantic_hash": ""
+  },
+  "apdr/exercise-1-worked-solutions.html": {
+    "mtime": 1794385823.067082,
+    "seen": 1794385887.7199192,
+    "ast_hash": "b7c3dd560a9afa07d822769a2106a8b0",
+    "semantic_hash": ""
+  },
+  "apdr/exercise-2-worked-solutions.html": {
+    "mtime": 1794386485.5436766,
+    "seen": 1794386518.120542,
+    "ast_hash": "447a1e650b996be9230811045017da93",
     "semantic_hash": ""
   }
 }

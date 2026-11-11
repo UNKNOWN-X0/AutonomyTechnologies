@@ -247,14 +247,14 @@ Try first: Place small terms between a large positive value and its cancelling n
 \begin{keepsection}\subsection{Task 1: IEEE 754 bit fields}
 
 \begin{workedbox}{Task 01 \ensuremath{\cdot} to\_ieee754\_bits(x) \ensuremath{\cdot} worked solution}
-\Needspace{22\baselineskip}
+\Needspace{18\baselineskip}
 \begin{enumerate}
 \item The function returns three fields separated by spaces: one sign bit, eleven exponent bits, and 52 fraction bits. The stored exponent uses bias 1023; the leading 1 of a normal number is implicit and is not part of the fraction field.
-\item For x = 13.25, the binary value is 1101.01 (base 2) = 1.10101 (base 2) \ensuremath{\times} 2\textasciicircum{}3. The sign is 0, the stored exponent is 3 + 1023 = 1026 = 10000000010 (base 2), and the fraction begins 10101 followed by zeroes to make 52 bits.
-\item Convert the Python float to its raw 64 bits with struct.pack, then int.from\_bytes(..., "big") and format(..., "064b"). Slice the 64 characters at 1 and 12; those are the sign/exponent and exponent/fraction boundaries.
+\item For \textit{x} = 13.25, the binary value is 1101.01\textsubscript{2} = 1.10101\textsubscript{2} \ensuremath{\times} 2\textsuperscript{3}. The sign is 0, the stored exponent is 3 + 1023 = 1026 = 10000000010\textsubscript{2}, and the fraction begins 10101 followed by zeroes to make 52 bits.
+\item Convert the Python float to its raw 64 bits with \texttt{struct.pack}, then \texttt{int.from\_bytes(..., "big")} and \texttt{format(..., "064b")}. Slice the 64 characters at 1 and 12; those are the sign/exponent and exponent/fraction boundaries.
 \item Check that the three returned field lengths are 1, 11, and 52 and that concatenating them gives exactly 64 bits. The fraction starts after the leading normalized 1; do not include that hidden bit.
-\item \Needspace{4\baselineskip}
-\textbf{Implementation pattern:} place this logic in the required function or class from the exercise scaffold.
+\item \Needspace{3\baselineskip}
+\textbf{The function} (with \texttt{import struct}):
 \begin{tcolorbox}[colback=Paperblue,colframe=Paperblue,boxrule=0pt,arc=0pt,left=7pt,right=7pt,top=5pt,bottom=5pt]\small\sloppy
 \noindent\hspace*{0em}\texttt{def to\_ieee754\_bits(x):}\par
 \noindent\hspace*{1em}\texttt{raw = struct.pack("!d", x)}\par
@@ -264,7 +264,6 @@ Try first: Place small terms between a large positive value and its cancelling n
 \noindent\hspace*{1em}\texttt{mantissa = bits[12:]}\par
 \noindent\hspace*{1em}\texttt{return f"\{sign\} \{exponent\} \{mantissa\}"}\par
 \end{tcolorbox}
-\item Before moving on, check the input boundaries and one hand-computed case. Keep the exact required name and return shape from the scaffold.
 \end{enumerate}
 \end{workedbox}
 
@@ -272,14 +271,14 @@ Try first: Place small terms between a large positive value and its cancelling n
 \begin{keepsection}\subsection{Task 2: Classify IEEE 754 values}
 
 \begin{workedbox}{Task 02 \ensuremath{\cdot} classify\_float(x) \ensuremath{\cdot} worked solution}
-\Needspace{19\baselineskip}
+\Needspace{16\baselineskip}
 \begin{enumerate}
 \item Use the sign/exponent/fraction fields from Task 1. The sign does not change whether a value is zero, subnormal, normal, infinity or NaN.
 \item If all 11 exponent bits are zero, an all-zero fraction means zero and a nonzero fraction means subnormal. If all exponent bits are one, an all-zero fraction means infinity and a nonzero fraction means NaN. Every other exponent pattern is normal.
-\item This works for negative zero and negative infinity too because classification depends on exponent and fraction. No float equality or math.isnan/math.isinf calls are needed.
+\item This works for negative zero and negative infinity too because classification depends on exponent and fraction. No float equality or \texttt{math.isnan}/\texttt{math.isinf} calls are needed.
 \item Check representatives: 0.0 \ensuremath{\to} zero; the smallest positive subnormal \ensuremath{\to} subnormal; 1.0 \ensuremath{\to} normal; positive infinity \ensuremath{\to} inf; and a NaN \ensuremath{\to} nan. A negative zero must still classify as zero.
-\item \Needspace{4\baselineskip}
-\textbf{Implementation pattern:} place this logic in the required function or class from the exercise scaffold.
+\item \Needspace{3\baselineskip}
+\textbf{The function,} built on Task 1:
 \begin{tcolorbox}[colback=Paperblue,colframe=Paperblue,boxrule=0pt,arc=0pt,left=7pt,right=7pt,top=5pt,bottom=5pt]\small\sloppy
 \noindent\hspace*{0em}\texttt{def classify\_float(x):}\par
 \noindent\hspace*{1em}\texttt{sign, exponent, fraction = to\_ieee754\_bits(x).split()}\par
@@ -289,7 +288,6 @@ Try first: Place small terms between a large positive value and its cancelling n
 \noindent\hspace*{3em}\texttt{return "inf" if fraction == "0" * 52 else "nan"}\par
 \noindent\hspace*{1em}\texttt{return "normal"}\par
 \end{tcolorbox}
-\item Before moving on, check the input boundaries and one hand-computed case. Keep the exact required name and return shape from the scaffold.
 \end{enumerate}
 \end{workedbox}
 
@@ -297,14 +295,14 @@ Try first: Place small terms between a large positive value and its cancelling n
 \begin{keepsection}\subsection{Task 3: Count representable floats between two values}
 
 \begin{workedbox}{Task 03 \ensuremath{\cdot} ulp\_distance(a, b) \ensuremath{\cdot} worked solution}
-\Needspace{24\baselineskip}
+\Needspace{20\baselineskip}
 \begin{enumerate}
 \item Raw IEEE bit patterns do not sort numerically across the sign boundary: negative values have the sign bit set and their magnitude ordering runs backward. First map each pattern to a monotonic integer key.
-\item For a negative pattern, invert every bit and add one; for a nonnegative pattern, set the sign bit. The added one maps negative zero onto positive zero, so the two encodings share one numeric key. Then the absolute difference counts representable steps. Treat NaNs as unordered and define the behavior explicitly; this solution raises ValueError for them.
-\item If a and b compare equal, return zero immediately. That includes +0.0 and -0.0, which are two encodings of the same numeric value. Infinities remain valid endpoints in the ordering.
-\item Check adjacent values with math.nextafter in both the positive and negative regions: their distance should be one. Check symmetry by swapping the arguments. Do not subtract the floats themselves; that measures numeric separation, not ULP steps.
-\item \Needspace{4\baselineskip}
-\textbf{Implementation pattern:} place this logic in the required function or class from the exercise scaffold.
+\item For a negative pattern, invert every bit and add one; for a nonnegative pattern, set the sign bit. The added one maps negative zero onto positive zero, so the two encodings share one numeric key. Then the absolute difference counts representable steps. Treat NaNs as unordered and define the behavior explicitly; this solution raises \texttt{ValueError} for them.
+\item If a and b compare equal, return zero immediately. That includes \texttt{+0.0} and \texttt{-0.0}, which are two encodings of the same numeric value. Infinities remain valid endpoints in the ordering.
+\item Check adjacent values with \texttt{math.nextafter} in both the positive and negative regions: their distance should be one. Check symmetry by swapping the arguments. Do not subtract the floats themselves; that measures numeric separation, not ULP steps.
+\item \Needspace{3\baselineskip}
+\textbf{The ordering key and the distance:}
 \begin{tcolorbox}[colback=Paperblue,colframe=Paperblue,boxrule=0pt,arc=0pt,left=7pt,right=7pt,top=5pt,bottom=5pt]\small\sloppy
 \noindent\hspace*{0em}\texttt{def \_ordered\_key(x):}\par
 \noindent\hspace*{1em}\texttt{if classify\_float(x) == "nan":}\par
@@ -319,7 +317,6 @@ Try first: Place small terms between a large positive value and its cancelling n
 \noindent\hspace*{3em}\texttt{return 0}\par
 \noindent\hspace*{1em}\texttt{return abs(\_ordered\_key(a) - \_ordered\_key(b))}\par
 \end{tcolorbox}
-\item Before moving on, check the input boundaries and one hand-computed case. Keep the exact required name and return shape from the scaffold.
 \end{enumerate}
 \end{workedbox}
 
@@ -327,14 +324,14 @@ Try first: Place small terms between a large positive value and its cancelling n
 \begin{keepsection}\subsection{Task 4: Compare ordinary and compensated sums}
 
 \begin{workedbox}{Task 04 \ensuremath{\cdot} naive\_sum(values) \ensuremath{\cdot} worked solution}
-\Needspace{23\baselineskip}
+\Needspace{20\baselineskip}
 \begin{enumerate}
 \item A floating-point addition aligns exponents, adds significands, and rounds the result back to the available precision. In binary64, a value that is too small to affect a much larger running total can disappear during that rounding.
 \item The naive version performs the specified left-to-right accumulation from 0.0. Its answer can depend on order; cancellation can expose rounding errors introduced earlier.
-\item For an illustrative sequence [1e16, 1.0, 1.0, -1e16], each 1.0 is below half an ULP at 1e16, so the naive running total remains 1e16 until the final cancellation and returns 0.0. The exact sum is 2.0.
-\item Use this small example to validate behavior, but calculate the exact drift for your own assigned dataset separately. The assignment asks for the naive-versus-Kahan difference in cents: compute `100 \ensuremath{\times} abs(naive\_total \ensuremath{-} kahan\_total)` because the transaction amounts are in dollars, and report the full result in cents with the input order. For the exact difference between the two stored float results, subtract their `Decimal.from\_float(...)` values before multiplying by 100; do not round it to a few guessed decimal places.
-\item \Needspace{4\baselineskip}
-\textbf{Implementation pattern:} place this logic in the required function or class from the exercise scaffold.
+\item For an illustrative sequence [1e16, 1.0, 1.0, -1e16], the gap between neighbouring floats at 10\textsuperscript{16} is 2, so 10\textsuperscript{16} + 1 lies exactly halfway between two of them; round-to-nearest-even keeps 10\textsuperscript{16}. The naive running total therefore remains 10\textsuperscript{16} until the final cancellation and returns 0.0. The exact sum is 2.0.
+\item Use this small example to validate behavior, but calculate the exact drift for your own assigned dataset separately. The assignment asks for the naive-versus-Kahan difference in cents: compute \texttt{100 * abs(naive\_total - kahan\_total)} because the transaction amounts are in dollars, and report the full result in cents with the input order. For the exact difference between the two stored float results, subtract their \texttt{Decimal.from\_float(...)} values before multiplying by 100; do not round it to a few guessed decimal places.
+\item \Needspace{3\baselineskip}
+\textbf{The function:}
 \begin{tcolorbox}[colback=Paperblue,colframe=Paperblue,boxrule=0pt,arc=0pt,left=7pt,right=7pt,top=5pt,bottom=5pt]\small\sloppy
 \noindent\hspace*{0em}\texttt{def naive\_sum(values):}\par
 \noindent\hspace*{1em}\texttt{total = 0.0}\par
@@ -342,7 +339,6 @@ Try first: Place small terms between a large positive value and its cancelling n
 \noindent\hspace*{3em}\texttt{total += value}\par
 \noindent\hspace*{1em}\texttt{return total}\par
 \end{tcolorbox}
-\item Before moving on, check the input boundaries and one hand-computed case. Keep the exact required name and return shape from the scaffold.
 \end{enumerate}
 \end{workedbox}
 
@@ -350,14 +346,14 @@ Try first: Place small terms between a large positive value and its cancelling n
 \begin{keepsection}\subsection{Task 5: Implement Kahan compensated summation}
 
 \begin{workedbox}{Task 05 \ensuremath{\cdot} kahan\_sum(values) \ensuremath{\cdot} worked solution}
-\Needspace{21\baselineskip}
+\Needspace{17\baselineskip}
 \begin{enumerate}
 \item Kahan summation keeps a running total and a compensation for low-order bits lost in the previous addition. The correction is not an extra exact accumulator; it recovers some information that ordinary addition rounded away.
 \item For each value, subtract the saved correction to form adjusted. Add adjusted to the total, then estimate the new lost part as (updated - total) - adjusted. Save that amount for the next iteration.
 \item The sign in this correction formula matters. Use the consistent four-line recurrence shown below; mixing it with a variant that stores the opposite sign breaks the compensation.
-\item Check the empty input returns 0.0 and compare the adversarial example from Task 4 with naive\_sum. Kahan often improves accuracy, but it does not guarantee the correctly rounded exact sum for every sequence.
-\item \Needspace{4\baselineskip}
-\textbf{Implementation pattern:} place this logic in the required function or class from the exercise scaffold.
+\item Check the empty input returns 0.0 and compare the adversarial example from Task 4 with \texttt{naive\_sum}. Kahan often improves accuracy, but it does not guarantee the correctly rounded exact sum for every sequence.
+\item \Needspace{3\baselineskip}
+\textbf{The function:}
 \begin{tcolorbox}[colback=Paperblue,colframe=Paperblue,boxrule=0pt,arc=0pt,left=7pt,right=7pt,top=5pt,bottom=5pt]\small\sloppy
 \noindent\hspace*{0em}\texttt{def kahan\_sum(values):}\par
 \noindent\hspace*{1em}\texttt{total = 0.0}\par
@@ -369,7 +365,6 @@ Try first: Place small terms between a large positive value and its cancelling n
 \noindent\hspace*{3em}\texttt{total = updated}\par
 \noindent\hspace*{1em}\texttt{return total}\par
 \end{tcolorbox}
-\item Before moving on, check the input boundaries and one hand-computed case. Keep the exact required name and return shape from the scaffold.
 \end{enumerate}
 \end{workedbox}
 
@@ -377,14 +372,14 @@ Try first: Place small terms between a large positive value and its cancelling n
 \begin{keepsection}\subsection{Task 6: Detect likely catastrophic cancellation}
 
 \begin{workedbox}{Task 06 \ensuremath{\cdot} detect\_catastrophic\_cancellation(a, b) \ensuremath{\cdot} worked solution}
-\Needspace{21\baselineskip}
+\Needspace{17\baselineskip}
 \begin{enumerate}
-\item When two large, nearly equal values are subtracted, leading digits cancel and the result may have far fewer reliable significant digits than either input. The assignment defines a practical heuristic: |a-b| \ensuremath{\leq} max(|a|,|b|)\ensuremath{\cdot}2\textasciicircum{}-52, provided the scale is nonzero.
+\item When two large, nearly equal values are subtracted, leading digits cancel and the result may have far fewer reliable significant digits than either input. The assignment defines a practical heuristic: |\textit{a} \ensuremath{-} \textit{b}| \ensuremath{\leq} max(|\textit{a}|, |\textit{b}|) \ensuremath{\cdot} 2\textsuperscript{\ensuremath{-}52}, provided the scale is nonzero.
 \item First reject NaN and infinity so expressions such as infinity minus infinity do not produce misleading comparisons. Then compute the scale and apply the stated threshold exactly.
-\item For a = 10\textasciicircum{}16 and b = 10\textasciicircum{}16-2, the scale is 10\textasciicircum{}16 and the threshold is about 2.22. The difference is 2, so the heuristic returns True.
+\item For \textit{a} = 10\textsuperscript{16} and \textit{b} = 10\textsuperscript{16} \ensuremath{-} 2, the scale is 10\textsuperscript{16} and the threshold is 10\textsuperscript{16} \ensuremath{\cdot} 2\textsuperscript{\ensuremath{-}52} \ensuremath{\approx} 2.22. The difference is 2, so the heuristic returns \texttt{True}.
 \item This Boolean test flags a risk; it does not measure the actual error or prove the answer is inaccurate. The subtraction of two nearby stored floats may itself be exact, even though both operands already carry rounding error from earlier calculations.
-\item \Needspace{4\baselineskip}
-\textbf{Implementation pattern:} place this logic in the required function or class from the exercise scaffold.
+\item \Needspace{3\baselineskip}
+\textbf{The function:}
 \begin{tcolorbox}[colback=Paperblue,colframe=Paperblue,boxrule=0pt,arc=0pt,left=7pt,right=7pt,top=5pt,bottom=5pt]\small\sloppy
 \noindent\hspace*{0em}\texttt{def detect\_catastrophic\_cancellation(a, b):}\par
 \noindent\hspace*{1em}\texttt{if classify\_float(a) not in \{"zero", "subnormal", "normal"\}:}\par
@@ -394,7 +389,6 @@ Try first: Place small terms between a large positive value and its cancelling n
 \noindent\hspace*{1em}\texttt{scale = max(abs(a), abs(b))}\par
 \noindent\hspace*{1em}\texttt{return scale != 0 and abs(a - b) \ensuremath{<}= scale * 2**-52}\par
 \end{tcolorbox}
-\item Before moving on, check the input boundaries and one hand-computed case. Keep the exact required name and return shape from the scaffold.
 \end{enumerate}
 \end{workedbox}
 
@@ -402,14 +396,14 @@ Try first: Place small terms between a large positive value and its cancelling n
 \begin{keepsection}\subsection{Task 7: Compare floats with a relative tolerance}
 
 \begin{workedbox}{Task 07 \ensuremath{\cdot} safe\_float\_equal(a, b, tol=1e-9) \ensuremath{\cdot} worked solution}
-\Needspace{22\baselineskip}
+\Needspace{19\baselineskip}
 \begin{enumerate}
 \item Exact equality is usually too strict for computed results because rounding creates small differences. A relative comparison accepts a difference no larger than tol times the larger operand magnitude.
 \item NaN is unequal to every value, including itself. Infinities compare equal only when both are infinities with the same sign; finite arithmetic should not be used to compare them.
 \item For finite values, let scale = max(|a|,|b|). If scale is zero, both values are zero and the difference is zero. Otherwise check |a-b| \ensuremath{\leq} tol\ensuremath{\cdot}scale. This is a relative-only rule; near zero it intentionally allows almost no absolute error.
 \item Check symmetry by swapping a and b. If the application also needs an absolute tolerance near zero, the specification must say so; do not silently change this task’s stated relative tolerance.
-\item \Needspace{4\baselineskip}
-\textbf{Implementation pattern:} place this logic in the required function or class from the exercise scaffold.
+\item \Needspace{3\baselineskip}
+\textbf{The function:}
 \begin{tcolorbox}[colback=Paperblue,colframe=Paperblue,boxrule=0pt,arc=0pt,left=7pt,right=7pt,top=5pt,bottom=5pt]\small\sloppy
 \noindent\hspace*{0em}\texttt{def safe\_float\_equal(a, b, tol=1e-9):}\par
 \noindent\hspace*{1em}\texttt{kind\_a = classify\_float(a)}\par
@@ -423,7 +417,6 @@ Try first: Place small terms between a large positive value and its cancelling n
 \noindent\hspace*{3em}\texttt{return True}\par
 \noindent\hspace*{1em}\texttt{return abs(a - b) \ensuremath{<}= tol * scale}\par
 \end{tcolorbox}
-\item Before moving on, check the input boundaries and one hand-computed case. Keep the exact required name and return shape from the scaffold.
 \end{enumerate}
 \end{workedbox}
 
@@ -431,14 +424,14 @@ Try first: Place small terms between a large positive value and its cancelling n
 \begin{keepsection}\subsection{Task 8: Represent money as integer cents}
 
 \begin{workedbox}{Task 08 \ensuremath{\cdot} FixedPointCents \ensuremath{\cdot} worked solution}
-\Needspace{27\baselineskip}
+\Needspace{23\baselineskip}
 \begin{enumerate}
 \item Binary floating point cannot represent most decimal fractions exactly. A currency quantity restricted to cents can instead be stored as an integer number of cents; addition and subtraction then use exact integer arithmetic.
-\item Initialize the object from an integer cent count. Addition and subtraction create a new FixedPointCents object rather than changing either operand. Equality should compare both type and cent value.
-\item For the representation, use abs(cents) with divmod(...,100), then attach the sign and print exactly two digits after the decimal point. This also handles negative amounts such as -5 cents as -\$0.05.
+\item Initialize the object from an integer cent count. Addition and subtraction create a new \texttt{FixedPointCents} object rather than changing either operand. Equality should compare both type and cent value.
+\item For the representation, use \texttt{abs(cents)} with \texttt{divmod(...,100)}, then attach the sign and print exactly two digits after the decimal point. This also handles negative amounts such as -5 cents as -\$0.05.
 \item Check 1234 reprs as \$12.34, -5 reprs as -\$0.05, and 125 cents + (-25 cents) gives 100 cents. Convert decimal input into cents under an explicit rounding policy; do not multiply arbitrary floats and assume the result is exact.
-\item \Needspace{4\baselineskip}
-\textbf{Implementation pattern:} place this logic in the required function or class from the exercise scaffold.
+\item \Needspace{3\baselineskip}
+\textbf{The class:}
 \begin{tcolorbox}[colback=Paperblue,colframe=Paperblue,boxrule=0pt,arc=0pt,left=7pt,right=7pt,top=5pt,bottom=5pt]\small\sloppy
 \noindent\hspace*{0em}\texttt{class FixedPointCents:}\par
 \noindent\hspace*{1em}\texttt{def \_\_init\_\_(self, cents):}\par
@@ -463,7 +456,6 @@ Try first: Place small terms between a large positive value and its cancelling n
 \noindent\hspace*{3em}\texttt{dollars, cents = divmod(abs(self.cents), 100)}\par
 \noindent\hspace*{3em}\texttt{return f"\{sign\}\$\{dollars\}.\{cents:02d\}"}\par
 \end{tcolorbox}
-\item Before moving on, check the input boundaries and one hand-computed case. Keep the exact required name and return shape from the scaffold.
 \end{enumerate}
 \end{workedbox}
 
@@ -471,14 +463,14 @@ Try first: Place small terms between a large positive value and its cancelling n
 \begin{keepsection}\subsection{Task 9: Audit cumulative transaction drift}
 
 \begin{workedbox}{Task 09 \ensuremath{\cdot} audit\_drift(transactions) \ensuremath{\cdot} worked solution}
-\Needspace{30\baselineskip}
+\Needspace{26\baselineskip}
 \begin{enumerate}
-\item Normalize each input record first: the sheet allows dictionaries with an amount field or raw numeric amounts. Use that same ordered list for naive\_sum, kahan\_sum and the running comparison.
-\item Convert each stated decimal amount to integer cents using Decimal(str(amount)) and an explicit rounding rule (here, half-even to two decimal places). This prevents the conversion itself from adding a binary-float artifact to the exact ledger total.
-\item After each running float addition, compare its exact rational value with the integer-cent total. `as\_integer\_ratio()` gives numerator/denominator for the stored float. Multiply the numerator by 100 to express it in cents; error exceeds one cent precisely when the resulting numerator difference is greater than the denominator.
-\item Return the totals and the first zero-based index, or None if the threshold is never crossed. Validate on a tiny hand-calculated list, then run your own assigned CSV. The written justification must report your dataset’s actual drift; do not reuse another learner’s result.
-\item \Needspace{4\baselineskip}
-\textbf{Implementation pattern:} place this logic in the required function or class from the exercise scaffold.
+\item Normalize each input record first: the sheet allows dictionaries with an amount field or raw numeric amounts. Use that same ordered list for \texttt{naive\_sum}, \texttt{kahan\_sum} and the running comparison.
+\item Convert each stated decimal amount to integer cents using \texttt{Decimal(\texttt{str(amount)})} and an explicit rounding rule (here, half-even to two decimal places). This prevents the conversion itself from adding a binary-float artifact to the exact ledger total.
+\item After each running float addition, compare its exact rational value with the integer-cent total. \texttt{as\_integer\_ratio()} gives the numerator and denominator for the stored float. Multiply the numerator by 100 to express it in cents; error exceeds one cent precisely when the resulting numerator difference is greater than the denominator.
+\item Return the totals and the first zero-based index, or \texttt{None} if the threshold is never crossed. Validate on a tiny hand-calculated list, then run your own assigned CSV. The written justification must report your dataset’s actual drift; do not reuse another learner’s result.
+\item \Needspace{3\baselineskip}
+\textbf{The function,} built on Tasks 4, 5 and 8:
 \begin{tcolorbox}[colback=Paperblue,colframe=Paperblue,boxrule=0pt,arc=0pt,left=7pt,right=7pt,top=5pt,bottom=5pt]\small\sloppy
 \noindent\hspace*{0em}\texttt{from decimal import Decimal, ROUND\_HALF\_EVEN}\par
 \noindent\hspace*{0em}\texttt{}\par
@@ -504,7 +496,6 @@ Try first: Place small terms between a large positive value and its cancelling n
 \noindent\hspace*{5em}\texttt{"fixed\_total\_cents": fixed.cents,}\par
 \noindent\hspace*{5em}\texttt{"first\_index\_error\_exceeds\_cent": first\_index\}}\par
 \end{tcolorbox}
-\item Before moving on, check the input boundaries and one hand-computed case. Keep the exact required name and return shape from the scaffold.
 \end{enumerate}
 \end{workedbox}
 
@@ -514,12 +505,12 @@ Try first: Place small terms between a large positive value and its cancelling n
 \begin{workedbox}{Task 10 \ensuremath{\cdot} generate\_adversarial\_case(n) \ensuremath{\cdot} worked solution}
 \Needspace{20\baselineskip}
 \begin{enumerate}
-\item Choose a large number whose ULP is larger than 1.0, such as 10\textasciicircum{}16 in binary64. Adding 1.0 repeatedly to that running total loses those small terms because they are below half an ULP.
-\item Place -10\textasciicircum{}16 last. The large terms cancel, while the naive sum has already discarded the intervening ones. For n \ensuremath{\geq} 3 this classic sequence exposes order-dependent drift; for n = 0 or 1 return an empty or zero-valued list, and for n = 2 the pair cancels.
-\item Reject negative n because a requested list length cannot be negative. The construction is a clear stress case, not a proof of the mathematically largest possible error for every n or every summation algorithm.
-\item Check lengths 0, 1, 2, 3, and a larger n. For n \ensuremath{\geq} 2, the exact sum is n-2; for n = 0 or 1, the returned zero-valued list sums to zero. Confirm naive\_sum and kahan\_sum differ for a suitable n.
-\item \Needspace{4\baselineskip}
-\textbf{Implementation pattern:} place this logic in the required function or class from the exercise scaffold.
+\item Choose a large number whose ULP is larger than 1.0, such as 10\textsuperscript{16} in binary64, where the ULP is 2. Adding 1.0 to that running total lands exactly halfway between two floats, and the tie rounds back to 10\textsuperscript{16}, so each small term is lost.
+\item Place \ensuremath{-}10\textsuperscript{16} last. The large terms cancel, while the naive sum has already discarded the intervening ones. From \textit{n} = 3 the naive sum loses every 1.0. Kahan summation recovers the exact total from \textit{n} = 4 on; at \textit{n} = 3 it also returns 0, because its one stored correction is rounded away when it meets \ensuremath{-}10\textsuperscript{16}. For \textit{n} = 0 or 1 return an empty or zero-valued list, and for \textit{n} = 2 the pair cancels.
+\item Reject negative \textit{n} because a requested list length cannot be negative. The construction is a clear stress case, not a proof of the mathematically largest possible error for every \textit{n} or every summation algorithm.
+\item Check lengths 0, 1, 2, 3 and a larger \textit{n}. For \textit{n} \ensuremath{\geq} 2, the exact sum is \textit{n} \ensuremath{-} 2; for \textit{n} = 0 or 1, the returned zero-valued list sums to zero. Confirm that \texttt{naive\_sum} and \texttt{kahan\_sum} differ for \textit{n} \ensuremath{\geq} 4, for example 0.0 and 8.0 at \textit{n} = 10.
+\item \Needspace{3\baselineskip}
+\textbf{The function:}
 \begin{tcolorbox}[colback=Paperblue,colframe=Paperblue,boxrule=0pt,arc=0pt,left=7pt,right=7pt,top=5pt,bottom=5pt]\small\sloppy
 \noindent\hspace*{0em}\texttt{def generate\_adversarial\_case(n):}\par
 \noindent\hspace*{1em}\texttt{if n \ensuremath{<} 0:}\par
@@ -528,7 +519,6 @@ Try first: Place small terms between a large positive value and its cancelling n
 \noindent\hspace*{3em}\texttt{return [0.0] * n}\par
 \noindent\hspace*{1em}\texttt{return [1e16] + [1.0] * (n - 2) + [-1e16]}\par
 \end{tcolorbox}
-\item Before moving on, check the input boundaries and one hand-computed case. Keep the exact required name and return shape from the scaffold.
 \end{enumerate}
 \end{workedbox}
 
