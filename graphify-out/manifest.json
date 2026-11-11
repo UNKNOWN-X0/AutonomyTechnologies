@@ -144,9 +144,9 @@
     "semantic_hash": ""
   },
   "docs/GUIDE-STANDARD.md": {
-    "mtime": 1794325518.5452507,
-    "seen": 1794325625.701853,
-    "ast_hash": "6aa9ddee6a3fde4822c09fdfb5cffcc7",
+    "mtime": 1794382567.9904282,
+    "seen": 1794382788.460253,
+    "ast_hash": "064f9cc14c1df44bb7e816245c744047",
     "semantic_hash": ""
   },
   "docs/LAB-STANDARD.md": {
@@ -462,9 +462,9 @@
     "semantic_hash": ""
   },
   "about/version-log.html": {
-    "mtime": 1794350394.1323178,
-    "seen": 1794350709.889877,
-    "ast_hash": "846637479ca25294942b5f05af177f2f",
+    "mtime": 1794382776.8517947,
+    "seen": 1794382788.460236,
+    "ast_hash": "f038c9abed57a43d3ad7330cb479a863",
     "semantic_hash": ""
   },
   "docs/DIAGRAM-AND-LAB-PLAN.md": {
@@ -498,8 +498,8 @@
     "semantic_hash": ""
   },
   "assets/graph-orb.json": {
-    "mtime": 1794347831.522247,
-    "seen": 1794350709.889819,
+    "mtime": 1794350721.1658747,
+    "seen": 1794382788.460026,
     "ast_hash": "fadc08be62d59d599a0d596d698850ea",
     "semantic_hash": ""
   },
@@ -552,9 +552,9 @@
     "semantic_hash": ""
   },
   "docs/EXERCISE-SOLUTIONS-STANDARD.md": {
-    "mtime": 1794303490.8215787,
-    "seen": 1794304597.177689,
-    "ast_hash": "2101bed434ddd679d6ed7b539f5ef8b3",
+    "mtime": 1794382567.9896955,
+    "seen": 1794382788.4602518,
+    "ast_hash": "c60b20e646044261e8657cfb0772e778",
     "semantic_hash": ""
   },
   "eei/exercise-1-worked-solutions.html": {
@@ -564,27 +564,27 @@
     "semantic_hash": ""
   },
   "eei/exercise-2-worked-solutions.html": {
-    "mtime": 1794323515.211144,
-    "seen": 1794323706.728383,
-    "ast_hash": "c92f8ba249ea73a2dad98725e4272e37",
+    "mtime": 1794382375.3692014,
+    "seen": 1794382788.460263,
+    "ast_hash": "cfef6f7ef0c21e07808c9f37cdc14eb2",
     "semantic_hash": ""
   },
   "eei/exercise-3-worked-solutions.html": {
-    "mtime": 1794225480.01765,
-    "seen": 1794225593.349514,
-    "ast_hash": "b580e50d93028f1dc0abeeb8fe7b61c3",
+    "mtime": 1794382375.3698041,
+    "seen": 1794382788.460264,
+    "ast_hash": "c910fd6e73a451ae679ea60d9f52613e",
     "semantic_hash": ""
   },
   "eei/exercise-4-worked-solutions.html": {
-    "mtime": 1794322715.9136477,
-    "seen": 1794322959.109256,
-    "ast_hash": "06aa5ae18971bb4bd7f3fead03b8abc4",
+    "mtime": 1794382259.0768936,
+    "seen": 1794382788.460265,
+    "ast_hash": "3a1fc597c08648405ce278abd2cca348",
     "semantic_hash": ""
   },
   "eei/tutorial-1-worked-solutions.html": {
-    "mtime": 1794324818.053809,
-    "seen": 1794325625.7018619,
-    "ast_hash": "c0c83b15116f26a74c0d33fd5f0c8c04",
+    "mtime": 1794382580.7413118,
+    "seen": 1794382788.4602659,
+    "ast_hash": "0e5f2beef12ff2d884fdfb79cf17dc24",
     "semantic_hash": ""
   },
   "eei/tutorial-2-worked-solutions.html": {
@@ -594,9 +594,9 @@
     "semantic_hash": ""
   },
   "eei/tutorial-3-worked-solutions.html": {
-    "mtime": 1794325289.0942802,
-    "seen": 1794325625.701864,
-    "ast_hash": "d92ffb99b54e4b9063fb485ebe496a1a",
+    "mtime": 1794382432.1512656,
+    "seen": 1794382788.460268,
+    "ast_hash": "c16593ad1bb9b9fe84c25329564af204",
     "semantic_hash": ""
   },
   "eei/appendix-a-coordinate-systems.html": {
@@ -606,21 +606,21 @@
     "semantic_hash": ""
   },
   "eei/tutorial-4-worked-solutions.html": {
-    "mtime": 1794325054.2407084,
-    "seen": 1794325625.701865,
-    "ast_hash": "e498d949b8766a4d4546ff776934a3dc",
+    "mtime": 1794382259.0795052,
+    "seen": 1794382788.460269,
+    "ast_hash": "c380b6e67be469dfe01ef24cf0731366",
     "semantic_hash": ""
   },
   "eei/tutorial-5-worked-solutions.html": {
-    "mtime": 1794324931.536579,
-    "seen": 1794325625.701865,
-    "ast_hash": "9a41828fc9eb091cd0bf37b7078f2aa2",
+    "mtime": 1794382259.0823731,
+    "seen": 1794382788.4602702,
+    "ast_hash": "2d7222a481208cf63f0ac6f256a4d787",
     "semantic_hash": ""
   },
   "eei/tutorial-6-worked-solutions.html": {
-    "mtime": 1794324931.53691,
-    "seen": 1794325625.701866,
-    "ast_hash": "f87711c7796f8925b929d113dc5b8466",
+    "mtime": 1794382259.0774279,
+    "seen": 1794382788.460272,
+    "ast_hash": "68d2999c79a272de11705814c2ef75a8",
     "semantic_hash": ""
   },
   "mei/exercise-1-worked-solutions.html": {
@@ -630,21 +630,21 @@
     "semantic_hash": ""
   },
   "mei/exercise-2-worked-solutions.html": {
-    "mtime": 1794344960.0747447,
-    "seen": 1794345045.4636428,
-    "ast_hash": "07e2077ac096e0cc20caa80a001181c5",
+    "mtime": 1794382767.9935026,
+    "seen": 1794382788.460305,
+    "ast_hash": "129ff5290ed3434128b0ebd974829d3f",
     "semantic_hash": ""
   },
   "mei/exercise-3-worked-solutions.html": {
-    "mtime": 1794346638.6562324,
-    "seen": 1794346673.9937222,
-    "ast_hash": "cd3af7120aba1e085e494d4df640ca9d",
+    "mtime": 1794382768.0135057,
+    "seen": 1794382788.460307,
+    "ast_hash": "d9277b94f32ba42cfd8fddbe5ecf55a0",
     "semantic_hash": ""
   },
   "mei/exercise-4-worked-solutions.html": {
-    "mtime": 1794350623.5956383,
-    "seen": 1794350709.8899179,
-    "ast_hash": "cb6712a8b6f9f368196865516708dc4f",
+    "mtime": 1794382768.031671,
+    "seen": 1794382788.460308,
+    "ast_hash": "47264e34dc774a45bd43a3572e95113e",
     "semantic_hash": ""
   }
 }

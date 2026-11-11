@@ -400,7 +400,7 @@ Add the parallel pair and then use the series formula:
 \begin{keepsection}\subsection{Task 8: Electrostatics}
 
 \begin{workedbox}{8g \ensuremath{\cdot} Locate the extrema}
-\Needspace{8\baselineskip}
+\Needspace{10\baselineskip}
 \begin{enumerate}
 \item \Needspace{4\baselineskip}
 The lower equivalent is linear in \textit{x}:
@@ -415,7 +415,27 @@ Therefore the total capacitance decreases throughout 0 \ensuremath{\leq} \textit
 \Needspace{5\baselineskip}
 \begin{equation*}\text{maximum}\, \text{at}\, {x}\, =\, 0,\quad \, \quad \, \text{minimum}\, \text{at}\, {x}\, =\, {a}\end{equation*}
 
+\Needspace{9\baselineskip}
 If ε\textsubscript{r,2} were exactly 1, the lower region would be air everywhere and the capacitance would be constant; the sheet specifies ε\textsubscript{r,2} much greater than 1, excluding that degenerate case.
+
+\Needspace{14\baselineskip}
+\begin{center}
+\begin{minipage}[t]{0.950\linewidth}\centering
+\begin{tikzpicture}[line join=round]
+\draw[-{Stealth[length=4pt]},black!80] (1.152,-3.312) -- (4.512,-3.312);
+\node[anchor=west,fill=white,fill opacity=0.85,text opacity=1,inner sep=1pt,font=\footnotesize] at (4.602,-3.492) {\textit{x}};
+\draw[-{Stealth[length=4pt]},black!80] (1.152,-3.312) -- (1.152,-0.552);
+\node[anchor=east,fill=white,fill opacity=0.85,text opacity=1,inner sep=1pt,font=\footnotesize] at (1.026,-0.552) {\textit{C}};
+\draw[black!80] (3.552,-3.240) -- (3.552,-3.384);
+\node[fill=white,fill opacity=0.85,text opacity=1,inner sep=1pt,font=\footnotesize] at (3.552,-3.510) {a};
+\draw[black!55,dashed] (3.552,-3.312) -- (3.552,-2.191);
+\draw[FAUblue,line width=1.6pt] (1.152,-0.912) -- (1.212,-0.926) -- (1.272,-0.941) -- (1.332,-0.955) -- (1.392,-0.970) -- (1.452,-0.986) -- (1.512,-1.001) -- (1.572,-1.018) -- (1.632,-1.037) -- (1.692,-1.054) -- (1.752,-1.073) -- (1.812,-1.092) -- (1.872,-1.111) -- (1.932,-1.130) -- (1.992,-1.152) -- (2.052,-1.174) -- (2.112,-1.198) -- (2.172,-1.219) -- (2.232,-1.243) -- (2.292,-1.270) -- (2.352,-1.296) -- (2.412,-1.322) -- (2.472,-1.351) -- (2.532,-1.382) -- (2.592,-1.414) -- (2.652,-1.445) -- (2.712,-1.478) -- (2.772,-1.514) -- (2.832,-1.553) -- (2.892,-1.591) -- (2.952,-1.632) -- (3.012,-1.675) -- (3.072,-1.721) -- (3.132,-1.769) -- (3.192,-1.819) -- (3.252,-1.872) -- (3.312,-1.930) -- (3.372,-1.987) -- (3.432,-2.052) -- (3.492,-2.119) -- (3.552,-2.191);
+\fill[FAUblue] (1.152,-0.912) circle (0.063);
+\fill[FAUblue] (3.552,-2.191) circle (0.063);
+\node[anchor=west,fill=white,fill opacity=0.85,text opacity=1,inner sep=1pt,font=\footnotesize] at (1.242,-0.750) {max};
+\node[anchor=west,fill=white,fill opacity=0.85,text opacity=1,inner sep=1pt,font=\footnotesize] at (3.678,-2.191) {min};
+\end{tikzpicture}\par\smallskip{\small\raggedright \textbf{Capacitance falls all the way.} Drawn for ε\textsubscript{r,1} = 2 and ε\textsubscript{r,2} = 5. As the strip of air widens, \textit{C}(\textit{x}) only decreases, so the extremes sit at the two ends of the range.\par}\end{minipage}
+\end{center}
 \end{enumerate}
 \end{workedbox}
 

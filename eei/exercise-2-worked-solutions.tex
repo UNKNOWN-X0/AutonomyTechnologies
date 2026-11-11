@@ -286,7 +286,7 @@ Take the lengths from the displacement components and substitute:
 \begin{keepsection}\subsection{Task 5: Field from two charges on the y-axis}
 
 \begin{workedbox}{5b \ensuremath{\cdot} Equal charges on the x-axis}
-\Needspace{8\baselineskip}
+\Needspace{10\baselineskip}
 \begin{enumerate}
 \item \Needspace{4\baselineskip}
 At P = (\textit{x}, 0), the displacements have equal lengths and opposite vertical components:
@@ -299,7 +299,31 @@ With equal Q, vertical components cancel and horizontal components add:
 \item \Needspace{5\baselineskip}
 \textbf{Result:} for positive Q it points +x when x \ensuremath{>} 0 and reverses for x \ensuremath{<} 0; negative Q reverses these directions.
 
+\Needspace{8\baselineskip}
 \textbf{Check:} at x = 0 symmetry requires zero, which the expression gives.
+
+\Needspace{14\baselineskip}
+\begin{center}
+\begin{minipage}[t]{0.950\linewidth}\centering
+\begin{tikzpicture}[line join=round]
+\draw[black!55,dashed] (1.088,-0.815) -- (2.838,-1.908);
+\draw[black!55,dashed] (1.088,-3.002) -- (2.838,-1.908);
+\fill[FAUblue] (1.088,-0.815) circle (0.126);
+\node[text=white,font=\scriptsize\bfseries] at (1.088,-0.815) {+};
+\fill[FAUblue] (1.088,-3.002) circle (0.126);
+\node[text=white,font=\scriptsize\bfseries] at (1.088,-3.002) {+};
+\node[anchor=east,fill=white,fill opacity=0.85,text opacity=1,inner sep=1pt,font=\footnotesize] at (0.831,-0.815) {\textit{Q\textsubscript{1}}};
+\node[anchor=east,fill=white,fill opacity=0.85,text opacity=1,inner sep=1pt,font=\footnotesize] at (0.831,-3.002) {\textit{Q\textsubscript{2}}};
+\draw[-{Stealth[length=4pt]},black!80] (2.838,-1.908) -- (3.580,-2.372);
+\draw[-{Stealth[length=4pt]},black!80] (2.838,-1.908) -- (3.580,-1.445);
+\draw[-{Stealth[length=4pt]},FAUblue,line width=1.6pt] (2.838,-1.908) -- (4.322,-1.908);
+\fill[FAUblue] (2.838,-1.908) circle (0.063);
+\node[fill=white,fill opacity=0.85,text opacity=1,inner sep=1pt,font=\footnotesize] at (2.838,-1.710) {\textit{P}};
+\node[anchor=west,fill=white,fill opacity=0.85,text opacity=1,inner sep=1pt,font=\footnotesize] at (3.670,-2.552) {\textit{E\textsubscript{1}}};
+\node[anchor=west,fill=white,fill opacity=0.85,text opacity=1,inner sep=1pt,font=\footnotesize] at (3.670,-1.283) {\textit{E\textsubscript{2}}};
+\node[anchor=west,text=FAUblue,fill=white,fill opacity=0.85,text opacity=1,inner sep=1pt,font=\footnotesize] at (4.448,-1.908) {\textit{E}};
+\end{tikzpicture}\par\smallskip{\small\raggedright \textbf{Equal charges.} Drawn for \textit{Q} \ensuremath{>} 0 at a point P on the positive \textit{x}-axis. Each charge pushes P away along its own dashed line; the vertical parts cancel and the horizontal parts add to \textit{E} along +\textit{x}.\par}\end{minipage}
+\end{center}
 \end{enumerate}
 \end{workedbox}
 
@@ -307,7 +331,7 @@ With equal Q, vertical components cancel and horizontal components add:
 \begin{keepsection}\subsection{Task 5: Field from two charges on the y-axis}
 
 \begin{workedbox}{5c \ensuremath{\cdot} Opposite charges on the x-axis}
-\Needspace{9\baselineskip}
+\Needspace{10\baselineskip}
 \begin{enumerate}
 \item \Needspace{5\baselineskip}
 The distances still match, but signed contributions use the difference of the displacement vectors:
@@ -320,7 +344,31 @@ Horizontal parts cancel; vertical contributions add downward:
 \item \Needspace{6\baselineskip}
 \textbf{Result:} for positive Q it points from upper positive to lower negative: \ensuremath{-}y. Negative Q reverses it.
 
+\Needspace{9\baselineskip}
 \textbf{Check:} at the midpoint both fields point down. Far along the axis, magnitude falls as 1/|x|\textsuperscript{3}, as for a dipole.
+
+\Needspace{14\baselineskip}
+\begin{center}
+\begin{minipage}[t]{0.950\linewidth}\centering
+\begin{tikzpicture}[line join=round]
+\draw[black!55,dashed] (1.088,-0.815) -- (2.838,-1.908);
+\draw[black!55,dashed] (1.088,-3.002) -- (2.838,-1.908);
+\fill[FAUblue] (1.088,-0.815) circle (0.126);
+\node[text=white,font=\scriptsize\bfseries] at (1.088,-0.815) {+};
+\fill[FAUblue] (1.088,-3.002) circle (0.126);
+\node[text=white,font=\scriptsize\bfseries] at (1.088,-3.002) {−};
+\node[anchor=east,fill=white,fill opacity=0.85,text opacity=1,inner sep=1pt,font=\footnotesize] at (0.831,-0.815) {\textit{Q\textsubscript{1}}};
+\node[anchor=east,fill=white,fill opacity=0.85,text opacity=1,inner sep=1pt,font=\footnotesize] at (0.831,-3.002) {\textit{Q\textsubscript{2}}};
+\draw[-{Stealth[length=4pt]},black!80] (2.838,-1.908) -- (3.580,-2.372);
+\draw[-{Stealth[length=4pt]},black!80] (2.838,-1.908) -- (2.097,-2.372);
+\draw[-{Stealth[length=4pt]},FAUblue,line width=1.6pt] (2.838,-1.908) -- (2.838,-2.836);
+\fill[FAUblue] (2.838,-1.908) circle (0.063);
+\node[fill=white,fill opacity=0.85,text opacity=1,inner sep=1pt,font=\footnotesize] at (2.838,-1.710) {\textit{P}};
+\node[anchor=west,fill=white,fill opacity=0.85,text opacity=1,inner sep=1pt,font=\footnotesize] at (3.670,-2.552) {\textit{E\textsubscript{1}}};
+\node[fill=white,fill opacity=0.85,text opacity=1,inner sep=1pt,font=\footnotesize] at (2.097,-2.570) {\textit{E\textsubscript{2}}};
+\node[text=FAUblue,fill=white,fill opacity=0.85,text opacity=1,inner sep=1pt,font=\footnotesize] at (2.838,-3.034) {\textit{E}};
+\end{tikzpicture}\par\smallskip{\small\raggedright \textbf{Opposite charges.} Drawn for \textit{Q} \ensuremath{>} 0. \textit{E}\textsubscript{1} points away from the upper charge and \textit{E}\textsubscript{2} towards the lower one; now the horizontal parts cancel and the sum \textit{E} points along \ensuremath{-}\textit{y}.\par}\end{minipage}
+\end{center}
 \end{enumerate}
 \end{workedbox}
 

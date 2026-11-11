@@ -323,7 +323,7 @@ Divide the vector from 2a by its magnitude from 2b:
 \begin{keepsection}\subsection{Task 3: Coordinate systems}
 
 \begin{workedbox}{3a \ensuremath{\cdot} Cylindrical to spherical}
-\Needspace{12\baselineskip}
+\Needspace{14\baselineskip}
 \begin{enumerate}
 \item \Needspace{5\baselineskip}
 The cylindrical components are \textit{ρ} = 5, \textit{z} = 2, and φ = 45°. The spherical radius is the distance from the origin:
@@ -349,7 +349,31 @@ As a position vector, \textit{r} = \textit{r}\textit{e}\textsubscript{r}. Since 
 \Needspace{4\baselineskip}
 \begin{equation*}{r}\, =\, \sqrt{29}\, {e}_{\mathrm{r}}\end{equation*}
 
+\Needspace{8\baselineskip}
 \textbf{Check:} its cylindrical projection is \textit{r} sinϑ = 5 and its z-component is \textit{r} cosϑ = 2.
+
+\Needspace{14\baselineskip}
+\begin{center}
+\begin{minipage}[t]{0.950\linewidth}\centering
+\begin{tikzpicture}[line join=round]
+\filldraw[draw=black!40,fill=Paperblue] (1.471,-2.090) -- (1.465,-2.077) -- (1.460,-2.064) -- (1.453,-2.051) -- (1.447,-2.038) -- (1.440,-2.026) -- (1.433,-2.013) -- (1.426,-2.001) -- (1.418,-1.989) -- (1.410,-1.977) -- (1.402,-1.965) -- (1.393,-1.954) -- (1.385,-1.943) -- (1.375,-1.932) -- (1.366,-1.921) -- (1.356,-1.910) -- (1.347,-1.900) -- (1.336,-1.890) -- (1.326,-1.880) -- (1.315,-1.871) -- (1.305,-1.861) -- (1.293,-1.852) -- (1.282,-1.844) -- (1.271,-1.835) -- (1.259,-1.827) -- (1.247,-1.819) -- (1.235,-1.812) -- (1.223,-1.804) -- (1.210,-1.797) -- (1.197,-1.791) -- (1.185,-1.784) -- (1.172,-1.778) -- (1.159,-1.773) -- (1.145,-1.767) -- (1.132,-1.762) -- (1.118,-1.758) -- (1.105,-1.753) -- (1.091,-1.749) -- (1.077,-1.746) -- (1.063,-1.742) -- (1.050,-1.739) -- (1.035,-1.737) -- (1.021,-1.734) -- (1.007,-1.732) -- (0.993,-1.731) -- (0.979,-1.730) -- (0.965,-1.729) -- (0.950,-1.728) -- (0.936,-1.728) -- (0.936,-2.304) -- (0.936,-2.304) -- (0.936,-2.304) -- (0.936,-2.304) -- (0.936,-2.304) -- (0.936,-2.304) -- (0.936,-2.304) -- (0.936,-2.304) -- (0.936,-2.304) -- (0.936,-2.304) -- (0.936,-2.304) -- (0.936,-2.304) -- (0.936,-2.304) -- (0.936,-2.304) -- (0.936,-2.304) -- (0.936,-2.304) -- (0.936,-2.304) -- (0.936,-2.304) -- (0.936,-2.304) -- (0.936,-2.304) -- (0.936,-2.304) -- (0.936,-2.304) -- (0.936,-2.304) -- (0.936,-2.304) -- (0.936,-2.304) -- (0.936,-2.304) -- (0.936,-2.304) -- (0.936,-2.304) -- (0.936,-2.304) -- (0.936,-2.304) -- (0.936,-2.304) -- (0.936,-2.304) -- (0.936,-2.304) -- (0.936,-2.304) -- (0.936,-2.304) -- (0.936,-2.304) -- (0.936,-2.304) -- (0.936,-2.304) -- (0.936,-2.304) -- (0.936,-2.304) -- (0.936,-2.304) -- (0.936,-2.304) -- (0.936,-2.304) -- (0.936,-2.304) -- (0.936,-2.304) -- (0.936,-2.304) -- (0.936,-2.304) -- (0.936,-2.304) -- (0.936,-2.304) -- cycle;
+\draw[-{Stealth[length=4pt]},black!80] (0.936,-2.304) -- (4.464,-2.304);
+\node[anchor=west,fill=white,fill opacity=0.85,text opacity=1,inner sep=1pt,font=\footnotesize] at (4.554,-2.484) {\textit{ρ}};
+\draw[-{Stealth[length=4pt]},black!80] (0.936,-2.304) -- (0.936,-0.648);
+\node[anchor=east,fill=white,fill opacity=0.85,text opacity=1,inner sep=1pt,font=\footnotesize] at (0.810,-0.648) {\textit{z}};
+\draw[black!80] (3.816,-2.232) -- (3.816,-2.376);
+\node[fill=white,fill opacity=0.85,text opacity=1,inner sep=1pt,font=\footnotesize] at (3.816,-2.502) {5};
+\draw[black!80] (0.864,-1.152) -- (1.008,-1.152);
+\node[anchor=east,fill=white,fill opacity=0.85,text opacity=1,inner sep=1pt,font=\footnotesize] at (0.810,-1.152) {2};
+\draw[black!55,dashed] (3.816,-2.304) -- (3.816,-1.152);
+\draw[black!55,dashed] (0.936,-1.152) -- (3.816,-1.152);
+\draw[-{Stealth[length=4pt]},FAUblue,line width=1.6pt] (0.936,-2.304) -- (3.816,-1.152);
+\fill[FAUblue] (3.816,-1.152) circle (0.063);
+\node[fill=white,fill opacity=0.85,text opacity=1,inner sep=1pt,font=\footnotesize] at (1.094,-1.958) {\textit{ϑ}};
+\node[anchor=east,text=FAUblue,fill=white,fill opacity=0.85,text opacity=1,inner sep=1pt,font=\footnotesize] at (2.430,-1.508) {\textit{r}};
+\node[anchor=west,fill=white,fill opacity=0.85,text opacity=1,inner sep=1pt,font=\footnotesize] at (3.906,-0.990) {\textit{P}};
+\end{tikzpicture}\par\smallskip{\small\raggedright \textbf{Cylindrical to spherical in one plane.} The vertical plane through P at φ = 45° holds ρ = 5 across and \textit{z} = 2 up. The distance \textit{r} = \ensuremath{\sqrt{29}} is the hypotenuse, and ϑ is the angle down from the \textit{z}-axis, so tan ϑ = ρ/\textit{z}.\par}\end{minipage}
+\end{center}
 \end{enumerate}
 \end{workedbox}
 

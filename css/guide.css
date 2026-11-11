@@ -2140,6 +2140,7 @@ main li sup {
 }
 polyline.vz-line,
 polyline.vz-dash,
+polyline.vz-seg,
 path.vz-line:not(.vz-fill, .vz-cell, .vz-bg),
 path.vz-dash,
 path.vz-seg {

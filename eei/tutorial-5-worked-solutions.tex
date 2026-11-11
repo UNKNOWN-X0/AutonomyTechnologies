@@ -210,7 +210,7 @@ Try first: use \textit{C} = \textit{Q}/\textit{U}\textsubscript{10}, then substi
 \begin{keepsection}\subsection{Task 9: Electrostatics}
 
 \begin{workedbox}{9b \ensuremath{\cdot} Boundary conditions}
-\Needspace{10\baselineskip}
+\Needspace{12\baselineskip}
 \begin{enumerate}
 \item \Needspace{5\baselineskip}
 A constant-φ interface has normal \textit{n} = \ensuremath{\pm}\textit{e}\textsubscript{φ}. The radial field is perpendicular to that normal, so it lies tangent to the interface:
@@ -220,7 +220,30 @@ A constant-φ interface has normal \textit{n} = \ensuremath{\pm}\textit{e}\texts
 With no free charge on the dielectric boundary, the normal component of displacement is continuous; it is zero on both sides here. Tangential displacement need not be continuous and scales with each material permittivity:
 
 \begin{equation*}\dfrac{{D}_{\mathrm{t},1}}{{D}_{\mathrm{t},2}}\, =\, \dfrac{ε_{1}}{ε_{2}}\end{equation*}
-\item Thus \textit{E} crosses the angular boundary without a change in direction or magnitude. \textit{D} changes magnitude at the boundary in proportion to ε. The radial field lines run along the interface, rather than crossing it.
+\item \Needspace{11\baselineskip}
+Thus \textit{E} crosses the angular boundary without a change in direction or magnitude. \textit{D} changes magnitude at the boundary in proportion to ε. The radial field lines run along the interface, rather than crossing it.
+
+\Needspace{14\baselineskip}
+\begin{center}
+\begin{minipage}[t]{0.950\linewidth}\centering
+\begin{tikzpicture}[line join=round]
+\filldraw[draw=black!70,fill=white] (0.598,-2.592) rectangle (2.592,-0.764);
+\filldraw[draw=black!40,fill=Paperblue] (2.592,-2.592) rectangle (4.586,-0.764);
+\draw[black!55,dashed] (2.592,-2.675) -- (2.592,-0.681);
+\draw[-{Stealth[length=4pt]},FAUblue,line width=1.6pt] (1.927,-0.930) -- (1.927,-1.761);
+\draw[-{Stealth[length=4pt]},FAUblue,line width=1.6pt] (3.257,-0.930) -- (3.257,-1.761);
+\draw[-{Stealth[length=4pt]},black!80] (1.263,-0.930) -- (1.263,-1.263);
+\draw[-{Stealth[length=4pt]},black!80] (3.921,-0.930) -- (3.921,-1.927);
+\node[text=FAUblue,fill=white,fill opacity=0.85,text opacity=1,inner sep=1pt,font=\footnotesize] at (1.927,-1.959) {\textit{E}};
+\node[text=FAUblue,fill=white,fill opacity=0.85,text opacity=1,inner sep=1pt,font=\footnotesize] at (3.257,-1.959) {\textit{E}};
+\node[fill=white,fill opacity=0.85,text opacity=1,inner sep=1pt,font=\footnotesize] at (1.263,-1.461) {\textit{D\textsubscript{1}}};
+\node[fill=white,fill opacity=0.85,text opacity=1,inner sep=1pt,font=\footnotesize] at (3.921,-2.125) {\textit{D\textsubscript{2}}};
+\draw[-{Stealth[length=4pt]},black!80] (2.592,-2.226) -- (3.090,-2.226);
+\node[anchor=west,fill=white,fill opacity=0.85,text opacity=1,inner sep=1pt,font=\footnotesize] at (3.216,-2.226) {\textit{n}};
+\node[fill=white,fill opacity=0.85,text opacity=1,inner sep=1pt,font=\footnotesize] at (1.014,-2.393) {\textit{ε\textsubscript{1}}};
+\node[fill=white,fill opacity=0.85,text opacity=1,inner sep=1pt,font=\footnotesize] at (4.170,-2.393) {\textit{ε\textsubscript{2}}};
+\end{tikzpicture}\par\smallskip{\small\raggedright \textbf{Along the interface, not across it.} A close-up where the dashed boundary meets the field, drawn for ε\textsubscript{2} = 3ε\textsubscript{1}. \textit{E} runs parallel to the boundary with the same strength on both sides; \textit{D} = ε\textit{E} is three times longer in ε\textsubscript{2}. Neither has a component along the normal \textit{n}.\par}\end{minipage}
+\end{center}
 \end{enumerate}
 \end{workedbox}
 
