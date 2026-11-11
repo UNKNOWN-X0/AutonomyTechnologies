@@ -68,23 +68,85 @@
     });
     return svg;
   }
+  // Small drawn marks for each choice, in the site's square vocabulary (currentColor, so they follow the segment).
+  var ICONS = {
+    "theme-system": '<rect x="3.5" y="3.5" width="13" height="13" fill="none" stroke="currentColor" stroke-width="1.6"/><path d="M3.5 16.5 16.5 3.5V16.5Z" fill="currentColor"/>',
+    "theme-light": '<rect x="3.5" y="3.5" width="13" height="13" fill="none" stroke="currentColor" stroke-width="1.6"/>',
+    "theme-dark": '<rect x="3.5" y="3.5" width="13" height="13" fill="currentColor" stroke="currentColor" stroke-width="1.6"/>',
+    "motion-system": '<rect x="1.5" y="8" width="4" height="4" fill="currentColor" opacity=".3"/><rect x="7" y="8" width="4" height="4" fill="currentColor" opacity=".6"/><rect x="12.5" y="7" width="6" height="6" fill="currentColor"/>',
+    "motion-reduced": '<rect x="7" y="7" width="6" height="6" fill="currentColor"/>',
+    "text-default": '<text x="10" y="14.5" text-anchor="middle" font-size="11" font-weight="800" fill="currentColor" font-family="Hanken Grotesk, system-ui, sans-serif">Aa</text>',
+    "text-large": '<text x="10" y="16" text-anchor="middle" font-size="15" font-weight="800" fill="currentColor" font-family="Hanken Grotesk, system-ui, sans-serif">Aa</text>',
+  };
+  function icon(key) {
+    var s = document.createElementNS("http://www.w3.org/2000/svg", "svg");
+    s.setAttribute("viewBox", "0 0 20 20");
+    s.setAttribute("width", "18");
+    s.setAttribute("height", "18");
+    s.setAttribute("aria-hidden", "true");
+    s.innerHTML = ICONS[key] || "";
+    return s;
+  }
+  // What is in effect now, in words: "Dark (from your device) · Full motion · Default text".
+  function status() {
+    var dark = window.matchMedia("(prefers-color-scheme: dark)").matches,
+      theme = prefs.theme ? (prefs.theme === "dark" ? "Dark" : "Light") : (dark ? "Dark" : "Light") + " (from your device)",
+      motion = window.siteReduceMotion() ? "Reduced motion" + (prefs.motion ? "" : " (from your device)") : "Full motion",
+      text = prefs.text === "large" ? "Large text" : "Default text";
+    return theme + " · " + motion + " · " + text;
+  }
+  // The control console (owner's request, 2026-11-11: upgrade the settings, in the rail's instrument style). Four
+  // corner brackets frame the panel and close in as it opens; a live line under the heading says what is in effect;
+  // each choice carries a small drawn mark; a reticle glides to the chosen segment; the motion row shows a signal
+  // square that travels only while motion is on. Reduced motion keeps every state and drops the movement.
   function build() {
     var dlg = document.createElement("dialog"),
       form = document.createElement("form"),
+      head = document.createElement("div"),
       h = document.createElement("h2"),
+      x = document.createElement("button"),
+      now = document.createElement("p"),
       close = document.createElement("button");
     dlg.className = "settings";
     dlg.setAttribute("aria-labelledby", "settings-h");
     form.method = "dialog";
+    head.className = "settings-head";
     h.id = "settings-h";
     h.textContent = "Settings";
-    form.appendChild(h);
+    // the heading takes the first focus, so opening the panel does not ring the close button
+    h.tabIndex = -1;
+    h.setAttribute("autofocus", "");
+    x.className = "settings-x";
+    x.value = "close";
+    x.setAttribute("aria-label", "Close settings");
+    x.innerHTML = '<svg viewBox="0 0 20 20" width="16" height="16" aria-hidden="true"><path d="M4 4 16 16M16 4 4 16" fill="none" stroke="currentColor" stroke-width="2"/></svg>';
+    head.appendChild(h);
+    head.appendChild(x);
+    form.appendChild(head);
+    now.className = "settings-now";
+    now.setAttribute("aria-live", "polite");
+    form.appendChild(now);
+    var locks = [];
+    function place(seg, lock) {
+      var on = seg.querySelector("input:checked");
+      if (!on || !seg.offsetWidth) return;
+      var lab = on.parentNode;
+      lock.style.left = lab.offsetLeft - 6 + "px";
+      lock.style.width = lab.offsetWidth + 12 + "px";
+    }
+    function refresh() {
+      now.textContent = status();
+      locks.forEach(function (l) { place(l[0], l[1]); });
+    }
     GROUPS.forEach(function (g) {
       var fs = document.createElement("fieldset"),
         lg = document.createElement("legend"),
-        seg = document.createElement("div");
+        seg = document.createElement("div"),
+        lock = document.createElement("span");
       lg.textContent = g[1];
       seg.className = "seg";
+      lock.className = "seg-lock";
+      lock.setAttribute("aria-hidden", "true");
       fs.appendChild(lg);
       g[2].forEach(function (o) {
         var lab = document.createElement("label"),
@@ -101,13 +163,27 @@
             localStorage.setItem(KEY, JSON.stringify(prefs));
           } catch (e) {}
           apply();
+          refresh();
+          lock.classList.remove("lock-in");
+          void lock.offsetWidth;
+          lock.classList.add("lock-in");
         });
-        span.textContent = o[1];
+        span.appendChild(icon(g[0] + "-" + o[0]));
+        span.appendChild(document.createTextNode(o[1]));
         lab.appendChild(input);
         lab.appendChild(span);
         seg.appendChild(lab);
       });
+      seg.appendChild(lock);
+      locks.push([seg, lock]);
       fs.appendChild(seg);
+      if (g[0] === "motion") {
+        var demo = document.createElement("div");
+        demo.className = "motion-demo";
+        demo.setAttribute("aria-hidden", "true");
+        demo.appendChild(document.createElement("i"));
+        fs.appendChild(demo);
+      }
       form.appendChild(fs);
     });
     var note = document.createElement("p");
@@ -121,6 +197,7 @@
       links.className = "settings-links";
       [["about/how-to-use.html", "How to use"], ["about/version-log.html", "Version log"]].forEach(function (l) {
         var a = document.createElement("a");
+        a.className = "btn";
         a.href = new URL("../" + l[0], base).href;
         a.textContent = l[1];
         links.appendChild(a);
@@ -136,6 +213,9 @@
     dlg.addEventListener("click", function (e) {
       if (e.target === dlg) dlg.close();
     });
+    window.matchMedia("(prefers-color-scheme: dark)").addEventListener("change", refresh);
+    window.matchMedia("(prefers-reduced-motion: reduce)").addEventListener("change", refresh);
+    dlg.refresh = refresh;
     document.body.appendChild(dlg);
     return dlg;
   }
@@ -148,6 +228,7 @@
     b.appendChild(gear());
     b.addEventListener("click", function () {
       if (dlg.showModal) dlg.showModal();
+      dlg.refresh();
     });
     return b;
   }

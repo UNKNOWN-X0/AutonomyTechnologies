@@ -60,9 +60,9 @@
     "semantic_hash": ""
   },
   "DESIGN.md": {
-    "mtime": 1794420854.0218148,
-    "seen": 1794420864.967339,
-    "ast_hash": "e2a687b8fde2982fca8a7a8d452705e4",
+    "mtime": 1794422346.4351072,
+    "seen": 1794422453.000609,
+    "ast_hash": "dd416b4591ba22b43356a4fb37cdf20c",
     "semantic_hash": ""
   },
   "PRODUCT.md": {
@@ -444,9 +444,9 @@
     "semantic_hash": ""
   },
   "js/settings.js": {
-    "mtime": 1793799950.9334366,
-    "seen": 1793800017.648253,
-    "ast_hash": "274f7ee5d9fe71d4f0a15dad458ec71d",
+    "mtime": 1794422317.3911452,
+    "seen": 1794422453.000585,
+    "ast_hash": "2000cfbe9015e31a1d74f1fa7ab15371",
     "semantic_hash": ""
   },
   "js/hud.js": {
@@ -456,15 +456,15 @@
     "semantic_hash": ""
   },
   "about/how-to-use.html": {
-    "mtime": 1794407150.348448,
-    "seen": 1794407220.433111,
-    "ast_hash": "a91f01c115caacac5aba83eb75fdc741",
+    "mtime": 1794422369.0902467,
+    "seen": 1794422453.000611,
+    "ast_hash": "a04a22ad646bbb2dd9bcab0e2f289425",
     "semantic_hash": ""
   },
   "about/version-log.html": {
-    "mtime": 1794409009.6522171,
-    "seen": 1794409071.643112,
-    "ast_hash": "cb5e33b38831027351b5361773b0bd7f",
+    "mtime": 1794422346.4376602,
+    "seen": 1794422453.000612,
+    "ast_hash": "e7297f27a44b74c316be38bc61f104ee",
     "semantic_hash": ""
   },
   "docs/DIAGRAM-AND-LAB-PLAN.md": {
@@ -498,8 +498,8 @@
     "semantic_hash": ""
   },
   "assets/graph-orb.json": {
-    "mtime": 1794409284.3318324,
-    "seen": 1794420864.9672818,
+    "mtime": 1794420879.1099627,
+    "seen": 1794422453.000555,
     "ast_hash": "47701344b1f8f5da7caccbe28df67a2d",
     "semantic_hash": ""
   },

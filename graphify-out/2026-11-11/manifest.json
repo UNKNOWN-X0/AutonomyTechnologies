@@ -24,9 +24,9 @@
     "semantic_hash": ""
   },
   "AGENTS.md": {
-    "mtime": 1794407150.3487191,
-    "seen": 1794407220.433107,
-    "ast_hash": "d3ab60de3b5114cc3e1602786fb6c9fe",
+    "mtime": 1794420854.0220592,
+    "seen": 1794420864.967338,
+    "ast_hash": "1123f0e9cc6dc8d4fdcb05d44a4e3541",
     "semantic_hash": ""
   },
   "graphify-out/memory/query_20261024_200642_26a2d038_how_are_the_static_study_pages_hosted__and_what_gi.md": {
@@ -60,9 +60,9 @@
     "semantic_hash": ""
   },
   "DESIGN.md": {
-    "mtime": 1794407143.2363727,
-    "seen": 1794407220.4331079,
-    "ast_hash": "57432985ad7e06315931dfd40c888693",
+    "mtime": 1794422346.4351072,
+    "seen": 1794422453.000609,
+    "ast_hash": "dd416b4591ba22b43356a4fb37cdf20c",
     "semantic_hash": ""
   },
   "PRODUCT.md": {
@@ -144,15 +144,15 @@
     "semantic_hash": ""
   },
   "docs/GUIDE-STANDARD.md": {
-    "mtime": 1794409009.6509652,
-    "seen": 1794409071.643129,
-    "ast_hash": "9dc3f5f91ec3992a067b3618119638ac",
+    "mtime": 1794420854.0201054,
+    "seen": 1794420864.9673622,
+    "ast_hash": "c9b07ed763212d30a8cb25598d97424e",
     "semantic_hash": ""
   },
   "docs/LAB-STANDARD.md": {
-    "mtime": 1793875608.5740232,
-    "seen": 1793877610.481343,
-    "ast_hash": "d79cb4fb94e942406c100386769fc01d",
+    "mtime": 1794420854.021199,
+    "seen": 1794420864.967363,
+    "ast_hash": "1701ffcf6dc5cd7cad76eddeb02bf2f2",
     "semantic_hash": ""
   },
   "mei/ch1-statements-logic-sets.html": {
@@ -444,9 +444,9 @@
     "semantic_hash": ""
   },
   "js/settings.js": {
-    "mtime": 1793799950.9334366,
-    "seen": 1793800017.648253,
-    "ast_hash": "274f7ee5d9fe71d4f0a15dad458ec71d",
+    "mtime": 1794422317.3911452,
+    "seen": 1794422453.000585,
+    "ast_hash": "2000cfbe9015e31a1d74f1fa7ab15371",
     "semantic_hash": ""
   },
   "js/hud.js": {
@@ -456,15 +456,15 @@
     "semantic_hash": ""
   },
   "about/how-to-use.html": {
-    "mtime": 1794407150.348448,
-    "seen": 1794407220.433111,
-    "ast_hash": "a91f01c115caacac5aba83eb75fdc741",
+    "mtime": 1794422369.0902467,
+    "seen": 1794422453.000611,
+    "ast_hash": "a04a22ad646bbb2dd9bcab0e2f289425",
     "semantic_hash": ""
   },
   "about/version-log.html": {
-    "mtime": 1794409009.6522171,
-    "seen": 1794409071.643112,
-    "ast_hash": "cb5e33b38831027351b5361773b0bd7f",
+    "mtime": 1794422346.4376602,
+    "seen": 1794422453.000612,
+    "ast_hash": "e7297f27a44b74c316be38bc61f104ee",
     "semantic_hash": ""
   },
   "docs/DIAGRAM-AND-LAB-PLAN.md": {
@@ -498,9 +498,9 @@
     "semantic_hash": ""
   },
   "assets/graph-orb.json": {
-    "mtime": 1794407266.4016263,
-    "seen": 1794409071.643054,
-    "ast_hash": "170e25d0b3447efb16c469b549298bc8",
+    "mtime": 1794420879.1099627,
+    "seen": 1794422453.000555,
+    "ast_hash": "47701344b1f8f5da7caccbe28df67a2d",
     "semantic_hash": ""
   },
   "js/orb.js": {
@@ -552,9 +552,9 @@
     "semantic_hash": ""
   },
   "docs/EXERCISE-SOLUTIONS-STANDARD.md": {
-    "mtime": 1794405265.1602132,
-    "seen": 1794405268.326669,
-    "ast_hash": "a8fcd27fab4655b2d9837a46e7cb5810",
+    "mtime": 1794420854.0207798,
+    "seen": 1794420864.967361,
+    "ast_hash": "c1740b521c51c1d0b12623c666cb265e",
     "semantic_hash": ""
   },
   "eei/exercise-1-worked-solutions.html": {

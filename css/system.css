@@ -531,33 +531,82 @@ button[data-tip] {
     transform: rotate(60deg);
   }
 }
+/* The control console (js/settings.js; owner's request, 2026-11-11): four --hud-c corner brackets frame the panel,
+   a live line under the heading says what is in effect, a reticle glides to each chosen segment, and the motion row
+   shows a signal square that travels only while motion is on. Square corners, no shadow. */
 dialog.settings {
-  width: min(420px, calc(100vw - 32px));
+  width: min(440px, calc(100vw - 32px));
   max-height: calc(100vh - 32px);
-  padding: 24px;
+  padding: 22px 24px 24px;
   border: 0;
-  border-top: 4px solid var(--fau-mark);
-  background: var(--surface);
+  background:
+    linear-gradient(var(--hud-c), var(--hud-c)) left top / 16px 2px no-repeat,
+    linear-gradient(var(--hud-c), var(--hud-c)) left top / 2px 16px no-repeat,
+    linear-gradient(var(--hud-c), var(--hud-c)) right top / 16px 2px no-repeat,
+    linear-gradient(var(--hud-c), var(--hud-c)) right top / 2px 16px no-repeat,
+    linear-gradient(var(--hud-c), var(--hud-c)) left bottom / 16px 2px no-repeat,
+    linear-gradient(var(--hud-c), var(--hud-c)) left bottom / 2px 16px no-repeat,
+    linear-gradient(var(--hud-c), var(--hud-c)) right bottom / 16px 2px no-repeat,
+    linear-gradient(var(--hud-c), var(--hud-c)) right bottom / 2px 16px no-repeat,
+    var(--surface);
   color: var(--ink);
 }
 dialog.settings::backdrop {
   background: rgb(2 16 36 / 0.55);
 }
+.settings-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
 dialog.settings h2 {
-  margin: 0 0 12px;
+  margin: 0;
   font: 800 1.35rem/1.2 var(--f-display);
 }
+dialog.settings h2:focus {
+  outline: none;
+}
+.settings-x {
+  display: grid;
+  place-items: center;
+  flex: none;
+  width: 36px;
+  height: 36px;
+  padding: 0;
+  border: 2px solid var(--act);
+  background: transparent;
+  color: var(--act);
+  cursor: pointer;
+  transition: background-color 150ms var(--ease);
+}
+.settings-x:hover {
+  background: var(--fau-tint);
+}
+.settings-x:focus-visible {
+  outline: 3px solid var(--act);
+  outline-offset: 2px;
+}
+/* what is in effect now, under the heading */
+.settings-now {
+  margin: 6px 0 18px;
+  padding-bottom: 14px;
+  border-bottom: 1px solid var(--line);
+  color: var(--muted);
+  font: 600 0.85rem/1.35 var(--f-body);
+}
 dialog.settings fieldset {
-  margin: 0 0 16px;
+  margin: 0 0 18px;
   padding: 0;
   border: 0;
 }
 dialog.settings legend {
-  margin-bottom: 8px;
+  margin-bottom: 10px;
   padding: 0;
   font: 700 0.95rem/1.2 var(--f-display);
 }
 dialog.settings .seg {
+  position: relative;
   display: flex;
   border: 2px solid var(--act);
 }
@@ -576,11 +625,15 @@ dialog.settings .seg span {
   display: flex;
   align-items: center;
   justify-content: center;
+  gap: 8px;
   min-height: 44px;
   padding: 0 8px;
   color: var(--act);
   font: 700 0.95rem/1.2 var(--f-display);
   transition: background-color 150ms var(--ease), color 150ms var(--ease);
+}
+dialog.settings .seg span svg {
+  flex: none;
 }
 dialog.settings .seg label + label span {
   border-left: 2px solid var(--act);
@@ -596,8 +649,42 @@ dialog.settings .seg input:focus-visible + span {
 dialog.settings .seg label:hover input:not(:checked) + span {
   background: var(--fau-tint);
 }
+/* the reticle: corner brackets 6px outside the chosen segment, gliding when the choice changes */
+.seg-lock {
+  position: absolute;
+  top: -8px;
+  bottom: -8px;
+  left: 0;
+  width: 0;
+  pointer-events: none;
+  background:
+    linear-gradient(var(--hud-c), var(--hud-c)) left top / 10px 2px no-repeat,
+    linear-gradient(var(--hud-c), var(--hud-c)) left top / 2px 6px no-repeat,
+    linear-gradient(var(--hud-c), var(--hud-c)) right top / 10px 2px no-repeat,
+    linear-gradient(var(--hud-c), var(--hud-c)) right top / 2px 6px no-repeat,
+    linear-gradient(var(--hud-c), var(--hud-c)) left bottom / 10px 2px no-repeat,
+    linear-gradient(var(--hud-c), var(--hud-c)) left bottom / 2px 6px no-repeat,
+    linear-gradient(var(--hud-c), var(--hud-c)) right bottom / 10px 2px no-repeat,
+    linear-gradient(var(--hud-c), var(--hud-c)) right bottom / 2px 6px no-repeat;
+}
+/* the motion row's preview: a signal square on a hairline track, travelling only while motion is on */
+.motion-demo {
+  position: relative;
+  height: 8px;
+  margin-top: 12px;
+  background: linear-gradient(var(--line), var(--line)) 0 50% / 100% 1px no-repeat;
+}
+.motion-demo i {
+  position: absolute;
+  top: 1px;
+  left: 0;
+  width: 6px;
+  height: 6px;
+  background: var(--signal-b);
+  box-shadow: var(--glow);
+}
 .settings-note {
-  margin: 0 0 16px;
+  margin: 0 0 14px;
   color: var(--muted);
   font-size: 0.9rem;
 }
@@ -606,13 +693,35 @@ dialog.settings .btn {
 }
 @media (prefers-reduced-motion: no-preference) {
   dialog.settings[open] {
-    animation: settings-in 220ms var(--ease) both;
+    animation: settings-in 320ms var(--ease) both;
+  }
+  .seg-lock {
+    transition:
+      left 320ms var(--ease),
+      width 320ms var(--ease);
+  }
+  .seg-lock.lock-in {
+    animation: settings-lock 460ms var(--ease) both;
+  }
+  .motion-demo i {
+    animation: motion-demo 2.4s var(--ease) infinite alternate;
   }
 }
 @keyframes settings-in {
   from {
     opacity: 0;
-    transform: translateY(8px);
+    transform: scale(1.04);
+  }
+}
+@keyframes settings-lock {
+  from {
+    opacity: 0;
+    transform: scale(1.08, 1.5);
+  }
+}
+@keyframes motion-demo {
+  to {
+    left: calc(100% - 6px);
   }
 }
 @media print {
@@ -830,13 +939,12 @@ body:has(nav.toc)::after,
 /* Links to How to use and the Version log, under the settings choices. */
 .settings-links {
   display: flex;
-  gap: 18px;
-  /* Same space above (after the note's 16px) as below, before Done. */
-  margin: 0 0 16px;
-  font-weight: 600;
+  gap: 10px;
+  margin: 0 0 10px;
 }
-.settings-links a {
-  color: var(--link);
+dialog.settings .settings-links .btn {
+  flex: 1;
+  width: auto;
 }
 @media print {
   .decode-line {
