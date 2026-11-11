@@ -1,0 +1,258 @@
+\documentclass[11pt]{article}
+\usepackage[margin=18mm,headheight=22pt]{geometry}
+\usepackage{amsmath}
+\usepackage{fontspec}
+\usepackage{unicode-math}
+\setmainfont{NewCM10}[Extension=.otf,UprightFont=*-Book,BoldFont=*-Bold,ItalicFont=*-BookItalic,BoldItalicFont=*-BoldItalic]
+\setsansfont{NewCMSans10}[Extension=.otf,UprightFont=*-Book,BoldFont=*-Bold,ItalicFont=*-BookOblique,BoldItalicFont=*-BoldOblique]
+\setmathfont{NewCMMath-Book.otf}
+\usepackage{xcolor}
+\definecolor{FAUblue}{HTML}{04316A}
+\definecolor{Paperblue}{HTML}{EEF2F7}
+\definecolor{EEIgold}{HTML}{CC9C42}
+\usepackage{etoolbox,enumitem,booktabs,tabularx,array,needspace,microtype}
+\usepackage[most]{tcolorbox}
+\usepackage{titlesec,fancyhdr}
+\usepackage[hidelinks]{hyperref}
+\usepackage{draftwatermark}
+\SetWatermarkText{Made by Thanate Amornjiraporn (Focus)}
+\SetWatermarkColor{black!7}\SetWatermarkFontSize{30pt}\SetWatermarkAngle{45}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{5pt}
+\setlist{itemsep=2pt,topsep=3pt,leftmargin=1.6em,beginpenalty=10000,endpenalty=10000}
+\raggedbottom
+\clubpenalty=10000 \widowpenalty=10000 \displaywidowpenalty=10000 \interlinepenalty=10000
+\setcounter{secnumdepth}{0}
+\setcounter{tocdepth}{1}
+\pagestyle{fancy}\fancyhf{}
+\fancyhead[L]{\small\sffamily\color{FAUblue} From Fundamentals to AI Apocalypse · APDR · Exercise 0}
+\fancyhead[R]{\small\sffamily Computer Exercise 0: Practice solutions}
+\fancyfoot[C]{\small\thepage}
+\titleformat{\section}{\Large\bfseries\sffamily\color{FAUblue}}{}{0pt}{}
+\titleformat{\subsection}{\large\bfseries\sffamily\color{FAUblue}}{}{0pt}{}
+\titlespacing*{\section}{0pt}{16pt}{6pt}
+\preto\section{\Needspace{8\baselineskip}}
+\preto\subsection{\Needspace{6\baselineskip}}
+\newtcolorbox{equationcard}[1]{colback=Paperblue,colframe=Paperblue,boxrule=0pt,arc=0pt,left=10pt,right=10pt,top=6pt,bottom=6pt,title={#1},fonttitle=\small\bfseries\sffamily,coltitle=FAUblue,before skip=8pt,after skip=8pt}
+\newtcolorbox{workedbox}[1]{colback=white,colframe=EEIgold,boxrule=0pt,leftrule=3pt,arc=0pt,left=10pt,top=4pt,bottom=4pt,title={#1},fonttitle=\small\bfseries\sffamily,coltitle=FAUblue,attach title to upper={\par},before skip=8pt,after skip=8pt}
+\newtcolorbox{recallbox}[1]{colback=white,colframe=FAUblue,boxrule=0pt,leftrule=3pt,arc=0pt,left=10pt,top=4pt,bottom=4pt,title={#1},fonttitle=\small\bfseries\sffamily,coltitle=FAUblue,attach title to upper={\par},before skip=8pt,after skip=8pt}
+\usepackage{environ}
+\newsavebox\measurebox
+% Typeset the section once invisibly to measure it; start a new page if it will not fit in what is left.
+\makeatletter
+\newif\ifkeep@measuring
+\NewEnviron{keepsection}{%
+  \ifkeep@measuring \BODY \else
+    \edef\keep@sec{\the\value{section}}\edef\keep@sub{\the\value{subsection}}%
+    \setbox\measurebox\vbox{\hsize\linewidth\keep@measuringtrue\def\Needspace##1{}\BODY}%
+    \setcounter{section}{\keep@sec}\setcounter{subsection}{\keep@sub}%
+    \dimen2=\ht\measurebox \advance\dimen2\dp\measurebox
+    \dimen@=\textheight
+    \ifdim\pagegoal<\maxdimen
+      \dimen@=\pagegoal \advance\dimen@-\pagetotal
+      \ifdim\dimen2>\dimen@ \clearpage \dimen@=\textheight \fi
+    \fi
+    % if it fits, nothing inside may force an early break
+    \ifdim\dimen2>\dimen@ \BODY \else \begingroup\def\Needspace##1{}\BODY\endgroup \fi
+  \fi}
+\makeatother
+\newtcolorbox{notebox}{colback=Paperblue,colframe=Paperblue,boxrule=0pt,arc=0pt,left=8pt,right=8pt,top=4pt,bottom=4pt,before skip=6pt,after skip=6pt}
+\newtcolorbox{plainbox}{colback=white,colframe=FAUblue,boxrule=0pt,leftrule=3pt,arc=0pt,left=10pt,right=8pt,top=4pt,bottom=4pt,before skip=6pt,after skip=8pt}
+\usetikzlibrary{arrows.meta}
+\title{\sffamily\bfseries\color{FAUblue}Computer Exercise 0: Practice solutions}
+\author{Algorithms, Programming, and Data Representation \ensuremath{\cdot} Module 92313 \ensuremath{\cdot} Exercise 0\\[2pt]\small From Fundamentals to AI Apocalypse · personal study guide}
+\date{}
+\begin{document}
+\maketitle
+\begingroup\footnotesize\setlength{\parskip}{0pt}\tableofcontents\endgroup
+\clearpage
+
+\Needspace{5\baselineskip}
+Practice \ensuremath{\cdot} not course-graded
+
+\Needspace{8\baselineskip}
+{\large Exercise 0 is a practice workflow check. Use it to verify your submission setup; it is not part of the course grade. Try each task before opening the worked steps.}
+
+
+\begin{keepsection}
+\Needspace{5\baselineskip}
+\section{Task 1: Return the exact greeting}
+
+\textbf{Connected topic:} Computers, programs, and data representation (Chapter 2)
+
+\begin{keepsection}
+\Needspace{6\baselineskip}
+\subsection{Task 01 \ensuremath{\cdot} hello()}
+
+\Needspace{3\baselineskip}
+Try first: write the function first, then compare its returned string character for character.
+
+\nopagebreak[4]{\small\itshape Answers: see “Task 1: Return the exact greeting” under Answers at the end.}
+\end{keepsection}
+\end{keepsection}
+
+\begin{keepsection}
+\Needspace{5\baselineskip}
+\section{Task 2: Add two numbers}
+
+\textbf{Connected topic:} Computers, programs, and data representation (Chapter 2)
+
+\begin{keepsection}
+\Needspace{7\baselineskip}
+\subsection{Task 02 \ensuremath{\cdot} add\_two\_numbers(a, b)}
+
+\Needspace{4\baselineskip}
+Try first: identify the return type implied by the examples and consider negative and decimal inputs.
+
+\nopagebreak[4]{\small\itshape Answers: see “Task 2: Add two numbers” under Answers at the end.}
+\end{keepsection}
+\end{keepsection}
+
+\begin{keepsection}
+\Needspace{5\baselineskip}
+\section{Task 3: Square a number}
+
+\textbf{Connected topic:} Computers, programs, and data representation (Chapter 2)
+
+\begin{keepsection}
+\Needspace{6\baselineskip}
+\subsection{Task 03 \ensuremath{\cdot} square(number)}
+
+\Needspace{3\baselineskip}
+Try first: express “square” as multiplication and check a negative input.
+
+\nopagebreak[4]{\small\itshape Answers: see “Task 3: Square a number” under Answers at the end.}
+\end{keepsection}
+\end{keepsection}
+
+\begin{keepsection}
+\Needspace{5\baselineskip}
+\section{Task 4: Test whether a number is even}
+
+\textbf{Connected topic:} Computers, programs, and data representation (Chapter 2)
+
+\begin{keepsection}
+\Needspace{6\baselineskip}
+\subsection{Task 04 \ensuremath{\cdot} is\_even(number)}
+
+\Needspace{3\baselineskip}
+Try first: use the remainder after division by two.
+
+\nopagebreak[4]{\small\itshape Answers: see “Task 4: Test whether a number is even” under Answers at the end.}
+\end{keepsection}
+\end{keepsection}
+
+\begin{keepsection}
+\Needspace{5\baselineskip}
+\section{Task 5: Build a personalized greeting}
+
+\textbf{Connected topic:} Computers, programs, and data representation (Chapter 2)
+
+\begin{keepsection}
+\Needspace{6\baselineskip}
+\subsection{Task 05 \ensuremath{\cdot} greet(name)}
+
+\Needspace{3\baselineskip}
+Try first: use string formatting and preserve the supplied name exactly.
+
+\nopagebreak[4]{\small\itshape Answers: see “Task 5: Build a personalized greeting” under Answers at the end.}
+\end{keepsection}
+\end{keepsection}
+
+
+\clearpage
+\section{Answers}
+\begin{keepsection}\subsection{Task 1: Return the exact greeting}
+
+\begin{workedbox}{Task 01 \ensuremath{\cdot} hello() \ensuremath{\cdot} worked solution}
+\Needspace{11\baselineskip}
+\begin{enumerate}
+\item The contract is a zero-argument function returning one exact string. There is no input to transform.
+\item Return the required literal; do not print it, because printing produces None as the function result.
+\item Call the function and compare the value, including capitalization, comma, and exclamation mark.
+\item \Needspace{4\baselineskip}
+\textbf{Core code:} the following is the key operation; fit it into the required function signature and return shape.
+\begin{tcolorbox}[colback=Paperblue,colframe=Paperblue,boxrule=0pt,arc=0pt,left=7pt,right=7pt,top=5pt,bottom=5pt]\small\sloppy
+\noindent\hspace*{0em}\texttt{def hello():}\par
+\noindent\hspace*{1em}\texttt{return "Hello, World!"}\par
+\end{tcolorbox}
+\end{enumerate}
+\end{workedbox}
+
+\end{keepsection}
+\begin{keepsection}\subsection{Task 2: Add two numbers}
+
+\begin{workedbox}{Task 02 \ensuremath{\cdot} add\_two\_numbers(a, b) \ensuremath{\cdot} worked solution}
+\Needspace{9\baselineskip}
+\begin{enumerate}
+\item The required operation is ordinary addition. Keep the parameters generic so Python preserves its numeric behavior for integers and floats.
+\item Return a + b; avoid converting to int, which would discard a fractional part.
+\item Check 2 + 3 = 5, then check a negative value and a float.
+\item \Needspace{4\baselineskip}
+\textbf{Core code:} the following is the key operation; fit it into the required function signature and return shape.
+\begin{tcolorbox}[colback=Paperblue,colframe=Paperblue,boxrule=0pt,arc=0pt,left=7pt,right=7pt,top=5pt,bottom=5pt]\small\sloppy
+\noindent\hspace*{0em}\texttt{def add\_two\_numbers(a, b):}\par
+\noindent\hspace*{1em}\texttt{return a + b}\par
+\end{tcolorbox}
+\end{enumerate}
+\end{workedbox}
+
+\end{keepsection}
+\begin{keepsection}\subsection{Task 3: Square a number}
+
+\begin{workedbox}{Task 03 \ensuremath{\cdot} square(number) \ensuremath{\cdot} worked solution}
+\Needspace{9\baselineskip}
+\begin{enumerate}
+\item A square is the number multiplied by itself; it is not the square root and it is nonnegative for real inputs.
+\item Return number * number.
+\item Check square(4) = 16 and square(-3) = 9.
+\item \Needspace{4\baselineskip}
+\textbf{Core code:} the following is the key operation; fit it into the required function signature and return shape.
+\begin{tcolorbox}[colback=Paperblue,colframe=Paperblue,boxrule=0pt,arc=0pt,left=7pt,right=7pt,top=5pt,bottom=5pt]\small\sloppy
+\noindent\hspace*{0em}\texttt{def square(number):}\par
+\noindent\hspace*{1em}\texttt{return number * number}\par
+\end{tcolorbox}
+\end{enumerate}
+\end{workedbox}
+
+\end{keepsection}
+\begin{keepsection}\subsection{Task 4: Test whether a number is even}
+
+\begin{workedbox}{Task 04 \ensuremath{\cdot} is\_even(number) \ensuremath{\cdot} worked solution}
+\Needspace{9\baselineskip}
+\begin{enumerate}
+\item An integer is even exactly when its remainder modulo 2 is zero. Python’s modulo rule also handles negative integers consistently.
+\item Return the Boolean comparison number \% 2 == 0. Do not return the strings "True" or "False".
+\item Check 4 gives True, 5 gives False, and -2 gives True.
+\item \Needspace{4\baselineskip}
+\textbf{Core code:} the following is the key operation; fit it into the required function signature and return shape.
+\begin{tcolorbox}[colback=Paperblue,colframe=Paperblue,boxrule=0pt,arc=0pt,left=7pt,right=7pt,top=5pt,bottom=5pt]\small\sloppy
+\noindent\hspace*{0em}\texttt{def is\_even(number):}\par
+\noindent\hspace*{1em}\texttt{return number \% 2 == 0}\par
+\end{tcolorbox}
+\end{enumerate}
+\end{workedbox}
+
+\end{keepsection}
+\begin{keepsection}\subsection{Task 5: Build a personalized greeting}
+
+\begin{workedbox}{Task 05 \ensuremath{\cdot} greet(name) \ensuremath{\cdot} worked solution}
+\Needspace{9\baselineskip}
+\begin{enumerate}
+\item The output has a fixed prefix, the name, and a final exclamation mark. No punctuation is added to the name itself.
+\item Use an f-string to construct and return the full text.
+\item Check greet("Ada") returns exactly "Hello, Ada!" and does not print to the terminal.
+\item \Needspace{4\baselineskip}
+\textbf{Core code:} the following is the key operation; fit it into the required function signature and return shape.
+\begin{tcolorbox}[colback=Paperblue,colframe=Paperblue,boxrule=0pt,arc=0pt,left=7pt,right=7pt,top=5pt,bottom=5pt]\small\sloppy
+\noindent\hspace*{0em}\texttt{def greet(name):}\par
+\noindent\hspace*{1em}\texttt{return f"Hello, \{name\}!"}\par
+\end{tcolorbox}
+\end{enumerate}
+\end{workedbox}
+
+\end{keepsection}
+
+\vfill{\small Personal worked-solution guide based on the APDR Computer Exercise 0 task sheet, rewritten in my own words. It is not an official FAU publication. Exercise 0 is practice; Exercises 1–2 are scored tasks. Use the samples and dataset from your own assigned repository where values are personalized. Made by \textbf{Thanate Amornjiraporn (Focus)}.}
+
+\end{document}

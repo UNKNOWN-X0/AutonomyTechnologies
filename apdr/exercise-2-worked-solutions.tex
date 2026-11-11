@@ -1,0 +1,539 @@
+\documentclass[11pt]{article}
+\usepackage[margin=18mm,headheight=22pt]{geometry}
+\usepackage{amsmath}
+\usepackage{fontspec}
+\usepackage{unicode-math}
+\setmainfont{NewCM10}[Extension=.otf,UprightFont=*-Book,BoldFont=*-Bold,ItalicFont=*-BookItalic,BoldItalicFont=*-BoldItalic]
+\setsansfont{NewCMSans10}[Extension=.otf,UprightFont=*-Book,BoldFont=*-Bold,ItalicFont=*-BookOblique,BoldItalicFont=*-BoldOblique]
+\setmathfont{NewCMMath-Book.otf}
+\usepackage{xcolor}
+\definecolor{FAUblue}{HTML}{04316A}
+\definecolor{Paperblue}{HTML}{EEF2F7}
+\definecolor{EEIgold}{HTML}{CC9C42}
+\usepackage{etoolbox,enumitem,booktabs,tabularx,array,needspace,microtype}
+\usepackage[most]{tcolorbox}
+\usepackage{titlesec,fancyhdr}
+\usepackage[hidelinks]{hyperref}
+\usepackage{draftwatermark}
+\SetWatermarkText{Made by Thanate Amornjiraporn (Focus)}
+\SetWatermarkColor{black!7}\SetWatermarkFontSize{30pt}\SetWatermarkAngle{45}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{5pt}
+\setlist{itemsep=2pt,topsep=3pt,leftmargin=1.6em,beginpenalty=10000,endpenalty=10000}
+\raggedbottom
+\clubpenalty=10000 \widowpenalty=10000 \displaywidowpenalty=10000 \interlinepenalty=10000
+\setcounter{secnumdepth}{0}
+\setcounter{tocdepth}{1}
+\pagestyle{fancy}\fancyhf{}
+\fancyhead[L]{\small\sffamily\color{FAUblue} From Fundamentals to AI Apocalypse · APDR · Exercise 2}
+\fancyhead[R]{\small\sffamily Computer Exercise 2: Worked solutions}
+\fancyfoot[C]{\small\thepage}
+\titleformat{\section}{\Large\bfseries\sffamily\color{FAUblue}}{}{0pt}{}
+\titleformat{\subsection}{\large\bfseries\sffamily\color{FAUblue}}{}{0pt}{}
+\titlespacing*{\section}{0pt}{16pt}{6pt}
+\preto\section{\Needspace{8\baselineskip}}
+\preto\subsection{\Needspace{6\baselineskip}}
+\newtcolorbox{equationcard}[1]{colback=Paperblue,colframe=Paperblue,boxrule=0pt,arc=0pt,left=10pt,right=10pt,top=6pt,bottom=6pt,title={#1},fonttitle=\small\bfseries\sffamily,coltitle=FAUblue,before skip=8pt,after skip=8pt}
+\newtcolorbox{workedbox}[1]{colback=white,colframe=EEIgold,boxrule=0pt,leftrule=3pt,arc=0pt,left=10pt,top=4pt,bottom=4pt,title={#1},fonttitle=\small\bfseries\sffamily,coltitle=FAUblue,attach title to upper={\par},before skip=8pt,after skip=8pt}
+\newtcolorbox{recallbox}[1]{colback=white,colframe=FAUblue,boxrule=0pt,leftrule=3pt,arc=0pt,left=10pt,top=4pt,bottom=4pt,title={#1},fonttitle=\small\bfseries\sffamily,coltitle=FAUblue,attach title to upper={\par},before skip=8pt,after skip=8pt}
+\usepackage{environ}
+\newsavebox\measurebox
+% Typeset the section once invisibly to measure it; start a new page if it will not fit in what is left.
+\makeatletter
+\newif\ifkeep@measuring
+\NewEnviron{keepsection}{%
+  \ifkeep@measuring \BODY \else
+    \edef\keep@sec{\the\value{section}}\edef\keep@sub{\the\value{subsection}}%
+    \setbox\measurebox\vbox{\hsize\linewidth\keep@measuringtrue\def\Needspace##1{}\BODY}%
+    \setcounter{section}{\keep@sec}\setcounter{subsection}{\keep@sub}%
+    \dimen2=\ht\measurebox \advance\dimen2\dp\measurebox
+    \dimen@=\textheight
+    \ifdim\pagegoal<\maxdimen
+      \dimen@=\pagegoal \advance\dimen@-\pagetotal
+      \ifdim\dimen2>\dimen@ \clearpage \dimen@=\textheight \fi
+    \fi
+    % if it fits, nothing inside may force an early break
+    \ifdim\dimen2>\dimen@ \BODY \else \begingroup\def\Needspace##1{}\BODY\endgroup \fi
+  \fi}
+\makeatother
+\newtcolorbox{notebox}{colback=Paperblue,colframe=Paperblue,boxrule=0pt,arc=0pt,left=8pt,right=8pt,top=4pt,bottom=4pt,before skip=6pt,after skip=6pt}
+\newtcolorbox{plainbox}{colback=white,colframe=FAUblue,boxrule=0pt,leftrule=3pt,arc=0pt,left=10pt,right=8pt,top=4pt,bottom=4pt,before skip=6pt,after skip=8pt}
+\usetikzlibrary{arrows.meta}
+\title{\sffamily\bfseries\color{FAUblue}Computer Exercise 2: Worked solutions}
+\author{Algorithms, Programming, and Data Representation \ensuremath{\cdot} Module 92313 \ensuremath{\cdot} Exercise 2\\[2pt]\small From Fundamentals to AI Apocalypse · personal study guide}
+\date{}
+\begin{document}
+\maketitle
+\begingroup\footnotesize\setlength{\parskip}{0pt}\tableofcontents\endgroup
+\clearpage
+
+\Needspace{9\baselineskip}
+{\large This exercise studies binary64 values and rounding drift in financial sums. Try each task before opening its worked steps. For the personalized transaction analysis, calculate and report the values from your own assigned dataset.}
+
+
+\begin{keepsection}
+\Needspace{5\baselineskip}
+\section{Task 1: IEEE 754 bit fields}
+
+\textbf{Connected topic:} IEEE 754 formats (§4.4)
+
+\begin{keepsection}
+\Needspace{7\baselineskip}
+\subsection{Task 01 \ensuremath{\cdot} to\_ieee754\_bits(x)}
+
+\Needspace{4\baselineskip}
+Try first: Start by writing the 64-bit layout and the bias. Then encode one exactly representable value by hand before checking your output.
+
+\nopagebreak[4]{\small\itshape Answers: see “Task 1: IEEE 754 bit fields” under Answers at the end.}
+\end{keepsection}
+\end{keepsection}
+
+\begin{keepsection}
+\Needspace{5\baselineskip}
+\section{Task 2: Classify IEEE 754 values}
+
+\textbf{Connected topic:} Special values (§4.5)
+
+\begin{keepsection}
+\Needspace{7\baselineskip}
+\subsection{Task 02 \ensuremath{\cdot} classify\_float(x)}
+
+\Needspace{4\baselineskip}
+Try first: Build a four-case decision table from the exponent and fraction fields; test signed zero and each special-value class.
+
+\nopagebreak[4]{\small\itshape Answers: see “Task 2: Classify IEEE 754 values” under Answers at the end.}
+\end{keepsection}
+\end{keepsection}
+
+\begin{keepsection}
+\Needspace{5\baselineskip}
+\section{Task 3: Count representable floats between two values}
+
+\textbf{Connected topic:} IEEE 754 formats (§4.4)
+
+\begin{keepsection}
+\Needspace{7\baselineskip}
+\subsection{Task 03 \ensuremath{\cdot} ulp\_distance(a, b)}
+
+\Needspace{4\baselineskip}
+Try first: Map the 64-bit patterns into an integer ordering that increases with numeric value, then compare the mapped integers.
+
+\nopagebreak[4]{\small\itshape Answers: see “Task 3: Count representable floats between two values” under Answers at the end.}
+\end{keepsection}
+\end{keepsection}
+
+\begin{keepsection}
+\Needspace{5\baselineskip}
+\section{Task 4: Compare ordinary and compensated sums}
+
+\textbf{Connected topic:} Floating-point arithmetic (§4.3)
+
+\begin{keepsection}
+\Needspace{6\baselineskip}
+\subsection{Task 04 \ensuremath{\cdot} naive\_sum(values)}
+
+\Needspace{3\baselineskip}
+Try first: Use the same input order for both algorithms and explain why each addition rounds.
+
+\nopagebreak[4]{\small\itshape Answers: see “Task 4: Compare ordinary and compensated sums” under Answers at the end.}
+\end{keepsection}
+\end{keepsection}
+
+\begin{keepsection}
+\Needspace{5\baselineskip}
+\section{Task 5: Implement Kahan compensated summation}
+
+\textbf{Connected topic:} Floating-point arithmetic (§4.3)
+
+\begin{keepsection}
+\Needspace{7\baselineskip}
+\subsection{Task 05 \ensuremath{\cdot} kahan\_sum(values)}
+
+\Needspace{4\baselineskip}
+Try first: Track the rounding loss in a correction variable and subtract it from the next input.
+
+\nopagebreak[4]{\small\itshape Answers: see “Task 5: Implement Kahan compensated summation” under Answers at the end.}
+\end{keepsection}
+\end{keepsection}
+
+\begin{keepsection}
+\Needspace{5\baselineskip}
+\section{Task 6: Detect likely catastrophic cancellation}
+
+\textbf{Connected topic:} Floating-point arithmetic (§4.3)
+
+\begin{keepsection}
+\Needspace{7\baselineskip}
+\subsection{Task 06 \ensuremath{\cdot} detect\_catastrophic\_cancellation(a, b)}
+
+\Needspace{4\baselineskip}
+Try first: Compare the subtraction result with the magnitude of its operands, while handling nonfinite values first.
+
+\nopagebreak[4]{\small\itshape Answers: see “Task 6: Detect likely catastrophic cancellation” under Answers at the end.}
+\end{keepsection}
+\end{keepsection}
+
+\begin{keepsection}
+\Needspace{5\baselineskip}
+\section{Task 7: Compare floats with a relative tolerance}
+
+\textbf{Connected topic:} Floating-point arithmetic (§4.3)
+
+\begin{keepsection}
+\Needspace{7\baselineskip}
+\subsection{Task 07 \ensuremath{\cdot} safe\_float\_equal(a, b, tol=1e-9)}
+
+\Needspace{4\baselineskip}
+Try first: Handle NaN and infinities explicitly, then compare the error to a scale based on the operands.
+
+\nopagebreak[4]{\small\itshape Answers: see “Task 7: Compare floats with a relative tolerance” under Answers at the end.}
+\end{keepsection}
+\end{keepsection}
+
+\begin{keepsection}
+\Needspace{5\baselineskip}
+\section{Task 8: Represent money as integer cents}
+
+\textbf{Connected topic:} Floating-point arithmetic (§4.3)
+
+\begin{keepsection}
+\Needspace{7\baselineskip}
+\subsection{Task 08 \ensuremath{\cdot} FixedPointCents}
+
+\Needspace{4\baselineskip}
+Try first: Store a signed integer cent count and implement the required arithmetic and representation methods.
+
+\nopagebreak[4]{\small\itshape Answers: see “Task 8: Represent money as integer cents” under Answers at the end.}
+\end{keepsection}
+\end{keepsection}
+
+\begin{keepsection}
+\Needspace{5\baselineskip}
+\section{Task 9: Audit cumulative transaction drift}
+
+\textbf{Connected topic:} Floating-point arithmetic (§4.3)
+
+\begin{keepsection}
+\Needspace{7\baselineskip}
+\subsection{Task 09 \ensuremath{\cdot} audit\_drift(transactions)}
+
+\Needspace{4\baselineskip}
+Try first: Compute the three totals from one normalized amount list, then track the first zero-based index where running float error exceeds one cent.
+
+\nopagebreak[4]{\small\itshape Answers: see “Task 9: Audit cumulative transaction drift” under Answers at the end.}
+\end{keepsection}
+\end{keepsection}
+
+\begin{keepsection}
+\Needspace{5\baselineskip}
+\section{Task 10: Generate a summation stress case}
+
+\textbf{Connected topic:} Floating-point arithmetic (§4.3)
+
+\begin{keepsection}
+\Needspace{7\baselineskip}
+\subsection{Task 10 \ensuremath{\cdot} generate\_adversarial\_case(n)}
+
+\Needspace{4\baselineskip}
+Try first: Place small terms between a large positive value and its cancelling negative, then handle short lengths.
+
+\nopagebreak[4]{\small\itshape Answers: see “Task 10: Generate a summation stress case” under Answers at the end.}
+\end{keepsection}
+\end{keepsection}
+
+
+\clearpage
+\section{Answers}
+\begin{keepsection}\subsection{Task 1: IEEE 754 bit fields}
+
+\begin{workedbox}{Task 01 \ensuremath{\cdot} to\_ieee754\_bits(x) \ensuremath{\cdot} worked solution}
+\Needspace{22\baselineskip}
+\begin{enumerate}
+\item The function returns three fields separated by spaces: one sign bit, eleven exponent bits, and 52 fraction bits. The stored exponent uses bias 1023; the leading 1 of a normal number is implicit and is not part of the fraction field.
+\item For x = 13.25, the binary value is 1101.01 (base 2) = 1.10101 (base 2) \ensuremath{\times} 2\textasciicircum{}3. The sign is 0, the stored exponent is 3 + 1023 = 1026 = 10000000010 (base 2), and the fraction begins 10101 followed by zeroes to make 52 bits.
+\item Convert the Python float to its raw 64 bits with struct.pack, then int.from\_bytes(..., "big") and format(..., "064b"). Slice the 64 characters at 1 and 12; those are the sign/exponent and exponent/fraction boundaries.
+\item Check that the three returned field lengths are 1, 11, and 52 and that concatenating them gives exactly 64 bits. The fraction starts after the leading normalized 1; do not include that hidden bit.
+\item \Needspace{4\baselineskip}
+\textbf{Implementation pattern:} place this logic in the required function or class from the exercise scaffold.
+\begin{tcolorbox}[colback=Paperblue,colframe=Paperblue,boxrule=0pt,arc=0pt,left=7pt,right=7pt,top=5pt,bottom=5pt]\small\sloppy
+\noindent\hspace*{0em}\texttt{def to\_ieee754\_bits(x):}\par
+\noindent\hspace*{1em}\texttt{raw = struct.pack("!d", x)}\par
+\noindent\hspace*{1em}\texttt{bits = f"\{int.from\_bytes(raw, 'big'):064b\}"}\par
+\noindent\hspace*{1em}\texttt{sign = bits[:1]}\par
+\noindent\hspace*{1em}\texttt{exponent = bits[1:12]}\par
+\noindent\hspace*{1em}\texttt{mantissa = bits[12:]}\par
+\noindent\hspace*{1em}\texttt{return f"\{sign\} \{exponent\} \{mantissa\}"}\par
+\end{tcolorbox}
+\item Before moving on, check the input boundaries and one hand-computed case. Keep the exact required name and return shape from the scaffold.
+\end{enumerate}
+\end{workedbox}
+
+\end{keepsection}
+\begin{keepsection}\subsection{Task 2: Classify IEEE 754 values}
+
+\begin{workedbox}{Task 02 \ensuremath{\cdot} classify\_float(x) \ensuremath{\cdot} worked solution}
+\Needspace{19\baselineskip}
+\begin{enumerate}
+\item Use the sign/exponent/fraction fields from Task 1. The sign does not change whether a value is zero, subnormal, normal, infinity or NaN.
+\item If all 11 exponent bits are zero, an all-zero fraction means zero and a nonzero fraction means subnormal. If all exponent bits are one, an all-zero fraction means infinity and a nonzero fraction means NaN. Every other exponent pattern is normal.
+\item This works for negative zero and negative infinity too because classification depends on exponent and fraction. No float equality or math.isnan/math.isinf calls are needed.
+\item Check representatives: 0.0 \ensuremath{\to} zero; the smallest positive subnormal \ensuremath{\to} subnormal; 1.0 \ensuremath{\to} normal; positive infinity \ensuremath{\to} inf; and a NaN \ensuremath{\to} nan. A negative zero must still classify as zero.
+\item \Needspace{4\baselineskip}
+\textbf{Implementation pattern:} place this logic in the required function or class from the exercise scaffold.
+\begin{tcolorbox}[colback=Paperblue,colframe=Paperblue,boxrule=0pt,arc=0pt,left=7pt,right=7pt,top=5pt,bottom=5pt]\small\sloppy
+\noindent\hspace*{0em}\texttt{def classify\_float(x):}\par
+\noindent\hspace*{1em}\texttt{sign, exponent, fraction = to\_ieee754\_bits(x).split()}\par
+\noindent\hspace*{1em}\texttt{if exponent == "0" * 11:}\par
+\noindent\hspace*{3em}\texttt{return "zero" if fraction == "0" * 52 else "subnormal"}\par
+\noindent\hspace*{1em}\texttt{if exponent == "1" * 11:}\par
+\noindent\hspace*{3em}\texttt{return "inf" if fraction == "0" * 52 else "nan"}\par
+\noindent\hspace*{1em}\texttt{return "normal"}\par
+\end{tcolorbox}
+\item Before moving on, check the input boundaries and one hand-computed case. Keep the exact required name and return shape from the scaffold.
+\end{enumerate}
+\end{workedbox}
+
+\end{keepsection}
+\begin{keepsection}\subsection{Task 3: Count representable floats between two values}
+
+\begin{workedbox}{Task 03 \ensuremath{\cdot} ulp\_distance(a, b) \ensuremath{\cdot} worked solution}
+\Needspace{24\baselineskip}
+\begin{enumerate}
+\item Raw IEEE bit patterns do not sort numerically across the sign boundary: negative values have the sign bit set and their magnitude ordering runs backward. First map each pattern to a monotonic integer key.
+\item For a negative pattern, invert every bit and add one; for a nonnegative pattern, set the sign bit. The added one maps negative zero onto positive zero, so the two encodings share one numeric key. Then the absolute difference counts representable steps. Treat NaNs as unordered and define the behavior explicitly; this solution raises ValueError for them.
+\item If a and b compare equal, return zero immediately. That includes +0.0 and -0.0, which are two encodings of the same numeric value. Infinities remain valid endpoints in the ordering.
+\item Check adjacent values with math.nextafter in both the positive and negative regions: their distance should be one. Check symmetry by swapping the arguments. Do not subtract the floats themselves; that measures numeric separation, not ULP steps.
+\item \Needspace{4\baselineskip}
+\textbf{Implementation pattern:} place this logic in the required function or class from the exercise scaffold.
+\begin{tcolorbox}[colback=Paperblue,colframe=Paperblue,boxrule=0pt,arc=0pt,left=7pt,right=7pt,top=5pt,bottom=5pt]\small\sloppy
+\noindent\hspace*{0em}\texttt{def \_ordered\_key(x):}\par
+\noindent\hspace*{1em}\texttt{if classify\_float(x) == "nan":}\par
+\noindent\hspace*{3em}\texttt{raise ValueError("ULP distance is undefined for NaN")}\par
+\noindent\hspace*{1em}\texttt{raw = int(to\_ieee754\_bits(x).replace(" ", ""), 2)}\par
+\noindent\hspace*{1em}\texttt{sign = 1 \ensuremath{<}\ensuremath{<} 63}\par
+\noindent\hspace*{1em}\texttt{mask = (1 \ensuremath{<}\ensuremath{<} 64) - 1}\par
+\noindent\hspace*{1em}\texttt{return ((~raw \& mask) + 1) if raw \& sign else (raw | sign)}\par
+\noindent\hspace*{0em}\texttt{}\par
+\noindent\hspace*{0em}\texttt{def ulp\_distance(a, b):}\par
+\noindent\hspace*{1em}\texttt{if a == b: \# includes +0.0 and -0.0}\par
+\noindent\hspace*{3em}\texttt{return 0}\par
+\noindent\hspace*{1em}\texttt{return abs(\_ordered\_key(a) - \_ordered\_key(b))}\par
+\end{tcolorbox}
+\item Before moving on, check the input boundaries and one hand-computed case. Keep the exact required name and return shape from the scaffold.
+\end{enumerate}
+\end{workedbox}
+
+\end{keepsection}
+\begin{keepsection}\subsection{Task 4: Compare ordinary and compensated sums}
+
+\begin{workedbox}{Task 04 \ensuremath{\cdot} naive\_sum(values) \ensuremath{\cdot} worked solution}
+\Needspace{23\baselineskip}
+\begin{enumerate}
+\item A floating-point addition aligns exponents, adds significands, and rounds the result back to the available precision. In binary64, a value that is too small to affect a much larger running total can disappear during that rounding.
+\item The naive version performs the specified left-to-right accumulation from 0.0. Its answer can depend on order; cancellation can expose rounding errors introduced earlier.
+\item For an illustrative sequence [1e16, 1.0, 1.0, -1e16], each 1.0 is below half an ULP at 1e16, so the naive running total remains 1e16 until the final cancellation and returns 0.0. The exact sum is 2.0.
+\item Use this small example to validate behavior, but calculate the exact drift for your own assigned dataset separately. The assignment asks for the naive-versus-Kahan difference in cents: compute `100 \ensuremath{\times} abs(naive\_total \ensuremath{-} kahan\_total)` because the transaction amounts are in dollars, and report the full result in cents with the input order. For the exact difference between the two stored float results, subtract their `Decimal.from\_float(...)` values before multiplying by 100; do not round it to a few guessed decimal places.
+\item \Needspace{4\baselineskip}
+\textbf{Implementation pattern:} place this logic in the required function or class from the exercise scaffold.
+\begin{tcolorbox}[colback=Paperblue,colframe=Paperblue,boxrule=0pt,arc=0pt,left=7pt,right=7pt,top=5pt,bottom=5pt]\small\sloppy
+\noindent\hspace*{0em}\texttt{def naive\_sum(values):}\par
+\noindent\hspace*{1em}\texttt{total = 0.0}\par
+\noindent\hspace*{1em}\texttt{for value in values:}\par
+\noindent\hspace*{3em}\texttt{total += value}\par
+\noindent\hspace*{1em}\texttt{return total}\par
+\end{tcolorbox}
+\item Before moving on, check the input boundaries and one hand-computed case. Keep the exact required name and return shape from the scaffold.
+\end{enumerate}
+\end{workedbox}
+
+\end{keepsection}
+\begin{keepsection}\subsection{Task 5: Implement Kahan compensated summation}
+
+\begin{workedbox}{Task 05 \ensuremath{\cdot} kahan\_sum(values) \ensuremath{\cdot} worked solution}
+\Needspace{21\baselineskip}
+\begin{enumerate}
+\item Kahan summation keeps a running total and a compensation for low-order bits lost in the previous addition. The correction is not an extra exact accumulator; it recovers some information that ordinary addition rounded away.
+\item For each value, subtract the saved correction to form adjusted. Add adjusted to the total, then estimate the new lost part as (updated - total) - adjusted. Save that amount for the next iteration.
+\item The sign in this correction formula matters. Use the consistent four-line recurrence shown below; mixing it with a variant that stores the opposite sign breaks the compensation.
+\item Check the empty input returns 0.0 and compare the adversarial example from Task 4 with naive\_sum. Kahan often improves accuracy, but it does not guarantee the correctly rounded exact sum for every sequence.
+\item \Needspace{4\baselineskip}
+\textbf{Implementation pattern:} place this logic in the required function or class from the exercise scaffold.
+\begin{tcolorbox}[colback=Paperblue,colframe=Paperblue,boxrule=0pt,arc=0pt,left=7pt,right=7pt,top=5pt,bottom=5pt]\small\sloppy
+\noindent\hspace*{0em}\texttt{def kahan\_sum(values):}\par
+\noindent\hspace*{1em}\texttt{total = 0.0}\par
+\noindent\hspace*{1em}\texttt{correction = 0.0}\par
+\noindent\hspace*{1em}\texttt{for value in values:}\par
+\noindent\hspace*{3em}\texttt{adjusted = value - correction}\par
+\noindent\hspace*{3em}\texttt{updated = total + adjusted}\par
+\noindent\hspace*{3em}\texttt{correction = (updated - total) - adjusted}\par
+\noindent\hspace*{3em}\texttt{total = updated}\par
+\noindent\hspace*{1em}\texttt{return total}\par
+\end{tcolorbox}
+\item Before moving on, check the input boundaries and one hand-computed case. Keep the exact required name and return shape from the scaffold.
+\end{enumerate}
+\end{workedbox}
+
+\end{keepsection}
+\begin{keepsection}\subsection{Task 6: Detect likely catastrophic cancellation}
+
+\begin{workedbox}{Task 06 \ensuremath{\cdot} detect\_catastrophic\_cancellation(a, b) \ensuremath{\cdot} worked solution}
+\Needspace{21\baselineskip}
+\begin{enumerate}
+\item When two large, nearly equal values are subtracted, leading digits cancel and the result may have far fewer reliable significant digits than either input. The assignment defines a practical heuristic: |a-b| \ensuremath{\leq} max(|a|,|b|)\ensuremath{\cdot}2\textasciicircum{}-52, provided the scale is nonzero.
+\item First reject NaN and infinity so expressions such as infinity minus infinity do not produce misleading comparisons. Then compute the scale and apply the stated threshold exactly.
+\item For a = 10\textasciicircum{}16 and b = 10\textasciicircum{}16-2, the scale is 10\textasciicircum{}16 and the threshold is about 2.22. The difference is 2, so the heuristic returns True.
+\item This Boolean test flags a risk; it does not measure the actual error or prove the answer is inaccurate. The subtraction of two nearby stored floats may itself be exact, even though both operands already carry rounding error from earlier calculations.
+\item \Needspace{4\baselineskip}
+\textbf{Implementation pattern:} place this logic in the required function or class from the exercise scaffold.
+\begin{tcolorbox}[colback=Paperblue,colframe=Paperblue,boxrule=0pt,arc=0pt,left=7pt,right=7pt,top=5pt,bottom=5pt]\small\sloppy
+\noindent\hspace*{0em}\texttt{def detect\_catastrophic\_cancellation(a, b):}\par
+\noindent\hspace*{1em}\texttt{if classify\_float(a) not in \{"zero", "subnormal", "normal"\}:}\par
+\noindent\hspace*{3em}\texttt{return False}\par
+\noindent\hspace*{1em}\texttt{if classify\_float(b) not in \{"zero", "subnormal", "normal"\}:}\par
+\noindent\hspace*{3em}\texttt{return False}\par
+\noindent\hspace*{1em}\texttt{scale = max(abs(a), abs(b))}\par
+\noindent\hspace*{1em}\texttt{return scale != 0 and abs(a - b) \ensuremath{<}= scale * 2**-52}\par
+\end{tcolorbox}
+\item Before moving on, check the input boundaries and one hand-computed case. Keep the exact required name and return shape from the scaffold.
+\end{enumerate}
+\end{workedbox}
+
+\end{keepsection}
+\begin{keepsection}\subsection{Task 7: Compare floats with a relative tolerance}
+
+\begin{workedbox}{Task 07 \ensuremath{\cdot} safe\_float\_equal(a, b, tol=1e-9) \ensuremath{\cdot} worked solution}
+\Needspace{22\baselineskip}
+\begin{enumerate}
+\item Exact equality is usually too strict for computed results because rounding creates small differences. A relative comparison accepts a difference no larger than tol times the larger operand magnitude.
+\item NaN is unequal to every value, including itself. Infinities compare equal only when both are infinities with the same sign; finite arithmetic should not be used to compare them.
+\item For finite values, let scale = max(|a|,|b|). If scale is zero, both values are zero and the difference is zero. Otherwise check |a-b| \ensuremath{\leq} tol\ensuremath{\cdot}scale. This is a relative-only rule; near zero it intentionally allows almost no absolute error.
+\item Check symmetry by swapping a and b. If the application also needs an absolute tolerance near zero, the specification must say so; do not silently change this task’s stated relative tolerance.
+\item \Needspace{4\baselineskip}
+\textbf{Implementation pattern:} place this logic in the required function or class from the exercise scaffold.
+\begin{tcolorbox}[colback=Paperblue,colframe=Paperblue,boxrule=0pt,arc=0pt,left=7pt,right=7pt,top=5pt,bottom=5pt]\small\sloppy
+\noindent\hspace*{0em}\texttt{def safe\_float\_equal(a, b, tol=1e-9):}\par
+\noindent\hspace*{1em}\texttt{kind\_a = classify\_float(a)}\par
+\noindent\hspace*{1em}\texttt{kind\_b = classify\_float(b)}\par
+\noindent\hspace*{1em}\texttt{if kind\_a == "nan" or kind\_b == "nan":}\par
+\noindent\hspace*{3em}\texttt{return False}\par
+\noindent\hspace*{1em}\texttt{if kind\_a == "inf" or kind\_b == "inf":}\par
+\noindent\hspace*{3em}\texttt{return kind\_a == kind\_b and ((a \ensuremath{>} 0) == (b \ensuremath{>} 0))}\par
+\noindent\hspace*{1em}\texttt{scale = max(abs(a), abs(b))}\par
+\noindent\hspace*{1em}\texttt{if scale == 0:}\par
+\noindent\hspace*{3em}\texttt{return True}\par
+\noindent\hspace*{1em}\texttt{return abs(a - b) \ensuremath{<}= tol * scale}\par
+\end{tcolorbox}
+\item Before moving on, check the input boundaries and one hand-computed case. Keep the exact required name and return shape from the scaffold.
+\end{enumerate}
+\end{workedbox}
+
+\end{keepsection}
+\begin{keepsection}\subsection{Task 8: Represent money as integer cents}
+
+\begin{workedbox}{Task 08 \ensuremath{\cdot} FixedPointCents \ensuremath{\cdot} worked solution}
+\Needspace{27\baselineskip}
+\begin{enumerate}
+\item Binary floating point cannot represent most decimal fractions exactly. A currency quantity restricted to cents can instead be stored as an integer number of cents; addition and subtraction then use exact integer arithmetic.
+\item Initialize the object from an integer cent count. Addition and subtraction create a new FixedPointCents object rather than changing either operand. Equality should compare both type and cent value.
+\item For the representation, use abs(cents) with divmod(...,100), then attach the sign and print exactly two digits after the decimal point. This also handles negative amounts such as -5 cents as -\$0.05.
+\item Check 1234 reprs as \$12.34, -5 reprs as -\$0.05, and 125 cents + (-25 cents) gives 100 cents. Convert decimal input into cents under an explicit rounding policy; do not multiply arbitrary floats and assume the result is exact.
+\item \Needspace{4\baselineskip}
+\textbf{Implementation pattern:} place this logic in the required function or class from the exercise scaffold.
+\begin{tcolorbox}[colback=Paperblue,colframe=Paperblue,boxrule=0pt,arc=0pt,left=7pt,right=7pt,top=5pt,bottom=5pt]\small\sloppy
+\noindent\hspace*{0em}\texttt{class FixedPointCents:}\par
+\noindent\hspace*{1em}\texttt{def \_\_init\_\_(self, cents):}\par
+\noindent\hspace*{3em}\texttt{self.cents = int(cents)}\par
+\noindent\hspace*{0em}\texttt{}\par
+\noindent\hspace*{1em}\texttt{def \_\_add\_\_(self, other):}\par
+\noindent\hspace*{3em}\texttt{if not isinstance(other, FixedPointCents):}\par
+\noindent\hspace*{5em}\texttt{return NotImplemented}\par
+\noindent\hspace*{3em}\texttt{return FixedPointCents(self.cents + other.cents)}\par
+\noindent\hspace*{0em}\texttt{}\par
+\noindent\hspace*{1em}\texttt{def \_\_sub\_\_(self, other):}\par
+\noindent\hspace*{3em}\texttt{if not isinstance(other, FixedPointCents):}\par
+\noindent\hspace*{5em}\texttt{return NotImplemented}\par
+\noindent\hspace*{3em}\texttt{return FixedPointCents(self.cents - other.cents)}\par
+\noindent\hspace*{0em}\texttt{}\par
+\noindent\hspace*{1em}\texttt{def \_\_eq\_\_(self, other):}\par
+\noindent\hspace*{3em}\texttt{return (isinstance(other, FixedPointCents)}\par
+\noindent\hspace*{7em}\texttt{and self.cents == other.cents)}\par
+\noindent\hspace*{0em}\texttt{}\par
+\noindent\hspace*{1em}\texttt{def \_\_repr\_\_(self):}\par
+\noindent\hspace*{3em}\texttt{sign = "-" if self.cents \ensuremath{<} 0 else ""}\par
+\noindent\hspace*{3em}\texttt{dollars, cents = divmod(abs(self.cents), 100)}\par
+\noindent\hspace*{3em}\texttt{return f"\{sign\}\$\{dollars\}.\{cents:02d\}"}\par
+\end{tcolorbox}
+\item Before moving on, check the input boundaries and one hand-computed case. Keep the exact required name and return shape from the scaffold.
+\end{enumerate}
+\end{workedbox}
+
+\end{keepsection}
+\begin{keepsection}\subsection{Task 9: Audit cumulative transaction drift}
+
+\begin{workedbox}{Task 09 \ensuremath{\cdot} audit\_drift(transactions) \ensuremath{\cdot} worked solution}
+\Needspace{30\baselineskip}
+\begin{enumerate}
+\item Normalize each input record first: the sheet allows dictionaries with an amount field or raw numeric amounts. Use that same ordered list for naive\_sum, kahan\_sum and the running comparison.
+\item Convert each stated decimal amount to integer cents using Decimal(str(amount)) and an explicit rounding rule (here, half-even to two decimal places). This prevents the conversion itself from adding a binary-float artifact to the exact ledger total.
+\item After each running float addition, compare its exact rational value with the integer-cent total. `as\_integer\_ratio()` gives numerator/denominator for the stored float. Multiply the numerator by 100 to express it in cents; error exceeds one cent precisely when the resulting numerator difference is greater than the denominator.
+\item Return the totals and the first zero-based index, or None if the threshold is never crossed. Validate on a tiny hand-calculated list, then run your own assigned CSV. The written justification must report your dataset’s actual drift; do not reuse another learner’s result.
+\item \Needspace{4\baselineskip}
+\textbf{Implementation pattern:} place this logic in the required function or class from the exercise scaffold.
+\begin{tcolorbox}[colback=Paperblue,colframe=Paperblue,boxrule=0pt,arc=0pt,left=7pt,right=7pt,top=5pt,bottom=5pt]\small\sloppy
+\noindent\hspace*{0em}\texttt{from decimal import Decimal, ROUND\_HALF\_EVEN}\par
+\noindent\hspace*{0em}\texttt{}\par
+\noindent\hspace*{0em}\texttt{def audit\_drift(transactions):}\par
+\noindent\hspace*{1em}\texttt{amounts = [item["amount"] if isinstance(item, dict) else item}\par
+\noindent\hspace*{6em}\texttt{for item in transactions]}\par
+\noindent\hspace*{1em}\texttt{naive\_total = naive\_sum(amounts)}\par
+\noindent\hspace*{1em}\texttt{kahan\_total = kahan\_sum(amounts)}\par
+\noindent\hspace*{1em}\texttt{fixed = FixedPointCents(0)}\par
+\noindent\hspace*{1em}\texttt{running = 0.0}\par
+\noindent\hspace*{1em}\texttt{first\_index = None}\par
+\noindent\hspace*{1em}\texttt{for index, amount in enumerate(amounts):}\par
+\noindent\hspace*{3em}\texttt{running += amount}\par
+\noindent\hspace*{3em}\texttt{cents = int((Decimal(str(amount)) * 100).quantize(}\par
+\noindent\hspace*{5em}\texttt{Decimal("1"), rounding=ROUND\_HALF\_EVEN))}\par
+\noindent\hspace*{3em}\texttt{fixed += FixedPointCents(cents)}\par
+\noindent\hspace*{3em}\texttt{numerator, denominator = running.as\_integer\_ratio()}\par
+\noindent\hspace*{3em}\texttt{error\_num = abs(numerator * 100 - fixed.cents * denominator)}\par
+\noindent\hspace*{3em}\texttt{if first\_index is None and error\_num \ensuremath{>} denominator:}\par
+\noindent\hspace*{5em}\texttt{first\_index = index}\par
+\noindent\hspace*{1em}\texttt{return \{"naive\_total": naive\_total,}\par
+\noindent\hspace*{5em}\texttt{"kahan\_total": kahan\_total,}\par
+\noindent\hspace*{5em}\texttt{"fixed\_total\_cents": fixed.cents,}\par
+\noindent\hspace*{5em}\texttt{"first\_index\_error\_exceeds\_cent": first\_index\}}\par
+\end{tcolorbox}
+\item Before moving on, check the input boundaries and one hand-computed case. Keep the exact required name and return shape from the scaffold.
+\end{enumerate}
+\end{workedbox}
+
+\end{keepsection}
+\begin{keepsection}\subsection{Task 10: Generate a summation stress case}
+
+\begin{workedbox}{Task 10 \ensuremath{\cdot} generate\_adversarial\_case(n) \ensuremath{\cdot} worked solution}
+\Needspace{20\baselineskip}
+\begin{enumerate}
+\item Choose a large number whose ULP is larger than 1.0, such as 10\textasciicircum{}16 in binary64. Adding 1.0 repeatedly to that running total loses those small terms because they are below half an ULP.
+\item Place -10\textasciicircum{}16 last. The large terms cancel, while the naive sum has already discarded the intervening ones. For n \ensuremath{\geq} 3 this classic sequence exposes order-dependent drift; for n = 0 or 1 return an empty or zero-valued list, and for n = 2 the pair cancels.
+\item Reject negative n because a requested list length cannot be negative. The construction is a clear stress case, not a proof of the mathematically largest possible error for every n or every summation algorithm.
+\item Check lengths 0, 1, 2, 3, and a larger n. For n \ensuremath{\geq} 2, the exact sum is n-2; for n = 0 or 1, the returned zero-valued list sums to zero. Confirm naive\_sum and kahan\_sum differ for a suitable n.
+\item \Needspace{4\baselineskip}
+\textbf{Implementation pattern:} place this logic in the required function or class from the exercise scaffold.
+\begin{tcolorbox}[colback=Paperblue,colframe=Paperblue,boxrule=0pt,arc=0pt,left=7pt,right=7pt,top=5pt,bottom=5pt]\small\sloppy
+\noindent\hspace*{0em}\texttt{def generate\_adversarial\_case(n):}\par
+\noindent\hspace*{1em}\texttt{if n \ensuremath{<} 0:}\par
+\noindent\hspace*{3em}\texttt{raise ValueError("n must be nonnegative")}\par
+\noindent\hspace*{1em}\texttt{if n \ensuremath{<} 2:}\par
+\noindent\hspace*{3em}\texttt{return [0.0] * n}\par
+\noindent\hspace*{1em}\texttt{return [1e16] + [1.0] * (n - 2) + [-1e16]}\par
+\end{tcolorbox}
+\item Before moving on, check the input boundaries and one hand-computed case. Keep the exact required name and return shape from the scaffold.
+\end{enumerate}
+\end{workedbox}
+
+\end{keepsection}
+
+\vfill{\small Personal worked solutions based on the APDR Computer Exercise 2 sheet, explained in my own words. The dataset-specific drift and first-crossing results are intentionally left for each learner to calculate from their own assigned transactions. Not an official FAU publication; check course details against current materials. Made by \textbf{Thanate Amornjiraporn (Focus)}.}
+
+\end{document}

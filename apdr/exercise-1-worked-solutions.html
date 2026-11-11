@@ -1,0 +1,175 @@
+<!doctype html>
+<html lang="en"><head>
+<meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta name="theme-color" content="#04316A" /><meta name="description" content="Step-by-step worked solutions for APDR Computer Exercise 1: file signature forensics." />
+<title>Computer Exercise 1 · Worked solutions · APDR</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" /><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="../css/system.css" /><script src="../js/settings.js"></script><link rel="stylesheet" href="../css/guide.css" />
+</head><body class="s-apdr-1"><div class="wrap">
+<nav class="toc" aria-label="Exercise contents"><a class="brand" href="../index.html" aria-label="From Fundamentals to AI Apocalypse home">
+    <svg class="mark" viewBox="0 0 40 40" width="38" height="38" aria-hidden="true"><defs><linearGradient id="mk-bg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#04316A"/><stop offset="1" stop-color="#021D40"/></linearGradient><linearGradient id="mk-ring" x1="0" y1="1" x2="1" y2="0"><stop offset="0" stop-color="#80ECF1"/><stop offset="1" stop-color="#9BE34A"/></linearGradient><radialGradient id="mk-core"><stop offset="0" stop-color="#F4FFE6"/><stop offset=".45" stop-color="#9BE34A"/><stop offset="1" stop-color="#9BE34A" stop-opacity="0"/></radialGradient></defs><rect width="40" height="40" fill="url(#mk-bg)"/><g class="mk-orbit mk-orbit-a"><g transform="rotate(-28 20 20)"><ellipse cx="20" cy="20" rx="14" ry="6.2" fill="none" stroke="url(#mk-ring)" stroke-width="1.6"/><circle class="mk-charge" r="1.9" fill="#fff"/></g></g><g class="mk-orbit mk-orbit-b"><ellipse cx="20" cy="20" rx="14" ry="6.2" fill="none" stroke="#C9D6EA" stroke-width="1.1" stroke-opacity=".55" transform="rotate(32 20 20)"/></g><circle class="mk-glow" cx="20" cy="20" r="8" fill="url(#mk-core)"/><circle cx="20" cy="20" r="3" fill="#F4FFE6"/></svg>
+    <span>From Fundamentals to AI Apocalypse</span></a><a class="home" href="../index.html">All semesters</a><details class="mobile-toc"><summary>Jump to a task</summary><ol><li><a href="#task-1">Task 1 · Read only the requested prefix</a></li><li><a href="#task-2">Task 2 · Create a useful signature table</a></li><li><a href="#task-3">Task 3 · Identify a type and resolve ZIP subtypes</a></li><li><a href="#task-4">Task 4 · Hash a file and verify integrity</a></li><li><a href="#task-5">Task 5 · Find mismatched file extensions recursively</a></li><li><a href="#task-6">Task 6 · Find files that validly match multiple formats</a></li><li><a href="#task-7">Task 7 · Format an exact hexdump</a></li><li><a href="#task-8">Task 8 · Classify common text encodings from bytes</a></li><li><a href="#task-9">Task 9 · Find the first byte after the valid file structure</a></li><li><a href="#task-10">Task 10 · Aggregate the forensic report and write the personalized justification</a></li></ol></details><ol><li class="toc-group" aria-hidden="true">Exercise 1</li><li><a href="#task-1">Task 1 · Read only the requested prefix</a></li><li><a href="#task-2">Task 2 · Create a useful signature table</a></li><li><a href="#task-3">Task 3 · Identify a type and resolve ZIP subtypes</a></li><li><a href="#task-4">Task 4 · Hash a file and verify integrity</a></li><li><a href="#task-5">Task 5 · Find mismatched file extensions recursively</a></li><li><a href="#task-6">Task 6 · Find files that validly match multiple formats</a></li><li><a href="#task-7">Task 7 · Format an exact hexdump</a></li><li><a href="#task-8">Task 8 · Classify common text encodings from bytes</a></li><li><a href="#task-9">Task 9 · Find the first byte after the valid file structure</a></li><li><a href="#task-10">Task 10 · Aggregate the forensic report and write the personalized justification</a></li></ol></nav>
+<main><header class="sign"><span class="code">APDR</span><h1>Computer Exercise 1: Worked solutions</h1><p class="course">Algorithms, Programming, and Data Representation · Module 92313 · Exercise 1</p></header>
+<p class="standfirst">File signature forensics works from bytes and validated structures, never from filenames alone. Try each task before opening its solution. The ZIP family and the personalized sample offsets need the extra care explained below.</p>
+<div class="downloads" aria-label="Download exercise solution files"><p>Take the solutions offline</p><a class="btn primary" href="exercise-1-worked-solutions.pdf" download>Download clean PDF</a><a class="btn" href="exercise-1-worked-solutions.tex" download>Download LaTeX source (.tex)</a></div>
+<section id="task-1" aria-labelledby="task-1-title"><h2 id="task-1-title">Task 1: Read only the requested prefix</h2><p class="topic-link"><strong>Connected topic:</strong> <a href="ch2-computers.html#sec-21">Computers, programs, and data representation (Chapter 2)</a></p><h3>1 · read_magic_bytes(filepath, n=16)</h3><p>Try first: decide what the function must return for a short file, an empty file, and n=0 before writing it.</p><details class="answers"><summary>Attempted it? Open the worked steps</summary><div class="worked"><p class="worked-title">1 · read_magic_bytes(filepath, n=16) · worked solution</p><ol class="method-list"><li><p>The input is a path to an arbitrary binary file. Open it in binary mode so the bytes are not decoded or translated. The result is the first n bytes, not the whole file.</p></li><li><p>A bounded read naturally returns fewer than n bytes at end-of-file. Reject a negative n: Python treats read(-1) as “read the rest”, which would break the memory limit.</p></li><li><p>Close the handle on success and on exceptions with a context manager. Check a short file and n=0: the returned values should be the bytes available and b"", respectively.</p></li><li><p><strong>Implementation pattern:</strong> apply this operation inside the required function signature.</p><pre class="code-sample"><code>def read_magic_bytes(filepath, n=16):
+    if n &lt; 0:
+        raise ValueError(&quot;n must be nonnegative&quot;)
+    with open(filepath, &quot;rb&quot;) as f:
+        return f.read(n)</code></pre></li></ol></div></details></section><section id="task-2" aria-labelledby="task-2-title"><h2 id="task-2-title">Task 2: Create a useful signature table</h2><p class="topic-link"><strong>Connected topic:</strong> <a href="ch3-data-representation.html#sec-32">Integer representations and binary data (§3.2)</a></p><h3>2 · SIGNATURES</h3><p>Try first: list real leading byte patterns for distinct formats, then separate container formats from their packaged subtypes.</p><details class="answers"><summary>Attempted it? Open the worked steps</summary><div class="worked"><p class="worked-title">2 · SIGNATURES · worked solution</p><ol class="method-list"><li><p>A signature is bytes, so store bytes literals and match from offset zero. Include multiple common JPEG starts and both GIF header versions. Add at least twelve distinct formats.</p></li><li><p>DOCX, XLSX, PPTX, and JAR are ZIP containers: their local-file headers share the same PK prefix. Repeating that one prefix under four names does not distinguish them. Add these names as archive subtypes in a second-stage classifier, not as unique magic signatures.</p></li><li><p>The sample table below covers thirteen signatures. It is a candidate table; a matching prefix is evidence to validate the format structure, not a complete proof that the file is valid.</p></li><li><p><strong>Implementation pattern:</strong> apply this operation inside the required function signature.</p><pre class="code-sample"><code>SIGNATURES = {
+    &quot;PNG&quot;: (b&quot;\x89PNG\r\n\x1a\n&quot;,),
+    &quot;JPEG&quot;: (b&quot;\xff\xd8\xff\xe0&quot;, b&quot;\xff\xd8\xff\xe1&quot;, b&quot;\xff\xd8\xff\xdb&quot;),
+    &quot;GIF&quot;: (b&quot;GIF87a&quot;, b&quot;GIF89a&quot;),
+    &quot;PDF&quot;: (b&quot;%PDF-&quot;,),
+    &quot;ZIP&quot;: (b&quot;PK\x03\x04&quot;, b&quot;PK\x05\x06&quot;, b&quot;PK\x07\x08&quot;),
+    &quot;GZIP&quot;: (b&quot;\x1f\x8b&quot;,),
+    &quot;ELF&quot;: (b&quot;\x7fELF&quot;,),
+    &quot;RTF&quot;: (b&quot;{\\rtf&quot;,),
+    &quot;BMP&quot;: (b&quot;BM&quot;,),
+    &quot;SQLite&quot;: (b&quot;SQLite format 3\x00&quot;,),
+    &quot;7z&quot;: (b&quot;7z\xbc\xaf\x27\x1c&quot;,),
+    &quot;Ogg&quot;: (b&quot;OggS&quot;,),
+    &quot;MP3&quot;: (b&quot;ID3&quot;,),
+}</code></pre></li></ol></div></details></section><section id="task-3" aria-labelledby="task-3-title"><h2 id="task-3-title">Task 3: Identify a type and resolve ZIP subtypes</h2><p class="topic-link"><strong>Connected topic:</strong> <a href="ch3-data-representation.html#sec-32">Integer representations and binary data (§3.2)</a></p><h3>3 · identify_file_type(magic)</h3><p>Try first: separate “what the first bytes suggest” from “what the whole container contains.”</p><details class="answers"><summary>Attempted it? Open the worked steps</summary><div class="worked"><p class="worked-title">3 · identify_file_type(magic) · worked solution</p><ol class="method-list"><li><p>For ordinary types, compare the available prefix to each signature; startswith is safe for short byte strings and cannot index past the end. If several patterns match, prefer the longest matching signature.</p></li><li><p>The sheet’s request to distinguish DOCX/XLSX/PPTX/JAR from magic alone is underspecified: their first bytes are shared. With only the first 16 bytes, the correct answer is ZIP. To refine it, inspect the archive directory: word/document.xml indicates DOCX, xl/workbook.xml XLSX, ppt/presentation.xml PPTX, and META-INF/MANIFEST.MF JAR.</p></li><li><p>Use “unknown” only when no signature matches. Keep the container decision explicit so a generic ZIP is not mislabeled as an office document.</p></li><li><p><strong>Implementation pattern:</strong> apply this operation inside the required function signature.</p><pre class="code-sample"><code>def identify_file_type(magic):
+    matches = [(len(sig), kind)
+               for kind, signatures in SIGNATURES.items()
+               for sig in signatures if magic.startswith(sig)]
+    return max(matches)[1] if matches else &quot;unknown&quot;
+
+def identify_zip_members(source):
+    with zipfile.ZipFile(source) as archive:
+        names = set(archive.namelist())
+    if &quot;word/document.xml&quot; in names:
+        return &quot;DOCX&quot;
+    if &quot;xl/workbook.xml&quot; in names:
+        return &quot;XLSX&quot;
+    if &quot;ppt/presentation.xml&quot; in names:
+        return &quot;PPTX&quot;
+    if &quot;META-INF/MANIFEST.MF&quot; in names:
+        return &quot;JAR&quot;
+    return &quot;ZIP&quot;
+
+def classify_path(path):
+    magic = read_magic_bytes(path, n=4096)
+    kind = identify_file_type(magic)
+    if kind == &quot;ZIP&quot;:
+        return identify_zip_members(path) if zipfile.is_zipfile(path) else &quot;unknown&quot;
+    return kind</code></pre></li></ol></div></details></section><section id="task-4" aria-labelledby="task-4-title"><h2 id="task-4-title">Task 4: Hash a file and verify integrity</h2><p class="topic-link"><strong>Connected topic:</strong> <a href="ch2-computers.html#sec-21">Computers, programs, and data representation (Chapter 2)</a></p><h3>4 · compute_checksum / verify_integrity</h3><p>Try first: process the file in fixed-size chunks so memory use does not grow with the file size.</p><details class="answers"><summary>Attempted it? Open the worked steps</summary><div class="worked"><p class="worked-title">4 · compute_checksum / verify_integrity · worked solution</p><ol class="method-list"><li><p>Create the requested hashlib digest by algorithm name. Unsupported names should raise the documented ValueError rather than silently switching algorithms.</p></li><li><p>Read a chunk, update the digest, and repeat until an empty bytes value signals EOF. hexdigest gives the stable printable representation.</p></li><li><p>Verification means “recompute and compare with the expected digest”; a match detects accidental or malicious changes only when the expected digest is trusted. It does not prove who created the file.</p></li><li><p><strong>Implementation pattern:</strong> apply this operation inside the required function signature.</p><pre class="code-sample"><code>def compute_checksum(filepath, algo=&quot;sha256&quot;):
+    digest = hashlib.new(algo)
+    with open(filepath, &quot;rb&quot;) as f:
+        for chunk in iter(lambda: f.read(65536), b&quot;&quot;):
+            digest.update(chunk)
+    return digest.hexdigest()
+
+def verify_integrity(filepath, expected, algo=&quot;sha256&quot;):
+    actual = compute_checksum(filepath, algo)
+    return hmac.compare_digest(actual, expected.strip().lower())</code></pre></li></ol></div></details></section><section id="task-5" aria-labelledby="task-5-title"><h2 id="task-5-title">Task 5: Find mismatched file extensions recursively</h2><p class="topic-link"><strong>Connected topic:</strong> <a href="ch2-computers.html#sec-21">Computers, programs, and data representation (Chapter 2)</a></p><h3>5 · find_mismatched_extensions(root_dir)</h3><p>Try first: compare the suffix claim with the type discovered from the file bytes and, for ZIPs, its member list.</p><details class="answers"><summary>Attempted it? Open the worked steps</summary><div class="worked"><p class="worked-title">5 · find_mismatched_extensions(root_dir) · worked solution</p><ol class="method-list"><li><p>os.walk visits nested directories without a fixed depth. Normalize the suffix to lowercase and use a table; keep an unrecognized extension as "unknown" rather than guessing.</p></li><li><p>Classify content independently of the suffix. For a ZIP signature, open the archive and use Task 3’s member-name check to distinguish a plain ZIP from an office package or JAR.</p></li><li><p>Only after a signature lookup returns unknown, classify text from the bytes; this must work for a text file with any suffix. Then compare the independently detected actual type with the suffix claim. Test a nested wrong extension, uppercase suffix, missing suffix, and unknown actual signature.</p></li><li><p><strong>Implementation pattern:</strong> apply this operation inside the required function signature.</p><pre class="code-sample"><code>def find_mismatched_extensions(root_dir):
+    mismatches = []
+    for folder, _, filenames in os.walk(root_dir):
+        for filename in filenames:
+            path = os.path.join(folder, filename)
+            extension = os.path.splitext(filename)[1].lower()
+            claimed = EXTENSION_TYPES.get(extension, &quot;unknown&quot;)
+            actual = classify_path(path)
+            if actual == &quot;unknown&quot; and detect_text_encoding(path) != &quot;unknown&quot;:
+                actual = &quot;TXT&quot;  # infer text from bytes, regardless of suffix
+            if claimed != actual:
+                mismatches.append({&quot;path&quot;: path,
+                                   &quot;claimed_type&quot;: claimed,
+                                   &quot;actual_type&quot;: actual})
+    return mismatches</code></pre></li></ol></div></details></section><section id="task-6" aria-labelledby="task-6-title"><h2 id="task-6-title">Task 6: Find files that validly match multiple formats</h2><p class="topic-link"><strong>Connected topic:</strong> <a href="ch3-data-representation.html#sec-32">Integer representations and binary data (§3.2)</a></p><h3>6 · detect_polyglot(filepath)</h3><p>Try first: collect and validate candidates independently instead of returning the first signature hit.</p><details class="answers"><summary>Attempted it? Open the worked steps</summary><div class="worked"><p class="worked-title">6 · detect_polyglot(filepath) · worked solution</p><ol class="method-list"><li><p>Load or stream the file once, then ask each supported format validator whether the bytes satisfy that format’s structure. Add each valid type once.</p></li><li><p>For a ZIP-based file, verify the central directory and inspect members. A string like %PDF- somewhere inside a PNG is not, by itself, proof of a valid PDF; validate the PDF header position and its required ending structure too.</p></li><li><p>Return an empty list for no recognized valid format and a list of all valid matches otherwise. More than one match is the polyglot signal. Sort the result if deterministic output is required.</p></li><li><p><strong>Implementation pattern:</strong> apply this operation inside the required function signature.</p><pre class="code-sample"><code>def detect_polyglot(filepath):
+    if isinstance(filepath, bytes):
+        data = filepath
+    else:
+        with open(filepath, &quot;rb&quot;) as f:
+            data = f.read()
+    matches = set()
+    for kind, validator in FORMAT_VALIDATORS.items():
+        if validator(data):  # each validator checks the complete format structure
+            matches.add(kind)
+    return sorted(matches)</code></pre></li></ol></div></details></section><section id="task-7" aria-labelledby="task-7-title"><h2 id="task-7-title">Task 7: Format an exact hexdump</h2><p class="topic-link"><strong>Connected topic:</strong> <a href="ch3-data-representation.html#sec-33">Character and byte representations (§3.3)</a></p><h3>7 · bytes_to_hexdump(data, width=16)</h3><p>Try first: work from chunks so offsets and columns are stable even on the last, partial line.</p><details class="answers"><summary>Attempted it? Open the worked steps</summary><div class="worked"><p class="worked-title">7 · bytes_to_hexdump(data, width=16) · worked solution</p><ol class="method-list"><li><p>For each offset 0, width, 2×width, …, slice at most width bytes. Format the offset as eight uppercase hex digits and each byte as two uppercase hex digits.</p></li><li><p>Pad the hex column to width × 3 characters. This makes the ASCII bar start in one column even when the last chunk is short.</p></li><li><p>Printable ASCII is byte values 0x20 through 0x7E inclusive; render every other value as a dot. Keep the separator, padding, and no-final-newline behavior exact.</p></li><li><p><strong>Implementation pattern:</strong> apply this operation inside the required function signature.</p><pre class="code-sample"><code>def bytes_to_hexdump(data, width=16):
+    if width &lt;= 0:
+        raise ValueError(&quot;width must be positive&quot;)
+    lines = []
+    for offset in range(0, len(data), width):
+        chunk = data[offset:offset + width]
+        hex_column = &quot; &quot;.join(f&quot;{byte:02X}&quot; for byte in chunk)
+        hex_column = hex_column.ljust(width * 3)
+        ascii_column = &quot;&quot;.join(chr(b) if 0x20 &lt;= b &lt;= 0x7E else &quot;.&quot;
+                               for b in chunk)
+        lines.append(f&quot;{offset:08X}  {hex_column} |{ascii_column}|&quot;)
+    return &quot;\n&quot;.join(lines)</code></pre></li></ol></div></details></section><section id="task-8" aria-labelledby="task-8-title"><h2 id="task-8-title">Task 8: Classify common text encodings from bytes</h2><p class="topic-link"><strong>Connected topic:</strong> <a href="ch3-data-representation.html#sec-33">Character and byte representations (§3.3)</a></p><h3>8 · detect_text_encoding(filepath)</h3><p>Try first: check BOMs first, then use byte patterns and a strict UTF-8 validity check.</p><details class="answers"><summary>Attempted it? Open the worked steps</summary><div class="worked"><p class="worked-title">8 · detect_text_encoding(filepath) · worked solution</p><ol class="method-list"><li><p>A UTF-8 BOM is EF BB BF; UTF-16 little-endian is FF FE; UTF-16 big-endian is FE FF. BOM checks take priority over heuristics.</p></li><li><p>Without a BOM, UTF-16 text often has many zero bytes in one parity: ASCII-heavy LE text has zeros at odd indexes, while BE has zeros at even indexes. This heuristic needs enough bytes to show the pattern; short no-BOM strings are ambiguous and should be reported as unknown when they contain zero bytes. Binary data can also imitate the pattern.</p></li><li><p>ASCII is a subset of UTF-8, so test all-ASCII bytes first when the result labels distinguish them. For non-ASCII bytes, try strict UTF-8 decoding explicitly; if it fails, use the assignment’s Latin-1 fallback. This is explicit validation, not automatic encoding detection.</p></li><li><p><strong>Implementation pattern:</strong> apply this operation inside the required function signature.</p><pre class="code-sample"><code>if data.startswith(b&quot;\xef\xbb\xbf&quot;):
+    return &quot;UTF-8&quot;
+if data.startswith(b&quot;\xff\xfe&quot;):
+    return &quot;UTF-16-LE&quot;
+if data.startswith(b&quot;\xfe\xff&quot;):
+    return &quot;UTF-16-BE&quot;
+paired = data[:len(data) - (len(data) % 2)]
+even_zeros = sum(paired[i] == 0 for i in range(0, len(paired), 2))
+odd_zeros = sum(paired[i] == 0 for i in range(1, len(paired), 2))
+if len(paired) &gt;= 8 and odd_zeros &gt; len(paired) // 4 and odd_zeros &gt; even_zeros:
+    return &quot;UTF-16-LE&quot;
+if len(paired) &gt;= 8 and even_zeros &gt; len(paired) // 4 and even_zeros &gt; odd_zeros:
+    return &quot;UTF-16-BE&quot;
+if b&quot;\x00&quot; in data:
+    return &quot;unknown&quot;  # short no-BOM UTF-16 and binary data are ambiguous
+controls = sum(byte &lt; 0x20 and byte not in (9, 10, 12, 13) for byte in data)
+if data and controls &gt; len(data) // 100:
+    return &quot;unknown&quot;  # reject mostly binary/control content
+if not data or all(byte &lt; 0x80 for byte in data):
+    return &quot;ASCII&quot;
+try:
+    data.decode(&quot;utf-8&quot;, errors=&quot;strict&quot;)
+    return &quot;UTF-8&quot;
+except UnicodeDecodeError:
+    return &quot;Latin-1&quot;</code></pre></li></ol></div></details></section><section id="task-9" aria-labelledby="task-9-title"><h2 id="task-9-title">Task 9: Find the first byte after the valid file structure</h2><p class="topic-link"><strong>Connected topic:</strong> <a href="ch3-data-representation.html#sec-32">Integer representations and binary data (§3.2)</a></p><figure class="viz" data-kind="scene" data-scene="view|0|0|12|4|240;rect|0.5|1|3.0|3|light;rect|3.0|1|8.0|3|fill;rect|8.0|1|9.5|3|dark;rect|9.5|1|11.5|3|light;label|1.75|2|Header|c;label|5.5|2|Structured bytes|c;label|8.75|2|End marker|c;label|10.5|2|Trailing data|c"><figcaption><strong>Find a structural boundary.</strong> Read the format fields in order, validate each declared length, then measure the byte immediately after the ending marker. Anything after that offset is a candidate payload; the parser must distinguish it from legal comments or padding.</figcaption></figure><h3>9 · find_appended_data(filepath, filetype)</h3><p>Try first: parse the end of the format structure and compare that offset with the full file length.</p><details class="answers"><summary>Attempted it? Open the worked steps</summary><div class="worked"><p class="worked-title">9 · find_appended_data(filepath, filetype) · worked solution</p><ol class="method-list"><li><p>For PNG, start after its 8-byte signature. Each chunk is 4-byte big-endian length, 4-byte type, data, and 4-byte CRC; advance by 12 + length until a valid zero-length IEND chunk. The first byte after IEND is the candidate payload start.</p></li><li><p>For JPEG, find the EOI marker FF D9 after correctly handling marker segments and byte-stuffed scan data. For GIF, parse image/extension sub-blocks to the trailer byte. For PDF, use the final %%EOF marker and account for allowed trailing whitespace.</p></li><li><p>For ZIP, locate and validate the EOCD record; its 16-bit comment length determines the archive end. BMP stores its declared file size. RTF needs escaped-brace and binary-section handling; GZIP must distinguish concatenated members; ELF/SQLite derive the end from validated tables or page counts.</p></li><li><p>Return None when the structure is invalid, truncated, unsupported, or ends exactly at EOF. Marker search alone can match bytes inside payloads, so validate lengths and bounds before accepting an offset.</p></li><li><p><strong>Implementation pattern:</strong> apply this operation inside the required function signature.</p><pre class="code-sample"><code># PNG chunk walk (data is the full file bytes)
+if not data.startswith(SIGNATURES[&quot;PNG&quot;][0]):
+    return None
+pos = 8  # after the PNG signature
+while pos + 12 &lt;= len(data):
+    length = int.from_bytes(data[pos:pos + 4], &quot;big&quot;)
+    kind = data[pos + 4:pos + 8]
+    end = pos + 12 + length  # header + data + CRC
+    if end &gt; len(data):
+        return None  # truncated chunk
+    chunk = data[pos + 8:pos + 8 + length]
+    stored_crc = int.from_bytes(data[pos + 8 + length:end], &quot;big&quot;)
+    if zlib.crc32(kind + chunk) &amp; 0xFFFFFFFF != stored_crc:
+        return None
+    if kind == b&quot;IEND&quot;:
+        if length != 0:
+            return None
+        return None if end == len(data) else end
+    pos = end
+return None</code></pre></li></ol></div></details></section><section id="task-10" aria-labelledby="task-10-title"><h2 id="task-10-title">Task 10: Aggregate the forensic report and write the personalized justification</h2><p class="topic-link"><strong>Connected topic:</strong> <a href="ch2-computers.html#sec-21">Computers, programs, and data representation (Chapter 2)</a></p><h3>10 · generate_forensics_report(root_dir)</h3><p>Try first: reuse one read per file, make a JSON-safe record, then measure the runtime on 500 or more files.</p><details class="answers"><summary>Attempted it? Open the worked steps</summary><div class="worked"><p class="worked-title">10 · generate_forensics_report(root_dir) · worked solution</p><ol class="method-list"><li><p>Walk every path once. Read that file’s bytes once, then pass the in-memory bytes to the signature, encoding, hexdump, polyglot, and appended-data helpers. Hash the same bytes with hashlib.sha256; do not reopen the path for each task.</p></li><li><p>For every file, record its path, first bytes, detected type, extension claim/mismatch, checksum, encoding result, polyglot types, appended offsets, and any bounded hexdump preview. If no known signature matches but the bytes pass Task 8 text checks, call the actual type TXT independent of its suffix. Keep values to JSON-compatible strings, numbers, lists, dictionaries, booleans, and nulls.</p></li><li><p>Keep aggregate mismatches in their own list if that is the required schema. Benchmark with time.perf_counter on at least 500 files; report the measured elapsed time and environment rather than inventing a “within budget” result.</p></li><li><p><strong>Implementation pattern:</strong> apply this operation inside the required function signature.</p><pre class="code-sample"><code>report = {&quot;mismatches&quot;: [], &quot;files&quot;: []}
+for folder, directories, names in os.walk(root_dir):
+    directories.sort()
+    for name in sorted(names):
+        path = os.path.join(folder, name)
+        with open(path, &quot;rb&quot;) as f:
+            data = f.read()  # reuse these bytes; do not reopen for each task
+        claimed = EXTENSION_TYPES.get(os.path.splitext(name)[1].lower(), &quot;unknown&quot;)
+        actual = identify_file_type(data[:16])
+        if actual == &quot;ZIP&quot; and zipfile.is_zipfile(io.BytesIO(data)):
+            actual = identify_zip_members(io.BytesIO(data))
+        if actual == &quot;unknown&quot; and detect_text_encoding_bytes(data) != &quot;unknown&quot;:
+            actual = &quot;TXT&quot;  # infer from bytes, never from the suffix
+        types = detect_polyglot(data)
+        appended = {kind: offset for kind in types
+                    if (offset := find_appended_data(data, kind)) is not None}
+        row = {&quot;path&quot;: path, &quot;magic_hex&quot;: data[:16].hex(),
+               &quot;actual_type&quot;: actual, &quot;claimed_type&quot;: claimed,
+               &quot;sha256&quot;: hashlib.sha256(data).hexdigest(),
+               &quot;text_encoding&quot;: detect_text_encoding_bytes(data),
+               &quot;polyglot_types&quot;: types, &quot;appended_offsets&quot;: appended,
+               &quot;hexdump_preview&quot;: bytes_to_hexdump(data[:64])}
+        report[&quot;files&quot;].append(row)
+        if claimed != actual:
+            report[&quot;mismatches&quot;].append({&quot;path&quot;: path,
+                &quot;claimed_type&quot;: claimed, &quot;actual_type&quot;: actual})
+return report</code></pre></li></ol></div></details><h3>Written justification · use your own sample offsets</h3><p>Try first: record the polyglot file and appended-data boundary from your assigned samples; the seeded filenames and offsets differ by learner.</p><details class="answers"><summary>Attempted it? Open the worked steps</summary><div class="worked"><p class="worked-title">Written justification · use your own sample offsets · worked solution</p><ol class="method-list"><li><p>For the polyglot, name the file from your samples directory, list every format your validators accepted, and identify the byte evidence for each. Explain why both structures are valid rather than citing two coincidental marker strings.</p></li><li><p>For the appended payload, report the file type, the end-marker or structural rule used, the returned byte offset, total file length, and number of trailing bytes (file length minus the offset). Include a short hexdump around the boundary.</p></li><li><p>The guide intentionally does not publish a fixed filename or offset: this assignment seeds personalized examples. Run your own report and paste your actual results into your submission.</p></li><li><p><strong>Implementation pattern:</strong> apply this operation inside the required function signature.</p><pre class="code-sample"><code># Use your own generated files; never copy another learner&#x27;s offsets.
+print(report[&quot;files&quot;])  # select the row with multiple valid types
+# Then compare appended_offsets[type] with that file&#x27;s byte length.</code></pre></li></ol></div></details></section>
+<p class="source-note">Personal worked-solution guide based on the APDR Computer Exercise 1 task sheet, rewritten in my own words. Its ZIP-family requirement cannot be satisfied from the first 16 bytes alone; the page separates signature identification from archive inspection. The written justification must use each learner’s own seeded sample offsets. Not an official FAU publication. Made by <strong>Thanate Amornjiraporn (Focus)</strong>.</p>
+</main></div><script src="../js/guide.js"></script><script src="../js/tooltip.js"></script><script src="../js/nav.js"></script></body></html>
