@@ -1,0 +1,382 @@
+\documentclass[11pt]{article}
+\usepackage[margin=18mm,headheight=22pt]{geometry}
+\usepackage{amsmath}
+\usepackage{fontspec}
+\usepackage{unicode-math}
+\setmainfont{NewCM10}[Extension=.otf,UprightFont=*-Book,BoldFont=*-Bold,ItalicFont=*-BookItalic,BoldItalicFont=*-BoldItalic]
+\setsansfont{NewCMSans10}[Extension=.otf,UprightFont=*-Book,BoldFont=*-Bold,ItalicFont=*-BookOblique,BoldItalicFont=*-BoldOblique]
+\setmathfont{NewCMMath-Book.otf}
+\usepackage{xcolor}
+\definecolor{FAUblue}{HTML}{04316A}
+\definecolor{Paperblue}{HTML}{EEF2F7}
+\definecolor{EEIgold}{HTML}{CC9C42}
+\usepackage{etoolbox,enumitem,booktabs,tabularx,array,needspace,microtype}
+\usepackage[most]{tcolorbox}
+\usepackage{titlesec,fancyhdr}
+\usepackage[hidelinks]{hyperref}
+\usepackage{draftwatermark}
+\SetWatermarkText{Made by Thanate Amornjiraporn (Focus)}
+\SetWatermarkColor{black!7}\SetWatermarkFontSize{30pt}\SetWatermarkAngle{45}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{5pt}
+\setlist{itemsep=2pt,topsep=3pt,leftmargin=1.6em,beginpenalty=10000,endpenalty=10000}
+\raggedbottom
+\clubpenalty=10000 \widowpenalty=10000 \displaywidowpenalty=10000 \interlinepenalty=10000
+\setcounter{secnumdepth}{0}
+\setcounter{tocdepth}{1}
+\pagestyle{fancy}\fancyhf{}
+\fancyhead[L]{\small\sffamily\color{FAUblue} From Fundamentals to AI Apocalypse · APDR · Blackboard Exercise 3}
+\fancyhead[R]{\small\sffamily Blackboard Exercise 3: Worked solutions}
+\fancyfoot[C]{\small\thepage}
+\titleformat{\section}{\Large\bfseries\sffamily\color{FAUblue}}{}{0pt}{}
+\titleformat{\subsection}{\large\bfseries\sffamily\color{FAUblue}}{}{0pt}{}
+\titlespacing*{\section}{0pt}{16pt}{6pt}
+\preto\section{\Needspace{8\baselineskip}}
+\preto\subsection{\Needspace{6\baselineskip}}
+\newtcolorbox{equationcard}[1]{colback=Paperblue,colframe=Paperblue,boxrule=0pt,arc=0pt,left=10pt,right=10pt,top=6pt,bottom=6pt,title={#1},fonttitle=\small\bfseries\sffamily,coltitle=FAUblue,before skip=8pt,after skip=8pt}
+\newtcolorbox{workedbox}[1]{colback=white,colframe=EEIgold,boxrule=0pt,leftrule=3pt,arc=0pt,left=10pt,top=4pt,bottom=4pt,title={#1},fonttitle=\small\bfseries\sffamily,coltitle=FAUblue,attach title to upper={\par},before skip=8pt,after skip=8pt}
+\newtcolorbox{recallbox}[1]{colback=white,colframe=FAUblue,boxrule=0pt,leftrule=3pt,arc=0pt,left=10pt,top=4pt,bottom=4pt,title={#1},fonttitle=\small\bfseries\sffamily,coltitle=FAUblue,attach title to upper={\par},before skip=8pt,after skip=8pt}
+\usepackage{environ}
+\newsavebox\measurebox
+% Typeset the section once invisibly to measure it; start a new page if it will not fit in what is left.
+\makeatletter
+\newif\ifkeep@measuring
+\NewEnviron{keepsection}{%
+  \ifkeep@measuring \BODY \else
+    \edef\keep@sec{\the\value{section}}\edef\keep@sub{\the\value{subsection}}%
+    \setbox\measurebox\vbox{\hsize\linewidth\keep@measuringtrue\def\Needspace##1{}\BODY}%
+    \setcounter{section}{\keep@sec}\setcounter{subsection}{\keep@sub}%
+    \dimen2=\ht\measurebox \advance\dimen2\dp\measurebox
+    \dimen@=\textheight
+    \ifdim\pagegoal<\maxdimen
+      \dimen@=\pagegoal \advance\dimen@-\pagetotal
+      \ifdim\dimen2>\dimen@ \clearpage \dimen@=\textheight \fi
+    \fi
+    % if it fits, nothing inside may force an early break
+    \ifdim\dimen2>\dimen@ \BODY \else \begingroup\def\Needspace##1{}\BODY\endgroup \fi
+  \fi}
+\makeatother
+\newtcolorbox{notebox}{colback=Paperblue,colframe=Paperblue,boxrule=0pt,arc=0pt,left=8pt,right=8pt,top=4pt,bottom=4pt,before skip=6pt,after skip=6pt}
+\newtcolorbox{plainbox}{colback=white,colframe=FAUblue,boxrule=0pt,leftrule=3pt,arc=0pt,left=10pt,right=8pt,top=4pt,bottom=4pt,before skip=6pt,after skip=8pt}
+\usetikzlibrary{arrows.meta}
+\title{\sffamily\bfseries\color{FAUblue}Blackboard Exercise 3: Worked solutions}
+\author{Algorithms, Programming, and Data Representation \ensuremath{\cdot} Module 92313 \ensuremath{\cdot} Blackboard Exercise 3\\[2pt]\small From Fundamentals to AI Apocalypse · personal study guide}
+\date{}
+\begin{document}
+\maketitle
+\begingroup\footnotesize\setlength{\parskip}{0pt}\tableofcontents\endgroup
+\clearpage
+
+\Needspace{8\baselineskip}
+{\large Work through memory size, addressing, module construction, interleaving and byte order. For address calculations, state whether an address selects a word or a byte.}
+
+
+\begin{keepsection}
+\Needspace{5\baselineskip}
+\section{Exercise 3.1: Memory chip architecture}
+
+\textbf{Connected topic:} Addressing and capacity (§5.2)
+
+\begin{keepsection}
+\Needspace{6\baselineskip}
+\subsection{3.1.1 Memory size in bits}
+
+\Needspace{3\baselineskip}
+Try first: For a 4G \ensuremath{\times} 32-bit memory, find the total capacity in bits and write it as 2\textsuperscript{x}.
+
+\nopagebreak[4]{\small\itshape Answers: see “Exercise 3.1: Memory chip architecture” under Answers at the end.}
+\end{keepsection}
+
+\begin{keepsection}
+\Needspace{6\baselineskip}
+\subsection{3.1.2 Word-addressable memory}
+
+\Needspace{3\baselineskip}
+Try first: Find the address width when each address selects one 32-bit word.
+
+\nopagebreak[4]{\small\itshape Answers: see “Exercise 3.1: Memory chip architecture” under Answers at the end.}
+\end{keepsection}
+
+\begin{keepsection}
+\Needspace{6\baselineskip}
+\subsection{3.1.3 Byte-addressable memory}
+
+\Needspace{3\baselineskip}
+Try first: Find the address width when each address selects one byte.
+
+\nopagebreak[4]{\small\itshape Answers: see “Exercise 3.1: Memory chip architecture” under Answers at the end.}
+\end{keepsection}
+
+\begin{keepsection}
+\Needspace{7\baselineskip}
+\subsection{3.1.4 Byte address range}
+
+\Needspace{4\baselineskip}
+Try first: Give the lowest and highest byte addresses in hexadecimal and the number of bits needed to represent them.
+
+\nopagebreak[4]{\small\itshape Answers: see “Exercise 3.1: Memory chip architecture” under Answers at the end.}
+\end{keepsection}
+\end{keepsection}
+
+\begin{keepsection}
+\Needspace{5\baselineskip}
+\section{Exercise 3.2: Memory modules architecture}
+
+\textbf{Connected topic:} Memory chips and modules (§5.4) \ensuremath{\cdot} Memory interleaving (§5.5)
+
+\begin{keepsection}
+\Needspace{7\baselineskip}
+\subsection{3.2.1 Module configuration}
+
+\Needspace{4\baselineskip}
+Try first: Complete the chip and address-width specifications for a word-addressable 1G \ensuremath{\times} 32-bit memory built from 256M \ensuremath{\times} 4-bit chips.
+
+\nopagebreak[4]{\small\itshape Answers: see “Exercise 3.2: Memory modules architecture” under Answers at the end.}
+\end{keepsection}
+
+\begin{keepsection}
+\Needspace{7\baselineskip}
+\subsection{3.2.2 Word 14 across four modules}
+
+\Needspace{4\baselineskip}
+Try first: Locate word address 14 under high-order and low-order interleaving, numbering modules from zero.
+
+\nopagebreak[4]{\small\itshape Answers: see “Exercise 3.2: Memory modules architecture” under Answers at the end.}
+\end{keepsection}
+
+\begin{keepsection}
+\Needspace{7\baselineskip}
+\subsection{3.2.3 Word 300,000,000}
+
+\Needspace{4\baselineskip}
+Try first: Find the module and local word address for word address 300,000,000 under both interleaving schemes.
+
+\nopagebreak[4]{\small\itshape Answers: see “Exercise 3.2: Memory modules architecture” under Answers at the end.}
+\end{keepsection}
+\end{keepsection}
+
+\begin{keepsection}
+\Needspace{5\baselineskip}
+\section{Exercise 3.3: Byte-addressable memory modules}
+
+\textbf{Connected topic:} Addressing and capacity (§5.2) \ensuremath{\cdot} Memory interleaving (§5.5)
+
+\begin{keepsection}
+\Needspace{7\baselineskip}
+\subsection{3.3.1 Full-memory address width}
+
+\Needspace{4\baselineskip}
+Try first: For the same 1G \ensuremath{\times} 32-bit memory, find the number of address bits when it is byte-addressable.
+
+\nopagebreak[4]{\small\itshape Answers: see “Exercise 3.3: Byte-addressable memory modules” under Answers at the end.}
+\end{keepsection}
+
+\begin{keepsection}
+\Needspace{7\baselineskip}
+\subsection{3.3.2 Word 14 after byte-addressing}
+
+\Needspace{4\baselineskip}
+Try first: Locate word 14 under both interleaving schemes. The memory modules still store complete 32-bit words.
+
+\nopagebreak[4]{\small\itshape Answers: see “Exercise 3.3: Byte-addressable memory modules” under Answers at the end.}
+\end{keepsection}
+\end{keepsection}
+
+\begin{keepsection}
+\Needspace{5\baselineskip}
+\section{Exercise 3.4: Endianness bytes}
+
+\textbf{Connected topic:} Endianness and aligned access (§5.3)
+
+\begin{keepsection}
+\Needspace{6\baselineskip}
+\subsection{3.4.1 Define endianness}
+
+\Needspace{3\baselineskip}
+Try first: State the definition of endianness in one sentence.
+
+\nopagebreak[4]{\small\itshape Answers: see “Exercise 3.4: Endianness bytes” under Answers at the end.}
+\end{keepsection}
+
+\begin{keepsection}
+\Needspace{7\baselineskip}
+\subsection{3.4.2 Transfer between different byte orders}
+
+\Needspace{4\baselineskip}
+Try first: Explain what must happen when data moves from little-endian memory to big-endian memory.
+
+\nopagebreak[4]{\small\itshape Answers: see “Exercise 3.4: Endianness bytes” under Answers at the end.}
+\end{keepsection}
+
+\begin{keepsection}
+\Needspace{8\baselineskip}
+\subsection{3.4.3 Transfer 0x12345678 unchanged}
+
+\Needspace{5\baselineskip}
+Try first: A 32-bit integer 0x12345678 is stored little-endian and copied unchanged into big-endian memory. Find the value read there and decide whether the original can be recovered without byte-order information.
+
+\nopagebreak[4]{\small\itshape Answers: see “Exercise 3.4: Endianness bytes” under Answers at the end.}
+\end{keepsection}
+\end{keepsection}
+
+
+\clearpage
+\section{Answers}
+\begin{keepsection}\subsection{Exercise 3.1: Memory chip architecture}
+
+\begin{workedbox}{3.1.1 Memory size in bits \ensuremath{\cdot} worked solution}
+\Needspace{7\baselineskip}
+\begin{enumerate}
+\item In the notation 4G \ensuremath{\times} 32, there are 4G addressable words and 32 bits per word. For this exercise, G means 2\textsuperscript{30}, so 4G = 2\textsuperscript{32} words.
+\item Multiply words by bits per word: 2\textsuperscript{32} \ensuremath{\times} 32 = 2\textsuperscript{32} \ensuremath{\times} 2\textsuperscript{5} = 2\textsuperscript{37} bits. Thus x = 37.
+\item The check is dimensional: word count \ensuremath{\times} bits/word gives bits. The 32-bit width adds five powers of two to the 4G word count.
+\end{enumerate}
+\end{workedbox}
+
+\end{keepsection}
+\begin{keepsection}\subsection{Exercise 3.1: Memory chip architecture}
+
+\begin{workedbox}{3.1.2 Word-addressable memory \ensuremath{\cdot} worked solution}
+\Needspace{5\baselineskip}
+\begin{enumerate}
+\item The memory contains 4G = 2\textsuperscript{32} words. Word-addressing assigns one distinct address to each word.
+\item The number of address bits is log\textsubscript{2}(2\textsuperscript{32}) = 32 bits.
+\item A 32-bit address has 2\textsuperscript{32} patterns, exactly enough for all word addresses from 0 through 2\textsuperscript{32}\ensuremath{-}1.
+\end{enumerate}
+\end{workedbox}
+
+\end{keepsection}
+\begin{keepsection}\subsection{Exercise 3.1: Memory chip architecture}
+
+\begin{workedbox}{3.1.3 Byte-addressable memory \ensuremath{\cdot} worked solution}
+\Needspace{6\baselineskip}
+\begin{enumerate}
+\item Each 32-bit word contains 4 bytes. The number of bytes is 2\textsuperscript{32} words \ensuremath{\times} 4 bytes/word = 2\textsuperscript{34} bytes.
+\item Addressing 2\textsuperscript{34} individual bytes requires 34 address bits.
+\item This is two more bits than word addressing because each word contains 2\textsuperscript{2} byte locations.
+\end{enumerate}
+\end{workedbox}
+
+\end{keepsection}
+\begin{keepsection}\subsection{Exercise 3.1: Memory chip architecture}
+
+\begin{workedbox}{3.1.4 Byte address range \ensuremath{\cdot} worked solution}
+\Needspace{8\baselineskip}
+\begin{enumerate}
+\item There are 2\textsuperscript{34} byte addresses, numbered consecutively from zero. The highest address is therefore the count minus one.
+\item The lowest address is 0x000000000. The highest is 2\textsuperscript{34}\ensuremath{-}1 = 0x3FFFFFFFF. The address width is 34 bits.
+\item Check that the next address, 0x400000000, is 2\textsuperscript{34} and is outside the memory. Leading zeroes in the lowest address are only padding.
+\end{enumerate}
+\end{workedbox}
+
+\end{keepsection}
+\begin{keepsection}\subsection{Exercise 3.2: Memory modules architecture}
+
+\begin{workedbox}{3.2.1 Module configuration \ensuremath{\cdot} worked solution}
+\Needspace{12\baselineskip}
+\begin{enumerate}
+\item A chip supplies 4 bits per word, so eight chips in parallel supply the required 32-bit word. Each module then has 256M = 2\textsuperscript{28} words. Four such modules provide 1G = 2\textsuperscript{30} words.
+\item The full system uses 8 \ensuremath{\times} 4 = 32 chips. A module needs log\textsubscript{2}(2\textsuperscript{28}) = 28 row-address bits; the full memory needs log\textsubscript{2}(2\textsuperscript{30}) = 30 word-address bits.
+\item The configuration is:
+\item \Needspace{10\baselineskip}
+\begin{center}\small\begin{tabularx}{\linewidth}{>{\raggedright\arraybackslash}X>{\raggedright\arraybackslash}X}\toprule
+\textbf{Specification} & \textbf{Quantity} \\ \midrule
+RAM chips per memory module & 8 \\
+Memory modules & 4 \\
+RAM chips for full memory & 32 \\
+Address bits per module & 28 \\
+Address bits for full memory & 30 \\
+\bottomrule\end{tabularx}\end{center}
+\item Check capacity and width separately: 4 modules \ensuremath{\times} 256M words = 1G words; 8 chips \ensuremath{\times} 4 bits = 32 bits per word.
+\end{enumerate}
+\end{workedbox}
+
+\end{keepsection}
+\begin{keepsection}\subsection{Exercise 3.2: Memory modules architecture}
+
+\begin{workedbox}{3.2.2 Word 14 across four modules \ensuremath{\cdot} worked solution}
+\Needspace{9\baselineskip}
+\begin{enumerate}
+\item There are four modules, so two address bits select a module. Each module holds 2\textsuperscript{28} words. High-order interleaving uses the most significant address bits for the module; low-order interleaving uses the least significant two bits.
+\item High-order: module = floor(14/2\textsuperscript{28}) = 0; local word address = 14. Low-order: module = 14 mod 4 = 2; local word address = floor(14/4) = 3.
+\item Check by reconstructing the addresses. High-order module 0 starts at word 0, so local 14 is global 14. Low-order module 2 stores words 2, 6, 10, 14, …; its fourth row is local address 3.
+\end{enumerate}
+\end{workedbox}
+
+\end{keepsection}
+\begin{keepsection}\subsection{Exercise 3.2: Memory modules architecture}
+
+\begin{workedbox}{3.2.3 Word 300,000,000 \ensuremath{\cdot} worked solution}
+\Needspace{9\baselineskip}
+\begin{enumerate}
+\item For high-order interleaving, divide by the module capacity 2\textsuperscript{28} = 268,435,456. For low-order interleaving, divide by four modules.
+\item High-order: 300,000,000 = 1 \ensuremath{\times} 268,435,456 + 31,564,544, so the location is module 1, local word address 31,564,544. Low-order: 300,000,000 mod 4 = 0 and floor(300,000,000/4) = 75,000,000, so the location is module 0, local word address 75,000,000.
+\item Reconstruct: high-order 1 \ensuremath{\times} 2\textsuperscript{28} + 31,564,544 = 300,000,000; low-order 4 \ensuremath{\times} 75,000,000 + 0 = 300,000,000.
+\end{enumerate}
+\end{workedbox}
+
+\end{keepsection}
+\begin{keepsection}\subsection{Exercise 3.3: Byte-addressable memory modules}
+
+\begin{workedbox}{3.3.1 Full-memory address width \ensuremath{\cdot} worked solution}
+\Needspace{7\baselineskip}
+\begin{enumerate}
+\item The capacity is 1G words \ensuremath{\times} 32 bits/word. Each word is four bytes, so there are 1G \ensuremath{\times} 4 = 4G = 2\textsuperscript{32} bytes.
+\item The full byte-addressable memory therefore needs log\textsubscript{2}(2\textsuperscript{32}) = 32 address bits.
+\item Check against word-addressing: 1G words require 30 bits; the two byte-within-word bits raise the byte address to 32 bits.
+\end{enumerate}
+\end{workedbox}
+
+\end{keepsection}
+\begin{keepsection}\subsection{Exercise 3.3: Byte-addressable memory modules}
+
+\begin{workedbox}{3.3.2 Word 14 after byte-addressing \ensuremath{\cdot} worked solution}
+\Needspace{10\baselineskip}
+\begin{enumerate}
+\item Word index 14 begins at byte address 14 \ensuremath{\times} 4 = 56. Because each module stores a complete 32-bit word, select the module using the word index; the two lowest byte-address bits identify the byte within that word.
+\item High-order interleaving: word 14 is in module 0 at local word row 14, beginning at local byte address 56. Low-order interleaving: module = 14 mod 4 = 2 and local word row = floor(14/4) = 3; the word begins at local byte address 3 \ensuremath{\times} 4 = 12. Its global byte address is still 56.
+\item The low-order module bits come from the word address after removing the two byte-offset bits. Reconstruct the global word index: 4 \ensuremath{\times} 3 + 2 = 14. The first byte of that word is 56.
+\end{enumerate}
+\end{workedbox}
+
+\end{keepsection}
+\begin{keepsection}\subsection{Exercise 3.4: Endianness bytes}
+
+\begin{workedbox}{3.4.1 Define endianness \ensuremath{\cdot} worked solution}
+\Needspace{8\baselineskip}
+\begin{enumerate}
+\item A multi-byte value occupies several byte addresses, so the system needs a rule for which byte comes first.
+\item Endianness is the order in which a multi-byte value’s bytes are stored in memory: little-endian places the least significant byte at the lowest address, while big-endian places the most significant byte there.
+\item This rule affects multi-byte values; a single-byte value has no byte-order choice.
+\end{enumerate}
+\end{workedbox}
+
+\end{keepsection}
+\begin{keepsection}\subsection{Exercise 3.4: Endianness bytes}
+
+\begin{workedbox}{3.4.2 Transfer between different byte orders \ensuremath{\cdot} worked solution}
+\Needspace{9\baselineskip}
+\begin{enumerate}
+\item A raw byte copy preserves the sequence of bytes. The receiving system then interprets that sequence using its own byte-order rule.
+\item To preserve the numeric value, the sender and receiver must agree on a serialized byte order, or one side must reorder the bytes during transfer. If bytes are copied unchanged without conversion, a multi-byte number may be read as a different value.
+\item Single-byte text is unaffected. A robust file or network format specifies byte order rather than relying on the sender’s native layout.
+\end{enumerate}
+\end{workedbox}
+
+\end{keepsection}
+\begin{keepsection}\subsection{Exercise 3.4: Endianness bytes}
+
+\begin{workedbox}{3.4.3 Transfer 0x12345678 unchanged \ensuremath{\cdot} worked solution}
+\Needspace{8\baselineskip}
+\begin{enumerate}
+\item In little-endian order, the bytes at increasing addresses are 78, 56, 34, 12. The transfer keeps that sequence unchanged.
+\item A big-endian receiver treats the first byte as most significant, so it reads 0x78563412.
+\item The original value cannot be determined from those bytes alone without knowing the sender’s byte order or other format metadata: the same four bytes can represent different integers under different conventions.
+\end{enumerate}
+\end{workedbox}
+
+\end{keepsection}
+
+\vfill{\small Personal worked solutions based on the APDR Blackboard Exercise 3 sheet, written in my own words; no exercise-sheet prose or figures are reproduced. Not an official FAU publication; check course details against the current materials. Made by \textbf{Thanate Amornjiraporn (Focus)}.}
+
+\end{document}

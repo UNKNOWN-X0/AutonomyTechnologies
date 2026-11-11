@@ -57,7 +57,7 @@ class Report:
         self.warnings.append(msg)
 
 
-WORKED_PAGE = re.compile(r"([a-z]+)/(exercise|tutorial)-(\d+)-worked-solutions\.html")
+WORKED_PAGE = re.compile(r"([a-z]+)/(blackboard-exercise|exercise|tutorial)-(\d+)-worked-solutions\.html")
 
 
 def check_files(root, html, path, page_dir, rep):
@@ -245,7 +245,8 @@ def check(path):
         return check_appendix(path, os.path.relpath(path, ROOT), rep)
     worked = WORKED_PAGE.fullmatch(os.path.relpath(path, ROOT))
     if worked:
-        return check_exercise(path, os.path.relpath(path, ROOT), rep, worked.group(2).capitalize())
+        kind = "Blackboard exercise" if worked.group(2) == "blackboard-exercise" else worked.group(2).capitalize()
+        return check_exercise(path, os.path.relpath(path, ROOT), rep, kind)
     html = open(path, encoding="utf-8").read()
     t = Tree()
     t.feed(html)

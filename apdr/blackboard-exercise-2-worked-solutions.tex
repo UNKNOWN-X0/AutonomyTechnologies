@@ -1,0 +1,467 @@
+\documentclass[11pt]{article}
+\usepackage[margin=18mm,headheight=22pt]{geometry}
+\usepackage{amsmath}
+\usepackage{fontspec}
+\usepackage{unicode-math}
+\setmainfont{NewCM10}[Extension=.otf,UprightFont=*-Book,BoldFont=*-Bold,ItalicFont=*-BookItalic,BoldItalicFont=*-BoldItalic]
+\setsansfont{NewCMSans10}[Extension=.otf,UprightFont=*-Book,BoldFont=*-Bold,ItalicFont=*-BookOblique,BoldItalicFont=*-BoldOblique]
+\setmathfont{NewCMMath-Book.otf}
+\usepackage{xcolor}
+\definecolor{FAUblue}{HTML}{04316A}
+\definecolor{Paperblue}{HTML}{EEF2F7}
+\definecolor{EEIgold}{HTML}{CC9C42}
+\usepackage{etoolbox,enumitem,booktabs,tabularx,array,needspace,microtype}
+\usepackage[most]{tcolorbox}
+\usepackage{titlesec,fancyhdr}
+\usepackage[hidelinks]{hyperref}
+\usepackage{draftwatermark}
+\SetWatermarkText{Made by Thanate Amornjiraporn (Focus)}
+\SetWatermarkColor{black!7}\SetWatermarkFontSize{30pt}\SetWatermarkAngle{45}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{5pt}
+\setlist{itemsep=2pt,topsep=3pt,leftmargin=1.6em,beginpenalty=10000,endpenalty=10000}
+\raggedbottom
+\clubpenalty=10000 \widowpenalty=10000 \displaywidowpenalty=10000 \interlinepenalty=10000
+\setcounter{secnumdepth}{0}
+\setcounter{tocdepth}{1}
+\pagestyle{fancy}\fancyhf{}
+\fancyhead[L]{\small\sffamily\color{FAUblue} From Fundamentals to AI Apocalypse · APDR · Blackboard Exercise 2}
+\fancyhead[R]{\small\sffamily Blackboard Exercise 2: Worked solutions}
+\fancyfoot[C]{\small\thepage}
+\titleformat{\section}{\Large\bfseries\sffamily\color{FAUblue}}{}{0pt}{}
+\titleformat{\subsection}{\large\bfseries\sffamily\color{FAUblue}}{}{0pt}{}
+\titlespacing*{\section}{0pt}{16pt}{6pt}
+\preto\section{\Needspace{8\baselineskip}}
+\preto\subsection{\Needspace{6\baselineskip}}
+\newtcolorbox{equationcard}[1]{colback=Paperblue,colframe=Paperblue,boxrule=0pt,arc=0pt,left=10pt,right=10pt,top=6pt,bottom=6pt,title={#1},fonttitle=\small\bfseries\sffamily,coltitle=FAUblue,before skip=8pt,after skip=8pt}
+\newtcolorbox{workedbox}[1]{colback=white,colframe=EEIgold,boxrule=0pt,leftrule=3pt,arc=0pt,left=10pt,top=4pt,bottom=4pt,title={#1},fonttitle=\small\bfseries\sffamily,coltitle=FAUblue,attach title to upper={\par},before skip=8pt,after skip=8pt}
+\newtcolorbox{recallbox}[1]{colback=white,colframe=FAUblue,boxrule=0pt,leftrule=3pt,arc=0pt,left=10pt,top=4pt,bottom=4pt,title={#1},fonttitle=\small\bfseries\sffamily,coltitle=FAUblue,attach title to upper={\par},before skip=8pt,after skip=8pt}
+\usepackage{environ}
+\newsavebox\measurebox
+% Typeset the section once invisibly to measure it; start a new page if it will not fit in what is left.
+\makeatletter
+\newif\ifkeep@measuring
+\NewEnviron{keepsection}{%
+  \ifkeep@measuring \BODY \else
+    \edef\keep@sec{\the\value{section}}\edef\keep@sub{\the\value{subsection}}%
+    \setbox\measurebox\vbox{\hsize\linewidth\keep@measuringtrue\def\Needspace##1{}\BODY}%
+    \setcounter{section}{\keep@sec}\setcounter{subsection}{\keep@sub}%
+    \dimen2=\ht\measurebox \advance\dimen2\dp\measurebox
+    \dimen@=\textheight
+    \ifdim\pagegoal<\maxdimen
+      \dimen@=\pagegoal \advance\dimen@-\pagetotal
+      \ifdim\dimen2>\dimen@ \clearpage \dimen@=\textheight \fi
+    \fi
+    % if it fits, nothing inside may force an early break
+    \ifdim\dimen2>\dimen@ \BODY \else \begingroup\def\Needspace##1{}\BODY\endgroup \fi
+  \fi}
+\makeatother
+\newtcolorbox{notebox}{colback=Paperblue,colframe=Paperblue,boxrule=0pt,arc=0pt,left=8pt,right=8pt,top=4pt,bottom=4pt,before skip=6pt,after skip=6pt}
+\newtcolorbox{plainbox}{colback=white,colframe=FAUblue,boxrule=0pt,leftrule=3pt,arc=0pt,left=10pt,right=8pt,top=4pt,bottom=4pt,before skip=6pt,after skip=8pt}
+\usetikzlibrary{arrows.meta}
+\title{\sffamily\bfseries\color{FAUblue}Blackboard Exercise 2: Worked solutions}
+\author{Algorithms, Programming, and Data Representation \ensuremath{\cdot} Module 92313 \ensuremath{\cdot} Blackboard Exercise 2\\[2pt]\small From Fundamentals to AI Apocalypse · personal study guide}
+\date{}
+\begin{document}
+\maketitle
+\begingroup\footnotesize\setlength{\parskip}{0pt}\tableofcontents\endgroup
+\clearpage
+
+\Needspace{8\baselineskip}
+{\large A worked route through number bases, binary fractions, integer encodings, ASCII and Boolean algebra. Try each subpart before opening its steps.}
+
+
+\begin{keepsection}
+\Needspace{5\baselineskip}
+\section{Exercise 2.1: Natural numbers}
+
+\textbf{Connected topic:} Number systems and data representation (§3.1–3.3)
+
+\begin{keepsection}
+\Needspace{7\baselineskip}
+\subsection{2.1.1 Number representations}
+
+\Needspace{4\baselineskip}
+Try first: Complete the five conversions; show how the first and last binary rows convert directly to octal and hexadecimal.
+
+\nopagebreak[4]{\small\itshape Answers: see “Exercise 2.1: Natural numbers” under Answers at the end.}
+\end{keepsection}
+
+\begin{keepsection}
+\Needspace{7\baselineskip}
+\subsection{2.1.2 Range of an unsigned representation}
+
+\Needspace{4\baselineskip}
+Try first: Find the ranges for 8, 16, and 32 bits, derive the general rule, then find the fewest bits that cover 0 through 1000.
+
+\nopagebreak[4]{\small\itshape Answers: see “Exercise 2.1: Natural numbers” under Answers at the end.}
+\end{keepsection}
+
+\begin{keepsection}
+\Needspace{7\baselineskip}
+\subsection{2.1.3 Representation and storage}
+
+\Needspace{4\baselineskip}
+Try first: Decide which listed values fit an unsigned byte, identify equal values, and explain why distinct spellings can denote the same number.
+
+\nopagebreak[4]{\small\itshape Answers: see “Exercise 2.1: Natural numbers” under Answers at the end.}
+\end{keepsection}
+
+\begin{keepsection}
+\Needspace{7\baselineskip}
+\subsection{2.1.4 Arithmetic}
+
+\Needspace{4\baselineskip}
+Try first: Calculate the four sums, difference, and products in the operand bases without converting the operands to decimal first; decide whether each result fits an unsigned byte.
+
+\nopagebreak[4]{\small\itshape Answers: see “Exercise 2.1: Natural numbers” under Answers at the end.}
+\end{keepsection}
+
+\begin{keepsection}
+\Needspace{7\baselineskip}
+\subsection{2.1.5 Overflow}
+
+\Needspace{4\baselineskip}
+Try first: For each decimal addition, find the mathematical sum, whether an 8-bit unsigned overflow occurs, and the stored byte. Then explain the NumPy result for uint8(250)+uint8(13).
+
+\nopagebreak[4]{\small\itshape Answers: see “Exercise 2.1: Natural numbers” under Answers at the end.}
+\end{keepsection}
+
+\begin{keepsection}
+\Needspace{7\baselineskip}
+\subsection{2.1.6 Working with an unknown radix}
+
+\Needspace{4\baselineskip}
+Try first: The numeral 243 in base r has decimal value 99. Find r and decide whether 354\textsubscript{r} and 358\textsubscript{r} are valid.
+
+\nopagebreak[4]{\small\itshape Answers: see “Exercise 2.1: Natural numbers” under Answers at the end.}
+\end{keepsection}
+\end{keepsection}
+
+\begin{keepsection}
+\Needspace{5\baselineskip}
+\section{Exercise 2.2: Floating-point numbers}
+
+\textbf{Connected topic:} Binary fractions and floating-point representation (§4.1)
+
+\begin{keepsection}
+\Needspace{7\baselineskip}
+\subsection{2.2.1 Binary fractions}
+
+\Needspace{4\baselineskip}
+Try first: Complete the four binary/decimal conversions and show one calculation in each direction.
+
+\nopagebreak[4]{\small\itshape Answers: see “Exercise 2.2: Floating-point numbers” under Answers at the end.}
+\end{keepsection}
+
+\begin{keepsection}
+\Needspace{7\baselineskip}
+\subsection{2.2.2 Finite and repeating representations}
+
+\Needspace{4\baselineskip}
+Try first: Convert 0.1\textsubscript{10} until its repeating pattern is visible. Decide which listed fractions terminate in binary, then state the general condition.
+
+\nopagebreak[4]{\small\itshape Answers: see “Exercise 2.2: Floating-point numbers” under Answers at the end.}
+\end{keepsection}
+\end{keepsection}
+
+\begin{keepsection}
+\Needspace{5\baselineskip}
+\section{Exercise 2.3: Signed and unsigned integers}
+
+\textbf{Connected topic:} Integer representations and arithmetic (§3.4)
+
+\begin{keepsection}
+\Needspace{7\baselineskip}
+\subsection{2.3.1 Two’s complement}
+
+\Needspace{4\baselineskip}
+Try first: Complete the table for the three bit patterns and the two decimal values, using exactly eight bits.
+
+\nopagebreak[4]{\small\itshape Answers: see “Exercise 2.3: Signed and unsigned integers” under Answers at the end.}
+\end{keepsection}
+
+\begin{keepsection}
+\Needspace{7\baselineskip}
+\subsection{2.3.2 Range and interpretation}
+
+\Needspace{4\baselineskip}
+Try first: Find the 8-bit and general n-bit ranges, explain the asymmetric counts, and interpret 11110110\textsubscript{2} both ways.
+
+\nopagebreak[4]{\small\itshape Answers: see “Exercise 2.3: Signed and unsigned integers” under Answers at the end.}
+\end{keepsection}
+
+\begin{keepsection}
+\Needspace{7\baselineskip}
+\subsection{2.3.3 Signed overflow}
+
+\Needspace{4\baselineskip}
+Try first: Add 01100101\textsubscript{2} and 00111110\textsubscript{2}, interpret all three patterns as signed decimal, and test for signed overflow.
+
+\nopagebreak[4]{\small\itshape Answers: see “Exercise 2.3: Signed and unsigned integers” under Answers at the end.}
+\end{keepsection}
+\end{keepsection}
+
+\begin{keepsection}
+\Needspace{5\baselineskip}
+\section{Exercise 2.4: Text representation and interpretation}
+
+\textbf{Connected topic:} Text and character representation (§3.5)
+
+\begin{keepsection}
+\Needspace{6\baselineskip}
+\subsection{2.4.1 ASCII}
+
+\Needspace{3\baselineskip}
+Try first: Complete the table and encode AIBE as four 8-bit ASCII bytes.
+
+\nopagebreak[4]{\small\itshape Answers: see “Exercise 2.4: Text representation and interpretation” under Answers at the end.}
+\end{keepsection}
+
+\begin{keepsection}
+\Needspace{7\baselineskip}
+\subsection{2.4.2 One bit pattern, different meanings}
+
+\Needspace{4\baselineskip}
+Try first: Interpret 01000001\textsubscript{2} as unsigned, as 8-bit two’s complement, and as ASCII. State what extra information a reader needs.
+
+\nopagebreak[4]{\small\itshape Answers: see “Exercise 2.4: Text representation and interpretation” under Answers at the end.}
+\end{keepsection}
+\end{keepsection}
+
+\begin{keepsection}
+\Needspace{5\baselineskip}
+\section{Exercise 2.5: Boolean algebra}
+
+\textbf{Connected topic:} Boolean algebra identities (§1.1–1.2)
+
+\begin{keepsection}
+\Needspace{6\baselineskip}
+\subsection{2.5.1 Truth table}
+
+\Needspace{3\baselineskip}
+Try first: Fill the columns A\ensuremath{{}^{\prime}}, A\ensuremath{\cdot}B, A+B, and A+(B\ensuremath{\cdot}C) for all input rows in the given order.
+
+\nopagebreak[4]{\small\itshape Answers: see “Exercise 2.5: Boolean algebra” under Answers at the end.}
+\end{keepsection}
+
+\begin{keepsection}
+\Needspace{6\baselineskip}
+\subsection{2.5.2 Simplification}
+
+\Needspace{3\baselineskip}
+Try first: Simplify the four expressions and name the Boolean law used at each step.
+
+\nopagebreak[4]{\small\itshape Answers: see “Exercise 2.5: Boolean algebra” under Answers at the end.}
+\end{keepsection}
+
+\begin{keepsection}
+\Needspace{7\baselineskip}
+\subsection{2.5.3 Equivalence and construction}
+
+\Needspace{4\baselineskip}
+Try first: Compare A+(B\ensuremath{\cdot}C) with (A+B)(A+C) using algebra and a truth table; construct F=1 exactly when at least two inputs are 1.
+
+\nopagebreak[4]{\small\itshape Answers: see “Exercise 2.5: Boolean algebra” under Answers at the end.}
+\end{keepsection}
+\end{keepsection}
+
+
+\clearpage
+\section{Answers}
+\begin{keepsection}\subsection{Exercise 2.1: Natural numbers}
+
+\begin{workedbox}{2.1.1 Number representations \ensuremath{\cdot} worked solution}
+\Needspace{10\baselineskip}
+\begin{enumerate}
+\item Read each subscript as the base. For binary-to-octal, group bits from the binary point in threes; for binary-to-hexadecimal, group in fours. Pad only on the left with zeroes when needed.
+\item 10110110\textsubscript{2} = 010 110 110\textsubscript{2} = 266\textsubscript{8}, and 1011 0110\textsubscript{2} = B6\textsubscript{16}. The complete table is: 10110110\textsubscript{2} = 266\textsubscript{8} = 182\textsubscript{10} = B6\textsubscript{16}; 347\textsubscript{8} = 11100111\textsubscript{2} = 231\textsubscript{10} = E7\textsubscript{16}; 156\textsubscript{10} = 10011100\textsubscript{2} = 234\textsubscript{8} = 9C\textsubscript{16}; 2D7\textsubscript{16} = 0010 1101 0111\textsubscript{2} = 1327\textsubscript{8} = 727\textsubscript{10}; 110101011001\textsubscript{2} = 6531\textsubscript{8} = D59\textsubscript{16} = 3417\textsubscript{10}.
+\item The groups work because 8 = 2\textsuperscript{3} and 16 = 2\textsuperscript{4}: each octal digit encodes exactly three bits, and each hexadecimal digit exactly four. Check by expanding any one row back into powers of its base.
+\end{enumerate}
+\end{workedbox}
+
+\end{keepsection}
+\begin{keepsection}\subsection{Exercise 2.1: Natural numbers}
+
+\begin{workedbox}{2.1.2 Range of an unsigned representation \ensuremath{\cdot} worked solution}
+\Needspace{7\baselineskip}
+\begin{enumerate}
+\item An n-bit unsigned pattern has place values 2\textsuperscript{0} through 2\textsuperscript{n\ensuremath{-}1}. Its minimum is all zeroes; its maximum is their sum.
+\item The ranges are 0–255, 0–65,535, and 0–4,294,967,295. In general: 0 \ensuremath{\leq} x \ensuremath{\leq} 2\textsuperscript{n}\ensuremath{-}1. For 0 through 1000, 2\textsuperscript{9}\ensuremath{-}1=511 is too small, while 2\textsuperscript{10}\ensuremath{-}1=1023 is enough, so 10 bits are required.
+\item The count of distinct patterns is 2\textsuperscript{n}. Verify minimality by showing 2\textsuperscript{9} \ensuremath{<} 1001 \ensuremath{\leq} 2\textsuperscript{10}.
+\end{enumerate}
+\end{workedbox}
+
+\end{keepsection}
+\begin{keepsection}\subsection{Exercise 2.1: Natural numbers}
+
+\begin{workedbox}{2.1.3 Representation and storage \ensuremath{\cdot} worked solution}
+\Needspace{9\baselineskip}
+\begin{enumerate}
+\item An unsigned byte stores 0 through 255. Convert each representation to its value, then compare with that range.
+\item 11111111\textsubscript{2}=255, 10000000\textsubscript{2}=128, FF\textsubscript{16}=255, and 256\textsubscript{10}=256. The first and third denote the same value and both fit; 128 fits; 256 does not.
+\item A numeral's value is the weighted sum of its digits in its base. Base-2 11111111 and base-16 FF are different spellings but both sum to 255. A byte stores the value's bit pattern, not the textual spelling.
+\end{enumerate}
+\end{workedbox}
+
+\end{keepsection}
+\begin{keepsection}\subsection{Exercise 2.1: Natural numbers}
+
+\begin{workedbox}{2.1.4 Arithmetic \ensuremath{\cdot} worked solution}
+\Needspace{9\baselineskip}
+\begin{enumerate}
+\item Keep the radix fixed during each operation, align place values, and perform carries or borrows in that radix.
+\item 10110110\textsubscript{2} + 00101101\textsubscript{2} = 11100011\textsubscript{2} (227), which fits. 11001010\textsubscript{2} \ensuremath{-} 00110111\textsubscript{2} = 10010011\textsubscript{2} (147), which fits. 00101101\textsubscript{2} \ensuremath{\times} 00000100\textsubscript{2} = 10110100\textsubscript{2} (180), which fits. A7\textsubscript{16} + 3C\textsubscript{16} = E3\textsubscript{16} (227), which fits.
+\item All four values are at most FF\textsubscript{16}=255. The subtraction is nonnegative; the multiplication by 4 is a two-bit left shift, which provides a quick check.
+\end{enumerate}
+\end{workedbox}
+
+\end{keepsection}
+\begin{keepsection}\subsection{Exercise 2.1: Natural numbers}
+
+\begin{workedbox}{2.1.5 Overflow \ensuremath{\cdot} worked solution}
+\Needspace{10\baselineskip}
+\begin{enumerate}
+\item An 8-bit unsigned value stores the sum only when it is at most 255. For modular storage, retain the low eight bits, equivalently take the remainder modulo 256.
+\item 200+55=255: no overflow, stored 255. 200+56=256: overflow, stored 0. 250+13=263: overflow, stored 7. 128+128=256: overflow, stored 0. The condition is a+b\ensuremath{>}255. For the NumPy expression, the expected 8-bit result is 7 because 263 mod 256=7; this is fixed-width unsigned arithmetic; the NumPy 2.5.4 run also emits a RuntimeWarning for scalar overflow.
+\item Compare each stored value with its mathematical sum modulo 256. The boundary case 200+55 is exactly 255, so it does not overflow.
+\end{enumerate}
+\end{workedbox}
+
+\end{keepsection}
+\begin{keepsection}\subsection{Exercise 2.1: Natural numbers}
+
+\begin{workedbox}{2.1.6 Working with an unknown radix \ensuremath{\cdot} worked solution}
+\Needspace{6\baselineskip}
+\begin{enumerate}
+\item Expand by place value: 243\textsubscript{r} = 2r\textsuperscript{2}+4r+3. A radix must be an integer larger than every digit.
+\item Solve 2r\textsuperscript{2}+4r+3=99, giving r\textsuperscript{2}+2r\ensuremath{-}48=0=(r+8)(r\ensuremath{-}6). The positive radix is r=6. In base six, 354\textsubscript{6} is valid because each digit is below 6; 358\textsubscript{6} is invalid because digit 8 is not allowed.
+\item Substitute r=6: 2\ensuremath{\cdot}36+4\ensuremath{\cdot}6+3=99. Reject \ensuremath{-}8 because a radix is positive.
+\end{enumerate}
+\end{workedbox}
+
+\end{keepsection}
+\begin{keepsection}\subsection{Exercise 2.2: Floating-point numbers}
+
+\begin{workedbox}{2.2.1 Binary fractions \ensuremath{\cdot} worked solution}
+\Needspace{8\baselineskip}
+\begin{enumerate}
+\item After the binary point, places have weights 2\textsuperscript{\ensuremath{-}}\textsuperscript{1}, 2\textsuperscript{\ensuremath{-}}\textsuperscript{2}, and so on. To convert a binary fraction, add the place values of its 1 bits.
+\item 0.1011\textsubscript{2}=1/2+1/8+1/16=0.6875\textsubscript{10}. 10.011\textsubscript{2}=2+1/4+1/8=2.375\textsubscript{10}. For the reverse direction, repeatedly double the fractional part: 0.625\ensuremath{\times}2=1.25 gives bit 1 and remainder .25; .25\ensuremath{\times}2=.5 gives 0; .5\ensuremath{\times}2=1 gives 1. Thus 0.625\textsubscript{10}=0.101\textsubscript{2}. Similarly 5.375\textsubscript{10}=101.011\textsubscript{2}.
+\item Convert back: 0.101\textsubscript{2}=1/2+1/8=0.625, and 101.011\textsubscript{2}=4+1+1/4+1/8=5.375.
+\end{enumerate}
+\end{workedbox}
+
+\end{keepsection}
+\begin{keepsection}\subsection{Exercise 2.2: Floating-point numbers}
+
+\begin{workedbox}{2.2.2 Finite and repeating representations \ensuremath{\cdot} worked solution}
+\Needspace{9\baselineskip}
+\begin{enumerate}
+\item Repeatedly multiply the fractional remainder by 2; each product's integer part is the next bit.
+\item For 1/10: remainders produce 0.0001100110011…\textsubscript{2} = 0.0(0011)\textsubscript{2}, with the block 0011 repeating. Reduce the candidates: 1/2, 3/8, 1/10, 5/16, 7/20. The finite ones are 1/2, 3/8, and 5/16; 1/10 and 7/20 repeat.
+\item A reduced fraction p/q has a finite binary expansion exactly when q is a power of 2. Here 10=2\ensuremath{\cdot}5 and 20=4\ensuremath{\cdot}5 retain a factor 5 after reduction, so those expansions cannot terminate.
+\end{enumerate}
+\end{workedbox}
+
+\end{keepsection}
+\begin{keepsection}\subsection{Exercise 2.3: Signed and unsigned integers}
+
+\begin{workedbox}{2.3.1 Two’s complement \ensuremath{\cdot} worked solution}
+\Needspace{8\baselineskip}
+\begin{enumerate}
+\item For a nonnegative value, write its ordinary binary form padded to eight bits. For a negative value, invert the bits of its magnitude and add one.
+\item 01111111\textsubscript{2}=127; 11111111\textsubscript{2}=\ensuremath{-}1; 10000000\textsubscript{2}=\ensuremath{-}128. Conversely, \ensuremath{-}8 is 11111000\textsubscript{2}, and \ensuremath{-}37 is 11011011\textsubscript{2}.
+\item Check negative encodings by interpreting the most significant bit as weight \ensuremath{-}128 and the remaining bits as positive powers: 11111000\textsubscript{2}=\ensuremath{-}128+120=\ensuremath{-}8; 11011011\textsubscript{2}=\ensuremath{-}128+64+16+8+2+1=\ensuremath{-}37.
+\end{enumerate}
+\end{workedbox}
+
+\end{keepsection}
+\begin{keepsection}\subsection{Exercise 2.3: Signed and unsigned integers}
+
+\begin{workedbox}{2.3.2 Range and interpretation \ensuremath{\cdot} worked solution}
+\Needspace{9\baselineskip}
+\begin{enumerate}
+\item In n-bit two’s complement, the leading bit has weight \ensuremath{-}2\textsuperscript{n\ensuremath{-}1}; the other bits sum from 0 to 2\textsuperscript{n\ensuremath{-}1}\ensuremath{-}1.
+\item The 8-bit range is \ensuremath{-}128 through 127. Generally it is \ensuremath{-}2\textsuperscript{n\ensuremath{-}1} through 2\textsuperscript{n\ensuremath{-}1}\ensuremath{-}1. There are 2\textsuperscript{n\ensuremath{-}1} negative patterns but only 2\textsuperscript{n\ensuremath{-}1}\ensuremath{-}1 positive patterns because zero uses one of the nonnegative patterns. 11110110\textsubscript{2} is 246 unsigned and \ensuremath{-}10 signed (\ensuremath{-}128+64+32+16+4+2).
+\item The same stored bits have no inherent signedness. The surrounding type or format decides whether the leading bit has weight +128 or \ensuremath{-}128.
+\end{enumerate}
+\end{workedbox}
+
+\end{keepsection}
+\begin{keepsection}\subsection{Exercise 2.3: Signed and unsigned integers}
+
+\begin{workedbox}{2.3.3 Signed overflow \ensuremath{\cdot} worked solution}
+\Needspace{8\baselineskip}
+\begin{enumerate}
+\item Add the bit patterns: 01100101\textsubscript{2}+00111110\textsubscript{2}=10100011\textsubscript{2}.
+\item The operands are +101 and +62; the 8-bit result pattern 10100011\textsubscript{2} represents \ensuremath{-}93 (\ensuremath{-}128+32+2+1). The mathematical sum is 163, outside the range \ensuremath{-}128…127, so signed overflow occurs.
+\item Two positive operands produced a negative result, which detects overflow. In general, signed addition overflows when operand signs match and the result sign differs; opposite-sign operands cannot overflow when added.
+\end{enumerate}
+\end{workedbox}
+
+\end{keepsection}
+\begin{keepsection}\subsection{Exercise 2.4: Text representation and interpretation}
+
+\begin{workedbox}{2.4.1 ASCII \ensuremath{\cdot} worked solution}
+\Needspace{8\baselineskip}
+\begin{enumerate}
+\item Treat each ASCII code as a byte. Convert binary to decimal and look up the corresponding standard ASCII character; reverse the process for a given decimal code.
+\item 01000001\textsubscript{2}=65\textsubscript{10}='A'; 01100001\textsubscript{2}=97\textsubscript{10}='a'; 48\textsubscript{10}=00110000\textsubscript{2}='0'. AIBE is 01000001 01001001 01000010 01000101\textsubscript{2}, or 41 49 42 45 in hexadecimal.
+\item Check that uppercase and lowercase letters differ by 32 in ASCII (one bit at this position), and that decimal 48 is the character '0', not the numeric value zero.
+\end{enumerate}
+\end{workedbox}
+
+\end{keepsection}
+\begin{keepsection}\subsection{Exercise 2.4: Text representation and interpretation}
+
+\begin{workedbox}{2.4.2 One bit pattern, different meanings \ensuremath{\cdot} worked solution}
+\Needspace{7\baselineskip}
+\begin{enumerate}
+\item Evaluate the same eight bits under each encoding rule rather than changing the bits.
+\item Unsigned interpretation: 65. Two’s-complement interpretation: 65, because the leading bit is zero. ASCII interpretation: 'A'.
+\item The data’s type or agreed encoding supplies the meaning: for example, unsigned byte, signed 8-bit integer, or ASCII character. Bits alone do not specify their interpretation.
+\end{enumerate}
+\end{workedbox}
+
+\end{keepsection}
+\begin{keepsection}\subsection{Exercise 2.5: Boolean algebra}
+
+\begin{workedbox}{2.5.1 Truth table \ensuremath{\cdot} worked solution}
+\Needspace{8\baselineskip}
+\begin{enumerate}
+\item Evaluate each row independently with 0=false and 1=true. Complement flips a bit; \ensuremath{\cdot} is AND; + is OR. Parentheses make B\ensuremath{\cdot}C happen before the outer OR.
+\item In the row order 000,001,010,011,100,101,110,111, the columns are: A\ensuremath{{}^{\prime}} = 1,1,1,1,0,0,0,0; A\ensuremath{\cdot}B = 0,0,0,0,0,0,1,1; A+B = 0,0,1,1,1,1,1,1; A+(B\ensuremath{\cdot}C) = 0,0,0,1,1,1,1,1.
+\item Spot-check 011: A=0 and B\ensuremath{\cdot}C=1, so the final expression is 1. For all rows with A=1, both OR columns are 1.
+\end{enumerate}
+\end{workedbox}
+
+\end{keepsection}
+\begin{keepsection}\subsection{Exercise 2.5: Boolean algebra}
+
+\begin{workedbox}{2.5.2 Simplification \ensuremath{\cdot} worked solution}
+\Needspace{7\baselineskip}
+\begin{enumerate}
+\item Use complement, identity, distributive, and absorption laws; show the intermediate rewrite so each result can be checked.
+\item A+A\ensuremath{{}^{\prime}}=1 by complement. A\ensuremath{\cdot}A\ensuremath{{}^{\prime}}=0 by complement. A+(A\ensuremath{{}^{\prime}}\ensuremath{\cdot}B)=(A+A\ensuremath{{}^{\prime}})(A+B)=1\ensuremath{\cdot}(A+B)=A+B, by distributivity and identity. (A+B)(A+B\ensuremath{{}^{\prime}})=A+BB\ensuremath{{}^{\prime}}=A+0=A, by distributivity and complement.
+\item Check the last two with A=0 and A=1 separately; their outputs match A+B and A respectively.
+\end{enumerate}
+\end{workedbox}
+
+\end{keepsection}
+\begin{keepsection}\subsection{Exercise 2.5: Boolean algebra}
+
+\begin{workedbox}{2.5.3 Equivalence and construction \ensuremath{\cdot} worked solution}
+\Needspace{9\baselineskip}
+\begin{enumerate}
+\item Expand the product using distributivity, then use idempotence and absorption. For the construction, list the input rows with at least two 1s.
+\item (A+B)(A+C)=A\ensuremath{\cdot}A+A\ensuremath{\cdot}C+A\ensuremath{\cdot}B+B\ensuremath{\cdot}C=A+A\ensuremath{\cdot}C+A\ensuremath{\cdot}B+B\ensuremath{\cdot}C=A+B\ensuremath{\cdot}C. Thus the expressions are equivalent. For row order 000 through 111, both evaluate to 0,0,0,1,1,1,1,1.
+\item The true rows for the “at least two” function are 011, 101, 110, and 111, giving F=A\ensuremath{{}^{\prime}}BC+AB\ensuremath{{}^{\prime}}C+ABC\ensuremath{{}^{\prime}}+ABC. Grouping pairs or using absorption yields F=AB+AC+BC. Check: exactly two 1s makes one pair term true; three 1s makes all three true.
+\end{enumerate}
+\end{workedbox}
+
+\end{keepsection}
+
+\vfill{\small Personal worked solutions based on the APDR Blackboard Exercise 2 sheet, written in my own words; no exercise-sheet prose or figures are reproduced. Not an official FAU publication; check course details against the current materials. Made by \textbf{Thanate Amornjiraporn (Focus)}.}
+
+\end{document}
