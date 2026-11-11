@@ -740,6 +740,10 @@
         var bits = m.split(":");
         txt(svg, x(Number(bits[0])), Y - 12, bits[1], "vz-small vz-acc");
       });
+      // data-dots="-2 0 1": filled points, for a finite set on the line
+      (d.dots || "").split(" ").filter(Boolean).forEach(function (v) {
+        el("circle", { cx: x(Number(v)), cy: Y, r: 5, class: "vz-dot" }, svg);
+      });
       return [280, 66];
     },
     bits: function (svg, d) {
@@ -1186,7 +1190,10 @@
           el("circle", { cx: X(a[0]), cy: Y(a[1]), r: 5.5, class: "vz-bg vz-line" }, svg);
           el("circle", { cx: X(a[0]), cy: Y(a[1]), r: 1.8, class: "vz-dot" }, svg);
         } else if (t === "path") {
-          el("polyline", { points: a[0].split(/\s+/).map(function (p) { var q = p.split(","); return X(q[0]) + "," + Y(q[1]); }).join(" "), class: LINE[a[1] || "ink"] }, svg);
+          // a line style draws the open path; a box style (light, fill) fills the closed region, e.g. a solution set
+          var pts = a[0].split(/\s+/).map(function (p) { var q = p.split(","); return X(q[0]) + "," + Y(q[1]); }).join(" ");
+          if (BOX[a[1]] && !LINE[a[1]]) el("polygon", { points: pts, class: BOX[a[1]], style: "stroke:none" }, svg);
+          else el("polyline", { points: pts, class: LINE[a[1] || "ink"] }, svg);
         } else if (t === "cap") {
           // two plates 12 px long and 7 px apart, across the wire through (x, y)
           var px = X(a[0]), py = Y(a[1]);

@@ -589,7 +589,12 @@ def scene_tikz(spec):
             out.append(r"\fill[FAUblue] %s circle (%.3f);" % (P(X(a[0]), Y(a[1])), 1.8 * VS))
         elif t == "path":
             pts = [q.split(",") for q in a[0].split()]
-            out.append(r"\draw[%s] %s;" % (LINE.get(a[1] if len(a) > 1 else "ink"), " -- ".join(P(X(q[0]), Y(q[1])) for q in pts)))
+            style = a[1] if len(a) > 1 else "ink"
+            if style in BOX and style not in LINE:  # a filled region, as in VIZ.scene
+                fill = BOX[style].split("fill=")[-1]
+                out.append(r"\fill[%s] %s -- cycle;" % (fill, " -- ".join(P(X(q[0]), Y(q[1])) for q in pts)))
+            else:
+                out.append(r"\draw[%s] %s;" % (LINE.get(style), " -- ".join(P(X(q[0]), Y(q[1])) for q in pts)))
         elif t == "cap":
             px, py = X(a[0]), Y(a[1])
             if a[2] == "v":
@@ -691,6 +696,8 @@ def viz_tikz(f):
             if m:
                 v, _, lab = m.partition(":")
                 out.append(T(x(float(v)), Y - 12, lab, r"\footnotesize", "", False, "FAUblue"))
+        for v in (a.get("data-dots") or "").split():  # filled points of a finite set
+            out.append(r"\fill[FAUblue] %s circle (%.3f);" % (P(x(float(v)), Y), 5 * VS))
     elif kind == "bits":
         U, X = 26, 4
         for c in a["data-cells"].split(";"):

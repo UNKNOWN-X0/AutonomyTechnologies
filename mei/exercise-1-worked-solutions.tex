@@ -318,13 +318,17 @@ Try first: write the sets as \textit{A} = (\ensuremath{-}2, 1], \textit{B} = (\e
 \begin{tikzpicture}[line join=round]
 \draw[-{Stealth[length=4pt]},black!80] (0.180,-0.612) -- (4.896,-0.612);
 \draw[black!80] (1.267,-0.522) -- (1.267,-0.702);
+\node[,inner sep=1pt,font=\footnotesize] at (1.267,-1.008) {-2};
 \draw[black!80] (2.102,-0.522) -- (2.102,-0.702);
+\node[,inner sep=1pt,font=\footnotesize] at (2.102,-1.008) {-1};
 \draw[black!80] (2.938,-0.522) -- (2.938,-0.702);
+\node[,inner sep=1pt,font=\footnotesize] at (2.938,-1.008) {0};
 \draw[black!80] (3.773,-0.522) -- (3.773,-0.702);
-\node[text=FAUblue,inner sep=1pt,font=\footnotesize] at (1.267,-0.396) {\ensuremath{-}2};
-\node[text=FAUblue,inner sep=1pt,font=\footnotesize] at (2.938,-0.396) {0};
-\node[text=FAUblue,inner sep=1pt,font=\footnotesize] at (3.773,-0.396) {1};
-\end{tikzpicture}\par\smallskip{\small\raggedright \textbf{\textit{C} = \{\ensuremath{-}2, 0, 1\}.} The red points mark the three roots of \textit{x}(\textit{x} + 2)(\textit{x} \ensuremath{-} 1) = 0.\par}\end{minipage}
+\node[,inner sep=1pt,font=\footnotesize] at (3.773,-1.008) {1};
+\fill[FAUblue] (1.267,-0.612) circle (0.090);
+\fill[FAUblue] (2.938,-0.612) circle (0.090);
+\fill[FAUblue] (3.773,-0.612) circle (0.090);
+\end{tikzpicture}\par\smallskip{\small\raggedright \textbf{\textit{C} = \{\ensuremath{-}2, 0, 1\}.} The three filled points are the roots of \textit{x}(\textit{x} + 2)(\textit{x} \ensuremath{-} 1) = 0.\par}\end{minipage}
 \end{center}
 
 \nopagebreak[4]{\small\itshape Answers: see “Self-Study 1.5: Sets” under Answers at the end.}
@@ -423,7 +427,7 @@ Let \textit{A}, \textit{B} and \textit{C} mean that Anton, Bert and Christoph, r
 
 \begin{equation*}(\neg {A}\, \lor \, \neg {C})\, \Rightarrow \, {B}\end{equation*}
 \item Suppose \textit{C} were true. The first clue would make \textit{A} true. Then \textit{B} \ensuremath{\lor} \textit{C} is true, so the second clue makes \ensuremath{\neg}\textit{A} true. That contradicts \textit{A}; hence \textit{C} is false.
-\item Because \ensuremath{\neg}\textit{C} is true, the antecedent \textit{A} \ensuremath{\lor} \ensuremath{\neg}\textit{C} in the third clue is true. Therefore \textit{B} is true: Bert is guilty.
+\item Because \ensuremath{\neg}\textit{C} is true, the antecedent \ensuremath{\neg}\textit{A} \ensuremath{\lor} \ensuremath{\neg}\textit{C} in the third clue is true. Therefore \textit{B} is true: Bert is guilty.
 \item Now \textit{B} \ensuremath{\lor} \textit{C} is true, so the second clue gives \ensuremath{\neg}\textit{A}. Anton is innocent, and we already found Christoph innocent.
 \item \textbf{Conclusion:} \textit{B} is true while \textit{A} and \textit{C} are false. \textbf{Bert committed the crime.} Substitution checks all three clues: true, true, and true.
 \end{enumerate}
@@ -484,12 +488,12 @@ For iv), first combine the two differences: \textit{A} \textbackslash{} \textit{
 The Cartesian product asks for ordered pairs whose first entry is in the first factor and second entry is in the second:
 
 \begin{equation*}{A}\, \times \, {B}\, =\, \{({a},\, {b})\, :\, {a}\, \in \, {A},\, {b}\, \in \, {B}\}\end{equation*}
-\item Test the two elements of \textit{C} separately. (\textit{2}, \textit{3}) passes: 2 is even and 3 is odd. (\textit{3}, \textit{4}) fails: 3 is not even and 4 is not odd. Since one element fails, \textbf{\textit{C} is not a subset of \textit{A} \ensuremath{\times} \textit{B}.}
+\item Test the two elements of \textit{C} separately. (2, 3) passes: 2 is even and 3 is odd. (3, 4) fails: 3 is not even and 4 is not odd. Since one element fails, \textbf{\textit{C} is not a subset of \textit{A} \ensuremath{\times} \textit{B}.}
 \item \Needspace{5\baselineskip}
 The power set contains every subset of \textit{C}: the empty set, each one-element subset, and \textit{C} itself.
 
 \Needspace{4\baselineskip}
-\begin{equation*}\mathcal{P}({C})\, =\, \{\emptyset ,\, \{({2},\, {3})\},\, \{({3},\, {4})\},\, \{({2},\, {3}),\, ({3},\, {4})\}\}\end{equation*}
+\begin{equation*}\mathcal{P}({C})\, =\, \{\emptyset ,\, \{(2,\, 3)\},\, \{(3,\, 4)\},\, \{(2,\, 3),\, (3,\, 4)\}\}\end{equation*}
 
 There are 2² = 4 subsets, matching the two elements of \textit{C}.
 \end{enumerate}
@@ -693,7 +697,7 @@ The outer implication is therefore true \ensuremath{\Rightarrow} false, which is
 \item \textit{A} \ensuremath{\cap} \textit{B} \ensuremath{\cap} \textit{C} asks which listed roots lie in the overlap (\ensuremath{-}1, 1). Only 0 does, so the answer is \textbf{\{0\}.}
 \item \textit{A} \ensuremath{\cap} (\textit{B} \ensuremath{\cup} \textit{C}) starts with \textit{B} \ensuremath{\cap} \textit{A} = (\ensuremath{-}1, 1). Of the points in \textit{C}, 0 is already there, 1 belongs to \textit{A}, and \ensuremath{-}2 does not. Thus the union adds only 1: \textbf{(\ensuremath{-}1, 1].}
 \item Because \textit{B} \ensuremath{\subset} \textit{A}, \textit{A} \ensuremath{\cup} \textit{B} = \textit{A}. Everything in \ensuremath{\mathbb{R}} outside (\ensuremath{-}2, 1] is \textbf{(\ensuremath{-}\ensuremath{\infty}, \ensuremath{-}2] \ensuremath{\cup} (1, \ensuremath{\infty}).} The point \ensuremath{-}2 is included in the complement because it is excluded from \textit{A}; 1 is not.
-\item First remove \textit{B} from \textit{A}: \textit{A} \textbackslash{}\textbackslash{} \textit{B} = (\ensuremath{-}2, \ensuremath{-}1] \ensuremath{\cup} \{1\}. Then remove \textit{C}; its point 1 is removed, while \ensuremath{-}2 was not in the interval to begin with. The result is \textbf{(\ensuremath{-}2, \ensuremath{-}1].}
+\item First remove \textit{B} from \textit{A}: \textit{A} \textbackslash{} \textit{B} = (\ensuremath{-}2, \ensuremath{-}1] \ensuremath{\cup} \{1\}. Then remove \textit{C}; its point 1 is removed, while \ensuremath{-}2 was not in the interval to begin with. The result is \textbf{(\ensuremath{-}2, \ensuremath{-}1].}
 \item \textbf{Endpoint check:} \ensuremath{-}2 never belongs to \textit{A}; \ensuremath{-}1 belongs to \textit{A} but not \textit{B}; 1 belongs to \textit{A} and \textit{C} but not \textit{B}. These three points catch the most likely endpoint mistakes.
 \end{enumerate}
 \end{workedbox}
