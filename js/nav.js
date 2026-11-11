@@ -223,18 +223,20 @@
   // Without the hub (opened as a file, offline) nothing is added.
   var here = location.pathname.split("/").slice(-2).join("/"),
     root = new URL("../", location.href),
-    KEY = "nav-chapters-2"; // v2 added exercises; a stale v1 cache is simply ignored
+    KEY = "nav-chapters-3"; // v3 added subject names; a stale older cache is simply ignored
   function parse(html) {
     var doc = new DOMParser().parseFromString(html, "text/html"),
       out = [];
     doc.querySelectorAll("li.subject").forEach(function (sub) {
-      var subCode = ((sub.querySelector(".code") || {}).textContent || "").trim();
+      var subCode = ((sub.querySelector(".code") || {}).textContent || "").trim(),
+        subName = ((sub.querySelector(".about h3") || {}).textContent || "").trim();
       sub.querySelectorAll("li.chapter .go").forEach(function (go) {
         var li = go.closest("li.chapter"),
           links = go.querySelectorAll("a");
         out.push({
           kind: "chapter",
           code: li.dataset.code || subCode,
+          name: subName,
           no: li.querySelector(".no").textContent.trim(),
           title: li.querySelector(".title").textContent.trim(),
           guide: links[0] && links[0].getAttribute("href"),
@@ -245,6 +247,7 @@
         out.push({
           kind: (a.closest("li").dataset.tab || "Exercise").toLowerCase(),
           code: subCode,
+          name: subName,
           no: a.dataset.no || String(i + 1),
           title: a.textContent.trim(),
           guide: a.getAttribute("href"),
@@ -271,41 +274,115 @@
     function label(c) {
       return c.kind === "chapter" ? "Chapter " + c.no + ": " + c.title : c.title;
     }
-    function build() {
+    // The list: the subject being read first and open, the others one row each; inside a subject one fold per kind
+    // (lectures, each kind of exercise, tutorials, appendix), with only the fold holding this page open. Whether the
+    // list and each fold is open is remembered in localStorage (nav-folds); this page's subject and fold always open.
+    var FOLDS = "nav-folds",
+      saved = {};
+    try {
+      saved = JSON.parse(localStorage.getItem(FOLDS)) || {};
+    } catch (e) {}
+    function remember(key, open) {
+      saved[key] = open;
+      try {
+        localStorage.setItem(FOLDS, JSON.stringify(saved));
+      } catch (e) {}
+    }
+    function fold(cls, key, open, head) {
       var d = document.createElement("details"),
-        sum = document.createElement("summary"),
-        ul = document.createElement("ul");
-      d.className = "chapter-fold";
-      sum.textContent = "Chapters";
-      d.appendChild(sum);
-      var group = null;
-      chs.forEach(function (c, i) {
-        var g = c.code + (c.kind === "chapter" ? "" : " " + c.kind + "s");
-        if (g !== group) {
-          group = g;
-          var h = document.createElement("li");
-          h.className = "fold-code";
-          h.textContent = c.kind === "chapter" ? c.code : c.code + " · " + plural(c.kind.charAt(0).toUpperCase() + c.kind.slice(1));
-          ul.appendChild(h);
-        }
-        var li = document.createElement("li"),
-          a = document.createElement("a");
-        a.href = href(c);
-        a.textContent = c.kind === "chapter" ? c.no + " " + c.title : c.title.replace(/:.*/, "");
-        if (i === cur) a.setAttribute("aria-current", "page");
-        li.appendChild(a);
-        ul.appendChild(li);
+        s = document.createElement("summary");
+      d.className = cls;
+      if (open) d.open = true;
+      if (typeof head === "string") s.textContent = head;
+      else head.forEach(function (n) { s.appendChild(n); });
+      d.appendChild(s);
+      // opening it here fires one toggle of its own; only the reader's toggles are remembered
+      var initial = open;
+      d.addEventListener("toggle", function () {
+        var own = initial && d.open;
+        initial = false;
+        if (!own) remember(key, d.open);
+        if (d.open) reveal(d);
       });
-      d.appendChild(ul);
       return d;
     }
+    function span(cls, text) {
+      var e = document.createElement("span");
+      e.className = cls;
+      e.textContent = text;
+      return e;
+    }
+    // Scroll the rail or sheet (never the page) so this page's link is in view, once its fold is open.
+    function reveal(d) {
+      var a = d.querySelector("a[aria-current]");
+      if (!a || !a.offsetParent) return;
+      for (var s = a.parentElement; s && s !== document.body; s = s.parentElement) {
+        var oy = getComputedStyle(s).overflowY;
+        if ((oy === "auto" || oy === "scroll") && s.scrollHeight > s.clientHeight + 1) {
+          var r = a.getBoundingClientRect(), b = s.getBoundingClientRect();
+          if (r.top < b.top || r.bottom > b.bottom) s.scrollTop += r.top - b.top - b.height / 3;
+          return;
+        }
+      }
+    }
+    function build() {
+      var subjects = [],
+        bySub = {};
+      chs.forEach(function (c, i) {
+        if (!bySub[c.code]) subjects.push((bySub[c.code] = { code: c.code, name: c.name, kinds: [], byKind: {} }));
+        var S = bySub[c.code];
+        if (!S.byKind[c.kind]) S.kinds.push((S.byKind[c.kind] = []));
+        S.byKind[c.kind].push(i);
+      });
+      // this page's subject first, the rest in hub order
+      subjects.sort(function (x, y) { return (y.code === me.code) - (x.code === me.code); });
+      var top = fold("chapter-fold", "list", saved.list === true, "Chapters"),
+        ul = document.createElement("ul");
+      ul.className = "fold-subjects";
+      subjects.forEach(function (S) {
+        var mine = S.code === me.code,
+          li = document.createElement("li"),
+          code = span("fold-code", S.code);
+        li.className = "fold-subject";
+        var sd = fold("fold-sub", "s:" + S.code, mine || saved["s:" + S.code] === true, S.name ? [code, span("fold-name", S.name)] : [code]);
+        S.kinds.forEach(function (list) {
+          var kind = chs[list[0]].kind,
+            key = "k:" + S.code + ":" + kind,
+            here = kind === me.kind && mine,
+            word = kind === "chapter" ? "Lectures" : plural(kind.charAt(0).toUpperCase() + kind.slice(1)),
+            gd = fold("fold-kind", key, here || saved[key] === true, [span("fold-kind-name", word), span("fold-count", String(list.length))]),
+            gl = document.createElement("ul");
+          list.forEach(function (i) {
+            var c = chs[i],
+              item = document.createElement("li"),
+              a = document.createElement("a");
+            a.href = href(c);
+            if (c.kind === "chapter") {
+              a.appendChild(span("fold-no", c.no));
+              a.appendChild(span("fold-title", c.title));
+            } else a.appendChild(span("fold-title", c.title.replace(/:.*/, "")));
+            if (i === cur) a.setAttribute("aria-current", "page");
+            item.appendChild(a);
+            gl.appendChild(item);
+          });
+          gd.appendChild(gl);
+          sd.appendChild(gd);
+        });
+        li.appendChild(sd);
+        ul.appendChild(li);
+      });
+      top.appendChild(ul);
+      return top;
+    }
+    var me = chs[cur];
     var anchor = toc.querySelector(".chapter-switch") || toc.querySelector("a.home");
     // settings.js may already have wrapped "All semesters" in a row with the gear; the list goes after that row.
     if (anchor) anchor = anchor.closest(".home-row") || anchor;
     if (anchor && !toc.querySelector(".chapter-fold")) anchor.parentNode.insertBefore(build(), anchor.nextSibling);
     if (sheet && !sheet.querySelector(".chapter-fold")) sheet.insertBefore(build(), sheet.firstChild);
+    var railList = toc.querySelector(".chapter-fold");
+    if (railList && railList.open) reveal(railList);
     // Pager: neighbours of the same kind within the same subject.
-    var me = chs[cur];
     function same(c) {
       return c && c.code === me.code && c.kind === me.kind ? c : null;
     }

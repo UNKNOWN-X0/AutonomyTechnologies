@@ -161,7 +161,9 @@ button.toc-fold {
   cursor: pointer;
 }
 button.toc-fold::after,
-.chapter-fold > summary::after {
+.chapter-fold > summary::after,
+.fold-sub > summary::after,
+.fold-kind > summary::after {
   content: "";
   flex: none;
   width: 7px;
@@ -172,7 +174,9 @@ button.toc-fold::after,
   transform: rotate(45deg);
 }
 button.toc-fold[aria-expanded="true"]::after,
-.chapter-fold[open] > summary::after {
+.chapter-fold[open] > summary::after,
+.fold-sub[open] > summary::after,
+.fold-kind[open] > summary::after {
   margin-top: 3px;
   transform: rotate(225deg);
 }
@@ -199,12 +203,82 @@ button.toc-fold[aria-expanded="true"]::after,
   margin: 0 0 8px;
   padding: 0;
 }
-.chapter-fold li.fold-code {
-  padding: 8px 10px 2px;
+/* Inside the list: one fold per subject (this page's first), and in it one fold per kind with a count (js/nav.js). */
+.fold-sub > summary,
+.fold-kind > summary {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+  list-style: none;
+}
+.fold-sub > summary::-webkit-details-marker,
+.fold-kind > summary::-webkit-details-marker {
+  display: none;
+}
+.fold-sub > summary::after,
+.fold-kind > summary::after {
+  margin-left: auto;
+}
+.fold-sub > summary {
+  min-height: 40px;
+  padding: 0 4px 0 10px;
   color: var(--ink);
+}
+.fold-sub > summary:hover,
+.fold-kind > summary:hover {
+  background: var(--paper);
+}
+.fold-code {
+  flex: none;
   font: 800 0.75rem/1.2 var(--f-display);
   letter-spacing: 0.06em;
   text-transform: uppercase;
+}
+.fold-name {
+  min-width: 0;
+  overflow: hidden;
+  color: var(--muted);
+  font-size: 0.85rem;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+.fold-kind > summary {
+  min-height: 36px;
+  padding: 0 4px 0 22px;
+  color: var(--ink);
+  font: 700 0.85rem/1.2 var(--f-display);
+}
+.fold-count {
+  color: var(--muted);
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+}
+.fold-subjects,
+.fold-kind > ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.fold-kind > ul {
+  margin-bottom: 6px;
+}
+nav.toc .fold-kind li:last-child,
+.toc-sheet .fold-kind li:last-child,
+nav.toc .fold-subjects > li:last-child,
+.toc-sheet .fold-subjects > li:last-child {
+  border-bottom: 0;
+}
+.chapter-fold .fold-kind li a {
+  display: flex;
+  gap: 10px;
+  padding: 7px 10px 7px 22px;
+}
+/* chapter numbers in their own column, so "12a" reads as a label and the titles line up */
+.fold-no {
+  flex: none;
+  min-width: 2.2em;
+  font-variant-numeric: tabular-nums;
 }
 .chapter-fold li a {
   display: block;
@@ -1073,7 +1147,11 @@ details.answers {
     min-height: 44px;
     align-items: center;
     display: flex;
-    padding: 0 8px;
+    padding: 0 8px 0 22px;
+  }
+  .fold-sub > summary,
+  .fold-kind > summary {
+    min-height: 44px;
   }
   .toc-sheet li.toc-group {
     padding: 14px 16px 4px;
