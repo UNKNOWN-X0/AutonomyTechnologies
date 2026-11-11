@@ -32,6 +32,7 @@ Chapter numbers may include a lowercase letter suffix (for example, `12a` or `34
 ## Page
 
 - **Shell:** the guide's: same header sign, contents rail, Guide | Lab switcher (Lab current), and source note.
+- **Notation:** the lab's own text follows the guide standard's [Signs](GUIDE-STANDARD.md#signs): every quotient a stacked fraction (`span.frac`), “/” only inside exponents and limits, in units and between words. A lab script that writes a quotient into the page's HTML builds the same `span.frac`; text set with `textContent` (a readout, an aria label) keeps “/”. `python3 -I tools/stack-fractions.py <lab>.html` converts the static text.
 - **Body:** `<body class="s-<subject>-<n> lab" data-key="<guide key>" data-guide="<guide file>" data-skills="<guide checklist count>">`. Sharing the key makes lab progress land in the guide's store.
 - **Scripts, in this order:** `../js/<subject>/ch<N>-physics.js`, `../js/lab.js`, `../js/<subject>/ch<N>-lab.js`, `../js/tooltip.js`.
 - **Blocks, in this order:** standfirst; "How the lab works" (`#how`); one section per experiment; "Your results" (`#lab-results`); source note. A `<noscript>` note links to the guide.

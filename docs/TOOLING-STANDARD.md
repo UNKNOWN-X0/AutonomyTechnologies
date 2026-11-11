@@ -8,6 +8,7 @@ This standard describes the authoring and verification tools for the AutonomyTec
 |---|---|---|
 | `tools/guide-to-tex.py` | Convert a course page to printable LaTeX | Reads one HTML source and writes one `.tex` file at the explicit destination. The HTML remains authoritative. |
 | `latexmk -xelatex` | Build the printable copy | Reads the generated `.tex` and writes the `.pdf`; run from the subject folder so relative assets resolve. |
+| `tools/stack-fractions.py` | Turn quotients written with “/” into stacked fractions | Rewrites the named pages in place (`--list` only shows the changes) and lists function quotients such as sin x/cos x to convert by hand; regenerate the `.tex` and `.pdf` afterwards. |
 | `tools/check-guide.py` | Validate a guide, lab, appendix, exercise, or tutorial page against the applicable standard | Reads the page and linked project files; prints errors and warnings. Exit 0 means no errors; warnings still need review. |
 | `node --test` | Check pure subject calculations, lab challenge data, and generators | Reads the `tests/` suite and shared JavaScript modules; makes no site build output. |
 | BrowserTests smoke suite | Check static routes and shared browser behaviors | Lives in the workspace `BrowserTests/`; register every new student-facing page in `staticPages`. |

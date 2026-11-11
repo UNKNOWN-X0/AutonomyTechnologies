@@ -232,27 +232,27 @@ The sets grow by solving equations that smaller number systems cannot always sol
 \filldraw[draw=black!50,fill=FAUblue!25] (1.692,-1.296) rectangle (3.204,-2.088);
 \node[anchor=west,inner sep=1pt,font=\small] at (1.836,-1.548) {\ensuremath{\mathbb{N}}};
 \node[anchor=east,text=FAUblue,inner sep=1pt,font=\footnotesize] at (3.060,-1.548) {2};
-\end{tikzpicture}\par\smallskip{\small\raggedright \textbf{Each number system sits inside the next}, with an example that first appears at each level: 2 \ensuremath{\in} \ensuremath{\mathbb{N}}, \ensuremath{-}3 \ensuremath{\in} \ensuremath{\mathbb{Z}}, 1/2 \ensuremath{\in} \ensuremath{\mathbb{Q}}, \ensuremath{\sqrt{2}} \ensuremath{\in} \ensuremath{\mathbb{R}}.\par}\end{minipage}
+\end{tikzpicture}\par\smallskip{\small\raggedright \textbf{Each number system sits inside the next}, with an example that first appears at each level: 2 \ensuremath{\in} \ensuremath{\mathbb{N}}, \ensuremath{-}3 \ensuremath{\in} \ensuremath{\mathbb{Z}}, {\small\ensuremath{\dfrac{1}{2}}} \ensuremath{\in} \ensuremath{\mathbb{Q}}, \ensuremath{\sqrt{2}} \ensuremath{\in} \ensuremath{\mathbb{R}}.\par}\end{minipage}
 \end{center}
 
 \Needspace{10\baselineskip}
 Integers add negatives to \ensuremath{\mathbb{N}}. Rationals add quotients with non-zero integer denominator. The real numbers add limits such as \ensuremath{\sqrt{2}} that cannot be expressed as a rational quotient. For example, \ensuremath{\sqrt{2}} is irrational: if \ensuremath{\sqrt{2}}=p/q in lowest terms, then p\textsuperscript{2}=2q\textsuperscript{2} makes p even; substituting p=2m makes q even too, contradicting lowest terms.
 
 \Needspace{12\baselineskip}
-Binary uses place values that are powers of two. A bit string [a\textsubscript{m}…a\textsubscript{0}]\textsubscript{2} represents $\sum_{\mathrm{k}=0}^{\mathrm{m}} $a\textsubscript{k}2\textsuperscript{k}, where each a\textsubscript{k} is 0 or 1. For a fixed-point example, [10.11]\textsubscript{2}=2+1/2+1/4=2.75. The field \ensuremath{\mathbb{Z}}\textsubscript{2} uses arithmetic modulo 2; ordinary binary integer addition and multiplication instead represent integer arithmetic and do not make the set of finite bit strings a field.
+Binary uses place values that are powers of two. A bit string [a\textsubscript{m}…a\textsubscript{0}]\textsubscript{2} represents $\sum_{\mathrm{k}=0}^{\mathrm{m}} $a\textsubscript{k}2\textsuperscript{k}, where each a\textsubscript{k} is 0 or 1. For a fixed-point example, [10.11]\textsubscript{2}=2+{\small\ensuremath{\dfrac{1}{2}}}+{\small\ensuremath{\dfrac{1}{4}}}=2.75. The field \ensuremath{\mathbb{Z}}\textsubscript{2} uses arithmetic modulo 2; ordinary binary integer addition and multiplication instead represent integer arithmetic and do not make the set of finite bit strings a field.
 
 \begin{workedbox}{Worked example \ensuremath{\cdot} classify and convert}
 \Needspace{7\baselineskip}
 \begin{enumerate}
 \item \ensuremath{\sqrt{49}}=7, so it is natural, integer, rational and real.
-\item \ensuremath{-}7/3 is rational and real, but not an integer.
+\item \ensuremath{-}{\small\ensuremath{\dfrac{7}{3}}} is rational and real, but not an integer.
 \item \ensuremath{\sqrt{2}} is real and irrational, so it is not rational.
 \item [11010]\textsubscript{2}=1\ensuremath{\cdot}2\textsuperscript{4}+1\ensuremath{\cdot}2\textsuperscript{3}+0\ensuremath{\cdot}2\textsuperscript{2}+1\ensuremath{\cdot}2+0=26. Check: 16+8+2=26.
 \end{enumerate}
 \end{workedbox}
 
 \Needspace{7\baselineskip}
-\begin{notebox}\textbf{Trap:} zero is not in \ensuremath{\mathbb{N}} under these notes’ convention. Write \ensuremath{\mathbb{N}}\textsubscript{0} when zero is included. Also, an integer written as a decimal or fraction can still belong to a smaller set, such as 6/3=2\ensuremath{\in}\ensuremath{\mathbb{Z}}.\end{notebox}
+\begin{notebox}\textbf{Trap:} zero is not in \ensuremath{\mathbb{N}} under these notes’ convention. Write \ensuremath{\mathbb{N}}\textsubscript{0} when zero is included. Also, an integer written as a decimal or fraction can still belong to a smaller set, such as {\small\ensuremath{\dfrac{6}{3}}}=2\ensuremath{\in}\ensuremath{\mathbb{Z}}.\end{notebox}
 
 \Needspace{6\baselineskip}
 \begin{notebox}\textbf{Near miss:} \ensuremath{\sqrt{4}} is written with a root sign, but its value is the natural number 2; \ensuremath{\sqrt{2}} has no fraction form at all. Decide which set a number belongs to by its value, not by how it is written.\end{notebox}
@@ -285,7 +285,7 @@ The real-number rules explain why algebraic transformations are legitimate and w
 \end{equationcard}
 
 \Needspace{14\baselineskip}
-The field axioms encode commutativity, associativity, neutral elements, inverses and distributivity. The order axioms make \ensuremath{<} a total, transitive order compatible with addition and multiplication by positive numbers. Together these support the familiar algebra of inequalities. \ensuremath{\mathbb{Z}} is not a field because, for example, 1/3 is not an integer. \ensuremath{\mathbb{Q}} is an ordered field, but it is not complete.
+The field axioms encode commutativity, associativity, neutral elements, inverses and distributivity. The order axioms make \ensuremath{<} a total, transitive order compatible with addition and multiplication by positive numbers. Together these support the familiar algebra of inequalities. \ensuremath{\mathbb{Z}} is not a field because, for example, {\small\ensuremath{\dfrac{1}{3}}} is not an integer. \ensuremath{\mathbb{Q}} is an ordered field, but it is not complete.
 
 \begin{equationcard}{Upper bound and supremum}
 \[ \begin{gathered} {S}\, =\, \text{sup}({M})\, \text{iff}\, (\mathrm{i})\, {x}\, \leq \, {S}\, \text{for}\, \text{every}\, {x}\in {M}\, \text{and}\, (\text{ii})\, {S}\, \leq \, {T}\, \text{for}\, \text{every}\, \text{upper}\, \text{bound}\, {T}\, \text{of}\, {M} \end{gathered} \]
@@ -312,7 +312,7 @@ The field axioms encode commutativity, associativity, neutral elements, inverses
 \end{center}
 
 \Needspace{10\baselineskip}
-For M=\{1, 1/2, 1/3,…\}, sup(M)=1 and inf(M)=0. The maximum is 1 because 1\ensuremath{\in}M; there is no minimum because 0\ensuremath{\notin}M. The completeness axiom says every non-empty real subset bounded above has a supremum in \ensuremath{\mathbb{R}}. It is the property that fills the “gaps” missing in \ensuremath{\mathbb{Q}}.
+For M=\{1, {\small\ensuremath{\dfrac{1}{2}}}, {\small\ensuremath{\dfrac{1}{3}}},…\}, sup(M)=1 and inf(M)=0. The maximum is 1 because 1\ensuremath{\in}M; there is no minimum because 0\ensuremath{\notin}M. The completeness axiom says every non-empty real subset bounded above has a supremum in \ensuremath{\mathbb{R}}. It is the property that fills the “gaps” missing in \ensuremath{\mathbb{Q}}.
 
 \begin{equationcard}{n-th root from completeness}
 \[ \begin{gathered} \text{root}_{{n}}({x})\, =\, \text{sup}\{{r}\in \mathbb{Q}\, :\, {r}\, \geq \, 0\, \text{and}\, {r}^{{n}}\, \leq \, {x}\},\, \text{for}\, {x}\, \geq \, 0 \end{gathered} \]
@@ -320,7 +320,7 @@ For M=\{1, 1/2, 1/3,…\}, sup(M)=1 and inf(M)=0. The maximum is 1 because 1\ens
 \end{equationcard}
 
 \begin{workedbox}{Worked example \ensuremath{\cdot} identify bounds and extrema}
-Let M=\{1\ensuremath{-}1/n : n\ensuremath{\in}\ensuremath{\mathbb{N}}\}. Its first values are 0, 1/2, 2/3, 3/4, … . Every value is below 1, so 1 is an upper bound. Values approach 1, so no smaller number is an upper bound: sup(M)=1. But 1\ensuremath{\notin}M, so M has no maximum. The smallest member is 0, hence inf(M)=min(M)=0.
+Let M=\{1\ensuremath{-}{\small\ensuremath{\dfrac{1}{\mathrm{n}}}} : n\ensuremath{\in}\ensuremath{\mathbb{N}}\}. Its first values are 0, {\small\ensuremath{\dfrac{1}{2}}}, {\small\ensuremath{\dfrac{2}{3}}}, {\small\ensuremath{\dfrac{3}{4}}}, … . Every value is below 1, so 1 is an upper bound. Values approach 1, so no smaller number is an upper bound: sup(M)=1. But 1\ensuremath{\notin}M, so M has no maximum. The smallest member is 0, hence inf(M)=min(M)=0.
 \end{workedbox}
 
 \Needspace{7\baselineskip}
@@ -391,7 +391,7 @@ Absolute value turns signs into distance, while the order axioms let you solve d
 For c\ensuremath{\geq}0, |x\ensuremath{-}a|\ensuremath{\leq}c is equivalent to a\ensuremath{-}c\ensuremath{\leq}x\ensuremath{\leq}a+c. It describes the closed interval of points no more than c from a. For c\ensuremath{>}0, |x\ensuremath{-}a|\ensuremath{<}c gives an open interval. An inequality with a “greater than” sign usually describes the outside of an interval. Splitting at the point where the expression changes sign is a reliable general method.
 
 \begin{workedbox}{Worked example \ensuremath{\cdot} solve a distance inequality}
-Solve |2x\ensuremath{-}1|\ensuremath{\leq}5. By the two-sided form, \ensuremath{-}5\ensuremath{\leq}2x\ensuremath{-}1\ensuremath{\leq}5. Add 1: \ensuremath{-}4\ensuremath{\leq}2x\ensuremath{\leq}6. Divide by 2: \ensuremath{-}2\ensuremath{\leq}x\ensuremath{\leq}3. The centre is 1/2 and the radius is 5/2, consistent with the interval endpoints.
+Solve |2x\ensuremath{-}1|\ensuremath{\leq}5. By the two-sided form, \ensuremath{-}5\ensuremath{\leq}2x\ensuremath{-}1\ensuremath{\leq}5. Add 1: \ensuremath{-}4\ensuremath{\leq}2x\ensuremath{\leq}6. Divide by 2: \ensuremath{-}2\ensuremath{\leq}x\ensuremath{\leq}3. The centre is {\small\ensuremath{\dfrac{1}{2}}} and the radius is {\small\ensuremath{\dfrac{5}{2}}}, consistent with the interval endpoints.
 \end{workedbox}
 
 \Needspace{6\baselineskip}
@@ -428,19 +428,19 @@ Summation and product notation compress repeated operations. Factorials count ar
 \end{equationcard}
 
 \begin{equationcard}{Calculation rules for \ensuremath{\Sigma} and Π}
-\[ \begin{gathered} \text{Split}:\, \sum_{{k}=1}^{{n}} {a}_{{k}}\, =\, {a}_{1}+\sum_{{k}=2}^{{n}} {a}_{{k}} \\ \text{Reverse}:\, \sum_{{k}=1}^{{n}} {a}_{{k}}\, =\, \sum_{{k}=1}^{{n}} {a}_{{n}+1-{k}} \\ \text{Index}\, \text{shift}:\, \sum_{{k}=1}^{{n}} {a}_{{k}}\, =\, \sum_{{l}=2}^{{n}+1} {a}_{{l}-1} \\ \text{Constant}:\, \sum_{{k}={m}}^{{n}} {a}\, =\, ({n}-{m}+1){a} \\ \prod_{{k}={m}}^{{n}} {a}\, =\, {a}^{{n}-{m}+1} \\ \text{Telescoping}:\, \sum_{{k}={m}}^{{n}} ({a}_{{k}}-{a}_{{k}+1})\, =\, {a}_{{m}}-{a}_{{n}+1} \\ \prod_{{k}={m}}^{{n}} {a}_{{k}}/{a}_{{k}+1}\, =\, {a}_{{m}}/{a}_{{n}+1} \end{gathered} \]
+\[ \begin{gathered} \text{Split}:\, \sum_{{k}=1}^{{n}} {a}_{{k}}\, =\, {a}_{1}+\sum_{{k}=2}^{{n}} {a}_{{k}} \\ \text{Reverse}:\, \sum_{{k}=1}^{{n}} {a}_{{k}}\, =\, \sum_{{k}=1}^{{n}} {a}_{{n}+1-{k}} \\ \text{Index}\, \text{shift}:\, \sum_{{k}=1}^{{n}} {a}_{{k}}\, =\, \sum_{{l}=2}^{{n}+1} {a}_{{l}-1} \\ \text{Constant}:\, \sum_{{k}={m}}^{{n}} {a}\, =\, ({n}-{m}+1){a} \\ \prod_{{k}={m}}^{{n}} {a}\, =\, {a}^{{n}-{m}+1} \\ \text{Telescoping}:\, \sum_{{k}={m}}^{{n}} ({a}_{{k}}-{a}_{{k}+1})\, =\, {a}_{{m}}-{a}_{{n}+1} \\ \prod_{{k}={m}}^{{n}} \dfrac{{a}_{{k}}}{{a}_{{k}+1}}\, =\, \dfrac{{a}_{{m}}}{{a}_{{n}+1}} \end{gathered} \]
 {\small Splitting, reversing, separating \ensuremath{\Sigma}(a\textsubscript{k}+b\textsubscript{k}), double sums and index shifts carry over to Π with + replaced by \ensuremath{\cdot}. A constant factor does not: $\prod_{\mathrm{k}=1}^{5} $(2k)=2\textsuperscript{5}$\prod_{\mathrm{k}=1}^{5} $k. Check a telescoping sum with m=n: it is the single term a\textsubscript{n}\ensuremath{-}a\textsubscript{n+1}.}
 \end{equationcard}
 
 \begin{workedbox}{Worked example \ensuremath{\cdot} a telescoping sum}
-Evaluate $\sum_{\mathrm{k}=1}^{\mathrm{n}} $1/(k(k+1)).
+Evaluate $\sum_{\mathrm{k}=1}^{\mathrm{n}} ${\small\ensuremath{\dfrac{1}{\mathrm{k}(\mathrm{k}+1)}}}.
 
 \Needspace{7\baselineskip}
 \begin{enumerate}
-\item Split each term: 1/(k(k+1)) = 1/k \ensuremath{-} 1/(k+1), so with a\textsubscript{k}=1/k it is a\textsubscript{k}\ensuremath{-}a\textsubscript{k+1}.
-\item Write out the sum: (1\ensuremath{-}1/2)+(1/2\ensuremath{-}1/3)+…+(1/n\ensuremath{-}1/(n+1)). Every inner term cancels.
-\item What remains is a\textsubscript{1}\ensuremath{-}a\textsubscript{n+1} = 1\ensuremath{-}1/(n+1) = n/(n+1).
-\item Check: n=1 gives 1/2, and 1/(1\ensuremath{\cdot}2)=1/2. \hfill{\small\color{FAUblue}§2.4}
+\item Split each term: {\small\ensuremath{\dfrac{1}{\mathrm{k}(\mathrm{k}+1)}}} = {\small\ensuremath{\dfrac{1}{\mathrm{k}}}} \ensuremath{-} {\small\ensuremath{\dfrac{1}{\mathrm{k}+1}}}, so with a\textsubscript{k}={\small\ensuremath{\dfrac{1}{\mathrm{k}}}} it is a\textsubscript{k}\ensuremath{-}a\textsubscript{k+1}.
+\item Write out the sum: (1\ensuremath{-}{\small\ensuremath{\dfrac{1}{2}}})+({\small\ensuremath{\dfrac{1}{2}}}\ensuremath{-}{\small\ensuremath{\dfrac{1}{3}}})+…+({\small\ensuremath{\dfrac{1}{\mathrm{n}}}}\ensuremath{-}{\small\ensuremath{\dfrac{1}{\mathrm{n}+1}}}). Every inner term cancels.
+\item What remains is a\textsubscript{1}\ensuremath{-}a\textsubscript{n+1} = 1\ensuremath{-}{\small\ensuremath{\dfrac{1}{\mathrm{n}+1}}} = {\small\ensuremath{\dfrac{\mathrm{n}}{\mathrm{n}+1}}}.
+\item Check: n=1 gives {\small\ensuremath{\dfrac{1}{2}}}, and {\small\ensuremath{\dfrac{1}{1\cdot 2}}}={\small\ensuremath{\dfrac{1}{2}}}. \hfill{\small\color{FAUblue}§2.4}
 \end{enumerate}
 \end{workedbox}
 
@@ -491,7 +491,7 @@ Useful coefficient properties are C(n,0)=C(n,n)=1 and C(n,k)=C(n,n\ensuremath{-}
 \begin{workedbox}{Worked example \ensuremath{\cdot} expand and count}
 Expand (x+2)\textsuperscript{4}. The row of coefficients is 1, 4, 6, 4, 1, so the terms are x\textsuperscript{4}, 4x\textsuperscript{3}\ensuremath{\cdot}2, 6x\textsuperscript{2}\ensuremath{\cdot}2\textsuperscript{2}, 4x\ensuremath{\cdot}2\textsuperscript{3}, and 2\textsuperscript{4}. Thus (x+2)\textsuperscript{4}=x\textsuperscript{4}+8x\textsuperscript{3}+24x\textsuperscript{2}+32x+16. Check the endpoints: the leading term is x\textsuperscript{4}, and the constant is 16.
 
-Separately, the number of 3-person groups from 8 people is C(8,3)=8\ensuremath{\cdot}7\ensuremath{\cdot}6/(3\ensuremath{\cdot}2\ensuremath{\cdot}1)=56; ordering the group members would overcount each group 3! times.
+Separately, the number of 3-person groups from 8 people is C(8,3)=8\ensuremath{\cdot}7\ensuremath{\cdot}{\small\ensuremath{\dfrac{6}{3\cdot 2\cdot 1}}}=56; ordering the group members would overcount each group 3! times.
 \end{workedbox}
 
 \Needspace{7\baselineskip}
@@ -549,7 +549,7 @@ Induction proves infinitely many linked claims using a finite argument: establis
 Write the induction step as a conditional: assume A(n) for an arbitrary allowed n, and use it to prove A(n+1). Do not assume the result you are trying to prove. The base case starts the chain; the implication advances it. For two-step induction, verify two consecutive base cases and advance from n to n+2, which covers both parities. In \textbf{strong induction} (the notes’ “extended induction hypothesis”) you assume A(n\textsubscript{0}), A(n\textsubscript{0}+1), …, A(n) all hold and use any of them to prove A(n+1); this helps when the next case depends on an earlier case rather than only on the one before.
 
 \begin{equationcard}{Sums proved by induction}
-\[ \begin{gathered} \sum_{{k}=1}^{{n}} {k}\, =\, {n}({n}+1)/2 \\ \sum_{{k}=1}^{{n}} {k}^{2}\, =\, {n}({n}+1)(2{n}+1)/6 \\ \sum_{{k}=1}^{{n}} {k}^{3}\, =\, ({n}({n}+1)/2)^{2} \end{gathered} \]
+\[ \begin{gathered} \sum_{{k}=1}^{{n}} {k}\, =\, \dfrac{{n}({n}+1)}{2} \\ \sum_{{k}=1}^{{n}} {k}^{2}\, =\, \dfrac{{n}({n}+1)(2{n}+1)}{6} \\ \sum_{{k}=1}^{{n}} {k}^{3}\, =\, \left(\dfrac{{n}({n}+1)}{2}\right)^{2} \end{gathered} \]
 {\small Each is proved with base case n=1 and the step from n to n+1. Check n=2: 3, 5 and 9.}
 \end{equationcard}
 
@@ -567,13 +567,13 @@ Write the induction step as a conditional: assume A(n) for an arbitrary allowed 
 In the extended step, (1+x)\textsuperscript{n+2}=(1+x)\textsuperscript{2}(1+x)\textsuperscript{n}. The square factor is non-negative. Applying the hypothesis and expanding leaves the extra term x\textsuperscript{2}(2n+1+nx), which is non-negative for x\ensuremath{\geq}\ensuremath{-}2 and n\ensuremath{\geq}1.
 
 \begin{workedbox}{Worked example \ensuremath{\cdot} sum the first n integers}
-Claim: 1+2+…+n=n(n+1)/2 for n\ensuremath{\in}\ensuremath{\mathbb{N}}.
+Claim: 1+2+…+n={\small\ensuremath{\dfrac{\mathrm{n}(\mathrm{n}+1)}{2}}} for n\ensuremath{\in}\ensuremath{\mathbb{N}}.
 
 \Needspace{7\baselineskip}
 \begin{enumerate}
-\item \textbf{Base:} n=1 gives 1=1\ensuremath{\cdot}2/2.
-\item \textbf{Hypothesis:} assume 1+…+n=n(n+1)/2.
-\item \textbf{Step:} 1+…+n+(n+1)=n(n+1)/2+(n+1)=(n+1)(n+2)/2.
+\item \textbf{Base:} n=1 gives 1=1\ensuremath{\cdot}{\small\ensuremath{\dfrac{2}{2}}}.
+\item \textbf{Hypothesis:} assume 1+…+n={\small\ensuremath{\dfrac{\mathrm{n}(\mathrm{n}+1)}{2}}}.
+\item \textbf{Step:} 1+…+n+(n+1)={\small\ensuremath{\dfrac{\mathrm{n}(\mathrm{n}+1)}{2}}}+(n+1)={\small\ensuremath{\dfrac{(\mathrm{n}+1)(\mathrm{n}+2)}{2}}}.
 \item This is the claimed formula with n replaced by n+1, so it holds for all n\ensuremath{\in}\ensuremath{\mathbb{N}}.
 \end{enumerate}
 \end{workedbox}
@@ -625,7 +625,7 @@ Rebuild these on blank paper before opening the answers in the relevant sections
 \item Prove \ensuremath{\sqrt{2}} is irrational by contradiction. \hfill{\small\color{FAUblue}§2.1}
 \item Derive \ensuremath{\sqrt{\mathrm{x}^{2}}}=|x| by splitting x\ensuremath{\geq}0 and x\ensuremath{<}0. \hfill{\small\color{FAUblue}§2.3}
 \item Derive the factorial expression for C(n,k) by counting ordered selections and dividing by k!. \hfill{\small\color{FAUblue}§2.4}
-\item Prove the sum 1+…+n=n(n+1)/2 by induction. \hfill{\small\color{FAUblue}§2.5}
+\item Prove the sum 1+…+n={\small\ensuremath{\dfrac{\mathrm{n}(\mathrm{n}+1)}{2}}} by induction. \hfill{\small\color{FAUblue}§2.5}
 \item Use the induction hypothesis and Pascal’s identity to prove the binomial theorem for n+1 from n. \hfill{\small\color{FAUblue}§2.4–2.5}
 \end{enumerate}
 \end{keepsection}
@@ -660,11 +660,11 @@ Answer aloud in complete sentences. Then compare with the model answer. (Retriev
 Try all 25 problems before opening the answer key. They are interleaved, so identify the method before calculating. (Desirable difficulty and varied retrieval [MIS, AMN].)
 
 \begin{enumerate}
-\item Classify \ensuremath{-}5/2 as natural, integer, rational, irrational or real; list every applicable category.
+\item Classify \ensuremath{-}{\small\ensuremath{\dfrac{5}{2}}} as natural, integer, rational, irrational or real; list every applicable category.
 \item Solve |x\ensuremath{-}4|\ensuremath{<}3 and write the answer as an interval.
-\item Prove by induction that $\sum_{\mathrm{k}=1}^{\mathrm{n}} $k\textsuperscript{2}=n(n+1)(2n+1)/6 for n\ensuremath{\in}\ensuremath{\mathbb{N}}.
+\item Prove by induction that $\sum_{\mathrm{k}=1}^{\mathrm{n}} $k\textsuperscript{2}={\small\ensuremath{\dfrac{\mathrm{n}(\mathrm{n}+1)(2\mathrm{n}+1)}{6}}} for n\ensuremath{\in}\ensuremath{\mathbb{N}}.
 \item Expand (a+b)\textsuperscript{3}.
-\item For M=\{1\ensuremath{-}1/n:n\ensuremath{\in}\ensuremath{\mathbb{N}}\}, find sup(M), max(M), inf(M), and min(M).
+\item For M=\{1\ensuremath{-}{\small\ensuremath{\dfrac{1}{\mathrm{n}}}}:n\ensuremath{\in}\ensuremath{\mathbb{N}}\}, find sup(M), max(M), inf(M), and min(M).
 \item Evaluate $\sum_{\mathrm{k}=1}^{4} $(2k\ensuremath{-}1) and $\prod_{\mathrm{k}=1}^{4} $k.
 \item In one sentence, state the contradiction in the proof that \ensuremath{\sqrt{2}} is irrational.
 \item Solve |3x\ensuremath{-}2|\ensuremath{>}7.
@@ -673,7 +673,7 @@ Try all 25 problems before opening the answer key. They are interleaved, so iden
 \item Convert [101101]\textsubscript{2} to base ten.
 \item Check the triangle inequality for x=\ensuremath{-}7, y=3. Compute both sides.
 \item Prove by induction that 7 divides 8\textsuperscript{n}\ensuremath{-}1 for n\ensuremath{\in}\ensuremath{\mathbb{N}}.
-\item For M=\{1/n:n\ensuremath{\in}\ensuremath{\mathbb{N}}\}, give its supremum and infimum. Say which are attained.
+\item For M=\{{\small\ensuremath{\dfrac{1}{\mathrm{n}}}}:n\ensuremath{\in}\ensuremath{\mathbb{N}}\}, give its supremum and infimum. Say which are attained.
 \item Compute C(7,3), showing the cancellation.
 \item Convert [10.11]\textsubscript{2} to base ten.
 \item Solve |2x+1|\ensuremath{\geq}5 by cases and check endpoints.
@@ -681,7 +681,7 @@ Try all 25 problems before opening the answer key. They are interleaved, so iden
 \item Use Pascal’s identity to evaluate C(6,2)+C(6,3).
 \item Use Bernoulli’s inequality to give a lower bound for (1.1)\textsuperscript{5}.
 \item What is the principal real fourth root of 16?
-\item Evaluate $\sum_{\mathrm{k}=1}^{\mathrm{n}} $1/(k(k+1)) by writing each term as 1/k\ensuremath{-}1/(k+1).
+\item Evaluate $\sum_{\mathrm{k}=1}^{\mathrm{n}} ${\small\ensuremath{\dfrac{1}{\mathrm{k}(\mathrm{k}+1)}}} by writing each term as {\small\ensuremath{\dfrac{1}{\mathrm{k}}}}\ensuremath{-}{\small\ensuremath{\dfrac{1}{\mathrm{k}+1}}}.
 \item Evaluate $\prod_{\mathrm{k}=2}^{4} $k.
 \item Prove by induction that 1+3+…+(2n\ensuremath{-}1)=n\textsuperscript{2}.
 \item Find the coefficient of x\textsuperscript{2}y\textsuperscript{3} in (x+y)\textsuperscript{5}.
@@ -743,7 +743,7 @@ These are source-checked issues and the corresponding precise statement used in 
 \Needspace{16\baselineskip}
 \begin{enumerate}
 \item \textbf{Printed page 12, missing condition:} the remark says that for arbitrary rational a,b, the equation ax=b always has a solution x\ensuremath{\in}\ensuremath{\mathbb{Q}}. This fails when a=0 and b\ensuremath{\neq}0. The statement is correct when a\ensuremath{\neq}0; for a=0 it has no solution if b\ensuremath{\neq}0 and every rational x is a solution if b=0.
-\item \textbf{Printed page 18, error:} the telescoping rule is printed as $\sum_{\mathrm{k}=\mathrm{m}}^{\mathrm{n}} $(a\textsubscript{k}\ensuremath{-}a\textsubscript{k+1})=a\textsubscript{m}\ensuremath{-}a\textsubscript{n}. Writing out the terms leaves a\textsubscript{m}\ensuremath{-}a\textsubscript{n+1}, and the product rule likewise gives a\textsubscript{m}/a\textsubscript{n+1}. For m=n the printed form gives 0 instead of a\textsubscript{n}\ensuremath{-}a\textsubscript{n+1}. This guide uses the corrected rules.
+\item \textbf{Printed page 18, error:} the telescoping rule is printed as $\sum_{\mathrm{k}=\mathrm{m}}^{\mathrm{n}} $(a\textsubscript{k}\ensuremath{-}a\textsubscript{k+1})=a\textsubscript{m}\ensuremath{-}a\textsubscript{n}. Writing out the terms leaves a\textsubscript{m}\ensuremath{-}a\textsubscript{n+1}, and the product rule likewise gives {\small\ensuremath{\dfrac{\mathrm{a}_{\mathrm{m}}}{\mathrm{a}_{\mathrm{n}+1}}}}. For m=n the printed form gives 0 instead of a\textsubscript{n}\ensuremath{-}a\textsubscript{n+1}. This guide uses the corrected rules.
 \item \textbf{Printed page 19, missing condition:} Theorem 2.13(iii) is stated for k=0,…,n, but at k=n it needs C(n,n+1), which the notes do not define. This guide states Pascal’s identity for 0\ensuremath{\leq}k\ensuremath{\leq}n\ensuremath{-}1 (or set C(n,k)=0 for k\ensuremath{>}n).
 \item \textbf{Printed page 15, loose wording:} “for \ensuremath{\mathbb{R}}\textsuperscript{2} and \ensuremath{\mathbb{C}} the order axioms do not hold” means that no ordering of \ensuremath{\mathbb{C}} satisfies all of (A10)–(A13) together with the field operations. \ensuremath{\mathbb{C}} can be totally ordered, for example lexicographically, but such an order is not compatible with multiplication (A13).
 \end{enumerate}
@@ -838,9 +838,9 @@ Tick a skill only in a later session, at least one day after learning it, when y
 
 \Needspace{16\baselineskip}
 \begin{enumerate}
-\item Many numerator-denominator pairs represent the same quotient, such as 2/3 and 4/6. Requiring coprime numerator and denominator gives the reduced representation used in the notes.
+\item Many numerator-denominator pairs represent the same quotient, such as {\small\ensuremath{\dfrac{2}{3}}} and {\small\ensuremath{\dfrac{4}{6}}}. Requiring coprime numerator and denominator gives the reduced representation used in the notes.
 \item \ensuremath{\mathbb{Q}} satisfies the field and order rules too, but it has gaps. Completeness distinguishes \ensuremath{\mathbb{R}} by guaranteeing least upper bounds for non-empty bounded-above subsets.
-\item When the supremum belongs to the set. A supremum can bound a set without being one of its elements, as with \{1\ensuremath{-}1/n\}.
+\item When the supremum belongs to the set. A supremum can bound a set without being one of its elements, as with \{1\ensuremath{-}{\small\ensuremath{\dfrac{1}{\mathrm{n}}}}\}.
 \item The square root is non-negative. If x is negative, the non-negative number whose square is x\textsuperscript{2} is \ensuremath{-}x, so the result is |x|.
 \item Use C(n,k) when selecting k distinct objects from n and order does not matter. If different orders count as different outcomes, use a permutation count.
 \item The base case starts the chain. The step says every true case passes truth to the next one; together they cover every index from the starting point onward.
@@ -852,26 +852,26 @@ Tick a skill only in a later session, at least one day after learning it, when y
 \begin{enumerate}
 \item It is rational and real; it is not natural or an integer. \hfill{\small\color{FAUblue}§2.1}
 \item Distance from 4 is less than 3, so 1\ensuremath{<}x\ensuremath{<}7; solution (1,7). \hfill{\small\color{FAUblue}§2.3}
-\item Base n=1: 1=1\ensuremath{\cdot}2\ensuremath{\cdot}3/6. Assume the sum through n is n(n+1)(2n+1)/6 and add (n+1)\textsuperscript{2}. Factoring out (n+1)/6 leaves n(2n+1) + 6(n+1) = 2n\textsuperscript{2} + 7n + 6 = (n+2)(2n+3), so the sum is (n+1)(n+2)(2n+3)/6, the formula at n+1. \hfill{\small\color{FAUblue}§2.5}
+\item Base n=1: 1=1\ensuremath{\cdot}2\ensuremath{\cdot}{\small\ensuremath{\dfrac{3}{6}}}. Assume the sum through n is {\small\ensuremath{\dfrac{\mathrm{n}(\mathrm{n}+1)(2\mathrm{n}+1)}{6}}} and add (n+1)\textsuperscript{2}. Factoring out {\small\ensuremath{\dfrac{\mathrm{n}+1}{6}}} leaves n(2n+1) + 6(n+1) = 2n\textsuperscript{2} + 7n + 6 = (n+2)(2n+3), so the sum is {\small\ensuremath{\dfrac{(\mathrm{n}+1)(\mathrm{n}+2)(2\mathrm{n}+3)}{6}}}, the formula at n+1. \hfill{\small\color{FAUblue}§2.5}
 \item a\textsuperscript{3}+3a\textsuperscript{2}b+3ab\textsuperscript{2}+b\textsuperscript{3}. \hfill{\small\color{FAUblue}§2.4}
 \item sup=1, no maximum; inf=min=0. The values approach 1 but never equal it, while n=1 gives 0. \hfill{\small\color{FAUblue}§2.2}
 \item 1+3+5+7=16; 1\ensuremath{\cdot}2\ensuremath{\cdot}3\ensuremath{\cdot}4=24. \hfill{\small\color{FAUblue}§2.4}
 \item Writing \ensuremath{\sqrt{2}}=p/q in lowest terms forces p even from p\textsuperscript{2}=2q\textsuperscript{2}, then q even after substituting p=2m. That contradicts coprimality. \hfill{\small\color{FAUblue}§2.1}
-\item 3x\ensuremath{-}2\ensuremath{>}7 or 3x\ensuremath{-}2\ensuremath{<}\ensuremath{-}7, so x\ensuremath{>}3 or x\ensuremath{<}\ensuremath{-}5/3. \hfill{\small\color{FAUblue}§2.3}
-\item Non-zero integers need not have multiplicative inverses in \ensuremath{\mathbb{Z}}: 2 has inverse 1/2, which is not an integer. \hfill{\small\color{FAUblue}§2.2}
-\item C(8,2)=8\ensuremath{\cdot}7/(2\ensuremath{\cdot}1)=28. \hfill{\small\color{FAUblue}§2.4}
+\item 3x\ensuremath{-}2\ensuremath{>}7 or 3x\ensuremath{-}2\ensuremath{<}\ensuremath{-}7, so x\ensuremath{>}3 or x\ensuremath{<}\ensuremath{-}{\small\ensuremath{\dfrac{5}{3}}}. \hfill{\small\color{FAUblue}§2.3}
+\item Non-zero integers need not have multiplicative inverses in \ensuremath{\mathbb{Z}}: 2 has inverse {\small\ensuremath{\dfrac{1}{2}}}, which is not an integer. \hfill{\small\color{FAUblue}§2.2}
+\item C(8,2)=8\ensuremath{\cdot}{\small\ensuremath{\dfrac{7}{2\cdot 1}}}=28. \hfill{\small\color{FAUblue}§2.4}
 \item 32+8+4+1=45. \hfill{\small\color{FAUblue}§2.1}
 \item |x+y|=|\ensuremath{-}4|=4 and |x|+|y|=7+3=10; 4\ensuremath{\leq}10. \hfill{\small\color{FAUblue}§2.3}
 \item Base n=1: 8\ensuremath{-}1=7. Assume 8\textsuperscript{n}\ensuremath{-}1=7m. Then 8\textsuperscript{n+1}\ensuremath{-}1=8(8\textsuperscript{n}\ensuremath{-}1)+7=56m+7, divisible by 7. \hfill{\small\color{FAUblue}§2.5}
 \item sup=max=1; inf=0, not attained. Every term is positive and tends to 0. \hfill{\small\color{FAUblue}§2.2}
-\item C(7,3)=7\ensuremath{\cdot}6\ensuremath{\cdot}5/(3\ensuremath{\cdot}2\ensuremath{\cdot}1)=35. \hfill{\small\color{FAUblue}§2.4}
-\item 2+1/2+1/4=2.75. \hfill{\small\color{FAUblue}§2.1}
+\item C(7,3)=7\ensuremath{\cdot}6\ensuremath{\cdot}{\small\ensuremath{\dfrac{5}{3\cdot 2\cdot 1}}}=35. \hfill{\small\color{FAUblue}§2.4}
+\item 2+{\small\ensuremath{\dfrac{1}{2}}}+{\small\ensuremath{\dfrac{1}{4}}}=2.75. \hfill{\small\color{FAUblue}§2.1}
 \item 2x+1\ensuremath{\geq}5 gives x\ensuremath{\geq}2; 2x+1\ensuremath{\leq}\ensuremath{-}5 gives x\ensuremath{\leq}\ensuremath{-}3. Include equality in both cases: (\ensuremath{-}\ensuremath{\infty},\ensuremath{-}3]\ensuremath{\cup}[2,\ensuremath{\infty}). \hfill{\small\color{FAUblue}§2.3}
 \item a+c\ensuremath{<}b+c. Multiplying by a negative reverses direction: ac\ensuremath{>}bc. \hfill{\small\color{FAUblue}§2.2}
 \item By Pascal, C(6,2)+C(6,3)=C(7,3)=35. \hfill{\small\color{FAUblue}§2.4}
 \item Bernoulli with x=0.1,n=5 gives (1.1)\textsuperscript{5}\ensuremath{\geq}1+5(0.1)=1.5. \hfill{\small\color{FAUblue}§2.5}
 \item The principal fourth root is 2, the unique non-negative real whose fourth power is 16. (\ensuremath{-}2) is another fourth root, but not the principal root. \hfill{\small\color{FAUblue}§2.2}
-\item It telescopes with a\textsubscript{k}=1/k: a\textsubscript{1}\ensuremath{-}a\textsubscript{n+1}=1\ensuremath{-}1/(n+1)=n/(n+1). \hfill{\small\color{FAUblue}§2.4}
+\item It telescopes with a\textsubscript{k}={\small\ensuremath{\dfrac{1}{\mathrm{k}}}}: a\textsubscript{1}\ensuremath{-}a\textsubscript{n+1}=1\ensuremath{-}{\small\ensuremath{\dfrac{1}{\mathrm{n}+1}}}={\small\ensuremath{\dfrac{\mathrm{n}}{\mathrm{n}+1}}}. \hfill{\small\color{FAUblue}§2.4}
 \item 2\ensuremath{\cdot}3\ensuremath{\cdot}4=24. \hfill{\small\color{FAUblue}§2.4}
 \item Base n=1: 1=1\textsuperscript{2}. Assume the sum through n is n\textsuperscript{2}; adding 2n+1 gives n\textsuperscript{2}+2n+1=(n+1)\textsuperscript{2}. \hfill{\small\color{FAUblue}§2.5}
 \item The term is indexed by k=3, so its coefficient is C(5,3)=10. \hfill{\small\color{FAUblue}§2.4}
@@ -884,7 +884,7 @@ Tick a skill only in a later session, at least one day after learning it, when y
 \begin{enumerate}
 \item |x\ensuremath{-}2|\ensuremath{\leq}3 means \ensuremath{-}3\ensuremath{\leq}x\ensuremath{-}2\ensuremath{\leq}3, hence \ensuremath{-}1\ensuremath{\leq}x\ensuremath{\leq}5. Thus M=[\ensuremath{-}1,5], and min=inf=\ensuremath{-}1, max=sup=5. \hfill{\small\color{FAUblue}§2.2} \hfill{\small\color{FAUblue}§2.3}
 \item Within [\ensuremath{-}1,5], the condition |x|\ensuremath{>}2 leaves x\ensuremath{>}2, so (2,5]. \hfill{\small\color{FAUblue}§2.3}
-\item |S|=C(5,2)=5\ensuremath{\cdot}4/(2\ensuremath{\cdot}1)=10. Each pair of distinct elements describes one subset regardless of order. \hfill{\small\color{FAUblue}§2.4}
+\item |S|=C(5,2)=5\ensuremath{\cdot}{\small\ensuremath{\dfrac{4}{2\cdot 1}}}=10. Each pair of distinct elements describes one subset regardless of order. \hfill{\small\color{FAUblue}§2.4}
 \item The k=2 term is C(5,2)x\textsuperscript{3}y\textsuperscript{2}, so the coefficient is 10. \hfill{\small\color{FAUblue}§2.4}
 \end{enumerate}
 

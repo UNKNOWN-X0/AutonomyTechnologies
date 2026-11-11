@@ -332,7 +332,7 @@ Write 343000 \ensuremath{\times} 10\textsuperscript{\ensuremath{-}4} in normalis
 Binary fractional place values explain both conversion and approximation.
 
 \Needspace{6\baselineskip}
-\begin{plainbox}\textbf{In plain words:} binary fractions work like decimal ones with halves instead of tenths: after the binary point the places are worth 1/2, 1/4, 1/8, …. Some fractions that are short in decimal never end in binary, just as 1/3 never ends in decimal.\end{plainbox}
+\begin{plainbox}\textbf{In plain words:} binary fractions work like decimal ones with halves instead of tenths: after the binary point the places are worth {\small\ensuremath{\dfrac{1}{2}}}, {\small\ensuremath{\dfrac{1}{4}}}, {\small\ensuremath{\dfrac{1}{8}}}, …. Some fractions that are short in decimal never end in binary, just as {\small\ensuremath{\dfrac{1}{3}}} never ends in decimal.\end{plainbox}
 
 \Needspace{4\baselineskip}
 The first bit after the binary point has weight 2\textsuperscript{\ensuremath{-}1}.
@@ -363,7 +363,7 @@ Each following bit has half the previous weight.
 \node[,inner sep=1pt,font=\scriptsize] at (1.710,-0.252) {1/8};
 \filldraw[draw=black!50,fill=FAUblue!25] (1.476,-0.360) rectangle (1.944,-0.900);
 \node[,inner sep=1pt,font=\small] at (1.710,-0.630) {1};
-\end{tikzpicture}\par\smallskip{\small\raggedright \textbf{0.101\textsubscript{2}} = 1/2 + 1/8 = 0.625: each place after the point is worth half the one before.\par}\end{minipage}
+\end{tikzpicture}\par\smallskip{\small\raggedright \textbf{0.101\textsubscript{2}} = {\small\ensuremath{\dfrac{1}{2}}} + {\small\ensuremath{\dfrac{1}{8}}} = 0.625: each place after the point is worth half the one before.\par}\end{minipage}
 \end{center}
 
 \begin{workedbox}{Worked conversion \ensuremath{\cdot} binary fraction to decimal}
@@ -371,8 +371,8 @@ Convert 0.01101\textsubscript{2} to decimal.
 
 \Needspace{5\baselineskip}
 \begin{enumerate}
-\item Use the five place values: 1/2, 1/4, 1/8, 1/16, and 1/32.
-\item Keep the places where the bit is 1: 1/4 + 1/8 + 1/32.
+\item Use the five place values: {\small\ensuremath{\dfrac{1}{2}}}, {\small\ensuremath{\dfrac{1}{4}}}, {\small\ensuremath{\dfrac{1}{8}}}, {\small\ensuremath{\dfrac{1}{16}}}, and {\small\ensuremath{\dfrac{1}{32}}}.
+\item Keep the places where the bit is 1: {\small\ensuremath{\dfrac{1}{4}}} + {\small\ensuremath{\dfrac{1}{8}}} + {\small\ensuremath{\dfrac{1}{32}}}.
 \item Add: 0.25+0.125+0.03125=0.40625. \hfill{\small\color{FAUblue}§4.2}
 \end{enumerate}
 \end{workedbox}
@@ -397,7 +397,7 @@ Convert 0.6875 to binary.
 \item 0.375\ensuremath{\times}2=0.75, so the next bit is 0; carry 0.75.
 \item 0.75\ensuremath{\times}2=1.5, so the next bit is 1; carry 0.5.
 \item 0.5\ensuremath{\times}2=1.0, so the next bit is 1; the fraction is now zero.
-\item Therefore 0.6875=0.1011\textsubscript{2}. Check: 1/2+1/8+1/16=0.6875. \hfill{\small\color{FAUblue}§4.2}
+\item Therefore 0.6875=0.1011\textsubscript{2}. Check: {\small\ensuremath{\dfrac{1}{2}}}+{\small\ensuremath{\dfrac{1}{8}}}+{\small\ensuremath{\dfrac{1}{16}}}=0.6875. \hfill{\small\color{FAUblue}§4.2}
 \end{enumerate}
 \end{workedbox}
 
@@ -732,7 +732,7 @@ Reserved exponent patterns extend useful behaviour beyond normalised values.
 \end{center}
 
 \Needspace{8\baselineskip}
-\begin{plainbox}\textbf{In plain words:} some exponent patterns are kept for special cases. An exponent of all zeros means zero or a tiny \textbf{subnormal} number that fills the gap just above zero; an exponent of all ones means infinity when the fraction is zero, and NaN, “not a number”, for results such as 0/0.\end{plainbox}
+\begin{plainbox}\textbf{In plain words:} some exponent patterns are kept for special cases. An exponent of all zeros means zero or a tiny \textbf{subnormal} number that fills the gap just above zero; an exponent of all ones means infinity when the fraction is zero, and NaN, “not a number”, for results such as {\small\ensuremath{\dfrac{0}{0}}}.\end{plainbox}
 
 \Needspace{16\baselineskip}
 IEEE formats encode five kinds of value: zero, normalised numbers, denormalised numbers, infinity and NaN. In single precision, exponent field zero and exponent field all ones have special interpretations, so normalised exponents run from \ensuremath{-}126 to 127 rather than \ensuremath{-}127 to 128.
@@ -757,7 +757,7 @@ Denormalised values provide a gradual step from the smallest normalised values t
 With the default round-to-nearest mode, overflow produces a signed infinity; other rounding modes can produce the largest finite value. Division of a finite non-zero value by zero also produces a signed infinity. You can do basic arithmetic with infinity, such as \ensuremath{\infty}+5=\ensuremath{\infty}.
 
 \Needspace{6\baselineskip}
-NaN represents an operation without a real-number result, such as 0/0, infinity\ensuremath{-}infinity, 0\ensuremath{\times}\ensuremath{\infty}, or the square root of a negative number.
+NaN represents an operation without a real-number result, such as {\small\ensuremath{\dfrac{0}{0}}}, infinity\ensuremath{-}infinity, 0\ensuremath{\times}\ensuremath{\infty}, or the square root of a negative number.
 
 Operations on infinity and NaN follow format rules, not ordinary real-number algebra in every case.
 
@@ -796,7 +796,7 @@ Classify sign 0, exponent 11111111, fraction 000…000.
 \begin{notebox}\textbf{Trap:} an all-ones exponent does not always mean infinity; inspect the fraction field to distinguish infinity from NaN.\end{notebox}
 
 \Needspace{5\baselineskip}
-\begin{notebox}\textbf{Near miss:} +0 and \ensuremath{-}0 have different bit patterns and compare as equal, yet they are not interchangeable: 1/(+0) gives +\ensuremath{\infty} while 1/(\ensuremath{-}0) gives \ensuremath{-}\ensuremath{\infty}. The sign bit still matters at zero.\end{notebox}
+\begin{notebox}\textbf{Near miss:} +0 and \ensuremath{-}0 have different bit patterns and compare as equal, yet they are not interchangeable: {\small\ensuremath{\dfrac{1}{+0}}} gives +\ensuremath{\infty} while {\small\ensuremath{\dfrac{1}{-0}}} gives \ensuremath{-}\ensuremath{\infty}. The sign bit still matters at zero.\end{notebox}
 
 \Needspace{11\baselineskip}
 \begin{recallbox}{Recall check \ensuremath{\cdot} answer without looking}
@@ -1047,8 +1047,8 @@ Tick a skill only in a later session, at least one day after studying, when you 
 
 \Needspace{6\baselineskip}
 \begin{enumerate}
-\item 2\textsuperscript{\ensuremath{-}4}=1/16. \hfill{\small\color{FAUblue}§4.2}
-\item 1/2+1/8=0.625. \hfill{\small\color{FAUblue}§4.2}
+\item 2\textsuperscript{\ensuremath{-}4}={\small\ensuremath{\dfrac{1}{16}}}. \hfill{\small\color{FAUblue}§4.2}
+\item {\small\ensuremath{\dfrac{1}{2}}}+{\small\ensuremath{\dfrac{1}{8}}}=0.625. \hfill{\small\color{FAUblue}§4.2}
 \item The binary expansion repeats, but the significand has a finite number of bits and must be rounded or truncated. \hfill{\small\color{FAUblue}§4.2}
 \end{enumerate}
 
@@ -1102,26 +1102,26 @@ Tick a skill only in a later session, at least one day after studying, when you 
 \begin{keepsection}\subsection{Mixed practice}
 
 \begin{enumerate}
-\item 1/2+1/4+1/16=0.8125. \hfill{\small\color{FAUblue}§4.2}
+\item {\small\ensuremath{\dfrac{1}{2}}}+{\small\ensuremath{\dfrac{1}{4}}}+{\small\ensuremath{\dfrac{1}{16}}}=0.8125. \hfill{\small\color{FAUblue}§4.2}
 \item 24 bits: the 23 stored fraction bits plus the implicit leading 1. \hfill{\small\color{FAUblue}§4.4}
 \item 1.11\textsubscript{2}\ensuremath{\times}2\textsuperscript{\ensuremath{-}3}. The point moves three places right to make the significand 1.11, so the exponent is \ensuremath{-}3. \hfill{\small\color{FAUblue}§4.1}
-\item 0.375=3/8=0.011\textsubscript{2}. \hfill{\small\color{FAUblue}§4.2}
+\item 0.375={\small\ensuremath{\dfrac{3}{8}}}=0.011\textsubscript{2}. \hfill{\small\color{FAUblue}§4.2}
 \item The exponent field. \hfill{\small\color{FAUblue}§4.1}
 \item Multiply significands: 15. Add exponents: \ensuremath{-}2. Result 15\ensuremath{\times}10\textsuperscript{\ensuremath{-}2}, normalised as 1.5\ensuremath{\times}10\textsuperscript{\ensuremath{-}1}. \hfill{\small\color{FAUblue}§4.3}
 \item 7.2\ensuremath{\times}10\textsuperscript{5}=0.072\ensuremath{\times}10\textsuperscript{7}; shift the significand two places right as the exponent rises by two. \hfill{\small\color{FAUblue}§4.3}
 \item 52 stored fraction bits. \hfill{\small\color{FAUblue}§4.4}
 \item Negative infinity: all-ones exponent and zero fraction mean infinity; sign bit 1 makes it negative. \hfill{\small\color{FAUblue}§4.5}
-\item 1/4+1/16+1/32=0.34375. \hfill{\small\color{FAUblue}§4.2}
+\item {\small\ensuremath{\dfrac{1}{4}}}+{\small\ensuremath{\dfrac{1}{16}}}+{\small\ensuremath{\dfrac{1}{32}}}=0.34375. \hfill{\small\color{FAUblue}§4.2}
 \item Align 2.1\ensuremath{\times}10\textsuperscript{2}=0.21\ensuremath{\times}10\textsuperscript{3}. Sum 8.67\ensuremath{\times}10\textsuperscript{3}; to two significant digits this is 8.7\ensuremath{\times}10\textsuperscript{3}. \hfill{\small\color{FAUblue}§4.3}
 \item 127. \hfill{\small\color{FAUblue}§4.4}
-\item 0.4375=1/4+1/8+1/16=0.0111\textsubscript{2}. \hfill{\small\color{FAUblue}§4.2}
+\item 0.4375={\small\ensuremath{\dfrac{1}{4}}}+{\small\ensuremath{\dfrac{1}{8}}}+{\small\ensuremath{\dfrac{1}{16}}}=0.0111\textsubscript{2}. \hfill{\small\color{FAUblue}§4.2}
 \item 130\ensuremath{-}127=3. \hfill{\small\color{FAUblue}§4.4}
 \item Truncation always discards in the same direction for positive values and can introduce a biased error. \hfill{\small\color{FAUblue}§4.3}
 \item A denormalised number. The exponent is zero and the fraction is non-zero. \hfill{\small\color{FAUblue}§4.5}
 \item 1.25\ensuremath{\times}8=10. \hfill{\small\color{FAUblue}§4.1}
 \item 64 bits: one sign, eleven exponent, and 52 fraction bits. \hfill{\small\color{FAUblue}§4.4}
 \item For example, treat a as close to b when |a\ensuremath{-}b|\ensuremath{<}ε, with ε chosen for the expected scale and precision. \hfill{\small\color{FAUblue}§4.3}
-\item 1+1/2+1/8=1.625. \hfill{\small\color{FAUblue}§4.2}
+\item 1+{\small\ensuremath{\dfrac{1}{2}}}+{\small\ensuremath{\dfrac{1}{8}}}=1.625. \hfill{\small\color{FAUblue}§4.2}
 \item 1.25=1.01\textsubscript{2} is a finite binary fraction, and multiplying by 2\textsuperscript{3} only shifts the binary point. \hfill{\small\color{FAUblue}§4.2}
 \item \ensuremath{\pm}\ensuremath{\infty} and NaN, respectively. The first is division of a non-zero value by zero; zero divided by zero has no real result. \hfill{\small\color{FAUblue}§4.5}
 \item Add the exponents and multiply the significands, then normalise if needed. \hfill{\small\color{FAUblue}§4.3}

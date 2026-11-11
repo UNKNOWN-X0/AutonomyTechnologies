@@ -794,7 +794,7 @@ Write 343000 \ensuremath{\times} 10\textsuperscript{\ensuremath{-}4} in normalis
 The significand from §4.1 is a binary fraction, so its place values explain both conversion and approximation.
 
 \Needspace{7\baselineskip}
-\begin{plainbox}\textbf{In plain words:} binary fractions work like decimal ones with halves instead of tenths: after the binary point the places are worth 1/2, 1/4, 1/8, …. Some fractions that are short in decimal never end in binary, just as 1/3 never ends in decimal.\end{plainbox}
+\begin{plainbox}\textbf{In plain words:} binary fractions work like decimal ones with halves instead of tenths: after the binary point the places are worth {\small\ensuremath{\dfrac{1}{2}}}, {\small\ensuremath{\dfrac{1}{4}}}, {\small\ensuremath{\dfrac{1}{8}}}, …. Some fractions that are short in decimal never end in binary, just as {\small\ensuremath{\dfrac{1}{3}}} never ends in decimal.\end{plainbox}
 
 The first bit after the binary point has weight 2\textsuperscript{\ensuremath{-}1}, and each following bit has half the previous weight.
 
@@ -822,7 +822,7 @@ The first bit after the binary point has weight 2\textsuperscript{\ensuremath{-}
 \node[,inner sep=1pt,font=\scriptsize] at (1.710,-0.252) {1/8};
 \filldraw[draw=black!50,fill=FAUblue!25] (1.476,-0.360) rectangle (1.944,-0.900);
 \node[,inner sep=1pt,font=\small] at (1.710,-0.630) {1};
-\end{tikzpicture}\par\smallskip{\small\raggedright \textbf{0.101\textsubscript{2}} = 1/2 + 1/8 = 0.625: each place after the point is worth half the one before.\par}\end{minipage}
+\end{tikzpicture}\par\smallskip{\small\raggedright \textbf{0.101\textsubscript{2}} = {\small\ensuremath{\dfrac{1}{2}}} + {\small\ensuremath{\dfrac{1}{8}}} = 0.625: each place after the point is worth half the one before.\par}\end{minipage}
 \end{center}
 
 \begin{workedbox}{Worked conversion \ensuremath{\cdot} binary fraction to decimal}
@@ -830,8 +830,8 @@ Convert 0.01101\textsubscript{2} to decimal.
 
 \Needspace{5\baselineskip}
 \begin{enumerate}
-\item Use the five place values: 1/2, 1/4, 1/8, 1/16, and 1/32.
-\item Keep the places where the bit is 1: 1/4 + 1/8 + 1/32.
+\item Use the five place values: {\small\ensuremath{\dfrac{1}{2}}}, {\small\ensuremath{\dfrac{1}{4}}}, {\small\ensuremath{\dfrac{1}{8}}}, {\small\ensuremath{\dfrac{1}{16}}}, and {\small\ensuremath{\dfrac{1}{32}}}.
+\item Keep the places where the bit is 1: {\small\ensuremath{\dfrac{1}{4}}} + {\small\ensuremath{\dfrac{1}{8}}} + {\small\ensuremath{\dfrac{1}{32}}}.
 \item Add: 0.25+0.125+0.03125=0.40625. \hfill{\small\color{FAUblue}§4.2}
 \end{enumerate}
 \end{workedbox}
@@ -856,7 +856,7 @@ Convert 0.6875 to binary.
 \item 0.375\ensuremath{\times}2=0.75, so the next bit is 0; carry 0.75.
 \item 0.75\ensuremath{\times}2=1.5, so the next bit is 1; carry 0.5.
 \item 0.5\ensuremath{\times}2=1.0, so the next bit is 1; the fraction is now zero.
-\item Therefore 0.6875=0.1011\textsubscript{2}. Check: 1/2+1/8+1/16=0.6875. \hfill{\small\color{FAUblue}§4.2}
+\item Therefore 0.6875=0.1011\textsubscript{2}. Check: {\small\ensuremath{\dfrac{1}{2}}}+{\small\ensuremath{\dfrac{1}{8}}}+{\small\ensuremath{\dfrac{1}{16}}}=0.6875. \hfill{\small\color{FAUblue}§4.2}
 \end{enumerate}
 \end{workedbox}
 
@@ -1147,7 +1147,7 @@ Reserved exponent patterns extend useful behaviour beyond normalised values.
 \end{center}
 
 \Needspace{7\baselineskip}
-\begin{plainbox}\textbf{In plain words:} some exponent patterns are kept for special cases. An exponent of all zeros means zero or a tiny \textbf{subnormal} number that fills the gap just above zero; an exponent of all ones means infinity when the fraction is zero, and NaN, “not a number”, for results such as 0/0.\end{plainbox}
+\begin{plainbox}\textbf{In plain words:} some exponent patterns are kept for special cases. An exponent of all zeros means zero or a tiny \textbf{subnormal} number that fills the gap just above zero; an exponent of all ones means infinity when the fraction is zero, and NaN, “not a number”, for results such as {\small\ensuremath{\dfrac{0}{0}}}.\end{plainbox}
 
 \Needspace{14\baselineskip}
 In single precision, exponent field zero and exponent field all ones have special interpretations.
@@ -1174,7 +1174,7 @@ Subnormal values fill the gap between the smallest normal value and zero, so und
 They can be slow: many CPUs handle them through a microcode assist or a software trap, which the lecture calls orders of magnitude slower. Flush-to-zero (FTZ) is a non-compliant mode that treats subnormals as zero. It is faster but gives up that correctness, and high-performance programs often enable it.
 
 \Needspace{6\baselineskip}
-Infinity represents overflow results and some divisions by zero. NaN represents an operation without a real-number result, such as 0/0, \ensuremath{\sqrt{-1}} or infinity\ensuremath{-}infinity.
+Infinity represents overflow results and some divisions by zero. NaN represents an operation without a real-number result, such as {\small\ensuremath{\dfrac{0}{0}}}, \ensuremath{\sqrt{-1}} or infinity\ensuremath{-}infinity.
 
 \Needspace{6\baselineskip}
 Before IEEE 754, such operations could trap and end the program. With these values the computation continues, and the status propagates to be checked later.
@@ -1232,7 +1232,7 @@ Machine epsilon is the gap from 1 to the next larger representable value. For ra
 
 \begin{equationcard}{Binary machine epsilon}
 \[ \begin{gathered} \text{Single}\, \text{precision}:\, {p}\, =\, 24,\, ε_{\text{mach}}\, =\, 2^{-23}\, \approx \, 1.19\times 10^{-7} \\ \text{Double}\, \text{precision}:\, {p}\, =\, 53,\, ε_{\text{mach}}\, =\, 2^{-52}\, \approx \, 2.22\times 10^{-16} \end{gathered} \]
-{\small \emph{Read it as: “ε\textsubscript{mach} is the gap between 1 and the next larger value the format can store”: 2\textsuperscript{\ensuremath{-}23} in single precision.}\par Under round-to-nearest, the unit roundoff u is ε\textsubscript{mach}/2 for normal results. “Unit roundoff” is not a term from the slides.}
+{\small \emph{Read it as: “ε\textsubscript{mach} is the gap between 1 and the next larger value the format can store”: 2\textsuperscript{\ensuremath{-}23} in single precision.}\par Under round-to-nearest, the unit roundoff u is {\small\ensuremath{\dfrac{ε_{\text{mach}}}{2}}} for normal results. “Unit roundoff” is not a term from the slides.}
 \end{equationcard}
 
 \begin{equationcard}{Relative rounding model}
@@ -1241,10 +1241,10 @@ Machine epsilon is the gap from 1 to the next larger representable value. For ra
 \end{equationcard}
 
 \Needspace{10\baselineskip}
-The slides bound the error by ε; under round-to-nearest the tight bound is ε/2 (= u). Both statements are true; use the slide form if the exam asks for it.
+The slides bound the error by ε; under round-to-nearest the tight bound is {\small\ensuremath{\dfrac{ε}{2}}} (= u). Both statements are true; use the slide form if the exam asks for it.
 
 \begin{equationcard}{Error propagation in a difference}
-\[ \begin{gathered} {x}'\, =\, {x}(1+δ_{{x}}),\, {y}'\, =\, {y}(1+δ_{{y}}) \\ \text{relative}\, \text{error}\, =\, (({x}'-{y}')-({x}-{y}))/({x}-{y})\, =\, ({x}δ_{{x}}-{y}δ_{{y}})/({x}-{y}) \end{gathered} \]
+\[ \begin{gathered} {x}'\, =\, {x}(1+δ_{{x}}),\, {y}'\, =\, {y}(1+δ_{{y}}) \\ \text{relative}\, \text{error}\, =\, \dfrac{({x}'-{y}')-({x}-{y})}{{x}-{y}}\, =\, \dfrac{{x}δ_{{x}}-{y}δ_{{y}}}{{x}-{y}} \end{gathered} \]
 {\small The numerator stays about the size of the input errors. As x approaches y the denominator approaches zero, so the relative error can explode.}
 \end{equationcard}
 
@@ -1264,7 +1264,7 @@ Suppose five significant decimal digits store x=0.123456789 as 0.12346 and y=0.1
 \Needspace{8\baselineskip}
 \subsection{Sterbenz lemma}
 
-If x and y are positive finite floating-point values in the same radix and precision, and y/2\ensuremath{\leq}x\ensuremath{\leq}2y, then x\ensuremath{-}y is exactly representable when gradual underflow is supported. For example, 1.5 and 1.0 meet the condition, and their difference 0.5 is exact. This does not undo rounding that happened while x or y was computed; cancellation can expose that earlier error.
+If x and y are positive finite floating-point values in the same radix and precision, and {\small\ensuremath{\dfrac{\mathrm{y}}{2}}}\ensuremath{\leq}x\ensuremath{\leq}2y, then x\ensuremath{-}y is exactly representable when gradual underflow is supported. For example, 1.5 and 1.0 meet the condition, and their difference 0.5 is exact. This does not undo rounding that happened while x or y was computed; cancellation can expose that earlier error.
 \end{keepsection}
 
 \begin{keepsection}
@@ -1272,16 +1272,16 @@ If x and y are positive finite floating-point values in the same radix and preci
 \subsection{Stable quadratic roots}
 
 \Needspace{10\baselineskip}
-For ax\textsuperscript{2}+bx+c=0, require a\ensuremath{\neq}0 and D=b\textsuperscript{2}\ensuremath{-}4ac\ensuremath{\geq}0. The usual formula can subtract nearly equal quantities for one root. For D\ensuremath{>}0, choose the branch that adds magnitudes: if b\ensuremath{\geq}0, set q=\ensuremath{-}\ensuremath{\tfrac12}(b+\ensuremath{\sqrt{\mathrm{D}}}); if b\ensuremath{<}0, set q=\ensuremath{-}\ensuremath{\tfrac12}(b\ensuremath{-}\ensuremath{\sqrt{\mathrm{D}}}). Then the roots are q/a and c/q. This branch also handles b=0. For D=0, use the repeated root \ensuremath{-}b/(2a), since q may be zero. These steps avoid cancellation while respecting the degenerate cases.
+For ax\textsuperscript{2}+bx+c=0, require a\ensuremath{\neq}0 and D=b\textsuperscript{2}\ensuremath{-}4ac\ensuremath{\geq}0. The usual formula can subtract nearly equal quantities for one root. For D\ensuremath{>}0, choose the branch that adds magnitudes: if b\ensuremath{\geq}0, set q=\ensuremath{-}\ensuremath{\tfrac12}(b+\ensuremath{\sqrt{\mathrm{D}}}); if b\ensuremath{<}0, set q=\ensuremath{-}\ensuremath{\tfrac12}(b\ensuremath{-}\ensuremath{\sqrt{\mathrm{D}}}). Then the roots are q/a and c/q. This branch also handles b=0. For D=0, use the repeated root \ensuremath{-}{\small\ensuremath{\dfrac{\mathrm{b}}{2\mathrm{a}}}}, since q may be zero. These steps avoid cancellation while respecting the degenerate cases.
 
 \Needspace{12\baselineskip}
-The notes write the same method as x\textsubscript{1}=(\ensuremath{-}b\ensuremath{-}sgn(b)\ensuremath{\sqrt{\mathrm{D}}})/(2a) and x\textsubscript{2}=c/(a x\textsubscript{1}). Since q=a\ensuremath{\cdot}x\textsubscript{1}, c/q is the slide’s c/(a x\textsubscript{1}). The second form comes from expanding a(x\ensuremath{-}x\textsubscript{1})(x\ensuremath{-}x\textsubscript{2}): matching the constant term gives x\textsubscript{1}x\textsubscript{2}=c/a, which is Vieta’s relation, so x\textsubscript{2} needs no subtraction.
+The notes write the same method as x\textsubscript{1}={\small\ensuremath{\dfrac{-\mathrm{b}-\text{sgn}(\mathrm{b})\sqrt{\mathrm{D}}}{2\mathrm{a}}}} and x\textsubscript{2}={\small\ensuremath{\dfrac{\mathrm{c}}{\mathrm{a}\, \mathrm{x}_{1}}}}. Since q=a\ensuremath{\cdot}x\textsubscript{1}, c/q is the slide’s {\small\ensuremath{\dfrac{\mathrm{c}}{\mathrm{a}\, \mathrm{x}_{1}}}}. The second form comes from expanding a(x\ensuremath{-}x\textsubscript{1})(x\ensuremath{-}x\textsubscript{2}): matching the constant term gives x\textsubscript{1}x\textsubscript{2}=c/a, which is Vieta’s relation, so x\textsubscript{2} needs no subtraction.
 
 \begin{workedbox}{Worked example \ensuremath{\cdot} x\textsuperscript{2}+10\textsuperscript{8}x+1=0 in double precision}
 \Needspace{9\baselineskip}
 \begin{enumerate}
 \item Here a=1, b=10\textsuperscript{8}, c=1, so D=10\textsuperscript{16}\ensuremath{-}4 and \ensuremath{\sqrt{\mathrm{D}}}\ensuremath{\approx}10\textsuperscript{8}.
-\item Direct formula for the small root: (\ensuremath{-}b+\ensuremath{\sqrt{\mathrm{D}}})/2 subtracts nearly equal values and gives about \ensuremath{-}7.45\ensuremath{\times}10\textsuperscript{\ensuremath{-}9}.
+\item Direct formula for the small root: {\small\ensuremath{\dfrac{-\mathrm{b}+\sqrt{\mathrm{D}}}{2}}} subtracts nearly equal values and gives about \ensuremath{-}7.45\ensuremath{\times}10\textsuperscript{\ensuremath{-}9}.
 \item Stable: b\ensuremath{\geq}0, so q=\ensuremath{-}\ensuremath{\tfrac12}(b+\ensuremath{\sqrt{\mathrm{D}}})\ensuremath{\approx}\ensuremath{-}10\textsuperscript{8}. The roots are q/a\ensuremath{\approx}\ensuremath{-}10\textsuperscript{8} and c/q\ensuremath{\approx}\ensuremath{-}10\textsuperscript{\ensuremath{-}8}.
 \item Check: the product of the roots is 1=c/a, and the sum is about \ensuremath{-}10\textsuperscript{8}=\ensuremath{-}b/a. The direct value was about 25\% off. \hfill{\small\color{FAUblue}§4.5}
 \end{enumerate}
@@ -1303,7 +1303,7 @@ A fused multiply-add evaluates a\ensuremath{\times}b+c with one final rounding. 
 \end{equationcard}
 
 \Needspace{5\baselineskip}
-\begin{notebox}\textbf{Near miss:} +0 and \ensuremath{-}0 have different bit patterns and compare as equal, yet they are not interchangeable: 1/(+0) gives +\ensuremath{\infty} while 1/(\ensuremath{-}0) gives \ensuremath{-}\ensuremath{\infty}. The sign bit still matters at zero.\end{notebox}
+\begin{notebox}\textbf{Near miss:} +0 and \ensuremath{-}0 have different bit patterns and compare as equal, yet they are not interchangeable: {\small\ensuremath{\dfrac{1}{+0}}} gives +\ensuremath{\infty} while {\small\ensuremath{\dfrac{1}{-0}}} gives \ensuremath{-}\ensuremath{\infty}. The sign bit still matters at zero.\end{notebox}
 
 \Needspace{14\baselineskip}
 \begin{recallbox}{Recall check \ensuremath{\cdot} answer without looking}
@@ -1421,7 +1421,7 @@ Dangling pointer & The pointer still holds the address of freed memory, which ma
 \begin{notebox}\textbf{Trap:} setting p to NULL after free only protects that one pointer. Any other copy of the address still dangles.\end{notebox}
 
 \Needspace{13\baselineskip}
-\begin{notebox}\textbf{Near miss:} after int *p = malloc(sizeof(int)); free(p); the pointer p still holds the old address, and *p may even still show the old value, but reading it is undefined behaviour: that memory no longer belongs to you.\end{notebox}
+\begin{notebox}\textbf{Near miss:} after \texttt{int *p = malloc(sizeof(int)); free(p);} the pointer p still holds the old address, and *p may even still show the old value, but reading it is undefined behaviour: that memory no longer belongs to you.\end{notebox}
 
 \begin{recallbox}{Recall check \ensuremath{\cdot} answer without looking}
 \Needspace{5\baselineskip}
@@ -1521,7 +1521,7 @@ Priority & Direct control and performance & Safety and developer productivity \\
 \begin{notebox}\textbf{Trap:} id() is unique only among objects alive at the same time, so a freed object’s identifier can come back.\end{notebox}
 
 \Needspace{13\baselineskip}
-\begin{notebox}\textbf{Near miss:} a = [1, 2]; b = a; a = a + [3] leaves b as [1, 2], but a = [1, 2]; b = a; a += [3] makes b [1, 2, 3] too. For lists, + builds a new list, while += changes the existing one in place.\end{notebox}
+\begin{notebox}\textbf{Near miss:} \texttt{a = [1, 2]; b = a; a = a + [3]} leaves b as [1, 2], but \texttt{a = [1, 2]; b = a; a += [3]} makes b [1, 2, 3] too. For lists, + builds a new list, while += changes the existing one in place.\end{notebox}
 
 \begin{recallbox}{Recall check \ensuremath{\cdot} answer without looking}
 \Needspace{5\baselineskip}
@@ -1549,11 +1549,11 @@ Two’s-complement range & \ensuremath{-}2\textsuperscript{n\ensuremath{-}1} …
 Biased exponent & actual exponent = stored exponent \ensuremath{-} bias & Decode a normal IEEE value. \\
 Floating-point model & (\ensuremath{-}1)\textsuperscript{S} \ensuremath{\times} significand \ensuremath{\times} 2\textsuperscript{E} & Interpret sign, scale, and precision. \\
 Machine epsilon & β\textsuperscript{1\ensuremath{-}p} & Spacing from 1 to the next value; p is the total number of significand digits. \\
-Unit roundoff & u=ε\textsubscript{mach}/2 & Bound relative rounding error for normal results under round-to-nearest. \\
+Unit roundoff & u={\small\ensuremath{\dfrac{ε_{\text{mach}}}{2}}} & Bound relative rounding error for normal results under round-to-nearest. \\
 Relative error model & fl(x)=x(1+δ), |δ|\ensuremath{\leq}u & Model rounding under stated assumptions. \\
-Sterbenz condition & y/2 \ensuremath{\leq} x \ensuremath{\leq} 2y & Subtraction of such floating-point x and y is exact under the lemma's assumptions. \\
+Sterbenz condition & {\small\ensuremath{\dfrac{\mathrm{y}}{2}}} \ensuremath{\leq} x \ensuremath{\leq} 2y & Subtraction of such floating-point x and y is exact under the lemma's assumptions. \\
 Local gap & 2\textsuperscript{E\ensuremath{-}p+1} & Spacing within [2\textsuperscript{E}, 2\textsuperscript{E+1}). \\
-Error of a difference & (xδ\textsubscript{x}\ensuremath{-}yδ\textsubscript{y})/(x\ensuremath{-}y) & See how cancellation amplifies input error. \\
+Error of a difference & {\small\ensuremath{\dfrac{\mathrm{x}δ_{\mathrm{x}}-\mathrm{y}δ_{\mathrm{y}}}{\mathrm{x}-\mathrm{y}}}} & See how cancellation amplifies input error. \\
 Pointer step & new = old + n \ensuremath{\times} sizeof(type) & Find an address, in bytes. \\
 Subscript & a[i] = *(a + i) & Move between array and pointer notation. \\
 \bottomrule\end{tabularx}\end{center}
@@ -1573,7 +1573,7 @@ Cover the explanations and rebuild each result on blank paper.
 
 \begin{enumerate}
 \item \textbf{Base conversion:} expand a binary numeral into powers of 2. \hfill{\small\color{FAUblue}§3.1}
-\item \textbf{Binary to octal/hex:} derive why groups of 3/4 bits match one digit. \hfill{\small\color{FAUblue}§3.1}
+\item \textbf{Binary to octal/hex:} derive why groups of {\small\ensuremath{\dfrac{3}{4}}} bits match one digit. \hfill{\small\color{FAUblue}§3.1}
 \item \textbf{Two’s-complement negation:} show why invert-and-add-one gives 2\textsuperscript{n}\ensuremath{-}x. \hfill{\small\color{FAUblue}§3.2}
 \item \textbf{Signed range:} determine the lowest and highest n-bit two’s-complement values. \hfill{\small\color{FAUblue}§3.2}
 \item \textbf{Unsigned division:} verify a quotient by reconstructing the dividend. \hfill{\small\color{FAUblue}§3.4}
@@ -1807,9 +1807,9 @@ Entries were checked against the slides, some only as extracted text, so confirm
 \item \textbf{Slide 3 against slide 5 (uneven claim):} a balanced range is listed as desirable and only the older encodings are said to fail. Two’s complement also misses it, as slide 5 itself shows. \hfill{\small\color{FAUblue}§3.2}
 \item \textbf{Slide 6:} the C example says assigning 127+1 to signed char wraps to \ensuremath{-}128. That is not guaranteed by C: integer promotion computes 128 as int, then converting an out-of-range value to signed char has an implementation-defined result or signal. Do not generalise this example as signed integer overflow being defined wraparound. See clauses 6.3.1.1 and 6.3.1.3 of the WG14 C standard draft N1570. \hfill{\small\color{FAUblue}§3.5}
 \item \textbf{Slide 17 (simplification):} the performance cost of subnormals depends on the CPU and its mode. The guide reports it as the lecture’s statement. \hfill{\small\color{FAUblue}§4.5}
-\item \textbf{Slides 18–19:} ε is called the upper bound on relative rounding error. That holds, but under round-to-nearest the tight bound is ε/2, which the guide calls u. Slide 19’s “any real number x that can be represented” means any x within range. \hfill{\small\color{FAUblue}§4.5}
+\item \textbf{Slides 18–19:} ε is called the upper bound on relative rounding error. That holds, but under round-to-nearest the tight bound is {\small\ensuremath{\dfrac{ε}{2}}}, which the guide calls u. Slide 19’s “any real number x that can be represented” means any x within range. \hfill{\small\color{FAUblue}§4.5}
 \item \textbf{Slide 21:} Sterbenz’s lemma is stated without its conditions. The guide adds positive values of the same format, and gradual underflow. \hfill{\small\color{FAUblue}§4.5}
-\item \textbf{Slide 22:} x\textsubscript{1} with sgn(b) breaks at b=0 if sgn(0)=0, because it gives x\textsubscript{1}=0 and then c/(a\ensuremath{\cdot}0). The slide also leaves a\ensuremath{\neq}0 and D\ensuremath{\geq}0 unstated. The guide’s branch treats b=0 as b\ensuremath{\geq}0 and requires both. \hfill{\small\color{FAUblue}§4.5}
+\item \textbf{Slide 22:} x\textsubscript{1} with sgn(b) breaks at b=0 if sgn(0)=0, because it gives x\textsubscript{1}=0 and then {\small\ensuremath{\dfrac{\mathrm{c}}{\mathrm{a}\cdot 0}}}. The slide also leaves a\ensuremath{\neq}0 and D\ensuremath{\geq}0 unstated. The guide’s branch treats b=0 as b\ensuremath{\geq}0 and requires both. \hfill{\small\color{FAUblue}§4.5}
 \item \textbf{Slide 26:} “int arr;” declares one int, yet the text calls it an array and labels p+1 and p+3 both “address of arr”. The brackets were probably lost; the guide reads int a[10], a[1] and a[3]. \hfill{\small\color{FAUblue}§5.1}
 \item \textbf{Slide 27:} “int int\_array;” and “struct Point pt\_array;” have probably lost their sizes in the same way. “sizeof(Point)” needs “struct Point” in C, and the sizes 4 and 16 assume a platform. \hfill{\small\color{FAUblue}§5.1}
 \item \textbf{Slide 28:} “array is equivalent to array” is a tautology. It reads as if it should be array equivalent to \&array[0]. \hfill{\small\color{FAUblue}§5.1}
@@ -1926,8 +1926,8 @@ Tick a skill only in a later session, at least one day after studying, when you 
 
 \Needspace{6\baselineskip}
 \begin{enumerate}
-\item 2\textsuperscript{\ensuremath{-}4}=1/16. \hfill{\small\color{FAUblue}§4.2}
-\item 1/2+1/8=0.625. \hfill{\small\color{FAUblue}§4.2}
+\item 2\textsuperscript{\ensuremath{-}4}={\small\ensuremath{\dfrac{1}{16}}}. \hfill{\small\color{FAUblue}§4.2}
+\item {\small\ensuremath{\dfrac{1}{2}}}+{\small\ensuremath{\dfrac{1}{8}}}=0.625. \hfill{\small\color{FAUblue}§4.2}
 \item The binary expansion repeats, but the significand has a finite number of bits and must be rounded or truncated. \hfill{\small\color{FAUblue}§4.2}
 \end{enumerate}
 
@@ -1961,7 +1961,7 @@ Tick a skill only in a later session, at least one day after studying, when you 
 \item They represent values between zero and the smallest normalised magnitude, making the transition toward zero gradual. \hfill{\small\color{FAUblue}§4.5}
 \item Positive or negative zero, according to the sign bit. \hfill{\small\color{FAUblue}§4.5}
 \item The gap from 1 to the next larger value; u is half of it under round-to-nearest. \hfill{\small\color{FAUblue}§4.5}
-\item The one that would suffer cancellation. Compute it from the product: x\textsubscript{2}=c/(a x\textsubscript{1}). \hfill{\small\color{FAUblue}§4.5}
+\item The one that would suffer cancellation. Compute it from the product: x\textsubscript{2}={\small\ensuremath{\dfrac{\mathrm{c}}{\mathrm{a}\, \mathrm{x}_{1}}}}. \hfill{\small\color{FAUblue}§4.5}
 \end{enumerate}
 
 \end{keepsection}
@@ -2003,7 +2003,7 @@ Tick a skill only in a later session, at least one day after studying, when you 
 \item A subnormal represents a non-zero value smaller than the minimum normalised magnitude, close to zero.
 \item Absolute or relative error that is acceptable depends on the scale and purpose of the calculation. One fixed tolerance may be too strict for large values or too loose for small ones.
 \item Spacing scales with the exponent, so a fixed absolute difference is a different fraction of values at different magnitudes. Machine epsilon measures spacing near 1; the relative rounding model expresses error as a fraction of the input magnitude.
-\item For positive floating-point x and y with y/2\ensuremath{\leq}x\ensuremath{\leq}2y, their difference is exactly representable under the format assumptions. Any rounding that already changed x or y can still affect the difference.
+\item For positive floating-point x and y with {\small\ensuremath{\dfrac{\mathrm{y}}{2}}}\ensuremath{\leq}x\ensuremath{\leq}2y, their difference is exactly representable under the format assumptions. Any rounding that already changed x or y can still affect the difference.
 \item Stored order then matches true order. Exponents can be compared as plain unsigned integers, which is simple and fast in hardware.
 \item C copies every argument, so the function holds its own copy of the address. Changing that copy leaves the caller’s pointer alone, which is why it must receive the pointer’s address instead.
 \item Both names refer to the same object, so append changes what the caller sees. Assignment only rebinds the local name to another object.
@@ -2015,13 +2015,13 @@ Tick a skill only in a later session, at least one day after studying, when you 
 
 \begin{enumerate}
 \item 37=32+4+1, so 100101\textsubscript{2}. \hfill{\small\color{FAUblue}§3.1}
-\item 1/2+1/4+1/16=0.8125. \hfill{\small\color{FAUblue}§4.2}
+\item {\small\ensuremath{\dfrac{1}{2}}}+{\small\ensuremath{\dfrac{1}{4}}}+{\small\ensuremath{\dfrac{1}{16}}}=0.8125. \hfill{\small\color{FAUblue}§4.2}
 \item Unsigned value 14\ensuremath{-}16=\ensuremath{-}2. \hfill{\small\color{FAUblue}§3.2}
 \item 24 bits: the 23 stored fraction bits plus the implicit leading 1. \hfill{\small\color{FAUblue}§4.4}
 \item Four bits, since 16=2\textsuperscript{4}. \hfill{\small\color{FAUblue}§3.1}
 \item 1.01\textsubscript{2}\ensuremath{\times}2\textsuperscript{\ensuremath{-}4}. The point moves four places right to make the significand 1.01, so the exponent is \ensuremath{-}4. \hfill{\small\color{FAUblue}§4.1}
 \item 7 is 0111 and 3 is 0011, so 73 is 0111 0011 in BCD. \hfill{\small\color{FAUblue}§3.2}
-\item 0.375=3/8=0.011\textsubscript{2}. \hfill{\small\color{FAUblue}§4.2}
+\item 0.375={\small\ensuremath{\dfrac{3}{8}}}=0.011\textsubscript{2}. \hfill{\small\color{FAUblue}§4.2}
 \item 2\textsuperscript{7}=128 code values. \hfill{\small\color{FAUblue}§3.3}
 \item The exponent field. \hfill{\small\color{FAUblue}§4.1}
 \item 1101+0111=10100. As an unsigned five-bit result it is 20, which matches 13+7. \hfill{\small\color{FAUblue}§3.4}
@@ -2033,13 +2033,13 @@ Tick a skill only in a later session, at least one day after studying, when you 
 \item Pattern 110 is 6; 6\ensuremath{-}4=2. \hfill{\small\color{FAUblue}§3.2}
 \item Negative infinity: all-ones exponent and zero fraction mean infinity; sign bit 1 makes it negative. \hfill{\small\color{FAUblue}§4.5}
 \item 47=7\ensuremath{\times}6+5, so quotient 7 and remainder 5; 0\ensuremath{\leq}5\ensuremath{<}6. \hfill{\small\color{FAUblue}§3.4}
-\item 1/2+1/16+1/32=0.59375. \hfill{\small\color{FAUblue}§4.2}
+\item {\small\ensuremath{\dfrac{1}{2}}}+{\small\ensuremath{\dfrac{1}{16}}}+{\small\ensuremath{\dfrac{1}{32}}}=0.59375. \hfill{\small\color{FAUblue}§4.2}
 \item Invert 0011 to 1100 and add 1: 1101, which is \ensuremath{-}3. \hfill{\small\color{FAUblue}§3.2}
 \item Align 2.1\ensuremath{\times}10\textsuperscript{2}=0.21\ensuremath{\times}10\textsuperscript{3}. Sum 8.67\ensuremath{\times}10\textsuperscript{3}; to two significant digits this is 8.7\ensuremath{\times}10\textsuperscript{3}. \hfill{\small\color{FAUblue}§4.3}
 \item 1110 1010 maps to E A, so EA\textsubscript{16}. \hfill{\small\color{FAUblue}§3.1}
 \item 127. \hfill{\small\color{FAUblue}§4.4}
 \item The machine keeps only the fixed n result bits. Carry-out is outside that word and does not alone indicate signed overflow. \hfill{\small\color{FAUblue}§3.5}
-\item 0.625=1/2+1/8=0.101\textsubscript{2}. \hfill{\small\color{FAUblue}§4.2}
+\item 0.625={\small\ensuremath{\dfrac{1}{2}}}+{\small\ensuremath{\dfrac{1}{8}}}=0.101\textsubscript{2}. \hfill{\small\color{FAUblue}§4.2}
 \item BCD: 0101 1001. Ordinary binary: 111011. \hfill{\small\color{FAUblue}§3.2}
 \item 130\ensuremath{-}127=3. \hfill{\small\color{FAUblue}§4.4}
 \item \ensuremath{-}6 is 1010; invert and add 1 to get +6=0110. Then 0111+0110=1101, which decodes as \ensuremath{-}3. The exact result is +13, outside \ensuremath{-}8…+7, so overflow occurs. \hfill{\small\color{FAUblue}§3.5}
@@ -2053,15 +2053,15 @@ Tick a skill only in a later session, at least one day after studying, when you 
 \item 7\ensuremath{-}8=\ensuremath{-}1. \hfill{\small\color{FAUblue}§3.2}
 \item For example, treat a as close to b when |a\ensuremath{-}b|\ensuremath{<}ε, with ε chosen for the expected scale and precision. \hfill{\small\color{FAUblue}§4.3}
 \item BCD keeps each decimal digit directly encoded, which can simplify decimal display or input/output. \hfill{\small\color{FAUblue}§3.2}
-\item 1+1/2+1/8=1.625. \hfill{\small\color{FAUblue}§4.2}
+\item 1+{\small\ensuremath{\dfrac{1}{2}}}+{\small\ensuremath{\dfrac{1}{8}}}=1.625. \hfill{\small\color{FAUblue}§4.2}
 \item 1.25=1.01\textsubscript{2} is a finite binary fraction, and multiplying by 2\textsuperscript{3} only shifts the binary point. \hfill{\small\color{FAUblue}§4.2}
 \item \ensuremath{\pm}\ensuremath{\infty} and NaN, respectively; the first divides a non-zero value by zero, while 0÷0 has no real result. \hfill{\small\color{FAUblue}§4.5}
 \item Add the exponents and multiply the significands, then normalise if needed. \hfill{\small\color{FAUblue}§4.3}
 \item Positive infinity. \hfill{\small\color{FAUblue}§4.5}
-\item For β=2 and p=24, ε\textsubscript{mach}=2\textsuperscript{\ensuremath{-}23}\ensuremath{\approx}1.19\ensuremath{\times}10\textsuperscript{\ensuremath{-}7}. Under round-to-nearest, u=ε\textsubscript{mach}/2=2\textsuperscript{\ensuremath{-}24}\ensuremath{\approx}5.96\ensuremath{\times}10\textsuperscript{\ensuremath{-}8}. \hfill{\small\color{FAUblue}§4.5}
+\item For β=2 and p=24, ε\textsubscript{mach}=2\textsuperscript{\ensuremath{-}23}\ensuremath{\approx}1.19\ensuremath{\times}10\textsuperscript{\ensuremath{-}7}. Under round-to-nearest, u={\small\ensuremath{\dfrac{ε_{\text{mach}}}{2}}}=2\textsuperscript{\ensuremath{-}24}\ensuremath{\approx}5.96\ensuremath{\times}10\textsuperscript{\ensuremath{-}8}. \hfill{\small\color{FAUblue}§4.5}
 \item 86=64+16+4+2=1010110\textsubscript{2}. \hfill{\small\color{FAUblue}§3.1}
-\item y/2=1\ensuremath{\leq}3\ensuremath{\leq}4=2y, so the condition holds. The difference 3.0\ensuremath{-}2.0=1.0 is exact. \hfill{\small\color{FAUblue}§4.5}
-\item No. 0.2=1/5, and the factor 5 means the denominator is not a power of 2. Repeated doubling gives 0.0011 0011…\textsubscript{2}, which repeats. \hfill{\small\color{FAUblue}§4.2}
+\item {\small\ensuremath{\dfrac{\mathrm{y}}{2}}}=1\ensuremath{\leq}3\ensuremath{\leq}4=2y, so the condition holds. The difference 3.0\ensuremath{-}2.0=1.0 is exact. \hfill{\small\color{FAUblue}§4.5}
+\item No. 0.2={\small\ensuremath{\dfrac{1}{5}}}, and the factor 5 means the denominator is not a power of 2. Repeated doubling gives 0.0011 0011…\textsubscript{2}, which repeats. \hfill{\small\color{FAUblue}§4.2}
 \item 0x2000+5\ensuremath{\times}4=0x2014, since 20=0x14. \hfill{\small\color{FAUblue}§5.1}
 \item [1, 2, 3], because a and b name one list. \hfill{\small\color{FAUblue}§5.2}
 \item *(a + 2). \hfill{\small\color{FAUblue}§5.1}
@@ -2113,7 +2113,7 @@ Tick a skill only in a later session, at least one day after studying, when you 
 \item 5.6\ensuremath{\times}10\textsuperscript{2}=0.056\ensuremath{\times}10\textsuperscript{4}. \hfill{\small\color{FAUblue}§4.3}
 \item (3.4+0.056)\ensuremath{\times}10\textsuperscript{4}=3.456\ensuremath{\times}10\textsuperscript{4}, which rounds to 3.5\ensuremath{\times}10\textsuperscript{4}. \hfill{\small\color{FAUblue}§4.3}
 \item The exact sum is 34560 and the rounded result is 35000. The smaller addend contributes digits beyond the two-digit precision, so rounding changes the stored result. \hfill{\small\color{FAUblue}§4.3}
-\item The relative error is 440/34560\ensuremath{\approx}1.27\%. With β=10 and p=2, ε=10\textsuperscript{\ensuremath{-}1} and u=0.05, so the error is within the 5\% bound. \hfill{\small\color{FAUblue}§4.5}
+\item The relative error is {\small\ensuremath{\dfrac{440}{34560}}}\ensuremath{\approx}1.27\%. With β=10 and p=2, ε=10\textsuperscript{\ensuremath{-}1} and u=0.05, so the error is within the 5\% bound. \hfill{\small\color{FAUblue}§4.5}
 \end{enumerate}
 
 \end{keepsection}

@@ -315,7 +315,7 @@ Finite Boolean rings & Each is isomorphic to F\textsubscript{2}\textsuperscript{
 Axioms are the starting point; identities are reusable consequences. Proofs become shorter when you name the law that justifies each step.
 
 \Needspace{14\baselineskip}
-\begin{plainbox}\textbf{In plain words:} the identities here are the tools you reach for in every proof, so learn them by name. Two of them ask how a function depends on one input: the \textbf{difference} \ensuremath{\partial}\textit{f}/\ensuremath{\partial}\textit{x} is 1 exactly where flipping \textit{x} changes \textit{f}, and the quantifiers (\ensuremath{\exists}\textit{x})\textit{f} and (\ensuremath{\forall}\textit{x})\textit{f} ask whether \textit{f} is 1 for some, or for every, value of \textit{x}.\end{plainbox}
+\begin{plainbox}\textbf{In plain words:} the identities here are the tools you reach for in every proof, so learn them by name. Two of them ask how a function depends on one input: the \textbf{difference} {\small\ensuremath{\dfrac{∂{f}}{∂{x}}}} is 1 exactly where flipping \textit{x} changes \textit{f}, and the quantifiers (\ensuremath{\exists}\textit{x})\textit{f} and (\ensuremath{\forall}\textit{x})\textit{f} ask whether \textit{f} is 1 for some, or for every, value of \textit{x}.\end{plainbox}
 
 \Needspace{10\baselineskip}
 \begin{center}\small\begin{tabularx}{\linewidth}{>{\raggedright\arraybackslash}X>{\raggedright\arraybackslash}X}\toprule
@@ -367,7 +367,7 @@ The cofactor f\textsubscript{x=1} fixes x to 1; f\textsubscript{x=0} fixes it to
 \end{workedbox}
 
 \begin{equationcard}{Difference and quantification}
-\[ \begin{gathered} ∂{f}/∂{x}\, =\, {f}_{{x}=1}\, ⊕\, {f}_{{x}=0} \\ ∂({f}\, ⊕\, {g})/∂{x}\, =\, ∂{f}/∂{x}\, ⊕\, ∂{g}/∂{x} \\ ∂({f}{g})/∂{x}\, =\, {f}\cdot ∂{g}/∂{x}\, ⊕\, {g}\cdot ∂{f}/∂{x}\, ⊕\, ∂{f}/∂{x}\cdot ∂{g}/∂{x} \\ (\exists {x}){f}\, =\, {f}_{{x}=1}\, +\, {f}_{{x}=0} \\ (\forall {x}){f}\, =\, {f}_{{x}=1}\cdot {f}_{{x}=0} \\ (\forall {x}){f}\, \leq \, {f}\, \leq \, (\exists {x}){f} \end{gathered} \]
+\[ \begin{gathered} \dfrac{∂{f}}{∂{x}}\, =\, {f}_{{x}=1}\, ⊕\, {f}_{{x}=0} \\ \dfrac{∂({f}\, ⊕\, {g})}{∂{x}}\, =\, \dfrac{∂{f}}{∂{x}}\, ⊕\, \dfrac{∂{g}}{∂{x}} \\ \dfrac{∂({f}{g})}{∂{x}}\, =\, {f}\cdot \dfrac{∂{g}}{∂{x}}\, ⊕\, {g}\cdot \dfrac{∂{f}}{∂{x}}\, ⊕\, \dfrac{∂{f}}{∂{x}}\cdot \dfrac{∂{g}}{∂{x}} \\ (\exists {x}){f}\, =\, {f}_{{x}=1}\, +\, {f}_{{x}=0} \\ (\forall {x}){f}\, =\, {f}_{{x}=1}\cdot {f}_{{x}=0} \\ (\forall {x}){f}\, \leq \, {f}\, \leq \, (\exists {x}){f} \end{gathered} \]
 {\small \emph{Read it as: “the difference of f in x is f with x set to 1, XOR f with x set to 0”; “there exists x: f” is the OR of the two cofactors, and “for all x: f” is their AND.}\par f does not depend on x exactly when its difference in x is 0. Existential quantification (smoothing) asks whether either case works; universal quantification (consensus) asks whether both cases work. Both remove dependence on x.}
 \end{equationcard}
 
@@ -386,7 +386,7 @@ Let f=x+y.
 \begin{notebox}\textbf{Memory hook:} for existential, OR the two cofactors; for universal, AND them. Check the question’s quantifier before simplifying.\end{notebox}
 
 \Needspace{5\baselineskip}
-\begin{notebox}\textbf{Near miss:} for \textit{f} = \textit{x} \ensuremath{\cdot} \textit{y}, \ensuremath{\partial}\textit{f}/\ensuremath{\partial}\textit{x} = (1 \ensuremath{\cdot} \textit{y}) \ensuremath{\oplus} (0 \ensuremath{\cdot} \textit{y}) = \textit{y}, not 1: \textit{f} depends on \textit{x} only when \textit{y} = 1. A formula can contain \textit{x} and still ignore it for some inputs.\end{notebox}
+\begin{notebox}\textbf{Near miss:} for \textit{f} = \textit{x} \ensuremath{\cdot} \textit{y}, {\small\ensuremath{\dfrac{∂{f}}{∂{x}}}} = (1 \ensuremath{\cdot} \textit{y}) \ensuremath{\oplus} (0 \ensuremath{\cdot} \textit{y}) = \textit{y}, not 1: \textit{f} depends on \textit{x} only when \textit{y} = 1. A formula can contain \textit{x} and still ignore it for some inputs.\end{notebox}
 
 \Needspace{10\baselineskip}
 \begin{recallbox}{Recall check \ensuremath{\cdot} answer without looking}

@@ -977,6 +977,14 @@ main > section {
   border-top: 1px solid currentColor;
   padding: 0.08em 0.14em 0;
 }
+/* In running text a fraction is set small (like TeX's \tfrac), so it barely opens the line; display lines keep it full size. */
+.frac {
+  font-size: 0.9em;
+}
+.formula .frac,
+.math-line .frac {
+  font-size: 1em;
+}
 .eq-note {
   color: var(--muted);
   font-size: 0.94rem;

@@ -258,15 +258,15 @@ An algorithm turns a problem into steps that a person or machine can carry out. 
 The slides give a tiny example: even “1 + 2 + 3 =” is an algorithm, because it fixes the steps, their order and when you are finished.
 
 \Needspace{12\baselineskip}
-An algorithm is more specific than “find a square root”: it says how to make and check successive guesses. The procedure in the notes starts with a guess \textit{g}; if \textit{g}\textsuperscript{2} is close enough to \textit{x}, it stops. Otherwise it replaces \textit{g} with the average of \textit{g} and \textit{x}/\textit{g}.
+An algorithm is more specific than “find a square root”: it says how to make and check successive guesses. The procedure in the notes starts with a guess \textit{g}; if \textit{g}\textsuperscript{2} is close enough to \textit{x}, it stops. Otherwise it replaces \textit{g} with the average of \textit{g} and {\small\ensuremath{\dfrac{{x}}{{g}}}}.
 
 \begin{workedbox}{Worked example \ensuremath{\cdot} follow the square-root recipe}
 For \textit{x} = 16 and initial guess \textit{g} = 3, calculate two updates.
 
 \Needspace{8\baselineskip}
 \begin{enumerate}
-\item First compare 3\textsuperscript{2} = 9 with 16, so continue. The next guess is (3 + 16/3)/2 \ensuremath{\approx} 4.167.
-\item Now 4.167\textsuperscript{2} \ensuremath{\approx} 17.36, so update again: (4.167 + 16/4.167)/2 \ensuremath{\approx} 4.003.
+\item First compare 3\textsuperscript{2} = 9 with 16, so continue. The next guess is {\small\ensuremath{\dfrac{3\, +\, \dfrac{16}{3}}{2}}} \ensuremath{\approx} 4.167.
+\item Now 4.167\textsuperscript{2} \ensuremath{\approx} 17.36, so update again: {\small\ensuremath{\dfrac{4.167\, +\, \dfrac{16}{4.167}}{2}}} \ensuremath{\approx} 4.003.
 \item The next estimate is about 4.000. The procedure approaches \ensuremath{\sqrt{16}} and stops when its chosen closeness test succeeds. \hfill{\small\color{FAUblue}§2.1}
 \item Sanity check: 4\textsuperscript{2} = 16, so the guesses are heading for the true root.
 \end{enumerate}
@@ -406,7 +406,7 @@ A program can contain definitions and commands. An interpreter evaluates them in
 \begin{notebox}\textbf{Trap:} “it runs” does not mean “it is right”. A program with no syntax or static semantic errors can still give the wrong answer.\end{notebox}
 
 \Needspace{15\baselineskip}
-\begin{notebox}\textbf{Near miss:} a program meant to average three marks that computes a + b + c / 3 has legal syntax and no static semantic error, and it runs, but the division happens before the additions, so it returns the wrong value. It passes every check except doing what was meant.\end{notebox}
+\begin{notebox}\textbf{Near miss:} a program meant to average three marks that computes a + b + {\small\ensuremath{\dfrac{\mathrm{c}}{3}}} has legal syntax and no static semantic error, and it runs, but the division happens before the additions, so it returns the wrong value. It passes every check except doing what was meant.\end{notebox}
 
 \begin{recallbox}{Recall check \ensuremath{\cdot} answer without looking}
 \Needspace{5\baselineskip}
@@ -905,7 +905,7 @@ Try all 25 problems before opening the worked answers. They alternate across top
 \item Classify “3 + 'hi'” using the lecture's distinction between syntax and static semantics.
 \item Rewrite (A \ensuremath{\cdot} B)\ensuremath{{}^{\prime}} using a De Morgan law.
 \item For A=1 and B=0, evaluate A \ensuremath{\Rightarrow} B and A\ensuremath{{}^{\prime}} + B. What do you observe?
-\item For x=9 and current guess g=2, calculate the next square-root guess using (g + x/g)/2.
+\item For x=9 and current guess g=2, calculate the next square-root guess using {\small\ensuremath{\dfrac{\mathrm{g}\, +\, \mathrm{x}/\mathrm{g}}{2}}}.
 \item Rewrite (A + B + C)\ensuremath{{}^{\prime}} using De Morgan's law.
 \item State the difference between an ideal Boolean gate model and a physical circuit model.
 \item Let A=0, B=1, C=1. Evaluate A\ensuremath{{}^{\prime}} + B \ensuremath{\cdot} C using the stated precedence.
@@ -939,7 +939,7 @@ Set a timer for about 20 minutes per problem. Show intermediate steps and identi
 \subsection{1 \ensuremath{\cdot} From a recipe to an algorithm}
 
 \Needspace{15\baselineskip}
-For this practice variation on the lecture's square-root recipe, make the stopping test explicit. For positive x, start with a positive guess g, test whether |g²\ensuremath{-}x| is below a tolerance ε, stop if so, and otherwise set g to (g+x/g)/2 and repeat.
+For this practice variation on the lecture's square-root recipe, make the stopping test explicit. For positive x, start with a positive guess g, test whether |g²\ensuremath{-}x| is below a tolerance ε, stop if so, and otherwise set g to {\small\ensuremath{\dfrac{\mathrm{g}+\mathrm{x}/\mathrm{g}}{2}}} and repeat.
 
 \Needspace{11\baselineskip}
 \begin{enumerate}
@@ -980,7 +980,7 @@ These were checked against the slides. Learn the corrected form, and expect that
 \Needspace{10\baselineskip}
 \begin{center}\small\begin{tabularx}{\linewidth}{>{\raggedright\arraybackslash}X>{\raggedright\arraybackslash}X>{\raggedright\arraybackslash}X}\toprule
 \textbf{Slide} & \textbf{Issue} & \textbf{This guide} \\ \midrule
-5 & Row g = 4.17 prints g*g = 17.36, but 4.17² = 17.39; 17.36 is the unrounded (25/6)². Row g = 4.0035 prints 16.0277, but 4.0035² = 16.0280. & Rounding slip. §2.1 uses 4.167 and 17.36, which agree. \\
+5 & Row g = 4.17 prints g*g = 17.36, but 4.17² = 17.39; 17.36 is the unrounded ({\small\ensuremath{\dfrac{25}{6}}})². Row g = 4.0035 prints 16.0277, but 4.0035² = 16.0280. & Rounding slip. §2.1 uses 4.167 and 17.36, which agree. \\
 9, 18 & “Interpreter or compiler executes each instruction.” A compiler translates a program; it does not execute it. Slide 18 says commands are converted into machine language, which is the accurate part. & §§2.2–2.3 say the processor executes and the compiler translates. \\
 10 & “Compute anything” and “any other programming language” are loose: the claim holds for what is computable, in general-purpose (Turing-complete) languages. & §2.2 says “computable” and “general-purpose”. \\
 31 & “Binary: AND \& OR | NOT ~” should read bitwise. ~ takes one operand, so it is not binary in the usual sense. & §2.5 says bitwise. \\
@@ -1035,7 +1035,7 @@ Use day 0 to learn and practise. Tick a skill only in a later session, at least 
 \Needspace{6\baselineskip}
 \begin{enumerate}
 \item Simple steps, control flow that determines when they run, and a rule for stopping. \hfill{\small\color{FAUblue}§2.1}
-\item It averages the guess \textit{g} with \textit{x}/\textit{g} and repeats the test. \hfill{\small\color{FAUblue}§2.1}
+\item It averages the guess \textit{g} with {\small\ensuremath{\dfrac{{x}}{{g}}}} and repeats the test. \hfill{\small\color{FAUblue}§2.1}
 \item Finiteness says the description and each resource use stay finite; halting says the run takes a finite number of steps and terminates. \hfill{\small\color{FAUblue}§2.1}
 \end{enumerate}
 
@@ -1134,7 +1134,7 @@ Use day 0 to learn and practise. Tick a skill only in a later session, at least 
 \item It is syntactically valid but has a static semantic error in the slide's example. \hfill{\small\color{FAUblue}§2.3}
 \item A\ensuremath{{}^{\prime}} + B\ensuremath{{}^{\prime}}. \hfill{\small\color{FAUblue}§2.6}
 \item Both are 0. Their matching outputs for this row are consistent with the equivalence; check all four rows to prove it. \hfill{\small\color{FAUblue}§2.5}
-\item (2 + 9/2)/2 = 6.5/2 = 3.25. It is above \ensuremath{\sqrt{9}} = 3 and closer than 2 was. \hfill{\small\color{FAUblue}§2.1}
+\item {\small\ensuremath{\dfrac{2\, +\, \dfrac{9}{2}}{2}}} = {\small\ensuremath{\dfrac{6.5}{2}}} = 3.25. It is above \ensuremath{\sqrt{9}} = 3 and closer than 2 was. \hfill{\small\color{FAUblue}§2.1}
 \item (A + B + C)\ensuremath{{}^{\prime}} = A\ensuremath{{}^{\prime}} \ensuremath{\cdot} B\ensuremath{{}^{\prime}} \ensuremath{\cdot} C\ensuremath{{}^{\prime}}. \hfill{\small\color{FAUblue}§2.6}
 \item The Boolean model gives stable outputs for inputs; a physical circuit also takes time to switch and has limits such as saturation. \hfill{\small\color{FAUblue}§2.8}
 \item NOT first gives A\ensuremath{{}^{\prime}}=1; AND next gives B\ensuremath{\cdot}C=1; OR last gives 1+1=1. \hfill{\small\color{FAUblue}§2.5}
@@ -1159,8 +1159,8 @@ Use day 0 to learn and practise. Tick a skill only in a later session, at least 
 
 \Needspace{13\baselineskip}
 \begin{enumerate}
-\item Set the inputs x, g, and ε. Compute |g²\ensuremath{-}x|. If it is less than ε, output g and stop; otherwise replace g with (g+x/g)/2 and repeat the test. \hfill{\small\color{FAUblue}§2.1}
-\item First update: (4+25/4)/2=5.125. Second: (5.125+25/5.125)/2\ensuremath{\approx}5.00152. Its residual is about 0.0152, above ε=0.01, so another update is needed. The third guess is about 5.0000002, with residual about 0.000002, which passes. \hfill{\small\color{FAUblue}§2.1}
+\item Set the inputs x, g, and ε. Compute |g²\ensuremath{-}x|. If it is less than ε, output g and stop; otherwise replace g with {\small\ensuremath{\dfrac{\mathrm{g}+\mathrm{x}/\mathrm{g}}{2}}} and repeat the test. \hfill{\small\color{FAUblue}§2.1}
+\item First update: {\small\ensuremath{\dfrac{4+\dfrac{25}{4}}{2}}}=5.125. Second: {\small\ensuremath{\dfrac{5.125+\dfrac{25}{5.125}}{2}}}\ensuremath{\approx}5.00152. Its residual is about 0.0152, above ε=0.01, so another update is needed. The third guess is about 5.0000002, with residual about 0.000002, which passes. \hfill{\small\color{FAUblue}§2.1}
 \item The finite list is a finite description; its defined arithmetic and comparison steps are executable; the tolerance defines a stopping test; the repeated update is the control flow that repeats. To establish halting for every allowed input, one must show the update eventually makes the residual less than ε (and specify valid inputs such as x\ensuremath{>}0 and ε\ensuremath{>}0). \hfill{\small\color{FAUblue}§2.1}
 \item Update when S\ensuremath{{}^{\prime}} is 1. At g=4, |16\ensuremath{-}25|=9, which is not below 0.01, so S=0 and S\ensuremath{{}^{\prime}}=1. \hfill{\small\color{FAUblue}§2.4} \hfill{\small\color{FAUblue}§2.5}
 \end{enumerate}

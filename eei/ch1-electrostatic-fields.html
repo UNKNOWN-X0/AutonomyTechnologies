@@ -130,8 +130,8 @@
               <li>Experiments show that the forces from several charges on a probe add as vectors. In a homogeneous medium the fields therefore add as vectors too (superposition).</li>
               <li>The total charge inside the surface: <span class="op op-int"><span class="op-sym">∮</span></span> <var>D</var> · d<var>A</var> = <var>Q</var><sub>enclosed</sub>.</li>
               <li>Free charges move under any field inside the metal until their own field cancels it. In the static state nothing moves any more, so the interior field is zero.</li>
-              <li>The normal part of <var>D</var>. The normal part of <var>E</var> jumps in the ratio ε<sub>2</sub>/ε<sub>1</sub>.</li>
-              <li>Capacitance <var>C</var> = <var>Q</var>/<var>U</var> depends only on geometry and material. Stored energy ½<var>C U</var><sup>2</sup> also depends on how far the capacitor is charged.</li>
+              <li>The normal part of <var>D</var>. The normal part of <var>E</var> jumps in the ratio <span class="frac"><span>ε<sub>2</sub></span><span>ε<sub>1</sub></span></span>.</li>
+              <li>Capacitance <var>C</var> = <span class="frac"><span><var>Q</var></span><span><var>U</var></span></span> depends only on geometry and material. Stored energy ½<var>C U</var><sup>2</sup> also depends on how far the capacitor is charged.</li>
             </ol>
           </details>
         </section>
@@ -163,7 +163,7 @@
                 </li>
                 <li class="cm-node" data-id="coulomb" data-deps="" data-sec="1.2">
                   <p class="cm-title"><strong>Coulomb’s law</strong> <span class="sec-ref">§1.2</span></p>
-                  <p class="cm-formula"><var>F</var> ∝ <var>Q</var><sub>1</sub><var>Q</var><sub>2</sub>/<var>r</var><sup>2</sup>, along the line between them</p>
+                  <p class="cm-formula"><var>F</var> ∝ <span class="frac"><span><var>Q</var><sub>1</sub><var>Q</var><sub>2</sub></span><span><var>r</var><sup>2</sup></span></span>, along the line between them</p>
                   <p class="cm-why"><em>Rests on:</em> nothing; it is measured. Two features carry the rest of the chapter: the force is central and depends only on r, and the power is exactly 2.</p>
                 </li>
                 <li class="cm-node" data-id="superposition" data-deps="" data-sec="1.4">
@@ -178,7 +178,7 @@
               <ul>
                 <li class="cm-node" data-id="field" data-deps="coulomb superposition" data-sec="1.3">
                   <p class="cm-title"><strong>Field strength</strong> <span class="sec-ref">§1.3</span></p>
-                  <p class="cm-formula"><var>E</var> = <var>F</var>/<var>Q</var>, in V/m</p>
+                  <p class="cm-formula"><var>E</var> = <span class="frac"><span><var>F</var></span><span><var>Q</var></span></span>, in V/m</p>
                   <p class="cm-why"><em>Rests on:</em> Coulomb’s law, Superposition. Well defined only because Coulomb’s law makes F proportional to the probe charge, so F/Q does not depend on the probe. Superposition gives the field of any arrangement.</p>
                 </li>
                 <li class="cm-node" data-id="potential" data-deps="field pathind" data-sec="1.8">
@@ -198,7 +198,7 @@
                 </li>
                 <li class="cm-node" data-id="capacitance" data-deps="voltage gauss" data-sec="1.13">
                   <p class="cm-title"><strong>Capacitance</strong> <span class="sec-ref">§1.13</span></p>
-                  <p class="cm-formula"><var>C</var> = <var>Q</var>/<var>U</var>, in F</p>
+                  <p class="cm-formula"><var>C</var> = <span class="frac"><span><var>Q</var></span><span><var>U</var></span></span>, in F</p>
                   <p class="cm-why"><em>Rests on:</em> Voltage, Gauss’s law. Useful only because Q and U are proportional for a fixed geometry, which follows from Gauss’s law and the linearity of everything above.</p>
                 </li>
               </ul>
@@ -214,7 +214,7 @@
                 <li class="cm-node" data-id="gauss" data-deps="coulomb superposition flux" data-sec="1.10">
                   <p class="cm-title"><strong>Gauss’s law</strong> <span class="sec-ref">§1.10</span></p>
                   <p class="cm-formula"><span class="op op-int"><span class="op-sym">∯</span></span> <var>D</var> · d<var>A</var> = <var>Q</var><sub>enclosed</sub></p>
-                  <p class="cm-why"><em>Rests on:</em> Coulomb’s law, Superposition, Flux density. Needs the exact 1/r²: field times sphere area is then the same on every sphere. Superposition extends it to any charge distribution.</p>
+                  <p class="cm-why"><em>Rests on:</em> Coulomb’s law, Superposition, Flux density. Needs the exact <span class="frac"><span>1</span><span>r²</span></span>: field times sphere area is then the same on every sphere. Superposition extends it to any charge distribution.</p>
                 </li>
                 <li class="cm-node" data-id="interface" data-deps="pathind gauss" data-sec="1.11">
                   <p class="cm-title"><strong>Interface conditions</strong> <span class="sec-ref">§1.11</span></p>
@@ -228,13 +228,13 @@
                 </li>
                 <li class="cm-node" data-id="capformulas" data-deps="gauss voltage capacitance" data-sec="1.13">
                   <p class="cm-title"><strong>Capacitor formulas</strong> <span class="sec-ref">§1.13</span></p>
-                  <p class="cm-formula">ε<var>A</var>/<var>d</var>, 4πε<sub>0</sub><var>ab</var>/(<var>b</var> − <var>a</var>), 2πε/ln(<var>b</var>/<var>a</var>) per length</p>
-                  <p class="cm-why"><em>Rests on:</em> Gauss’s law, Voltage, Capacitance. The recipe: put ±Q on the electrodes, D from Gauss, E = D/ε, integrate to U, divide.</p>
+                  <p class="cm-formula"><span class="frac"><span>ε<var>A</var></span><span><var>d</var></span></span>, <span class="frac"><span>4πε<sub>0</sub><var>ab</var></span><span><var>b</var> − <var>a</var></span></span>, <span class="frac"><span>2πε</span><span>ln(<span class="frac"><span><var>b</var></span><span><var>a</var></span></span>)</span></span> per length</p>
+                  <p class="cm-why"><em>Rests on:</em> Gauss’s law, Voltage, Capacitance. The recipe: put ±Q on the electrodes, D from Gauss, E = <span class="frac"><span>D</span><span>ε</span></span>, integrate to U, divide.</p>
                 </li>
                 <li class="cm-node" data-id="energy" data-deps="voltage capacitance" data-sec="1.14">
                   <p class="cm-title"><strong>Stored energy</strong> <span class="sec-ref">§1.14</span></p>
                   <p class="cm-formula"><var>W</var><sub>e</sub> = ½<var>C U</var><sup>2</sup> = ½<var>Q U</var></p>
-                  <p class="cm-why"><em>Rests on:</em> Voltage, Capacitance. Charging moves each dq through the voltage present, u = q/C; integrating gives Q²/(2C).</p>
+                  <p class="cm-why"><em>Rests on:</em> Voltage, Capacitance. Charging moves each dq through the voltage present, u = q/C; integrating gives <span class="frac"><span>Q²</span><span>2C</span></span>.</p>
                 </li>
               </ul>
             </div>
@@ -250,7 +250,7 @@
                 <tr><td>the field of a sphere, long cylinder or plane</td><td>Gauss’s law with a matching surface</td></tr>
                 <tr><td>work to move a charge, or a potential</td><td><var>W</var><sub>e</sub> = <var>Q</var>(φ<sub>end</sub> − φ<sub>start</sub>), φ = −<span class="op op-int"><span class="op-sym">∫</span></span> <var>E</var> · d<var>s</var></td></tr>
                 <tr><td>the field on the far side of a boundary</td><td>normal <var>D</var> and tangential <var>E</var> conditions</td></tr>
-                <tr><td>charge per volt, or stored energy</td><td><var>C</var> = <var>Q</var>/<var>U</var>, <var>W</var><sub>e</sub> = ½<var>C U</var><sup>2</sup></td></tr>
+                <tr><td>charge per volt, or stored energy</td><td><var>C</var> = <span class="frac"><span><var>Q</var></span><span><var>U</var></span></span>, <var>W</var><sub>e</sub> = ½<var>C U</var><sup>2</sup></td></tr>
               </tbody>
             </table>
           </div>
@@ -274,16 +274,16 @@
             </ol>
             <details class="answers"><summary>Answers</summary><ol>
               <li>We see both attraction and repulsion; one kind of charge could only produce one of them.</li>
-              <li>−4.8 × 10<sup>−19</sup>/1.602 × 10<sup>−19</sup> ≈ −3: it gained three electrons.</li>
+              <li>−4.8 × <span class="frac"><span>10<sup>−19</sup></span><span>1.602</span></span> × 10<sup>−19</sup> ≈ −3: it gained three electrons.</li>
             </ol></details>
           </div>
         </section>
 
         <section id="sec-12">
           <h2>1.2 Coulomb’s law</h2>
-          <p>For two point charges (bodies much smaller than their distance), the force grows with each charge and falls with the square of the distance. The same 1/<var>r</var><sup>2</sup> appears in Newton’s gravitation; the 4π<var>r</var><sup>2</sup> in the denominator is the area of a sphere of radius <var>r</var>.</p>
+          <p>For two point charges (bodies much smaller than their distance), the force grows with each charge and falls with the square of the distance. The same <span class="frac"><span>1</span><span><var>r</var><sup>2</sup></span></span> appears in Newton’s gravitation; the 4π<var>r</var><sup>2</sup> in the denominator is the area of a sphere of radius <var>r</var>.</p>
           <p class="plain"><strong>In plain words:</strong> Coulomb’s law says how hard two point charges push or pull: the force grows with each charge and falls with the square of the distance between them. Like charges repel and unlike charges attract, along the line joining them.</p>
-          <div class="eq"><strong>Force on charge 2 caused by charge 1</strong><span class="formula"><var>F</var><sub>2</sub> = <span class="frac"><span>1</span><span>4π ε<sub>0</sub></span></span> · <span class="frac"><span><var>Q</var><sub>1</sub><var>Q</var><sub>2</sub></span><span><var>r</var><sup>2</sup></span></span> <var>e</var><sub>r</sub></span><span class="formula"><var>e</var><sub>r</sub> = <span class="frac"><span><var>r</var><sub>P2</sub> − <var>r</var><sub>P1</sub></span><span><var>r</var></span></span></span><span class="eq-note"><span class="say">Read it as: “the force on charge 2 is Q<sub>1</sub>Q<sub>2</sub> over 4π ε<sub>0</sub> r<sup>2</sup>, in the direction e<sub>r</sub> from charge 1 to charge 2”.</span>ε<sub>0</sub> = 8.854 × 10<sup>−12</sup> A s/(V m); 1/(4π ε<sub>0</sub>) ≈ 8.988 × 10<sup>9</sup> V m/(A s). <var>e</var><sub>r</sub> points from the charge that causes the force to the charge that feels it.</span></div>
+          <div class="eq"><strong>Force on charge 2 caused by charge 1</strong><span class="formula"><var>F</var><sub>2</sub> = <span class="frac"><span>1</span><span>4π ε<sub>0</sub></span></span> · <span class="frac"><span><var>Q</var><sub>1</sub><var>Q</var><sub>2</sub></span><span><var>r</var><sup>2</sup></span></span> <var>e</var><sub>r</sub></span><span class="formula"><var>e</var><sub>r</sub> = <span class="frac"><span><var>r</var><sub>P2</sub> − <var>r</var><sub>P1</sub></span><span><var>r</var></span></span></span><span class="eq-note"><span class="say">Read it as: “the force on charge 2 is Q<sub>1</sub>Q<sub>2</sub> over 4π ε<sub>0</sub> r<sup>2</sup>, in the direction e<sub>r</sub> from charge 1 to charge 2”.</span>ε<sub>0</sub> = 8.854 × 10<sup>−12</sup> A s/(V m); <span class="frac"><span>1</span><span>4π ε<sub>0</sub></span></span> ≈ 8.988 × 10<sup>9</sup> V m/(A s). <var>e</var><sub>r</sub> points from the charge that causes the force to the charge that feels it.</span></div>
           <div class="figs"><figure class="viz" data-kind="field pair" data-signs="+ +"><figcaption><strong>Like charges</strong> push each other apart: the force on each points away from the other.</figcaption></figure><figure class="viz" data-kind="field pair" data-signs="+ -"><figcaption><strong>Unlike charges</strong> pull together, with equal and opposite forces along the line joining them.</figcaption></figure></div>
           <ul>
             <li><strong>Signs are built in.</strong> If <var>Q</var><sub>1</sub><var>Q</var><sub>2</sub> &gt; 0 the force points along <var>e</var><sub>r</sub> (repulsion); if &lt; 0 it points against it (attraction). Put the signed charges in and the direction comes out right.</li>
@@ -294,12 +294,12 @@
             <p><var>Q</var><sub>1</sub> = +4 μC sits at the origin, <var>Q</var><sub>2</sub> = −1 μC at (0, 0.3 m). Find the force on <var>Q</var><sub>2</sub>.</p>
             <ol class="method-list">
               <li><var>e</var><sub>r</sub> points from <var>Q</var><sub>1</sub> to <var>Q</var><sub>2</sub>: <var>e</var><sub>r</sub> = +<var>e</var><sub>y</sub>, <var>r</var> = 0.3 m.</li>
-              <li>Size: 8.988 × 10<sup>9</sup> × (4 × 10<sup>−6</sup>)(1 × 10<sup>−6</sup>)/0.09 ≈ 0.40 N.</li>
+              <li>Size: 8.988 × 10<sup>9</sup> × <span class="frac"><span>(4 × 10<sup>−6</sup>)(1 × 10<sup>−6</sup>)</span><span>0.09</span></span> ≈ 0.40 N.</li>
               <li>The product <var>Q</var><sub>1</sub><var>Q</var><sub>2</sub> is negative, so <var>F</var><sub>2</sub> ≈ −0.40 N <var>e</var><sub>y</sub>: toward <var>Q</var><sub>1</sub>, an attraction, as opposite signs should give.</li>
             </ol>
           </div>
           <p class="method"><strong>Trap:</strong> <var>r</var> is the distance between the charges, not a position coordinate. Point charges are an idealisation; Coulomb’s law in this form needs bodies much smaller than their distance.</p>
-          <p class="method"><strong>Near miss:</strong> doubling the distance between two charges looks as if it should halve the force, but the force falls to a quarter: it depends on 1/<var>r</var><sup>2</sup>, not on 1/<var>r</var>.</p>
+          <p class="method"><strong>Near miss:</strong> doubling the distance between two charges looks as if it should halve the force, but the force falls to a quarter: it depends on <span class="frac"><span>1</span><span><var>r</var><sup>2</sup></span></span>, not on <span class="frac"><span>1</span><span><var>r</var></span></span>.</p>
           <div class="recall">
             <p class="recall-title">Recall check</p>
             <ol>
@@ -308,7 +308,7 @@
             </ol>
             <details class="answers"><summary>Answers</summary><ol>
               <li>From the charge that produces the force toward the charge on which it acts.</li>
-              <li>Nothing: 3 × 3/3<sup>2</sup> = 1.</li>
+              <li>Nothing: 3 × <span class="frac"><span>3</span><span>3<sup>2</sup></span></span> = 1.</li>
             </ol></details>
           </div>
         </section>
@@ -318,23 +318,23 @@
           <p>Coulomb’s law describes a pair of charges but says nothing about the space around them. The field idea fixes that: a charge changes the surrounding space, and that change is felt by any probe charge placed there. A field assigns a physical quantity to every point in space; temperature is a scalar field, gravity and <var>E</var> are vector fields.</p>
           <p class="plain"><strong>In plain words:</strong> instead of asking how two charges act on each other, describe what one charge does to the space around it. The <strong>field</strong> <var>E</var> says, at every point, the force a charge of one coulomb would feel there; any charge <var>Q</var> placed at that point then feels the force <var>Q</var> <var>E</var>.</p>
           <div class="eq"><strong>Field of one point charge <var>Q</var> at observation point P</strong><span class="formula"><var>E</var>(<var>r</var><sub>P</sub>) = <span class="frac"><span><var>Q</var></span><span>4π ε<sub>0</sub><var>r</var><sup>2</sup></span></span> <var>e</var><sub>r</sub> = <span class="frac"><span><var>Q</var></span><span>4π ε<sub>0</sub></span></span> · <span class="frac"><span><var>r</var></span><span><var>r</var><sup>3</sup></span></span></span><span class="formula"><var>r</var> = <var>r</var><sub>P</sub> − <var>r</var><sub>Q</sub></span><span class="eq-note"><span class="say">Read it as: “E at P is Q over 4π ε<sub>0</sub> r<sup>2</sup> along e<sub>r</sub>, pointing away from Q”; for a negative Q it points towards Q.</span>Force on a probe: <var>F</var> = <var>Q</var><sub>probe</sub> <var>E</var>. Unit of <var>E</var>: V/m (equivalent to N/C).</span></div>
-          <div class="figs"><figure class="viz" data-kind="field point+"><figcaption><strong>Positive charge</strong>: <var>E</var> points away from it in every direction and weakens as 1/<var>r</var><sup>2</sup>.</figcaption></figure><figure class="viz" data-kind="field point-"><figcaption><strong>Negative charge</strong>: <var>E</var> points towards it.</figcaption></figure></div>
+          <div class="figs"><figure class="viz" data-kind="field point+"><figcaption><strong>Positive charge</strong>: <var>E</var> points away from it in every direction and weakens as <span class="frac"><span>1</span><span><var>r</var><sup>2</sup></span></span>.</figcaption></figure><figure class="viz" data-kind="field point-"><figcaption><strong>Negative charge</strong>: <var>E</var> points towards it.</figcaption></figure></div>
           <ul>
-            <li><var>E</var> does not depend on the probe: a bigger probe charge feels a bigger force, but <var>F</var>/<var>Q</var> stays the same.</li>
+            <li><var>E</var> does not depend on the probe: a bigger probe charge feels a bigger force, but <span class="frac"><span><var>F</var></span><span><var>Q</var></span></span> stays the same.</li>
             <li>The field exists in vacuum; no matter is needed.</li>
             <li>A positive probe is pushed along <var>E</var>, a negative probe against it.</li>
             <li>The vector <var>r</var> always runs from the source point Q to the observation point P.</li>
           </ul>
-          <p class="method"><strong>Near miss:</strong> a bigger probe charge feels a bigger force, so the field might seem to depend on the probe, but <var>E</var> = <var>F</var>/<var>Q</var><sub>probe</sub> stays the same: double the probe and the force doubles with it.</p>
+          <p class="method"><strong>Near miss:</strong> a bigger probe charge feels a bigger force, so the field might seem to depend on the probe, but <var>E</var> = <span class="frac"><span><var>F</var></span><span><var>Q</var><sub>probe</sub></span></span> stays the same: double the probe and the force doubles with it.</p>
           <div class="recall">
             <p class="recall-title">Recall check</p>
             <ol>
               <li>The probe charge is doubled. What happens to <var>E</var> and to <var>F</var>?</li>
-              <li>Write the field of a point charge in the <var>r</var>/<var>r</var><sup>3</sup> form and say what <var>r</var> is.</li>
+              <li>Write the field of a point charge in the <span class="frac"><span><var>r</var></span><span><var>r</var><sup>3</sup></span></span> form and say what <var>r</var> is.</li>
             </ol>
             <details class="answers"><summary>Answers</summary><ol>
               <li><var>E</var> is unchanged; <var>F</var> doubles.</li>
-              <li><var>E</var> = <var>Q</var> <var>r</var>/(4π ε<sub>0</sub> <var>r</var><sup>3</sup>), where <var>r</var> = <var>r</var><sub>P</sub> − <var>r</var><sub>Q</sub> points from source to observation point.</li>
+              <li><var>E</var> = <var>Q</var> <span class="frac"><span><var>r</var></span><span>4π ε<sub>0</sub> <var>r</var><sup>3</sup></span></span>, where <var>r</var> = <var>r</var><sub>P</sub> − <var>r</var><sub>Q</sub> points from source to observation point.</li>
             </ol></details>
           </div>
         </section>
@@ -356,7 +356,7 @@
             <p>Two charges of +2 nC sit at (0, +3 cm) and (0, −3 cm). Find <var>E</var> at P = (4 cm, 0).</p>
             <ol class="method-list">
               <li><var>r</var><sub>1</sub> = (0.04, −0.03) m and <var>r</var><sub>2</sub> = (0.04, +0.03) m, both of length 0.05 m.</li>
-              <li>Each field has size 8.988 × 10<sup>9</sup> × 2 × 10<sup>−9</sup>/0.05<sup>2</sup> ≈ 7.19 × 10<sup>3</sup> V/m along its own <var>r</var><sub>i</sub>/<var>r</var><sub>i</sub>.</li>
+              <li>Each field has size 8.988 × 10<sup>9</sup> × 2 × <span class="frac"><span>10<sup>−9</sup></span><span>0.05<sup>2</sup></span></span> ≈ 7.19 × 10<sup>3</sup> V/m along its own <span class="frac"><span><var>r</var><sub>i</sub></span><span><var>r</var><sub>i</sub></span></span>.</li>
               <li>The y-components (∓0.6 of each) cancel; the x-components (0.8 of each) add: <var>E</var> ≈ 2 × 0.8 × 7.19 × 10<sup>3</sup> ≈ 1.15 × 10<sup>4</sup> V/m along +x.</li>
             </ol>
           </div>
@@ -407,20 +407,20 @@
             <table>
               <thead><tr><th>Distribution</th><th>Density</th><th>Uniform case</th><th>Total charge</th><th>Unit</th></tr></thead>
               <tbody>
-                <tr><td>Line</td><td>λ = d<var>Q</var>/d<var>l</var></td><td>λ = <var>Q</var>/<var>l</var></td><td><var>Q</var> = <span class="op op-int"><span class="op-sym">∫</span><sub>l</sub></span> λ d<var>l</var></td><td>C/m</td></tr>
-                <tr><td>Surface</td><td>σ<sub>A</sub> = d<var>Q</var>/d<var>A</var></td><td>σ<sub>A</sub> = <var>Q</var>/<var>A</var></td><td><var>Q</var> = <span class="op op-int"><span class="op-sym">∬</span><sub>A</sub></span> σ<sub>A</sub> d<var>A</var></td><td>C/m²</td></tr>
-                <tr><td>Volume</td><td>ϱ<sub>V</sub> = d<var>Q</var>/d<var>V</var></td><td>ϱ<sub>V</sub> = <var>Q</var>/<var>V</var></td><td><var>Q</var> = <span class="op op-int"><span class="op-sym">∭</span><sub>V</sub></span> ϱ<sub>V</sub> d<var>V</var></td><td>C/m³</td></tr>
+                <tr><td>Line</td><td>λ = <span class="frac"><span>d<var>Q</var></span><span>d<var>l</var></span></span></td><td>λ = <span class="frac"><span><var>Q</var></span><span><var>l</var></span></span></td><td><var>Q</var> = <span class="op op-int"><span class="op-sym">∫</span><sub>l</sub></span> λ d<var>l</var></td><td>C/m</td></tr>
+                <tr><td>Surface</td><td>σ<sub>A</sub> = <span class="frac"><span>d<var>Q</var></span><span>d<var>A</var></span></span></td><td>σ<sub>A</sub> = <span class="frac"><span><var>Q</var></span><span><var>A</var></span></span></td><td><var>Q</var> = <span class="op op-int"><span class="op-sym">∬</span><sub>A</sub></span> σ<sub>A</sub> d<var>A</var></td><td>C/m²</td></tr>
+                <tr><td>Volume</td><td>ϱ<sub>V</sub> = <span class="frac"><span>d<var>Q</var></span><span>d<var>V</var></span></span></td><td>ϱ<sub>V</sub> = <span class="frac"><span><var>Q</var></span><span><var>V</var></span></span></td><td><var>Q</var> = <span class="op op-int"><span class="op-sym">∭</span><sub>V</sub></span> ϱ<sub>V</sub> d<var>V</var></td><td>C/m³</td></tr>
               </tbody>
             </table>
           </div>
           <p>A surface charge is idealised as infinitely thin. Pick the volume element that matches the shape (appendix 7.3 of the notes): d<var>V</var> = d<var>x</var> d<var>y</var> d<var>z</var> (Cartesian), ρ dρ dφ d<var>z</var> (cylinder), <var>r</var><sup>2</sup> sin ϑ d<var>r</var> dϑ dφ (sphere). If ϱ depends only on <var>r</var>, use thin shells: d<var>V</var> = 4π<var>r</var><sup>2</sup> d<var>r</var>.</p>
           <div class="worked">
             <p class="worked-title">Worked example</p>
-            <p>A sphere of radius <var>R</var> has ϱ(<var>r</var>) = ϱ<sub>0</sub>(1 − <var>r</var>/<var>R</var>). Find its total charge.</p>
+            <p>A sphere of radius <var>R</var> has ϱ(<var>r</var>) = ϱ<sub>0</sub>(1 − <span class="frac"><span><var>r</var></span><span><var>R</var></span></span>). Find its total charge.</p>
             <ol class="method-list">
-              <li>The density depends only on <var>r</var>, so use shells: <var>Q</var> = <span class="op op-int"><span class="op-sym">∫</span><sub>0</sub><sup>R</sup></span> ϱ<sub>0</sub>(1 − <var>r</var>/<var>R</var>) 4π<var>r</var><sup>2</sup> d<var>r</var>.</li>
-              <li>= 4πϱ<sub>0</sub> (<var>R</var><sup>3</sup>/3 − <var>R</var><sup>3</sup>/4) = πϱ<sub>0</sub><var>R</var><sup>3</sup>/3.</li>
-              <li>Check: a uniform ϱ<sub>0</sub> would give 4πϱ<sub>0</sub><var>R</var><sup>3</sup>/3. Our density falls to zero at the edge, so a quarter of that is plausible.</li>
+              <li>The density depends only on <var>r</var>, so use shells: <var>Q</var> = <span class="op op-int"><span class="op-sym">∫</span><sub>0</sub><sup>R</sup></span> ϱ<sub>0</sub>(1 − <span class="frac"><span><var>r</var></span><span><var>R</var></span></span>) 4π<var>r</var><sup>2</sup> d<var>r</var>.</li>
+              <li>= 4πϱ<sub>0</sub> (<span class="frac"><span><var>R</var><sup>3</sup></span><span>3</span></span> − <span class="frac"><span><var>R</var><sup>3</sup></span><span>4</span></span>) = <span class="frac"><span>πϱ<sub>0</sub><var>R</var><sup>3</sup></span><span>3</span></span>.</li>
+              <li>Check: a uniform ϱ<sub>0</sub> would give <span class="frac"><span>4πϱ<sub>0</sub><var>R</var><sup>3</sup></span><span>3</span></span>. Our density falls to zero at the edge, so a quarter of that is plausible.</li>
             </ol>
           </div>
           <p class="method"><strong>Near miss:</strong> stretching a uniformly charged rod to twice its length while keeping the same total charge halves its line density λ: a density is charge per length, not the total charge.</p>
@@ -477,8 +477,8 @@
           <div class="eq"><strong>The electrostatic field is conservative</strong><span class="formula"><span class="op op-int"><span class="op-sym">∮</span><sub>C</sub></span> <var>E</var> · d<var>s</var> = 0 &nbsp; and therefore &nbsp; <span class="op op-int"><span class="op-sym">∮</span><sub>C</sub></span> <var>F</var> · d<var>s</var> = 0</span><span class="eq-note"><span class="say">Read it as: “the integral of E · ds round any closed path C is 0”: going round and back costs no net energy.</span>The notes call it a source field, like gravity: the charges are its sources.</span></div>
           <p><strong>Potential.</strong> Because the work depends only on the end points, every point P can be given a number: the work per unit charge needed to bring a charge there from a reference point P<sub>0</sub>, where φ<sub>e</sub>(P<sub>0</sub>) = 0.</p>
           <div class="eq"><strong>Potential (unit V)</strong><span class="formula">φ<sub>e</sub>(P) = <span class="frac"><span><var>W</var><sub>e</sub>(P)</span><span><var>Q</var></span></span> = −<span class="op op-int"><span class="op-sym">∫</span><sub>P0</sub><sup>P</sup></span> <var>E</var> · d<var>s</var>, &nbsp; <var>W</var><sub>e</sub> = <var>Q</var>(φ<sub>e</sub>(P<sub>end</sub>) − φ<sub>e</sub>(P<sub>start</sub>))</span><span class="eq-note">Usual references: earth, infinity, or circuit ground (the negative battery pole or a metal housing). Like height above sea level, only differences are physical.</span></div>
-          <div class="eq"><strong>Point charge <var>Q</var><sub>0</sub>, reference at infinity</strong><span class="formula"><var>W</var><sub>e</sub> = <span class="frac"><span><var>Q Q</var><sub>0</sub></span><span>4π ε<sub>0</sub></span></span> (<span class="frac"><span>1</span><span><var>r</var><sub>2</sub></span></span> − <span class="frac"><span>1</span><span><var>r</var><sub>1</sub></span></span>) &nbsp; (from <var>r</var><sub>1</sub> to <var>r</var><sub>2</sub>)</span><span class="formula">φ<sub>e</sub>(<var>r</var>) = <span class="frac"><span><var>Q</var><sub>0</sub></span><span>4π ε<sub>0</sub><var>r</var></span></span></span><span class="eq-note"><span class="say">Read it as: “φ<sub>e</sub> at distance r is Q<sub>0</sub> over 4π ε<sub>0</sub> r”: it falls as 1/r, more slowly than the field.</span>Potential is a scalar: for several charges add the signed potentials, no components needed. <var>E</var> ∝ 1/<var>r</var><sup>2</sup>, <var>D</var> ∝ 1/<var>r</var><sup>2</sup>, φ ∝ 1/<var>r</var>.</span></div>
-          <div class="figs"><figure class="viz" data-kind="field point+" data-extra="equipot"><figcaption><strong>Equipotentials</strong> (dashed) of a point charge are spheres round it, and they cross every field line at a right angle.</figcaption></figure><figure class="viz" data-kind="plot" data-xr="0 4.2" data-yr="0 1.1" data-lines="0.5,1.0000 0.5625,0.8889 0.625,0.8000 0.6875,0.7273 0.75,0.6667 0.8125,0.6154 0.875,0.5714 0.9375,0.5333 1,0.5000 1,0.5000 1.125,0.4444 1.25,0.4000 1.375,0.3636 1.5,0.3333 1.625,0.3077 1.75,0.2857 1.875,0.2667 2,0.2500 2.125,0.2353 2.25,0.2222 2.375,0.2105 2.5,0.2000 2.625,0.1905 2.75,0.1818 2.875,0.1739 3,0.1667 3.125,0.1600 3.25,0.1538 3.375,0.1481 3.5,0.1429 3.625,0.1379 3.75,0.1333 3.875,0.1290 4,0.1250;0.5,1.0000 0.5625,0.7901 0.625,0.6400 0.6875,0.5289 0.75,0.4444 0.8125,0.3787 0.875,0.3265 0.9375,0.2844 1,0.2500 1,0.2500 1.125,0.1975 1.25,0.1600 1.375,0.1322 1.5,0.1111 1.625,0.0947 1.75,0.0816 1.875,0.0711 2,0.0625 2.125,0.0554 2.25,0.0494 2.375,0.0443 2.5,0.0400 2.625,0.0363 2.75,0.0331 2.875,0.0302 3,0.0278 3.125,0.0256 3.25,0.0237 3.375,0.0219 3.5,0.0204 3.625,0.0190 3.75,0.0178 3.875,0.0166 4,0.0156" data-xticks="1 2 3 4" data-xlabel="r" data-ylabel="" data-marks="1.3,0.5:φ;2.7,0.03:E"><figcaption><strong>Potential and field</strong>, scaled to meet at the smallest <var>r</var>: φ<sub>e</sub> (blue) falls as 1/<var>r</var>, <var>E</var> (black) as 1/<var>r</var><sup>2</sup>, so the field dies away faster.</figcaption></figure></div>
+          <div class="eq"><strong>Point charge <var>Q</var><sub>0</sub>, reference at infinity</strong><span class="formula"><var>W</var><sub>e</sub> = <span class="frac"><span><var>Q Q</var><sub>0</sub></span><span>4π ε<sub>0</sub></span></span> (<span class="frac"><span>1</span><span><var>r</var><sub>2</sub></span></span> − <span class="frac"><span>1</span><span><var>r</var><sub>1</sub></span></span>) &nbsp; (from <var>r</var><sub>1</sub> to <var>r</var><sub>2</sub>)</span><span class="formula">φ<sub>e</sub>(<var>r</var>) = <span class="frac"><span><var>Q</var><sub>0</sub></span><span>4π ε<sub>0</sub><var>r</var></span></span></span><span class="eq-note"><span class="say">Read it as: “φ<sub>e</sub> at distance r is Q<sub>0</sub> over 4π ε<sub>0</sub> r”: it falls as <span class="frac"><span>1</span><span>r</span></span>, more slowly than the field.</span>Potential is a scalar: for several charges add the signed potentials, no components needed. <var>E</var> ∝ <span class="frac"><span>1</span><span><var>r</var><sup>2</sup></span></span>, <var>D</var> ∝ <span class="frac"><span>1</span><span><var>r</var><sup>2</sup></span></span>, φ ∝ <span class="frac"><span>1</span><span><var>r</var></span></span>.</span></div>
+          <div class="figs"><figure class="viz" data-kind="field point+" data-extra="equipot"><figcaption><strong>Equipotentials</strong> (dashed) of a point charge are spheres round it, and they cross every field line at a right angle.</figcaption></figure><figure class="viz" data-kind="plot" data-xr="0 4.2" data-yr="0 1.1" data-lines="0.5,1.0000 0.5625,0.8889 0.625,0.8000 0.6875,0.7273 0.75,0.6667 0.8125,0.6154 0.875,0.5714 0.9375,0.5333 1,0.5000 1,0.5000 1.125,0.4444 1.25,0.4000 1.375,0.3636 1.5,0.3333 1.625,0.3077 1.75,0.2857 1.875,0.2667 2,0.2500 2.125,0.2353 2.25,0.2222 2.375,0.2105 2.5,0.2000 2.625,0.1905 2.75,0.1818 2.875,0.1739 3,0.1667 3.125,0.1600 3.25,0.1538 3.375,0.1481 3.5,0.1429 3.625,0.1379 3.75,0.1333 3.875,0.1290 4,0.1250;0.5,1.0000 0.5625,0.7901 0.625,0.6400 0.6875,0.5289 0.75,0.4444 0.8125,0.3787 0.875,0.3265 0.9375,0.2844 1,0.2500 1,0.2500 1.125,0.1975 1.25,0.1600 1.375,0.1322 1.5,0.1111 1.625,0.0947 1.75,0.0816 1.875,0.0711 2,0.0625 2.125,0.0554 2.25,0.0494 2.375,0.0443 2.5,0.0400 2.625,0.0363 2.75,0.0331 2.875,0.0302 3,0.0278 3.125,0.0256 3.25,0.0237 3.375,0.0219 3.5,0.0204 3.625,0.0190 3.75,0.0178 3.875,0.0166 4,0.0156" data-xticks="1 2 3 4" data-xlabel="r" data-ylabel="" data-marks="1.3,0.5:φ;2.7,0.03:E"><figcaption><strong>Potential and field</strong>, scaled to meet at the smallest <var>r</var>: φ<sub>e</sub> (blue) falls as <span class="frac"><span>1</span><span><var>r</var></span></span>, <var>E</var> (black) as <span class="frac"><span>1</span><span><var>r</var><sup>2</sup></span></span>, so the field dies away faster.</figcaption></figure></div>
           <div class="tw">
             <table>
               <thead><tr><th>Move <var>Q</var> …</th><th>same signs (<var>Q Q</var><sub>0</sub> &gt; 0)</th><th>opposite signs (<var>Q Q</var><sub>0</sub> &lt; 0)</th></tr></thead>
@@ -496,12 +496,12 @@
             <p class="worked-title">Worked example</p>
             <p>How much work is needed to bring +1 nC from infinity to 0.10 m from a fixed +2 nC?</p>
             <ol class="method-list">
-              <li>φ at 0.10 m: 8.988 × 10<sup>9</sup> × 2 × 10<sup>−9</sup>/0.10 ≈ 180 V; φ(∞) = 0.</li>
+              <li>φ at 0.10 m: 8.988 × 10<sup>9</sup> × 2 × <span class="frac"><span>10<sup>−9</sup></span><span>0.10</span></span> ≈ 180 V; φ(∞) = 0.</li>
               <li><var>W</var><sub>e</sub> = <var>Q</var>(φ<sub>end</sub> − φ<sub>start</sub>) = 10<sup>−9</sup> × 180 ≈ 1.8 × 10<sup>−7</sup> J.</li>
               <li>Positive, as the table predicts for pushing like charges together.</li>
             </ol>
           </div>
-          <p class="method"><strong>Near miss:</strong> the potential of a point charge falls as 1/<var>r</var> and its field as 1/<var>r</var><sup>2</sup>, so at twice the distance the potential is half as large but the field only a quarter. Mixing up the two powers is the most common slip in this section.</p>
+          <p class="method"><strong>Near miss:</strong> the potential of a point charge falls as <span class="frac"><span>1</span><span><var>r</var></span></span> and its field as <span class="frac"><span>1</span><span><var>r</var><sup>2</sup></span></span>, so at twice the distance the potential is half as large but the field only a quarter. Mixing up the two powers is the most common slip in this section.</p>
           <p class="lab-link"><a href="ch1-electrostatic-fields-lab.html#exp-field">Try it in the lab: Point charges: field, potential and work</a> · predict the work along an equipotential, and its sign before you watch it.</p>
           <div class="recall">
             <p class="recall-title">Recall check</p>
@@ -550,7 +550,7 @@
           <div class="eq"><strong>Electric flux through a surface (unit A s = C)</strong><span class="formula">Ψ = <span class="op op-int"><span class="op-sym">∬</span><sub>A</sub></span> <var>D</var> · d<var>A</var>, &nbsp; d<var>A</var> = <var>n</var> d<var>A</var></span><span class="eq-note"><var>n</var> is the unit normal of the surface element. Only the part of <var>D</var> along <var>n</var> contributes.</span></div>
           <p class="method"><strong>Language trap:</strong> “flux” and “flux density” are historical names. Nothing flows in an electrostatic field; do not confuse flux with current, where charges really move.</p>
           <h3>Gauss’s law</h3>
-          <p>Around a point charge in vacuum, <var>D</var> = <var>Q</var>/(4π<var>r</var><sup>2</sup>) <var>e</var><sub>r</sub>. On a concentric sphere <var>D</var> is parallel to d<var>A</var> and has constant size, so the flux is <var>D</var> × 4π<var>r</var><sup>2</sup> = <var>Q</var>, whatever the radius. The same holds for any closed surface and any position of the charge inside it, and by superposition for any charge distribution:</p>
+          <p>Around a point charge in vacuum, <var>D</var> = <span class="frac"><span><var>Q</var></span><span>4π<var>r</var><sup>2</sup></span></span> <var>e</var><sub>r</sub>. On a concentric sphere <var>D</var> is parallel to d<var>A</var> and has constant size, so the flux is <var>D</var> × 4π<var>r</var><sup>2</sup> = <var>Q</var>, whatever the radius. The same holds for any closed surface and any position of the charge inside it, and by superposition for any charge distribution:</p>
           <div class="eq"><strong>Gauss’s law in integral form</strong><span class="formula">Ψ = <span class="op op-int"><span class="op-sym">∯</span><sub>A</sub></span> <var>D</var> · d<var>A</var> = <var>Q</var><sub>enclosed</sub> = <span class="op op-int"><span class="op-sym">∭</span><sub>V</sub></span> ϱ<sub>V</sub> d<var>V</var></span><span class="eq-note"><span class="say">Read it as: “the flux of D out of the closed surface A equals the charge enclosed”.</span>Valid always, not only in electrostatics. In this course the material is described by ε, so <var>Q</var> means the charges you place (on electrodes or given as densities). The material’s own polarisation charges are already included through ε.</span></div>
           <div class="figs"><figure class="viz" data-kind="field point+" data-extra="surface"><figcaption><strong>A Gaussian surface</strong> A (dashed) round a charge: every field line leaving the charge crosses A once, so the flux through A equals the enclosed charge, whatever the shape of A.</figcaption></figure></div>
           <p>Gauss’s law always holds, but it only gives you the field when symmetry tells you the direction of <var>D</var> and that its size is constant on the surface. In practice that means three shapes: sphere (point charge, charged shell or ball), infinitely long cylinder (line charge, coax) and infinite plane (plate capacitor).</p>
@@ -558,7 +558,7 @@
             <li>From the symmetry, state the direction of <var>D</var> and which coordinate it can depend on.</li>
             <li>Choose a closed surface on which <var>D</var> is either perpendicular and constant, or parallel to the surface (zero flux).</li>
             <li>Find the enclosed charge as a function of the surface size.</li>
-            <li>Set flux = enclosed charge, solve for <var>D</var>, then <var>E</var> = <var>D</var>/ε.</li>
+            <li>Set flux = enclosed charge, solve for <var>D</var>, then <var>E</var> = <span class="frac"><span><var>D</var></span><span>ε</span></span>.</li>
           </ol>
           <div class="worked">
             <p class="worked-title">Worked example from the notes: long uniformly charged cylinder</p>
@@ -566,12 +566,12 @@
             <ol class="method-list">
               <li>By symmetry <var>D</var> = <var>D</var><sub>ρ</sub>(ρ) <var>e</var><sub>ρ</sub>. On the end caps <var>e</var><sub>ρ</sub> · (±<var>e</var><sub>z</sub>) = 0, so only the curved side counts: flux = <var>D</var><sub>ρ</sub> 2πρ<var>l</var>.</li>
               <li>Enclosed charge: ϱ<sub>V</sub> π ρ<sup>2</sup> <var>l</var> inside (ρ &lt; <var>a</var>), ϱ<sub>V</sub> π <var>a</var><sup>2</sup> <var>l</var> outside (ρ ≥ <var>a</var>).</li>
-              <li><var>D</var><sub>ρ</sub> = ϱ<sub>V</sub> ρ/2 inside and ϱ<sub>V</sub> <var>a</var><sup>2</sup>/(2ρ) outside: it rises linearly to ϱ<sub>V</sub><var>a</var>/2 at the surface, then falls as 1/ρ. <var>E</var> = <var>D</var>/ε.</li>
+              <li><var>D</var><sub>ρ</sub> = ϱ<sub>V</sub> <span class="frac"><span>ρ</span><span>2</span></span> inside and ϱ<sub>V</sub> <span class="frac"><span><var>a</var><sup>2</sup></span><span>2ρ</span></span> outside: it rises linearly to <span class="frac"><span>ϱ<sub>V</sub><var>a</var></span><span>2</span></span> at the surface, then falls as <span class="frac"><span>1</span><span>ρ</span></span>. <var>E</var> = <span class="frac"><span><var>D</var></span><span>ε</span></span>.</li>
             </ol>
           </div>
           <div class="worked">
             <p class="worked-title">Worked example: the same charge in a dielectric</p>
-            <p>A 1 nC point charge sits in oil with ε<sub>r</sub> = 2.5. At <var>r</var> = 0.10 m, <var>D</var> = 10<sup>−9</sup>/(4π × 0.01) ≈ 7.96 × 10<sup>−9</sup> C/m², exactly as in vacuum, because Gauss’s law only sees the charge. But <var>E</var> = <var>D</var>/(2.5 ε<sub>0</sub>) ≈ 360 V/m instead of 899 V/m.</p>
+            <p>A 1 nC point charge sits in oil with ε<sub>r</sub> = 2.5. At <var>r</var> = 0.10 m, <var>D</var> = <span class="frac"><span>10<sup>−9</sup></span><span>4π × 0.01</span></span> ≈ 7.96 × 10<sup>−9</sup> C/m², exactly as in vacuum, because Gauss’s law only sees the charge. But <var>E</var> = <span class="frac"><span><var>D</var></span><span>2.5 ε<sub>0</sub></span></span> ≈ 360 V/m instead of 899 V/m.</p>
           </div>
           <p class="method"><strong>Near miss:</strong> a closed surface with zero total flux might seem to contain no charge at all, but it can hold +<var>Q</var> and −<var>Q</var> together: Gauss’s law gives only the net charge inside.</p>
           <p class="lab-link"><a href="ch1-electrostatic-fields-lab.html#exp-gauss">Try it in the lab: Gauss’s law: a charged cylinder</a> · predict how D(ρ) rises, peaks and falls before you watch it.</p>
@@ -585,7 +585,7 @@
             <details class="answers"><summary>Answers</summary><ol>
               <li>The outward flux of <var>D</var> through any closed surface equals the total charge enclosed.</li>
               <li><var>D</var> is radial and the cap normals point along ±<var>z</var>, so <var>D</var> · d<var>A</var> = 0 there.</li>
-              <li><var>D</var> stays the same (set by the charge); <var>E</var> = <var>D</var>/(ε<sub>0</sub>ε<sub>r</sub>) drops by a factor of ε<sub>r</sub>.</li>
+              <li><var>D</var> stays the same (set by the charge); <var>E</var> = <span class="frac"><span><var>D</var></span><span>ε<sub>0</sub>ε<sub>r</sub></span></span> drops by a factor of ε<sub>r</sub>.</li>
             </ol></details>
           </div>
         </section>
@@ -603,26 +603,26 @@
             <table>
               <thead><tr><th>Boundary</th><th>Normal part</th><th>Tangential part</th></tr></thead>
               <tbody>
-                <tr><td>Two dielectrics, no surface charge</td><td><var>D</var><sub>n1</sub> = <var>D</var><sub>n2</sub>, so <var>E</var><sub>n1</sub>/<var>E</var><sub>n2</sub> = ε<sub>2</sub>/ε<sub>1</sub></td><td><var>E</var><sub>t1</sub> = <var>E</var><sub>t2</sub>, so <var>D</var><sub>t1</sub>/<var>D</var><sub>t2</sub> = ε<sub>1</sub>/ε<sub>2</sub></td></tr>
+                <tr><td>Two dielectrics, no surface charge</td><td><var>D</var><sub>n1</sub> = <var>D</var><sub>n2</sub>, so <span class="frac"><span><var>E</var><sub>n1</sub></span><span><var>E</var><sub>n2</sub></span></span> = <span class="frac"><span>ε<sub>2</sub></span><span>ε<sub>1</sub></span></span></td><td><var>E</var><sub>t1</sub> = <var>E</var><sub>t2</sub>, so <span class="frac"><span><var>D</var><sub>t1</sub></span><span><var>D</var><sub>t2</sub></span></span> = <span class="frac"><span>ε<sub>1</sub></span><span>ε<sub>2</sub></span></span></td></tr>
                 <tr><td>Surface charge σ<sub>A</sub> in vacuum</td><td><var>D</var><sub>n2</sub> − <var>D</var><sub>n1</sub> = σ<sub>A</sub>, with <var>n</var> pointing from side 1 into side 2</td><td><var>E</var><sub>t1</sub> = <var>E</var><sub>t2</sub> and <var>D</var><sub>t1</sub> = <var>D</var><sub>t2</sub></td></tr>
-                <tr><td>Conductor (1) to vacuum (2)</td><td>Inside <var>D</var> = <var>E</var> = 0; outside <var>D</var> = σ<sub>A</sub><var>n</var>, <var>E</var> = (σ<sub>A</sub>/ε<sub>0</sub>)<var>n</var>, <var>n</var> pointing out of the metal</td><td><var>E</var><sub>t</sub> = <var>D</var><sub>t</sub> = 0</td></tr>
+                <tr><td>Conductor (1) to vacuum (2)</td><td>Inside <var>D</var> = <var>E</var> = 0; outside <var>D</var> = σ<sub>A</sub><var>n</var>, <var>E</var> = (<span class="frac"><span>σ<sub>A</sub></span><span>ε<sub>0</sub></span></span>)<var>n</var>, <var>n</var> pointing out of the metal</td><td><var>E</var><sub>t</sub> = <var>D</var><sub>t</sub> = 0</td></tr>
               </tbody>
             </table>
           </div>
-          <p><strong>Refraction of field lines.</strong> The two parts change differently, so a field line bends at the boundary, much like light. Measuring the angle α from the normal, tan α = <var>E</var><sub>t</sub>/<var>E</var><sub>n</sub>, and the two conditions give tan α<sub>1</sub>/tan α<sub>2</sub> = ε<sub>1</sub>/ε<sub>2</sub>: in the medium with the larger ε the line leans further from the normal. (This rule follows directly from the table; the notes only mention the analogy with light.)</p>
+          <p><strong>Refraction of field lines.</strong> The two parts change differently, so a field line bends at the boundary, much like light. Measuring the angle α from the normal, tan α = <span class="frac"><span><var>E</var><sub>t</sub></span><span><var>E</var><sub>n</sub></span></span>, and the two conditions give <span class="frac"><span>tan α<sub>1</sub></span><span>tan α<sub>2</sub></span></span> = <span class="frac"><span>ε<sub>1</sub></span><span>ε<sub>2</sub></span></span>: in the medium with the larger ε the line leans further from the normal. (This rule follows directly from the table; the notes only mention the analogy with light.)</p>
           <div class="worked">
             <p class="worked-title">Worked example</p>
             <p>A field of 100 V/m in vacuum hits a dielectric with ε<sub>r</sub> = 4 at 45° to the normal. There is no surface charge.</p>
             <ol class="method-list">
               <li>Split: <var>E</var><sub>n1</sub> = <var>E</var><sub>t1</sub> = 100 cos 45° ≈ 70.7 V/m.</li>
-              <li>Tangential continuous: <var>E</var><sub>t2</sub> = 70.7 V/m. Normal <var>D</var> continuous: <var>E</var><sub>n2</sub> = 70.7/4 ≈ 17.7 V/m.</li>
-              <li><var>E</var><sub>2</sub> = <span class="sqrt"><span class="root">√</span><span class="rad">70.7² + 17.7²</span></span> ≈ 72.9 V/m at arctan(70.7/17.7) ≈ 76° from the normal. Check: tan 45°/tan 76° = 1/4 = ε<sub>1</sub>/ε<sub>2</sub>.</li>
+              <li>Tangential continuous: <var>E</var><sub>t2</sub> = 70.7 V/m. Normal <var>D</var> continuous: <var>E</var><sub>n2</sub> = <span class="frac"><span>70.7</span><span>4</span></span> ≈ 17.7 V/m.</li>
+              <li><var>E</var><sub>2</sub> = <span class="sqrt"><span class="root">√</span><span class="rad">70.7² + 17.7²</span></span> ≈ 72.9 V/m at arctan(<span class="frac"><span>70.7</span><span>17.7</span></span>) ≈ 76° from the normal. Check: tan 45°/tan 76° = <span class="frac"><span>1</span><span>4</span></span> = <span class="frac"><span>ε<sub>1</sub></span><span>ε<sub>2</sub></span></span>.</li>
             </ol>
           </div>
           <h3>Ideal plate capacitor from two charged sheets</h3>
           <ol class="method-list">
-            <li>One infinite sheet with +σ<sub>A</sub>: by symmetry <var>D</var> has the same size on both sides and points away from the sheet. The jump condition gives <var>D</var> − (−<var>D</var>) = σ<sub>A</sub>, so <var>D</var> = σ<sub>A</sub>/2 on each side.</li>
-            <li>The −σ<sub>A</sub> sheet gives σ<sub>A</sub>/2 pointing toward it on both sides.</li>
+            <li>One infinite sheet with +σ<sub>A</sub>: by symmetry <var>D</var> has the same size on both sides and points away from the sheet. The jump condition gives <var>D</var> − (−<var>D</var>) = σ<sub>A</sub>, so <var>D</var> = <span class="frac"><span>σ<sub>A</sub></span><span>2</span></span> on each side.</li>
+            <li>The −σ<sub>A</sub> sheet gives <span class="frac"><span>σ<sub>A</sub></span><span>2</span></span> pointing toward it on both sides.</li>
             <li>Superpose: outside the plates the two contributions cancel; between them they add to <var>D</var> = σ<sub>A</sub>, directed from + to −.</li>
           </ol>
           <div class="eq"><strong>Ideal plate capacitor (fringing neglected)</strong><span class="formula"><var>D</var> = σ<sub>A</sub></span><span class="formula"><var>E</var> = <span class="frac"><span>σ<sub>A</sub></span><span>ε</span></span></span><span class="formula"><var>U</var> = <var>E d</var></span><span class="eq-note"><span class="say">Read it as: “D equals the surface charge density σ<sub>A</sub>; E is σ<sub>A</sub> over ε; U is E times d”.</span>Real plates have curved fringing fields at their edges. This course always neglects them.</span></div>
@@ -639,7 +639,7 @@
             <details class="answers"><summary>Answers</summary><ol>
               <li>A thin pillbox (Gauss) for the normal part and a thin rectangle (<span class="op op-int"><span class="op-sym">∮</span></span> <var>E</var> · d<var>s</var> = 0) for the tangential part. With <var>h</var> → 0 the side walls contribute nothing, leaving only the two faces or the two long sides.</li>
               <li>A tangential field would move the free charges along the surface; in the static state they have already moved until it vanished.</li>
-              <li>Away from the normal: tan α grows by the factor 8/2 = 4.</li>
+              <li>Away from the normal: tan α grows by the factor <span class="frac"><span>8</span><span>2</span></span> = 4.</li>
             </ol></details>
           </div>
         </section>
@@ -653,7 +653,7 @@
               <thead><tr><th>Gap filled with</th><th>Field in the slab</th><th>Voltage</th></tr></thead>
               <tbody>
                 <tr><td>nothing (gap <var>d</var>)</td><td>—</td><td><var>U</var> = <var>E d</var>, the largest</td></tr>
-                <tr><td>a dielectric slab (relative permittivity ε<sub>r</sub>)</td><td><var>E</var>/ε<sub>r</sub></td><td>in between</td></tr>
+                <tr><td>a dielectric slab (relative permittivity ε<sub>r</sub>)</td><td><span class="frac"><span><var>E</var></span><span>ε<sub>r</sub></span></span></td><td>in between</td></tr>
                 <tr><td>a metal slab of the same thickness</td><td>0</td><td><var>E</var>(<var>d</var><sub>1</sub> + <var>d</var><sub>2</sub>), the smallest; only the air gaps count</td></tr>
               </tbody>
             </table>
@@ -661,7 +661,7 @@
           <p class="method"><strong>Memory hook:</strong> empty gap &gt; dielectric &gt; metal. The notes name these voltages <var>U</var><sub>b</sub> and <var>U</var><sub>c</sub> differently on two pages (see <a href="#slips">Slips in the notes</a>), so learn the order by material, not by letter.</p>
           <h3>Conductors: electrostatic induction</h3>
           <p>Put an uncharged metal body into a field. Its free electrons drift toward the positive plate, leaving a deficit on the far side. The body as a whole stays neutral, but its surfaces now carry opposite charges. If the body is made of two touching sheets that you pull apart while they are still in the field, each sheet keeps its charge. The charges stop moving once the whole body is one equipotential and the inside is field-free. Because these induced charges depend on the field they create, general field problems with conductors are hard to compute.</p>
-          <p><strong>Hollow conductor.</strong> Put a charge <var>Q</var> at the centre of a metal shell with inner radius <var>a</var> and outer radius <var>b</var>. The inner surface collects −<var>Q</var>, the outer surface +<var>Q</var>. <var>D</var> = <var>Q</var>/(4π<var>r</var><sup>2</sup>) in the cavity, it drops to zero inside the metal, and outside it looks like the field of the point charge again. At each surface the induced σ equals the <var>D</var> that arrives there, so <var>D</var> jumps by exactly σ, as the interface condition demands.</p>
+          <p><strong>Hollow conductor.</strong> Put a charge <var>Q</var> at the centre of a metal shell with inner radius <var>a</var> and outer radius <var>b</var>. The inner surface collects −<var>Q</var>, the outer surface +<var>Q</var>. <var>D</var> = <span class="frac"><span><var>Q</var></span><span>4π<var>r</var><sup>2</sup></span></span> in the cavity, it drops to zero inside the metal, and outside it looks like the field of the point charge again. At each surface the induced σ equals the <var>D</var> that arrives there, so <var>D</var> jumps by exactly σ, as the interface condition demands.</p>
           <h3>Dielectrics: polarisation</h3>
           <p>An insulator has no free charge carriers, but its bound charges can shift or turn:</p>
           <ul>
@@ -676,12 +676,12 @@
             <p class="worked-title">Worked example</p>
             <p>An isolated plate capacitor has voltage <var>U</var><sub>a</sub> = <var>E d</var> with an empty gap. A slab with ε<sub>r</sub> = 4 now fills half the gap. Find the new voltage.</p>
             <ol class="method-list">
-              <li>The charge is fixed, so <var>D</var> and the field <var>E</var> in the air stay the same; in the slab the field is <var>E</var>/4.</li>
-              <li><var>U</var> = <var>E</var>(<var>d</var>/2) + (<var>E</var>/4)(<var>d</var>/2) = (5/8)<var>E d</var> = 0.625 <var>U</var><sub>a</sub>.</li>
+              <li>The charge is fixed, so <var>D</var> and the field <var>E</var> in the air stay the same; in the slab the field is <span class="frac"><span><var>E</var></span><span>4</span></span>.</li>
+              <li><var>U</var> = <var>E</var>(<span class="frac"><span><var>d</var></span><span>2</span></span>) + (<span class="frac"><span><var>E</var></span><span>4</span></span>)(<span class="frac"><span><var>d</var></span><span>2</span></span>) = (<span class="frac"><span>5</span><span>8</span></span>)<var>E d</var> = 0.625 <var>U</var><sub>a</sub>.</li>
               <li>A metal slab of the same thickness would give 0.5 <var>U</var><sub>a</sub>: lower still, as the hook predicts.</li>
             </ol>
           </div>
-          <p class="method"><strong>Near miss:</strong> sliding a dielectric slab into an isolated charged capacitor lowers its voltage, which can seem odd because no charge was removed: <var>Q</var> and <var>D</var> stay the same, but <var>E</var> = <var>D</var>/ε falls, and with it <var>U</var> = <var>E</var> <var>d</var>.</p>
+          <p class="method"><strong>Near miss:</strong> sliding a dielectric slab into an isolated charged capacitor lowers its voltage, which can seem odd because no charge was removed: <var>Q</var> and <var>D</var> stay the same, but <var>E</var> = <span class="frac"><span><var>D</var></span><span>ε</span></span> falls, and with it <var>U</var> = <var>E</var> <var>d</var>.</p>
           <p class="lab-link"><a href="ch1-electrostatic-fields-lab.html#exp-capacitor">Try it in the lab: Plate capacitor: gap, dielectric and energy</a> · predict empty, dielectric and metal-filled gaps before you watch it.</p>
           <div class="recall">
             <p class="recall-title">Recall check</p>
@@ -691,7 +691,7 @@
               <li>Which way does the dipole moment <var>p</var> point, and what does a uniform field do to a dipole?</li>
             </ol>
             <details class="answers"><summary>Answers</summary><ol>
-              <li>Empty is largest: the full gap has field <var>E</var>. Dielectric is in between: the field in the slab is reduced to <var>E</var>/ε<sub>r</sub>. Metal is smallest: the field in the slab is zero.</li>
+              <li>Empty is largest: the full gap has field <var>E</var>. Dielectric is in between: the field in the slab is reduced to <span class="frac"><span><var>E</var></span><span>ε<sub>r</sub></span></span>. Metal is smallest: the field in the slab is zero.</li>
               <li>Induction moves free charges across a conductor; polarisation only shifts or turns bound charges inside an insulator.</li>
               <li>From the negative to the positive charge. A uniform field exerts no net force, only a torque that aligns <var>p</var> with <var>E</var>.</li>
             </ol></details>
@@ -701,22 +701,22 @@
         <section id="sec-113">
           <h2>1.13 Capacitors and capacitance</h2>
           <p>A capacitor is two conductors carrying equal and opposite charge, so that all the flux leaving the positive one ends on the negative one. Scale the charge by any factor and <var>D</var>, <var>E</var> and <var>U</var> scale by the same factor, so <var>Q</var> ∝ <var>U</var>.</p>
-          <p class="plain"><strong>In plain words:</strong> a capacitor stores charge on two conductors held apart. Put +<var>Q</var> on one and −<var>Q</var> on the other and a voltage <var>U</var> appears between them; the ratio <var>C</var> = <var>Q</var>/<var>U</var> is the <strong>capacitance</strong>, the charge it holds per volt. It depends only on shape, size and material, not on how much charge is there.</p>
+          <p class="plain"><strong>In plain words:</strong> a capacitor stores charge on two conductors held apart. Put +<var>Q</var> on one and −<var>Q</var> on the other and a voltage <var>U</var> appears between them; the ratio <var>C</var> = <span class="frac"><span><var>Q</var></span><span><var>U</var></span></span> is the <strong>capacitance</strong>, the charge it holds per volt. It depends only on shape, size and material, not on how much charge is there.</p>
           <div class="eq"><strong>Capacitance (unit A s/V = F)</strong><span class="formula"><var>C</var> = <span class="frac"><span><var>Q</var></span><span><var>U</var></span></span> = <span class="frac"><span><span class="op op-int"><span class="op-sym">∯</span><sub>A</sub></span> <var>D</var> · d<var>A</var></span><span><span class="op op-int"><span class="op-sym">∫</span><sub>s</sub></span> <var>E</var> · d<var>s</var></span></span></span><span class="eq-note"><span class="say">Read it as: “C is Q over U”: the flux of D out of one electrode divided by the integral of E along a path to the other.</span>The surface encloses one electrode; the path runs from one electrode to the other. <var>C</var> depends only on geometry and material.</span></div>
-          <p class="method"><strong>Recipe for any geometry:</strong> assume ±<var>Q</var> → find <var>D</var> with Gauss → <var>E</var> = <var>D</var>/ε → <var>U</var> = <span class="op op-int"><span class="op-sym">∫</span></span> <var>E</var> · d<var>s</var> → <var>C</var> = <var>Q</var>/<var>U</var>. The <var>Q</var> must cancel; if it does not, there is a mistake.</p>
+          <p class="method"><strong>Recipe for any geometry:</strong> assume ±<var>Q</var> → find <var>D</var> with Gauss → <var>E</var> = <span class="frac"><span><var>D</var></span><span>ε</span></span> → <var>U</var> = <span class="op op-int"><span class="op-sym">∫</span></span> <var>E</var> · d<var>s</var> → <var>C</var> = <span class="frac"><span><var>Q</var></span><span><var>U</var></span></span>. The <var>Q</var> must cancel; if it does not, there is a mistake.</p>
           <div class="tw">
             <table>
               <thead><tr><th>Geometry</th><th><var>D</var> between electrodes</th><th>Capacitance</th></tr></thead>
               <tbody>
-                <tr><td>Plates, area <var>A</var>, gap <var>d</var></td><td><var>Q</var>/<var>A</var></td><td><var>C</var> = ε<sub>0</sub>ε<sub>r</sub><var>A</var>/<var>d</var></td></tr>
-                <tr><td>Spherical, radii <var>a</var> &lt; <var>b</var>, vacuum</td><td><var>Q</var>/(4π<var>r</var><sup>2</sup>)</td><td><var>C</var> = 4π ε<sub>0</sub> <var>a b</var>/(<var>b</var> − <var>a</var>)</td></tr>
-                <tr><td>Coaxial, radii <var>a</var> &lt; <var>b</var>, length <var>l</var></td><td><var>Q</var>/(2πρ<var>l</var>)</td><td><var>C</var>/<var>l</var> = 2π ε/ln(<var>b</var>/<var>a</var>)</td></tr>
+                <tr><td>Plates, area <var>A</var>, gap <var>d</var></td><td><span class="frac"><span><var>Q</var></span><span><var>A</var></span></span></td><td><var>C</var> = <span class="frac"><span>ε<sub>0</sub>ε<sub>r</sub><var>A</var></span><span><var>d</var></span></span></td></tr>
+                <tr><td>Spherical, radii <var>a</var> &lt; <var>b</var>, vacuum</td><td><span class="frac"><span><var>Q</var></span><span>4π<var>r</var><sup>2</sup></span></span></td><td><var>C</var> = 4π ε<sub>0</sub> <span class="frac"><span><var>a b</var></span><span><var>b</var> − <var>a</var></span></span></td></tr>
+                <tr><td>Coaxial, radii <var>a</var> &lt; <var>b</var>, length <var>l</var></td><td><span class="frac"><span><var>Q</var></span><span>2πρ<var>l</var></span></span></td><td><span class="frac"><span><var>C</var></span><span><var>l</var></span></span> = 2π <span class="frac"><span>ε</span><span>ln(<span class="frac"><span><var>b</var></span><span><var>a</var></span></span>)</span></span></td></tr>
               </tbody>
             </table>
           </div>
           <ul>
-            <li><strong>Spherical:</strong> <var>U</var> = <var>Q</var>/(4π ε<sub>0</sub>) (1/<var>a</var> − 1/<var>b</var>) = <var>Q</var>(<var>b</var> − <var>a</var>)/(4π ε<sub>0</sub><var>a b</var>). Limit check: for a thin gap <var>d</var> = <var>b</var> − <var>a</var> ≪ <var>a</var>, <var>C</var> ≈ ε<sub>0</sub>4π<var>a</var><sup>2</sup>/<var>d</var>, the plate formula with the sphere’s area.</li>
-            <li><strong>Coaxial:</strong> <var>U</var> = <var>Q</var>/(2π ε <var>l</var>) <span class="op op-int"><span class="op-sym">∫</span><sub>a</sub><sup>b</sup></span> dρ/ρ = <var>Q</var> ln(<var>b</var>/<var>a</var>)/(2π ε <var>l</var>).</li>
+            <li><strong>Spherical:</strong> <var>U</var> = <span class="frac"><span><var>Q</var></span><span>4π ε<sub>0</sub></span></span> (<span class="frac"><span>1</span><span><var>a</var></span></span> − <span class="frac"><span>1</span><span><var>b</var></span></span>) = <span class="frac"><span><var>Q</var>(<var>b</var> − <var>a</var>)</span><span>4π ε<sub>0</sub><var>a b</var></span></span>. Limit check: for a thin gap <var>d</var> = <var>b</var> − <var>a</var> ≪ <var>a</var>, <var>C</var> ≈ <span class="frac"><span>ε<sub>0</sub>4π<var>a</var><sup>2</sup></span><span><var>d</var></span></span>, the plate formula with the sphere’s area.</li>
+            <li><strong>Coaxial:</strong> <var>U</var> = <span class="frac"><span><var>Q</var></span><span>2π ε <var>l</var></span></span> <span class="op op-int"><span class="op-sym">∫</span><sub>a</sub><sup>b</sup></span> <span class="frac"><span>dρ</span><span>ρ</span></span> = <var>Q</var> <span class="frac"><span>ln(<span class="frac"><span><var>b</var></span><span><var>a</var></span></span>)</span><span>2π ε <var>l</var></span></span>.</li>
             <li><strong>Large <var>C</var> in practice:</strong> small gap (but the risk of breakdown grows), large area (metal foil on both sides of a thin film, rolled up: a wound capacitor), or high ε<sub>r</sub> (electrolytic capacitor).</li>
           </ul>
           <h3>Capacitor networks</h3>
@@ -725,7 +725,7 @@
               <thead><tr><th>Connection</th><th>Same for every capacitor</th><th>Total</th><th>Why</th></tr></thead>
               <tbody>
                 <tr><td>Parallel</td><td>voltage <var>U</var></td><td><var>C</var> = <span class="op op-sum"><span class="op-sym">∑</span><sub>n=1</sub><sup>N</sup></span> <var>C</var><sub>n</sub></td><td>charges add: <var>Q</var> = <var>U</var> <span class="op op-sum"><span class="op-sym">∑</span><sub>n=1</sub><sup>N</sup></span> <var>C</var><sub>n</sub></td></tr>
-                <tr><td>Series</td><td>charge <var>Q</var></td><td>1/<var>C</var> = <span class="op op-sum"><span class="op-sym">∑</span><sub>n=1</sub><sup>N</sup></span> 1/<var>C</var><sub>n</sub></td><td>induction gives every plate pair ±<var>Q</var>; voltages add</td></tr>
+                <tr><td>Series</td><td>charge <var>Q</var></td><td><span class="frac"><span>1</span><span><var>C</var></span></span> = <span class="op op-sum"><span class="op-sym">∑</span><sub>n=1</sub><sup>N</sup></span> <span class="frac"><span>1</span><span><var>C</var><sub>n</sub></span></span></td><td>induction gives every plate pair ±<var>Q</var>; voltages add</td></tr>
               </tbody>
             </table>
           </div>
@@ -734,17 +734,17 @@
             <p class="worked-title">Worked example</p>
             <p>6 μF and 3 μF in series across 12 V.</p>
             <ol class="method-list">
-              <li>1/<var>C</var> = 1/6 + 1/3 = 1/2, so <var>C</var> = 2 μF; <var>Q</var> = 2 μF × 12 V = 24 μC on each.</li>
-              <li><var>U</var><sub>6</sub> = 24/6 = 4 V and <var>U</var><sub>3</sub> = 24/3 = 8 V. They add to 12 V, and the smaller capacitor carries more voltage.</li>
+              <li><span class="frac"><span>1</span><span><var>C</var></span></span> = <span class="frac"><span>1</span><span>6</span></span> + <span class="frac"><span>1</span><span>3</span></span> = <span class="frac"><span>1</span><span>2</span></span>, so <var>C</var> = 2 μF; <var>Q</var> = 2 μF × 12 V = 24 μC on each.</li>
+              <li><var>U</var><sub>6</sub> = <span class="frac"><span>24</span><span>6</span></span> = 4 V and <var>U</var><sub>3</sub> = <span class="frac"><span>24</span><span>3</span></span> = 8 V. They add to 12 V, and the smaller capacitor carries more voltage.</li>
             </ol>
           </div>
           <h3>Built-up capacitors</h3>
           <ul>
-            <li><strong>Multilayer:</strong> <var>n</var> interleaved plates per terminal form 2<var>n</var> − 1 equal capacitors in parallel: <var>C</var> = (2<var>n</var> − 1) ε<var>A</var>/<var>d</var>.</li>
-            <li><strong>Variable (rotary) capacitor:</strong> the overlap of rotor and stator is a ring sector of angle α, area α(<var>r</var><sub>a</sub><sup>2</sup> − <var>r</var><sub>i</sub><sup>2</sup>)/2, so <var>C</var> = (2<var>n</var> − 1) ε<sub>0</sub>α(<var>r</var><sub>a</sub><sup>2</sup> − <var>r</var><sub>i</sub><sup>2</sup>)/(2<var>d</var>). Turning the rotor changes α and hence <var>C</var>.</li>
+            <li><strong>Multilayer:</strong> <var>n</var> interleaved plates per terminal form 2<var>n</var> − 1 equal capacitors in parallel: <var>C</var> = (2<var>n</var> − 1) <span class="frac"><span>ε<var>A</var></span><span><var>d</var></span></span>.</li>
+            <li><strong>Variable (rotary) capacitor:</strong> the overlap of rotor and stator is a ring sector of angle α, area <span class="frac"><span>α(<var>r</var><sub>a</sub><sup>2</sup> − <var>r</var><sub>i</sub><sup>2</sup>)</span><span>2</span></span>, so <var>C</var> = (2<var>n</var> − 1) <span class="frac"><span>ε<sub>0</sub>α(<var>r</var><sub>a</sub><sup>2</sup> − <var>r</var><sub>i</sub><sup>2</sup>)</span><span>2<var>d</var></span></span>. Turning the rotor changes α and hence <var>C</var>.</li>
             <li><strong>Stray capacitance:</strong> any two conductors form a capacitor. A three-phase overhead line has partial capacitances between every pair of wires and from each wire to earth.</li>
           </ul>
-          <p class="method"><strong>Near miss:</strong> doubling the charge on a capacitor does not double its capacitance: <var>U</var> doubles too, so <var>C</var> = <var>Q</var>/<var>U</var> stays the same.</p>
+          <p class="method"><strong>Near miss:</strong> doubling the charge on a capacitor does not double its capacitance: <var>U</var> doubles too, so <var>C</var> = <span class="frac"><span><var>Q</var></span><span><var>U</var></span></span> stays the same.</p>
           <p class="lab-link"><a href="ch1-electrostatic-fields-lab.html#exp-networks">Try it in the lab: Capacitor networks: series and parallel</a> · predict series and parallel capacitors on one source before you watch it.</p>
           <div class="recall">
             <p class="recall-title">Recall check</p>
@@ -754,28 +754,28 @@
               <li>What does the spherical formula reduce to when the gap is very thin?</li>
             </ol>
             <details class="answers"><summary>Answers</summary><ol>
-              <li>Assume ±<var>Q</var>; Gauss for <var>D</var>; <var>E</var> = <var>D</var>/ε; integrate <var>E</var> for <var>U</var>; <var>C</var> = <var>Q</var>/<var>U</var>.</li>
+              <li>Assume ±<var>Q</var>; Gauss for <var>D</var>; <var>E</var> = <span class="frac"><span><var>D</var></span><span>ε</span></span>; integrate <var>E</var> for <var>U</var>; <var>C</var> = <span class="frac"><span><var>Q</var></span><span><var>U</var></span></span>.</li>
               <li>Only the outer plates are charged from outside. Each inner pair of plates forms an isolated, neutral conductor, which induction splits into −<var>Q</var> and +<var>Q</var>.</li>
-              <li>The plate capacitor with area 4π<var>a</var><sup>2</sup>: <var>C</var> ≈ ε<sub>0</sub>4π<var>a</var><sup>2</sup>/<var>d</var>.</li>
+              <li>The plate capacitor with area 4π<var>a</var><sup>2</sup>: <var>C</var> ≈ <span class="frac"><span>ε<sub>0</sub>4π<var>a</var><sup>2</sup></span><span><var>d</var></span></span>.</li>
             </ol></details>
           </div>
         </section>
 
         <section id="sec-114">
           <h2>1.14 Energy stored in an electric field</h2>
-          <p>Charge a capacitor step by step. When it already holds ±<var>q</var>, its voltage is <var>u</var> = <var>q</var>/<var>C</var>. Carrying a further d<var>q</var> from the negative to the positive plate, against the field, costs d<var>W</var><sub>e</sub> = <var>u</var> d<var>q</var> = (<var>q</var>/<var>C</var>) d<var>q</var>. (Lower-case letters mark quantities that change with time.)</p>
+          <p>Charge a capacitor step by step. When it already holds ±<var>q</var>, its voltage is <var>u</var> = <span class="frac"><span><var>q</var></span><span><var>C</var></span></span>. Carrying a further d<var>q</var> from the negative to the positive plate, against the field, costs d<var>W</var><sub>e</sub> = <var>u</var> d<var>q</var> = (<span class="frac"><span><var>q</var></span><span><var>C</var></span></span>) d<var>q</var>. (Lower-case letters mark quantities that change with time.)</p>
           <p class="plain"><strong>In plain words:</strong> charging a capacitor takes work, because each extra bit of charge is pushed against the voltage already there. That work is stored in the field between the plates and comes back out when the capacitor discharges.</p>
-          <div class="eq"><strong>Energy of a charged capacitor</strong><span class="formula"><var>W</var><sub>e</sub> = <span class="frac"><span>1</span><span><var>C</var></span></span> <span class="op op-int"><span class="op-sym">∫</span><sub>0</sub><sup>Q</sup></span> <var>q</var> d<var>q</var> = <span class="frac"><span><var>Q</var><sup>2</sup></span><span>2<var>C</var></span></span> = ½ <var>C U</var><sup>2</sup> = ½ <var>Q U</var></span><span class="eq-note"><span class="say">Read it as: “W<sub>e</sub> is Q<sup>2</sup> over 2C, which equals ½ C U<sup>2</sup> and ½ Q U”.</span>Not <var>Q U</var>: the voltage grows from 0 to <var>U</var> during charging, so on average each bit of charge is lifted through only <var>U</var>/2.</span></div>
-          <div class="figs"><figure class="viz" data-kind="plot" data-xr="0 1.15" data-yr="0 1.15" data-lines="0,0 1,1" data-shade="0,0 1,0 1,1" data-xticks="1:Q" data-marks="1,1:(Q, U)" data-xlabel="q" data-ylabel="u"><figcaption><strong>Charging</strong>: the voltage <var>u</var> = <var>q</var>/<var>C</var> grows from 0 to <var>U</var> as charge goes on, so the work is the triangle under the line: ½ <var>Q</var> <var>U</var>.</figcaption></figure></div>
-          <p><strong>Where is the energy?</strong> In the field. For a plate capacitor, ½<var>C U</var><sup>2</sup> = ½(ε<var>A</var>/<var>d</var>)(<var>E d</var>)<sup>2</sup> = ½ε<var>E</var><sup>2</sup> × <var>A d</var>, and <var>A d</var> is the volume of the field region. Dividing by the volume gives an energy density that also holds for non-uniform fields:</p>
+          <div class="eq"><strong>Energy of a charged capacitor</strong><span class="formula"><var>W</var><sub>e</sub> = <span class="frac"><span>1</span><span><var>C</var></span></span> <span class="op op-int"><span class="op-sym">∫</span><sub>0</sub><sup>Q</sup></span> <var>q</var> d<var>q</var> = <span class="frac"><span><var>Q</var><sup>2</sup></span><span>2<var>C</var></span></span> = ½ <var>C U</var><sup>2</sup> = ½ <var>Q U</var></span><span class="eq-note"><span class="say">Read it as: “W<sub>e</sub> is Q<sup>2</sup> over 2C, which equals ½ C U<sup>2</sup> and ½ Q U”.</span>Not <var>Q U</var>: the voltage grows from 0 to <var>U</var> during charging, so on average each bit of charge is lifted through only <span class="frac"><span><var>U</var></span><span>2</span></span>.</span></div>
+          <div class="figs"><figure class="viz" data-kind="plot" data-xr="0 1.15" data-yr="0 1.15" data-lines="0,0 1,1" data-shade="0,0 1,0 1,1" data-xticks="1:Q" data-marks="1,1:(Q, U)" data-xlabel="q" data-ylabel="u"><figcaption><strong>Charging</strong>: the voltage <var>u</var> = <span class="frac"><span><var>q</var></span><span><var>C</var></span></span> grows from 0 to <var>U</var> as charge goes on, so the work is the triangle under the line: ½ <var>Q</var> <var>U</var>.</figcaption></figure></div>
+          <p><strong>Where is the energy?</strong> In the field. For a plate capacitor, ½<var>C U</var><sup>2</sup> = ½(<span class="frac"><span>ε<var>A</var></span><span><var>d</var></span></span>)(<var>E d</var>)<sup>2</sup> = ½ε<var>E</var><sup>2</sup> × <var>A d</var>, and <var>A d</var> is the volume of the field region. Dividing by the volume gives an energy density that also holds for non-uniform fields:</p>
           <div class="eq"><strong>Energy density (unit J/m³)</strong><span class="formula"><var>w</var><sub>e</sub> = ½ <var>E</var> · <var>D</var> = ½ ε <var>E</var><sup>2</sup></span><span class="formula"><var>W</var><sub>e</sub> = <span class="op op-int"><span class="op-sym">∭</span><sub>V</sub></span> <var>w</var><sub>e</sub> d<var>V</var></span><span class="eq-note"><span class="say">Read it as: “the energy per volume is ½ E · D, that is ½ ε E<sup>2</sup>”.</span></span></div>
-          <p><strong>Spring analogy:</strong> a spring with constant <var>c</var><sub>s</sub> stores ½<var>c</var><sub>s</sub><var>X</var><sup>2</sup> = ½<var>F</var><sub>X</sub><sup>2</sup>/<var>c</var><sub>s</sub>. Matching it to ½<var>Q</var><sup>2</sup>/<var>C</var>, capacitance plays the part of 1/<var>c</var><sub>s</sub> (a soft spring) and voltage the part of force.</p>
+          <p><strong>Spring analogy:</strong> a spring with constant <var>c</var><sub>s</sub> stores ½<var>c</var><sub>s</sub><var>X</var><sup>2</sup> = <span class="frac"><span>½<var>F</var><sub>X</sub><sup>2</sup></span><span><var>c</var><sub>s</sub></span></span>. Matching it to <span class="frac"><span>½<var>Q</var><sup>2</sup></span><span><var>C</var></span></span>, capacitance plays the part of <span class="frac"><span>1</span><span><var>c</var><sub>s</sub></span></span> (a soft spring) and voltage the part of force.</p>
           <div class="worked">
             <p class="worked-title">Worked example: two routes, one answer</p>
             <p>Plates: <var>A</var> = 0.01 m², <var>d</var> = 0.5 mm, ε<sub>r</sub> = 3, <var>U</var> = 50 V.</p>
             <ol class="method-list">
-              <li>Circuit route: <var>C</var> = 3 × 8.854 × 10<sup>−12</sup> × 0.01/(5 × 10<sup>−4</sup>) ≈ 531 pF; <var>W</var><sub>e</sub> = ½ × 531 pF × 50<sup>2</sup> ≈ 0.66 μJ.</li>
-              <li>Field route: <var>E</var> = <var>U</var>/<var>d</var> = 10<sup>5</sup> V/m; <var>w</var><sub>e</sub> = ½ × 3ε<sub>0</sub> × 10<sup>10</sup> ≈ 0.133 J/m³; volume 5 × 10<sup>−6</sup> m³; <var>W</var><sub>e</sub> ≈ 0.66 μJ.</li>
+              <li>Circuit route: <var>C</var> = 3 × 8.854 × 10<sup>−12</sup> × <span class="frac"><span>0.01</span><span>5 × 10<sup>−4</sup></span></span> ≈ 531 pF; <var>W</var><sub>e</sub> = ½ × 531 pF × 50<sup>2</sup> ≈ 0.66 μJ.</li>
+              <li>Field route: <var>E</var> = <span class="frac"><span><var>U</var></span><span><var>d</var></span></span> = 10<sup>5</sup> V/m; <var>w</var><sub>e</sub> = ½ × 3ε<sub>0</sub> × 10<sup>10</sup> ≈ 0.133 J/m³; volume 5 × 10<sup>−6</sup> m³; <var>W</var><sub>e</sub> ≈ 0.66 μJ.</li>
             </ol>
           </div>
           <p class="method"><strong>Near miss:</strong> doubling the voltage on a capacitor doubles its charge, but it quadruples the stored energy, because <var>W</var><sub>e</sub> = ½ <var>C</var> <var>U</var><sup>2</sup> grows with the square of <var>U</var>.</p>
@@ -783,11 +783,11 @@
           <div class="recall">
             <p class="recall-title">Recall check</p>
             <ol>
-              <li>Derive <var>W</var><sub>e</sub> = <var>Q</var><sup>2</sup>/(2<var>C</var>) in three lines.</li>
+              <li>Derive <var>W</var><sub>e</sub> = <span class="frac"><span><var>Q</var><sup>2</sup></span><span>2<var>C</var></span></span> in three lines.</li>
               <li>Write the energy density two ways and give its unit.</li>
             </ol>
             <details class="answers"><summary>Answers</summary><ol>
-              <li>d<var>W</var> = <var>u</var> d<var>q</var>; <var>u</var> = <var>q</var>/<var>C</var>; <span class="op op-int"><span class="op-sym">∫</span><sub>0</sub><sup>Q</sup></span> (<var>q</var>/<var>C</var>) d<var>q</var> = <var>Q</var><sup>2</sup>/(2<var>C</var>).</li>
+              <li>d<var>W</var> = <var>u</var> d<var>q</var>; <var>u</var> = <span class="frac"><span><var>q</var></span><span><var>C</var></span></span>; <span class="op op-int"><span class="op-sym">∫</span><sub>0</sub><sup>Q</sup></span> (<span class="frac"><span><var>q</var></span><span><var>C</var></span></span>) d<var>q</var> = <span class="frac"><span><var>Q</var><sup>2</sup></span><span>2<var>C</var></span></span>.</li>
               <li><var>w</var><sub>e</sub> = ½<var>E</var> · <var>D</var> = ½ε<var>E</var><sup>2</sup>, in J/m³.</li>
             </ol></details>
           </div>
@@ -802,14 +802,14 @@
               <tbody>
                 <tr><td>Charge</td><td><var>Q</var> = <var>N e</var>, <var>Q</var> = <span class="op op-int"><span class="op-sym">∭</span></span> ϱ<sub>V</sub> d<var>V</var></td><td>C = A s</td></tr>
                 <tr><td>Force</td><td><var>F</var> = <var>Q E</var></td><td>N</td></tr>
-                <tr><td>Field strength</td><td><var>E</var> = <var>Q</var> <var>r</var>/(4π ε<sub>0</sub><var>r</var><sup>3</sup>)</td><td>V/m = N/C</td></tr>
+                <tr><td>Field strength</td><td><var>E</var> = <var>Q</var> <span class="frac"><span><var>r</var></span><span>4π ε<sub>0</sub><var>r</var><sup>3</sup></span></span></td><td>V/m = N/C</td></tr>
                 <tr><td>Potential</td><td>φ<sub>e</sub>(P) = −<span class="op op-int"><span class="op-sym">∫</span><sub>P0</sub><sup>P</sup></span> <var>E</var> · d<var>s</var></td><td>V</td></tr>
                 <tr><td>Voltage</td><td><var>U</var><sub>12</sub> = φ<sub>1</sub> − φ<sub>2</sub> = <span class="op op-int"><span class="op-sym">∫</span><sub>1</sub><sup>2</sup></span> <var>E</var> · d<var>s</var></td><td>V</td></tr>
                 <tr><td>Work (external)</td><td><var>W</var><sub>e</sub> = <var>Q</var>(φ<sub>end</sub> − φ<sub>start</sub>)</td><td>J</td></tr>
                 <tr><td>Flux density</td><td><var>D</var> = ε<sub>0</sub>ε<sub>r</sub><var>E</var> = ε<sub>0</sub><var>E</var> + <var>P</var></td><td>C/m²</td></tr>
                 <tr><td>Flux</td><td>Ψ = <span class="op op-int"><span class="op-sym">∬</span></span> <var>D</var> · d<var>A</var>; closed: Ψ = <var>Q</var><sub>enc</sub></td><td>C</td></tr>
                 <tr><td>Dipole moment, polarisation</td><td><var>p</var> = <var>Q d</var>, <var>P</var> = ε<sub>0</sub>χ<var>E</var>, χ = ε<sub>r</sub> − 1</td><td>C m, C/m²</td></tr>
-                <tr><td>Capacitance</td><td><var>C</var> = <var>Q</var>/<var>U</var></td><td>F = A s/V</td></tr>
+                <tr><td>Capacitance</td><td><var>C</var> = <span class="frac"><span><var>Q</var></span><span><var>U</var></span></span></td><td>F = A s/V</td></tr>
                 <tr><td>Energy, energy density</td><td><var>W</var><sub>e</sub> = ½<var>C U</var><sup>2</sup>, <var>w</var><sub>e</sub> = ½<var>E</var> · <var>D</var></td><td>J, J/m³</td></tr>
               </tbody>
             </table>
@@ -852,23 +852,23 @@
             <ol>
               <li>After any round trip the field, and so the system’s energy, is unchanged, so the net work is zero. The work between two points is therefore path-independent, which lets you assign each point a potential.</li>
               <li>Free charges move under any field. In the static state they have stopped, so there is no field inside and no tangential component at the surface; only a normal component remains outside.</li>
-              <li>With the charge fixed, <var>D</var> is fixed. A dielectric reduces <var>E</var> in the slab to <var>E</var>/ε<sub>r</sub> through polarisation charges; a metal reduces it to zero through induced charges. Less field over the same distance means less voltage.</li>
+              <li>With the charge fixed, <var>D</var> is fixed. A dielectric reduces <var>E</var> in the slab to <span class="frac"><span><var>E</var></span><span>ε<sub>r</sub></span></span> through polarisation charges; a metal reduces it to zero through induced charges. Less field over the same distance means less voltage.</li>
               <li>When symmetry fixes the direction of <var>D</var> and makes its size constant on a closed surface (sphere, long cylinder, plane). Otherwise it still gives the total flux, but not the field at a point.</li>
-              <li>A flat pillbox with no enclosed charge has zero total flux, so the normal <var>D</var> going in equals the normal <var>D</var> coming out. Since <var>E</var> = <var>D</var>/ε and ε differs on the two sides, the normal <var>E</var> must differ.</li>
+              <li>A flat pillbox with no enclosed charge has zero total flux, so the normal <var>D</var> going in equals the normal <var>D</var> coming out. Since <var>E</var> = <span class="frac"><span><var>D</var></span><span>ε</span></span> and ε differs on the two sides, the normal <var>E</var> must differ.</li>
               <li>A potential is work per charge measured from a chosen zero point. In a difference of two potentials, the path from the reference cancels out.</li>
               <li>Only the outer plates are connected to the source. Each inner pair of plates is an isolated, neutral conductor, so induction can only split it into −<var>Q</var> and +<var>Q</var>.</li>
-              <li>While charging, the voltage rises from 0 to <var>U</var>. Each bit of charge is moved through the voltage present at that moment, which averages <var>U</var>/2.</li>
+              <li>While charging, the voltage rises from 0 to <var>U</var>. Each bit of charge is moved through the voltage present at that moment, which averages <span class="frac"><span><var>U</var></span><span>2</span></span>.</li>
             </ol>
           </details>
         </section>
 
         <section id="practice">
           <h2>Mixed practice</h2>
-          <p>Use ε<sub>0</sub> = 8.854 × 10<sup>−12</sup> F/m and 1/(4π ε<sub>0</sub>) ≈ 8.988 × 10<sup>9</sup> V m/(A s). The 38 problems are shuffled across sections, so first decide which idea a problem needs, then solve it. Each answer names the section to revisit if you miss it.</p>
+          <p>Use ε<sub>0</sub> = 8.854 × 10<sup>−12</sup> F/m and <span class="frac"><span>1</span><span>4π ε<sub>0</sub></span></span> ≈ 8.988 × 10<sup>9</sup> V m/(A s). The 38 problems are shuffled across sections, so first decide which idea a problem needs, then solve it. Each answer names the section to revisit if you miss it.</p>
           <ol class="problems">
             <li><var>Q</var><sub>1</sub> = +1 μC sits at the origin and <var>Q</var><sub>2</sub> = +2 μC at (3 cm, 4 cm). Find the force vector on <var>Q</var><sub>2</sub>.</li>
             <li>A material has ε<sub>r</sub> = 4 and <var>E</var> = 250 V/m. Find |<var>D</var>|.</li>
-            <li>A line density varies as λ(<var>x</var>) = 2<var>x</var> μC/m from <var>x</var> = 0 to 3 m. Find the total charge.</li>
+            <li>A line density varies as λ(<var>x</var>) = 2<var>x</var> <span class="frac"><span>μC</span><span>m</span></span> from <var>x</var> = 0 to 3 m. Find the total charge.</li>
             <li>φ<sub>A</sub> = 12 V and φ<sub>B</sub> = −3 V. Find <var>U</var><sub>AB</sub> and the work needed to move +2 μC from A to B.</li>
             <li>A 10 μF capacitor is charged to 12 V. Find its stored energy.</li>
             <li>At an uncharged interface, ε<sub>1</sub> = 2ε<sub>0</sub>, ε<sub>2</sub> = 4ε<sub>0</sub>, <var>E</var><sub>n1</sub> = 100 V/m and <var>E</var><sub>t1</sub> = 80 V/m. Find <var>E</var><sub>n2</sub> and <var>E</var><sub>t2</sub>.</li>
@@ -883,18 +883,18 @@
             <li>A uniform 500 V/m field points from A to B, which are 0.08 m apart along the field. Find <var>U</var><sub>AB</sub>.</li>
             <li>A spherical capacitor in vacuum has <var>a</var> = 5 cm and <var>b</var> = 6 cm. Find <var>C</var> and compare it with the thin-gap plate approximation.</li>
             <li>A conducting surface in vacuum carries σ<sub>A</sub> = 4 nC/m². Find the field just outside and inside the conductor.</li>
-            <li>A line carries a uniform 5 μC/m over 0.40 m. Find its charge.</li>
+            <li>A line carries a uniform 5 <span class="frac"><span>μC</span><span>m</span></span> over 0.40 m. Find its charge.</li>
             <li>−2 nC is moved from 0.20 m to 0.10 m from a fixed +5 nC. Find <var>W</var><sub>e</sub> and say who does the work.</li>
             <li>Find the equivalent of 6 μF and 3 μF in parallel and in series, and say what is common to the elements in each case.</li>
-            <li>A uniform <var>D</var> = 3 μC/m² is normal to a 0.20 m² surface. Find the flux.</li>
+            <li>A uniform <var>D</var> = 3 <span class="frac"><span>μC</span><span>m²</span></span> is normal to a 0.20 m² surface. Find the flux.</li>
             <li>Find the force between +2 μC and −3 μC that are 0.20 m apart, and say whether it attracts or repels.</li>
             <li>A 10 nF capacitor is charged to 100 V. A dielectric with ε<sub>r</sub> = 4 then fills the gap. Find <var>U</var>, <var>Q</var> and <var>W</var><sub>e</sub> afterwards if (a) the source was disconnected first, (b) the source stays connected.</li>
-            <li>A long uniformly charged cylinder has ϱ<sub>V</sub> = 4 μC/m³ and <var>a</var> = 0.10 m. Find <var>D</var> at ρ = 0.05 m.</li>
+            <li>A long uniformly charged cylinder has ϱ<sub>V</sub> = 4 <span class="frac"><span>μC</span><span>m³</span></span> and <var>a</var> = 0.10 m. Find <var>D</var> at ρ = 0.05 m.</li>
             <li>A field of 200 V/m in a medium with ε<sub>r</sub> = 2 meets a medium with ε<sub>r</sub> = 6 at 30° to the normal. There is no surface charge. Find the size and angle of the field in medium 2.</li>
             <li>The distance between two point charges doubles. What happens to the force?</li>
             <li>A multilayer capacitor has 5 plates per terminal, plate area 1 cm², layer thickness 10 μm and ε<sub>r</sub> = 1000. Find <var>C</var>.</li>
             <li>+2 μC moves 0.10 m along a uniform 200 V/m field. Find the externally supplied energy.</li>
-            <li>A ball of radius <var>R</var> = 0.1 m has ϱ(<var>r</var>) = <var>k r</var> with <var>k</var> = 10<sup>−6</sup> C/m<sup>4</sup>. Find its total charge and <var>D</var> at its surface.</li>
+            <li>A ball of radius <var>R</var> = 0.1 m has ϱ(<var>r</var>) = <var>k r</var> with <var>k</var> = 10<sup>−6</sup> <span class="frac"><span>C</span><span>m<sup>4</sup></span></span>. Find its total charge and <var>D</var> at its surface.</li>
             <li>+2 nC at <var>x</var> = −0.10 m and −2 nC at <var>x</var> = +0.10 m. Find <var>E</var> at the origin.</li>
             <li>Plates with ε<sub>r</sub> = 2, area 0.020 m², gap 1.0 mm. Find <var>C</var>.</li>
             <li>A metal sphere of radius 0.10 m carries 2 nC. Find σ<sub>A</sub>, the field just outside, and compare with the point-charge field at the same radius.</li>
@@ -908,43 +908,43 @@
           <details class="answers">
             <summary>Show answer key and working</summary>
             <ol>
-              <li><var>r</var> = 0.05 m, |<var>F</var>| = 8.988 × 10<sup>9</sup> × 2 × 10<sup>−12</sup>/0.0025 ≈ 7.19 N along (0.6, 0.8): <var>F</var> ≈ (4.31, 5.75) N, repulsion. <span class="sec-ref">§1.2</span></li>
+              <li><var>r</var> = 0.05 m, |<var>F</var>| = 8.988 × 10<sup>9</sup> × 2 × <span class="frac"><span>10<sup>−12</sup></span><span>0.0025</span></span> ≈ 7.19 N along (0.6, 0.8): <var>F</var> ≈ (4.31, 5.75) N, repulsion. <span class="sec-ref">§1.2</span></li>
               <li><var>D</var> = ε<sub>0</sub>ε<sub>r</sub><var>E</var> ≈ 8.85 × 10<sup>−9</sup> C/m². <span class="sec-ref">§1.10</span></li>
               <li><var>Q</var> = <span class="op op-int"><span class="op-sym">∫</span><sub>0</sub><sup>3</sup></span> 2<var>x</var> d<var>x</var> μC = 9 μC. <span class="sec-ref">§1.6</span></li>
               <li><var>U</var><sub>AB</sub> = 15 V; <var>W</var><sub>e</sub> = <var>Q</var>(φ<sub>B</sub> − φ<sub>A</sub>) = 2 μC × (−15 V) = −30 μJ: the field does the work. <span class="sec-ref">§1.9</span></li>
               <li>½ × 10 μF × 12<sup>2</sup> = 720 μJ. <span class="sec-ref">§1.14</span></li>
-              <li><var>E</var><sub>n2</sub> = (ε<sub>1</sub>/ε<sub>2</sub>)<var>E</var><sub>n1</sub> = 50 V/m; <var>E</var><sub>t2</sub> = 80 V/m. <span class="sec-ref">§1.11</span></li>
-              <li>8.988 × 10<sup>9</sup> × 4 × 10<sup>−9</sup>/0.04 ≈ 899 V/m, pointing toward the charge. <span class="sec-ref">§1.3</span></li>
+              <li><var>E</var><sub>n2</sub> = (<span class="frac"><span>ε<sub>1</sub></span><span>ε<sub>2</sub></span></span>)<var>E</var><sub>n1</sub> = 50 V/m; <var>E</var><sub>t2</sub> = 80 V/m. <span class="sec-ref">§1.11</span></li>
+              <li>8.988 × 10<sup>9</sup> × 4 × <span class="frac"><span>10<sup>−9</sup></span><span>0.04</span></span> ≈ 899 V/m, pointing toward the charge. <span class="sec-ref">§1.3</span></li>
               <li><var>C</var> = 1.6 μF, <var>Q</var> = 16 μC; <var>U</var><sub>2μF</sub> = 8 V, <var>U</var><sub>8μF</sub> = 2 V. <span class="sec-ref">§1.13</span></li>
-              <li>8.988 × 10<sup>9</sup> × 3 × 10<sup>−9</sup>/0.30 ≈ 89.9 V. <span class="sec-ref">§1.8</span></li>
+              <li>8.988 × 10<sup>9</sup> × 3 × <span class="frac"><span>10<sup>−9</sup></span><span>0.30</span></span> ≈ 89.9 V. <span class="sec-ref">§1.8</span></li>
               <li>(a) 4.0 V; (b) the field is zero in the metal: 1000 × 0.003 = 3.0 V; (c) 1000 × 0.003 + 200 × 0.001 = 3.2 V. Empty &gt; dielectric &gt; metal. <span class="sec-ref">§1.12</span></li>
-              <li>4.806 × 10<sup>−19</sup>/1.602 × 10<sup>−19</sup> = 3: a deficit of three electrons. <span class="sec-ref">§1.1</span></li>
-              <li>Inside: ϱ<sub>V</sub><var>a</var>/2; outside: ϱ<sub>V</sub><var>a</var><sup>2</sup>/(2<var>a</var>) = ϱ<sub>V</sub><var>a</var>/2. There is no surface charge at ρ = <var>a</var>, so normal <var>D</var> must be continuous; a mismatch would reveal an algebra slip. <span class="sec-ref">§1.10</span></li>
+              <li>4.806 × <span class="frac"><span>10<sup>−19</sup></span><span>1.602</span></span> × 10<sup>−19</sup> = 3: a deficit of three electrons. <span class="sec-ref">§1.1</span></li>
+              <li>Inside: <span class="frac"><span>ϱ<sub>V</sub><var>a</var></span><span>2</span></span>; outside: <span class="frac"><span>ϱ<sub>V</sub><var>a</var><sup>2</sup></span><span>2<var>a</var></span></span> = <span class="frac"><span>ϱ<sub>V</sub><var>a</var></span><span>2</span></span>. There is no surface charge at ρ = <var>a</var>, so normal <var>D</var> must be continuous; a mismatch would reveal an algebra slip. <span class="sec-ref">§1.10</span></li>
               <li>Both distances are 0.05 m, each field ≈ 1.08 × 10<sup>4</sup> V/m. <var>E</var><sub>1</sub> points along (0.6, 0.8); <var>E</var><sub>2</sub> points toward the −3 nC, along (0.6, −0.8). The y-parts cancel: <var>E</var> ≈ 1.29 × 10<sup>4</sup> V/m along +x. <span class="sec-ref">§1.4</span></li>
               <li><var>w</var><sub>e</sub> = ½ε<sub>0</sub><var>E</var><sup>2</sup> ≈ 44 mJ/m³. <span class="sec-ref">§1.14</span></li>
               <li><var>U</var><sub>AB</sub> = <span class="op op-int"><span class="op-sym">∫</span><sub>A</sub><sup>B</sup></span> <var>E</var> · d<var>s</var> = 500 × 0.08 = +40 V. <span class="sec-ref">§1.9</span></li>
-              <li><var>C</var> = 4π ε<sub>0</sub> × 0.05 × 0.06/0.01 ≈ 33.4 pF. The plate approximation ε<sub>0</sub>4π<var>a</var><sup>2</sup>/<var>d</var> ≈ 27.8 pF is about 17 % low, because the gap (1 cm) is not small compared with <var>a</var>. <span class="sec-ref">§1.13</span></li>
-              <li>Outside σ<sub>A</sub>/ε<sub>0</sub> ≈ 452 V/m, normal to the surface; inside 0. <span class="sec-ref">§1.11</span></li>
+              <li><var>C</var> = 4π ε<sub>0</sub> × 0.05 × <span class="frac"><span>0.06</span><span>0.01</span></span> ≈ 33.4 pF. The plate approximation <span class="frac"><span>ε<sub>0</sub>4π<var>a</var><sup>2</sup></span><span><var>d</var></span></span> ≈ 27.8 pF is about 17 % low, because the gap (1 cm) is not small compared with <var>a</var>. <span class="sec-ref">§1.13</span></li>
+              <li>Outside <span class="frac"><span>σ<sub>A</sub></span><span>ε<sub>0</sub></span></span> ≈ 452 V/m, normal to the surface; inside 0. <span class="sec-ref">§1.11</span></li>
               <li><var>Q</var> = λ<var>l</var> = 2.0 μC. <span class="sec-ref">§1.6</span></li>
-              <li><var>W</var><sub>e</sub> = <var>Q Q</var><sub>0</sub>/(4π ε<sub>0</sub>) (1/0.10 − 1/0.20) = 8.988 × 10<sup>9</sup> × (−10<sup>−17</sup>) × 5 ≈ −0.45 μJ: attraction does the work. <span class="sec-ref">§1.8</span></li>
+              <li><var>W</var><sub>e</sub> = <span class="frac"><span><var>Q Q</var><sub>0</sub></span><span>4π ε<sub>0</sub></span></span> (<span class="frac"><span>1</span><span>0.10</span></span> − <span class="frac"><span>1</span><span>0.20</span></span>) = 8.988 × 10<sup>9</sup> × (−10<sup>−17</sup>) × 5 ≈ −0.45 μJ: attraction does the work. <span class="sec-ref">§1.8</span></li>
               <li>Parallel 9 μF (same voltage); series 2 μF (same charge). <span class="sec-ref">§1.13</span></li>
               <li>Ψ = <var>D A</var> = 0.60 μC. <span class="sec-ref">§1.10</span></li>
-              <li>8.988 × 10<sup>9</sup> × 6 × 10<sup>−12</sup>/0.04 ≈ 1.35 N, attraction. <span class="sec-ref">§1.2</span></li>
+              <li>8.988 × 10<sup>9</sup> × 6 × <span class="frac"><span>10<sup>−12</sup></span><span>0.04</span></span> ≈ 1.35 N, attraction. <span class="sec-ref">§1.2</span></li>
               <li>Before: <var>Q</var> = 1 μC, <var>W</var><sub>e</sub> = 50 μJ. Afterwards <var>C</var> = 40 nF. (a) <var>Q</var> stays 1 μC, <var>U</var> = 25 V, <var>W</var><sub>e</sub> = 12.5 μJ. (b) <var>U</var> stays 100 V, <var>Q</var> = 4 μC, <var>W</var><sub>e</sub> = 200 μJ. <span class="sec-ref">§1.12, 1.14</span></li>
-              <li><var>D</var><sub>ρ</sub> = ϱ<sub>V</sub>ρ/2 = 4 × 10<sup>−6</sup> × 0.05/2 = 1.0 × 10<sup>−7</sup> C/m². <span class="sec-ref">§1.10</span></li>
-              <li><var>E</var><sub>n1</sub> ≈ 173 V/m, <var>E</var><sub>t</sub> = 100 V/m; <var>E</var><sub>n2</sub> = 173 × 2/6 ≈ 57.7 V/m. |<var>E</var><sub>2</sub>| ≈ 115 V/m at 60° from the normal (tan 30°/tan 60° = 1/3 = ε<sub>1</sub>/ε<sub>2</sub>). <span class="sec-ref">§1.11</span></li>
-              <li>A quarter, since <var>F</var> ∝ 1/<var>r</var><sup>2</sup>. <span class="sec-ref">§1.2</span></li>
-              <li>9 × 8.854 × 10<sup>−12</sup> × 1000 × 10<sup>−4</sup>/10<sup>−5</sup> ≈ 0.80 μF. <span class="sec-ref">§1.13</span></li>
+              <li><var>D</var><sub>ρ</sub> = <span class="frac"><span>ϱ<sub>V</sub>ρ</span><span>2</span></span> = 4 × 10<sup>−6</sup> × <span class="frac"><span>0.05</span><span>2</span></span> = 1.0 × 10<sup>−7</sup> C/m². <span class="sec-ref">§1.10</span></li>
+              <li><var>E</var><sub>n1</sub> ≈ 173 V/m, <var>E</var><sub>t</sub> = 100 V/m; <var>E</var><sub>n2</sub> = 173 × <span class="frac"><span>2</span><span>6</span></span> ≈ 57.7 V/m. |<var>E</var><sub>2</sub>| ≈ 115 V/m at 60° from the normal (tan 30°/tan 60° = <span class="frac"><span>1</span><span>3</span></span> = <span class="frac"><span>ε<sub>1</sub></span><span>ε<sub>2</sub></span></span>). <span class="sec-ref">§1.11</span></li>
+              <li>A quarter, since <var>F</var> ∝ <span class="frac"><span>1</span><span><var>r</var><sup>2</sup></span></span>. <span class="sec-ref">§1.2</span></li>
+              <li>9 × 8.854 × 10<sup>−12</sup> × 1000 × <span class="frac"><span>10<sup>−4</sup></span><span>10<sup>−5</sup></span></span> ≈ 0.80 μF. <span class="sec-ref">§1.13</span></li>
               <li>Δφ = −<var>E d</var> = −20 V, so <var>W</var><sub>e</sub> = <var>Q</var>Δφ = −40 μJ: the field supplies the energy. <span class="sec-ref">§1.8</span></li>
-              <li><var>Q</var> = <span class="op op-int"><span class="op-sym">∫</span><sub>0</sub><sup>R</sup></span> <var>k r</var> 4π<var>r</var><sup>2</sup> d<var>r</var> = π<var>k R</var><sup>4</sup> ≈ 3.14 × 10<sup>−10</sup> C; <var>D</var>(<var>R</var>) = <var>Q</var>/(4π<var>R</var><sup>2</sup>) = <var>k R</var><sup>2</sup>/4 = 2.5 × 10<sup>−9</sup> C/m². <span class="sec-ref">§1.6, 1.10</span></li>
+              <li><var>Q</var> = <span class="op op-int"><span class="op-sym">∫</span><sub>0</sub><sup>R</sup></span> <var>k r</var> 4π<var>r</var><sup>2</sup> d<var>r</var> = π<var>k R</var><sup>4</sup> ≈ 3.14 × 10<sup>−10</sup> C; <var>D</var>(<var>R</var>) = <span class="frac"><span><var>Q</var></span><span>4π<var>R</var><sup>2</sup></span></span> = <span class="frac"><span><var>k R</var><sup>2</sup></span><span>4</span></span> = 2.5 × 10<sup>−9</sup> C/m². <span class="sec-ref">§1.6, 1.10</span></li>
               <li>Each field is ≈ 1.80 × 10<sup>3</sup> V/m toward +x (away from +, toward −): <var>E</var> ≈ 3.60 × 10<sup>3</sup> V/m along +x. <span class="sec-ref">§1.4</span></li>
-              <li><var>C</var> = ε<sub>0</sub>ε<sub>r</sub><var>A</var>/<var>d</var> ≈ 354 pF. <span class="sec-ref">§1.13</span></li>
-              <li>σ<sub>A</sub> = <var>Q</var>/(4π<var>a</var><sup>2</sup>) ≈ 1.59 × 10<sup>−8</sup> C/m²; <var>E</var> = σ<sub>A</sub>/ε<sub>0</sub> ≈ 1.80 kV/m, the same as the point-charge field 8.988 × 10<sup>9</sup> × 2 × 10<sup>−9</sup>/0.01. <span class="sec-ref">§1.11</span></li>
+              <li><var>C</var> = <span class="frac"><span>ε<sub>0</sub>ε<sub>r</sub><var>A</var></span><span><var>d</var></span></span> ≈ 354 pF. <span class="sec-ref">§1.13</span></li>
+              <li>σ<sub>A</sub> = <span class="frac"><span><var>Q</var></span><span>4π<var>a</var><sup>2</sup></span></span> ≈ 1.59 × 10<sup>−8</sup> C/m²; <var>E</var> = <span class="frac"><span>σ<sub>A</sub></span><span>ε<sub>0</sub></span></span> ≈ 1.80 kV/m, the same as the point-charge field 8.988 × 10<sup>9</sup> × 2 × <span class="frac"><span>10<sup>−9</sup></span><span>0.01</span></span>. <span class="sec-ref">§1.11</span></li>
               <li>Ψ = <var>Q</var><sub>enclosed</sub> = −8 nC (net flux points inward). <span class="sec-ref">§1.10</span></li>
-              <li>8.988 × 10<sup>9</sup> × (−3 × 10<sup>−9</sup>)(6 × 10<sup>−9</sup>)/0.20 ≈ −0.81 μJ. <span class="sec-ref">§1.8</span></li>
+              <li>8.988 × 10<sup>9</sup> × <span class="frac"><span>(−3 × 10<sup>−9</sup>)(6 × 10<sup>−9</sup>)</span><span>0.20</span></span> ≈ −0.81 μJ. <span class="sec-ref">§1.8</span></li>
               <li><var>Q</var> = σ<var>A</var> = 2.0 nC. <span class="sec-ref">§1.6</span></li>
-              <li>2π × 8.854 × 10<sup>−12</sup> × 2.5/ln 4 ≈ 100 pF/m. <span class="sec-ref">§1.13</span></li>
-              <li>At distance <var>x</var> from +<var>Q</var>: <var>Q</var>/<var>x</var><sup>2</sup> = 2<var>Q</var>/(0.30 − <var>x</var>)<sup>2</sup>, so 0.30 − <var>x</var> = <span class="sqrt"><span class="root">√</span><span class="rad">2</span></span> <var>x</var> and <var>x</var> ≈ 12.4 cm, closer to the smaller charge. It is the only point where field lines can meet; lines from both charges push apart around it. <span class="sec-ref">§1.7</span></li>
+              <li><span class="frac"><span>2π × 8.854 × 10<sup>−12</sup> × 2.5</span><span>ln 4</span></span> ≈ 100 pF/m. <span class="sec-ref">§1.13</span></li>
+              <li>At distance <var>x</var> from +<var>Q</var>: <span class="frac"><span><var>Q</var></span><span><var>x</var><sup>2</sup></span></span> = <span class="frac"><span>2<var>Q</var></span><span>(0.30 − <var>x</var>)<sup>2</sup></span></span>, so 0.30 − <var>x</var> = <span class="sqrt"><span class="root">√</span><span class="rad">2</span></span> <var>x</var> and <var>x</var> ≈ 12.4 cm, closer to the smaller charge. It is the only point where field lines can meet; lines from both charges push apart around it. <span class="sec-ref">§1.7</span></li>
               <li>Charge <var>Q</var> = λ<var>l</var> = 1 nC, so <var>F</var> = <var>Q E</var> = 4 μN along the field. In a non-uniform field, add up d<var>F</var> = λ <var>E</var>(<var>x</var>) d<var>x</var> along the rod. <span class="sec-ref">§1.5</span></li>
             </ol>
           </details>
@@ -956,7 +956,7 @@
           <h3>A. Coaxial cable</h3>
           <p>Inner conductor radius 0.5 mm, outer conductor radius 2 mm, dielectric ε<sub>r</sub> = 2.2, length 10 m, voltage 100 V.</p>
           <ol class="problems">
-            <li>Derive <var>C</var>/<var>l</var> with the five-step recipe, then find <var>C</var>.</li>
+            <li>Derive <span class="frac"><span><var>C</var></span><span><var>l</var></span></span> with the five-step recipe, then find <var>C</var>.</li>
             <li>Find the charge on the inner conductor.</li>
             <li>Find <var>E</var> at the inner and the outer conductor. Where would the dielectric break down first?</li>
             <li>Find the stored energy.</li>
@@ -964,9 +964,9 @@
           <details class="answers">
             <summary>Show working</summary>
             <ol>
-              <li><var>D</var> = <var>Q</var>/(2πρ<var>l</var>), <var>U</var> = <var>Q</var> ln(<var>b</var>/<var>a</var>)/(2π ε <var>l</var>), <var>C</var>/<var>l</var> = 2π ε<sub>0</sub>ε<sub>r</sub>/ln 4 ≈ 88.3 pF/m, so <var>C</var> ≈ 883 pF.</li>
+              <li><var>D</var> = <span class="frac"><span><var>Q</var></span><span>2πρ<var>l</var></span></span>, <var>U</var> = <var>Q</var> <span class="frac"><span>ln(<span class="frac"><span><var>b</var></span><span><var>a</var></span></span>)</span><span>2π ε <var>l</var></span></span>, <span class="frac"><span><var>C</var></span><span><var>l</var></span></span> = <span class="frac"><span>2π ε<sub>0</sub>ε<sub>r</sub></span><span>ln 4</span></span> ≈ 88.3 pF/m, so <var>C</var> ≈ 883 pF.</li>
               <li><var>Q</var> = <var>C U</var> ≈ 88 nC.</li>
-              <li><var>E</var>(ρ) = <var>U</var>/(ρ ln(<var>b</var>/<var>a</var>)): about 144 kV/m at ρ = 0.5 mm and 36 kV/m at ρ = 2 mm. The field is strongest at the inner conductor, so breakdown starts there.</li>
+              <li><var>E</var>(ρ) = <span class="frac"><span><var>U</var></span><span>ρ ln(<span class="frac"><span><var>b</var></span><span><var>a</var></span></span>)</span></span>: about 144 kV/m at ρ = 0.5 mm and 36 kV/m at ρ = 2 mm. The field is strongest at the inner conductor, so breakdown starts there.</li>
               <li><var>W</var><sub>e</sub> = ½<var>C U</var><sup>2</sup> ≈ 4.4 μJ.</li>
             </ol>
           </details>
@@ -975,15 +975,15 @@
           <ol class="problems">
             <li>Which quantity is the same in both layers, and which interface condition says so?</li>
             <li>Find <var>D</var>, <var>E</var><sub>1</sub>, <var>E</var><sub>2</sub> and the voltage across each layer.</li>
-            <li>Find <var>C</var> in two ways: from <var>Q</var>/<var>U</var>, and as two capacitors in series.</li>
+            <li>Find <var>C</var> in two ways: from <span class="frac"><span><var>Q</var></span><span><var>U</var></span></span>, and as two capacitors in series.</li>
             <li>Find the energy stored in each layer.</li>
           </ol>
           <details class="answers">
             <summary>Show working</summary>
             <ol>
               <li><var>D</var>: the field is normal to the interface and there is no surface charge, so <var>D</var><sub>n1</sub> = <var>D</var><sub>n2</sub>.</li>
-              <li><var>U</var> = <var>D</var>(<var>d</var><sub>1</sub>/ε<sub>1</sub> + <var>d</var><sub>2</sub>/ε<sub>2</sub>), so <var>D</var> = 300 ε<sub>0</sub>/(0.5 mm + 0.5 mm) ≈ 2.66 μC/m². <var>E</var><sub>1</sub> = 150 kV/m and <var>E</var><sub>2</sub> = 75 kV/m; 150 V across each layer.</li>
-              <li><var>Q</var> = <var>D A</var> ≈ 26.6 nC, <var>C</var> = <var>Q</var>/<var>U</var> ≈ 88.5 pF. Series: <var>C</var><sub>1</sub> = <var>C</var><sub>2</sub> ≈ 177 pF, so <var>C</var> ≈ 88.5 pF.</li>
+              <li><var>U</var> = <var>D</var>(<span class="frac"><span><var>d</var><sub>1</sub></span><span>ε<sub>1</sub></span></span> + <span class="frac"><span><var>d</var><sub>2</sub></span><span>ε<sub>2</sub></span></span>), so <var>D</var> = 300 <span class="frac"><span>ε<sub>0</sub></span><span>0.5 mm + 0.5 mm</span></span> ≈ 2.66 <span class="frac"><span>μC</span><span>m²</span></span>. <var>E</var><sub>1</sub> = 150 kV/m and <var>E</var><sub>2</sub> = 75 kV/m; 150 V across each layer.</li>
+              <li><var>Q</var> = <var>D A</var> ≈ 26.6 nC, <var>C</var> = <span class="frac"><span><var>Q</var></span><span><var>U</var></span></span> ≈ 88.5 pF. Series: <var>C</var><sub>1</sub> = <var>C</var><sub>2</sub> ≈ 177 pF, so <var>C</var> ≈ 88.5 pF.</li>
               <li>½ × 177 pF × 150<sup>2</sup> ≈ 2.0 μJ per layer, 4.0 μJ in total, which matches ½<var>C U</var><sup>2</sup>.</li>
             </ol>
           </details>
@@ -991,7 +991,7 @@
 
         <section id="slips">
           <h2>Slips in the notes</h2>
-          <p>We sent the professor a list of small slips in the WS 2026/27 notes, and the revised script (November 2026) fixes most of them. These three remain; page numbers are the ones printed on the pages.</p>
+          <p>We sent the professor a list of small slips in the WS <span class="frac"><span>2026</span><span>27</span></span> notes, and the revised script (November 2026) fixes most of them. These three remain; page numbers are the ones printed on the pages.</p>
           <ul>
             <li><strong>p. 47:</strong> not an error, but two notation switches to watch. Here <var>Q</var><sub>1</sub> is the probe and <var>Q</var> the source (pp. 43–46 use <var>Q</var> and <var>Q</var><sub>0</sub>), and <var>U</var> stands for φ(<var>r</var><sub>2</sub>) − φ(<var>r</var><sub>1</sub>), end minus start, the opposite order to <var>U</var><sub>12</sub> = φ<sub>1</sub> − φ<sub>2</sub> on p. 52. With that <var>U</var>, <var>W</var><sub>e</sub> = <var>Q</var><sub>1</sub><var>U</var> is right; with the p. 52 convention the same work is <var>W</var><sub>e</sub> = −<var>Q U</var><sub>start,end</sub>.</li>
             <li><strong>p. 84 vs p. 90:</strong> both figures now call the dielectric case (b) and the metal case (c), but the voltage names are swapped: pp. 84–87 call the metal-slab voltage <var>U</var><sub>b</sub> and the dielectric one <var>U</var><sub>c</sub>; p. 90 does the reverse. Physics: empty gap &gt; dielectric &gt; metal slab.</li>
@@ -1022,7 +1022,7 @@
           </ul>
         </section>
 
-        <p class="source-note">Personal study guide based on the supplied Electrical Engineering I Chapter 1 notes (WS 2026/27), written in my own words; no lecture pages or figures are reproduced. Not an official FAU publication; check course details against the current notes. Made by <strong>Thanate Amornjiraporn (Focus)</strong>.</p>
+        <p class="source-note">Personal study guide based on the supplied Electrical Engineering I Chapter 1 notes (WS <span class="frac"><span>2026</span><span>27</span></span>), written in my own words; no lecture pages or figures are reproduced. Not an official FAU publication; check course details against the current notes. Made by <strong>Thanate Amornjiraporn (Focus)</strong>.</p>
       </main>
     </div>
     <script src="../js/guide.js"></script>

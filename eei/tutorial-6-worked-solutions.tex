@@ -109,7 +109,7 @@ The conductor is an annular sector with axial height \textit{h} and angular span
 \subsection{10a: Set up the current-density field}
 
 \Needspace{4\baselineskip}
-Try first: use charge conservation at steady state and the normal-current boundary condition at the κ\textsubscript{1}/κ\textsubscript{2} interface.
+Try first: use charge conservation at steady state and the normal-current boundary condition at the {\small\ensuremath{\dfrac{κ_{1}}{κ_{2}}}} interface.
 
 \nopagebreak[4]{\small\itshape Answers: see “Task 10: Stationary electric flow field” under Answers at the end.}
 \end{keepsection}
@@ -188,7 +188,7 @@ By symmetry the radial current density is uniform over this surface, and \textit
 \Needspace{5\baselineskip}
 \begin{equation*}{J}(ρ)\, =\, \dfrac{{I}}{α{h}ρ}\, {e}_{ρ},\quad \, \quad \, {a}_{0}\, <\, ρ\, <\, {a}_{2}\end{equation*}
 
-The same expression holds on both sides of \textit{a}\textsubscript{1}. It falls as 1/ρ because the current-carrying area grows with radius.
+The same expression holds on both sides of \textit{a}\textsubscript{1}. It falls as {\small\ensuremath{\dfrac{1}{ρ}}} because the current-carrying area grows with radius.
 \end{enumerate}
 \end{workedbox}
 
@@ -231,7 +231,7 @@ At the interface the normal current remains continuous, while \textit{E} jumps b
 \draw[FAUblue,line width=1.6pt] (3.263,-0.721) -- (3.321,-0.749) -- (3.379,-0.776) -- (3.436,-0.802) -- (3.494,-0.826) -- (3.552,-0.849) -- (3.610,-0.871) -- (3.668,-0.893) -- (3.725,-0.914) -- (3.783,-0.934) -- (3.841,-0.952) -- (3.899,-0.970) -- (3.956,-0.988) -- (4.014,-1.004) -- (4.072,-1.020) -- (4.130,-1.036) -- (4.188,-1.051) -- (4.245,-1.065) -- (4.303,-1.079) -- (4.361,-1.093) -- (4.419,-1.106);
 \node[anchor=west,text=FAUblue,fill=white,fill opacity=0.85,text opacity=1,inner sep=1pt,font=\footnotesize] at (2.313,-0.664) {\textit{E}};
 \node[anchor=west,fill=white,fill opacity=0.85,text opacity=1,inner sep=1pt,font=\footnotesize] at (3.931,-1.437) {\textit{J}};
-\end{tikzpicture}\par\smallskip{\small\raggedright \textbf{J runs on, E jumps.} Drawn for κ\textsubscript{2} = κ\textsubscript{1}/2; the two curves are not to the same scale. \textit{J} (dashed) falls smoothly as 1/ρ through the interface at \textit{a}\textsubscript{1}, while \textit{E} = \textit{J}/κ jumps there by κ\textsubscript{1}/κ\textsubscript{2}: the poorer conductor needs the stronger field.\par}\end{minipage}
+\end{tikzpicture}\par\smallskip{\small\raggedright \textbf{J runs on, E jumps.} Drawn for κ\textsubscript{2} = {\small\ensuremath{\dfrac{κ_{1}}{2}}}; the two curves are not to the same scale. \textit{J} (dashed) falls smoothly as {\small\ensuremath{\dfrac{1}{ρ}}} through the interface at \textit{a}\textsubscript{1}, while \textit{E} = {\small\ensuremath{\dfrac{{J}}{κ}}} jumps there by {\small\ensuremath{\dfrac{κ_{1}}{κ_{2}}}}: the poorer conductor needs the stronger field.\par}\end{minipage}
 \end{center}
 \end{enumerate}
 \end{workedbox}
@@ -247,7 +247,7 @@ With \textit{U}\textsubscript{12} defined as electrode-1 potential minus electro
 
 \begin{equation*}{U}_{12}\, =\, \int_{{a}_{0}}^{{a}_{1}} \, {E}_{1,ρ}\, \mathrm{d}ρ\, +\, \int_{{a}_{1}}^{{a}_{2}} \, {E}_{2,ρ}\, \mathrm{d}ρ\end{equation*}
 \item \Needspace{4\baselineskip}
-Substitute the fields and integrate dρ/ρ in each interval:
+Substitute the fields and integrate {\small\ensuremath{\dfrac{\mathrm{d}ρ}{ρ}}} in each interval:
 
 \Needspace{4\baselineskip}
 \begin{equation*}{U}_{12}({I})\, =\, \dfrac{{I}}{α{h}κ_{1}}\ln \left(\dfrac{{a}_{1}}{{a}_{0}}\right)\, +\, \dfrac{{I}}{α{h}κ_{2}}\ln \left(\dfrac{{a}_{2}}{{a}_{1}}\right)\end{equation*}
@@ -263,7 +263,7 @@ The voltage is positive for outward positive current. Each logarithm is dimensio
 \Needspace{7\baselineskip}
 \begin{enumerate}
 \item \Needspace{5\baselineskip}
-Resistance is \textit{R} = \textit{U}\textsubscript{12}/\textit{I}. Since the current passes through κ\textsubscript{1} and κ\textsubscript{2} sequentially, their radial resistances add:
+Resistance is \textit{R} = {\small\ensuremath{\dfrac{{U}_{12}}{{I}}}}. Since the current passes through κ\textsubscript{1} and κ\textsubscript{2} sequentially, their radial resistances add:
 
 \begin{equation*}{R}_{1}\, =\, \dfrac{1}{α{h}κ_{1}}\ln \left(\dfrac{{a}_{1}}{{a}_{0}}\right),\quad \, \quad \, {R}_{2}\, =\, \dfrac{1}{α{h}κ_{2}}\ln \left(\dfrac{{a}_{2}}{{a}_{1}}\right)\end{equation*}
 \item \Needspace{4\baselineskip}
@@ -272,7 +272,7 @@ Therefore:
 \Needspace{5\baselineskip}
 \begin{equation*}{R}\, =\, \dfrac{1}{α{h}}\left[\dfrac{1}{κ_{1}}\ln \left(\dfrac{{a}_{1}}{{a}_{0}}\right)\, +\, \dfrac{1}{κ_{2}}\ln \left(\dfrac{{a}_{2}}{{a}_{1}}\right)\right]\end{equation*}
 
-The units are ohms: 1/(κh) has units Ω, and the angle and logarithms are dimensionless. If κ\textsubscript{1} = κ\textsubscript{2} = κ, the logs combine to ln(\textit{a}\textsubscript{2}/\textit{a}\textsubscript{0}), a useful check.
+The units are ohms: {\small\ensuremath{\dfrac{1}{κ\mathrm{h}}}} has units Ω, and the angle and logarithms are dimensionless. If κ\textsubscript{1} = κ\textsubscript{2} = κ, the logs combine to ln({\small\ensuremath{\dfrac{{a}_{2}}{{a}_{0}}}}), a useful check.
 \end{enumerate}
 \end{workedbox}
 

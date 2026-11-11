@@ -114,8 +114,9 @@ def inline(node):
         elif t == "span" and "op" in c:
             out.append("$%s$" % big_op(k))
         elif t == "span" and "frac" in c:
+            # a fraction in running text: stacked at nine tenths of the text size, like the page (\tfrac reads too small)
             num, den = [x for x in k.kids if isinstance(x, Node)]
-            out.append(r"(%s)/(%s)" % (inline(num), inline(den)))
+            out.append(r"{\small\ensuremath{\dfrac{%s}{%s}}}" % (math(num), math(den)))
         elif t == "span" and "sec-ref" in c:
             out.append(r"\hfill{\small\color{FAUblue}%s}" % inline(k))
         elif t == "span" and "say" in c:

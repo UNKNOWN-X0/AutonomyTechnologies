@@ -88,12 +88,12 @@ Spherical & 0 \ensuremath{\leq} \textit{r} \ensuremath{<} \ensuremath{\infty}, 0
 
 \begin{equationcard}{Cylindrical to Cartesian}
 \[ \begin{gathered} {x}\, =\, {ρ}\, \cos \, {φ} \\ {y}\, =\, {ρ}\, \sin \, {φ} \\ {z}\, =\, {z} \end{gathered} \]
-{\small \emph{Read it as: “x is rho cos phi, y is rho sin phi, and z stays z”.}\par Going back: \textit{ρ} = \ensuremath{\sqrt{{x}^{2}\, +\, {y}^{2}}}, and \textit{φ} from tan \textit{φ} = \textit{y}/\textit{x}, choosing the quadrant from the signs of \textit{x} and \textit{y}.}
+{\small \emph{Read it as: “x is rho cos phi, y is rho sin phi, and z stays z”.}\par Going back: \textit{ρ} = \ensuremath{\sqrt{{x}^{2}\, +\, {y}^{2}}}, and \textit{φ} from tan \textit{φ} = {\small\ensuremath{\dfrac{{y}}{{x}}}}, choosing the quadrant from the signs of \textit{x} and \textit{y}.}
 \end{equationcard}
 
 \begin{equationcard}{Spherical to Cartesian}
 \[ \begin{gathered} {x}\, =\, {r}\, \sin \, {ϑ}\, \cos \, {φ} \\ {y}\, =\, {r}\, \sin \, {ϑ}\, \sin \, {φ} \\ {z}\, =\, {r}\, \cos \, {ϑ} \end{gathered} \]
-{\small \emph{Read it as: “x is r sin theta cos phi, y is r sin theta sin phi, z is r cos theta”.}\par \textit{r} sin \textit{ϑ} is the point’s distance from the \textit{z}-axis, so it plays the part of \textit{ρ}. Going back: \textit{r} = \ensuremath{\sqrt{{x}^{2}\, +\, {y}^{2}\, +\, {z}^{2}}}, cos \textit{ϑ} = \textit{z}/\textit{r}, and \textit{φ} as for cylindrical coordinates.}
+{\small \emph{Read it as: “x is r sin theta cos phi, y is r sin theta sin phi, z is r cos theta”.}\par \textit{r} sin \textit{ϑ} is the point’s distance from the \textit{z}-axis, so it plays the part of \textit{ρ}. Going back: \textit{r} = \ensuremath{\sqrt{{x}^{2}\, +\, {y}^{2}\, +\, {z}^{2}}}, cos \textit{ϑ} = {\small\ensuremath{\dfrac{{z}}{{r}}}}, and \textit{φ} as for cylindrical coordinates.}
 \end{equationcard}
 \end{keepsection}
 
@@ -253,7 +253,7 @@ Change one coordinate a little and the point moves a short distance. In Cartesia
 
 \begin{equationcard}{Volume element}
 \[ \begin{gathered} \mathrm{d}{V}\, =\, \mathrm{d}{x}\, \mathrm{d}{y}\, \mathrm{d}{z} \\ \mathrm{d}{V}\, =\, {ρ}\, \mathrm{d}{ρ}\, \mathrm{d}{φ}\, \mathrm{d}{z} \\ \mathrm{d}{V}\, =\, {r}^{2}\, \sin \, {ϑ}\, \mathrm{d}{r}\, \mathrm{d}{ϑ}\, \mathrm{d}{φ} \end{gathered} \]
-{\small The product of the three step lengths. Check: the ball of radius \textit{R} has \textit{V} = $\int_{0}^{2π} $ $\int_{0}^{π} $ $\int_{0}^{{R}} $ \textit{r}\textsuperscript{2} sin \textit{ϑ} d\textit{r} d\textit{ϑ} d\textit{φ} = 4π\textit{R}\textsuperscript{3}/3.}
+{\small The product of the three step lengths. Check: the ball of radius \textit{R} has \textit{V} = $\int_{0}^{2π} $ $\int_{0}^{π} $ $\int_{0}^{{R}} $ \textit{r}\textsuperscript{2} sin \textit{ϑ} d\textit{r} d\textit{ϑ} d\textit{φ} = {\small\ensuremath{\dfrac{4π{R}^{3}}{3}}}.}
 \end{equationcard}
 
 \Needspace{10\baselineskip}

@@ -35,6 +35,7 @@ FILES = {
     "js/eei/ch2-physics.js": "the EEI Chapter 2 formulas (current density, Ohm's law, resistance, power)",
     "docs/EXERCISE-SOLUTIONS-STANDARD.md": "the worked-exercise standard",
     "docs/TOOLING-STANDARD.md": "the standard for the converter, checker, tests and site checks",
+    "tools/stack-fractions.py": "the tool that turns quotients written with a slash into stacked fractions",
     ".impeccable/surfaces/eei-ch2-lab.md": "the design brief for the EEI Chapter 2 lab",
     "js/mei/ch1-lab.js": "the MEI Chapter 1 lab page (logic and sets)",
     "js/mei/ch1-physics.js": "the MEI Chapter 1 formulas (logic, sets, intervals)",

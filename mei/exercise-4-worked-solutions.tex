@@ -91,7 +91,7 @@ Try first: check the smallest case \textit{n} = 1, then add the next term \texti
 \subsection{1b: Prove the reciprocal-square-root bound}
 
 \Needspace{4\baselineskip}
-Try first: start the induction at \textit{n} = 2, then show that the new term 1/\ensuremath{\sqrt{{n}\, +\, 1}} is at least the step from \ensuremath{\sqrt{{n}}} to \ensuremath{\sqrt{{n}\, +\, 1}}.
+Try first: start the induction at \textit{n} = 2, then show that the new term {\small\ensuremath{\dfrac{1}{\sqrt{{n}\, +\, 1}}}} is at least the step from \ensuremath{\sqrt{{n}}} to \ensuremath{\sqrt{{n}\, +\, 1}}.
 
 \nopagebreak[4]{\small\itshape Answers: see “Exercise 4.1: Mathematical induction” under Answers at the end.}
 \end{keepsection}
@@ -198,10 +198,10 @@ Try first: let θ=arcsin \textit{x}, so sin θ=\textit{x} and θ lies in the pri
 
 \begin{keepsection}
 \Needspace{7\baselineskip}
-\subsection{3d: Find cos(π/5) exactly}
+\subsection{3d: Find cos({\small\ensuremath{\dfrac{π}{5}}}) exactly}
 
 \Needspace{4\baselineskip}
-Try first: use π/5=2(π/10) in the double-angle identity, then select the positive root because π/5 is in the first quadrant.
+Try first: use {\small\ensuremath{\dfrac{π}{5}}}=2({\small\ensuremath{\dfrac{π}{10}}}) in the double-angle identity, then select the positive root because {\small\ensuremath{\dfrac{π}{5}}} is in the first quadrant.
 
 \nopagebreak[4]{\small\itshape Answers: see “Exercise 4.3: Elementary functions” under Answers at the end.}
 \end{keepsection}
@@ -411,7 +411,7 @@ Divide the sine and cosine addition identities only when the stated cosines are 
 \subsection{8a: Prove the tangent addition and subtraction formulas}
 
 \Needspace{4\baselineskip}
-Try first: write tan(\textit{x}\ensuremath{\pm}\textit{y})=sin(\textit{x}\ensuremath{\pm}\textit{y})/cos(\textit{x}\ensuremath{\pm}\textit{y}), then divide numerator and denominator by cos \textit{x} cos \textit{y}.
+Try first: write tan(\textit{x}\ensuremath{\pm}\textit{y})={\small\ensuremath{\dfrac{\sin ({x}\pm {y})}{\cos ({x}\pm {y})}}}, then divide numerator and denominator by cos \textit{x} cos \textit{y}.
 
 \nopagebreak[4]{\small\itshape Answers: see “Self-Study 4.8: Tangent addition theorems” under Answers at the end.}
 \end{keepsection}
@@ -428,10 +428,10 @@ Try first: set \textit{y}=\textit{x} in the addition formula, observing the stat
 
 \begin{keepsection}
 \Needspace{6\baselineskip}
-\subsection{8c: Compute tan(π/12) exactly}
+\subsection{8c: Compute tan({\small\ensuremath{\dfrac{π}{12}}}) exactly}
 
 \Needspace{3\baselineskip}
-Try first: apply the subtraction formula to π/3\ensuremath{-}π/4 and simplify by rationalizing.
+Try first: apply the subtraction formula to {\small\ensuremath{\dfrac{π}{3}}}\ensuremath{-}{\small\ensuremath{\dfrac{π}{4}}} and simplify by rationalizing.
 
 \nopagebreak[4]{\small\itshape Answers: see “Self-Study 4.8: Tangent addition theorems” under Answers at the end.}
 \end{keepsection}
@@ -555,7 +555,7 @@ This is the formula with \textit{n} + 1 in place of \textit{n}, so with the base
 \Needspace{13\baselineskip}
 \begin{enumerate}
 \item \Needspace{5\baselineskip}
-Write \textit{S}\textsubscript{\textit{n}} for the sum. The claim starts at \textit{n} = 2, so that is the base case: \textit{S}\textsubscript{2} = 1 + 1/\ensuremath{\sqrt{2}} \ensuremath{\approx} 1.707, while \ensuremath{\sqrt{2}} \ensuremath{\approx} 1.414. The claim holds at \textit{n} = 2.
+Write \textit{S}\textsubscript{\textit{n}} for the sum. The claim starts at \textit{n} = 2, so that is the base case: \textit{S}\textsubscript{2} = 1 + {\small\ensuremath{\dfrac{1}{\sqrt{2}}}} \ensuremath{\approx} 1.707, while \ensuremath{\sqrt{2}} \ensuremath{\approx} 1.414. The claim holds at \textit{n} = 2.
 
 \begin{equation*}{S}_{{n}}\, =\, \sum_{{k}=1}^{{n}} \, \dfrac{1}{\sqrt{{k}}}\end{equation*}
 \item \Needspace{4\baselineskip}
@@ -684,7 +684,7 @@ Using cos\textsuperscript{2}\textit{x}=1\ensuremath{-}sin\textsuperscript{2}\tex
 \begin{workedbox}{3c \ensuremath{\cdot} Evaluate cos(arcsin \textit{x})}
 \Needspace{6\baselineskip}
 \begin{enumerate}
-\item By definition, θ=arcsin \textit{x} means sin θ=\textit{x}, with θ\ensuremath{\in}[\ensuremath{-}π/2,π/2].
+\item By definition, θ=arcsin \textit{x} means sin θ=\textit{x}, with θ\ensuremath{\in}[\ensuremath{-}{\small\ensuremath{\dfrac{π}{2}}},{\small\ensuremath{\dfrac{π}{2}}}].
 \item The circle identity gives cos\textsuperscript{2}θ=1\ensuremath{-}sin\textsuperscript{2}θ=1\ensuremath{-}\textit{x}\textsuperscript{2}. On this interval cos θ\ensuremath{\geq}0, so take the non-negative square root.
 \item \Needspace{4\baselineskip}
 Therefore cos(arcsin \textit{x})=\ensuremath{\sqrt{1\, -\, {x}^{2}}}, valid for \ensuremath{-}1\ensuremath{\leq}\textit{x}\ensuremath{\leq}1.
@@ -696,15 +696,15 @@ Therefore cos(arcsin \textit{x})=\ensuremath{\sqrt{1\, -\, {x}^{2}}}, valid for 
 \end{keepsection}
 \begin{keepsection}\subsection{Exercise 4.3: Elementary functions}
 
-\begin{workedbox}{3d \ensuremath{\cdot} Find cos(π/5) exactly}
+\begin{workedbox}{3d \ensuremath{\cdot} Find cos({\small\ensuremath{\dfrac{π}{5}}}) exactly}
 \Needspace{5\baselineskip}
 \begin{enumerate}
-\item The given value is sin(π/10)=(\ensuremath{\sqrt{5}}\ensuremath{-}1)/4. Its square is (3\ensuremath{-}\ensuremath{\sqrt{5}})/8.
-\item Apply cos(2\textit{x})=1\ensuremath{-}2sin\textsuperscript{2}\textit{x} with \textit{x}=π/10: cos(π/5)=1\ensuremath{-}2(3\ensuremath{-}\ensuremath{\sqrt{5}})/8=(1+\ensuremath{\sqrt{5}})/4.
+\item The given value is sin({\small\ensuremath{\dfrac{π}{10}}})={\small\ensuremath{\dfrac{\sqrt{5}-1}{4}}}. Its square is {\small\ensuremath{\dfrac{3-\sqrt{5}}{8}}}.
+\item Apply cos(2\textit{x})=1\ensuremath{-}2sin\textsuperscript{2}\textit{x} with \textit{x}={\small\ensuremath{\dfrac{π}{10}}}: cos({\small\ensuremath{\dfrac{π}{5}}})=1\ensuremath{-}{\small\ensuremath{\dfrac{2(3-\sqrt{5})}{8}}}={\small\ensuremath{\dfrac{1+\sqrt{5}}{4}}}.
 \item \Needspace{4\baselineskip}
-The result is positive, as expected for π/5\ensuremath{\in}(0,π/2).
+The result is positive, as expected for {\small\ensuremath{\dfrac{π}{5}}}\ensuremath{\in}(0,{\small\ensuremath{\dfrac{π}{2}}}).
 
-\begin{equation*}\cos (π/5)\, =\, \dfrac{1\, +\, \sqrt{5}}{4}\end{equation*}
+\begin{equation*}\cos \left(\dfrac{π}{5}\right)\, =\, \dfrac{1\, +\, \sqrt{5}}{4}\end{equation*}
 \end{enumerate}
 \end{workedbox}
 
@@ -716,7 +716,7 @@ The result is positive, as expected for π/5\ensuremath{\in}(0,π/2).
 \begin{enumerate}
 \item For \textit{f}(\textit{x})=\ensuremath{-}\textit{x}\textsuperscript{2}+6\textit{x}\ensuremath{-}5, complete the square: \textit{f}(\textit{x})=\ensuremath{-}(\textit{x}\ensuremath{-}3)\textsuperscript{2}+4. Its range is (\ensuremath{-}\ensuremath{\infty},4]; it is not injective on \ensuremath{\mathbb{R}} because points equally spaced about 3 have equal values.
 \item Restrict \textit{f} to [3,\ensuremath{\infty}) and use codomain (\ensuremath{-}\ensuremath{\infty},4]. It is then strictly decreasing and onto that codomain. Solving \textit{y}=4\ensuremath{-}(\textit{x}\ensuremath{-}3)\textsuperscript{2} on this branch gives \textit{f}\textsuperscript{\ensuremath{-}1}(\textit{y})=3+\ensuremath{\sqrt{4\, -\, {y}}}, \textit{y}\ensuremath{\leq}4.
-\item For \textit{g}(\textit{x})=1/(1+\textit{x}), \textit{x}\ensuremath{\geq}0, the values are (0,1]. It is strictly decreasing and injective, but not onto \ensuremath{\mathbb{R}}. With codomain (0,1], it is bijective; solving \textit{y}=1/(1+\textit{x}) gives \textit{g}\textsuperscript{\ensuremath{-}1}(\textit{y})=1/\textit{y}\ensuremath{-}1.
+\item For \textit{g}(\textit{x})={\small\ensuremath{\dfrac{1}{1+{x}}}}, \textit{x}\ensuremath{\geq}0, the values are (0,1]. It is strictly decreasing and injective, but not onto \ensuremath{\mathbb{R}}. With codomain (0,1], it is bijective; solving \textit{y}={\small\ensuremath{\dfrac{1}{1+{x}}}} gives \textit{g}\textsuperscript{\ensuremath{-}1}(\textit{y})={\small\ensuremath{\dfrac{1}{{y}}}}\ensuremath{-}1.
 \item \Needspace{6\baselineskip}
 For \textit{h}(\textit{x},\textit{y})=(\textit{x},\textit{x}+\textit{y},\textit{y}), equality of outputs gives equality of the first and third coordinates, hence \textit{x} and \textit{y} agree: \textit{h} is injective. Its image is the plane \{(\textit{a},\textit{b},\textit{c}):\textit{b}=\textit{a}+\textit{c}\}, so it is not onto \ensuremath{\mathbb{R}}\textsuperscript{3} and is not bijective.
 
@@ -750,9 +750,9 @@ Writing \textit{t}=e\textsuperscript{\textit{x}}\ensuremath{>}0 gives 4\ensurema
 \Needspace{6\baselineskip}
 \begin{enumerate}
 \item Require 4\ensuremath{-}(\textit{x}\ensuremath{-}3)\textsuperscript{2}\ensuremath{\geq}0, so (\textit{x}\ensuremath{-}3)\textsuperscript{2}\ensuremath{\leq}4 and 1\ensuremath{\leq}\textit{x}\ensuremath{\leq}5. This is the composite domain.
-\item On it, \textit{f}(\textit{x}) ranges over [0,4], and (\textit{g}\ensuremath{\circ}\textit{f})(\textit{x})=1/(1+\textit{f}(\textit{x}))=1/[5\ensuremath{-}(\textit{x}\ensuremath{-}3)\textsuperscript{2}].
+\item On it, \textit{f}(\textit{x}) ranges over [0,4], and (\textit{g}\ensuremath{\circ}\textit{f})(\textit{x})={\small\ensuremath{\dfrac{1}{1+{f}({x})}}}=1/[5\ensuremath{-}(\textit{x}\ensuremath{-}3)\textsuperscript{2}].
 \item \Needspace{4\baselineskip}
-The denominator runs from 1 to 5; reciprocation reverses the order. The range is [1/5,1].
+The denominator runs from 1 to 5; reciprocation reverses the order. The range is [{\small\ensuremath{\dfrac{1}{5}}},1].
 
 \begin{equation*}({g}\circ {f})({x})\, =\, \dfrac{1}{5\, -\, ({x}\, -\, 3)^{2}},\, \text{domain}\, [1,\, 5],\, \text{range}\, \left[\dfrac{1}{5},\, 1\right]\end{equation*}
 \end{enumerate}
@@ -765,7 +765,7 @@ The denominator runs from 1 to 5; reciprocation reverses the order. The range is
 \Needspace{6\baselineskip}
 \begin{enumerate}
 \item For all \textit{x}\ensuremath{\in}\ensuremath{\mathbb{R}}, e\textsuperscript{\textit{x}}\ensuremath{>}0, so the composition is defined everywhere.
-\item (\textit{g}\ensuremath{\circ}e)(\textit{x})=1/(1+e\textsuperscript{\textit{x}}).
+\item (\textit{g}\ensuremath{\circ}e)(\textit{x})={\small\ensuremath{\dfrac{1}{1+\mathrm{e}^{{x}}}}}.
 \item \Needspace{5\baselineskip}
 As e\textsuperscript{\textit{x}} ranges over (0,\ensuremath{\infty}), this expression decreases through (0,1). It approaches 1 and 0 but reaches neither, so the range is (0,1).
 
@@ -780,9 +780,9 @@ As e\textsuperscript{\textit{x}} ranges over (0,\ensuremath{\infty}), this expre
 \Needspace{6\baselineskip}
 \begin{enumerate}
 \item The composite domain is [0,\ensuremath{\infty}), since \textit{g}(\textit{x})\ensuremath{\geq}0 for every allowed \textit{x}.
-\item (\textit{g}\ensuremath{\circ}\textit{g})(\textit{x})=1/[1+1/(1+\textit{x})]=(1+\textit{x})/(2+\textit{x}).
+\item (\textit{g}\ensuremath{\circ}\textit{g})(\textit{x})=1/[1+{\small\ensuremath{\dfrac{1}{1+{x}}}}]={\small\ensuremath{\dfrac{1+{x}}{2+{x}}}}.
 \item \Needspace{4\baselineskip}
-This increases from 1/2 at \textit{x}=0 and approaches 1 without reaching it. The range is [1/2,1).
+This increases from {\small\ensuremath{\dfrac{1}{2}}} at \textit{x}=0 and approaches 1 without reaching it. The range is [{\small\ensuremath{\dfrac{1}{2}}},1).
 
 \begin{equation*}({g}\circ {g})({x})\, =\, \dfrac{1\, +\, {x}}{2\, +\, {x}},\, \text{range}\, [\dfrac{1}{2},\, 1)\end{equation*}
 \end{enumerate}
@@ -861,7 +861,7 @@ The factor \textit{x}\textsuperscript{2} \ensuremath{-} 1 gives the real roots \
 
 \begin{equation*}{f}({x})\, =\, 5({x}\, -\, 1)({x}\, +\, 1)({x}\, -\, \mathrm{i}\sqrt{5})({x}\, +\, \mathrm{i}\sqrt{5})\end{equation*}
 \item \Needspace{5\baselineskip}
-For \textit{g}\textsubscript{\textit{a}}(\textit{x}) = \textit{a}\textit{x}\textsuperscript{2} + 2\textit{x} + 1: if \textit{a} = 0 it is the line 2\textit{x} + 1, with the single root \ensuremath{-}1/2. If \textit{a} \ensuremath{\neq} 0, the discriminant decides:
+For \textit{g}\textsubscript{\textit{a}}(\textit{x}) = \textit{a}\textit{x}\textsuperscript{2} + 2\textit{x} + 1: if \textit{a} = 0 it is the line 2\textit{x} + 1, with the single root \ensuremath{-}{\small\ensuremath{\dfrac{1}{2}}}. If \textit{a} \ensuremath{\neq} 0, the discriminant decides:
 
 \begin{equation*}Δ\, =\, 2^{2}\, -\, 4{a}\, =\, 4(1\, -\, {a})\end{equation*}
 \item \Needspace{5\baselineskip}
@@ -871,7 +871,7 @@ When \textit{a} \ensuremath{<} 1 and \textit{a} \ensuremath{\neq} 0, Δ \ensurem
 \begin{equation*}{r}_{\pm }\, =\, \dfrac{-1\, \pm \, \sqrt{1\, -\, {a}}}{{a}}\end{equation*}
 
 At \textit{a} = 1, Δ = 0 and \textit{g}\textsubscript{\textit{a}} = (\textit{x} + 1)\textsuperscript{2}, a double root at \ensuremath{-}1.
-\item When \textit{a} \ensuremath{>} 1, Δ \ensuremath{<} 0: there are no real roots, and over \ensuremath{\mathbb{C}} the same factorisation holds with \textit{r}\textsubscript{\ensuremath{\pm}} = (\ensuremath{-}1 \ensuremath{\pm} i\ensuremath{\sqrt{{a}\, -\, 1}})/\textit{a}.
+\item When \textit{a} \ensuremath{>} 1, Δ \ensuremath{<} 0: there are no real roots, and over \ensuremath{\mathbb{C}} the same factorisation holds with \textit{r}\textsubscript{\ensuremath{\pm}} = {\small\ensuremath{\dfrac{-1\, \pm \, \mathrm{i}\sqrt{{a}\, -\, 1}}{{a}}}}.
 \item \textbf{Number of real roots of \textit{g}\textsubscript{\textit{a}}:} two for \textit{a} \ensuremath{<} 1 with \textit{a} \ensuremath{\neq} 0; one for \textit{a} = 0 (a line) and for \textit{a} = 1 (a double root); none for \textit{a} \ensuremath{>} 1.
 \end{enumerate}
 \end{workedbox}
@@ -923,17 +923,17 @@ In either case the outputs differ, so \textit{f} is injective.
 \begin{keepsection}\subsection{Self-Study 4.7: Strictly monotone functions}
 
 \begin{workedbox}{7c \ensuremath{\cdot} Is every injection strictly monotone?}
-\Needspace{8\baselineskip}
+\Needspace{7\baselineskip}
 \begin{enumerate}
 \item Define \textit{f}:\ensuremath{\mathbb{R}}\ensuremath{\to}\ensuremath{\mathbb{R}} by swapping 0 and 1 and leaving every other real number fixed. This is a bijection, hence injective.
-\item Since 0\ensuremath{<}1/2 but \textit{f}(0)=1\ensuremath{>}\textit{f}(1/2)=1/2, it is not increasing. Since 1/2\ensuremath{<}1 but \textit{f}(1/2)=1/2\ensuremath{>}\textit{f}(1)=0, it is not decreasing.
+\item Since 0\ensuremath{<}{\small\ensuremath{\dfrac{1}{2}}} but \textit{f}(0)=1\ensuremath{>}\textit{f}({\small\ensuremath{\dfrac{1}{2}}})={\small\ensuremath{\dfrac{1}{2}}}, it is not increasing. Since {\small\ensuremath{\dfrac{1}{2}}}\ensuremath{<}1 but \textit{f}({\small\ensuremath{\dfrac{1}{2}}})={\small\ensuremath{\dfrac{1}{2}}}\ensuremath{>}\textit{f}(1)=0, it is not decreasing.
 \item \Needspace{4\baselineskip}
 Thus injectivity does not imply strict monotonicity.
 
 \Needspace{4\baselineskip}
-\begin{equation*}{f}(0)\, =\, 1\, >\, 1/2\, =\, {f}(1/2)\end{equation*}
+\begin{equation*}{f}(0)\, =\, 1\, >\, \dfrac{1}{2}\, =\, {f}\left(\dfrac{1}{2}\right)\end{equation*}
 
-\begin{equation*}{f}(1/2)\, =\, 1/2\, >\, 0\, =\, {f}(1)\end{equation*}
+\begin{equation*}{f}\left(\dfrac{1}{2}\right)\, =\, \dfrac{1}{2}\, >\, 0\, =\, {f}(1)\end{equation*}
 \end{enumerate}
 \end{workedbox}
 
@@ -961,7 +961,7 @@ It is therefore bijective and has an inverse, the natural logarithm ln:(0,\ensur
 \item The addition identities give sin(\textit{x}\ensuremath{\pm}\textit{y})=sin \textit{x} cos \textit{y}\ensuremath{\pm}cos \textit{x} sin \textit{y} and cos(\textit{x}\ensuremath{\pm}\textit{y})=cos \textit{x} cos \textit{y}\ensuremath{\mp}sin \textit{x} sin \textit{y}.
 \item The hypotheses ensure cos \textit{x}, cos \textit{y}, and cos(\textit{x}\ensuremath{\pm}\textit{y}) are nonzero, so division is valid. Divide top and bottom by cos \textit{x} cos \textit{y}.
 \item \Needspace{5\baselineskip}
-The result is tan(\textit{x}\ensuremath{\pm}\textit{y})=(tan \textit{x}\ensuremath{\pm}tan \textit{y})/(1\ensuremath{\mp}tan \textit{x} tan \textit{y}). For the plus case use matching upper/lower signs; for the minus case use opposite signs.
+The result is tan(\textit{x}\ensuremath{\pm}\textit{y})={\small\ensuremath{\dfrac{\tan \, {x}\pm \tan \, {y}}{1\mp \tan \, {x}\, \tan \, {y}}}}. For the plus case use matching upper/lower signs; for the minus case use opposite signs.
 
 \begin{equation*}\tan ({x}\, \pm \, {y})\, =\, \dfrac{\tan \, {x}\, \pm \, \tan \, {y}}{1\, \mp \, \tan \, {x}\, \tan \, {y}}\end{equation*}
 \end{enumerate}
@@ -973,9 +973,9 @@ The result is tan(\textit{x}\ensuremath{\pm}\textit{y})=(tan \textit{x}\ensurema
 \begin{workedbox}{8b \ensuremath{\cdot} Derive the tangent double-angle formula}
 \Needspace{5\baselineskip}
 \begin{enumerate}
-\item Use tan(\textit{x}+\textit{x})=(tan \textit{x}+tan \textit{x})/(1\ensuremath{-}tan\textsuperscript{2}\textit{x}).
+\item Use tan(\textit{x}+\textit{x})={\small\ensuremath{\dfrac{\tan \, {x}+\tan \, {x}}{1-\tan ^{2}{x}}}}.
 \item \Needspace{4\baselineskip}
-Thus tan(2\textit{x})=2tan \textit{x}/(1\ensuremath{-}tan\textsuperscript{2}\textit{x}), whenever \textit{x} and 2\textit{x} avoid the excluded tangent poles.
+Thus tan(2\textit{x}) = {\small\ensuremath{\dfrac{2\, \tan \, {x}}{1\, -\, \tan ^{2}{x}}}}, whenever \textit{x} and 2\textit{x} avoid the excluded tangent poles.
 
 \begin{equation*}\tan (2{x})\, =\, \dfrac{2\, \tan \, {x}}{1\, -\, \tan ^{2}{x}}\end{equation*}
 \end{enumerate}
@@ -984,15 +984,15 @@ Thus tan(2\textit{x})=2tan \textit{x}/(1\ensuremath{-}tan\textsuperscript{2}\tex
 \end{keepsection}
 \begin{keepsection}\subsection{Self-Study 4.8: Tangent addition theorems}
 
-\begin{workedbox}{8c \ensuremath{\cdot} Compute tan(π/12) exactly}
+\begin{workedbox}{8c \ensuremath{\cdot} Compute tan({\small\ensuremath{\dfrac{π}{12}}}) exactly}
 \Needspace{6\baselineskip}
 \begin{enumerate}
-\item Use tan(π/3)=\ensuremath{\sqrt{3}} and tan(π/4)=1. Then tan(π/12)=(\ensuremath{\sqrt{3}}\ensuremath{-}1)/(1+\ensuremath{\sqrt{3}}).
+\item Use tan({\small\ensuremath{\dfrac{π}{3}}})=\ensuremath{\sqrt{3}} and tan({\small\ensuremath{\dfrac{π}{4}}})=1. Then tan({\small\ensuremath{\dfrac{π}{12}}})={\small\ensuremath{\dfrac{\sqrt{3}-1}{1+\sqrt{3}}}}.
 \item Multiply numerator and denominator by \ensuremath{\sqrt{3}}\ensuremath{-}1: the denominator becomes 3\ensuremath{-}1=2 and the numerator becomes (\ensuremath{\sqrt{3}}\ensuremath{-}1)\textsuperscript{2}=4\ensuremath{-}2\ensuremath{\sqrt{3}}.
 \item \Needspace{4\baselineskip}
-Therefore tan(π/12)=2\ensuremath{-}\ensuremath{\sqrt{3}}, a positive value as expected for an angle of 15°.
+Therefore tan({\small\ensuremath{\dfrac{π}{12}}})=2\ensuremath{-}\ensuremath{\sqrt{3}}, a positive value as expected for an angle of 15°.
 
-\begin{equation*}\tan (π/12)\, =\, 2\, -\, \sqrt{3}\end{equation*}
+\begin{equation*}\tan \left(\dfrac{π}{12}\right)\, =\, 2\, -\, \sqrt{3}\end{equation*}
 \end{enumerate}
 \end{workedbox}
 

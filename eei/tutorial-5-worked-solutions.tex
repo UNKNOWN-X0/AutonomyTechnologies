@@ -108,7 +108,7 @@ Two ideal conducting coaxial cylinders have radii \textit{a} and \textit{b} (wit
 \fill[FAUblue] (2.412,-2.260) circle (0.063);
 \node[anchor=east,fill=white,fill opacity=0.85,text opacity=1,inner sep=1pt,font=\footnotesize] at (0.763,-2.260) {1};
 \node[anchor=west,fill=white,fill opacity=0.85,text opacity=1,inner sep=1pt,font=\footnotesize] at (1.776,-2.260) {0};
-\end{tikzpicture}\par\smallskip{\small\raggedright \textbf{The field for U\textsubscript{10} \ensuremath{>} 0.} ε\textsubscript{1} fills the left half (90° \ensuremath{<} φ \ensuremath{<} 270°) and ε\textsubscript{2} the right half. E runs radially inward from the outer conductor 1 to the inner conductor 0, the same in both halves, and grows towards the inner cylinder as 1/ρ; along the dashed interfaces it runs parallel to the boundary.\par}\end{minipage}
+\end{tikzpicture}\par\smallskip{\small\raggedright \textbf{The field for U\textsubscript{10} \ensuremath{>} 0.} ε\textsubscript{1} fills the left half (90° \ensuremath{<} φ \ensuremath{<} 270°) and ε\textsubscript{2} the right half. E runs radially inward from the outer conductor 1 to the inner conductor 0, the same in both halves, and grows towards the inner cylinder as {\small\ensuremath{\dfrac{1}{ρ}}}; along the dashed interfaces it runs parallel to the boundary.\par}\end{minipage}
 \end{center}
 
 \begin{keepsection}
@@ -186,7 +186,7 @@ Try first: integrate the inward radial field between a and b, keeping the voltag
 \subsection{9h: Capacitance and numerical value}
 
 \Needspace{3\baselineskip}
-Try first: use \textit{C} = \textit{Q}/\textit{U}\textsubscript{10}, then substitute the two sector permittivities and dimensions.
+Try first: use \textit{C} = {\small\ensuremath{\dfrac{{Q}}{{U}_{10}}}}, then substitute the two sector permittivities and dimensions.
 
 \nopagebreak[4]{\small\itshape Answers: see “Task 9: Electrostatics” under Answers at the end.}
 \end{keepsection}
@@ -202,7 +202,7 @@ Try first: use \textit{C} = \textit{Q}/\textit{U}\textsubscript{10}, then substi
 \begin{enumerate}
 \item The metal cylinders are equipotentials. Away from the finite ends, the field meets each cylindrical conductor normally, so its direction is radial, along \textit{e}\textsubscript{ρ}.
 \item The voltage is \textit{U}\textsubscript{10} = φ\textsubscript{e,outer} \ensuremath{-} φ\textsubscript{e,inner}. If \textit{U}\textsubscript{10} \ensuremath{>} 0, the outer conductor is at higher potential, so \textit{E} points inward (\ensuremath{-}\textit{e}\textsubscript{ρ}) from the outer cylinder toward the inner one. Reverse the arrows if \textit{U}\textsubscript{10} \ensuremath{<} 0.
-\item Draw radial lines from radius \textit{b} to radius \textit{a}, with denser spacing near the inner cylinder because the field magnitude varies as 1/\textit{ρ}. Neglect end fringing as the ideal long-coax model requires.
+\item Draw radial lines from radius \textit{b} to radius \textit{a}, with denser spacing near the inner cylinder because the field magnitude varies as {\small\ensuremath{\dfrac{1}{{ρ}}}}. Neglect end fringing as the ideal long-coax model requires.
 \end{enumerate}
 \end{workedbox}
 
@@ -263,14 +263,14 @@ The coaxial geometry and constant conductor potentials allow a z- and φ-indepen
 \item \Needspace{5\baselineskip}
 Apply φ\textsubscript{e}(\textit{a}) = φ\textsubscript{e,0} and φ\textsubscript{e}(\textit{b}) = φ\textsubscript{e,1}. The same solution works in both sectors because their conductor boundary values are identical and the radial field is tangent to the interface:
 
-\begin{equation*}φ_{\mathrm{e}}(ρ)\, =\, φ_{\mathrm{e},0}\, +\, \dfrac{{U}_{10}}{\ln ({b}/{a})}\, \ln \left(\dfrac{ρ}{{a}}\right)\end{equation*}
+\begin{equation*}φ_{\mathrm{e}}(ρ)\, =\, φ_{\mathrm{e},0}\, +\, \dfrac{{U}_{10}}{\ln \left(\dfrac{{b}}{{a}}\right)}\, \ln \left(\dfrac{ρ}{{a}}\right)\end{equation*}
 \item \Needspace{4\baselineskip}
 The electric field is the negative potential gradient:
 
 \Needspace{5\baselineskip}
-\begin{equation*}{E}(ρ)\, =\, -\dfrac{{U}_{10}}{ρ\, \ln ({b}/{a})}\, {e}_{ρ}\end{equation*}
+\begin{equation*}{E}(ρ)\, =\, -\dfrac{{U}_{10}}{ρ\, \ln \left(\dfrac{{b}}{{a}}\right)}\, {e}_{ρ}\end{equation*}
 
-The 1/\textit{ρ} dependence is required by cylindrical symmetry. Positive \textit{U}\textsubscript{10} gives the inward direction.
+The {\small\ensuremath{\dfrac{1}{{ρ}}}} dependence is required by cylindrical symmetry. Positive \textit{U}\textsubscript{10} gives the inward direction.
 \end{enumerate}
 \end{workedbox}
 
@@ -287,7 +287,7 @@ For a linear, isotropic dielectric, \textit{D} = ε\textit{E}. The permittivity 
 \begin{equation*}{D}(ρ,\, φ)\, =\, ε_{1}\, {E}(ρ)\, \quad \, \quad \, \text{for}\, 90°\, <\, φ\, <\, 270°\end{equation*}
 
 \begin{equation*}{D}(ρ,\, φ)\, =\, ε_{2}\, {E}(ρ)\, \quad \, \quad \, \text{for}\, -90°\, <\, φ\, <\, 90°\end{equation*}
-\item Because \textit{E} is the same on both sides of the radial interface, the displacement magnitudes differ by ε\textsubscript{1}/ε\textsubscript{2}. At φ = \ensuremath{\pm}90° the normal displacement remains zero and continuous.
+\item Because \textit{E} is the same on both sides of the radial interface, the displacement magnitudes differ by {\small\ensuremath{\dfrac{ε_{1}}{ε_{2}}}}. At φ = \ensuremath{\pm}90° the normal displacement remains zero and continuous.
 \end{enumerate}
 \end{workedbox}
 
@@ -308,8 +308,8 @@ For a linear, isotropic dielectric, \textit{D} = ε\textit{E}. The permittivity 
 \begin{workedbox}{9f \ensuremath{\cdot} Charge fixes the field scale}
 \Needspace{8\baselineskip}
 \begin{enumerate}
-\item \Needspace{6\baselineskip}
-Let the inward field have magnitude \textit{K}/\textit{ρ}, so \textit{D} in sector i has magnitude ε\textsubscript{i}\textit{K}/\textit{ρ}. The normal from the outer metal into the gap is \ensuremath{-}\textit{e}\textsubscript{ρ}; its facing area is half the cylinder, π\textit{b l}, in each sector:
+\item \Needspace{5\baselineskip}
+Let the inward field have magnitude {\small\ensuremath{\dfrac{{K}}{{ρ}}}}, so \textit{D} in sector i has magnitude {\small\ensuremath{\dfrac{ε_{\mathrm{i}}{K}}{{ρ}}}}. The normal from the outer metal into the gap is \ensuremath{-}\textit{e}\textsubscript{ρ}; its facing area is half the cylinder, π\textit{b l}, in each sector:
 
 \begin{equation*}{Q}\, =\, \dfrac{ε_{1}\, {K}}{{b}}(π{b}{l})\, +\, \dfrac{ε_{2}\, {K}}{{b}}(π{b}{l})\end{equation*}
 \item \Needspace{4\baselineskip}
@@ -334,12 +334,12 @@ This is uniform in φ although \textit{D} is piecewise. The sign of Q sets the f
 \item \Needspace{4\baselineskip}
 Because the field points inward, the outer-minus-inner voltage is \textit{U}\textsubscript{10} = \ensuremath{-}$\int_{\mathrm{a}}^{\mathrm{b}} $ \textit{E} \ensuremath{\cdot} \textit{e}\textsubscript{ρ} d\textit{ρ}:
 
-\begin{equation*}{U}_{10}\, =\, {K}\, \int_{{a}}^{{b}} \, \dfrac{\mathrm{d}ρ}{ρ}\, =\, {K}\, \ln ({b}/{a})\end{equation*}
+\begin{equation*}{U}_{10}\, =\, {K}\, \int_{{a}}^{{b}} \, \dfrac{\mathrm{d}ρ}{ρ}\, =\, {K}\, \ln \left(\dfrac{{b}}{{a}}\right)\end{equation*}
 \item \Needspace{4\baselineskip}
 Insert \textit{K} from 9f:
 
 \Needspace{4\baselineskip}
-\begin{equation*}{U}_{10}\, =\, \dfrac{{Q}\, \ln ({b}/{a})}{π{l}(ε_{1}\, +\, ε_{2})}\end{equation*}
+\begin{equation*}{U}_{10}\, =\, \dfrac{{Q}\, \ln \left(\dfrac{{b}}{{a}}\right)}{π{l}(ε_{1}\, +\, ε_{2})}\end{equation*}
 
 Positive Q gives positive \textit{U}\textsubscript{10}, consistent with 9e.
 \end{enumerate}
@@ -354,12 +354,12 @@ Positive Q gives positive \textit{U}\textsubscript{10}, consistent with 9e.
 \item \Needspace{5\baselineskip}
 For this linear arrangement, capacitance is the charge magnitude per applied voltage. Cancel Q using 9g:
 
-\begin{equation*}{C}\, =\, \dfrac{π{l}(ε_{1}\, +\, ε_{2})}{\ln ({b}/{a})}\end{equation*}
+\begin{equation*}{C}\, =\, \dfrac{π{l}(ε_{1}\, +\, ε_{2})}{\ln \left(\dfrac{{b}}{{a}}\right)}\end{equation*}
 \item \Needspace{4\baselineskip}
 With ε\textsubscript{1} = ε\textsubscript{0}, ε\textsubscript{2} = 3ε\textsubscript{0}, \textit{a} = 0.020 m, \textit{b} = 0.021 m and \textit{l} = 0.10 m:
 
 \Needspace{4\baselineskip}
-\begin{equation*}{C}\, =\, \dfrac{4πε_{0}\, \cdot \, 0.10\, \mathrm{m}}{\ln (0.021/0.020)}\end{equation*}
+\begin{equation*}{C}\, =\, \dfrac{4πε_{0}\, \cdot \, 0.10\, \mathrm{m}}{\ln \left(\dfrac{0.021}{0.020}\right)}\end{equation*}
 
 \Needspace{5\baselineskip}
 \begin{equation*}{C}\, \approx \, 2.28\, \times \, 10^{-10}\, \mathrm{F}\, =\, 228\, \text{pF}\end{equation*}

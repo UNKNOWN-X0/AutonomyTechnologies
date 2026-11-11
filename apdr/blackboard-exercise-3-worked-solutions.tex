@@ -293,7 +293,7 @@ Writing them takes \textbf{34 bits}: 2\textsuperscript{34} \ensuremath{-} 1 is t
 \begin{workedbox}{3.2.1 Module configuration \ensuremath{\cdot} worked solution}
 \Needspace{13\baselineskip}
 \begin{enumerate}
-\item Build the word width first. One chip delivers 4 bits per word, so 32 / 4 = \textbf{8 chips} side by side form a 32-bit module. A module then holds as many words as one chip: 256M = 2\textsuperscript{28}.
+\item Build the word width first. One chip delivers 4 bits per word, so {\small\ensuremath{\dfrac{32}{4}}} = \textbf{8 chips} side by side form a 32-bit module. A module then holds as many words as one chip: 256M = 2\textsuperscript{28}.
 \item \Needspace{4\baselineskip}
 Then build the word count. The memory needs 1G = 2\textsuperscript{30} words:
 
@@ -321,14 +321,14 @@ e) & Address bits needed for the full memory & 30 \\
 \begin{keepsection}\subsection{Exercise 3.2: Memory modules architecture}
 
 \begin{workedbox}{3.2.2 Word 14 across four modules \ensuremath{\cdot} worked solution}
-\Needspace{14\baselineskip}
+\Needspace{13\baselineskip}
 \begin{enumerate}
 \item The memory has 4 = 2\textsuperscript{2} modules, so 2 of the 30 word-address bits select a module and the other 28 select the word inside it. Word 14 is 1110\textsubscript{2}, that is 0 … 0 1110 in 30 bits.
 \item \Needspace{4\baselineskip}
 \textbf{High-order interleave} uses the top 2 bits for the module:
 
 \Needspace{4\baselineskip}
-\begin{equation*}\text{module}\, =\, ⌊14\, /\, 2^{28}⌋\, =\, 0\end{equation*}
+\begin{equation*}\text{module}\, =\, ⌊\dfrac{14}{2^{28}}⌋\, =\, 0\end{equation*}
 
 \Needspace{4\baselineskip}
 \begin{equation*}\text{word}\, \text{in}\, \text{module}\, =\, 14\end{equation*}
@@ -339,7 +339,7 @@ e) & Address bits needed for the full memory & 30 \\
 \Needspace{4\baselineskip}
 \begin{equation*}\text{module}\, =\, 14\, \text{mod}\, 4\, =\, 2\end{equation*}
 
-\begin{equation*}\text{word}\, \text{in}\, \text{module}\, =\, ⌊14\, /\, 4⌋\, =\, 3\end{equation*}
+\begin{equation*}\text{word}\, \text{in}\, \text{module}\, =\, ⌊\dfrac{14}{4}⌋\, =\, 3\end{equation*}
 \item \Needspace{9\baselineskip}
 The two address splits:
 
@@ -436,7 +436,7 @@ Each module is 32 bits wide, so it holds whole words; the module is therefore ch
 \begin{equation*}\text{module}\, =\, 14\, \text{mod}\, 4\, =\, 2\end{equation*}
 
 \Needspace{4\baselineskip}
-\begin{equation*}\text{word}\, \text{in}\, \text{module}\, =\, ⌊14\, /\, 4⌋\, =\, 3,\, \text{starting}\, \text{at}\, \text{byte}\, 3\, \times \, 4\, =\, 12\, \text{in}\, \text{the}\, \text{module}\end{equation*}
+\begin{equation*}\text{word}\, \text{in}\, \text{module}\, =\, ⌊\dfrac{14}{4}⌋\, =\, 3,\, \text{starting}\, \text{at}\, \text{byte}\, 3\, \times \, 4\, =\, 12\, \text{in}\, \text{the}\, \text{module}\end{equation*}
 
 So word 14 is in \textbf{module 2}, as in 3.2.2; only the addresses are now counted in bytes.
 \item \textbf{Assumption.} The sheet does not say which bits interleave. If instead the lowest 2 bits of the \emph{byte} address picked the module, the four bytes of word 14 (addresses 56 to 59) would land in modules 0, 1, 2 and 3, each at position 14. A word would then be split across modules, which does not fit modules built as 32-bit words, so the word-address reading above is the one to use; say so in your answer.

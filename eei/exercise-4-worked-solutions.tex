@@ -232,7 +232,7 @@ Keep that x-component unchanged across the boundary:
 
 \begin{equation*}{E}_{1\mathrm{x}}(\mathrm{x},\mathrm{h})\, =\, {E}_{0\mathrm{x}}(\mathrm{x},\mathrm{h})\end{equation*}
 \item \Needspace{5\baselineskip}
-The measured normal component contains the factor ε\textsubscript{1}/ε\textsubscript{0}. Multiplying it by ε\textsubscript{0}/ε\textsubscript{1} to preserve D cancels that factor:
+The measured normal component contains the factor {\small\ensuremath{\dfrac{ε_{1}}{ε_{0}}}}. Multiplying it by {\small\ensuremath{\dfrac{ε_{0}}{ε_{1}}}} to preserve D cancels that factor:
 
 \begin{equation*}{E}_{1\mathrm{y}}(\mathrm{x},\mathrm{h})\, =\, \dfrac{{ε}_{0}}{{ε}_{1}}{E}_{0\mathrm{y}}(\mathrm{x},\mathrm{h})\, =\, \dfrac{{λ}_{0}\mathrm{h}}{π({ε}_{0}\, +\, {ε}_{1})(\mathrm{x}^{2}\, +\, \mathrm{h}^{2})}\end{equation*}
 \item \Needspace{4\baselineskip}
@@ -275,7 +275,7 @@ At the inner face of the outer metal cylinder, the normal from the conductor int
 \Needspace{5\baselineskip}
 \textbf{Result:} D is radial and continuous through the dielectric interface; E changes magnitude inversely with permittivity. The two metal-face charges have opposite signs.
 
-\Needspace{9\baselineskip}
+\Needspace{8\baselineskip}
 \textbf{Check:} σ\textsubscript{2} 2πa\textsubscript{2}Δz = \ensuremath{-}σ\textsubscript{0} 2πa\textsubscript{0}Δz, so the two facing surfaces carry equal and opposite charge.
 
 \Needspace{14\baselineskip}
@@ -298,7 +298,7 @@ At the inner face of the outer metal cylinder, the normal from the conductor int
 \draw[FAUblue,line width=1.6pt] (3.263,-0.721) -- (3.321,-0.749) -- (3.379,-0.776) -- (3.436,-0.802) -- (3.494,-0.826) -- (3.552,-0.849) -- (3.610,-0.871) -- (3.668,-0.893) -- (3.725,-0.914) -- (3.783,-0.934) -- (3.841,-0.952) -- (3.899,-0.970) -- (3.956,-0.988) -- (4.014,-1.004) -- (4.072,-1.020) -- (4.130,-1.036) -- (4.188,-1.051) -- (4.245,-1.065) -- (4.303,-1.079) -- (4.361,-1.093) -- (4.419,-1.106);
 \node[anchor=west,text=FAUblue,fill=white,fill opacity=0.85,text opacity=1,inner sep=1pt,font=\footnotesize] at (2.313,-0.664) {\textit{E}};
 \node[anchor=west,fill=white,fill opacity=0.85,text opacity=1,inner sep=1pt,font=\footnotesize] at (3.931,-1.437) {\textit{D}};
-\end{tikzpicture}\par\smallskip{\small\raggedright \textbf{D runs on, E jumps.} Drawn for ε\textsubscript{2} = ε\textsubscript{1}/2; the two curves are not to the same scale. \textit{D} (dashed) falls smoothly as 1/ρ across the interface at \textit{a}\textsubscript{1}, while \textit{E} = \textit{D}/ε jumps there by the ratio ε\textsubscript{1}/ε\textsubscript{2}. Both are zero outside the gap.\par}\end{minipage}
+\end{tikzpicture}\par\smallskip{\small\raggedright \textbf{D runs on, E jumps.} Drawn for ε\textsubscript{2} = {\small\ensuremath{\dfrac{ε_{1}}{2}}}; the two curves are not to the same scale. \textit{D} (dashed) falls smoothly as {\small\ensuremath{\dfrac{1}{ρ}}} across the interface at \textit{a}\textsubscript{1}, while \textit{E} = {\small\ensuremath{\dfrac{{D}}{ε}}} jumps there by the ratio {\small\ensuremath{\dfrac{ε_{1}}{ε_{2}}}}. Both are zero outside the gap.\par}\end{minipage}
 \end{center}
 \end{enumerate}
 \end{workedbox}
@@ -314,7 +314,7 @@ The path runs inward, from ρ = \textit{a}\textsubscript{2} to ρ = \textit{a}\t
 
 \begin{equation*}{U}_{20}\, =\, \int_{{a}_{2}}^{{a}_{1}} \, \dfrac{σ_{0}{a}_{0}}{ε_{2}ρ}\, \mathrm{d}ρ\, +\, \int_{{a}_{1}}^{{a}_{0}} \, \dfrac{σ_{0}{a}_{0}}{ε_{1}ρ}\, \mathrm{d}ρ\end{equation*}
 \item \Needspace{5\baselineskip}
-Each integral of 1/ρ gives a logarithm; running inward makes each one negative, for example $\int $ from \textit{a}\textsubscript{1} to \textit{a}\textsubscript{0} of dρ/ρ = ln(\textit{a}\textsubscript{0}/\textit{a}\textsubscript{1}) = \ensuremath{-}ln(\textit{a}\textsubscript{1}/\textit{a}\textsubscript{0}):
+Each integral of {\small\ensuremath{\dfrac{1}{ρ}}} gives a logarithm; running inward makes each one negative, for example $\int $ from \textit{a}\textsubscript{1} to \textit{a}\textsubscript{0} of {\small\ensuremath{\dfrac{\mathrm{d}ρ}{ρ}}} = ln({\small\ensuremath{\dfrac{{a}_{0}}{{a}_{1}}}}) = \ensuremath{-}ln({\small\ensuremath{\dfrac{{a}_{1}}{{a}_{0}}}}):
 
 \begin{equation*}{U}_{20}\, =\, -σ_{0}{a}_{0}\left[\dfrac{1}{ε_{1}}\, \ln \dfrac{{a}_{1}}{{a}_{0}}\, +\, \dfrac{1}{ε_{2}}\, \ln \dfrac{{a}_{2}}{{a}_{1}}\right]\end{equation*}
 \item \Needspace{4\baselineskip}
@@ -332,7 +332,7 @@ Rearrange for the inner surface charge density, then substitute it back into D a
 
 \begin{equation*}{E}(ρ)\, =\, -\dfrac{{U}_{20}}{ε_{2}{S}ρ}{e}_{ρ},\, \quad \, {a}_{1}\, <\, ρ\, <\, {a}_{2}\end{equation*}
 \item \Needspace{8\baselineskip}
-\textbf{Result:} for positive U\textsubscript{20} the outer cylinder is at the higher potential, so σ\textsubscript{0} \ensuremath{<} 0, σ\textsubscript{2} = \ensuremath{-}σ\textsubscript{0}\textit{a}\textsubscript{0}/\textit{a}\textsubscript{2} \ensuremath{>} 0, and the field points inward, from the outer cylinder to the inner one.
+\textbf{Result:} for positive U\textsubscript{20} the outer cylinder is at the higher potential, so σ\textsubscript{0} \ensuremath{<} 0, σ\textsubscript{2} = \ensuremath{-}{\small\ensuremath{\dfrac{σ_{0}{a}_{0}}{{a}_{2}}}} \ensuremath{>} 0, and the field points inward, from the outer cylinder to the inner one.
 
 \textbf{Check:} the field points from high to low potential, and the outer cylinder (node 2) is high when U\textsubscript{20} \ensuremath{>} 0, so an inward field is right. Integrating the resulting E inward from \textit{a}\textsubscript{2} to \textit{a}\textsubscript{0} returns +U\textsubscript{20}. Likely mistake: integrating outward from P\textsubscript{0} to P\textsubscript{2}, which flips every sign. The field has units V/m and σ\textsubscript{0} has units C/m².
 \end{enumerate}
@@ -349,13 +349,13 @@ Capacitance is the charge on the electrode at the higher potential divided by th
 
 \begin{equation*}{C}\, =\, \dfrac{{Q}}{{U}_{20}}\, =\, \dfrac{-σ_{0}2π{a}_{0}Δ{z}}{{U}_{20}}\end{equation*}
 \item \Needspace{4\baselineskip}
-Substitute σ\textsubscript{0} = \ensuremath{-}U\textsubscript{20}/(a\textsubscript{0}S). The signs, the voltage and a\textsubscript{0} cancel:
+Substitute σ\textsubscript{0} = \ensuremath{-}{\small\ensuremath{\dfrac{\mathrm{U}_{20}}{\mathrm{a}_{0}\mathrm{S}}}}. The signs, the voltage and a\textsubscript{0} cancel:
 
 \begin{equation*}{C}\, =\, \dfrac{2πΔ{z}}{{S}};\, \quad \, {C}_{\mathrm{B}}\, =\, \dfrac{{C}}{Δ{z}}\, =\, \dfrac{2π}{{S}}\end{equation*}
 \item \Needspace{5\baselineskip}
 \textbf{Result:} C is the capacitance over length Δz; C\textsubscript{B} is the capacitance loading per unit length.
 
-\textbf{Check:} S has units m/F, so C is in farads and C\textsubscript{B} in F/m. If ε\textsubscript{1} = ε\textsubscript{2} = ε, then S = ln(a\textsubscript{2}/a\textsubscript{0})/ε, recovering the homogeneous coaxial result.
+\textbf{Check:} S has units m/F, so C is in farads and C\textsubscript{B} in F/m. If ε\textsubscript{1} = ε\textsubscript{2} = ε, then S = {\small\ensuremath{\dfrac{\ln (\dfrac{\mathrm{a}_{2}}{\mathrm{a}_{0}})}{ε}}}, recovering the homogeneous coaxial result.
 \end{enumerate}
 \end{workedbox}
 
@@ -372,7 +372,7 @@ For ρ \ensuremath{>} a\textsubscript{2}, a Gaussian cylinder outside both facin
 \Needspace{5\baselineskip}
 \begin{equation*}\dfrac{{q}_{\text{enc}}}{Δ{z}}\, =\, 2π{a}_{0}σ_{0}\, +\, 2π{a}_{2}σ_{2}\, =\, 0\end{equation*}
 
-The cancellation uses σ\textsubscript{2} = \ensuremath{-}σ\textsubscript{0}a\textsubscript{0}/a\textsubscript{2}. Therefore D and E vanish outside the outer conductor; they also vanish within its metal wall.
+The cancellation uses σ\textsubscript{2} = \ensuremath{-}{\small\ensuremath{\dfrac{σ_{0}\mathrm{a}_{0}}{\mathrm{a}_{2}}}}. Therefore D and E vanish outside the outer conductor; they also vanish within its metal wall.
 \item \Needspace{4\baselineskip}
 \textbf{Result:}
 

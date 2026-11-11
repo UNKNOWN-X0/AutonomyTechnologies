@@ -459,7 +459,7 @@ A radix is positive, so \textbf{\textit{r} = 6}; \ensuremath{-}8 is rejected.
 \begin{workedbox}{2.2.1 Binary fractions \ensuremath{\cdot} worked solution}
 \Needspace{12\baselineskip}
 \begin{enumerate}
-\item After the binary point the places are worth 2\textsuperscript{\ensuremath{-}1} = 1/2, 2\textsuperscript{\ensuremath{-}2} = 1/4, 2\textsuperscript{\ensuremath{-}3} = 1/8 and so on. Binary to decimal: add the place values of the 1 bits. Decimal to binary: double the fraction again and again; each whole part that appears is the next bit.
+\item After the binary point the places are worth 2\textsuperscript{\ensuremath{-}1} = {\small\ensuremath{\dfrac{1}{2}}}, 2\textsuperscript{\ensuremath{-}2} = {\small\ensuremath{\dfrac{1}{4}}}, 2\textsuperscript{\ensuremath{-}3} = {\small\ensuremath{\dfrac{1}{8}}} and so on. Binary to decimal: add the place values of the 1 bits. Decimal to binary: double the fraction again and again; each whole part that appears is the next bit.
 \item \Needspace{4\baselineskip}
 \textbf{Binary to decimal:}
 
@@ -487,7 +487,7 @@ The completed table:
 0.101 & \textbf{0.625} \\
 101.011 & \textbf{5.375} \\
 \bottomrule\end{tabularx}\end{center}
-\item \textbf{Check:} convert back, 101.011\textsubscript{2} = 4 + 1 + 1/4 + 1/8 = 5.375.
+\item \textbf{Check:} convert back, 101.011\textsubscript{2} = 4 + 1 + {\small\ensuremath{\dfrac{1}{4}}} + {\small\ensuremath{\dfrac{1}{8}}} = 5.375.
 \end{enumerate}
 \end{workedbox}
 
@@ -517,9 +517,9 @@ The fraction 0.2 has come back, so from there the bits 0011 repeat for ever:
 \Needspace{5\baselineskip}
 \begin{equation*}0.1_{10}\, =\, 0.0001\, 1001\, 1001\, 1…_{2}\end{equation*}
 
-It never reaches 0 because 1/10 has the factor 5 in its denominator, and doubling can never cancel a 5.
-\item Check each fraction in lowest terms: 1/2 = 0.1\textsubscript{2}, 3/8 = 0.011\textsubscript{2} and 5/16 = 0.0101\textsubscript{2} are \textbf{finite}; 1/10 and 7/20 (denominators 2 \ensuremath{\cdot} 5 and 4 \ensuremath{\cdot} 5) \textbf{repeat}.
-\item \textbf{Condition:} a fraction \textit{p}/\textit{q} in lowest terms has a finite binary expansion exactly when \textit{q} is a power of 2, that is \textit{q} = 2\textsuperscript{\textit{k}}. Then multiplying by 2\textsuperscript{\textit{k}} gives a whole number, which ends the doubling after \textit{k} bits.
+It never reaches 0 because {\small\ensuremath{\dfrac{1}{10}}} has the factor 5 in its denominator, and doubling can never cancel a 5.
+\item Check each fraction in lowest terms: {\small\ensuremath{\dfrac{1}{2}}} = 0.1\textsubscript{2}, {\small\ensuremath{\dfrac{3}{8}}} = 0.011\textsubscript{2} and {\small\ensuremath{\dfrac{5}{16}}} = 0.0101\textsubscript{2} are \textbf{finite}; {\small\ensuremath{\dfrac{1}{10}}} and {\small\ensuremath{\dfrac{7}{20}}} (denominators 2 \ensuremath{\cdot} 5 and 4 \ensuremath{\cdot} 5) \textbf{repeat}.
+\item \textbf{Condition:} a fraction {\small\ensuremath{\dfrac{{p}}{{q}}}} in lowest terms has a finite binary expansion exactly when \textit{q} is a power of 2, that is \textit{q} = 2\textsuperscript{\textit{k}}. Then multiplying by 2\textsuperscript{\textit{k}} gives a whole number, which ends the doubling after \textit{k} bits.
 \end{enumerate}
 \end{workedbox}
 

@@ -270,7 +270,7 @@ Each identity is proved independently: the induction step adds the new term (\te
 
 \begin{keepsection}
 \Needspace{6\baselineskip}
-\subsection{6a: Prove $\sum_{{k}=1}^{{n}} $ \textit{k} = \textit{n}(\textit{n}+1)/2}
+\subsection{6a: Prove $\sum_{{k}=1}^{{n}} $ \textit{k} = {\small\ensuremath{\dfrac{{n}({n}+1)}{2}}}}
 
 \Needspace{3\baselineskip}
 Try first: check \textit{n} = 1, then add \textit{n}+1 to the formula at \textit{n}.
@@ -280,7 +280,7 @@ Try first: check \textit{n} = 1, then add \textit{n}+1 to the formula at \textit
 
 \begin{keepsection}
 \Needspace{6\baselineskip}
-\subsection{6b: Prove $\sum_{{k}=1}^{{n}} $ \textit{k}\textsuperscript{2} = \textit{n}(\textit{n}+1)(2\textit{n}+1)/6}
+\subsection{6b: Prove $\sum_{{k}=1}^{{n}} $ \textit{k}\textsuperscript{2} = {\small\ensuremath{\dfrac{{n}({n}+1)(2{n}+1)}{6}}}}
 
 \Needspace{3\baselineskip}
 Try first: after adding (\textit{n}+1)\textsuperscript{2}, factor out \textit{n}+1 and compare with the target at \textit{n}+1.
@@ -290,7 +290,7 @@ Try first: after adding (\textit{n}+1)\textsuperscript{2}, factor out \textit{n}
 
 \begin{keepsection}
 \Needspace{6\baselineskip}
-\subsection{6c: Prove $\sum_{{k}=1}^{{n}} $ \textit{k}\textsuperscript{3} = (\textit{n}(\textit{n}+1)/2)\textsuperscript{2}}
+\subsection{6c: Prove $\sum_{{k}=1}^{{n}} $ \textit{k}\textsuperscript{3} = ({\small\ensuremath{\dfrac{{n}({n}+1)}{2}}})\textsuperscript{2}}
 
 \Needspace{3\baselineskip}
 Try first: add (\textit{n}+1)\textsuperscript{3} to the squared induction hypothesis, then factor (\textit{n}+1)\textsuperscript{2}.
@@ -400,10 +400,10 @@ Try first: put two denominators over a common power of 10 for the sum; multiply 
 
 \begin{keepsection}
 \Needspace{6\baselineskip}
-\subsection{8b: Prove 1/3 \ensuremath{\notin} \textit{D}}
+\subsection{8b: Prove {\small\ensuremath{\dfrac{1}{3}}} \ensuremath{\notin} \textit{D}}
 
 \Needspace{3\baselineskip}
-Try first: assume 1/3=\textit{m}/10\textsuperscript{\textit{n}} and examine the resulting equality modulo 3.
+Try first: assume {\small\ensuremath{\dfrac{1}{3}}}={\small\ensuremath{\dfrac{{m}}{10^{{n}}}}} and examine the resulting equality modulo 3.
 
 \nopagebreak[4]{\small\itshape Answers: see “Self-Study 3.8: Finite decimals and computer arithmetic” under Answers at the end.}
 \end{keepsection}
@@ -477,9 +477,9 @@ Try first: derive \textit{D}\textsubscript{\textit{n}+2}=\textit{D}\textsubscrip
 \begin{workedbox}{1a \ensuremath{\cdot} Induction on \textit{n}}
 \Needspace{10\baselineskip}
 \begin{enumerate}
-\item \textbf{Claim:} \textit{S}\textsubscript{\textit{n}} = $\sum_{{k}=1}^{{n}} $(\textit{k} \ensuremath{-} 1)\textsuperscript{2} \ensuremath{<} \textit{n}\textsuperscript{3}/3.
-\item \textbf{Base case \textit{n} = 1:} \textit{S}\textsubscript{1} = (1\ensuremath{-}1)\textsuperscript{2} = 0 \ensuremath{<} 1/3, so the claim starts true.
-\item \textbf{Induction hypothesis:} assume \textit{S}\textsubscript{\textit{n}} \ensuremath{<} \textit{n}\textsuperscript{3}/3 for some \textit{n} \ensuremath{\in} \ensuremath{\mathbb{N}}.
+\item \textbf{Claim:} \textit{S}\textsubscript{\textit{n}} = $\sum_{{k}=1}^{{n}} $(\textit{k} \ensuremath{-} 1)\textsuperscript{2} \ensuremath{<} {\small\ensuremath{\dfrac{{n}^{3}}{3}}}.
+\item \textbf{Base case \textit{n} = 1:} \textit{S}\textsubscript{1} = (1\ensuremath{-}1)\textsuperscript{2} = 0 \ensuremath{<} {\small\ensuremath{\dfrac{1}{3}}}, so the claim starts true.
+\item \textbf{Induction hypothesis:} assume \textit{S}\textsubscript{\textit{n}} \ensuremath{<} {\small\ensuremath{\dfrac{{n}^{3}}{3}}} for some \textit{n} \ensuremath{\in} \ensuremath{\mathbb{N}}.
 \item \Needspace{4\baselineskip}
 The next sum adds the term \textit{k} = \textit{n} + 1, which equals \textit{n}\textsuperscript{2}:
 
@@ -488,7 +488,7 @@ The next sum adds the term \textit{k} = \textit{n} + 1, which equals \textit{n}\
 Compare the upper bound with the target:
 
 \begin{equation*}\dfrac{({n}\, +\, 1)^{3}}{3}\, =\, \dfrac{{n}^{3}}{3}\, +\, {n}^{2}\, +\, {n}\, +\, \dfrac{1}{3}\, >\, \dfrac{{n}^{3}}{3}\, +\, {n}^{2}\end{equation*}
-\item Therefore \textit{S}\textsubscript{\textit{n}+1} \ensuremath{<} (\textit{n} + 1)\textsuperscript{3}/3. The base and step prove the claim for every \textit{n} \ensuremath{\in} \ensuremath{\mathbb{N}}.
+\item Therefore \textit{S}\textsubscript{\textit{n}+1} \ensuremath{<} {\small\ensuremath{\dfrac{({n}\, +\, 1)^{3}}{3}}}. The base and step prove the claim for every \textit{n} \ensuremath{\in} \ensuremath{\mathbb{N}}.
 \end{enumerate}
 \end{workedbox}
 
@@ -525,7 +525,7 @@ Restrict its domain to [0,\ensuremath{\infty}) and its range/codomain to (0,1]. 
 Its inverse is \textit{f}\textsuperscript{\ensuremath{-}1}(\textit{y}) = \ensuremath{\sqrt{-\ln \, {y}}}.
 \item For \textit{g}, if \textit{g}(\textit{x}\textsubscript{1},\textit{y}\textsubscript{1}) = \textit{g}(\textit{x}\textsubscript{2},\textit{y}\textsubscript{2}), coordinate equality gives 4\textit{y}\textsubscript{1} = 4\textit{y}\textsubscript{2} and \textit{x}\textsubscript{1}\ensuremath{-}1 = \textit{x}\textsubscript{2}\ensuremath{-}1, hence both input coordinates agree. So \textit{g} is injective.
 \item \Needspace{5\baselineskip}
-Given any target (\textit{u},\textit{v}) \ensuremath{\in} \ensuremath{\mathbb{R}}\textsuperscript{2}, choose \textit{x} = \textit{v} + 1 and \textit{y} = \textit{u}/4. Then \textit{g}(\textit{x},\textit{y}) = (\textit{u},\textit{v}), so \textit{g} is surjective as well. It is bijective, with:
+Given any target (\textit{u},\textit{v}) \ensuremath{\in} \ensuremath{\mathbb{R}}\textsuperscript{2}, choose \textit{x} = \textit{v} + 1 and \textit{y} = {\small\ensuremath{\dfrac{{u}}{4}}}. Then \textit{g}(\textit{x},\textit{y}) = (\textit{u},\textit{v}), so \textit{g} is surjective as well. It is bijective, with:
 
 \begin{equation*}{g}^{-1}({u},\, {v})\, =\, \left({v}\, +\, 1,\, \dfrac{{u}}{4}\right)\end{equation*}
 \end{enumerate}
@@ -568,7 +568,7 @@ The output of \textit{f} lies in \ensuremath{\mathbb{R}}, so it is a valid input
 Apply the rule twice:
 
 \begin{equation*}({g}\, \circ \, {g})({x},\, {y})\, =\, {g}(4{y},\, {x}\, -\, 1)\, =\, (4({x}\, -\, 1),\, 4{y}\, -\, 1)\end{equation*}
-\item The result is an invertible affine map, so its range is \ensuremath{\mathbb{R}}\textsuperscript{2}. Explicitly, any target (\textit{u},\textit{v}) comes from \textit{x} = \textit{u}/4 + 1 and \textit{y} = (\textit{v}+1)/4.
+\item The result is an invertible affine map, so its range is \ensuremath{\mathbb{R}}\textsuperscript{2}. Explicitly, any target (\textit{u},\textit{v}) comes from \textit{x} = {\small\ensuremath{\dfrac{{u}}{4}}} + 1 and \textit{y} = {\small\ensuremath{\dfrac{{v}+1}{4}}}.
 \end{enumerate}
 \end{workedbox}
 
@@ -647,12 +647,12 @@ Factor fully over \ensuremath{\mathbb{R}}:
 \Needspace{9\baselineskip}
 \begin{enumerate}
 \item For \textit{a}\textit{x}\textsuperscript{2}+\textit{b}\textit{x}+\textit{c} the discriminant is \textit{b}\textsuperscript{2}\ensuremath{-}4\textit{a}\textit{c}. Here \textit{a} = 3 and \textit{b} = 2, so Δ = 4\ensuremath{-}12\textit{c}.
-\item A real quadratic with non-zero leading coefficient has exactly one distinct real root precisely when Δ = 0. Therefore 4\ensuremath{-}12\textit{c} = 0, giving \textit{c} = 1/3.
+\item A real quadratic with non-zero leading coefficient has exactly one distinct real root precisely when Δ = 0. Therefore 4\ensuremath{-}12\textit{c} = 0, giving \textit{c} = {\small\ensuremath{\dfrac{1}{3}}}.
 \item \Needspace{4\baselineskip}
-The repeated root is \ensuremath{-}\textit{b}/(2\textit{a}) = \ensuremath{-}2/6 = \ensuremath{-}1/3. The corresponding factorization is:
+The repeated root is \ensuremath{-}{\small\ensuremath{\dfrac{{b}}{2{a}}}} = \ensuremath{-}{\small\ensuremath{\dfrac{2}{6}}} = \ensuremath{-}{\small\ensuremath{\dfrac{1}{3}}}. The corresponding factorization is:
 
 \begin{equation*}{g}_{1/3}({x})\, =\, 3{x}^{2}\, +\, 2{x}\, +\, \dfrac{1}{3}\, =\, 3\left({x}\, +\, \dfrac{1}{3}\right)^{2}\end{equation*}
-\item \textbf{Check:} expanding gives 3\textit{x}\textsuperscript{2}+2\textit{x}+1/3, and its only distinct root is \ensuremath{-}1/3 (with multiplicity two).
+\item \textbf{Check:} expanding gives 3\textit{x}\textsuperscript{2}+2\textit{x}+{\small\ensuremath{\dfrac{1}{3}}}, and its only distinct root is \ensuremath{-}{\small\ensuremath{\dfrac{1}{3}}} (with multiplicity two).
 \end{enumerate}
 \end{workedbox}
 
@@ -662,8 +662,8 @@ The repeated root is \ensuremath{-}\textit{b}/(2\textit{a}) = \ensuremath{-}2/6 
 \begin{workedbox}{5 \ensuremath{\cdot} Induction for every \textit{x} \ensuremath{\neq} 1}
 \Needspace{9\baselineskip}
 \begin{enumerate}
-\item Fix any real \textit{x} \ensuremath{\neq} 1. The claim is $\sum_{{k}=0}^{{n}} $\textit{x}\textsuperscript{\textit{k}} = (1\ensuremath{-}\textit{x}\textsuperscript{\textit{n}+1})/(1\ensuremath{-}\textit{x}).
-\item \textbf{Base \textit{n} = 1:} 1+\textit{x} = (1\ensuremath{-}\textit{x}\textsuperscript{2})/(1\ensuremath{-}\textit{x}), since 1\ensuremath{-}\textit{x}\textsuperscript{2} = (1\ensuremath{-}\textit{x})(1+\textit{x}).
+\item Fix any real \textit{x} \ensuremath{\neq} 1. The claim is $\sum_{{k}=0}^{{n}} $\textit{x}\textsuperscript{\textit{k}} = {\small\ensuremath{\dfrac{1-{x}^{{n}+1}}{1-{x}}}}.
+\item \textbf{Base \textit{n} = 1:} 1+\textit{x} = {\small\ensuremath{\dfrac{1-{x}^{2}}{1-{x}}}}, since 1\ensuremath{-}\textit{x}\textsuperscript{2} = (1\ensuremath{-}\textit{x})(1+\textit{x}).
 \item \Needspace{4\baselineskip}
 \textbf{Induction hypothesis:} suppose the formula holds for \textit{n}. Add the next term:
 
@@ -682,9 +682,9 @@ Put the terms over one denominator and simplify:
 \begin{workedbox}{6a \ensuremath{\cdot} Sum of the first \textit{n} integers}
 \Needspace{5\baselineskip}
 \begin{enumerate}
-\item \textbf{Base:} 1 = 1\ensuremath{\cdot}2/2.
+\item \textbf{Base:} 1 = 1\ensuremath{\cdot}{\small\ensuremath{\dfrac{2}{2}}}.
 \item \Needspace{4\baselineskip}
-\textbf{Assume} $\sum_{{k}=1}^{{n}} $\textit{k} = \textit{n}(\textit{n}+1)/2. Then:
+\textbf{Assume} $\sum_{{k}=1}^{{n}} $\textit{k} = {\small\ensuremath{\dfrac{{n}({n}+1)}{2}}}. Then:
 
 \begin{equation*}\sum_{{k}=1}^{{n}+1} {k}\, =\, \dfrac{{n}({n}\, +\, 1)}{2}\, +\, ({n}\, +\, 1)\, =\, \dfrac{({n}\, +\, 1)({n}\, +\, 2)}{2}\end{equation*}
 \item This is the same formula with \textit{n} replaced by \textit{n}+1, proving it for all positive \textit{n}.
@@ -697,16 +697,16 @@ Put the terms over one denominator and simplify:
 \begin{workedbox}{6b \ensuremath{\cdot} Sum of the first \textit{n} squares}
 \Needspace{7\baselineskip}
 \begin{enumerate}
-\item \textbf{Base:} 1\textsuperscript{2} = 1\ensuremath{\cdot}2\ensuremath{\cdot}3/6.
+\item \textbf{Base:} 1\textsuperscript{2} = 1\ensuremath{\cdot}2\ensuremath{\cdot}{\small\ensuremath{\dfrac{3}{6}}}.
 \item \Needspace{4\baselineskip}
-\textbf{Assume} \textit{S}\textsubscript{\textit{n}} = \textit{n}(\textit{n}+1)(2\textit{n}+1)/6. Add the next square:
+\textbf{Assume} \textit{S}\textsubscript{\textit{n}} = {\small\ensuremath{\dfrac{{n}({n}+1)(2{n}+1)}{6}}}. Add the next square:
 
 \begin{equation*}{S}_{{n}+1}\, =\, \dfrac{{n}({n}\, +\, 1)(2{n}\, +\, 1)}{6}\, +\, ({n}\, +\, 1)^{2}\end{equation*}
 \item \Needspace{4\baselineskip}
 Factor \textit{n}+1 and combine:
 
 \begin{equation*}=\, \dfrac{({n}\, +\, 1)[{n}(2{n}\, +\, 1)\, +\, 6({n}\, +\, 1)]}{6}\, =\, \dfrac{({n}\, +\, 1)(2{n}^{2}\, +\, 7{n}\, +\, 6)}{6}\end{equation*}
-\item Since 2\textit{n}\textsuperscript{2}+7\textit{n}+6 = (\textit{n}+2)(2\textit{n}+3), this equals (\textit{n}+1)(\textit{n}+2)(2\textit{n}+3)/6, the formula at \textit{n}+1.
+\item Since 2\textit{n}\textsuperscript{2}+7\textit{n}+6 = (\textit{n}+2)(2\textit{n}+3), this equals {\small\ensuremath{\dfrac{({n}+1)({n}+2)(2{n}+3)}{6}}}, the formula at \textit{n}+1.
 \end{enumerate}
 \end{workedbox}
 
@@ -716,9 +716,9 @@ Factor \textit{n}+1 and combine:
 \begin{workedbox}{6c \ensuremath{\cdot} Sum of the first \textit{n} cubes}
 \Needspace{7\baselineskip}
 \begin{enumerate}
-\item \textbf{Base:} 1\textsuperscript{3} = (1\ensuremath{\cdot}2/2)\textsuperscript{2}.
+\item \textbf{Base:} 1\textsuperscript{3} = (1\ensuremath{\cdot}{\small\ensuremath{\dfrac{2}{2}}})\textsuperscript{2}.
 \item \Needspace{4\baselineskip}
-\textbf{Assume} \textit{S}\textsubscript{\textit{n}} = [\textit{n}(\textit{n}+1)/2]\textsuperscript{2}. The next sum is:
+\textbf{Assume} \textit{S}\textsubscript{\textit{n}} = [{\small\ensuremath{\dfrac{{n}({n}+1)}{2}}}]\textsuperscript{2}. The next sum is:
 
 \begin{equation*}{S}_{{n}+1}\, =\, \left[\dfrac{{n}({n}\, +\, 1)}{2}\right]^{2}\, +\, ({n}\, +\, 1)^{3}\end{equation*}
 \item \Needspace{4\baselineskip}
@@ -823,7 +823,7 @@ The composite domain is therefore [0,1], and its rule is:
 \Needspace{9\baselineskip}
 \begin{enumerate}
 \item \Needspace{4\baselineskip}
-Take \textit{m}/10\textsuperscript{\textit{n}} and \textit{p}/10\textsuperscript{\textit{r}} in \textit{D}, where \textit{m},\textit{p}\ensuremath{\in}\ensuremath{\mathbb{Z}} and \textit{n},\textit{r}\ensuremath{\in}\ensuremath{\mathbb{N}}\textsubscript{0}. Let \textit{N}=max(\textit{n},\textit{r}). Then:
+Take {\small\ensuremath{\dfrac{{m}}{10^{{n}}}}} and {\small\ensuremath{\dfrac{{p}}{10^{{r}}}}} in \textit{D}, where \textit{m},\textit{p}\ensuremath{\in}\ensuremath{\mathbb{Z}} and \textit{n},\textit{r}\ensuremath{\in}\ensuremath{\mathbb{N}}\textsubscript{0}. Let \textit{N}=max(\textit{n},\textit{r}). Then:
 
 \begin{equation*}\dfrac{{m}}{10^{{n}}}\, +\, \dfrac{{p}}{10^{{r}}}\, =\, \dfrac{{m}\, \cdot \, 10^{{N}-{n}}\, +\, {p}\, \cdot \, 10^{{N}-{r}}}{10^{{N}}}\end{equation*}
 \item The numerator is an integer and \textit{N} is a non-negative integer, so the sum is in \textit{D}.
@@ -841,9 +841,9 @@ The product is:
 \begin{workedbox}{8b \ensuremath{\cdot} A prime factor missing from powers of 10}
 \Needspace{7\baselineskip}
 \begin{enumerate}
-\item If 1/3 were in \textit{D}, then 1/3=\textit{m}/10\textsuperscript{\textit{n}} for some integer \textit{m} and \textit{n}\ensuremath{\geq}0. Cross-multiplying gives 10\textsuperscript{\textit{n}}=3\textit{m}.
+\item If {\small\ensuremath{\dfrac{1}{3}}} were in \textit{D}, then {\small\ensuremath{\dfrac{1}{3}}}={\small\ensuremath{\dfrac{{m}}{10^{{n}}}}} for some integer \textit{m} and \textit{n}\ensuremath{\geq}0. Cross-multiplying gives 10\textsuperscript{\textit{n}}=3\textit{m}.
 \item The right side is divisible by 3. But 10\textsuperscript{\textit{n}} leaves remainder 1 when divided by 3: for \textit{n} \ensuremath{\geq} 1, expand 10\textsuperscript{\textit{n}}=(1+9)\textsuperscript{\textit{n}}; every term after the initial 1 is divisible by 3. For \textit{n}=0 the value is also 1. Contradiction.
-\item Thus \textbf{1/3 is not a finite decimal fraction}.
+\item Thus \textbf{{\small\ensuremath{\dfrac{1}{3}}} is not a finite decimal fraction}.
 \end{enumerate}
 \end{workedbox}
 
@@ -858,7 +858,7 @@ The product is:
 Divide through by 10\textsuperscript{\textit{n}}\ensuremath{>}0:
 
 \begin{equation*}\dfrac{{m}}{10^{{n}}}\, \leq \, {x}\, <\, \dfrac{{m}}{10^{{n}}}\, +\, \dfrac{1}{10^{{n}}}\end{equation*}
-\item Since \textit{x}\textsubscript{\textit{n}}=\textit{m}/10\textsuperscript{\textit{n}}, this says 0\ensuremath{\leq}\textit{x}\ensuremath{-}\textit{x}\textsubscript{\textit{n}}\ensuremath{<}10\textsuperscript{\ensuremath{-}\textit{n}}.
+\item Since \textit{x}\textsubscript{\textit{n}}={\small\ensuremath{\dfrac{{m}}{10^{{n}}}}}, this says 0\ensuremath{\leq}\textit{x}\ensuremath{-}\textit{x}\textsubscript{\textit{n}}\ensuremath{<}10\textsuperscript{\ensuremath{-}\textit{n}}.
 \item Also \textit{x}\textsubscript{\textit{n}} has integer numerator \textit{m} and denominator 10\textsuperscript{\textit{n}}, so \textit{x}\textsubscript{\textit{n}}\ensuremath{\in}\textit{D}.
 \end{enumerate}
 \end{workedbox}

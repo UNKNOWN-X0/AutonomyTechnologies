@@ -15,6 +15,9 @@ spec = importlib.util.spec_from_file_location("g2t", os.path.join(ROOT, "tools",
 g2t = importlib.util.module_from_spec(spec)
 spec.loader.exec_module(g2t)
 Node, Tree, find = g2t.Node, g2t.Tree, g2t.find
+spec = importlib.util.spec_from_file_location("stackfrac", os.path.join(ROOT, "tools", "stack-fractions.py"))
+stackfrac = importlib.util.module_from_spec(spec)
+spec.loader.exec_module(stackfrac)
 
 REQUIRED = ["cold-start", "plan", "route", "formula-map", "derivations", "explain", "practice", "exam", "checklist"]
 MIN_PROBLEMS, MIN_EXPLAIN, MIN_EXAM, MIN_COLD = 20, 6, 2, 4
@@ -84,6 +87,11 @@ def check_files(root, html, path, page_dir, rep):
     primes = sum(re.sub(r"<[^>]*>", "", a + b).count("'") for a, b in maths)
     if primes:
         rep.warn("%d straight apostrophe(s) in formulas: write a prime as ′ (U+2032)" % primes)
+    # quotients are stacked (span.frac) in display lines and running text alike; "/" stays only in exponents,
+    # limits, units and between words (GUIDE-STANDARD.md, Signs). tools/stack-fractions.py converts what is left.
+    slashes = stackfrac.find(html)
+    if slashes:
+        rep.warn("%d quotient(s) written with \"/\" (%s): stack them, python3 -I tools/stack-fractions.py <page>" % (len(slashes), ", ".join(slashes[:4])))
     subs = re.findall(r"[₀-₉]", plain)
     if subs:
         rep.warn("%d Unicode subscript digit(s) (the PDF font has none): use <sub> in text, x_{12} in figure data" % len(subs))

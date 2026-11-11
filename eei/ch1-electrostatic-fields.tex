@@ -133,7 +133,7 @@ two kinds, whole multiples of \textit{e}, conserved
 \textbf{Coulomb’s law} \hfill{\small\color{FAUblue}§1.2}
 
 \Needspace{5\baselineskip}
-\textit{F} \ensuremath{\propto} \textit{Q}\textsubscript{1}\textit{Q}\textsubscript{2}/\textit{r}\textsuperscript{2}, along the line between them
+\textit{F} \ensuremath{\propto} {\small\ensuremath{\dfrac{{Q}_{1}{Q}_{2}}{{r}^{2}}}}, along the line between them
 
 \emph{Rests on:} nothing; it is measured. Two features carry the rest of the chapter: the force is central and depends only on r, and the power is exactly 2.
 \item \Needspace{4\baselineskip}
@@ -154,7 +154,7 @@ forces (and fields) add as vectors
 \textbf{Field strength} \hfill{\small\color{FAUblue}§1.3}
 
 \Needspace{6\baselineskip}
-\textit{E} = \textit{F}/\textit{Q}, in V/m
+\textit{E} = {\small\ensuremath{\dfrac{{F}}{{Q}}}}, in V/m
 
 \emph{Rests on:} Coulomb’s law, Superposition. Well defined only because Coulomb’s law makes F proportional to the probe charge, so F/Q does not depend on the probe. Superposition gives the field of any arrangement.
 \item \Needspace{4\baselineskip}
@@ -182,7 +182,7 @@ forces (and fields) add as vectors
 \textbf{Capacitance} \hfill{\small\color{FAUblue}§1.13}
 
 \Needspace{5\baselineskip}
-\textit{C} = \textit{Q}/\textit{U}, in F
+\textit{C} = {\small\ensuremath{\dfrac{{Q}}{{U}}}}, in F
 
 \emph{Rests on:} Voltage, Gauss’s law. Useful only because Q and U are proportional for a fixed geometry, which follows from Gauss’s law and the linearity of everything above.
 \end{itemize}
@@ -205,7 +205,7 @@ $\oint $ \textit{E} \ensuremath{\cdot} d\textit{s} = 0
 \Needspace{5\baselineskip}
 $\oiint $ \textit{D} \ensuremath{\cdot} d\textit{A} = \textit{Q}\textsubscript{enclosed}
 
-\emph{Rests on:} Coulomb’s law, Superposition, Flux density. Needs the exact 1/r²: field times sphere area is then the same on every sphere. Superposition extends it to any charge distribution.
+\emph{Rests on:} Coulomb’s law, Superposition, Flux density. Needs the exact {\small\ensuremath{\dfrac{1}{\mathrm{r}²}}}: field times sphere area is then the same on every sphere. Superposition extends it to any charge distribution.
 \item \Needspace{4\baselineskip}
 \textbf{Interface conditions} \hfill{\small\color{FAUblue}§1.11}
 
@@ -224,16 +224,16 @@ normal \textit{D} jumps by σ\textsubscript{A}, tangential \textit{E} continuous
 \textbf{Capacitor formulas} \hfill{\small\color{FAUblue}§1.13}
 
 \Needspace{5\baselineskip}
-ε\textit{A}/\textit{d}, 4πε\textsubscript{0}\textit{ab}/(\textit{b} \ensuremath{-} \textit{a}), 2πε/ln(\textit{b}/\textit{a}) per length
+{\small\ensuremath{\dfrac{ε{A}}{{d}}}}, {\small\ensuremath{\dfrac{4πε_{0}{ab}}{{b}\, -\, {a}}}}, {\small\ensuremath{\dfrac{2πε}{\ln (\dfrac{{b}}{{a}})}}} per length
 
-\emph{Rests on:} Gauss’s law, Voltage, Capacitance. The recipe: put \ensuremath{\pm}Q on the electrodes, D from Gauss, E = D/ε, integrate to U, divide.
+\emph{Rests on:} Gauss’s law, Voltage, Capacitance. The recipe: put \ensuremath{\pm}Q on the electrodes, D from Gauss, E = {\small\ensuremath{\dfrac{\mathrm{D}}{ε}}}, integrate to U, divide.
 \item \Needspace{4\baselineskip}
 \textbf{Stored energy} \hfill{\small\color{FAUblue}§1.14}
 
 \Needspace{5\baselineskip}
 \textit{W}\textsubscript{e} = \ensuremath{\tfrac12}\textit{C U}\textsuperscript{2} = \ensuremath{\tfrac12}\textit{Q U}
 
-\emph{Rests on:} Voltage, Capacitance. Charging moves each dq through the voltage present, u = q/C; integrating gives Q²/(2C).
+\emph{Rests on:} Voltage, Capacitance. Charging moves each dq through the voltage present, u = q/C; integrating gives {\small\ensuremath{\dfrac{\mathrm{Q}²}{2\mathrm{C}}}}.
 \end{itemize}
 
 \begin{keepsection}
@@ -248,7 +248,7 @@ the field of a few point charges & Coulomb field of each, then vector sum \\
 the field of a sphere, long cylinder or plane & Gauss’s law with a matching surface \\
 work to move a charge, or a potential & \textit{W}\textsubscript{e} = \textit{Q}(φ\textsubscript{end} \ensuremath{-} φ\textsubscript{start}), φ = \ensuremath{-}$\int $ \textit{E} \ensuremath{\cdot} d\textit{s} \\
 the field on the far side of a boundary & normal \textit{D} and tangential \textit{E} conditions \\
-charge per volt, or stored energy & \textit{C} = \textit{Q}/\textit{U}, \textit{W}\textsubscript{e} = \ensuremath{\tfrac12}\textit{C U}\textsuperscript{2} \\
+charge per volt, or stored energy & \textit{C} = {\small\ensuremath{\dfrac{{Q}}{{U}}}}, \textit{W}\textsubscript{e} = \ensuremath{\tfrac12}\textit{C U}\textsuperscript{2} \\
 \bottomrule\end{tabularx}\end{center}
 \end{keepsection}
 \end{keepsection}
@@ -293,14 +293,14 @@ charge per volt, or stored energy & \textit{C} = \textit{Q}/\textit{U}, \textit{
 \section{1.2 Coulomb’s law}
 
 \Needspace{8\baselineskip}
-For two point charges (bodies much smaller than their distance), the force grows with each charge and falls with the square of the distance. The same 1/\textit{r}\textsuperscript{2} appears in Newton’s gravitation; the 4π\textit{r}\textsuperscript{2} in the denominator is the area of a sphere of radius \textit{r}.
+For two point charges (bodies much smaller than their distance), the force grows with each charge and falls with the square of the distance. The same {\small\ensuremath{\dfrac{1}{{r}^{2}}}} appears in Newton’s gravitation; the 4π\textit{r}\textsuperscript{2} in the denominator is the area of a sphere of radius \textit{r}.
 
 \Needspace{11\baselineskip}
 \begin{plainbox}\textbf{In plain words:} Coulomb’s law says how hard two point charges push or pull: the force grows with each charge and falls with the square of the distance between them. Like charges repel and unlike charges attract, along the line joining them.\end{plainbox}
 
 \begin{equationcard}{Force on charge 2 caused by charge 1}
 \[ \begin{gathered} {F}_{2}\, =\, \dfrac{1}{4π\, ε_{0}}\, \cdot \, \dfrac{{Q}_{1}{Q}_{2}}{{r}^{2}}\, {e}_{\mathrm{r}} \\ {e}_{\mathrm{r}}\, =\, \dfrac{{r}_{\mathrm{P}2}\, -\, {r}_{\mathrm{P}1}}{{r}} \end{gathered} \]
-{\small \emph{Read it as: “the force on charge 2 is Q\textsubscript{1}Q\textsubscript{2} over 4π ε\textsubscript{0} r\textsuperscript{2}, in the direction e\textsubscript{r} from charge 1 to charge 2”.}\par ε\textsubscript{0} = 8.854 \ensuremath{\times} 10\textsuperscript{\ensuremath{-}12} A s/(V m); 1/(4π ε\textsubscript{0}) \ensuremath{\approx} 8.988 \ensuremath{\times} 10\textsuperscript{9} V m/(A s). \textit{e}\textsubscript{r} points from the charge that causes the force to the charge that feels it.}
+{\small \emph{Read it as: “the force on charge 2 is Q\textsubscript{1}Q\textsubscript{2} over 4π ε\textsubscript{0} r\textsuperscript{2}, in the direction e\textsubscript{r} from charge 1 to charge 2”.}\par ε\textsubscript{0} = 8.854 \ensuremath{\times} 10\textsuperscript{\ensuremath{-}12} A s/(V m); {\small\ensuremath{\dfrac{1}{4π\, ε_{0}}}} \ensuremath{\approx} 8.988 \ensuremath{\times} 10\textsuperscript{9} V m/(A s). \textit{e}\textsubscript{r} points from the charge that causes the force to the charge that feels it.}
 \end{equationcard}
 
 \Needspace{14\baselineskip}
@@ -339,7 +339,7 @@ For two point charges (bodies much smaller than their distance), the force grows
 \Needspace{6\baselineskip}
 \begin{enumerate}
 \item \textit{e}\textsubscript{r} points from \textit{Q}\textsubscript{1} to \textit{Q}\textsubscript{2}: \textit{e}\textsubscript{r} = +\textit{e}\textsubscript{y}, \textit{r} = 0.3 m.
-\item Size: 8.988 \ensuremath{\times} 10\textsuperscript{9} \ensuremath{\times} (4 \ensuremath{\times} 10\textsuperscript{\ensuremath{-}6})(1 \ensuremath{\times} 10\textsuperscript{\ensuremath{-}6})/0.09 \ensuremath{\approx} 0.40 N.
+\item Size: 8.988 \ensuremath{\times} 10\textsuperscript{9} \ensuremath{\times} {\small\ensuremath{\dfrac{(4\, \times \, 10^{-6})(1\, \times \, 10^{-6})}{0.09}}} \ensuremath{\approx} 0.40 N.
 \item The product \textit{Q}\textsubscript{1}\textit{Q}\textsubscript{2} is negative, so \textit{F}\textsubscript{2} \ensuremath{\approx} \ensuremath{-}0.40 N \textit{e}\textsubscript{y}: toward \textit{Q}\textsubscript{1}, an attraction, as opposite signs should give.
 \end{enumerate}
 \end{workedbox}
@@ -348,7 +348,7 @@ For two point charges (bodies much smaller than their distance), the force grows
 \begin{notebox}\textbf{Trap:} \textit{r} is the distance between the charges, not a position coordinate. Point charges are an idealisation; Coulomb’s law in this form needs bodies much smaller than their distance.\end{notebox}
 
 \Needspace{11\baselineskip}
-\begin{notebox}\textbf{Near miss:} doubling the distance between two charges looks as if it should halve the force, but the force falls to a quarter: it depends on 1/\textit{r}\textsuperscript{2}, not on 1/\textit{r}.\end{notebox}
+\begin{notebox}\textbf{Near miss:} doubling the distance between two charges looks as if it should halve the force, but the force falls to a quarter: it depends on {\small\ensuremath{\dfrac{1}{{r}^{2}}}}, not on {\small\ensuremath{\dfrac{1}{{r}}}}.\end{notebox}
 
 \begin{recallbox}{Recall check}
 \Needspace{4\baselineskip}
@@ -390,7 +390,7 @@ Coulomb’s law describes a pair of charges but says nothing about the space aro
 \draw[-{Stealth[length=4pt]},black!80] (1.695,-1.695) -- (2.280,-2.280);
 \filldraw[draw=FAUblue,fill=FAUblue] (1.440,-1.440) circle (0.234);
 \node[text=white,font=\small\bfseries] at (1.440,-1.440) {+};
-\end{tikzpicture}\par\smallskip{\small\raggedright \textbf{Positive charge}: \textit{E} points away from it in every direction and weakens as 1/\textit{r}\textsuperscript{2}.\par}\end{minipage}\hfill
+\end{tikzpicture}\par\smallskip{\small\raggedright \textbf{Positive charge}: \textit{E} points away from it in every direction and weakens as {\small\ensuremath{\dfrac{1}{{r}^{2}}}}.\par}\end{minipage}\hfill
 \begin{minipage}[t]{0.465\linewidth}\centering
 \begin{tikzpicture}[line join=round]
 \draw[-{Stealth[length=4pt]},black!80] (2.628,-1.440) -- (1.800,-1.440);
@@ -408,20 +408,20 @@ Coulomb’s law describes a pair of charges but says nothing about the space aro
 
 \Needspace{8\baselineskip}
 \begin{itemize}
-\item \textit{E} does not depend on the probe: a bigger probe charge feels a bigger force, but \textit{F}/\textit{Q} stays the same.
+\item \textit{E} does not depend on the probe: a bigger probe charge feels a bigger force, but {\small\ensuremath{\dfrac{{F}}{{Q}}}} stays the same.
 \item The field exists in vacuum; no matter is needed.
 \item A positive probe is pushed along \textit{E}, a negative probe against it.
 \item The vector \textit{r} always runs from the source point Q to the observation point P.
 \end{itemize}
 
 \Needspace{11\baselineskip}
-\begin{notebox}\textbf{Near miss:} a bigger probe charge feels a bigger force, so the field might seem to depend on the probe, but \textit{E} = \textit{F}/\textit{Q}\textsubscript{probe} stays the same: double the probe and the force doubles with it.\end{notebox}
+\begin{notebox}\textbf{Near miss:} a bigger probe charge feels a bigger force, so the field might seem to depend on the probe, but \textit{E} = {\small\ensuremath{\dfrac{{F}}{{Q}_{\text{probe}}}}} stays the same: double the probe and the force doubles with it.\end{notebox}
 
 \begin{recallbox}{Recall check}
 \Needspace{4\baselineskip}
 \begin{enumerate}
 \item The probe charge is doubled. What happens to \textit{E} and to \textit{F}?
-\item Write the field of a point charge in the \textit{r}/\textit{r}\textsuperscript{3} form and say what \textit{r} is.
+\item Write the field of a point charge in the {\small\ensuremath{\dfrac{{r}}{{r}^{3}}}} form and say what \textit{r} is.
 \end{enumerate}
 
 \nopagebreak[4]{\small\itshape Answers: see “1.3 Electric field strength” under Answers at the end.}
@@ -476,7 +476,7 @@ Two charges of +2 nC sit at (0, +3 cm) and (0, \ensuremath{-}3 cm). Find \textit
 \Needspace{6\baselineskip}
 \begin{enumerate}
 \item \textit{r}\textsubscript{1} = (0.04, \ensuremath{-}0.03) m and \textit{r}\textsubscript{2} = (0.04, +0.03) m, both of length 0.05 m.
-\item Each field has size 8.988 \ensuremath{\times} 10\textsuperscript{9} \ensuremath{\times} 2 \ensuremath{\times} 10\textsuperscript{\ensuremath{-}9}/0.05\textsuperscript{2} \ensuremath{\approx} 7.19 \ensuremath{\times} 10\textsuperscript{3} V/m along its own \textit{r}\textsubscript{i}/\textit{r}\textsubscript{i}.
+\item Each field has size 8.988 \ensuremath{\times} 10\textsuperscript{9} \ensuremath{\times} 2 \ensuremath{\times} {\small\ensuremath{\dfrac{10^{-9}}{0.05^{2}}}} \ensuremath{\approx} 7.19 \ensuremath{\times} 10\textsuperscript{3} V/m along its own {\small\ensuremath{\dfrac{{r}_{\mathrm{i}}}{{r}_{\mathrm{i}}}}}.
 \item The y-components (\ensuremath{\mp}0.6 of each) cancel; the x-components (0.8 of each) add: \textit{E} \ensuremath{\approx} 2 \ensuremath{\times} 0.8 \ensuremath{\times} 7.19 \ensuremath{\times} 10\textsuperscript{3} \ensuremath{\approx} 1.15 \ensuremath{\times} 10\textsuperscript{4} V/m along +x.
 \end{enumerate}
 \end{workedbox}
@@ -547,22 +547,22 @@ A point charge is an idealised charge squeezed into a single point, so its densi
 \Needspace{10\baselineskip}
 \begin{center}\small\begin{tabularx}{\linewidth}{>{\raggedright\arraybackslash}X>{\raggedright\arraybackslash}X>{\raggedright\arraybackslash}X>{\raggedright\arraybackslash}X>{\raggedright\arraybackslash}X}\toprule
 \textbf{Distribution} & \textbf{Density} & \textbf{Uniform case} & \textbf{Total charge} & \textbf{Unit} \\ \midrule
-Line & λ = d\textit{Q}/d\textit{l} & λ = \textit{Q}/\textit{l} & \textit{Q} = $\int_{\mathrm{l}} $ λ d\textit{l} & C/m \\
-Surface & σ\textsubscript{A} = d\textit{Q}/d\textit{A} & σ\textsubscript{A} = \textit{Q}/\textit{A} & \textit{Q} = $\iint_{\mathrm{A}} $ σ\textsubscript{A} d\textit{A} & C/m² \\
-Volume & ϱ\textsubscript{V} = d\textit{Q}/d\textit{V} & ϱ\textsubscript{V} = \textit{Q}/\textit{V} & \textit{Q} = $\iiint_{\mathrm{V}} $ ϱ\textsubscript{V} d\textit{V} & C/m³ \\
+Line & λ = {\small\ensuremath{\dfrac{\mathrm{d}{Q}}{\mathrm{d}{l}}}} & λ = {\small\ensuremath{\dfrac{{Q}}{{l}}}} & \textit{Q} = $\int_{\mathrm{l}} $ λ d\textit{l} & C/m \\
+Surface & σ\textsubscript{A} = {\small\ensuremath{\dfrac{\mathrm{d}{Q}}{\mathrm{d}{A}}}} & σ\textsubscript{A} = {\small\ensuremath{\dfrac{{Q}}{{A}}}} & \textit{Q} = $\iint_{\mathrm{A}} $ σ\textsubscript{A} d\textit{A} & C/m² \\
+Volume & ϱ\textsubscript{V} = {\small\ensuremath{\dfrac{\mathrm{d}{Q}}{\mathrm{d}{V}}}} & ϱ\textsubscript{V} = {\small\ensuremath{\dfrac{{Q}}{{V}}}} & \textit{Q} = $\iiint_{\mathrm{V}} $ ϱ\textsubscript{V} d\textit{V} & C/m³ \\
 \bottomrule\end{tabularx}\end{center}
 
 \Needspace{12\baselineskip}
 A surface charge is idealised as infinitely thin. Pick the volume element that matches the shape (appendix 7.3 of the notes): d\textit{V} = d\textit{x} d\textit{y} d\textit{z} (Cartesian), ρ dρ dφ d\textit{z} (cylinder), \textit{r}\textsuperscript{2} sin ϑ d\textit{r} dϑ dφ (sphere). If ϱ depends only on \textit{r}, use thin shells: d\textit{V} = 4π\textit{r}\textsuperscript{2} d\textit{r}.
 
 \begin{workedbox}{Worked example}
-A sphere of radius \textit{R} has ϱ(\textit{r}) = ϱ\textsubscript{0}(1 \ensuremath{-} \textit{r}/\textit{R}). Find its total charge.
+A sphere of radius \textit{R} has ϱ(\textit{r}) = ϱ\textsubscript{0}(1 \ensuremath{-} {\small\ensuremath{\dfrac{{r}}{{R}}}}). Find its total charge.
 
 \Needspace{6\baselineskip}
 \begin{enumerate}
-\item The density depends only on \textit{r}, so use shells: \textit{Q} = $\int_{0}^{\mathrm{R}} $ ϱ\textsubscript{0}(1 \ensuremath{-} \textit{r}/\textit{R}) 4π\textit{r}\textsuperscript{2} d\textit{r}.
-\item = 4πϱ\textsubscript{0} (\textit{R}\textsuperscript{3}/3 \ensuremath{-} \textit{R}\textsuperscript{3}/4) = πϱ\textsubscript{0}\textit{R}\textsuperscript{3}/3.
-\item Check: a uniform ϱ\textsubscript{0} would give 4πϱ\textsubscript{0}\textit{R}\textsuperscript{3}/3. Our density falls to zero at the edge, so a quarter of that is plausible.
+\item The density depends only on \textit{r}, so use shells: \textit{Q} = $\int_{0}^{\mathrm{R}} $ ϱ\textsubscript{0}(1 \ensuremath{-} {\small\ensuremath{\dfrac{{r}}{{R}}}}) 4π\textit{r}\textsuperscript{2} d\textit{r}.
+\item = 4πϱ\textsubscript{0} ({\small\ensuremath{\dfrac{{R}^{3}}{3}}} \ensuremath{-} {\small\ensuremath{\dfrac{{R}^{3}}{4}}}) = {\small\ensuremath{\dfrac{πϱ_{0}{R}^{3}}{3}}}.
+\item Check: a uniform ϱ\textsubscript{0} would give {\small\ensuremath{\dfrac{4πϱ_{0}{R}^{3}}{3}}}. Our density falls to zero at the edge, so a quarter of that is plausible.
 \end{enumerate}
 \end{workedbox}
 
@@ -692,7 +692,7 @@ A field line is a curve whose tangent at every point has the direction of \texti
 
 \begin{equationcard}{Point charge \textit{Q}\textsubscript{0}, reference at infinity}
 \[ \begin{gathered} {W}_{\mathrm{e}}\, =\, \dfrac{{Q\,Q}_{0}}{4π\, ε_{0}}\, \left(\dfrac{1}{{r}_{2}}\, -\, \dfrac{1}{{r}_{1}}\right)\, \quad \, (\text{from}\, {r}_{1}\, \text{to}\, {r}_{2}) \\ φ_{\mathrm{e}}({r})\, =\, \dfrac{{Q}_{0}}{4π\, ε_{0}{r}} \end{gathered} \]
-{\small \emph{Read it as: “φ\textsubscript{e} at distance r is Q\textsubscript{0} over 4π ε\textsubscript{0} r”: it falls as 1/r, more slowly than the field.}\par Potential is a scalar: for several charges add the signed potentials, no components needed. \textit{E} \ensuremath{\propto} 1/\textit{r}\textsuperscript{2}, \textit{D} \ensuremath{\propto} 1/\textit{r}\textsuperscript{2}, φ \ensuremath{\propto} 1/\textit{r}.}
+{\small \emph{Read it as: “φ\textsubscript{e} at distance r is Q\textsubscript{0} over 4π ε\textsubscript{0} r”: it falls as {\small\ensuremath{\dfrac{1}{\mathrm{r}}}}, more slowly than the field.}\par Potential is a scalar: for several charges add the signed potentials, no components needed. \textit{E} \ensuremath{\propto} {\small\ensuremath{\dfrac{1}{{r}^{2}}}}, \textit{D} \ensuremath{\propto} {\small\ensuremath{\dfrac{1}{{r}^{2}}}}, φ \ensuremath{\propto} {\small\ensuremath{\dfrac{1}{{r}}}}.}
 \end{equationcard}
 
 \Needspace{14\baselineskip}
@@ -730,7 +730,7 @@ A field line is a curve whose tangent at every point has the direction of \texti
 \node[,inner sep=1pt,font=\footnotesize] at (3.343,-2.916) {3};
 \draw[black!80] (4.217,-2.556) -- (4.217,-2.700);
 \node[,inner sep=1pt,font=\footnotesize] at (4.217,-2.916) {4};
-\end{tikzpicture}\par\smallskip{\small\raggedright \textbf{Potential and field}, scaled to meet at the smallest \textit{r}: φ\textsubscript{e} (blue) falls as 1/\textit{r}, \textit{E} (black) as 1/\textit{r}\textsuperscript{2}, so the field dies away faster.\par}\end{minipage}
+\end{tikzpicture}\par\smallskip{\small\raggedright \textbf{Potential and field}, scaled to meet at the smallest \textit{r}: φ\textsubscript{e} (blue) falls as {\small\ensuremath{\dfrac{1}{{r}}}}, \textit{E} (black) as {\small\ensuremath{\dfrac{1}{{r}^{2}}}}, so the field dies away faster.\par}\end{minipage}
 \end{center}
 
 \Needspace{10\baselineskip}
@@ -756,14 +756,14 @@ How much work is needed to bring +1 nC from infinity to 0.10 m from a fixed +2 n
 
 \Needspace{5\baselineskip}
 \begin{enumerate}
-\item φ at 0.10 m: 8.988 \ensuremath{\times} 10\textsuperscript{9} \ensuremath{\times} 2 \ensuremath{\times} 10\textsuperscript{\ensuremath{-}9}/0.10 \ensuremath{\approx} 180 V; φ(\ensuremath{\infty}) = 0.
+\item φ at 0.10 m: 8.988 \ensuremath{\times} 10\textsuperscript{9} \ensuremath{\times} 2 \ensuremath{\times} {\small\ensuremath{\dfrac{10^{-9}}{0.10}}} \ensuremath{\approx} 180 V; φ(\ensuremath{\infty}) = 0.
 \item \textit{W}\textsubscript{e} = \textit{Q}(φ\textsubscript{end} \ensuremath{-} φ\textsubscript{start}) = 10\textsuperscript{\ensuremath{-}9} \ensuremath{\times} 180 \ensuremath{\approx} 1.8 \ensuremath{\times} 10\textsuperscript{\ensuremath{-}7} J.
 \item Positive, as the table predicts for pushing like charges together.
 \end{enumerate}
 \end{workedbox}
 
 \Needspace{7\baselineskip}
-\begin{notebox}\textbf{Near miss:} the potential of a point charge falls as 1/\textit{r} and its field as 1/\textit{r}\textsuperscript{2}, so at twice the distance the potential is half as large but the field only a quarter. Mixing up the two powers is the most common slip in this section.\end{notebox}
+\begin{notebox}\textbf{Near miss:} the potential of a point charge falls as {\small\ensuremath{\dfrac{1}{{r}}}} and its field as {\small\ensuremath{\dfrac{1}{{r}^{2}}}}, so at twice the distance the potential is half as large but the field only a quarter. Mixing up the two powers is the most common slip in this section.\end{notebox}
 
 \Needspace{14\baselineskip}
 \begin{recallbox}{Recall check}
@@ -844,7 +844,7 @@ Write φ\textsubscript{e}(P\textsubscript{1}) \ensuremath{-} φ\textsubscript{e}
 \subsection{Gauss’s law}
 
 \Needspace{13\baselineskip}
-Around a point charge in vacuum, \textit{D} = \textit{Q}/(4π\textit{r}\textsuperscript{2}) \textit{e}\textsubscript{r}. On a concentric sphere \textit{D} is parallel to d\textit{A} and has constant size, so the flux is \textit{D} \ensuremath{\times} 4π\textit{r}\textsuperscript{2} = \textit{Q}, whatever the radius. The same holds for any closed surface and any position of the charge inside it, and by superposition for any charge distribution:
+Around a point charge in vacuum, \textit{D} = {\small\ensuremath{\dfrac{{Q}}{4π{r}^{2}}}} \textit{e}\textsubscript{r}. On a concentric sphere \textit{D} is parallel to d\textit{A} and has constant size, so the flux is \textit{D} \ensuremath{\times} 4π\textit{r}\textsuperscript{2} = \textit{Q}, whatever the radius. The same holds for any closed surface and any position of the charge inside it, and by superposition for any charge distribution:
 
 \begin{equationcard}{Gauss’s law in integral form}
 \[ \begin{gathered} Ψ\, =\, \oiint_{\mathrm{A}} \, {D}\, \cdot \, \mathrm{d}{A}\, =\, {Q}_{\text{enclosed}}\, =\, \iiint_{\mathrm{V}} \, ϱ_{\mathrm{V}}\, \mathrm{d}{V} \end{gathered} \]
@@ -878,7 +878,7 @@ Gauss’s law always holds, but it only gives you the field when symmetry tells 
 \item From the symmetry, state the direction of \textit{D} and which coordinate it can depend on.
 \item Choose a closed surface on which \textit{D} is either perpendicular and constant, or parallel to the surface (zero flux).
 \item Find the enclosed charge as a function of the surface size.
-\item Set flux = enclosed charge, solve for \textit{D}, then \textit{E} = \textit{D}/ε.
+\item Set flux = enclosed charge, solve for \textit{D}, then \textit{E} = {\small\ensuremath{\dfrac{{D}}{ε}}}.
 \end{enumerate}
 
 \begin{workedbox}{Worked example from the notes: long uniformly charged cylinder}
@@ -888,12 +888,12 @@ Radius \textit{a}, uniform ϱ\textsubscript{V}. Use a coaxial cylinder of radius
 \begin{enumerate}
 \item By symmetry \textit{D} = \textit{D}\textsubscript{ρ}(ρ) \textit{e}\textsubscript{ρ}. On the end caps \textit{e}\textsubscript{ρ} \ensuremath{\cdot} (\ensuremath{\pm}\textit{e}\textsubscript{z}) = 0, so only the curved side counts: flux = \textit{D}\textsubscript{ρ} 2πρ\textit{l}.
 \item Enclosed charge: ϱ\textsubscript{V} π ρ\textsuperscript{2} \textit{l} inside (ρ \ensuremath{<} \textit{a}), ϱ\textsubscript{V} π \textit{a}\textsuperscript{2} \textit{l} outside (ρ \ensuremath{\geq} \textit{a}).
-\item \textit{D}\textsubscript{ρ} = ϱ\textsubscript{V} ρ/2 inside and ϱ\textsubscript{V} \textit{a}\textsuperscript{2}/(2ρ) outside: it rises linearly to ϱ\textsubscript{V}\textit{a}/2 at the surface, then falls as 1/ρ. \textit{E} = \textit{D}/ε.
+\item \textit{D}\textsubscript{ρ} = ϱ\textsubscript{V} {\small\ensuremath{\dfrac{ρ}{2}}} inside and ϱ\textsubscript{V} {\small\ensuremath{\dfrac{{a}^{2}}{2ρ}}} outside: it rises linearly to {\small\ensuremath{\dfrac{ϱ_{\mathrm{V}}{a}}{2}}} at the surface, then falls as {\small\ensuremath{\dfrac{1}{ρ}}}. \textit{E} = {\small\ensuremath{\dfrac{{D}}{ε}}}.
 \end{enumerate}
 \end{workedbox}
 
 \begin{workedbox}{Worked example: the same charge in a dielectric}
-A 1 nC point charge sits in oil with ε\textsubscript{r} = 2.5. At \textit{r} = 0.10 m, \textit{D} = 10\textsuperscript{\ensuremath{-}9}/(4π \ensuremath{\times} 0.01) \ensuremath{\approx} 7.96 \ensuremath{\times} 10\textsuperscript{\ensuremath{-}9} C/m², exactly as in vacuum, because Gauss’s law only sees the charge. But \textit{E} = \textit{D}/(2.5 ε\textsubscript{0}) \ensuremath{\approx} 360 V/m instead of 899 V/m.
+A 1 nC point charge sits in oil with ε\textsubscript{r} = 2.5. At \textit{r} = 0.10 m, \textit{D} = {\small\ensuremath{\dfrac{10^{-9}}{4π\, \times \, 0.01}}} \ensuremath{\approx} 7.96 \ensuremath{\times} 10\textsuperscript{\ensuremath{-}9} C/m², exactly as in vacuum, because Gauss’s law only sees the charge. But \textit{E} = {\small\ensuremath{\dfrac{{D}}{2.5\, ε_{0}}}} \ensuremath{\approx} 360 V/m instead of 899 V/m.
 \end{workedbox}
 
 \Needspace{6\baselineskip}
@@ -933,13 +933,13 @@ At a boundary, split \textit{E} and \textit{D} into a normal part (along the uni
 \Needspace{10\baselineskip}
 \begin{center}\small\begin{tabularx}{\linewidth}{>{\raggedright\arraybackslash}X>{\raggedright\arraybackslash}X>{\raggedright\arraybackslash}X}\toprule
 \textbf{Boundary} & \textbf{Normal part} & \textbf{Tangential part} \\ \midrule
-Two dielectrics, no surface charge & \textit{D}\textsubscript{n1} = \textit{D}\textsubscript{n2}, so \textit{E}\textsubscript{n1}/\textit{E}\textsubscript{n2} = ε\textsubscript{2}/ε\textsubscript{1} & \textit{E}\textsubscript{t1} = \textit{E}\textsubscript{t2}, so \textit{D}\textsubscript{t1}/\textit{D}\textsubscript{t2} = ε\textsubscript{1}/ε\textsubscript{2} \\
+Two dielectrics, no surface charge & \textit{D}\textsubscript{n1} = \textit{D}\textsubscript{n2}, so {\small\ensuremath{\dfrac{{E}_{\mathrm{n}1}}{{E}_{\mathrm{n}2}}}} = {\small\ensuremath{\dfrac{ε_{2}}{ε_{1}}}} & \textit{E}\textsubscript{t1} = \textit{E}\textsubscript{t2}, so {\small\ensuremath{\dfrac{{D}_{\mathrm{t}1}}{{D}_{\mathrm{t}2}}}} = {\small\ensuremath{\dfrac{ε_{1}}{ε_{2}}}} \\
 Surface charge σ\textsubscript{A} in vacuum & \textit{D}\textsubscript{n2} \ensuremath{-} \textit{D}\textsubscript{n1} = σ\textsubscript{A}, with \textit{n} pointing from side 1 into side 2 & \textit{E}\textsubscript{t1} = \textit{E}\textsubscript{t2} and \textit{D}\textsubscript{t1} = \textit{D}\textsubscript{t2} \\
-Conductor (1) to vacuum (2) & Inside \textit{D} = \textit{E} = 0; outside \textit{D} = σ\textsubscript{A}\textit{n}, \textit{E} = (σ\textsubscript{A}/ε\textsubscript{0})\textit{n}, \textit{n} pointing out of the metal & \textit{E}\textsubscript{t} = \textit{D}\textsubscript{t} = 0 \\
+Conductor (1) to vacuum (2) & Inside \textit{D} = \textit{E} = 0; outside \textit{D} = σ\textsubscript{A}\textit{n}, \textit{E} = ({\small\ensuremath{\dfrac{σ_{\mathrm{A}}}{ε_{0}}}})\textit{n}, \textit{n} pointing out of the metal & \textit{E}\textsubscript{t} = \textit{D}\textsubscript{t} = 0 \\
 \bottomrule\end{tabularx}\end{center}
 
 \Needspace{15\baselineskip}
-\textbf{Refraction of field lines.} The two parts change differently, so a field line bends at the boundary, much like light. Measuring the angle α from the normal, tan α = \textit{E}\textsubscript{t}/\textit{E}\textsubscript{n}, and the two conditions give tan α\textsubscript{1}/tan α\textsubscript{2} = ε\textsubscript{1}/ε\textsubscript{2}: in the medium with the larger ε the line leans further from the normal. (This rule follows directly from the table; the notes only mention the analogy with light.)
+\textbf{Refraction of field lines.} The two parts change differently, so a field line bends at the boundary, much like light. Measuring the angle α from the normal, tan α = {\small\ensuremath{\dfrac{{E}_{\mathrm{t}}}{{E}_{\mathrm{n}}}}}, and the two conditions give {\small\ensuremath{\dfrac{\tan \, α_{1}}{\tan \, α_{2}}}} = {\small\ensuremath{\dfrac{ε_{1}}{ε_{2}}}}: in the medium with the larger ε the line leans further from the normal. (This rule follows directly from the table; the notes only mention the analogy with light.)
 
 \begin{workedbox}{Worked example}
 A field of 100 V/m in vacuum hits a dielectric with ε\textsubscript{r} = 4 at 45° to the normal. There is no surface charge.
@@ -947,8 +947,8 @@ A field of 100 V/m in vacuum hits a dielectric with ε\textsubscript{r} = 4 at 4
 \Needspace{6\baselineskip}
 \begin{enumerate}
 \item Split: \textit{E}\textsubscript{n1} = \textit{E}\textsubscript{t1} = 100 cos 45° \ensuremath{\approx} 70.7 V/m.
-\item Tangential continuous: \textit{E}\textsubscript{t2} = 70.7 V/m. Normal \textit{D} continuous: \textit{E}\textsubscript{n2} = 70.7/4 \ensuremath{\approx} 17.7 V/m.
-\item \textit{E}\textsubscript{2} = \ensuremath{\sqrt{70.7²\, +\, 17.7²}} \ensuremath{\approx} 72.9 V/m at arctan(70.7/17.7) \ensuremath{\approx} 76° from the normal. Check: tan 45°/tan 76° = 1/4 = ε\textsubscript{1}/ε\textsubscript{2}.
+\item Tangential continuous: \textit{E}\textsubscript{t2} = 70.7 V/m. Normal \textit{D} continuous: \textit{E}\textsubscript{n2} = {\small\ensuremath{\dfrac{70.7}{4}}} \ensuremath{\approx} 17.7 V/m.
+\item \textit{E}\textsubscript{2} = \ensuremath{\sqrt{70.7²\, +\, 17.7²}} \ensuremath{\approx} 72.9 V/m at arctan({\small\ensuremath{\dfrac{70.7}{17.7}}}) \ensuremath{\approx} 76° from the normal. Check: tan 45°/tan 76° = {\small\ensuremath{\dfrac{1}{4}}} = {\small\ensuremath{\dfrac{ε_{1}}{ε_{2}}}}.
 \end{enumerate}
 \end{workedbox}
 
@@ -958,8 +958,8 @@ A field of 100 V/m in vacuum hits a dielectric with ε\textsubscript{r} = 4 at 4
 
 \Needspace{7\baselineskip}
 \begin{enumerate}
-\item One infinite sheet with +σ\textsubscript{A}: by symmetry \textit{D} has the same size on both sides and points away from the sheet. The jump condition gives \textit{D} \ensuremath{-} (\ensuremath{-}\textit{D}) = σ\textsubscript{A}, so \textit{D} = σ\textsubscript{A}/2 on each side.
-\item The \ensuremath{-}σ\textsubscript{A} sheet gives σ\textsubscript{A}/2 pointing toward it on both sides.
+\item One infinite sheet with +σ\textsubscript{A}: by symmetry \textit{D} has the same size on both sides and points away from the sheet. The jump condition gives \textit{D} \ensuremath{-} (\ensuremath{-}\textit{D}) = σ\textsubscript{A}, so \textit{D} = {\small\ensuremath{\dfrac{σ_{\mathrm{A}}}{2}}} on each side.
+\item The \ensuremath{-}σ\textsubscript{A} sheet gives {\small\ensuremath{\dfrac{σ_{\mathrm{A}}}{2}}} pointing toward it on both sides.
 \item Superpose: outside the plates the two contributions cancel; between them they add to \textit{D} = σ\textsubscript{A}, directed from + to \ensuremath{-}.
 \end{enumerate}
 
@@ -1016,7 +1016,7 @@ The notes compare three versions of the same ideal plate capacitor. The plates c
 \begin{center}\small\begin{tabularx}{\linewidth}{>{\raggedright\arraybackslash}X>{\raggedright\arraybackslash}X>{\raggedright\arraybackslash}X}\toprule
 \textbf{Gap filled with} & \textbf{Field in the slab} & \textbf{Voltage} \\ \midrule
 nothing (gap \textit{d}) & — & \textit{U} = \textit{E d}, the largest \\
-a dielectric slab (relative permittivity ε\textsubscript{r}) & \textit{E}/ε\textsubscript{r} & in between \\
+a dielectric slab (relative permittivity ε\textsubscript{r}) & {\small\ensuremath{\dfrac{{E}}{ε_{\mathrm{r}}}}} & in between \\
 a metal slab of the same thickness & 0 & \textit{E}(\textit{d}\textsubscript{1} + \textit{d}\textsubscript{2}), the smallest; only the air gaps count \\
 \bottomrule\end{tabularx}\end{center}
 
@@ -1029,7 +1029,7 @@ a metal slab of the same thickness & 0 & \textit{E}(\textit{d}\textsubscript{1} 
 \Needspace{13\baselineskip}
 Put an uncharged metal body into a field. Its free electrons drift toward the positive plate, leaving a deficit on the far side. The body as a whole stays neutral, but its surfaces now carry opposite charges. If the body is made of two touching sheets that you pull apart while they are still in the field, each sheet keeps its charge. The charges stop moving once the whole body is one equipotential and the inside is field-free. Because these induced charges depend on the field they create, general field problems with conductors are hard to compute.
 
-\textbf{Hollow conductor.} Put a charge \textit{Q} at the centre of a metal shell with inner radius \textit{a} and outer radius \textit{b}. The inner surface collects \ensuremath{-}\textit{Q}, the outer surface +\textit{Q}. \textit{D} = \textit{Q}/(4π\textit{r}\textsuperscript{2}) in the cavity, it drops to zero inside the metal, and outside it looks like the field of the point charge again. At each surface the induced σ equals the \textit{D} that arrives there, so \textit{D} jumps by exactly σ, as the interface condition demands.
+\textbf{Hollow conductor.} Put a charge \textit{Q} at the centre of a metal shell with inner radius \textit{a} and outer radius \textit{b}. The inner surface collects \ensuremath{-}\textit{Q}, the outer surface +\textit{Q}. \textit{D} = {\small\ensuremath{\dfrac{{Q}}{4π{r}^{2}}}} in the cavity, it drops to zero inside the metal, and outside it looks like the field of the point charge again. At each surface the induced σ equals the \textit{D} that arrives there, so \textit{D} jumps by exactly σ, as the interface condition demands.
 \end{keepsection}
 
 \begin{keepsection}
@@ -1091,14 +1091,14 @@ An isolated plate capacitor has voltage \textit{U}\textsubscript{a} = \textit{E 
 
 \Needspace{6\baselineskip}
 \begin{enumerate}
-\item The charge is fixed, so \textit{D} and the field \textit{E} in the air stay the same; in the slab the field is \textit{E}/4.
-\item \textit{U} = \textit{E}(\textit{d}/2) + (\textit{E}/4)(\textit{d}/2) = (5/8)\textit{E d} = 0.625 \textit{U}\textsubscript{a}.
+\item The charge is fixed, so \textit{D} and the field \textit{E} in the air stay the same; in the slab the field is {\small\ensuremath{\dfrac{{E}}{4}}}.
+\item \textit{U} = \textit{E}({\small\ensuremath{\dfrac{{d}}{2}}}) + ({\small\ensuremath{\dfrac{{E}}{4}}})({\small\ensuremath{\dfrac{{d}}{2}}}) = ({\small\ensuremath{\dfrac{5}{8}}})\textit{E d} = 0.625 \textit{U}\textsubscript{a}.
 \item A metal slab of the same thickness would give 0.5 \textit{U}\textsubscript{a}: lower still, as the hook predicts.
 \end{enumerate}
 \end{workedbox}
 
 \Needspace{7\baselineskip}
-\begin{notebox}\textbf{Near miss:} sliding a dielectric slab into an isolated charged capacitor lowers its voltage, which can seem odd because no charge was removed: \textit{Q} and \textit{D} stay the same, but \textit{E} = \textit{D}/ε falls, and with it \textit{U} = \textit{E} \textit{d}.\end{notebox}
+\begin{notebox}\textbf{Near miss:} sliding a dielectric slab into an isolated charged capacitor lowers its voltage, which can seem odd because no charge was removed: \textit{Q} and \textit{D} stay the same, but \textit{E} = {\small\ensuremath{\dfrac{{D}}{ε}}} falls, and with it \textit{U} = \textit{E} \textit{d}.\end{notebox}
 
 \Needspace{15\baselineskip}
 \begin{recallbox}{Recall check}
@@ -1122,7 +1122,7 @@ An isolated plate capacitor has voltage \textit{U}\textsubscript{a} = \textit{E 
 A capacitor is two conductors carrying equal and opposite charge, so that all the flux leaving the positive one ends on the negative one. Scale the charge by any factor and \textit{D}, \textit{E} and \textit{U} scale by the same factor, so \textit{Q} \ensuremath{\propto} \textit{U}.
 
 \Needspace{12\baselineskip}
-\begin{plainbox}\textbf{In plain words:} a capacitor stores charge on two conductors held apart. Put +\textit{Q} on one and \ensuremath{-}\textit{Q} on the other and a voltage \textit{U} appears between them; the ratio \textit{C} = \textit{Q}/\textit{U} is the \textbf{capacitance}, the charge it holds per volt. It depends only on shape, size and material, not on how much charge is there.\end{plainbox}
+\begin{plainbox}\textbf{In plain words:} a capacitor stores charge on two conductors held apart. Put +\textit{Q} on one and \ensuremath{-}\textit{Q} on the other and a voltage \textit{U} appears between them; the ratio \textit{C} = {\small\ensuremath{\dfrac{{Q}}{{U}}}} is the \textbf{capacitance}, the charge it holds per volt. It depends only on shape, size and material, not on how much charge is there.\end{plainbox}
 
 \begin{equationcard}{Capacitance (unit A s/V = F)}
 \[ \begin{gathered} {C}\, =\, \dfrac{{Q}}{{U}}\, =\, \dfrac{\oiint_{\mathrm{A}} \, {D}\, \cdot \, \mathrm{d}{A}}{\int_{\mathrm{s}} \, {E}\, \cdot \, \mathrm{d}{s}} \end{gathered} \]
@@ -1130,20 +1130,20 @@ A capacitor is two conductors carrying equal and opposite charge, so that all th
 \end{equationcard}
 
 \Needspace{12\baselineskip}
-\begin{notebox}\textbf{Recipe for any geometry:} assume \ensuremath{\pm}\textit{Q} \ensuremath{\to} find \textit{D} with Gauss \ensuremath{\to} \textit{E} = \textit{D}/ε \ensuremath{\to} \textit{U} = $\int $ \textit{E} \ensuremath{\cdot} d\textit{s} \ensuremath{\to} \textit{C} = \textit{Q}/\textit{U}. The \textit{Q} must cancel; if it does not, there is a mistake.\end{notebox}
+\begin{notebox}\textbf{Recipe for any geometry:} assume \ensuremath{\pm}\textit{Q} \ensuremath{\to} find \textit{D} with Gauss \ensuremath{\to} \textit{E} = {\small\ensuremath{\dfrac{{D}}{ε}}} \ensuremath{\to} \textit{U} = $\int $ \textit{E} \ensuremath{\cdot} d\textit{s} \ensuremath{\to} \textit{C} = {\small\ensuremath{\dfrac{{Q}}{{U}}}}. The \textit{Q} must cancel; if it does not, there is a mistake.\end{notebox}
 
 \Needspace{10\baselineskip}
 \begin{center}\small\begin{tabularx}{\linewidth}{>{\raggedright\arraybackslash}X>{\raggedright\arraybackslash}X>{\raggedright\arraybackslash}X}\toprule
 \textbf{Geometry} & \textbf{\textit{D} between electrodes} & \textbf{Capacitance} \\ \midrule
-Plates, area \textit{A}, gap \textit{d} & \textit{Q}/\textit{A} & \textit{C} = ε\textsubscript{0}ε\textsubscript{r}\textit{A}/\textit{d} \\
-Spherical, radii \textit{a} \ensuremath{<} \textit{b}, vacuum & \textit{Q}/(4π\textit{r}\textsuperscript{2}) & \textit{C} = 4π ε\textsubscript{0} \textit{a b}/(\textit{b} \ensuremath{-} \textit{a}) \\
-Coaxial, radii \textit{a} \ensuremath{<} \textit{b}, length \textit{l} & \textit{Q}/(2πρ\textit{l}) & \textit{C}/\textit{l} = 2π ε/ln(\textit{b}/\textit{a}) \\
+Plates, area \textit{A}, gap \textit{d} & {\small\ensuremath{\dfrac{{Q}}{{A}}}} & \textit{C} = {\small\ensuremath{\dfrac{ε_{0}ε_{\mathrm{r}}{A}}{{d}}}} \\
+Spherical, radii \textit{a} \ensuremath{<} \textit{b}, vacuum & {\small\ensuremath{\dfrac{{Q}}{4π{r}^{2}}}} & \textit{C} = 4π ε\textsubscript{0} {\small\ensuremath{\dfrac{{a\,b}}{{b}\, -\, {a}}}} \\
+Coaxial, radii \textit{a} \ensuremath{<} \textit{b}, length \textit{l} & {\small\ensuremath{\dfrac{{Q}}{2πρ{l}}}} & {\small\ensuremath{\dfrac{{C}}{{l}}}} = 2π {\small\ensuremath{\dfrac{ε}{\ln (\dfrac{{b}}{{a}})}}} \\
 \bottomrule\end{tabularx}\end{center}
 
 \Needspace{7\baselineskip}
 \begin{itemize}
-\item \textbf{Spherical:} \textit{U} = \textit{Q}/(4π ε\textsubscript{0}) (1/\textit{a} \ensuremath{-} 1/\textit{b}) = \textit{Q}(\textit{b} \ensuremath{-} \textit{a})/(4π ε\textsubscript{0}\textit{a b}). Limit check: for a thin gap \textit{d} = \textit{b} \ensuremath{-} \textit{a} \ensuremath{\ll} \textit{a}, \textit{C} \ensuremath{\approx} ε\textsubscript{0}4π\textit{a}\textsuperscript{2}/\textit{d}, the plate formula with the sphere’s area.
-\item \textbf{Coaxial:} \textit{U} = \textit{Q}/(2π ε \textit{l}) $\int_{\mathrm{a}}^{\mathrm{b}} $ dρ/ρ = \textit{Q} ln(\textit{b}/\textit{a})/(2π ε \textit{l}).
+\item \textbf{Spherical:} \textit{U} = {\small\ensuremath{\dfrac{{Q}}{4π\, ε_{0}}}} ({\small\ensuremath{\dfrac{1}{{a}}}} \ensuremath{-} {\small\ensuremath{\dfrac{1}{{b}}}}) = {\small\ensuremath{\dfrac{{Q}({b}\, -\, {a})}{4π\, ε_{0}{a\,b}}}}. Limit check: for a thin gap \textit{d} = \textit{b} \ensuremath{-} \textit{a} \ensuremath{\ll} \textit{a}, \textit{C} \ensuremath{\approx} {\small\ensuremath{\dfrac{ε_{0}4π{a}^{2}}{{d}}}}, the plate formula with the sphere’s area.
+\item \textbf{Coaxial:} \textit{U} = {\small\ensuremath{\dfrac{{Q}}{2π\, ε\, {l}}}} $\int_{\mathrm{a}}^{\mathrm{b}} $ {\small\ensuremath{\dfrac{\mathrm{d}ρ}{ρ}}} = \textit{Q} {\small\ensuremath{\dfrac{\ln (\dfrac{{b}}{{a}})}{2π\, ε\, {l}}}}.
 \item \textbf{Large \textit{C} in practice:} small gap (but the risk of breakdown grows), large area (metal foil on both sides of a thin film, rolled up: a wound capacitor), or high ε\textsubscript{r} (electrolytic capacitor).
 \end{itemize}
 
@@ -1155,7 +1155,7 @@ Coaxial, radii \textit{a} \ensuremath{<} \textit{b}, length \textit{l} & \textit
 \begin{center}\small\begin{tabularx}{\linewidth}{>{\raggedright\arraybackslash}X>{\raggedright\arraybackslash}X>{\raggedright\arraybackslash}X>{\raggedright\arraybackslash}X}\toprule
 \textbf{Connection} & \textbf{Same for every capacitor} & \textbf{Total} & \textbf{Why} \\ \midrule
 Parallel & voltage \textit{U} & \textit{C} = $\sum_{\mathrm{n}=1}^{\mathrm{N}} $ \textit{C}\textsubscript{n} & charges add: \textit{Q} = \textit{U} $\sum_{\mathrm{n}=1}^{\mathrm{N}} $ \textit{C}\textsubscript{n} \\
-Series & charge \textit{Q} & 1/\textit{C} = $\sum_{\mathrm{n}=1}^{\mathrm{N}} $ 1/\textit{C}\textsubscript{n} & induction gives every plate pair \ensuremath{\pm}\textit{Q}; voltages add \\
+Series & charge \textit{Q} & {\small\ensuremath{\dfrac{1}{{C}}}} = $\sum_{\mathrm{n}=1}^{\mathrm{N}} $ {\small\ensuremath{\dfrac{1}{{C}_{\mathrm{n}}}}} & induction gives every plate pair \ensuremath{\pm}\textit{Q}; voltages add \\
 \bottomrule\end{tabularx}\end{center}
 
 \Needspace{11\baselineskip}
@@ -1166,8 +1166,8 @@ Quick checks: a parallel total is larger than the largest capacitor; a series to
 
 \Needspace{5\baselineskip}
 \begin{enumerate}
-\item 1/\textit{C} = 1/6 + 1/3 = 1/2, so \textit{C} = 2 μF; \textit{Q} = 2 μF \ensuremath{\times} 12 V = 24 μC on each.
-\item \textit{U}\textsubscript{6} = 24/6 = 4 V and \textit{U}\textsubscript{3} = 24/3 = 8 V. They add to 12 V, and the smaller capacitor carries more voltage.
+\item {\small\ensuremath{\dfrac{1}{{C}}}} = {\small\ensuremath{\dfrac{1}{6}}} + {\small\ensuremath{\dfrac{1}{3}}} = {\small\ensuremath{\dfrac{1}{2}}}, so \textit{C} = 2 μF; \textit{Q} = 2 μF \ensuremath{\times} 12 V = 24 μC on each.
+\item \textit{U}\textsubscript{6} = {\small\ensuremath{\dfrac{24}{6}}} = 4 V and \textit{U}\textsubscript{3} = {\small\ensuremath{\dfrac{24}{3}}} = 8 V. They add to 12 V, and the smaller capacitor carries more voltage.
 \end{enumerate}
 \end{workedbox}
 \end{keepsection}
@@ -1178,13 +1178,13 @@ Quick checks: a parallel total is larger than the largest capacitor; a series to
 
 \Needspace{8\baselineskip}
 \begin{itemize}
-\item \textbf{Multilayer:} \textit{n} interleaved plates per terminal form 2\textit{n} \ensuremath{-} 1 equal capacitors in parallel: \textit{C} = (2\textit{n} \ensuremath{-} 1) ε\textit{A}/\textit{d}.
-\item \textbf{Variable (rotary) capacitor:} the overlap of rotor and stator is a ring sector of angle α, area α(\textit{r}\textsubscript{a}\textsuperscript{2} \ensuremath{-} \textit{r}\textsubscript{i}\textsuperscript{2})/2, so \textit{C} = (2\textit{n} \ensuremath{-} 1) ε\textsubscript{0}α(\textit{r}\textsubscript{a}\textsuperscript{2} \ensuremath{-} \textit{r}\textsubscript{i}\textsuperscript{2})/(2\textit{d}). Turning the rotor changes α and hence \textit{C}.
+\item \textbf{Multilayer:} \textit{n} interleaved plates per terminal form 2\textit{n} \ensuremath{-} 1 equal capacitors in parallel: \textit{C} = (2\textit{n} \ensuremath{-} 1) {\small\ensuremath{\dfrac{ε{A}}{{d}}}}.
+\item \textbf{Variable (rotary) capacitor:} the overlap of rotor and stator is a ring sector of angle α, area {\small\ensuremath{\dfrac{α({r}_{\mathrm{a}}^{2}\, -\, {r}_{\mathrm{i}}^{2})}{2}}}, so \textit{C} = (2\textit{n} \ensuremath{-} 1) {\small\ensuremath{\dfrac{ε_{0}α({r}_{\mathrm{a}}^{2}\, -\, {r}_{\mathrm{i}}^{2})}{2{d}}}}. Turning the rotor changes α and hence \textit{C}.
 \item \textbf{Stray capacitance:} any two conductors form a capacitor. A three-phase overhead line has partial capacitances between every pair of wires and from each wire to earth.
 \end{itemize}
 
 \Needspace{6\baselineskip}
-\begin{notebox}\textbf{Near miss:} doubling the charge on a capacitor does not double its capacitance: \textit{U} doubles too, so \textit{C} = \textit{Q}/\textit{U} stays the same.\end{notebox}
+\begin{notebox}\textbf{Near miss:} doubling the charge on a capacitor does not double its capacitance: \textit{U} doubles too, so \textit{C} = {\small\ensuremath{\dfrac{{Q}}{{U}}}} stays the same.\end{notebox}
 
 \Needspace{13\baselineskip}
 \begin{recallbox}{Recall check}
@@ -1205,14 +1205,14 @@ Quick checks: a parallel total is larger than the largest capacitor; a series to
 \section{1.14 Energy stored in an electric field}
 
 \Needspace{8\baselineskip}
-Charge a capacitor step by step. When it already holds \ensuremath{\pm}\textit{q}, its voltage is \textit{u} = \textit{q}/\textit{C}. Carrying a further d\textit{q} from the negative to the positive plate, against the field, costs d\textit{W}\textsubscript{e} = \textit{u} d\textit{q} = (\textit{q}/\textit{C}) d\textit{q}. (Lower-case letters mark quantities that change with time.)
+Charge a capacitor step by step. When it already holds \ensuremath{\pm}\textit{q}, its voltage is \textit{u} = {\small\ensuremath{\dfrac{{q}}{{C}}}}. Carrying a further d\textit{q} from the negative to the positive plate, against the field, costs d\textit{W}\textsubscript{e} = \textit{u} d\textit{q} = ({\small\ensuremath{\dfrac{{q}}{{C}}}}) d\textit{q}. (Lower-case letters mark quantities that change with time.)
 
 \Needspace{11\baselineskip}
 \begin{plainbox}\textbf{In plain words:} charging a capacitor takes work, because each extra bit of charge is pushed against the voltage already there. That work is stored in the field between the plates and comes back out when the capacitor discharges.\end{plainbox}
 
 \begin{equationcard}{Energy of a charged capacitor}
 \[ \begin{gathered} {W}_{\mathrm{e}}\, =\, \dfrac{1}{{C}}\, \int_{0}^{\mathrm{Q}} \, {q}\, \mathrm{d}{q}\, =\, \dfrac{{Q}^{2}}{2{C}}\, =\, \tfrac{1}{2}\, {C\,U}^{2}\, =\, \tfrac{1}{2}\, {Q\,U} \end{gathered} \]
-{\small \emph{Read it as: “W\textsubscript{e} is Q\textsuperscript{2} over 2C, which equals \ensuremath{\tfrac12} C U\textsuperscript{2} and \ensuremath{\tfrac12} Q U”.}\par Not \textit{Q U}: the voltage grows from 0 to \textit{U} during charging, so on average each bit of charge is lifted through only \textit{U}/2.}
+{\small \emph{Read it as: “W\textsubscript{e} is Q\textsuperscript{2} over 2C, which equals \ensuremath{\tfrac12} C U\textsuperscript{2} and \ensuremath{\tfrac12} Q U”.}\par Not \textit{Q U}: the voltage grows from 0 to \textit{U} during charging, so on average each bit of charge is lifted through only {\small\ensuremath{\dfrac{{U}}{2}}}.}
 \end{equationcard}
 
 \Needspace{14\baselineskip}
@@ -1228,11 +1228,11 @@ Charge a capacitor step by step. When it already holds \ensuremath{\pm}\textit{q
 \node[anchor=east,inner sep=1pt,font=\footnotesize] at (0.576,-0.288) {\textit{u}};
 \draw[black!80] (3.913,-2.556) -- (3.913,-2.700);
 \node[,inner sep=1pt,font=\footnotesize] at (3.913,-2.916) {Q};
-\end{tikzpicture}\par\smallskip{\small\raggedright \textbf{Charging}: the voltage \textit{u} = \textit{q}/\textit{C} grows from 0 to \textit{U} as charge goes on, so the work is the triangle under the line: \ensuremath{\tfrac12} \textit{Q} \textit{U}.\par}\end{minipage}
+\end{tikzpicture}\par\smallskip{\small\raggedright \textbf{Charging}: the voltage \textit{u} = {\small\ensuremath{\dfrac{{q}}{{C}}}} grows from 0 to \textit{U} as charge goes on, so the work is the triangle under the line: \ensuremath{\tfrac12} \textit{Q} \textit{U}.\par}\end{minipage}
 \end{center}
 
 \Needspace{10\baselineskip}
-\textbf{Where is the energy?} In the field. For a plate capacitor, \ensuremath{\tfrac12}\textit{C U}\textsuperscript{2} = \ensuremath{\tfrac12}(ε\textit{A}/\textit{d})(\textit{E d})\textsuperscript{2} = \ensuremath{\tfrac12}ε\textit{E}\textsuperscript{2} \ensuremath{\times} \textit{A d}, and \textit{A d} is the volume of the field region. Dividing by the volume gives an energy density that also holds for non-uniform fields:
+\textbf{Where is the energy?} In the field. For a plate capacitor, \ensuremath{\tfrac12}\textit{C U}\textsuperscript{2} = \ensuremath{\tfrac12}({\small\ensuremath{\dfrac{ε{A}}{{d}}}})(\textit{E d})\textsuperscript{2} = \ensuremath{\tfrac12}ε\textit{E}\textsuperscript{2} \ensuremath{\times} \textit{A d}, and \textit{A d} is the volume of the field region. Dividing by the volume gives an energy density that also holds for non-uniform fields:
 
 \begin{equationcard}{Energy density (unit J/m³)}
 \[ \begin{gathered} {w}_{\mathrm{e}}\, =\, \tfrac{1}{2}\, {E}\, \cdot \, {D}\, =\, \tfrac{1}{2}\, ε\, {E}^{2} \\ {W}_{\mathrm{e}}\, =\, \iiint_{\mathrm{V}} \, {w}_{\mathrm{e}}\, \mathrm{d}{V} \end{gathered} \]
@@ -1240,15 +1240,15 @@ Charge a capacitor step by step. When it already holds \ensuremath{\pm}\textit{q
 \end{equationcard}
 
 \Needspace{11\baselineskip}
-\textbf{Spring analogy:} a spring with constant \textit{c}\textsubscript{s} stores \ensuremath{\tfrac12}\textit{c}\textsubscript{s}\textit{X}\textsuperscript{2} = \ensuremath{\tfrac12}\textit{F}\textsubscript{X}\textsuperscript{2}/\textit{c}\textsubscript{s}. Matching it to \ensuremath{\tfrac12}\textit{Q}\textsuperscript{2}/\textit{C}, capacitance plays the part of 1/\textit{c}\textsubscript{s} (a soft spring) and voltage the part of force.
+\textbf{Spring analogy:} a spring with constant \textit{c}\textsubscript{s} stores \ensuremath{\tfrac12}\textit{c}\textsubscript{s}\textit{X}\textsuperscript{2} = {\small\ensuremath{\dfrac{\tfrac{1}{2}{F}_{\mathrm{X}}^{2}}{{c}_{\mathrm{s}}}}}. Matching it to {\small\ensuremath{\dfrac{\tfrac{1}{2}{Q}^{2}}{{C}}}}, capacitance plays the part of {\small\ensuremath{\dfrac{1}{{c}_{\mathrm{s}}}}} (a soft spring) and voltage the part of force.
 
 \begin{workedbox}{Worked example: two routes, one answer}
 Plates: \textit{A} = 0.01 m², \textit{d} = 0.5 mm, ε\textsubscript{r} = 3, \textit{U} = 50 V.
 
-\Needspace{6\baselineskip}
+\Needspace{5\baselineskip}
 \begin{enumerate}
-\item Circuit route: \textit{C} = 3 \ensuremath{\times} 8.854 \ensuremath{\times} 10\textsuperscript{\ensuremath{-}12} \ensuremath{\times} 0.01/(5 \ensuremath{\times} 10\textsuperscript{\ensuremath{-}4}) \ensuremath{\approx} 531 pF; \textit{W}\textsubscript{e} = \ensuremath{\tfrac12} \ensuremath{\times} 531 pF \ensuremath{\times} 50\textsuperscript{2} \ensuremath{\approx} 0.66 μJ.
-\item Field route: \textit{E} = \textit{U}/\textit{d} = 10\textsuperscript{5} V/m; \textit{w}\textsubscript{e} = \ensuremath{\tfrac12} \ensuremath{\times} 3ε\textsubscript{0} \ensuremath{\times} 10\textsuperscript{10} \ensuremath{\approx} 0.133 J/m³; volume 5 \ensuremath{\times} 10\textsuperscript{\ensuremath{-}6} m³; \textit{W}\textsubscript{e} \ensuremath{\approx} 0.66 μJ.
+\item Circuit route: \textit{C} = 3 \ensuremath{\times} 8.854 \ensuremath{\times} 10\textsuperscript{\ensuremath{-}12} \ensuremath{\times} {\small\ensuremath{\dfrac{0.01}{5\, \times \, 10^{-4}}}} \ensuremath{\approx} 531 pF; \textit{W}\textsubscript{e} = \ensuremath{\tfrac12} \ensuremath{\times} 531 pF \ensuremath{\times} 50\textsuperscript{2} \ensuremath{\approx} 0.66 μJ.
+\item Field route: \textit{E} = {\small\ensuremath{\dfrac{{U}}{{d}}}} = 10\textsuperscript{5} V/m; \textit{w}\textsubscript{e} = \ensuremath{\tfrac12} \ensuremath{\times} 3ε\textsubscript{0} \ensuremath{\times} 10\textsuperscript{10} \ensuremath{\approx} 0.133 J/m³; volume 5 \ensuremath{\times} 10\textsuperscript{\ensuremath{-}6} m³; \textit{W}\textsubscript{e} \ensuremath{\approx} 0.66 μJ.
 \end{enumerate}
 \end{workedbox}
 
@@ -1259,7 +1259,7 @@ Plates: \textit{A} = 0.01 m², \textit{d} = 0.5 mm, ε\textsubscript{r} = 3, \te
 \begin{recallbox}{Recall check}
 \Needspace{4\baselineskip}
 \begin{enumerate}
-\item Derive \textit{W}\textsubscript{e} = \textit{Q}\textsuperscript{2}/(2\textit{C}) in three lines.
+\item Derive \textit{W}\textsubscript{e} = {\small\ensuremath{\dfrac{{Q}^{2}}{2{C}}}} in three lines.
 \item Write the energy density two ways and give its unit.
 \end{enumerate}
 
@@ -1279,14 +1279,14 @@ Close the page and rebuild this table from memory before checking it.
 \textbf{Quantity} & \textbf{Core relation} & \textbf{SI unit} \\ \midrule
 Charge & \textit{Q} = \textit{N e}, \textit{Q} = $\iiint $ ϱ\textsubscript{V} d\textit{V} & C = A s \\
 Force & \textit{F} = \textit{Q E} & N \\
-Field strength & \textit{E} = \textit{Q} \textit{r}/(4π ε\textsubscript{0}\textit{r}\textsuperscript{3}) & V/m = N/C \\
+Field strength & \textit{E} = \textit{Q} {\small\ensuremath{\dfrac{{r}}{4π\, ε_{0}{r}^{3}}}} & V/m = N/C \\
 Potential & φ\textsubscript{e}(P) = \ensuremath{-}$\int_{\mathrm{P}0}^{\mathrm{P}} $ \textit{E} \ensuremath{\cdot} d\textit{s} & V \\
 Voltage & \textit{U}\textsubscript{12} = φ\textsubscript{1} \ensuremath{-} φ\textsubscript{2} = $\int_{1}^{2} $ \textit{E} \ensuremath{\cdot} d\textit{s} & V \\
 Work (external) & \textit{W}\textsubscript{e} = \textit{Q}(φ\textsubscript{end} \ensuremath{-} φ\textsubscript{start}) & J \\
 Flux density & \textit{D} = ε\textsubscript{0}ε\textsubscript{r}\textit{E} = ε\textsubscript{0}\textit{E} + \textit{P} & C/m² \\
 Flux & Ψ = $\iint $ \textit{D} \ensuremath{\cdot} d\textit{A}; closed: Ψ = \textit{Q}\textsubscript{enc} & C \\
 Dipole moment, polarisation & \textit{p} = \textit{Q d}, \textit{P} = ε\textsubscript{0}χ\textit{E}, χ = ε\textsubscript{r} \ensuremath{-} 1 & C m, C/m² \\
-Capacitance & \textit{C} = \textit{Q}/\textit{U} & F = A s/V \\
+Capacitance & \textit{C} = {\small\ensuremath{\dfrac{{Q}}{{U}}}} & F = A s/V \\
 Energy, energy density & \textit{W}\textsubscript{e} = \ensuremath{\tfrac12}\textit{C U}\textsuperscript{2}, \textit{w}\textsubscript{e} = \ensuremath{\tfrac12}\textit{E} \ensuremath{\cdot} \textit{D} & J, J/m³ \\
 \bottomrule\end{tabularx}\end{center}
 
@@ -1343,12 +1343,12 @@ Answer aloud in full sentences, as if teaching someone. If you stall, that is th
 \section{Mixed practice}
 
 \Needspace{8\baselineskip}
-Use ε\textsubscript{0} = 8.854 \ensuremath{\times} 10\textsuperscript{\ensuremath{-}12} F/m and 1/(4π ε\textsubscript{0}) \ensuremath{\approx} 8.988 \ensuremath{\times} 10\textsuperscript{9} V m/(A s). The 38 problems are shuffled across sections, so first decide which idea a problem needs, then solve it. Each answer names the section to revisit if you miss it.
+Use ε\textsubscript{0} = 8.854 \ensuremath{\times} 10\textsuperscript{\ensuremath{-}12} F/m and {\small\ensuremath{\dfrac{1}{4π\, ε_{0}}}} \ensuremath{\approx} 8.988 \ensuremath{\times} 10\textsuperscript{9} V m/(A s). The 38 problems are shuffled across sections, so first decide which idea a problem needs, then solve it. Each answer names the section to revisit if you miss it.
 
 \begin{enumerate}
 \item \textit{Q}\textsubscript{1} = +1 μC sits at the origin and \textit{Q}\textsubscript{2} = +2 μC at (3 cm, 4 cm). Find the force vector on \textit{Q}\textsubscript{2}.
 \item A material has ε\textsubscript{r} = 4 and \textit{E} = 250 V/m. Find |\textit{D}|.
-\item A line density varies as λ(\textit{x}) = 2\textit{x} μC/m from \textit{x} = 0 to 3 m. Find the total charge.
+\item A line density varies as λ(\textit{x}) = 2\textit{x} {\small\ensuremath{\dfrac{μ\mathrm{C}}{\mathrm{m}}}} from \textit{x} = 0 to 3 m. Find the total charge.
 \item φ\textsubscript{A} = 12 V and φ\textsubscript{B} = \ensuremath{-}3 V. Find \textit{U}\textsubscript{AB} and the work needed to move +2 μC from A to B.
 \item A 10 μF capacitor is charged to 12 V. Find its stored energy.
 \item At an uncharged interface, ε\textsubscript{1} = 2ε\textsubscript{0}, ε\textsubscript{2} = 4ε\textsubscript{0}, \textit{E}\textsubscript{n1} = 100 V/m and \textit{E}\textsubscript{t1} = 80 V/m. Find \textit{E}\textsubscript{n2} and \textit{E}\textsubscript{t2}.
@@ -1363,18 +1363,18 @@ Use ε\textsubscript{0} = 8.854 \ensuremath{\times} 10\textsuperscript{\ensurema
 \item A uniform 500 V/m field points from A to B, which are 0.08 m apart along the field. Find \textit{U}\textsubscript{AB}.
 \item A spherical capacitor in vacuum has \textit{a} = 5 cm and \textit{b} = 6 cm. Find \textit{C} and compare it with the thin-gap plate approximation.
 \item A conducting surface in vacuum carries σ\textsubscript{A} = 4 nC/m². Find the field just outside and inside the conductor.
-\item A line carries a uniform 5 μC/m over 0.40 m. Find its charge.
+\item A line carries a uniform 5 {\small\ensuremath{\dfrac{μ\mathrm{C}}{\mathrm{m}}}} over 0.40 m. Find its charge.
 \item \ensuremath{-}2 nC is moved from 0.20 m to 0.10 m from a fixed +5 nC. Find \textit{W}\textsubscript{e} and say who does the work.
 \item Find the equivalent of 6 μF and 3 μF in parallel and in series, and say what is common to the elements in each case.
-\item A uniform \textit{D} = 3 μC/m² is normal to a 0.20 m² surface. Find the flux.
+\item A uniform \textit{D} = 3 {\small\ensuremath{\dfrac{μ\mathrm{C}}{\mathrm{m}²}}} is normal to a 0.20 m² surface. Find the flux.
 \item Find the force between +2 μC and \ensuremath{-}3 μC that are 0.20 m apart, and say whether it attracts or repels.
 \item A 10 nF capacitor is charged to 100 V. A dielectric with ε\textsubscript{r} = 4 then fills the gap. Find \textit{U}, \textit{Q} and \textit{W}\textsubscript{e} afterwards if (a) the source was disconnected first, (b) the source stays connected.
-\item A long uniformly charged cylinder has ϱ\textsubscript{V} = 4 μC/m³ and \textit{a} = 0.10 m. Find \textit{D} at ρ = 0.05 m.
+\item A long uniformly charged cylinder has ϱ\textsubscript{V} = 4 {\small\ensuremath{\dfrac{μ\mathrm{C}}{\mathrm{m}³}}} and \textit{a} = 0.10 m. Find \textit{D} at ρ = 0.05 m.
 \item A field of 200 V/m in a medium with ε\textsubscript{r} = 2 meets a medium with ε\textsubscript{r} = 6 at 30° to the normal. There is no surface charge. Find the size and angle of the field in medium 2.
 \item The distance between two point charges doubles. What happens to the force?
 \item A multilayer capacitor has 5 plates per terminal, plate area 1 cm², layer thickness 10 μm and ε\textsubscript{r} = 1000. Find \textit{C}.
 \item +2 μC moves 0.10 m along a uniform 200 V/m field. Find the externally supplied energy.
-\item A ball of radius \textit{R} = 0.1 m has ϱ(\textit{r}) = \textit{k r} with \textit{k} = 10\textsuperscript{\ensuremath{-}6} C/m\textsuperscript{4}. Find its total charge and \textit{D} at its surface.
+\item A ball of radius \textit{R} = 0.1 m has ϱ(\textit{r}) = \textit{k r} with \textit{k} = 10\textsuperscript{\ensuremath{-}6} {\small\ensuremath{\dfrac{\mathrm{C}}{\mathrm{m}^{4}}}}. Find its total charge and \textit{D} at its surface.
 \item +2 nC at \textit{x} = \ensuremath{-}0.10 m and \ensuremath{-}2 nC at \textit{x} = +0.10 m. Find \textit{E} at the origin.
 \item Plates with ε\textsubscript{r} = 2, area 0.020 m², gap 1.0 mm. Find \textit{C}.
 \item A metal sphere of radius 0.10 m carries 2 nC. Find σ\textsubscript{A}, the field just outside, and compare with the point-charge field at the same radius.
@@ -1404,7 +1404,7 @@ Inner conductor radius 0.5 mm, outer conductor radius 2 mm, dielectric ε\textsu
 
 \Needspace{7\baselineskip}
 \begin{enumerate}
-\item Derive \textit{C}/\textit{l} with the five-step recipe, then find \textit{C}.
+\item Derive {\small\ensuremath{\dfrac{{C}}{{l}}}} with the five-step recipe, then find \textit{C}.
 \item Find the charge on the inner conductor.
 \item Find \textit{E} at the inner and the outer conductor. Where would the dielectric break down first?
 \item Find the stored energy.
@@ -1424,7 +1424,7 @@ Plate area 100 cm². Layer 1: 1 mm thick, ε\textsubscript{r} = 2. Layer 2: 2 mm
 \begin{enumerate}
 \item Which quantity is the same in both layers, and which interface condition says so?
 \item Find \textit{D}, \textit{E}\textsubscript{1}, \textit{E}\textsubscript{2} and the voltage across each layer.
-\item Find \textit{C} in two ways: from \textit{Q}/\textit{U}, and as two capacitors in series.
+\item Find \textit{C} in two ways: from {\small\ensuremath{\dfrac{{Q}}{{U}}}}, and as two capacitors in series.
 \item Find the energy stored in each layer.
 \end{enumerate}
 
@@ -1437,7 +1437,7 @@ Plate area 100 cm². Layer 1: 1 mm thick, ε\textsubscript{r} = 2. Layer 2: 2 mm
 \section{Slips in the notes}
 
 \Needspace{16\baselineskip}
-We sent the professor a list of small slips in the WS 2026/27 notes, and the revised script (November 2026) fixes most of them. These three remain; page numbers are the ones printed on the pages.
+We sent the professor a list of small slips in the WS {\small\ensuremath{\dfrac{2026}{27}}} notes, and the revised script (November 2026) fixes most of them. These three remain; page numbers are the ones printed on the pages.
 
 \Needspace{12\baselineskip}
 \begin{itemize}
@@ -1486,8 +1486,8 @@ Tick a skill only when you have done its problems without notes on a later day t
 \item Experiments show that the forces from several charges on a probe add as vectors. In a homogeneous medium the fields therefore add as vectors too (superposition).
 \item The total charge inside the surface: $\oint $ \textit{D} \ensuremath{\cdot} d\textit{A} = \textit{Q}\textsubscript{enclosed}.
 \item Free charges move under any field inside the metal until their own field cancels it. In the static state nothing moves any more, so the interior field is zero.
-\item The normal part of \textit{D}. The normal part of \textit{E} jumps in the ratio ε\textsubscript{2}/ε\textsubscript{1}.
-\item Capacitance \textit{C} = \textit{Q}/\textit{U} depends only on geometry and material. Stored energy \ensuremath{\tfrac12}\textit{C U}\textsuperscript{2} also depends on how far the capacitor is charged.
+\item The normal part of \textit{D}. The normal part of \textit{E} jumps in the ratio {\small\ensuremath{\dfrac{ε_{2}}{ε_{1}}}}.
+\item Capacitance \textit{C} = {\small\ensuremath{\dfrac{{Q}}{{U}}}} depends only on geometry and material. Stored energy \ensuremath{\tfrac12}\textit{C U}\textsuperscript{2} also depends on how far the capacitor is charged.
 \end{enumerate}
 
 \end{keepsection}
@@ -1496,7 +1496,7 @@ Tick a skill only when you have done its problems without notes on a later day t
 \Needspace{4\baselineskip}
 \begin{enumerate}
 \item We see both attraction and repulsion; one kind of charge could only produce one of them.
-\item \ensuremath{-}4.8 \ensuremath{\times} 10\textsuperscript{\ensuremath{-}19}/1.602 \ensuremath{\times} 10\textsuperscript{\ensuremath{-}19} \ensuremath{\approx} \ensuremath{-}3: it gained three electrons.
+\item \ensuremath{-}4.8 \ensuremath{\times} {\small\ensuremath{\dfrac{10^{-19}}{1.602}}} \ensuremath{\times} 10\textsuperscript{\ensuremath{-}19} \ensuremath{\approx} \ensuremath{-}3: it gained three electrons.
 \end{enumerate}
 
 \end{keepsection}
@@ -1505,7 +1505,7 @@ Tick a skill only when you have done its problems without notes on a later day t
 \Needspace{4\baselineskip}
 \begin{enumerate}
 \item From the charge that produces the force toward the charge on which it acts.
-\item Nothing: 3 \ensuremath{\times} 3/3\textsuperscript{2} = 1.
+\item Nothing: 3 \ensuremath{\times} {\small\ensuremath{\dfrac{3}{3^{2}}}} = 1.
 \end{enumerate}
 
 \end{keepsection}
@@ -1514,7 +1514,7 @@ Tick a skill only when you have done its problems without notes on a later day t
 \Needspace{4\baselineskip}
 \begin{enumerate}
 \item \textit{E} is unchanged; \textit{F} doubles.
-\item \textit{E} = \textit{Q} \textit{r}/(4π ε\textsubscript{0} \textit{r}\textsuperscript{3}), where \textit{r} = \textit{r}\textsubscript{P} \ensuremath{-} \textit{r}\textsubscript{Q} points from source to observation point.
+\item \textit{E} = \textit{Q} {\small\ensuremath{\dfrac{{r}}{4π\, ε_{0}\, {r}^{3}}}}, where \textit{r} = \textit{r}\textsubscript{P} \ensuremath{-} \textit{r}\textsubscript{Q} points from source to observation point.
 \end{enumerate}
 
 \end{keepsection}
@@ -1579,7 +1579,7 @@ Tick a skill only when you have done its problems without notes on a later day t
 \begin{enumerate}
 \item The outward flux of \textit{D} through any closed surface equals the total charge enclosed.
 \item \textit{D} is radial and the cap normals point along \ensuremath{\pm}\textit{z}, so \textit{D} \ensuremath{\cdot} d\textit{A} = 0 there.
-\item \textit{D} stays the same (set by the charge); \textit{E} = \textit{D}/(ε\textsubscript{0}ε\textsubscript{r}) drops by a factor of ε\textsubscript{r}.
+\item \textit{D} stays the same (set by the charge); \textit{E} = {\small\ensuremath{\dfrac{{D}}{ε_{0}ε_{\mathrm{r}}}}} drops by a factor of ε\textsubscript{r}.
 \end{enumerate}
 
 \end{keepsection}
@@ -1589,7 +1589,7 @@ Tick a skill only when you have done its problems without notes on a later day t
 \begin{enumerate}
 \item A thin pillbox (Gauss) for the normal part and a thin rectangle ($\oint $ \textit{E} \ensuremath{\cdot} d\textit{s} = 0) for the tangential part. With \textit{h} \ensuremath{\to} 0 the side walls contribute nothing, leaving only the two faces or the two long sides.
 \item A tangential field would move the free charges along the surface; in the static state they have already moved until it vanished.
-\item Away from the normal: tan α grows by the factor 8/2 = 4.
+\item Away from the normal: tan α grows by the factor {\small\ensuremath{\dfrac{8}{2}}} = 4.
 \end{enumerate}
 
 \end{keepsection}
@@ -1597,7 +1597,7 @@ Tick a skill only when you have done its problems without notes on a later day t
 
 \Needspace{8\baselineskip}
 \begin{enumerate}
-\item Empty is largest: the full gap has field \textit{E}. Dielectric is in between: the field in the slab is reduced to \textit{E}/ε\textsubscript{r}. Metal is smallest: the field in the slab is zero.
+\item Empty is largest: the full gap has field \textit{E}. Dielectric is in between: the field in the slab is reduced to {\small\ensuremath{\dfrac{{E}}{ε_{\mathrm{r}}}}}. Metal is smallest: the field in the slab is zero.
 \item Induction moves free charges across a conductor; polarisation only shifts or turns bound charges inside an insulator.
 \item From the negative to the positive charge. A uniform field exerts no net force, only a torque that aligns \textit{p} with \textit{E}.
 \end{enumerate}
@@ -1607,9 +1607,9 @@ Tick a skill only when you have done its problems without notes on a later day t
 
 \Needspace{6\baselineskip}
 \begin{enumerate}
-\item Assume \ensuremath{\pm}\textit{Q}; Gauss for \textit{D}; \textit{E} = \textit{D}/ε; integrate \textit{E} for \textit{U}; \textit{C} = \textit{Q}/\textit{U}.
+\item Assume \ensuremath{\pm}\textit{Q}; Gauss for \textit{D}; \textit{E} = {\small\ensuremath{\dfrac{{D}}{ε}}}; integrate \textit{E} for \textit{U}; \textit{C} = {\small\ensuremath{\dfrac{{Q}}{{U}}}}.
 \item Only the outer plates are charged from outside. Each inner pair of plates forms an isolated, neutral conductor, which induction splits into \ensuremath{-}\textit{Q} and +\textit{Q}.
-\item The plate capacitor with area 4π\textit{a}\textsuperscript{2}: \textit{C} \ensuremath{\approx} ε\textsubscript{0}4π\textit{a}\textsuperscript{2}/\textit{d}.
+\item The plate capacitor with area 4π\textit{a}\textsuperscript{2}: \textit{C} \ensuremath{\approx} {\small\ensuremath{\dfrac{ε_{0}4π{a}^{2}}{{d}}}}.
 \end{enumerate}
 
 \end{keepsection}
@@ -1617,7 +1617,7 @@ Tick a skill only when you have done its problems without notes on a later day t
 
 \Needspace{4\baselineskip}
 \begin{enumerate}
-\item d\textit{W} = \textit{u} d\textit{q}; \textit{u} = \textit{q}/\textit{C}; $\int_{0}^{\mathrm{Q}} $ (\textit{q}/\textit{C}) d\textit{q} = \textit{Q}\textsuperscript{2}/(2\textit{C}).
+\item d\textit{W} = \textit{u} d\textit{q}; \textit{u} = {\small\ensuremath{\dfrac{{q}}{{C}}}}; $\int_{0}^{\mathrm{Q}} $ ({\small\ensuremath{\dfrac{{q}}{{C}}}}) d\textit{q} = {\small\ensuremath{\dfrac{{Q}^{2}}{2{C}}}}.
 \item \textit{w}\textsubscript{e} = \ensuremath{\tfrac12}\textit{E} \ensuremath{\cdot} \textit{D} = \ensuremath{\tfrac12}ε\textit{E}\textsuperscript{2}, in J/m³.
 \end{enumerate}
 
@@ -1628,55 +1628,55 @@ Tick a skill only when you have done its problems without notes on a later day t
 \begin{enumerate}
 \item After any round trip the field, and so the system’s energy, is unchanged, so the net work is zero. The work between two points is therefore path-independent, which lets you assign each point a potential.
 \item Free charges move under any field. In the static state they have stopped, so there is no field inside and no tangential component at the surface; only a normal component remains outside.
-\item With the charge fixed, \textit{D} is fixed. A dielectric reduces \textit{E} in the slab to \textit{E}/ε\textsubscript{r} through polarisation charges; a metal reduces it to zero through induced charges. Less field over the same distance means less voltage.
+\item With the charge fixed, \textit{D} is fixed. A dielectric reduces \textit{E} in the slab to {\small\ensuremath{\dfrac{{E}}{ε_{\mathrm{r}}}}} through polarisation charges; a metal reduces it to zero through induced charges. Less field over the same distance means less voltage.
 \item When symmetry fixes the direction of \textit{D} and makes its size constant on a closed surface (sphere, long cylinder, plane). Otherwise it still gives the total flux, but not the field at a point.
-\item A flat pillbox with no enclosed charge has zero total flux, so the normal \textit{D} going in equals the normal \textit{D} coming out. Since \textit{E} = \textit{D}/ε and ε differs on the two sides, the normal \textit{E} must differ.
+\item A flat pillbox with no enclosed charge has zero total flux, so the normal \textit{D} going in equals the normal \textit{D} coming out. Since \textit{E} = {\small\ensuremath{\dfrac{{D}}{ε}}} and ε differs on the two sides, the normal \textit{E} must differ.
 \item A potential is work per charge measured from a chosen zero point. In a difference of two potentials, the path from the reference cancels out.
 \item Only the outer plates are connected to the source. Each inner pair of plates is an isolated, neutral conductor, so induction can only split it into \ensuremath{-}\textit{Q} and +\textit{Q}.
-\item While charging, the voltage rises from 0 to \textit{U}. Each bit of charge is moved through the voltage present at that moment, which averages \textit{U}/2.
+\item While charging, the voltage rises from 0 to \textit{U}. Each bit of charge is moved through the voltage present at that moment, which averages {\small\ensuremath{\dfrac{{U}}{2}}}.
 \end{enumerate}
 
 \end{keepsection}
 \begin{keepsection}\subsection{Mixed practice}
 
 \begin{enumerate}
-\item \textit{r} = 0.05 m, |\textit{F}| = 8.988 \ensuremath{\times} 10\textsuperscript{9} \ensuremath{\times} 2 \ensuremath{\times} 10\textsuperscript{\ensuremath{-}12}/0.0025 \ensuremath{\approx} 7.19 N along (0.6, 0.8): \textit{F} \ensuremath{\approx} (4.31, 5.75) N, repulsion. \hfill{\small\color{FAUblue}§1.2}
+\item \textit{r} = 0.05 m, |\textit{F}| = 8.988 \ensuremath{\times} 10\textsuperscript{9} \ensuremath{\times} 2 \ensuremath{\times} {\small\ensuremath{\dfrac{10^{-12}}{0.0025}}} \ensuremath{\approx} 7.19 N along (0.6, 0.8): \textit{F} \ensuremath{\approx} (4.31, 5.75) N, repulsion. \hfill{\small\color{FAUblue}§1.2}
 \item \textit{D} = ε\textsubscript{0}ε\textsubscript{r}\textit{E} \ensuremath{\approx} 8.85 \ensuremath{\times} 10\textsuperscript{\ensuremath{-}9} C/m². \hfill{\small\color{FAUblue}§1.10}
 \item \textit{Q} = $\int_{0}^{3} $ 2\textit{x} d\textit{x} μC = 9 μC. \hfill{\small\color{FAUblue}§1.6}
 \item \textit{U}\textsubscript{AB} = 15 V; \textit{W}\textsubscript{e} = \textit{Q}(φ\textsubscript{B} \ensuremath{-} φ\textsubscript{A}) = 2 μC \ensuremath{\times} (\ensuremath{-}15 V) = \ensuremath{-}30 μJ: the field does the work. \hfill{\small\color{FAUblue}§1.9}
 \item \ensuremath{\tfrac12} \ensuremath{\times} 10 μF \ensuremath{\times} 12\textsuperscript{2} = 720 μJ. \hfill{\small\color{FAUblue}§1.14}
-\item \textit{E}\textsubscript{n2} = (ε\textsubscript{1}/ε\textsubscript{2})\textit{E}\textsubscript{n1} = 50 V/m; \textit{E}\textsubscript{t2} = 80 V/m. \hfill{\small\color{FAUblue}§1.11}
-\item 8.988 \ensuremath{\times} 10\textsuperscript{9} \ensuremath{\times} 4 \ensuremath{\times} 10\textsuperscript{\ensuremath{-}9}/0.04 \ensuremath{\approx} 899 V/m, pointing toward the charge. \hfill{\small\color{FAUblue}§1.3}
+\item \textit{E}\textsubscript{n2} = ({\small\ensuremath{\dfrac{ε_{1}}{ε_{2}}}})\textit{E}\textsubscript{n1} = 50 V/m; \textit{E}\textsubscript{t2} = 80 V/m. \hfill{\small\color{FAUblue}§1.11}
+\item 8.988 \ensuremath{\times} 10\textsuperscript{9} \ensuremath{\times} 4 \ensuremath{\times} {\small\ensuremath{\dfrac{10^{-9}}{0.04}}} \ensuremath{\approx} 899 V/m, pointing toward the charge. \hfill{\small\color{FAUblue}§1.3}
 \item \textit{C} = 1.6 μF, \textit{Q} = 16 μC; \textit{U}\textsubscript{2μF} = 8 V, \textit{U}\textsubscript{8μF} = 2 V. \hfill{\small\color{FAUblue}§1.13}
-\item 8.988 \ensuremath{\times} 10\textsuperscript{9} \ensuremath{\times} 3 \ensuremath{\times} 10\textsuperscript{\ensuremath{-}9}/0.30 \ensuremath{\approx} 89.9 V. \hfill{\small\color{FAUblue}§1.8}
+\item 8.988 \ensuremath{\times} 10\textsuperscript{9} \ensuremath{\times} 3 \ensuremath{\times} {\small\ensuremath{\dfrac{10^{-9}}{0.30}}} \ensuremath{\approx} 89.9 V. \hfill{\small\color{FAUblue}§1.8}
 \item (a) 4.0 V; (b) the field is zero in the metal: 1000 \ensuremath{\times} 0.003 = 3.0 V; (c) 1000 \ensuremath{\times} 0.003 + 200 \ensuremath{\times} 0.001 = 3.2 V. Empty \ensuremath{>} dielectric \ensuremath{>} metal. \hfill{\small\color{FAUblue}§1.12}
-\item 4.806 \ensuremath{\times} 10\textsuperscript{\ensuremath{-}19}/1.602 \ensuremath{\times} 10\textsuperscript{\ensuremath{-}19} = 3: a deficit of three electrons. \hfill{\small\color{FAUblue}§1.1}
-\item Inside: ϱ\textsubscript{V}\textit{a}/2; outside: ϱ\textsubscript{V}\textit{a}\textsuperscript{2}/(2\textit{a}) = ϱ\textsubscript{V}\textit{a}/2. There is no surface charge at ρ = \textit{a}, so normal \textit{D} must be continuous; a mismatch would reveal an algebra slip. \hfill{\small\color{FAUblue}§1.10}
+\item 4.806 \ensuremath{\times} {\small\ensuremath{\dfrac{10^{-19}}{1.602}}} \ensuremath{\times} 10\textsuperscript{\ensuremath{-}19} = 3: a deficit of three electrons. \hfill{\small\color{FAUblue}§1.1}
+\item Inside: {\small\ensuremath{\dfrac{ϱ_{\mathrm{V}}{a}}{2}}}; outside: {\small\ensuremath{\dfrac{ϱ_{\mathrm{V}}{a}^{2}}{2{a}}}} = {\small\ensuremath{\dfrac{ϱ_{\mathrm{V}}{a}}{2}}}. There is no surface charge at ρ = \textit{a}, so normal \textit{D} must be continuous; a mismatch would reveal an algebra slip. \hfill{\small\color{FAUblue}§1.10}
 \item Both distances are 0.05 m, each field \ensuremath{\approx} 1.08 \ensuremath{\times} 10\textsuperscript{4} V/m. \textit{E}\textsubscript{1} points along (0.6, 0.8); \textit{E}\textsubscript{2} points toward the \ensuremath{-}3 nC, along (0.6, \ensuremath{-}0.8). The y-parts cancel: \textit{E} \ensuremath{\approx} 1.29 \ensuremath{\times} 10\textsuperscript{4} V/m along +x. \hfill{\small\color{FAUblue}§1.4}
 \item \textit{w}\textsubscript{e} = \ensuremath{\tfrac12}ε\textsubscript{0}\textit{E}\textsuperscript{2} \ensuremath{\approx} 44 mJ/m³. \hfill{\small\color{FAUblue}§1.14}
 \item \textit{U}\textsubscript{AB} = $\int_{\mathrm{A}}^{\mathrm{B}} $ \textit{E} \ensuremath{\cdot} d\textit{s} = 500 \ensuremath{\times} 0.08 = +40 V. \hfill{\small\color{FAUblue}§1.9}
-\item \textit{C} = 4π ε\textsubscript{0} \ensuremath{\times} 0.05 \ensuremath{\times} 0.06/0.01 \ensuremath{\approx} 33.4 pF. The plate approximation ε\textsubscript{0}4π\textit{a}\textsuperscript{2}/\textit{d} \ensuremath{\approx} 27.8 pF is about 17 \% low, because the gap (1 cm) is not small compared with \textit{a}. \hfill{\small\color{FAUblue}§1.13}
-\item Outside σ\textsubscript{A}/ε\textsubscript{0} \ensuremath{\approx} 452 V/m, normal to the surface; inside 0. \hfill{\small\color{FAUblue}§1.11}
+\item \textit{C} = 4π ε\textsubscript{0} \ensuremath{\times} 0.05 \ensuremath{\times} {\small\ensuremath{\dfrac{0.06}{0.01}}} \ensuremath{\approx} 33.4 pF. The plate approximation {\small\ensuremath{\dfrac{ε_{0}4π{a}^{2}}{{d}}}} \ensuremath{\approx} 27.8 pF is about 17 \% low, because the gap (1 cm) is not small compared with \textit{a}. \hfill{\small\color{FAUblue}§1.13}
+\item Outside {\small\ensuremath{\dfrac{σ_{\mathrm{A}}}{ε_{0}}}} \ensuremath{\approx} 452 V/m, normal to the surface; inside 0. \hfill{\small\color{FAUblue}§1.11}
 \item \textit{Q} = λ\textit{l} = 2.0 μC. \hfill{\small\color{FAUblue}§1.6}
-\item \textit{W}\textsubscript{e} = \textit{Q Q}\textsubscript{0}/(4π ε\textsubscript{0}) (1/0.10 \ensuremath{-} 1/0.20) = 8.988 \ensuremath{\times} 10\textsuperscript{9} \ensuremath{\times} (\ensuremath{-}10\textsuperscript{\ensuremath{-}17}) \ensuremath{\times} 5 \ensuremath{\approx} \ensuremath{-}0.45 μJ: attraction does the work. \hfill{\small\color{FAUblue}§1.8}
+\item \textit{W}\textsubscript{e} = {\small\ensuremath{\dfrac{{Q\,Q}_{0}}{4π\, ε_{0}}}} ({\small\ensuremath{\dfrac{1}{0.10}}} \ensuremath{-} {\small\ensuremath{\dfrac{1}{0.20}}}) = 8.988 \ensuremath{\times} 10\textsuperscript{9} \ensuremath{\times} (\ensuremath{-}10\textsuperscript{\ensuremath{-}17}) \ensuremath{\times} 5 \ensuremath{\approx} \ensuremath{-}0.45 μJ: attraction does the work. \hfill{\small\color{FAUblue}§1.8}
 \item Parallel 9 μF (same voltage); series 2 μF (same charge). \hfill{\small\color{FAUblue}§1.13}
 \item Ψ = \textit{D A} = 0.60 μC. \hfill{\small\color{FAUblue}§1.10}
-\item 8.988 \ensuremath{\times} 10\textsuperscript{9} \ensuremath{\times} 6 \ensuremath{\times} 10\textsuperscript{\ensuremath{-}12}/0.04 \ensuremath{\approx} 1.35 N, attraction. \hfill{\small\color{FAUblue}§1.2}
+\item 8.988 \ensuremath{\times} 10\textsuperscript{9} \ensuremath{\times} 6 \ensuremath{\times} {\small\ensuremath{\dfrac{10^{-12}}{0.04}}} \ensuremath{\approx} 1.35 N, attraction. \hfill{\small\color{FAUblue}§1.2}
 \item Before: \textit{Q} = 1 μC, \textit{W}\textsubscript{e} = 50 μJ. Afterwards \textit{C} = 40 nF. (a) \textit{Q} stays 1 μC, \textit{U} = 25 V, \textit{W}\textsubscript{e} = 12.5 μJ. (b) \textit{U} stays 100 V, \textit{Q} = 4 μC, \textit{W}\textsubscript{e} = 200 μJ. \hfill{\small\color{FAUblue}§1.12, 1.14}
-\item \textit{D}\textsubscript{ρ} = ϱ\textsubscript{V}ρ/2 = 4 \ensuremath{\times} 10\textsuperscript{\ensuremath{-}6} \ensuremath{\times} 0.05/2 = 1.0 \ensuremath{\times} 10\textsuperscript{\ensuremath{-}7} C/m². \hfill{\small\color{FAUblue}§1.10}
-\item \textit{E}\textsubscript{n1} \ensuremath{\approx} 173 V/m, \textit{E}\textsubscript{t} = 100 V/m; \textit{E}\textsubscript{n2} = 173 \ensuremath{\times} 2/6 \ensuremath{\approx} 57.7 V/m. |\textit{E}\textsubscript{2}| \ensuremath{\approx} 115 V/m at 60° from the normal (tan 30°/tan 60° = 1/3 = ε\textsubscript{1}/ε\textsubscript{2}). \hfill{\small\color{FAUblue}§1.11}
-\item A quarter, since \textit{F} \ensuremath{\propto} 1/\textit{r}\textsuperscript{2}. \hfill{\small\color{FAUblue}§1.2}
-\item 9 \ensuremath{\times} 8.854 \ensuremath{\times} 10\textsuperscript{\ensuremath{-}12} \ensuremath{\times} 1000 \ensuremath{\times} 10\textsuperscript{\ensuremath{-}4}/10\textsuperscript{\ensuremath{-}5} \ensuremath{\approx} 0.80 μF. \hfill{\small\color{FAUblue}§1.13}
+\item \textit{D}\textsubscript{ρ} = {\small\ensuremath{\dfrac{ϱ_{\mathrm{V}}ρ}{2}}} = 4 \ensuremath{\times} 10\textsuperscript{\ensuremath{-}6} \ensuremath{\times} {\small\ensuremath{\dfrac{0.05}{2}}} = 1.0 \ensuremath{\times} 10\textsuperscript{\ensuremath{-}7} C/m². \hfill{\small\color{FAUblue}§1.10}
+\item \textit{E}\textsubscript{n1} \ensuremath{\approx} 173 V/m, \textit{E}\textsubscript{t} = 100 V/m; \textit{E}\textsubscript{n2} = 173 \ensuremath{\times} {\small\ensuremath{\dfrac{2}{6}}} \ensuremath{\approx} 57.7 V/m. |\textit{E}\textsubscript{2}| \ensuremath{\approx} 115 V/m at 60° from the normal (tan 30°/tan 60° = {\small\ensuremath{\dfrac{1}{3}}} = {\small\ensuremath{\dfrac{ε_{1}}{ε_{2}}}}). \hfill{\small\color{FAUblue}§1.11}
+\item A quarter, since \textit{F} \ensuremath{\propto} {\small\ensuremath{\dfrac{1}{{r}^{2}}}}. \hfill{\small\color{FAUblue}§1.2}
+\item 9 \ensuremath{\times} 8.854 \ensuremath{\times} 10\textsuperscript{\ensuremath{-}12} \ensuremath{\times} 1000 \ensuremath{\times} {\small\ensuremath{\dfrac{10^{-4}}{10^{-5}}}} \ensuremath{\approx} 0.80 μF. \hfill{\small\color{FAUblue}§1.13}
 \item Δφ = \ensuremath{-}\textit{E d} = \ensuremath{-}20 V, so \textit{W}\textsubscript{e} = \textit{Q}Δφ = \ensuremath{-}40 μJ: the field supplies the energy. \hfill{\small\color{FAUblue}§1.8}
-\item \textit{Q} = $\int_{0}^{\mathrm{R}} $ \textit{k r} 4π\textit{r}\textsuperscript{2} d\textit{r} = π\textit{k R}\textsuperscript{4} \ensuremath{\approx} 3.14 \ensuremath{\times} 10\textsuperscript{\ensuremath{-}10} C; \textit{D}(\textit{R}) = \textit{Q}/(4π\textit{R}\textsuperscript{2}) = \textit{k R}\textsuperscript{2}/4 = 2.5 \ensuremath{\times} 10\textsuperscript{\ensuremath{-}9} C/m². \hfill{\small\color{FAUblue}§1.6, 1.10}
+\item \textit{Q} = $\int_{0}^{\mathrm{R}} $ \textit{k r} 4π\textit{r}\textsuperscript{2} d\textit{r} = π\textit{k R}\textsuperscript{4} \ensuremath{\approx} 3.14 \ensuremath{\times} 10\textsuperscript{\ensuremath{-}10} C; \textit{D}(\textit{R}) = {\small\ensuremath{\dfrac{{Q}}{4π{R}^{2}}}} = {\small\ensuremath{\dfrac{{k\,R}^{2}}{4}}} = 2.5 \ensuremath{\times} 10\textsuperscript{\ensuremath{-}9} C/m². \hfill{\small\color{FAUblue}§1.6, 1.10}
 \item Each field is \ensuremath{\approx} 1.80 \ensuremath{\times} 10\textsuperscript{3} V/m toward +x (away from +, toward \ensuremath{-}): \textit{E} \ensuremath{\approx} 3.60 \ensuremath{\times} 10\textsuperscript{3} V/m along +x. \hfill{\small\color{FAUblue}§1.4}
-\item \textit{C} = ε\textsubscript{0}ε\textsubscript{r}\textit{A}/\textit{d} \ensuremath{\approx} 354 pF. \hfill{\small\color{FAUblue}§1.13}
-\item σ\textsubscript{A} = \textit{Q}/(4π\textit{a}\textsuperscript{2}) \ensuremath{\approx} 1.59 \ensuremath{\times} 10\textsuperscript{\ensuremath{-}8} C/m²; \textit{E} = σ\textsubscript{A}/ε\textsubscript{0} \ensuremath{\approx} 1.80 kV/m, the same as the point-charge field 8.988 \ensuremath{\times} 10\textsuperscript{9} \ensuremath{\times} 2 \ensuremath{\times} 10\textsuperscript{\ensuremath{-}9}/0.01. \hfill{\small\color{FAUblue}§1.11}
+\item \textit{C} = {\small\ensuremath{\dfrac{ε_{0}ε_{\mathrm{r}}{A}}{{d}}}} \ensuremath{\approx} 354 pF. \hfill{\small\color{FAUblue}§1.13}
+\item σ\textsubscript{A} = {\small\ensuremath{\dfrac{{Q}}{4π{a}^{2}}}} \ensuremath{\approx} 1.59 \ensuremath{\times} 10\textsuperscript{\ensuremath{-}8} C/m²; \textit{E} = {\small\ensuremath{\dfrac{σ_{\mathrm{A}}}{ε_{0}}}} \ensuremath{\approx} 1.80 kV/m, the same as the point-charge field 8.988 \ensuremath{\times} 10\textsuperscript{9} \ensuremath{\times} 2 \ensuremath{\times} {\small\ensuremath{\dfrac{10^{-9}}{0.01}}}. \hfill{\small\color{FAUblue}§1.11}
 \item Ψ = \textit{Q}\textsubscript{enclosed} = \ensuremath{-}8 nC (net flux points inward). \hfill{\small\color{FAUblue}§1.10}
-\item 8.988 \ensuremath{\times} 10\textsuperscript{9} \ensuremath{\times} (\ensuremath{-}3 \ensuremath{\times} 10\textsuperscript{\ensuremath{-}9})(6 \ensuremath{\times} 10\textsuperscript{\ensuremath{-}9})/0.20 \ensuremath{\approx} \ensuremath{-}0.81 μJ. \hfill{\small\color{FAUblue}§1.8}
+\item 8.988 \ensuremath{\times} 10\textsuperscript{9} \ensuremath{\times} {\small\ensuremath{\dfrac{(-3\, \times \, 10^{-9})(6\, \times \, 10^{-9})}{0.20}}} \ensuremath{\approx} \ensuremath{-}0.81 μJ. \hfill{\small\color{FAUblue}§1.8}
 \item \textit{Q} = σ\textit{A} = 2.0 nC. \hfill{\small\color{FAUblue}§1.6}
-\item 2π \ensuremath{\times} 8.854 \ensuremath{\times} 10\textsuperscript{\ensuremath{-}12} \ensuremath{\times} 2.5/ln 4 \ensuremath{\approx} 100 pF/m. \hfill{\small\color{FAUblue}§1.13}
-\item At distance \textit{x} from +\textit{Q}: \textit{Q}/\textit{x}\textsuperscript{2} = 2\textit{Q}/(0.30 \ensuremath{-} \textit{x})\textsuperscript{2}, so 0.30 \ensuremath{-} \textit{x} = \ensuremath{\sqrt{2}} \textit{x} and \textit{x} \ensuremath{\approx} 12.4 cm, closer to the smaller charge. It is the only point where field lines can meet; lines from both charges push apart around it. \hfill{\small\color{FAUblue}§1.7}
+\item {\small\ensuremath{\dfrac{2π\, \times \, 8.854\, \times \, 10^{-12}\, \times \, 2.5}{\ln \, 4}}} \ensuremath{\approx} 100 pF/m. \hfill{\small\color{FAUblue}§1.13}
+\item At distance \textit{x} from +\textit{Q}: {\small\ensuremath{\dfrac{{Q}}{{x}^{2}}}} = {\small\ensuremath{\dfrac{2{Q}}{(0.30\, -\, {x})^{2}}}}, so 0.30 \ensuremath{-} \textit{x} = \ensuremath{\sqrt{2}} \textit{x} and \textit{x} \ensuremath{\approx} 12.4 cm, closer to the smaller charge. It is the only point where field lines can meet; lines from both charges push apart around it. \hfill{\small\color{FAUblue}§1.7}
 \item Charge \textit{Q} = λ\textit{l} = 1 nC, so \textit{F} = \textit{Q E} = 4 μN along the field. In a non-uniform field, add up d\textit{F} = λ \textit{E}(\textit{x}) d\textit{x} along the rod. \hfill{\small\color{FAUblue}§1.5}
 \end{enumerate}
 
@@ -1685,9 +1685,9 @@ Tick a skill only when you have done its problems without notes on a later day t
 
 \Needspace{8\baselineskip}
 \begin{enumerate}
-\item \textit{D} = \textit{Q}/(2πρ\textit{l}), \textit{U} = \textit{Q} ln(\textit{b}/\textit{a})/(2π ε \textit{l}), \textit{C}/\textit{l} = 2π ε\textsubscript{0}ε\textsubscript{r}/ln 4 \ensuremath{\approx} 88.3 pF/m, so \textit{C} \ensuremath{\approx} 883 pF.
+\item \textit{D} = {\small\ensuremath{\dfrac{{Q}}{2πρ{l}}}}, \textit{U} = \textit{Q} {\small\ensuremath{\dfrac{\ln (\dfrac{{b}}{{a}})}{2π\, ε\, {l}}}}, {\small\ensuremath{\dfrac{{C}}{{l}}}} = {\small\ensuremath{\dfrac{2π\, ε_{0}ε_{\mathrm{r}}}{\ln \, 4}}} \ensuremath{\approx} 88.3 pF/m, so \textit{C} \ensuremath{\approx} 883 pF.
 \item \textit{Q} = \textit{C U} \ensuremath{\approx} 88 nC.
-\item \textit{E}(ρ) = \textit{U}/(ρ ln(\textit{b}/\textit{a})): about 144 kV/m at ρ = 0.5 mm and 36 kV/m at ρ = 2 mm. The field is strongest at the inner conductor, so breakdown starts there.
+\item \textit{E}(ρ) = {\small\ensuremath{\dfrac{{U}}{ρ\, \ln (\dfrac{{b}}{{a}})}}}: about 144 kV/m at ρ = 0.5 mm and 36 kV/m at ρ = 2 mm. The field is strongest at the inner conductor, so breakdown starts there.
 \item \textit{W}\textsubscript{e} = \ensuremath{\tfrac12}\textit{C U}\textsuperscript{2} \ensuremath{\approx} 4.4 μJ.
 \end{enumerate}
 
@@ -1697,13 +1697,13 @@ Tick a skill only when you have done its problems without notes on a later day t
 \Needspace{8\baselineskip}
 \begin{enumerate}
 \item \textit{D}: the field is normal to the interface and there is no surface charge, so \textit{D}\textsubscript{n1} = \textit{D}\textsubscript{n2}.
-\item \textit{U} = \textit{D}(\textit{d}\textsubscript{1}/ε\textsubscript{1} + \textit{d}\textsubscript{2}/ε\textsubscript{2}), so \textit{D} = 300 ε\textsubscript{0}/(0.5 mm + 0.5 mm) \ensuremath{\approx} 2.66 μC/m². \textit{E}\textsubscript{1} = 150 kV/m and \textit{E}\textsubscript{2} = 75 kV/m; 150 V across each layer.
-\item \textit{Q} = \textit{D A} \ensuremath{\approx} 26.6 nC, \textit{C} = \textit{Q}/\textit{U} \ensuremath{\approx} 88.5 pF. Series: \textit{C}\textsubscript{1} = \textit{C}\textsubscript{2} \ensuremath{\approx} 177 pF, so \textit{C} \ensuremath{\approx} 88.5 pF.
+\item \textit{U} = \textit{D}({\small\ensuremath{\dfrac{{d}_{1}}{ε_{1}}}} + {\small\ensuremath{\dfrac{{d}_{2}}{ε_{2}}}}), so \textit{D} = 300 {\small\ensuremath{\dfrac{ε_{0}}{0.5\, \text{mm}\, +\, 0.5\, \text{mm}}}} \ensuremath{\approx} 2.66 {\small\ensuremath{\dfrac{μ\mathrm{C}}{\mathrm{m}²}}}. \textit{E}\textsubscript{1} = 150 kV/m and \textit{E}\textsubscript{2} = 75 kV/m; 150 V across each layer.
+\item \textit{Q} = \textit{D A} \ensuremath{\approx} 26.6 nC, \textit{C} = {\small\ensuremath{\dfrac{{Q}}{{U}}}} \ensuremath{\approx} 88.5 pF. Series: \textit{C}\textsubscript{1} = \textit{C}\textsubscript{2} \ensuremath{\approx} 177 pF, so \textit{C} \ensuremath{\approx} 88.5 pF.
 \item \ensuremath{\tfrac12} \ensuremath{\times} 177 pF \ensuremath{\times} 150\textsuperscript{2} \ensuremath{\approx} 2.0 μJ per layer, 4.0 μJ in total, which matches \ensuremath{\tfrac12}\textit{C U}\textsuperscript{2}.
 \end{enumerate}
 
 \end{keepsection}
 
-\vfill{\small Personal study guide based on the supplied Electrical Engineering I Chapter 1 notes (WS 2026/27), written in my own words; no lecture pages or figures are reproduced. Not an official FAU publication; check course details against the current notes. Made by \textbf{Thanate Amornjiraporn (Focus)}.}
+\vfill{\small Personal study guide based on the supplied Electrical Engineering I Chapter 1 notes (WS {\small\ensuremath{\dfrac{2026}{27}}}), written in my own words; no lecture pages or figures are reproduced. Not an official FAU publication; check course details against the current notes. Made by \textbf{Thanate Amornjiraporn (Focus)}.}
 
 \end{document}
