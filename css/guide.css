@@ -724,6 +724,19 @@ main > section {
 .method-list > li {
   position: relative;
 }
+.practice-label { margin: 0 0 12px; color: var(--course); font: 700 0.9rem/1.4 var(--f-display); letter-spacing: 0.04em; text-transform: uppercase; }
+.code-sample {
+  max-width: 100%;
+  overflow-x: auto;
+  margin: 10px 0 14px;
+  padding: 12px 14px;
+  border-left: 2px solid var(--course);
+  background: var(--paper);
+  color: var(--ink);
+  font: 0.9rem/1.55 ui-monospace, "SFMono-Regular", Consolas, monospace;
+  tab-size: 4;
+}
+.code-sample code { font: inherit; }
 .worked .math-line {
   /* shrink to the formula and centre it; block with fit-content rather than display: table, because Safari ignores
      max-width on a table and a long line would then run off a phone screen instead of wrapping */

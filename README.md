@@ -100,7 +100,7 @@ js/
 tests/                  Physics, lab-challenge and generator tests: node --test
 tools/
   guide-to-tex.py       Converts a guide page into its LaTeX file
-  check-guide.py        Checks a guide and its lab against the standards
+  check-guide.py        Checks guides, labs, appendices, exercises and tutorials
   graph-describe.py     Plain-English notes for the Graphify page (run by the graph refresh)
   graph-orb.py          3D layout of the graph for the home-page orb (run by the graph refresh)
 docs/
@@ -109,6 +109,8 @@ docs/
 assets/preview.png      Screenshot used in this README
 assets/graph-orb.json   Orb layout written by tools/graph-orb.py
 ```
+
+Authoring and verification tool contracts are documented in [docs/TOOLING-STANDARD.md](docs/TOOLING-STANDARD.md).
 
 No build step for the site. Fonts load from Google Fonts; formulas are plain HTML.
 

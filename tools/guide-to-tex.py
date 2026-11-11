@@ -1196,6 +1196,13 @@ class Conv:
             if "standfirst" in c:
                 return "\n{\\large %s}\n\n" % inline(k)
             return "\n%s\n" % inline(k)
+        if t == "pre":
+            lines = []
+            for line in k.text().rstrip("\n").splitlines():
+                indent = len(line) - len(line.lstrip(" "))
+                code = tex_text(line.lstrip(" "))
+                lines.append(r"\noindent\hspace*{%dem}\texttt{%s}\par" % (indent * 0.45, code))
+            return r"\begin{tcolorbox}[colback=Paperblue,colframe=Paperblue,boxrule=0pt,arc=0pt,left=7pt,right=7pt,top=5pt,bottom=5pt]\small\sloppy" + "\n" + "\n".join(lines) + "\n" + r"\end{tcolorbox}" + "\n"
         if t == "ol":
             return self.keep(k) + "\n\\begin{enumerate}\n%s\\end{enumerate}\n" % self.items(k)
         if t == "ul":

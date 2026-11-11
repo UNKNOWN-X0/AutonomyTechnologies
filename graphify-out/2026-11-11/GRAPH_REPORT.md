@@ -1,9 +1,7 @@
 # Graph Report - AutonomyTechnologies  (2026-11-11)
 
 ## Corpus Check
-- 67 files · ~288,524 words
-- Verdict: corpus is large enough that graph structure adds value.
-- Unclassified: 6 file(s) not represented in the graph (top: .css 4, (none) 2)
+- cluster-only mode — file stats not available
 
 ## Summary
 - 1093 nodes · 2107 edges · 60 communities (47 shown, 13 thin omitted)
@@ -41,7 +39,7 @@
 - Concept map
 - EEI lab design brief
 - Site preview picture
-- Study Pages project guide
+- Project overview documents
 - APDR 4 formulas
 - APDR 3 formulas
 - APDR 34a lab: integers and floats
@@ -61,7 +59,7 @@
 - EEI 1 formula tests
 - PDF converter: drawing helpers
 - PDF converter: page blocks
-- guide-to-tex.py
+- PDF converter: formulas and mapping diagrams
 - Graph node notes script
 - PDF converter: reading the page
 - Home page orb
@@ -69,8 +67,8 @@
 - APDR 2 formula tests
 - EEI 2 formulas
 - Study guide standard
-- Product
-- route
+- Product brief
+- Home page study route and project rules
 - Exercise solutions standard
 - Lab question generator tests
 - EEI 2 formula tests
@@ -80,24 +78,24 @@
 2. `Components` - 25 edges
 3. `capacitorBench()` - 22 edges
 4. `paint()` - 21 edges
-5. `queue()` - 18 edges
+5. `draw()` - 18 edges
 6. `networks()` - 18 edges
-7. `draw()` - 18 edges
+7. `queue()` - 18 edges
 8. `update()` - 18 edges
 9. `interfaceBench()` - 17 edges
 10. `check()` - 17 edges
 
 ## Surprising Connections (you probably didn't know these)
-- `Acceptance` --references--> `generate()`  [INFERRED]
-  docs/LAB-STANDARD.md → js/apdr/ch12-physics.js
-- `Experiments` --references--> `generate()`  [INFERRED]
-  docs/LAB-STANDARD.md → js/apdr/ch12-physics.js
-- `Generated challenges (New challenge)` --references--> `three()`  [INFERRED]
-  docs/LAB-STANDARD.md → js/apdr/ch3-lab.js
-- `Markup` --references--> `o()`  [INFERRED]
-  docs/GUIDE-STANDARD.md → js/apdr/ch34-lab.js
 - `Markup` --references--> `tick()`  [INFERRED]
   docs/GUIDE-STANDARD.md → js/eei/ch1-lab.js
+- `Markup` --references--> `cap()`  [INFERRED]
+  docs/GUIDE-STANDARD.md → js/eei/ch1-lab.js
+- `Markup` --references--> `o()`  [INFERRED]
+  docs/GUIDE-STANDARD.md → js/apdr/ch34-lab.js
+- `Markup` --references--> `fill()`  [INFERRED]
+  docs/GUIDE-STANDARD.md → js/mei/ch1-lab.js
+- `New kinds needed` --references--> `imp()`  [INFERRED]
+  docs/DIAGRAM-AND-LAB-PLAN.md → js/mei/expr.js
 
 ## Import Cycles
 - None detected.
@@ -188,7 +186,7 @@ Nodes (24): arrow(), charge(), COORD(), add(), arc(), axis(), dot(), fit() (+16 
 Cohesion: 0.46
 Nodes (7): below(), box(), draw(), pulse(), redraw(), select(), stopPulses()
 
-### Community 25 - "Study Pages project guide"
+### Community 25 - "Project overview documents"
 Cohesion: 0.20
 Nodes (13): Electrical Engineering I study cards, Mathematics for Engineers I study cards, Study Pages home page, Active-recall study workflow, Electrical Engineering I, Electrostatic Fields interactive lab, Electrostatic Fields study guide, GitHub Pages hosting (+5 more)
 
@@ -252,7 +250,7 @@ Nodes (10): arrow_t(), coord_tikz(), dipole_lines(), P(), scene_tikz(), label(),
 Cohesion: 0.20
 Nodes (4): Conv, est(), grow_delims(), main()
 
-### Community 46 - "guide-to-tex.py"
+### Community 46 - "PDF converter: formulas and mapping diagrams"
 Cohesion: 0.19
 Nodes (11): amap_data(), amap_label(), amap_tikz(), big_op(), inline(), math(), math_text(), math_wrap() (+3 more)
 
@@ -276,11 +274,11 @@ Nodes (5): Acceptance, EEI Chapter 2 lab: Stationary Currents, Experiments (in c
 Cohesion: 0.18
 Nodes (11): Acceptance, Appendix pages, Content rules, Files, Labs, PDF, Practice and testing, Principles (+3 more)
 
-### Community 54 - "Product"
+### Community 54 - "Product brief"
 Cohesion: 0.20
 Nodes (10): Accessibility & Inclusion, Brand Commitments, Capabilities and Constraints, Evidence on Hand, Operating Context, Platform, Product, Product Principles (+2 more)
 
-### Community 55 - "route"
+### Community 55 - "Home page study route and project rules"
 Cohesion: 0.25
 Nodes (8): Local workflow, Project data, Project instructions, Page structure, reroute(), route(), select(), topIn()
 
@@ -306,15 +304,15 @@ Nodes (5): context(), defsOf(), fake(), labs, ROOT
 _Questions this graph is uniquely positioned to answer:_
 
 - **Why does `Markup` connect `APDR 2 lab: computers and logic` to `EEI 1 lab: fields and capacitors`, `MEI 1 lab: logic and sets`, `PDF converter: drawing helpers`, `Typed-formula reader`, `Study guide standard`?**
-  _High betweenness centrality (0.445) - this node is a cross-community bridge._
+  _High betweenness centrality (0.410) - this node is a cross-community bridge._
 - **Are the 3 inferred relationships involving `fieldPlayground()` (e.g. with `eei/ch1-lab.js` and `endDrag()`) actually correct?**
   _`fieldPlayground()` has 3 INFERRED edges - model-reasoned connections that need verification._
 - **What connects `Study Pages preview showing Electrical Engineering 1 and Mathematics for Engineers I course cards`, `Active-recall study workflow`, `Jekyll site CI` to the rest of the system?**
   _10 weakly-connected nodes found - possible documentation gaps or missing edges._
 - **Should `EEI 1 lab: fields and capacitors` be split into smaller, more focused modules?**
   _Cohesion score 0.05303030303030303 - nodes in this community are weakly interconnected._
-- **Why does `Study guide standard` connect `Study guide standard` to `GUIDE-STANDARD.md`, `APDR 2 lab: computers and logic`, `route`?**
-  _High betweenness centrality (0.178) - this node is a cross-community bridge._
+- **Why does `Study guide standard` connect `Study guide standard` to `GUIDE-STANDARD.md`, `APDR 2 lab: computers and logic`, `Home page study route and project rules`?**
+  _High betweenness centrality (0.139) - this node is a cross-community bridge._
 - **Are the 2 inferred relationships involving `capacitorBench()` (e.g. with `eei/ch1-lab.js` and `resize()`) actually correct?**
   _`capacitorBench()` has 2 INFERRED edges - model-reasoned connections that need verification._
 - **Should `Site look: design rules` be split into smaller, more focused modules?**
