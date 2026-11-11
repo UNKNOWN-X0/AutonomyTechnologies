@@ -87,8 +87,7 @@
       "js_eei_ch1_lab_networks_paint",
       "js_eei_ch1_lab_networks_resize",
       "js_eei_ch1_lab_networks_start",
-      "js_eei_ch1_lab_networks_synccontrols",
-      "js_eei_ch1_lab_svg"
+      "js_eei_ch1_lab_networks_synccontrols"
     ],
     "1": [
       "design_answer_key",
@@ -156,7 +155,7 @@
       "tools_check_guide_rationale_1",
       "tools_check_guide_rationale_107",
       "tools_check_guide_rationale_183",
-      "tools_check_guide_rationale_468",
+      "tools_check_guide_rationale_469",
       "tools_check_guide_rationale_64",
       "tools_check_guide_report",
       "tools_check_guide_report_err",
@@ -251,7 +250,6 @@
       "js_apdr_ch12_lab_experimentkmap_chosen",
       "js_apdr_ch12_lab_experimentkmap_cover",
       "js_apdr_ch12_lab_experimentkmap_cubetext",
-      "js_apdr_ch12_lab_experimentkmap_ownmap",
       "js_apdr_ch12_lab_experimentkmap_prepare",
       "js_apdr_ch12_lab_experimentkmap_set",
       "js_apdr_ch12_lab_experimentnand",
@@ -358,7 +356,8 @@
       "js_apdr_ch12_physics_shannon",
       "js_apdr_ch12_physics_toanf",
       "js_apdr_ch12_physics_truthtable",
-      "js_apdr_ch34_lab_spec"
+      "js_apdr_ch34_lab_spec",
+      "tests_apdr_ch12_physics_test"
     ],
     "7": [
       "js_eei_ch1_physics",
@@ -421,23 +420,7 @@
       "js_lab_write"
     ],
     "10": [
-      "docs_diagram_and_lab_plan",
-      "docs_diagram_and_lab_plan_bugs_found_playwright_webkit_1288_px_sandboxes_opened",
-      "docs_diagram_and_lab_plan_new_kinds_needed",
-      "docs_diagram_and_lab_plan_order_and_checks",
-      "docs_diagram_and_lab_plan_part_a_diagrams_by_chapter",
-      "docs_diagram_and_lab_plan_part_b_labs",
-      "docs_diagram_and_lab_plan_plan_more_diagrams_freer_labs",
-      "docs_diagram_and_lab_plan_proposed_changes",
-      "docs_diagram_and_lab_plan_status_2026_11_05",
-      "docs_diagram_and_lab_plan_what_a_lab_is_today",
-      "docs_diagram_and_lab_plan_where_chapter_by_chapter",
-      "docs_diagram_and_lab_plan_why_it_feels_fixed",
-      "docs_guide_standard_markup",
-      "docs_guide_standard_signs",
-      "js_apdr_ch12_lab_experimentkmap_cells",
       "js_apdr_ch2_lab",
-      "js_apdr_ch2_lab_bits",
       "js_apdr_ch2_lab_box",
       "js_apdr_ch2_lab_colours",
       "js_apdr_ch2_lab_drawalgorithm",
@@ -469,18 +452,7 @@
       "js_apdr_ch2_lab_rnd",
       "js_apdr_ch2_lab_stagefor",
       "js_apdr_ch2_lab_text",
-      "js_apdr_ch2_lab_wire",
-      "js_apdr_ch2_physics",
-      "js_apdr_ch2_physics_boolean",
-      "js_apdr_ch2_physics_delayedoutput",
-      "js_apdr_ch2_physics_nand",
-      "js_apdr_ch2_physics_nandand",
-      "js_apdr_ch2_physics_nandcircuit",
-      "js_apdr_ch2_physics_nandor",
-      "js_apdr_ch2_physics_squarerootstep",
-      "js_apdr_ch2_physics_umbrella",
-      "js_apdr_ch34_lab_o",
-      "js_mei_ch1_lab_votediagram_fill"
+      "js_apdr_ch2_lab_wire"
     ],
     "11": [
       "apdr_ch2_computers_apdr_lecture_slides",
@@ -501,6 +473,18 @@
       "apdr_ch2_computers_truth_tables"
     ],
     "13": [
+      "docs_guide_standard_acceptance",
+      "docs_guide_standard_appendix_pages",
+      "docs_guide_standard_content_rules",
+      "docs_guide_standard_files",
+      "docs_guide_standard_labs",
+      "docs_guide_standard_page_structure",
+      "docs_guide_standard_pdf",
+      "docs_guide_standard_practice_and_testing",
+      "docs_guide_standard_principles",
+      "docs_guide_standard_study_guide_standard",
+      "docs_guide_standard_topic_sections",
+      "docs_guide_standard_updating_a_guide",
       "js_index",
       "js_index_ago",
       "js_index_countup",
@@ -514,6 +498,9 @@
       "js_index_radar",
       "js_index_reach",
       "js_index_read",
+      "js_index_reroute",
+      "js_index_route",
+      "js_index_select",
       "js_index_set",
       "js_index_settle",
       "js_index_tickshtml",
@@ -521,6 +508,7 @@
       "js_index_ticktip",
       "js_index_tips",
       "js_index_today",
+      "js_index_topin",
       "js_index_when"
     ],
     "14": [
@@ -567,6 +555,34 @@
       "js_apdr_ch4_lab_text"
     ],
     "15": [
+      "docs_diagram_and_lab_plan",
+      "docs_diagram_and_lab_plan_bugs_found_playwright_webkit_1288_px_sandboxes_opened",
+      "docs_diagram_and_lab_plan_new_kinds_needed",
+      "docs_diagram_and_lab_plan_order_and_checks",
+      "docs_diagram_and_lab_plan_part_a_diagrams_by_chapter",
+      "docs_diagram_and_lab_plan_part_b_labs",
+      "docs_diagram_and_lab_plan_plan_more_diagrams_freer_labs",
+      "docs_diagram_and_lab_plan_proposed_changes",
+      "docs_diagram_and_lab_plan_status_2026_11_05",
+      "docs_diagram_and_lab_plan_what_a_lab_is_today",
+      "docs_diagram_and_lab_plan_where_chapter_by_chapter",
+      "docs_diagram_and_lab_plan_why_it_feels_fixed",
+      "docs_guide_standard_markup",
+      "docs_guide_standard_signs",
+      "js_apdr_ch12_lab_experimentkmap_cells",
+      "js_apdr_ch12_lab_experimentkmap_ownmap",
+      "js_apdr_ch2_lab_bits",
+      "js_apdr_ch2_physics",
+      "js_apdr_ch2_physics_boolean",
+      "js_apdr_ch2_physics_delayedoutput",
+      "js_apdr_ch2_physics_nand",
+      "js_apdr_ch2_physics_nandand",
+      "js_apdr_ch2_physics_nandcircuit",
+      "js_apdr_ch2_physics_nandor",
+      "js_apdr_ch2_physics_squarerootstep",
+      "js_apdr_ch2_physics_umbrella",
+      "js_apdr_ch34_lab_o",
+      "js_mei_ch1_lab_votediagram_fill",
       "js_mei_expr",
       "js_mei_expr_bool",
       "js_mei_expr_compile",
@@ -609,6 +625,7 @@
       "graphify_out_memory_query_20261024_200642_8a7177bd_does_the_graph_cover_the_learner_journey_from_the_source_nodes"
     ],
     "19": [
+      "js_eei_ch1_lab_svg",
       "js_guide",
       "js_guide_addbar",
       "js_guide_arrow",
@@ -671,9 +688,37 @@
       "assets_preview_study_pages_course_cards"
     ],
     "25": [
+      "agents",
+      "design",
+      "docs_exercise_solutions_standard",
+      "docs_exercise_solutions_standard_acceptance",
+      "docs_exercise_solutions_standard_exercise_solutions_standard",
+      "docs_exercise_solutions_standard_files_and_source",
+      "docs_exercise_solutions_standard_learning_sequence",
+      "docs_exercise_solutions_standard_page_frame",
+      "docs_guide_standard",
+      "docs_lab_standard",
+      "docs_tooling_standard",
+      "docs_tooling_standard_acceptance",
+      "docs_tooling_standard_normal_authoring_workflow",
+      "docs_tooling_standard_source_and_generated_files",
+      "docs_tooling_standard_tool_changes",
+      "docs_tooling_standard_tool_roles",
+      "docs_tooling_standard_tooling_standard",
       "index_electrical_engineering_i_cards",
       "index_mathematics_for_engineers_i_cards",
       "index_study_pages_home",
+      "product",
+      "product_accessibility_inclusion",
+      "product_brand_commitments",
+      "product_capabilities_and_constraints",
+      "product_evidence_on_hand",
+      "product_operating_context",
+      "product_platform",
+      "product_product",
+      "product_product_principles",
+      "product_product_purpose",
+      "product_users",
       "readme_active_recall_study_workflow",
       "readme_electrical_engineering_i",
       "readme_electrostatic_fields_lab",
@@ -781,6 +826,9 @@
       "js_mei_ch2_lab_tok"
     ],
     "30": [
+      "agents_local_workflow",
+      "agents_project_data",
+      "agents_project_instructions",
       "js_nav",
       "js_nav_fold",
       "js_nav_follow",
@@ -792,27 +840,31 @@
       "js_nav_plural",
       "js_nav_show",
       "js_nav_show_build",
+      "js_nav_show_fold",
       "js_nav_show_href",
       "js_nav_show_label",
+      "js_nav_show_remember",
+      "js_nav_show_reveal",
       "js_nav_show_same",
+      "js_nav_show_span",
       "js_nav_spy",
       "js_nav_sync"
     ],
     "31": [
-      "js_apdr_ch34_physics",
-      "js_apdr_ch34_physics_addcolumns",
-      "js_apdr_ch34_physics_cancellation",
-      "js_apdr_ch34_physics_stablequadratic",
-      "js_apdr_ch34_physics_subtractexactbysterbenz",
       "ref_node_assert",
       "ref_node_fs",
       "ref_node_path",
       "ref_node_test",
       "ref_node_vm",
-      "tests_apdr_ch12_physics_test",
-      "tests_apdr_ch34_physics_test",
+      "tests_apdr_ch2_physics_test",
+      "tests_apdr_ch2_physics_test_row",
+      "tests_apdr_ch2_physics_test_rows",
       "tests_apdr_ch3_physics_test",
       "tests_apdr_ch4_physics_test",
+      "tests_eei_ch2_physics_test",
+      "tests_eei_ch2_physics_test_close",
+      "tests_eei_ch2_physics_test_definitions",
+      "tests_eei_ch2_physics_test_fake",
       "tests_mei_ch3_physics_test",
       "tests_mei_ch3_physics_test_challenges",
       "tests_mei_expr_test",
@@ -928,6 +980,13 @@
       "ref_fs",
       "ref_path",
       "ref_vm",
+      "tests_lab_generators_test",
+      "tests_lab_generators_test_context",
+      "tests_lab_generators_test_defsof",
+      "tests_lab_generators_test_fake",
+      "tests_lab_generators_test_labpages",
+      "tests_lab_generators_test_labs",
+      "tests_lab_generators_test_root",
       "tests_mei_ch1_physics_test",
       "tests_mei_ch1_physics_test_cube",
       "tests_mei_ch1_physics_test_labchallenges",
@@ -971,7 +1030,7 @@
       "tools_guide_to_tex_coord_pieces_mid_label",
       "tools_guide_to_tex_coord_pieces_tip_label",
       "tools_guide_to_tex_coord_pieces_vec",
-      "tools_guide_to_tex_rationale_351"
+      "tools_guide_to_tex_rationale_353"
     ],
     "41": [
       "js_eei_ch2_lab",
@@ -1019,10 +1078,10 @@
       "tools_guide_to_tex_coord_tikz",
       "tools_guide_to_tex_dipole_lines",
       "tools_guide_to_tex_p",
-      "tools_guide_to_tex_rationale_321",
-      "tools_guide_to_tex_rationale_343",
-      "tools_guide_to_tex_rationale_520",
-      "tools_guide_to_tex_rationale_619",
+      "tools_guide_to_tex_rationale_323",
+      "tools_guide_to_tex_rationale_345",
+      "tools_guide_to_tex_rationale_522",
+      "tools_guide_to_tex_rationale_621",
       "tools_guide_to_tex_scene_tikz",
       "tools_guide_to_tex_scene_tikz_label",
       "tools_guide_to_tex_scene_tikz_ring_pts",
@@ -1045,10 +1104,10 @@
       "tools_guide_to_tex_est",
       "tools_guide_to_tex_grow_delims",
       "tools_guide_to_tex_main",
-      "tools_guide_to_tex_rationale_1100",
-      "tools_guide_to_tex_rationale_1138",
-      "tools_guide_to_tex_rationale_1239",
-      "tools_guide_to_tex_rationale_143"
+      "tools_guide_to_tex_rationale_1102",
+      "tools_guide_to_tex_rationale_1140",
+      "tools_guide_to_tex_rationale_1248",
+      "tools_guide_to_tex_rationale_145"
     ],
     "46": [
       "html_parser",
@@ -1062,10 +1121,10 @@
       "tools_guide_to_tex_math_text",
       "tools_guide_to_tex_math_wrap",
       "tools_guide_to_tex_rationale_1",
-      "tools_guide_to_tex_rationale_207",
-      "tools_guide_to_tex_rationale_218",
-      "tools_guide_to_tex_rationale_224",
-      "tools_guide_to_tex_rationale_242",
+      "tools_guide_to_tex_rationale_209",
+      "tools_guide_to_tex_rationale_220",
+      "tools_guide_to_tex_rationale_226",
+      "tools_guide_to_tex_rationale_244",
       "tools_guide_to_tex_sqrt_tex",
       "tools_guide_to_tex_tex_text",
       "tools_guide_to_tex_var_math"
@@ -1126,9 +1185,12 @@
       "tests_lab_challenges_test_runengine"
     ],
     "51": [
-      "tests_apdr_ch2_physics_test",
-      "tests_apdr_ch2_physics_test_row",
-      "tests_apdr_ch2_physics_test_rows"
+      "js_apdr_ch34_physics",
+      "js_apdr_ch34_physics_addcolumns",
+      "js_apdr_ch34_physics_cancellation",
+      "js_apdr_ch34_physics_stablequadratic",
+      "js_apdr_ch34_physics_subtractexactbysterbenz",
+      "tests_apdr_ch34_physics_test"
     ],
     "52": [
       "impeccable_surfaces_eei_ch2_lab",
@@ -1147,112 +1209,47 @@
       "js_eei_ch2_physics_throughsurface",
       "js_eei_ch2_physics_tolerance",
       "js_eei_ch2_physics_wire"
-    ],
-    "53": [
-      "docs_guide_standard_acceptance",
-      "docs_guide_standard_appendix_pages",
-      "docs_guide_standard_content_rules",
-      "docs_guide_standard_files",
-      "docs_guide_standard_labs",
-      "docs_guide_standard_pdf",
-      "docs_guide_standard_practice_and_testing",
-      "docs_guide_standard_principles",
-      "docs_guide_standard_study_guide_standard",
-      "docs_guide_standard_topic_sections",
-      "docs_guide_standard_updating_a_guide"
-    ],
-    "54": [
-      "product_accessibility_inclusion",
-      "product_brand_commitments",
-      "product_capabilities_and_constraints",
-      "product_evidence_on_hand",
-      "product_operating_context",
-      "product_platform",
-      "product_product",
-      "product_product_principles",
-      "product_product_purpose",
-      "product_users"
-    ],
-    "55": [
-      "agents_local_workflow",
-      "agents_project_data",
-      "agents_project_instructions",
-      "docs_guide_standard_page_structure",
-      "js_index_reroute",
-      "js_index_route",
-      "js_index_select",
-      "js_index_topin"
-    ],
-    "56": [
-      "agents",
-      "design",
-      "docs_exercise_solutions_standard",
-      "docs_guide_standard",
-      "docs_lab_standard",
-      "product"
-    ],
-    "57": [
-      "docs_exercise_solutions_standard_acceptance",
-      "docs_exercise_solutions_standard_exercise_solutions_standard",
-      "docs_exercise_solutions_standard_files_and_source",
-      "docs_exercise_solutions_standard_learning_sequence",
-      "docs_exercise_solutions_standard_page_frame"
-    ],
-    "58": [
-      "tests_lab_generators_test",
-      "tests_lab_generators_test_context",
-      "tests_lab_generators_test_defsof",
-      "tests_lab_generators_test_fake",
-      "tests_lab_generators_test_labpages",
-      "tests_lab_generators_test_labs",
-      "tests_lab_generators_test_root"
-    ],
-    "60": [
-      "tests_eei_ch2_physics_test",
-      "tests_eei_ch2_physics_test_close",
-      "tests_eei_ch2_physics_test_definitions",
-      "tests_eei_ch2_physics_test_fake"
     ]
   },
   "cohesion": {
-    "0": 0.05303030303030303,
+    "0": 0.053728949478749,
     "1": 0.044444444444444446,
     "2": 0.16333333333333333,
     "3": 0.10885341074020319,
-    "4": 0.09783368273934312,
+    "4": 0.10014513788098693,
     "5": 0.08784313725490196,
-    "6": 0.08275862068965517,
+    "6": 0.07956989247311828,
     "7": 0.19230769230769232,
     "8": 0.14285714285714285,
     "9": 0.17094017094017094,
-    "10": 0.06949152542372881,
+    "10": 0.1590909090909091,
     "11": 0.6666666666666666,
     "12": 0.2,
-    "13": 0.11428571428571428,
+    "13": 0.06456456456456457,
     "14": 0.1073170731707317,
-    "15": 0.22875816993464052,
+    "15": 0.07246376811594203,
     "16": 0.3333333333333333,
     "17": 0.4,
     "18": 0.4,
-    "19": 0.11827956989247312,
+    "19": 0.11693548387096774,
     "20": 0.5,
     "21": 0.6666666666666666,
     "22": 0.4642857142857143,
     "23": 1.0,
     "24": 1.0,
-    "25": 0.1978021978021978,
+    "25": 0.06387921022067364,
     "26": 0.23076923076923078,
     "27": 0.2571428571428571,
     "28": 0.14492753623188406,
     "29": 0.1590909090909091,
-    "30": 0.2,
-    "31": 0.16374269005847952,
+    "30": 0.1422924901185771,
+    "31": 0.19298245614035087,
     "32": 0.2571428571428571,
     "33": 0.6,
     "34": 0.17582417582417584,
     "35": 0.1303030303030303,
     "36": 0.225,
-    "37": 0.2777777777777778,
+    "37": 0.175,
     "38": 0.2857142857142857,
     "39": 0.14166666666666666,
     "40": 0.32142857142857145,
@@ -1266,15 +1263,8 @@
     "48": 0.21818181818181817,
     "49": 0.5357142857142857,
     "50": 0.39285714285714285,
-    "51": 1.0,
-    "52": 0.125,
-    "53": 0.18181818181818182,
-    "54": 0.2,
-    "55": 0.25,
-    "56": 0.6,
-    "57": 0.4,
-    "58": 0.38095238095238093,
-    "60": 0.6666666666666666
+    "51": 0.3333333333333333,
+    "52": 0.125
   },
   "gods": [
     {
@@ -1352,6 +1342,17 @@
       "why": "inferred connection - not explicitly stated in source; crosses file types (code ↔ doc); connects across different repos/directories; bridges separate communities"
     },
     {
+      "source": "Local workflow",
+      "target": "route()",
+      "source_files": [
+        "AGENTS.md",
+        "js/index.js"
+      ],
+      "confidence": "INFERRED",
+      "relation": "references",
+      "why": "inferred connection - not explicitly stated in source; crosses file types (code ↔ doc); connects across different repos/directories; bridges separate communities"
+    },
+    {
       "source": "Markup",
       "target": "o()",
       "source_files": [
@@ -1372,24 +1373,13 @@
       "confidence": "INFERRED",
       "relation": "references",
       "why": "inferred connection - not explicitly stated in source; crosses file types (code ↔ doc); connects across different repos/directories; peripheral node `fill()` unexpectedly reaches hub `Markup`"
-    },
-    {
-      "source": "New kinds needed",
-      "target": "imp()",
-      "source_files": [
-        "docs/DIAGRAM-AND-LAB-PLAN.md",
-        "js/mei/expr.js"
-      ],
-      "confidence": "INFERRED",
-      "relation": "references",
-      "why": "inferred connection - not explicitly stated in source; crosses file types (code ↔ doc); connects across different repos/directories; bridges separate communities"
     }
   ],
   "questions": [
     {
       "type": "bridge_node",
-      "question": "Why does `Markup` connect `APDR 2 lab: computers and logic` to `EEI 1 lab: fields and capacitors`, `MEI 1 lab: logic and sets`, `PDF converter: drawing helpers`, `Typed-formula reader`, `Study guide standard`?",
-      "why": "High betweenness centrality (0.410) - this node is a cross-community bridge."
+      "question": "Why does `Markup` connect `Lab helpers: expressions, bits and gates` to `EEI 1 lab: fields and capacitors`, `Home page and guide rules`, `PDF converter: drawing helpers`, `MEI 1 lab: logic and sets`?",
+      "why": "High betweenness centrality (0.452) - this node is a cross-community bridge."
     },
     {
       "type": "verify_inferred",
@@ -1404,12 +1394,12 @@
     {
       "type": "low_cohesion",
       "question": "Should `EEI 1 lab: fields and capacitors` be split into smaller, more focused modules?",
-      "why": "Cohesion score 0.05303030303030303 - nodes in this community are weakly interconnected."
+      "why": "Cohesion score 0.053728949478749 - nodes in this community are weakly interconnected."
     },
     {
       "type": "bridge_node",
-      "question": "Why does `Study guide standard` connect `Study guide standard` to `GUIDE-STANDARD.md`, `APDR 2 lab: computers and logic`, `Home page study route and project rules`?",
-      "why": "High betweenness centrality (0.139) - this node is a cross-community bridge."
+      "question": "Why does `Study guide standard` connect `Home page and guide rules` to `Project overview and standards`, `Lab helpers: expressions, bits and gates`?",
+      "why": "High betweenness centrality (0.198) - this node is a cross-community bridge."
     },
     {
       "type": "verify_inferred",

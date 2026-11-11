@@ -88,6 +88,114 @@
     fold(g, false);
   });
 
+  // The instrument (owner's request, 2026-11-11: "futuristic, not 2010s"). Over the list, a readout names the section
+  // being read in large figures, counts it ("5 of 18") and fills a strip of one segment per entry; each entry is a
+  // station on the route line, solid once passed; a reticle of four corner brackets glides to the current entry and
+  // locks onto it; each group heading counts how far into it you are. All of it is decorative (aria-hidden): the list
+  // itself carries aria-current. Reduced motion keeps every state and drops the movement.
+  // only the rail's own list counts (the rail also holds a second copy of the entries)
+  var stations = rail ? links.filter(function (a) { return rail.contains(a); }) : [],
+    strips = [],
+    tele = null,
+    teleNo = null,
+    teleTitle = null,
+    teleCount = null,
+    lock = null;
+  function strip() {
+    var s = document.createElement("div");
+    s.className = "tele-segs";
+    s.setAttribute("aria-hidden", "true");
+    stations.forEach(function (a, i) {
+      var seg = document.createElement("i");
+      seg.style.setProperty("--i", i);
+      seg.style.setProperty("--n", Math.max(2, stations.length));
+      s.appendChild(seg);
+    });
+    strips.push(s);
+    return s;
+  }
+  // "1.4 Superposition" → ["1.4", "Superposition"]; "Task 7 · Point charges" → ["Task 7", "Point charges"]
+  function split(text) {
+    var m = text.match(/^([0-9][0-9.–-]*[a-z]?)\s+(.+)$/) || text.match(/^(.+?)\s+·\s+(.+)$/);
+    return m ? [m[1], m[2]] : ["", text];
+  }
+  // Letters settle from random glyphs into the title, left to right (about 320ms).
+  function settle(el, text) {
+    el.textContent = text;
+    if (reduce || !window.requestAnimationFrame) return;
+    var t0 = performance.now(),
+      SET = "ABCDEFGHJKLMNPQRSTUVWXYZ0123456789";
+    (function frame(now) {
+      var p = Math.min(1, (now - t0) / 320),
+        n = Math.floor(text.length * p),
+        out = text.slice(0, n);
+      for (var k = n; k < text.length; k++) out += /\s/.test(text[k]) ? text[k] : SET[(Math.random() * SET.length) | 0];
+      el.textContent = out;
+      if (p < 1 && el.dataset.text === text) requestAnimationFrame(frame);
+      else if (el.dataset.text === text) el.textContent = text;
+    })(t0);
+  }
+  if (rail) {
+    tele = document.createElement("div");
+    tele.className = "rail-tele";
+    tele.setAttribute("aria-hidden", "true");
+    var top = document.createElement("div");
+    top.className = "tele-top";
+    teleNo = document.createElement("span");
+    teleNo.className = "tele-no";
+    teleCount = document.createElement("span");
+    teleCount.className = "tele-count";
+    top.appendChild(teleNo);
+    top.appendChild(teleCount);
+    teleTitle = document.createElement("div");
+    teleTitle.className = "tele-title";
+    tele.appendChild(top);
+    tele.appendChild(teleTitle);
+    tele.appendChild(strip());
+    rail.parentNode.insertBefore(tele, rail);
+    lock = document.createElement("li");
+    lock.className = "rail-lock";
+    lock.setAttribute("aria-hidden", "true");
+    lock.hidden = true;
+    rail.appendChild(lock);
+    groups.forEach(function (g) {
+      g.count = document.createElement("span");
+      g.count.className = "toc-count";
+      g.count.setAttribute("aria-hidden", "true");
+      g.btn.appendChild(g.count);
+    });
+  }
+  function instrument(a) {
+    var idx = stations.indexOf(a);
+    stations.forEach(function (l, i) {
+      l.classList.toggle("is-past", i < idx);
+    });
+    strips.forEach(function (s) {
+      Array.prototype.forEach.call(s.children, function (seg, i) {
+        seg.className = i < idx ? "past" : i === idx ? "now" : "";
+      });
+    });
+    groups.forEach(function (g) {
+      var reached = g.items.filter(function (li) {
+        var l = li.querySelector("a");
+        return l && stations.indexOf(l) <= idx;
+      }).length;
+      if (g.count) g.count.textContent = reached + "/" + g.items.length;
+    });
+    if (!tele || !a) return;
+    var parts = split(a.textContent.trim());
+    tele.classList.toggle("no-number", !parts[0]);
+    teleNo.textContent = parts[0] || parts[1];
+    teleCount.textContent = idx + 1 + " of " + stations.length;
+    teleTitle.dataset.text = parts[0] ? parts[1] : "";
+    settle(teleTitle, teleTitle.dataset.text);
+    if (lock) {
+      lock.classList.remove("lock-in");
+      void lock.offsetWidth;
+      lock.classList.add("lock-in");
+    }
+  }
+
   var bar = null,
     label = null,
     sheet = null,
@@ -114,6 +222,16 @@
       y = 0;
     if (a && a.offsetParent) y = a.getBoundingClientRect().bottom - rail.getBoundingClientRect().top - rail.clientTop;
     rail.style.setProperty("--lit", Math.max(0, Math.round(y)) + "px");
+    if (lock) {
+      lock.hidden = !(a && a.offsetParent);
+      if (!lock.hidden) {
+        var r = a.getBoundingClientRect();
+        lock.style.top = Math.round(r.top - rail.getBoundingClientRect().top - rail.clientTop - 5) + "px";
+        lock.style.height = Math.round(r.height + 10) + "px";
+        // glide only between entries, never in from the top on the first placement
+        if (!lock.classList.contains("ready")) requestAnimationFrame(function () { lock.classList.add("ready"); });
+      }
+    }
   }
   window.addEventListener("resize", lit);
 
@@ -139,6 +257,7 @@
     if (label && a) label.textContent = a.textContent.trim();
     var g = a && groupOf(a);
     if (g && !g.open) fold(g, true);
+    instrument(a);
     lit();
     follow();
   }
@@ -179,6 +298,7 @@
     sheet.appendChild(sheetList);
     sheetLinks = Array.prototype.slice.call(sheet.querySelectorAll("a"));
     bar.appendChild(btn);
+    bar.appendChild(strip());
     document.body.appendChild(bar);
     document.body.appendChild(sheet);
     function open(on) {
@@ -223,13 +343,14 @@
   // Without the hub (opened as a file, offline) nothing is added.
   var here = location.pathname.split("/").slice(-2).join("/"),
     root = new URL("../", location.href),
-    KEY = "nav-chapters-3"; // v3 added subject names; a stale older cache is simply ignored
+    KEY = "nav-chapters-4"; // v4 added the subject colour class; a stale older cache is simply ignored
   function parse(html) {
     var doc = new DOMParser().parseFromString(html, "text/html"),
       out = [];
     doc.querySelectorAll("li.subject").forEach(function (sub) {
       var subCode = ((sub.querySelector(".code") || {}).textContent || "").trim(),
-        subName = ((sub.querySelector(".about h3") || {}).textContent || "").trim();
+        subName = ((sub.querySelector(".about h3") || {}).textContent || "").trim(),
+        course = (sub.className.match(/\bs-[a-z]+-\d\b/) || [""])[0];
       sub.querySelectorAll("li.chapter .go").forEach(function (go) {
         var li = go.closest("li.chapter"),
           links = go.querySelectorAll("a");
@@ -237,6 +358,7 @@
           kind: "chapter",
           code: li.dataset.code || subCode,
           name: subName,
+          course: course,
           no: li.querySelector(".no").textContent.trim(),
           title: li.querySelector(".title").textContent.trim(),
           guide: links[0] && links[0].getAttribute("href"),
@@ -248,6 +370,7 @@
           kind: (a.closest("li").dataset.tab || "Exercise").toLowerCase(),
           code: subCode,
           name: subName,
+          course: course,
           no: a.dataset.no || String(i + 1),
           title: a.textContent.trim(),
           guide: a.getAttribute("href"),
@@ -329,7 +452,7 @@
       var subjects = [],
         bySub = {};
       chs.forEach(function (c, i) {
-        if (!bySub[c.code]) subjects.push((bySub[c.code] = { code: c.code, name: c.name, kinds: [], byKind: {} }));
+        if (!bySub[c.code]) subjects.push((bySub[c.code] = { code: c.code, name: c.name, course: c.course, kinds: [], byKind: {} }));
         var S = bySub[c.code];
         if (!S.byKind[c.kind]) S.kinds.push((S.byKind[c.kind] = []));
         S.byKind[c.kind].push(i);
@@ -343,7 +466,7 @@
         var mine = S.code === me.code,
           li = document.createElement("li"),
           code = span("fold-code", S.code);
-        li.className = "fold-subject";
+        li.className = "fold-subject" + (S.course ? " " + S.course : "");
         var sd = fold("fold-sub", "s:" + S.code, mine || saved["s:" + S.code] === true, S.name ? [code, span("fold-name", S.name)] : [code]);
         S.kinds.forEach(function (list) {
           var kind = chs[list[0]].kind,

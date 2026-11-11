@@ -14,7 +14,7 @@
   "12": "APDR 2 guide: topics",
   "13": "Home page and guide rules",
   "14": "APDR 4 lab: floating point",
-  "15": "Lab helpers: expressions, bits and gates",
+  "15": "MEI expression parser",
   "16": "Helper notes for AI agents",
   "17": "Saved question: hosting",
   "18": "Saved question: learner journey",
@@ -50,6 +50,9 @@
   "48": "PDF converter: reading the page",
   "49": "Home page orb",
   "50": "Lab challenge tests",
-  "51": "APDR 3+4 formulas and tests",
-  "52": "EEI 2 formulas"
+  "51": "Diagram and lab plan",
+  "52": "EEI 2 formulas",
+  "53": "Lab question generator tests",
+  "54": "EEI 2 formula tests",
+  "55": "APDR 2 formula tests"
 }

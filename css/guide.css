@@ -370,7 +370,7 @@ nav.toc > ol {
 nav.toc > ol::after {
   content: "";
   position: absolute;
-  left: 0;
+  left: 2px;
   top: 0;
   width: 3px;
   height: var(--lit, 0px);
@@ -385,7 +385,7 @@ nav.toc > ol li a[aria-current]::before,
 nav.toc > ol li a[aria-current]::after {
   content: "";
   position: absolute;
-  left: -2px;
+  left: 0;
   top: 50%;
   width: 7px;
   height: 7px;
@@ -395,6 +395,8 @@ nav.toc > ol li a[aria-current]::after {
 }
 nav.toc > ol li a[aria-current]::before {
   background: var(--signal-b);
+  border-color: var(--signal-b);
+  box-shadow: var(--glow);
 }
 nav.toc > ol li a[aria-current]::after {
   border: 2px solid var(--signal-b);
@@ -412,6 +414,202 @@ nav.toc > ol li a[aria-current]::after {
 }
 @media print {
   nav.toc > ol::after {
+    display: none;
+  }
+}
+
+/* The instrument (js/nav.js; owner's request, 2026-11-11: "futuristic, not 2010s"). A readout over the list names the
+   section being read; every entry is a station on the route line (hollow ahead, solid signal once passed); a reticle of
+   corner brackets glides to the current entry and locks on; group headings count how far in you are. All in the
+   system's own HUD vocabulary: --hud-c corner brackets, the signal for reached, square corners, no shadows. */
+.rail-tele {
+  margin: 22px 0 0;
+  padding: 14px 14px 13px;
+  background:
+    linear-gradient(var(--hud-c), var(--hud-c)) left top / 12px 2px no-repeat,
+    linear-gradient(var(--hud-c), var(--hud-c)) left top / 2px 12px no-repeat,
+    linear-gradient(var(--hud-c), var(--hud-c)) right top / 12px 2px no-repeat,
+    linear-gradient(var(--hud-c), var(--hud-c)) right top / 2px 12px no-repeat,
+    linear-gradient(var(--hud-c), var(--hud-c)) left bottom / 12px 2px no-repeat,
+    linear-gradient(var(--hud-c), var(--hud-c)) left bottom / 2px 12px no-repeat,
+    linear-gradient(var(--hud-c), var(--hud-c)) right bottom / 12px 2px no-repeat,
+    linear-gradient(var(--hud-c), var(--hud-c)) right bottom / 2px 12px no-repeat,
+    var(--surface);
+}
+.rail-tele + ol {
+  margin-top: 14px;
+}
+.tele-top {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 10px;
+}
+.tele-no {
+  min-width: 0;
+  overflow: hidden;
+  color: var(--ink);
+  font: 800 2rem/1 var(--f-display);
+  letter-spacing: -0.02em;
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+.rail-tele.no-number .tele-no {
+  font-size: 1.25rem;
+  letter-spacing: -0.01em;
+}
+.tele-count {
+  flex: none;
+  color: var(--muted);
+  font: 600 0.78rem/1 var(--f-body);
+  font-variant-numeric: tabular-nums;
+}
+.tele-title {
+  display: -webkit-box;
+  min-height: 1.25em;
+  margin-top: 6px;
+  overflow: hidden;
+  color: var(--ink);
+  font: 700 0.95rem/1.25 var(--f-display);
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+}
+.rail-tele.no-number .tele-title {
+  display: none;
+}
+/* one segment per entry; passed ones share a single signal gradient across the strip */
+.tele-segs {
+  display: flex;
+  gap: 2px;
+  height: 6px;
+  margin-top: 12px;
+}
+.tele-segs i {
+  flex: 1;
+  background: var(--ink);
+  opacity: 0.14;
+}
+.tele-segs i.past {
+  background: linear-gradient(90deg, var(--signal-a), var(--signal-b)) calc(var(--i) / (var(--n) - 1) * 100%) 0 / calc(var(--n) * 100%) 100%;
+  opacity: 1;
+}
+.tele-segs i.now {
+  background: var(--signal-b);
+  box-shadow: var(--glow);
+  opacity: 1;
+}
+@media (prefers-reduced-motion: no-preference) {
+  .tele-segs i.now {
+    animation: tele-now 1.6s var(--ease) infinite;
+  }
+}
+@keyframes tele-now {
+  50% {
+    opacity: 0.35;
+  }
+}
+/* stations on the route: a faint track, hollow squares ahead, solid signal once passed */
+nav.toc > ol::before {
+  content: "";
+  position: absolute;
+  left: 3px;
+  top: 0;
+  bottom: 0;
+  width: 1px;
+  background: var(--line);
+  pointer-events: none;
+}
+nav.toc > ol li a {
+  position: relative;
+  padding-left: 18px;
+  transition:
+    background-color 150ms var(--ease),
+    color 150ms var(--ease),
+    padding-left 150ms var(--ease);
+}
+nav.toc > ol li a::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 50%;
+  width: 7px;
+  height: 7px;
+  margin-top: -3.5px;
+  box-sizing: border-box;
+  border: 1.5px solid var(--muted);
+  background: var(--bg);
+  pointer-events: none;
+  transition:
+    background-color 150ms var(--ease),
+    border-color 150ms var(--ease);
+}
+nav.toc > ol li a.is-past::before {
+  background: var(--signal-b);
+  border-color: var(--signal-b);
+}
+nav.toc > ol li a:hover {
+  padding-left: 22px;
+}
+nav.toc > ol li a:hover::before {
+  border-color: var(--hud-c);
+}
+/* the reticle: four corner brackets that glide to the current entry and close in on it */
+nav.toc > ol > li.rail-lock {
+  position: absolute;
+  left: 10px;
+  right: 0;
+  z-index: 1;
+  margin: 0;
+  border: 0;
+  pointer-events: none;
+  background:
+    linear-gradient(var(--hud-c), var(--hud-c)) left top / 12px 2px no-repeat,
+    linear-gradient(var(--hud-c), var(--hud-c)) left top / 2px 7px no-repeat,
+    linear-gradient(var(--hud-c), var(--hud-c)) right top / 12px 2px no-repeat,
+    linear-gradient(var(--hud-c), var(--hud-c)) right top / 2px 7px no-repeat,
+    linear-gradient(var(--hud-c), var(--hud-c)) left bottom / 12px 2px no-repeat,
+    linear-gradient(var(--hud-c), var(--hud-c)) left bottom / 2px 7px no-repeat,
+    linear-gradient(var(--hud-c), var(--hud-c)) right bottom / 12px 2px no-repeat,
+    linear-gradient(var(--hud-c), var(--hud-c)) right bottom / 2px 7px no-repeat;
+}
+@media (prefers-reduced-motion: no-preference) {
+  nav.toc > ol > li.rail-lock.ready {
+    transition:
+      top 380ms var(--ease),
+      height 380ms var(--ease);
+  }
+  nav.toc > ol > li.rail-lock.lock-in {
+    animation: rail-lock 520ms var(--ease) both;
+  }
+}
+@keyframes rail-lock {
+  from {
+    transform: scale(1.1, 1.7);
+    opacity: 0;
+  }
+}
+/* how far into each group: "3/12" before the fold arrow */
+.toc-count {
+  margin-left: auto;
+  color: var(--muted);
+  font: 600 0.75rem/1 var(--f-body);
+  letter-spacing: 0;
+  text-transform: none;
+  font-variant-numeric: tabular-nums;
+}
+/* subject code squares in the Chapters list, in the subject's own colour (the Subject Fill Rule: fill, ink text) */
+.fold-sub .fold-code {
+  min-width: 3.4em;
+  padding: 4px 5px;
+  background: var(--course);
+  color: var(--code-ink);
+  text-align: center;
+}
+@media print {
+  .rail-tele,
+  nav.toc > ol > li.rail-lock,
+  nav.toc > ol::before {
     display: none;
   }
 }
@@ -1055,6 +1253,16 @@ details.answers {
         transform 220ms var(--ease),
         visibility 0s;
     }
+  }
+  /* the instrument's strip along the bar's lower edge */
+  .toc-bar .tele-segs {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: -1px;
+    height: 3px;
+    margin: 0;
+    gap: 1px;
   }
   .toc-bar-btn {
     display: flex;

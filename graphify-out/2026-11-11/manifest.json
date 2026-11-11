@@ -24,9 +24,9 @@
     "semantic_hash": ""
   },
   "AGENTS.md": {
-    "mtime": 1794406487.3345804,
-    "seen": 1794406582.282903,
-    "ast_hash": "9b05ecfb6be0165c9f839117ca69dd1b",
+    "mtime": 1794407150.3487191,
+    "seen": 1794407220.433107,
+    "ast_hash": "d3ab60de3b5114cc3e1602786fb6c9fe",
     "semantic_hash": ""
   },
   "graphify-out/memory/query_20261024_200642_26a2d038_how_are_the_static_study_pages_hosted__and_what_gi.md": {
@@ -60,9 +60,9 @@
     "semantic_hash": ""
   },
   "DESIGN.md": {
-    "mtime": 1794237451.5959013,
-    "seen": 1794237575.713922,
-    "ast_hash": "7abc364512c09e50680927d514d67718",
+    "mtime": 1794407143.2363727,
+    "seen": 1794407220.4331079,
+    "ast_hash": "57432985ad7e06315931dfd40c888693",
     "semantic_hash": ""
   },
   "PRODUCT.md": {
@@ -438,9 +438,9 @@
     "semantic_hash": ""
   },
   "js/nav.js": {
-    "mtime": 1794406342.1250477,
-    "seen": 1794406582.28288,
-    "ast_hash": "e56a12804cec006b18ea7ad68fece8b8",
+    "mtime": 1794407063.9511354,
+    "seen": 1794407220.433084,
+    "ast_hash": "77f142a68e2bf6322985773762bae66a",
     "semantic_hash": ""
   },
   "js/settings.js": {
@@ -456,15 +456,15 @@
     "semantic_hash": ""
   },
   "about/how-to-use.html": {
-    "mtime": 1794406487.3336012,
-    "seen": 1794406582.2829068,
-    "ast_hash": "c249d27a142794de1f25abc639a74fe8",
+    "mtime": 1794407150.348448,
+    "seen": 1794407220.433111,
+    "ast_hash": "a91f01c115caacac5aba83eb75fdc741",
     "semantic_hash": ""
   },
   "about/version-log.html": {
-    "mtime": 1794406487.3342655,
-    "seen": 1794406582.2829068,
-    "ast_hash": "dd642e04c4354ee4df880aed74e96aa9",
+    "mtime": 1794407143.2453706,
+    "seen": 1794407220.433111,
+    "ast_hash": "339ce56437f44b0a8ab0a2856810f225",
     "semantic_hash": ""
   },
   "docs/DIAGRAM-AND-LAB-PLAN.md": {
@@ -492,15 +492,15 @@
     "semantic_hash": ""
   },
   "tools/graph-describe.py": {
-    "mtime": 1794225161.3702643,
-    "seen": 1794225593.349483,
-    "ast_hash": "c329c09a57a0483f1cf234ef434ee8a6",
+    "mtime": 1794406644.99123,
+    "seen": 1794407220.433101,
+    "ast_hash": "6617814adc6bd2923306628acb4cdb83",
     "semantic_hash": ""
   },
   "assets/graph-orb.json": {
-    "mtime": 1794405279.5610454,
-    "seen": 1794406582.282851,
-    "ast_hash": "ba706ef7a78859b89187bd06b9f69eb2",
+    "mtime": 1794406635.7484388,
+    "seen": 1794407220.433054,
+    "ast_hash": "8a6288069004d3e09a98f13d46cebc41",
     "semantic_hash": ""
   },
   "js/orb.js": {
